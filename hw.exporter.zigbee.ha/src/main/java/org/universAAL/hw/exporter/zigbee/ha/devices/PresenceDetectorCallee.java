@@ -95,7 +95,7 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 	ContextProvider info = new ContextProvider(
 		PresenceDetectorService.PRESENCE_SERVER_NAMESPACE
 			+ "zbPresenceDetectorContextProvider");
-	info.setType(ContextProviderType.controller);
+	info.setType(ContextProviderType.gauge);
 	cp = new DefaultContextPublisher(context, info);
 
 	zbDevice.getOccupacySensing().subscribe(this);
