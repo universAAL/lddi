@@ -33,8 +33,11 @@ import org.universAAL.ontology.lighting.ElectricLight;
 import org.universAAL.ontology.lighting.LightSource;
 
 /**
- * @author mtazari
+ * Ontological service that controls a specific exported HW device. Methods
+ * included in this class are the mandatory ones for representing an ontological
+ * service in Java classes for uAAL.
  * 
+ * @author alfiva
  */
 public class DimmerLightService extends DeviceService {
     public static final String LIGHTING_SERVER_NAMESPACE = "http://ontology.igd.fhg.de/ZBDimmerLightingServer.owl#";
@@ -68,12 +71,13 @@ public class DimmerLightService extends DeviceService {
 		serverRestrictions);
 	addRestriction(Restriction.getFixedValueRestriction(
 		LightSource.PROP_HAS_TYPE, ElectricLight.lightBulb),
-		new String[] { DeviceService.PROP_CONTROLS, LightSource.PROP_HAS_TYPE },
-		serverRestrictions);
+		new String[] { DeviceService.PROP_CONTROLS,
+			LightSource.PROP_HAS_TYPE }, serverRestrictions);
 	addRestriction(Restriction.getAllValuesRestrictionWithCardinality(
 		LightSource.PROP_SOURCE_BRIGHTNESS, TypeMapper
-			.getDatatypeURI(Integer.class), 1, 1), new String[] {
-		DeviceService.PROP_CONTROLS, LightSource.PROP_SOURCE_BRIGHTNESS },
+			.getDatatypeURI(Integer.class), 1, 1),
+		new String[] { DeviceService.PROP_CONTROLS,
+			LightSource.PROP_SOURCE_BRIGHTNESS },
 		serverRestrictions);
 
 	PropertyPath brightnessPath = new PropertyPath(null, true,

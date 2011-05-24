@@ -49,6 +49,13 @@ import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.device.home.PresenceDetector;
 import org.universAAL.ontology.location.indoor.Room;
 
+/**
+ * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
+ * device with the uAAL middleware through the service and context buses.
+ * 
+ * @author alfiva
+ * 
+ */
 public class PresenceDetectorCallee extends ServiceCallee implements
 	OccupancyListener {
     static final String DEVICE_URI_PREFIX = PresenceDetectorService.PRESENCE_SERVER_NAMESPACE
@@ -64,6 +71,16 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 
     private ServiceProfile[] newProfiles = PresenceDetectorService.profiles;
 
+    /**
+     * Constructor to be used in the exporter, which sets up all the exporting
+     * process.
+     * 
+     * @param context
+     *            The OSGi context
+     * @param serv
+     *            The OSGi service backing the interaction with the device in
+     *            the abstraction layer
+     */
     public PresenceDetectorCallee(BundleContext context, OccupancySensor serv) {
 	super(context, null);
 	log.debug("Ready to subscribe");
@@ -103,6 +120,10 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 
     }
 
+    /**
+     * Disconnects this exported device from the middleware.
+     * 
+     */
     public void unregister() {
 	this.removeMatchingRegParams(newProfiles);
     }

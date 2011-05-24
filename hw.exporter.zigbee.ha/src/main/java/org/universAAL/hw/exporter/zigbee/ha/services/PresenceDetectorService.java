@@ -30,6 +30,13 @@ import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.device.home.PresenceDetector;
 
+/**
+ * Ontological service that controls a specific exported HW device. Methods
+ * included in this class are the mandatory ones for representing an ontological
+ * service in Java classes for uAAL.
+ * 
+ * @author alfiva
+ */
 public class PresenceDetectorService extends DeviceService {
     public static final String PRESENCE_SERVER_NAMESPACE = "http://ontology.igd.fhg.de/ZBPresenceServer.owl#";
     public static final String MY_URI = PRESENCE_SERVER_NAMESPACE
@@ -50,7 +57,8 @@ public class PresenceDetectorService extends DeviceService {
 		serverRestrictions);
 
 	PropertyPath presencePath = new PropertyPath(null, true, new String[] {
-		DeviceService.PROP_CONTROLS, PresenceDetector.PROP_MEASURED_VALUE });
+		DeviceService.PROP_CONTROLS,
+		PresenceDetector.PROP_MEASURED_VALUE });
 
 	PresenceDetectorService getPresence = new PresenceDetectorService(
 		SERVICE_GET_PRESENCE);
