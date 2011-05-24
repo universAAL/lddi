@@ -30,6 +30,13 @@ import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.weather.TempSensor;
 
+/**
+ * Ontological service that controls a specific exported HW device. Methods
+ * included in this class are the mandatory ones for representing an ontological
+ * service in Java classes for uAAL.
+ * 
+ * @author alfiva
+ */
 public class TemperatureSensorService extends DeviceService {
     public static final String SERVER_NAMESPACE = "http://ontology.igd.fhg.de/ZBTemperatureServer.owl#";
     public static final String MY_URI = SERVER_NAMESPACE

@@ -49,6 +49,13 @@ import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.location.indoor.Room;
 import org.universAAL.ontology.weather.TempSensor;
 
+/**
+ * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
+ * device with the uAAL middleware through the service and context buses.
+ * 
+ * @author alfiva
+ * 
+ */
 public class TemperatureSensorCallee extends ServiceCallee implements
 	MeasuredValueListener {
     static final String DEVICE_URI_PREFIX = TemperatureSensorService.SERVER_NAMESPACE
@@ -64,6 +71,16 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 
     private ServiceProfile[] newProfiles = TemperatureSensorService.profiles;
 
+    /**
+     * Constructor to be used in the exporter, which sets up all the exporting
+     * process.
+     * 
+     * @param context
+     *            The OSGi context
+     * @param serv
+     *            The OSGi service backing the interaction with the device in
+     *            the abstraction layer
+     */
     public TemperatureSensorCallee(BundleContext context, TemperatureSensor serv) {
 	super(context, null);
 	log.debug("Ready to subscribe");
@@ -105,6 +122,10 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 	}
     }
 
+    /**
+     * Disconnects this exported device from the middleware.
+     * 
+     */
     public void unregister() {
 	this.removeMatchingRegParams(newProfiles);
     }

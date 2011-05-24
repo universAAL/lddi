@@ -50,6 +50,13 @@ import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.lighting.LightSource;
 import org.universAAL.ontology.location.indoor.Room;
 
+/**
+ * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
+ * device with the uAAL middleware through the service and context buses.
+ * 
+ * @author alfiva
+ * 
+ */
 public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 
     static final String DEVICE_URI_PREFIX = OnOffLightService.LIGHTING_SERVER_NAMESPACE
@@ -65,6 +72,16 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 
     private ServiceProfile[] newProfiles = OnOffLightService.profiles;
 
+    /**
+     * Constructor to be used in the exporter, which sets up all the exporting
+     * process.
+     * 
+     * @param context
+     *            The OSGi context
+     * @param serv
+     *            The OSGi service backing the interaction with the device in
+     *            the abstraction layer
+     */
     public OnOffLightCallee(BundleContext context, OnOffLight serv) {
 	super(context, null);
 	log.debug("Ready to subscribe");
@@ -128,6 +145,10 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 	cp.publish(new ContextEvent(ls, LightSource.PROP_SOURCE_BRIGHTNESS));
     }
 
+    /**
+     * Disconnects this exported device from the middleware.
+     * 
+     */
     public void unregister() {
 	this.removeMatchingRegParams(newProfiles);
     }

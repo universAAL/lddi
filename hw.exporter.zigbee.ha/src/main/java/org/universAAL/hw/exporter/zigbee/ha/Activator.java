@@ -54,6 +54,14 @@ public class Activator implements BundleActivator {
 	((TemperatureSensorListener) listeners[3]).douAALUnregistering();
     }
 
+    /**
+     * Saves commissioning location properties of devices in a preset file.
+     * 
+     * The current format of property=value stored is:
+     * <code>FullDeviceID=URIsuffixOfRoom</code>
+     * 
+     * @param prop
+     */
     public static synchronized void setProperties(Properties prop) {
 	try {
 	    FileWriter out;
@@ -65,6 +73,17 @@ public class Activator implements BundleActivator {
 	}
     }
 
+    /**
+     * Gets the commissioning location properties of already known devices from
+     * a preset file.
+     * 
+     * The current format of property=value stored is:
+     * <code>FullDeviceID=URIsuffixOfRoom</code>
+     * 
+     * If the file does not exists, it is created.
+     * 
+     * @return The <code>Properties</code> object with the commissioning data.
+     */
     public static synchronized Properties getProperties() {
 	Properties prop = new Properties();
 	try {

@@ -29,8 +29,11 @@ import org.universAAL.middleware.service.owl.Service;
 import org.universAAL.ontology.phThing.Device;
 
 /**
- * @author mtazari
+ * Ontological service that controls any exported HW device. Methods
+ * included in this class are the mandatory ones for representing an ontological
+ * service in Java classes for uAAL.
  * 
+ * @author alfiva
  */
 public class DeviceService extends Service {
     public static final String MY_URI;

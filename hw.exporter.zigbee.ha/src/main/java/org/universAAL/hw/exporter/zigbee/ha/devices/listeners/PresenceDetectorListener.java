@@ -37,6 +37,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee;
 
+/**
+ * OSGi Service Listener that looks for a specific service published by the
+ * abstraction layer and creates and updates the appropriate exporter callee.
+ * 
+ * @author alfiva
+ * 
+ */
 public class PresenceDetectorListener implements ServiceListener {
     private final static String filter = "(" + Constants.OBJECTCLASS + "="
 	    + OccupancySensor.class.getName() + ")";
@@ -47,6 +54,16 @@ public class PresenceDetectorListener implements ServiceListener {
     private final static Logger log = LoggerFactory
 	    .getLogger(PresenceDetectorListener.class);
 
+    /**
+     * Constructor to be used in the exporter. Configures the listener and
+     * performs initial search.
+     * 
+     * @param context
+     *            The OSGi context
+     * @throws InvalidSyntaxException
+     *             If the service to listen defined in the class is not
+     *             appropriate
+     */
     public PresenceDetectorListener(BundleContext context)
 	    throws InvalidSyntaxException {
 	this.context = context;
@@ -109,6 +126,9 @@ public class PresenceDetectorListener implements ServiceListener {
 	context.ungetService(sr);
     }
 
+    /**
+     * Disconnects and removes all instantiated exported devices of this type.
+     */
     public void douAALUnregistering() {
 	log.debug("Removing all instances of these devices in uAAL");
 	Iterator iter = presenceDetectorDevices.keySet().iterator();
