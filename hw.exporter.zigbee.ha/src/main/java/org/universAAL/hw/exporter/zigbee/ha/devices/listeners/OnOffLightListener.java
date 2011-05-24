@@ -110,7 +110,8 @@ public class OnOffLightListener implements ServiceListener {
 	Iterator iter = onOffLigthDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((OnOffLightCallee) onOffLigthDevices.remove(sref)).unregister();
+	    ((OnOffLightCallee) onOffLigthDevices.get(sref)).unregister();
+	    iter.remove();
 	    context.ungetService(sref);
 	}
 	onOffLigthDevices.clear();
