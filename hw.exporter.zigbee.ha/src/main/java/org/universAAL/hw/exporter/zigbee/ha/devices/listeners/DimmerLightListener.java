@@ -110,7 +110,8 @@ public class DimmerLightListener implements ServiceListener {
 	Iterator iter = onOffLigthDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((DimmerLightCallee) onOffLigthDevices.remove(sref)).unregister();
+	    ((DimmerLightCallee) onOffLigthDevices.get(sref)).unregister();
+	    iter.remove();
 	    context.ungetService(sref);
 	}
 	onOffLigthDevices.clear();

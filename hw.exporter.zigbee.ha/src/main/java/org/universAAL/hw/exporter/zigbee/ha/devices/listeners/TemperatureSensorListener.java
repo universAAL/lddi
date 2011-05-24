@@ -111,7 +111,8 @@ public class TemperatureSensorListener implements ServiceListener {
 	Iterator iter = sensorDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((TemperatureSensorCallee) sensorDevices.remove(sref)).unregister();
+	    ((TemperatureSensorCallee) sensorDevices.get(sref)).unregister();
+	    iter.remove();
 	    context.ungetService(sref);
 	}
 	sensorDevices.clear();

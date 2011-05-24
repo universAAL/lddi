@@ -114,8 +114,8 @@ public class PresenceDetectorListener implements ServiceListener {
 	Iterator iter = presenceDetectorDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((PresenceDetectorCallee) presenceDetectorDevices.remove(sref))
-		    .unregister();
+	    ((PresenceDetectorCallee) presenceDetectorDevices.get(sref)).unregister();
+	    iter.remove();
 	    context.ungetService(sref);
 	}
 	presenceDetectorDevices.clear();
