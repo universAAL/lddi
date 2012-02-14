@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -29,16 +29,15 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.services.DimmerLightService;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
-import org.universAAL.middleware.owl.Restriction;
+import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceCall;
@@ -66,8 +65,6 @@ public class DimmerLightCallee extends ServiceCallee implements
     static final String INPUT_DEVICE_URI = DimmerLightService.LIGHTING_SERVER_NAMESPACE
 	    + "lampURI";
 
-    private final static Logger log = LoggerFactory
-	    .getLogger(DimmerLightCallee.class);
     private DimmableLight zbDevice;
     private DefaultContextPublisher cp;
     LightSource ontologyDevice;
@@ -86,7 +83,9 @@ public class DimmerLightCallee extends ServiceCallee implements
      */
     public DimmerLightCallee(ModuleContext context, DimmableLight serv) {
 	super(context, null);
-	log.debug("Ready to subscribe");
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"DimmerLightCallee", new String[] { "Ready to subscribe" },
+		null);
 	zbDevice = serv;
 
 	// Commissioning
@@ -119,7 +118,7 @@ public class DimmerLightCallee extends ServiceCallee implements
 	inputb.setParameterType(TypeMapper.getDatatypeURI(Integer.class));
 	inputb.setCardinality(1, 1);
 
-	Restriction r = Restriction.getFixedValueRestriction(
+	MergedRestriction r = MergedRestriction.getFixedValueRestriction(
 		DimmerLightService.PROP_CONTROLS, ontologyDevice);
 
 	newProfiles[0].addInput(input);
@@ -147,9 +146,12 @@ public class DimmerLightCallee extends ServiceCallee implements
 	info.setType(ContextProviderType.controller);
 	cp = new DefaultContextPublisher(context, info);
 	if (zbDevice.getLevelControl().subscribe(this)) {
-	    log.debug("Subscribed");
+	    LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		    "DimmerLightCallee", new String[] { "Subscribed" }, null);
 	} else {
-	    log.error("Failed to Subscribe!!!");
+	    LogUtils.logError(Activator.moduleContext, DimmerLightCallee.class,
+		    "DimmerLightCallee",
+		    new String[] { "Failed to Subscribe!!!" }, null);
 	}
     }
 
@@ -166,7 +168,8 @@ public class DimmerLightCallee extends ServiceCallee implements
     }
 
     public ServiceResponse handleCall(ServiceCall call) {
-	log.debug("Received a call");
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"handleCall", new String[] { "Received a call" }, null);
 	ServiceResponse response;
 	if (call == null) {
 	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
@@ -202,7 +205,12 @@ public class DimmerLightCallee extends ServiceCallee implements
 		int val = setvalue.intValue() * (254) / (100);
 		return setStatus(val);
 	    } else {
-		log.error("Input dimmer value not permitted (0 to 100 only)");
+		LogUtils.logError(
+			Activator.moduleContext,
+			DimmerLightCallee.class,
+			"handleCall",
+			new String[] { "Input dimmer value not permitted (0 to 100 only)" },
+			null);
 		return new ServiceResponse(CallStatus.serviceSpecificFailure);
 	    }
 	} else {
@@ -215,7 +223,10 @@ public class DimmerLightCallee extends ServiceCallee implements
     }
 
     private ServiceResponse setOffStatus() {
-	log.debug("The service called was 'set the status OFF'");
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"setOffStatus",
+		new String[] { "The service called was 'set the status OFF'" },
+		null);
 	try {
 	    zbDevice.getLevelControl().moveToLevel(Short.parseShort("0"), 20);
 	    return new ServiceResponse(CallStatus.succeeded);
@@ -226,7 +237,10 @@ public class DimmerLightCallee extends ServiceCallee implements
     }
 
     private ServiceResponse setOnStatus() {
-	log.debug("The service called was 'set the status ON'");
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"setOnStatus",
+		new String[] { "The service called was 'set the status ON'" },
+		null);
 	try {
 	    zbDevice.getLevelControl().moveToLevel(
 		    Short.decode("0xFE").shortValue(), 20);
@@ -238,7 +252,10 @@ public class DimmerLightCallee extends ServiceCallee implements
     }
 
     private ServiceResponse setStatus(int value) {
-	log.debug("The service called was 'set the status' " + value);
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"setStatus",
+		new String[] { "The service called was 'set the status' "
+			+ value }, null);
 	try {
 	    zbDevice.getLevelControl().moveToLevel((short) value, 10);
 	    return new ServiceResponse(CallStatus.succeeded);
@@ -249,7 +266,10 @@ public class DimmerLightCallee extends ServiceCallee implements
     }
 
     private ServiceResponse getStatus() {
-	log.debug("The service called was 'get the status'");
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"getStatus",
+		new String[] { "The service called was 'get the status'" },
+		null);
 	try {
 	    ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	    sr.addOutput(new ProcessOutput(
@@ -265,7 +285,9 @@ public class DimmerLightCallee extends ServiceCallee implements
 
     // @Override
     public void changedCurrentLevel(CurrentLevelEvent event) {
-	log.debug("Changed-Event received");
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"changedCurrentLevel",
+		new String[] { "Changed-Event received" }, null);
 	LightSource ls = ontologyDevice;
 	ls.setBrightness(event.getEvent());
 	cp.publish(new ContextEvent(ls, LightSource.PROP_SOURCE_BRIGHTNESS));

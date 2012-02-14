@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -22,13 +22,13 @@
 
 package org.universAAL.hw.exporter.zigbee.ha.services;
 
-import java.util.Hashtable;
+//import java.util.Hashtable;
 
-import org.universAAL.middleware.owl.Restriction;
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.device.home.PresenceDetector;
+import org.universAAL.ontology.phThing.DeviceService;
 
 /**
  * Ontological service that controls a specific exported HW device. Methods
@@ -49,13 +49,13 @@ public class PresenceDetectorService extends DeviceService {
 	    + "presence";
 
     public static final ServiceProfile[] profiles = new ServiceProfile[1];
-    private static Hashtable serverRestrictions = new Hashtable();
+//    private static Hashtable serverRestrictions = new Hashtable();
     static {
-	register(PresenceDetectorService.class);
+	/* Temporarily out, with ne data representation...
 	addRestriction(Restriction.getAllValuesRestriction(PROP_CONTROLS,
 		PresenceDetector.MY_URI), new String[] { PROP_CONTROLS },
 		serverRestrictions);
-
+	*/
 	PropertyPath presencePath = new PropertyPath(null, true, new String[] {
 		DeviceService.PROP_CONTROLS,
 		PresenceDetector.PROP_MEASURED_VALUE });
@@ -69,7 +69,7 @@ public class PresenceDetectorService extends DeviceService {
 	profiles[0].addSimpleOutputBinding(output, presencePath.getThePath());
     }
 
-    private PresenceDetectorService(String uri) {
+    protected PresenceDetectorService(String uri) {
 	super(uri);
     }
 }

@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -29,11 +29,10 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.services.PresenceDetectorService;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
@@ -63,8 +62,6 @@ public class PresenceDetectorCallee extends ServiceCallee implements
     static final String INPUT_DEVICE_URI = PresenceDetectorService.PRESENCE_SERVER_NAMESPACE
 	    + "presenceDetectorURI";
 
-    private final static Logger log = LoggerFactory
-	    .getLogger(PresenceDetectorCallee.class);
     private OccupancySensor zbDevice;
     private DefaultContextPublisher cp;
     PresenceDetector ontologyDevice;
@@ -83,7 +80,9 @@ public class PresenceDetectorCallee extends ServiceCallee implements
      */
     public PresenceDetectorCallee(ModuleContext context, OccupancySensor serv) {
 	super(context, null);
-	log.debug("Ready to subscribe");
+	LogUtils.logDebug(Activator.moduleContext,
+		PresenceDetectorCallee.class, "PresenceDetectorCallee",
+		new String[] { "Ready to subscribe" }, null);
 	zbDevice = serv;
 	// Commissioning
 	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
@@ -116,7 +115,9 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 	cp = new DefaultContextPublisher(context, info);
 
 	zbDevice.getOccupacySensing().subscribe(this);
-	log.debug("Subscribed");
+	LogUtils.logDebug(Activator.moduleContext,
+		PresenceDetectorCallee.class, "PresenceDetectorCallee",
+		new String[] { "Subscribed" }, null);
 
     }
 
@@ -133,7 +134,9 @@ public class PresenceDetectorCallee extends ServiceCallee implements
     }
 
     public ServiceResponse handleCall(ServiceCall call) {
-	log.debug("Received a call");
+	LogUtils.logDebug(Activator.moduleContext,
+		PresenceDetectorCallee.class, "handleCall",
+		new String[] { "Received a call" }, null);
 	ServiceResponse response;
 	if (call == null) {
 	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
@@ -163,14 +166,22 @@ public class PresenceDetectorCallee extends ServiceCallee implements
     }
 
     private ServiceResponse getPresence() {
-	log.debug("The service called was 'get the status'");
+	LogUtils.logDebug(Activator.moduleContext,
+		PresenceDetectorCallee.class, "getPresence",
+		new String[] { "The service called was 'get the status'" },
+		null);
 	ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	Boolean finalValue = new Boolean(false);
 	try {
 	    finalValue = (Boolean) zbDevice.getOccupacySensing().getOccupancy()
 		    .getValue();
 	} catch (ZigBeeClusterException e) {
-	    log.error("Error getting the value of the occupancy: {}", e);
+	    LogUtils.logError(
+		    Activator.moduleContext,
+		    PresenceDetectorCallee.class,
+		    "getPresence",
+		    new String[] { "Error getting the value of the occupancy: {}" },
+		    e);
 	}
 	// TODO: check if it works
 	sr.addOutput(new ProcessOutput(PresenceDetectorService.OUTPUT_PRESENCE,
@@ -180,7 +191,9 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 
     // @Override
     public void changedOccupancy(OccupancyEvent event) {
-	log.debug("Changed-Event received");
+	LogUtils.logDebug(Activator.moduleContext,
+		PresenceDetectorCallee.class, "changedOccupancy",
+		new String[] { "Changed-Event received" }, null);
 	PresenceDetector pd = ontologyDevice;
 	pd.setMeasuredValue(event.getEvent() > 0);
 	cp.publish(new ContextEvent(pd, PresenceDetector.PROP_MEASURED_VALUE));
