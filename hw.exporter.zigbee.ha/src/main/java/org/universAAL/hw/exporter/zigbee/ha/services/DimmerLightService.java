@@ -74,8 +74,8 @@ public class DimmerLightService extends DeviceService {
 		new String[] { DeviceService.PROP_CONTROLS,
 			LightSource.PROP_HAS_TYPE }, serverRestrictions);
 	addRestriction(Restriction.getAllValuesRestrictionWithCardinality(
-		LightSource.PROP_SOURCE_BRIGHTNESS, TypeMapper
-			.getDatatypeURI(Integer.class), 1, 1),
+		LightSource.PROP_SOURCE_BRIGHTNESS,
+		TypeMapper.getDatatypeURI(Integer.class), 1, 1),
 		new String[] { DeviceService.PROP_CONTROLS,
 			LightSource.PROP_SOURCE_BRIGHTNESS },
 		serverRestrictions);

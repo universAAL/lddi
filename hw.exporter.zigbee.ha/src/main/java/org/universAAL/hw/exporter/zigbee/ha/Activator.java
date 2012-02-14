@@ -31,9 +31,12 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceListener;
 import org.universAAL.hw.exporter.zigbee.ha.devices.listeners.*;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 public class Activator implements BundleActivator {
     public static BundleContext context = null;
+    public static ModuleContext moduleContext = null;
     private ServiceListener[] listeners = new ServiceListener[4];
     public static final String PROPS_FILE = "ZB.properties";
     public static final String COMMENTS = "This file stores location information for ZigBee HW devices";
@@ -41,6 +44,8 @@ public class Activator implements BundleActivator {
 
     public void start(BundleContext context) throws Exception {
 	Activator.context = context;
+	Activator.moduleContext = uAALBundleContainer.THE_CONTAINER
+		.registerModule(new Object[] { context });
 	listeners[0] = new DimmerLightListener(context);
 	listeners[1] = new OnOffLightListener(context);
 	listeners[2] = new PresenceDetectorListener(context);
