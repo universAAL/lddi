@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -22,15 +22,15 @@
 
 package org.universAAL.hw.exporter.zigbee.ha.services;
 
-import java.util.Hashtable;
+//import java.util.Hashtable;
 
-import org.universAAL.middleware.owl.Enumeration;
-import org.universAAL.middleware.owl.Restriction;
+//import org.universAAL.middleware.owl.Enumeration;
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
-import org.universAAL.ontology.lighting.ElectricLight;
+//import org.universAAL.ontology.lighting.ElectricLight;
 import org.universAAL.ontology.lighting.LightSource;
+import org.universAAL.ontology.phThing.DeviceService;
 
 /**
  * Ontological service that controls a specific exported HW device. Methods
@@ -58,9 +58,9 @@ public class OnOffLightService extends DeviceService {
 	    + "brightness";
 
     public static final ServiceProfile[] profiles = new ServiceProfile[3];
-    private static Hashtable serverRestrictions = new Hashtable();
+//    private static Hashtable serverRestrictions = new Hashtable();
     static {
-	register(OnOffLightService.class);
+	/* Temporariliy out, with new data representation...
 	addRestriction(Restriction.getAllValuesRestriction(PROP_CONTROLS,
 		LightSource.MY_URI), new String[] { PROP_CONTROLS },
 		serverRestrictions);
@@ -73,11 +73,11 @@ public class OnOffLightService extends DeviceService {
 			new Integer[] { new Integer(0), new Integer(100) }), 1,
 		1), new String[] { DeviceService.PROP_CONTROLS,
 		LightSource.PROP_SOURCE_BRIGHTNESS }, serverRestrictions);
-
+	*/
 	PropertyPath brightnessPath = new PropertyPath(null, true,
 		new String[] { DeviceService.PROP_CONTROLS,
 			LightSource.PROP_SOURCE_BRIGHTNESS });
-
+	
 	OnOffLightService getOnOff = new OnOffLightService(SERVICE_GET_ON_OFF);
 	profiles[0] = getOnOff.getProfile();
 	ProcessOutput output = new ProcessOutput(OUTPUT_LAMP_BRIGHTNESS);
@@ -96,7 +96,7 @@ public class OnOffLightService extends DeviceService {
 		100));
     }
 
-    private OnOffLightService(String uri) {
+    protected OnOffLightService(String uri) {
 	super(uri);
     }
 }

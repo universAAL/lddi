@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -29,11 +29,10 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.services.TemperatureSensorService;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
@@ -62,8 +61,6 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 	    + "zbTemperatureSensor";
     static final String INPUT_DEVICE_URI = TemperatureSensorService.SERVER_NAMESPACE
 	    + "temperatureSensorURI";
-    private final static Logger log = LoggerFactory
-	    .getLogger(TemperatureSensorCallee.class);
 
     private TemperatureSensor zbDevice;
     private DefaultContextPublisher cp;
@@ -83,7 +80,9 @@ public class TemperatureSensorCallee extends ServiceCallee implements
      */
     public TemperatureSensorCallee(ModuleContext context, TemperatureSensor serv) {
 	super(context, null);
-	log.debug("Ready to subscribe");
+	LogUtils.logDebug(Activator.moduleContext,
+		TemperatureSensorCallee.class, "TemperatureSensorCallee",
+		new String[] { "Ready to subscribe" }, null);
 	zbDevice = serv;
 
 	// Commissioning
@@ -116,9 +115,13 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 	info.setType(ContextProviderType.gauge);
 	cp = new DefaultContextPublisher(context, info);
 	if (zbDevice.getTemperatureMeasurement().subscribe(this)) {
-	    log.debug("Subscribed");
+	    LogUtils.logDebug(Activator.moduleContext,
+		    TemperatureSensorCallee.class, "TemperatureSensorCallee",
+		    new String[] { "Subscribed" }, null);
 	} else {
-	    log.error("Failed to Subscribe!!!");
+	    LogUtils.logError(Activator.moduleContext,
+		    TemperatureSensorCallee.class, "TemperatureSensorCallee",
+		    new String[] { "Failed to Subscribe!!!" }, null);
 	}
     }
 
@@ -135,7 +138,9 @@ public class TemperatureSensorCallee extends ServiceCallee implements
     }
 
     public ServiceResponse handleCall(ServiceCall call) {
-	log.debug("Received a call");
+	LogUtils.logDebug(Activator.moduleContext,
+		TemperatureSensorCallee.class, "handleCall",
+		new String[] { "Received a call" }, null);
 	ServiceResponse response;
 	if (call == null) {
 	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
@@ -165,7 +170,10 @@ public class TemperatureSensorCallee extends ServiceCallee implements
     }
 
     private ServiceResponse getValue() {
-	log.debug("The service called was 'get the status'");
+	LogUtils.logDebug(Activator.moduleContext,
+		TemperatureSensorCallee.class, "getValue",
+		new String[] { "The service called was 'get the status'" },
+		null);
 	try {
 	    ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	    sr.addOutput(new ProcessOutput(
@@ -181,7 +189,9 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 
     // @Override
     public void changedMeasuredValue(MeasuredValueEvent event) {
-	log.debug("Changed-Event received");
+	LogUtils.logDebug(Activator.moduleContext,
+		TemperatureSensorCallee.class, "changedMeasuredValue",
+		new String[] { "Changed-Event received" }, null);
 	TempSensor sensor = ontologyDevice;
 	sensor.setMeasuredValue(event.getEvent());
 	cp.publish(new ContextEvent(sensor, TempSensor.PROP_MEASURED_VALUE));

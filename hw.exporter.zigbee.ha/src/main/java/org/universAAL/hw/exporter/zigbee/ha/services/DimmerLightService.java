@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -22,15 +22,16 @@
 
 package org.universAAL.hw.exporter.zigbee.ha.services;
 
-import java.util.Hashtable;
+//import java.util.Hashtable;
 
-import org.universAAL.middleware.owl.Restriction;
+//import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.PropertyPath;
-import org.universAAL.middleware.rdf.TypeMapper;
+//import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
-import org.universAAL.ontology.lighting.ElectricLight;
+//import org.universAAL.ontology.lighting.ElectricLight;
 import org.universAAL.ontology.lighting.LightSource;
+import org.universAAL.ontology.phThing.DeviceService;
 
 /**
  * Ontological service that controls a specific exported HW device. Methods
@@ -63,23 +64,23 @@ public class DimmerLightService extends DeviceService {
 
     public static final ServiceProfile[] profiles = new ServiceProfile[4];
 
-    private static Hashtable serverRestrictions = new Hashtable();
+//    private static Hashtable serverRestrictions = new Hashtable();
     static {
-	register(DimmerLightService.class);
-	addRestriction(Restriction.getAllValuesRestriction(PROP_CONTROLS,
+	/* Temporarily out, with new data representation...
+	addRestriction(MergedRestriction.getAllValuesRestriction(PROP_CONTROLS,
 		LightSource.MY_URI), new String[] { PROP_CONTROLS },
 		serverRestrictions);
-	addRestriction(Restriction.getFixedValueRestriction(
+	addRestriction(MergedRestriction.getFixedValueRestriction(
 		LightSource.PROP_HAS_TYPE, ElectricLight.lightBulb),
 		new String[] { DeviceService.PROP_CONTROLS,
 			LightSource.PROP_HAS_TYPE }, serverRestrictions);
-	addRestriction(Restriction.getAllValuesRestrictionWithCardinality(
+	addRestriction(MergedRestriction.getAllValuesRestrictionWithCardinality(
 		LightSource.PROP_SOURCE_BRIGHTNESS,
 		TypeMapper.getDatatypeURI(Integer.class), 1, 1),
 		new String[] { DeviceService.PROP_CONTROLS,
 			LightSource.PROP_SOURCE_BRIGHTNESS },
 		serverRestrictions);
-
+	 */
 	PropertyPath brightnessPath = new PropertyPath(null, true,
 		new String[] { DeviceService.PROP_CONTROLS,
 			LightSource.PROP_SOURCE_BRIGHTNESS });
@@ -107,7 +108,7 @@ public class DimmerLightService extends DeviceService {
 
     }
 
-    private DimmerLightService(String uri) {
+    protected DimmerLightService(String uri) {
 	super(uri);
     }
 }

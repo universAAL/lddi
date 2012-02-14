@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -33,6 +33,7 @@ import org.osgi.framework.ServiceListener;
 import org.universAAL.hw.exporter.zigbee.ha.devices.listeners.*;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.utils.LogUtils;
 
 public class Activator implements BundleActivator {
     public static BundleContext context = null;
@@ -74,7 +75,8 @@ public class Activator implements BundleActivator {
 	    prop.store(out, COMMENTS);
 	    out.close();
 	} catch (Exception e) {
-	    System.out.println("Could not set properties file: {}" + e);
+	    LogUtils.logError(moduleContext, Activator.class, "setProperties",
+		    new String[] { "Could not set properties file: {}" }, e);
 	}
     }
 
@@ -97,11 +99,16 @@ public class Activator implements BundleActivator {
 	    prop.load(in);
 	    in.close();
 	} catch (java.io.FileNotFoundException e) {
-	    System.out
-		    .println("Properties file does not exist; generating default...");
+	    LogUtils.logError(
+		    moduleContext,
+		    Activator.class,
+		    "getProperties",
+		    new String[] { "Properties file does not exist; generating default..." },
+		    e);
 	    setProperties(prop);
 	} catch (Exception e) {
-	    System.out.println("Could not access properties file: {}" + e);
+	    LogUtils.logError(moduleContext, Activator.class, "getProperties",
+		    new String[] { "Could not access properties file: {}" }, e);
 	}
 	return prop;
     }

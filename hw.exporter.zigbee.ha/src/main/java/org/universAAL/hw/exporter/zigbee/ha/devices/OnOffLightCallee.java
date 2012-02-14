@@ -1,5 +1,5 @@
 /*
- Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+ Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
  Instituto Tecnologico de Aplicaciones de Comunicacion 
  Avanzadas - Grupo Tecnologias para la Salud y el 
  Bienestar (TSB)
@@ -29,16 +29,15 @@ import it.cnr.isti.zigbee.ha.driver.core.ZigBeeHAException;
 
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.services.OnOffLightService;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
-import org.universAAL.middleware.owl.Restriction;
+import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceCall;
 import org.universAAL.middleware.service.ServiceCallee;
@@ -64,8 +63,6 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
     static final String INPUT_DEVICE_URI = OnOffLightService.LIGHTING_SERVER_NAMESPACE
 	    + "lampURI";
 
-    private final static Logger log = LoggerFactory
-	    .getLogger(OnOffLightCallee.class);
     private OnOffLight zbDevice;
     private DefaultContextPublisher cp;
     LightSource ontologyDevice;
@@ -84,7 +81,8 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
      */
     public OnOffLightCallee(ModuleContext context, OnOffLight serv) {
 	super(context, null);
-	log.debug("Ready to subscribe");
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"OnOffLightCallee", new String[] { "Ready to subscribe" }, null);
 	zbDevice = serv;
 	// Commissioning
 	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
@@ -111,7 +109,7 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 	input.setParameterType(LightSource.MY_URI);
 	input.setCardinality(1, 0);
 
-	Restriction r = Restriction.getFixedValueRestriction(
+	MergedRestriction r = MergedRestriction.getFixedValueRestriction(
 		OnOffLightService.PROP_CONTROLS, ontologyDevice);
 
 	newProfiles[0].addInput(input);
@@ -132,14 +130,18 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 	cp = new DefaultContextPublisher(context, info);
 
 	if (zbDevice.getOnOff().subscribe(this)) {
-	    log.debug("Subscribed");
+	    LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		    "OnOffLightCallee", new String[] { "Subscribed" }, null);
 	} else {
-	    log.error("Failed to Subscribe!!!");
+	    LogUtils.logError(Activator.moduleContext, OnOffLightCallee.class,
+		    "OnOffLightCallee",
+		    new String[] { "Failed to Subscribe!!!" }, null);
 	}
     }
 
     public void changedOnOff(OnOffEvent event) {
-	log.debug("Changed-Event received");
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"changedOnOff", new String[] { "Changed-Event received" }, null);
 	LightSource ls = ontologyDevice;
 	ls.setBrightness(event.getEvent() ? 100 : 0);
 	cp.publish(new ContextEvent(ls, LightSource.PROP_SOURCE_BRIGHTNESS));
@@ -158,7 +160,8 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
     }
 
     public ServiceResponse handleCall(ServiceCall call) {
-	log.debug("Received a call");
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"handleCall", new String[] { "Received a call" }, null);
 	ServiceResponse response;
 	if (call == null) {
 	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
@@ -192,7 +195,10 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
     }
 
     private ServiceResponse setOffStatus() {
-	log.debug("The service called was 'set the status OFF'");
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"setOffStatus",
+		new String[] { "The service called was 'set the status OFF'" },
+		null);
 	try {
 	    zbDevice.getOnOff().off();
 	    return new ServiceResponse(CallStatus.succeeded);
@@ -203,7 +209,10 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
     }
 
     private ServiceResponse setOnStatus() {
-	log.debug("The service called was 'set the status ON'");
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"setOnStatus",
+		new String[] { "The service called was 'set the status ON'" },
+		null);
 	try {
 	    zbDevice.getOnOff().on();
 	    return new ServiceResponse(CallStatus.succeeded);
@@ -214,7 +223,10 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
     }
 
     private ServiceResponse getOnOffStatus() {
-	log.debug("The service called was 'get the status'");
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"getOnOffStatus",
+		new String[] { "The service called was 'get the status'" },
+		null);
 	try {
 	    ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	    sr.addOutput(new ProcessOutput(
