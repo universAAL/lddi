@@ -1,0 +1,32 @@
+ZigBee Exporter for universAAL
+
+Copyright 2008-2011 ITACA-TSB, http://www.tsb.upv.es
+Instituto Tecnologico de Aplicaciones de Comunicacion 
+Avanzadas - Grupo Tecnologias para la Salud y el 
+Bienestar (TSB)
+
+I. Included Software
+
+Software developed by ITACA-TSB within the PERSONA project is 
+used as the initial version for further developments within 
+the universAAL project.
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+The OPS4J (http://www.ops4j.org)
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+The ZB4OSGI project(http://zb4osgi.aaloa.org/),
+within the AALOA association (http://aaloa.org/)
+Licensed under the Apache License 2.0.
+
+
+III. License Summary
+- Apache License 2.0
