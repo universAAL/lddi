@@ -29,11 +29,11 @@ import it.cnr.isti.zigbee.ha.driver.core.ZigBeeHAException;
 
 import java.util.Properties;
 
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.services.OnOffLightService;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
@@ -82,7 +82,7 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
      *            The OSGi service backing the interaction with the device in
      *            the abstraction layer
      */
-    public OnOffLightCallee(BundleContext context, OnOffLight serv) {
+    public OnOffLightCallee(ModuleContext context, OnOffLight serv) {
 	super(context, null);
 	log.debug("Ready to subscribe");
 	zbDevice = serv;

@@ -35,6 +35,7 @@ import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee;
 
 /**
@@ -115,8 +116,8 @@ public class PresenceDetectorListener implements ServiceListener {
 	log.debug("Creating a instance of device in uAAL");
 	OccupancySensor PresenceDetectorService = (OccupancySensor) context
 		.getService(sr);
-	presenceDetectorDevices.put(sr, new PresenceDetectorCallee(context,
-		PresenceDetectorService));
+	presenceDetectorDevices.put(sr, new PresenceDetectorCallee(
+		Activator.moduleContext, PresenceDetectorService));
     }
 
     private void douAALUnregistering(ServiceReference sr) {
@@ -134,7 +135,8 @@ public class PresenceDetectorListener implements ServiceListener {
 	Iterator iter = presenceDetectorDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((PresenceDetectorCallee) presenceDetectorDevices.get(sref)).unregister();
+	    ((PresenceDetectorCallee) presenceDetectorDevices.get(sref))
+		    .unregister();
 	    iter.remove();
 	    context.ungetService(sref);
 	}

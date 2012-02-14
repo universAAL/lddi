@@ -29,11 +29,11 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 
 import java.util.Properties;
 
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.services.PresenceDetectorService;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
@@ -81,7 +81,7 @@ public class PresenceDetectorCallee extends ServiceCallee implements
      *            The OSGi service backing the interaction with the device in
      *            the abstraction layer
      */
-    public PresenceDetectorCallee(BundleContext context, OccupancySensor serv) {
+    public PresenceDetectorCallee(ModuleContext context, OccupancySensor serv) {
 	super(context, null);
 	log.debug("Ready to subscribe");
 	zbDevice = serv;
@@ -167,8 +167,8 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 	ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	Boolean finalValue = new Boolean(false);
 	try {
-	    finalValue = (Boolean) zbDevice.getOccupacySensing()
-		    .getOccupancy().getValue();
+	    finalValue = (Boolean) zbDevice.getOccupacySensing().getOccupancy()
+		    .getValue();
 	} catch (ZigBeeClusterException e) {
 	    log.error("Error getting the value of the occupancy: {}", e);
 	}

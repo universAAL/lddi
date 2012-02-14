@@ -35,6 +35,7 @@ import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee;
 
 /**
@@ -113,7 +114,8 @@ public class OnOffLightListener implements ServiceListener {
     private void doRegisteruAALService(ServiceReference sr) {
 	log.debug("Creating a instance of device in uAAL");
 	OnOffLight lightService = (OnOffLight) context.getService(sr);
-	onOffLigthDevices.put(sr, new OnOffLightCallee(context, lightService));
+	onOffLigthDevices.put(sr, new OnOffLightCallee(Activator.moduleContext,
+		lightService));
     }
 
     private void douAALUnregistering(ServiceReference sr) {

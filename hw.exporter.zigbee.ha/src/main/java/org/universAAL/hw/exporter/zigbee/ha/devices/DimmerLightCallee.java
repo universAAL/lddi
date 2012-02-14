@@ -29,11 +29,11 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 
 import java.util.Properties;
 
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.services.DimmerLightService;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
@@ -84,7 +84,7 @@ public class DimmerLightCallee extends ServiceCallee implements
      *            The OSGi service backing the interaction with the device in
      *            the abstraction layer
      */
-    public DimmerLightCallee(BundleContext context, DimmableLight serv) {
+    public DimmerLightCallee(ModuleContext context, DimmableLight serv) {
 	super(context, null);
 	log.debug("Ready to subscribe");
 	zbDevice = serv;
@@ -137,8 +137,8 @@ public class DimmerLightCallee extends ServiceCallee implements
 		new String[] { DimmerLightService.PROP_CONTROLS });
 	newProfiles[3].addChangeEffect(new String[] {
 		DimmerLightService.PROP_CONTROLS,
-		LightSource.PROP_SOURCE_BRIGHTNESS }, inputb
-		.asVariableReference());
+		LightSource.PROP_SOURCE_BRIGHTNESS },
+		inputb.asVariableReference());
 	this.addNewRegParams(newProfiles);
 	// CP
 	ContextProvider info = new ContextProvider(
