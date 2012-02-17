@@ -13,6 +13,7 @@
   
   	<modules>
 		<module>../hw.exporter.zigbee.ha/</module>
+		<module>../knx.networkdriver/</module>
 	</modules>
 
 	<scm>
