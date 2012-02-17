@@ -17,4 +17,25 @@ hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/service
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/OnOffLightService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/PresenceDetectorService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/TemperatureSensorService.java -text
+knx.networkdriver/conf/services/knx.networkdriver.properties -text
+knx.networkdriver/pom.xml -text
+knx.networkdriver/readme.txt -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/Activator.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommand.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommunication.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxEncoder.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkDriverImp.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNotification.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxReader.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriter.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxDriver.java -text
+knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxNetwork.java -text
+lddi.testing.frameworks/knx.framework/conf/all.policy -text
+lddi.testing.frameworks/knx.framework/conf/felix.client.run.properties -text
+lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
+lddi.testing.frameworks/knx.framework/conf/services/knx.networkdriver.properties -text
+lddi.testing.frameworks/knx.framework/conf/services/org.ops4j.pax.logging.properties -text
+lddi.testing.frameworks/knx.framework/conf/services/org.universAAL.mw.data.representation.properties -text
+lddi.testing.frameworks/knx.framework/pom.xml -text
+lddi.testing.frameworks/knx.framework/run.bat -text
 pom/pom.xml -text
