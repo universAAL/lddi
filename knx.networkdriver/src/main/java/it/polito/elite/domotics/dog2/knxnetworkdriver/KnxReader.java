@@ -94,7 +94,7 @@ public class KnxReader extends Thread {
 					//statusByte[0] = temp[14]; //old version
 					statusByte[i]=temp[temp.length-2-oversize+i];
 				}
-				//TO change to handle data value such as temperature
+				//TODO change to handle data value such as temperature
 				String knxDevice = KnxEncoder.getGroupAddress(deviceByte);
 				//String knxStatus = KnxEncoder.getStatus(statusByte);
 				

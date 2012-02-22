@@ -10,7 +10,7 @@
 	<packaging>bundle</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>KNX network driver</name>
-	<description>This bundle connects to a KNX/IP Gateway on the IP network to monitor sensors and control actuators on the KNX bus. The source code is taken from the DOG2 project on http://domoticdog.sourceforge.net and slightly modified to run standalone.</description>
+	<description>This bundle connects to a UPD Multicast Channel on the local IP network where KNX bus messages can be sent and received. Usually a KNX/IP Gateway is used to connect the UDP Multicast Channel to the KNX bus system. The base source code is taken from the DOG2 project on http://domoticdog.sourceforge.net and slightly modified to run standalone.</description>
 	<inceptionYear>2012</inceptionYear>
 
 	<licenses>

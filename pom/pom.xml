@@ -12,8 +12,9 @@
   <name>Local Device Descovery and Integration</name>
   
   	<modules>
-		<module>../hw.exporter.zigbee.ha/</module>
 		<module>../knx.networkdriver/</module>
+		
+		<!--module>../hw.exporter.zigbee.ha/</module-->
 	</modules>
 
 	<scm>
