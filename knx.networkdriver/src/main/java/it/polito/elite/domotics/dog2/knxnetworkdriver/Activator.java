@@ -36,6 +36,7 @@ public class Activator implements BundleActivator {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		driver.unRegister();
+		// TODO-TF: stop thread KnxCommunication
 	}
 
 }
