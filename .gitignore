@@ -2,5 +2,9 @@ hw.exporter.zigbee.ha/.classpath
 hw.exporter.zigbee.ha/.project
 hw.exporter.zigbee.ha/.settings
 hw.exporter.zigbee.ha/target
+knx.networkdriver/.classpath
+knx.networkdriver/.project
+knx.networkdriver/.settings
+knx.networkdriver/target
 pom/.project
 pom/.settings
