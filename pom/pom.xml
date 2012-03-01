@@ -1,28 +1,31 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>uAAL.pom</artifactId>
-    <groupId>org.universAAL</groupId>
-    <version>1.0.0</version>
-  </parent>
-  <groupId>org.universAAL.lddi</groupId>
-  <artifactId>lddi.pom</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>Local Device Descovery and Integration</name>
-  
-  	<modules>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>uAAL.pom</artifactId>
+		<groupId>org.universAAL</groupId>
+		<version>1.0.0</version>
+	</parent>
+	
+	<groupId>org.universAAL.lddi</groupId>
+	<artifactId>lddi.pom</artifactId>
+	<version>1.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<!-- ______________________________________________________ -->
+	
+	<name>Local Device Descovery and Integration</name>
+	<description/>
+	<inceptionYear>2010</inceptionYear>
+	
+	<!-- ______________________________________________________ -->
+	
+	<modules>
 		<module>../knx.networkdriver/</module>
-		
-		<!--module>../hw.exporter.zigbee.ha/</module-->
+		<module>../hw.exporter.zigbee.ha/</module>
 	</modules>
 
-	<scm>
-		<connection>${svn.base}/pom</connection>
-		<developerConnection>${svn.base}/pom</developerConnection>
-		<url>${svn.base.url}pom</url>
-	</scm>
-	
 	<properties>
 		<!-- Default configuration for compiler source and target JVM -->
 		<maven.compile.source>1.5</maven.compile.source>
@@ -52,16 +55,24 @@
 				<artifactId>hw.exporter.zigbee.ha</artifactId>
 				<version>1.0.1-SNAPSHOT</version>
 			</dependency>
-			
 			<dependency>
-				<groupId>org.universAAL.support</groupId>
-				<artifactId>itests</artifactId>
+				<groupId>org.universAAL.lddi</groupId>
+				<artifactId>hw.exporter.zigbee.ha</artifactId>
 				<version>1.0.1-SNAPSHOT</version>
-				<scope>test</scope>
 			</dependency>
+			<!-- <dependency> <groupId>org.universAAL.support</groupId> <artifactId>itests</artifactId> 
+				<version>1.0.1-SNAPSHOT</version> <scope>test</scope> </dependency> -->
 		</dependencies>
 	</dependencyManagement>
 
+	<!-- ______________________________________________________ -->
+
+	<scm>
+		<connection>${svn.base}/pom</connection>
+		<developerConnection>${svn.base}/pom</developerConnection>
+		<url>${svn.base.url}pom</url>
+	</scm>
+	
 	<repositories>
 		<repository>
 			<id>uaal</id>
@@ -72,5 +83,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-  
+
 </project>
