@@ -1,19 +1,4 @@
-/*                               
-    _/_/_/                        
-   _/    _/    _/_/      _/_/_/   
-  _/    _/  _/    _/  _/    _/    
- _/    _/  _/    _/  _/    _/    Domotic OSGi Gateway
-_/_/_/      _/_/      _/_/_/      
-                         _/       
-                    _/_/
-
-WEBSITE: http://domoticdog.sourceforge.net
-LICENSE: see the file License.txt
-
-*/
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
-
-
 
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -21,12 +6,11 @@ import java.net.MulticastSocket;
 
 import org.osgi.service.log.LogService;
 
-
-
-/** Provides readings from the house by the LAN. Uses the encoder to operate translation from low level data (from the house)
- * 		to high level data (sent to MessageDispatcher).
+/** Provides readings from the knx gateway by the LAN.
+ * Uses the encoder to operate translation from low level data
+ * (knx) to high level data (sent to ?).
  * @author Enrico Allione (enrico.allione@gmail.com)
- *
+ * @author Thomas Fuxreiter (foex@gmx.at)
  */
 
 public class KnxReader extends Thread {
@@ -34,8 +18,8 @@ public class KnxReader extends Thread {
 	protected KnxNetworkDriverImp core;
 	protected KnxEncoder encoder;
 	
-	static private int socketTimeout = 0;	// response timeout
-	static private int telegramLenght = 15;	// EIB core telegram length
+	static private int socketTimeout = 0;	// infinite timeout on receive()
+	static private int telegramLenght = 15;	// KNX core telegram length
 
 	private boolean running;
 
@@ -50,8 +34,8 @@ public class KnxReader extends Thread {
 	
 	public void run()  {
 		while(running){
-		listen();
-		Thread.yield();
+			listen();
+			Thread.yield();
 		}
 	}
 
@@ -65,20 +49,19 @@ public class KnxReader extends Thread {
 			mcReceiver.joinGroup(group);
 
 			mcReceiver.setSoTimeout(socketTimeout);
-			
-			
 
-			core.getLogger().log(LogService.LOG_INFO,"Server KNX listening on port " + core.getMyUdpPort() + 
-					" (joined " + core.getMulticastIp() + ", " + k + " received from beginning)...");
+			core.getLogger().log(LogService.LOG_INFO,"Server KNX listening on port " + 
+					core.getMyUdpPort() + " (joined " + core.getMulticastIp() + ")");
 
 			while (flag) {
 				byte buffer[] = new byte[mcReceiver.getReceiveBufferSize()];
 				DatagramPacket udpPacket = new DatagramPacket(buffer, buffer.length);
 				mcReceiver.receive(udpPacket);
-//				udpPacket.
+				//The datagram packet contains also the sender's IP address, and the port number
+				//on the sender's machine. This method blocks until a datagram is received.
 
 				byte[]temp = udpPacket.getData();
-				core.getLogger().log(LogService.LOG_INFO,"KNX telegram: " + KnxEncoder.decode(temp));
+				core.getLogger().log(LogService.LOG_INFO,"KNX telegram received: " + KnxEncoder.decode(temp));
 						
 				byte[] deviceByte = new byte[2];
 				

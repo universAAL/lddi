@@ -6,6 +6,11 @@ import java.net.InetAddress;
 
 import org.osgi.service.log.LogService;
 
+/**
+ * Manages reader and writer for communication to the knx gateway
+ * 
+ * @author Thomas Fuxreiter (foex@gmx.at)
+ */
 public class KnxCommunication extends Thread{
 	
 	KnxNetworkDriverImp driver;
@@ -18,43 +23,39 @@ public class KnxCommunication extends Thread{
 		super();
 		this.driver=driver;
 		this.running=true;
-		
 	}
-	
+
 	@Override
 	public void run() {
 		while(running){
 			
-		//Siemens KNX/IP gateway N146 is not pingable!
-//        boolean netReachable = false;
-//		while (!netReachable){
-//			if (this.testHouse())
-//				netReachable = true;
-//			else {
-//				try {
-//					this.driver.logger.log(LogService.LOG_WARNING,"Network unreachable. Trying again in " +
-//							this.driver.getSleepTime() /1000 + " seconds!");
-//					Thread.sleep(this.driver.getSleepTime());
-//				} 
-//				catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}	
-//		}
+			//Siemens KNX/IP gateway N146 is not pingable!
+			//        boolean netReachable = false;
+			//		while (!netReachable){
+			//			if (this.testHouse())
+			//				netReachable = true;
+			//			else {
+			//				try {
+			//					this.driver.logger.log(LogService.LOG_WARNING,"Network unreachable. Trying again in " +
+			//							this.driver.getSleepTime() /1000 + " seconds!");
+			//					Thread.sleep(this.driver.getSleepTime());
+			//				} 
+			//				catch (InterruptedException e) {
+			//					e.printStackTrace();
+			//				}
+			//			}	
+			//		}
 
+			
+			// Starting the server listening from the gateway
+			reader = new KnxReader(this.driver);
+			reader.start();
 
-		
+			// Starting the server writing to the gateway
+			writer = new KnxWriter(this.driver);
 
-		// Starting the server listening from the house
-		 reader = new KnxReader(this.driver);
-		reader.start();
-		
-		// Starting the server listening from the house
-		writer = new KnxWriter(this.driver);
-		
-		
-
-		this.driver.networkConnected();
+			//***
+			this.driver.networkConnected();
 
 
 		// Inizio parte test rete successiva
@@ -86,6 +87,10 @@ public class KnxCommunication extends Thread{
 	    
 	}
 
+	/***
+	 * ping the gateway
+	 * @return boolean
+	 */
 	private boolean testHouse() {
 		boolean reacheble=false;
 		try {

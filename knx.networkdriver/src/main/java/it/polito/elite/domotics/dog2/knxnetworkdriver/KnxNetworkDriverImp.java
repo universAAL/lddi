@@ -32,9 +32,9 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	
 
 	
-	private String houseIp;
+	private String knxGatewayIp;
 	private String multicastIp;
-	private int housePort;
+	private int knxGatewayPort;
 	private int myUdpPort;
 	private int sleepTime;
 	private int timeout;
@@ -56,38 +56,38 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 		this.network=null;
 		this.driverList=new Hashtable<String, Set<KnxDriver>>();
 
-//		this.context.registerService(CommandProvider.class.getName(), this, null);
-//		TODO: change from equinox to felix shell command (uAAL is running on felix)
-//		http://felix.apache.org/site/apache-felix-shell.html#ApacheFelixShell-creating
-		
+		//		this.context.registerService(CommandProvider.class.getName(), this, null);
+		//		TODO: change from equinox to felix shell command (uAAL is running on felix)
+		//		http://felix.apache.org/site/apache-felix-shell.html#ApacheFelixShell-creating
+
 		this.registerManagedService();
-		
+		this.logger.log(LogService.LOG_DEBUG,"KnxNetworkDriverImp started!");
 	}
-   /***
-    * Register this class as Managed Service
-    */
+
+	/***
+	 * Register this class as Managed Service
+	 */
 	private void registerManagedService() {
 		Properties propManagedService=new Properties();
 		propManagedService.put(Constants.SERVICE_PID, this.context.getBundle().getSymbolicName());
 		this.context.registerService(ManagedService.class.getName(), this, propManagedService);
-		
 	}
 
-	//@Override
-	public void updated(@SuppressWarnings("rawtypes") Dictionary settings) throws ConfigurationException {
+//	@Override
+	public void updated(@SuppressWarnings("unchecked") Dictionary settings) throws ConfigurationException {
 		this.logger.log(LogService.LOG_INFO, "KnxNetworkDriverImp.updated: " + settings);
-//        System.out.println("******** KnxNetworkDriverImp.updated *********");
 
 		try {
 			if (settings != null){
-				this.houseIp = (String) settings.get("houseIp");
-				this.housePort = Integer.valueOf((String) settings.get("housePort"));	
+				this.knxGatewayIp = (String) settings.get("knxGatewayIp");
+				this.knxGatewayPort = Integer.valueOf((String) settings.get("knxGatewayPort"));	
 				this.multicastIp = (String)settings.get("multicastIp");
 				this.myUdpPort = Integer.valueOf((String) settings.get("udpPort"));		
 						
 				this.setSleepTime(Integer.parseInt((String) settings.get("sleepTime")));	
 				this.setTimeout(Integer.parseInt((String) settings.get("timeoutTime")));	
 				this.setCheckingTime(Long.parseLong((String) settings.get("checkingTime")));
+				// properties numTry and myIP not used yet
 				
 				if(this.network!=null){
 					this.network.stopCommunication();
@@ -97,21 +97,15 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 				this.network.start();
 				
 			} else {
-//				System.out.println("********* Unconfigured knx network driver! *******");
 				this.logger.log(LogService.LOG_ERROR,"Unconfigured knx network driver!");
 			}
 		}
 		catch (NumberFormatException nfe){
 			this.logger.log(LogService.LOG_ERROR, "NumberFormatException\n" + nfe.getMessage());
-//	        System.out.println("******** NumberFormatException *********");
-//	        System.out.println(nfe.getMessage());
 		}
 		catch (Exception e){
 			this.logger.log(LogService.LOG_ERROR, e.getMessage());
-//	        System.out.println("******** Exception *********");
-//	        System.out.println(e.getMessage());
 		}
-		
 	}
 
 	public void setSleepTime(int sleepTime) {
@@ -137,7 +131,7 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 
 	public int getHousePort() {
-		return this.housePort;
+		return this.knxGatewayPort;
 	}
 
 	public void setCheckingTime(long checkingTime) {
@@ -150,7 +144,7 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 
 	public String getHouseIp() {
 		
-		return this.houseIp;
+		return this.knxGatewayIp;
 	}
 
 	public void setTimeout(int timeout) {
@@ -166,7 +160,6 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 
 	public int getMyUdpPort() {
-		// TODO Auto-generated method stub
 		return myUdpPort;
 	}
 

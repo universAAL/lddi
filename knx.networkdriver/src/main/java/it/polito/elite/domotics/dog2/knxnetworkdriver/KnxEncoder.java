@@ -1,33 +1,17 @@
-/*                               
-    _/_/_/                        
-   _/    _/    _/_/      _/_/_/   
-  _/    _/  _/    _/  _/    _/    
- _/    _/  _/    _/  _/    _/    Domotic OSGi Gateway
-_/_/_/      _/_/      _/_/_/      
-                         _/       
-                    _/_/
-
-WEBSITE: http://domoticdog.sourceforge.net
-LICENSE: see the file License.txt
-
-*/
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
-import java.util.Properties;
 
-import org.osgi.service.log.LogService;
-
-
-
-/** Provides bottom-up (house to DOG) and top-down (DOG to house) translation of commands.
+/** Provides bottom-up (knx to uAAL) and top-down (uAAL to knx) translation of commands.
  * @author Enrico Allione (enrico.allione@gmail.com)
- *
+ * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxEncoder {
 	
 	public static enum KnxMessageType{READ,WRITE,SCENARIO}; 
 	
 	/**
+	 * Not reviewed yet!
+	 * 
 	 * @param deviceAddress address of the device
 	 * @param highStatus status to be set to the device
 	 * @return
@@ -86,11 +70,11 @@ public class KnxEncoder {
 	
 
 	/**
-	 * @param message: telegram from the house
-	 * @return 
+	 * @param message: udpTelegram from knx
+	 * @return message as String
 	 */
 	public static String decode(byte message[]){
-		/* Riceve the bytecode and  decode it in a knxMessage */
+		/* Receive the bytecode and  decode it in a knxMessage */
 		
 		String readMessage = new String();	
 		readMessage = KnxEncoder.getInfoFromMessage(message);	
@@ -99,6 +83,8 @@ public class KnxEncoder {
 	
 
 	/**
+	 * Not reviewed yet!
+	 * 
 	 * @param address: address of the device as x.y.z
 	 * @return the address as hex
 	 */
@@ -137,6 +123,8 @@ public class KnxEncoder {
 	}
 
 	/**
+	 * Not reviewed yet!
+	 * 
 	 * @param address: address of group of device as x.y.z
 	 * @return the address as hex
 	 */
@@ -175,6 +163,8 @@ public class KnxEncoder {
 	}
 
 	/**
+	 * Not reviewed yet!
+	 * 
 	 * @param test: a message string
 	 * @return the message as hex
 	 */
@@ -188,18 +178,18 @@ public class KnxEncoder {
 	}
 
 	/**
-	 * @param mex message from the house in bytes
+	 * @param message: udpTelegram from knx
 	 * @return message as String
 	 */
 	private static String getInfoFromMessage(byte message[]){
 		
-		/*	mex[]:
-		 * 		0-6) header;
-		 * 		7) 0c = reading; bc = command
-		 * 		8-9) source;	// device which provides its state
-		 * 		10-11) destination;	// can be both group (managed) or single (unmanaged) 
-		 * 		12-13) stuff = d100;
-		 * 		14) command or state;
+		/*	message[]:
+		 * 		0-8) header;
+		 * 		9) control
+		 * 		10-11) source;	// device which provides its state
+		 * 		12-13) destination;	// can be both group (managed) or single (unmanaged) 
+		 * 		14-15) stuff = d100;?
+		 * 		16) command or state;
 		 */
 		String telegram = new String();
 		
@@ -213,10 +203,13 @@ public class KnxEncoder {
 		valueByte[0] = message[16];
 		
 		String source = KnxEncoder.getAddress(sourceByte);
-		// Decoding  group Address, but can be singol address
+
+		// TODO Decoding group Address, but can also be single address!
 		String destination = KnxEncoder.getGroupAddress(destByte); 
 		
 		String value = KnxEncoder.getStatus(valueByte);
+
+		// TODO type is not read
 		String type = KnxEncoder.getType(typeByte);
 		
 		telegram = source + "#" + destination + "#" + value + "#" + type;
@@ -224,48 +217,66 @@ public class KnxEncoder {
 		return telegram;
 
 	}
+
 	
 	/**
-	 * From address in byte to address in x.y.z format
+	 * Convert address from bytes to address in x.y.z format
 	 * @param buffer single device address in bytes
-	 * @return address as String
+	 * @return device address as String
 	 */
 	private static String getAddress(byte buffer[]){
 		String address = new String();
-		
+
 		// buffer[0]: higher bits
 		// buffer[1]: lower bits
+
+		// layout knx device address: AAAA LLLL  DDDD DDDD
+		// A=area
+		// L=line
+		// D=device
 		
 		int highAddress = buffer[0];
+
+		//device address 8bit
 		int lowAddress = ((int)buffer[1]) & 0xff; // prendi gli 8 bit + alti:  => 1111 1111
-		
+
+		//area code 4msbits
 		int area = highAddress & 0xf0; 	// prendi i 4 bit + alti:  => 1111 0000
 		area = area >>4; // shifta di 4 bit a dx
-		int linea = highAddress & 0xf; 	// prendi i 4 bit + bassi: => 0000 1111
 
-		address = area + "." + linea + "." + lowAddress;
-		return address;
+	    //line code 4lsbits
+	    int linea = highAddress & 0xf; 	// prendi i 4 bit + bassi: => 0000 1111
+
+	    address = area + "." + linea + "." + lowAddress;
+	    return address;
 	}
 
 	
 	/**
+	 * Convert address from bytes to address in x/y/z format
 	 * @param buffer group device address in bytes
-	 * @return group device address as String
+	 * @return group address as String
 	 */
 	public static String getGroupAddress(byte buffer[]){
 		String groupAddress = new String();
-		// prende groupAddress in byte e restituisce indirizzo visuale "x/y/z"
 
-		// prende address in byte e restituisce indirizzo visuale "x.y.z"
-		// buffer[0]: parte alta
-		// buffer[1]: parte bassa
+		// buffer[0]: higher bits
+		// buffer[1]: lower bits
+
+		// layout knx group address: MMMM MIII  SSSS SSSS
+		// M=main group
+		// I=middle group
+		// S=sub group
 		
 		int highAddress = buffer[0];
-		int lowAddress = buffer[1];	// prende il segno sopra 127
+		int lowAddress = buffer[1];
 		
-		int main = highAddress & 0xf0; 	// prendi i 5 bit + alti:  => 1111 0000
-		main = main >>4; // shifta di 3 bit a dx
-		int middle = highAddress & 0xf; // prendi i 3 bit + bassi: => 0000 1111
+		//main group 5 msbits
+		int main = highAddress & 0xf8; 	// prendi i 5 bit + alti:  => 1111 1000
+		main = main >> 3; // shifta di 3 bit a dx
+		
+		//middle group 3 lsbits
+		int middle = highAddress & 0x7; // prendi i 3 bit + bassi: => 0000 0111
 		
 		groupAddress = main + "/" + middle + "/" + lowAddress;
 	
@@ -296,6 +307,8 @@ public class KnxEncoder {
 		   }
 		}
 			*/
+		
+		// FIXME include knx datapointtypes; this decoding should be done in the drivers; remove this hack
 		byte one=1;
 		byte stateByte=buffer[0];
 		int lastBit=stateByte & one;
@@ -341,7 +354,7 @@ public class KnxEncoder {
 
 	
 	/**
-	 * @param telegram the konnex telegram
+	 * @param the konnex telegram
 	 * @return telegram suitable to be shown on screen
 	 */
 	public static String displayTelegram(String telegram){
