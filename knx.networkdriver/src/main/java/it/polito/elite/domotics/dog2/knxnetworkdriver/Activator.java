@@ -1,5 +1,6 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
+import org.universAAL.knx.networkdriver.util.LogTracker;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -10,24 +11,25 @@ public class Activator implements BundleActivator {
 
 	KnxNetworkDriverImp driver;
 	LogService logger;
+	private LogTracker logTracker;
 	
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
-	 */
 	public void start(BundleContext context) throws Exception {
-        ServiceReference ref = context.getServiceReference(LogService.class.getName());
-        if (ref != null)
-        {
-            logger = (LogService) context.getService(ref);
-//            System.out.println("******** LogService found! *********");
-            logger.log(LogService.LOG_INFO, "KNX network driver started!");
-
-        }		
-        else
-        	System.out.println("[KNX Network Driver] WARNING: No LogService instance found!");
-        
-        driver=new KnxNetworkDriverImp(context,logger);
+		//use a service Tracker for LogService
+		logTracker = new LogTracker(context);
+		logTracker.open();
+		
+//        ServiceReference ref = context.getServiceReference(LogService.class.getName());
+//        if (ref != null)
+//        {
+//            logger = (LogService) context.getService(ref);
+////            System.out.println("******** LogService found! *********");
+//            logger.log(LogService.LOG_INFO, "KNX network driver started!");
+//
+//        }		
+//        else
+//        	System.out.println("[KNX Network Driver] WARNING: No LogService instance found!");
+//        
+        driver=new KnxNetworkDriverImp(context,logTracker);
 	}
 
 	/*
@@ -36,7 +38,7 @@ public class Activator implements BundleActivator {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		driver.unRegister();
-		// TODO-TF: stop thread KnxCommunication
+		//TODO stop thread KnxCommunication
 	}
 
 }

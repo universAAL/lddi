@@ -30,6 +30,7 @@ knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/K
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriter.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxDriver.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxNetwork.java -text
+knx.networkdriver/src/main/java/org/universAAL/knx/networkdriver/util/LogTracker.java -text
 lddi.testing.frameworks/knx.framework/conf/all.policy -text
 lddi.testing.frameworks/knx.framework/conf/felix.client.run.properties -text
 lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream

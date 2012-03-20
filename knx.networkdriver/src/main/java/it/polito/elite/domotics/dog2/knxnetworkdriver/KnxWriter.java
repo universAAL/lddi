@@ -1,20 +1,4 @@
-/*                               
-    _/_/_/                        
-   _/    _/    _/_/      _/_/_/   
-  _/    _/  _/    _/  _/    _/    
- _/    _/  _/    _/  _/    _/    Domotic OSGi Gateway
-_/_/_/      _/_/      _/_/_/      
-                         _/       
-                    _/_/
-
-WEBSITE: http://domoticdog.sourceforge.net
-LICENSE: see the file License.txt
-
-*/
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
-
-
-
 
 import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxEncoder.KnxMessageType;
 
@@ -23,10 +7,12 @@ import java.net.*;
 import org.osgi.service.log.LogService;
 
 
-/** Provides the writing to the house. USes the encoder to operate translation from high-level commands (from the MessageDispatcher)
- * 		to low-level command (sent to the house).
+/** Provides the writing to the knx gateway.
+ * Uses the encoder to operate translation from high-level commands
+ * (from ?) to low-level command (sent to the gateway).
+ * 
  * @author Enrico Allione (enrico.allione@gmail.com)
- *
+ * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxWriter {
 
@@ -35,7 +21,6 @@ public class KnxWriter {
 	
 	public KnxWriter(KnxNetworkDriverImp core) {
 		this.core = core;
-			
 	}
 	
 	
