@@ -23,7 +23,7 @@ implements Runnable
 	protected KnxEncoder encoder;
 	
 	static private int socketTimeout = 0;	// infinite timeout on receive()
-	static private int telegramLenght = 15;	// KNX core telegram length
+	static private int telegramLenght = 17;	// KNX core telegram length
 
 //	private boolean running;
 	private MulticastSocket mcReceiver;
@@ -68,6 +68,7 @@ implements Runnable
 			while (!Thread.currentThread().isInterrupted()) {
 				
 				byte buffer[] = new byte[mcReceiver.getReceiveBufferSize()];
+				//buffer is 8192 bytes !!
 				DatagramPacket udpPacket = new DatagramPacket(buffer, buffer.length);
 				
 				//blocking here...
@@ -75,22 +76,43 @@ implements Runnable
 				//The datagram packet contains also the sender's IP address, and the port number
 				//on the sender's machine. This method blocks until a datagram is received.
 
+				
+				//remove trailing 0 (buffer is 8192 bytes long!)
 				byte[]temp = udpPacket.getData();
-				core.getLogger().log(LogService.LOG_INFO,"KNX telegram received: " + KnxEncoder.decode(temp));
-						
+				int i = temp.length - 1;
+				while(temp[i] == 0)
+				    --i;
+				// now temp[i] is the last non-zero byte
+				byte[] dataPacket = new byte[i+1];
+				System.arraycopy(temp, 0, dataPacket, 0, i+1);
+				
+				//remove also the UDP header
+				int l = (i+1) - 9;	//9 bytes UDP header
+				byte[] knxPacket = new byte[l];
+				System.arraycopy(temp, 9, knxPacket, 0, l);
+				
+				
+				core.getLogger().log(LogService.LOG_INFO,"KNX telegram received (" + knxPacket.length +
+						" bytes): " + KnxEncoder.decode(dataPacket));
+				
+				
+				
+				
+				
+				
 				byte[] deviceByte = new byte[2];
 				
-				//difference between the aspected size of the telegram and the real one
-				int oversize=temp.length-KnxReader.telegramLenght;
+				//difference between the expected size of the telegram and the real one
+				int oversize = temp.length - KnxReader.telegramLenght;
 				oversize=oversize<0?0:oversize; //avoid array index exception
 				
 				
 				byte[] statusByte = new byte[oversize+2];
 				deviceByte[0] = temp[10];		
 				deviceByte[1] = temp[11];
-				for(int i=0; i<statusByte.length; i++){
+				for(int j=0; j<statusByte.length; j++){
 					//statusByte[0] = temp[14]; //old version
-					statusByte[i]=temp[temp.length-2-oversize+i];
+					statusByte[j]=temp[temp.length-2-oversize+j];
 				}
 				//TODO change to handle data value such as temperature
 				String knxDevice = KnxEncoder.getGroupAddress(deviceByte);
@@ -114,7 +136,7 @@ implements Runnable
 		}
 		catch (Exception e){
 			core.getLogger().log(LogService.LOG_ERROR,e.getMessage());
-			// e.printStackTrace();
+			 e.printStackTrace();
 		}
 	}
 
