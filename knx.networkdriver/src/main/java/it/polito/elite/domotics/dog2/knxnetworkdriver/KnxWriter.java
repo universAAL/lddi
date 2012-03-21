@@ -58,8 +58,7 @@ public class KnxWriter {
 
 	    StringBuffer out = new StringBuffer(in.length * 3);
 
-	    
-
+	    //TODO 20 bytes hardcoded! 
 	    while (i < in.length && i<20) {
 	        byte ch = 0x00;
 	 	    byte ch2 =0x00;

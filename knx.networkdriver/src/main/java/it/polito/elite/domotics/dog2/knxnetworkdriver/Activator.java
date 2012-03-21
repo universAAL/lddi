@@ -37,15 +37,8 @@ public class Activator implements BundleActivator {
         driver=new KnxNetworkDriverImp(context,logTracker);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	public void stop(BundleContext context) throws Exception {
-		//TODO stop thread KnxCommunication
-//		driver.network.stop();
-//		driver.network.interrupt();
 
+	public void stop(BundleContext context) throws Exception {
 		driver.unRegister();
 	}
 

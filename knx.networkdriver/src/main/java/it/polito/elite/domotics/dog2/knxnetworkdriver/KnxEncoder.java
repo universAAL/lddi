@@ -184,7 +184,7 @@ public class KnxEncoder {
 	private static String getInfoFromMessage(byte message[]){
 		
 		/*	message[]:
-		 * 		0-8) header;
+		 * 		0-8) udp header;
 		 * 		9) control
 		 * 		10-11) source;	// device which provides its state
 		 * 		12-13) destination;	// can be both group (managed) or single (unmanaged) 
@@ -196,10 +196,12 @@ public class KnxEncoder {
 		byte sourceByte[] = new byte[2];
 		byte destByte[] = new byte[2];
 		byte valueByte[] = new byte[1];
+		byte drlByte[] = new byte[1]; //DRL-Byte (Destination-address-flag, Routing-counter, Length)
 		byte typeByte[] = new byte[2];
 		
 		sourceByte[0] = message[10];		sourceByte[1] = message[11];
 		destByte[0] = message[12];		destByte[1] = message[13];
+		drlByte[0] = message[14];
 		valueByte[0] = message[16];
 		
 		String source = KnxEncoder.getAddress(sourceByte);
@@ -209,16 +211,29 @@ public class KnxEncoder {
 		
 		String value = KnxEncoder.getStatus(valueByte);
 
+		int dataLength = KnxEncoder.getDataLength(drlByte);
+		
 		// TODO type is not read
 		String type = KnxEncoder.getType(typeByte);
 		
-		telegram = source + "#" + destination + "#" + value + "#" + type;
+		telegram = source + "#" + destination + "#" + value + "#" + dataLength;
 		
 		return telegram;
 
 	}
 
 	
+	/**
+	 * @param drlByte
+	 * @return
+	 */
+	private static int getDataLength(byte[] buffer) {
+		
+		return ((int)buffer[0]) & 0xf; //mask 4 right bits
+		
+	}
+
+
 	/**
 	 * Convert address from bytes to address in x.y.z format
 	 * @param buffer single device address in bytes
@@ -285,6 +300,8 @@ public class KnxEncoder {
 
 	
 	/**
+	 * octet number 7 in KNX prot
+	 * 
 	 * @param buffer status in bytes
 	 * @return status as String
 	 */
