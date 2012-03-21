@@ -7,27 +7,34 @@ import java.net.InetAddress;
 import org.osgi.service.log.LogService;
 
 /**
- * Manages reader and writer for communication to the knx gateway
+ * Manages reader and writer for communication to the knx gateway.
+ * 
+ * This class is no longer a thread because the KNX gateway isn't pingable.
+ * Therefore this class doesn't check the gateway continuously.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxCommunication extends Thread{
+public class KnxCommunication
+//extends Thread
+{
 	
 	KnxNetworkDriverImp driver;
 	private KnxWriter writer;
 	private KnxReader reader;
-	private boolean running;
+	private Thread readerThread;
+//	private boolean running;
 	
 	
 	public KnxCommunication(KnxNetworkDriverImp driver){
-		super();
+//		super();
 		this.driver=driver;
-		this.running=true;
+//		this.running=true;
 	}
 
-	@Override
-	public void run() {
-		while(running){
+//	@Override
+//	public void run() {
+	public void init() {
+//		while(running){
 			
 			//Siemens KNX/IP gateway N146 is not pingable!
 			//        boolean netReachable = false;
@@ -49,7 +56,9 @@ public class KnxCommunication extends Thread{
 			
 			// Starting the server listening from the gateway
 			reader = new KnxReader(this.driver);
-			reader.start();
+//			reader.start();
+			readerThread = new Thread(reader);
+			readerThread.start();
 
 			// Starting the server writing to the gateway
 			writer = new KnxWriter(this.driver);
@@ -63,30 +72,35 @@ public class KnxCommunication extends Thread{
 		// Sleep per un po e poi ritesta rete: se � arrivato fin qui significa che la rete c'era,
 		//	quindi se non la trova + deve riavviarsi a cercare (stile BTicino), mentre se la trova
 		//		tutto va bene.
-		try {
-			boolean goOnChecking = true;
-			while (goOnChecking){					
-				Thread.sleep(this.driver.getCheckingTime());
-
-//				InetAddress houseAddress = InetAddress.getByName(this.driver.getHouseIp());
-//				if (!houseAddress.isReachable(this.driver.getTimeout())){
+//		try {
+//			boolean goOnChecking = true;
+//			while (goOnChecking){					
+//				Thread.sleep(this.driver.getCheckingTime());
 //
-//					// House is unreachable
-//					goOnChecking = false;
-//					this.driver.logger.log(LogService.LOG_ERROR,"Connection down!");
-//					
-//					
-//			}
-		}
-		}
-		catch(Exception e) {
-			this.driver.logger.log(LogService.LOG_ERROR,e.getMessage());
-		}
-		this.driver.networkDisconnected();
-		}// end testing network
+////				InetAddress houseAddress = InetAddress.getByName(this.driver.getHouseIp());
+////				if (!houseAddress.isReachable(this.driver.getTimeout())){
+////
+////					// House is unreachable
+////					goOnChecking = false;
+////					this.driver.logger.log(LogService.LOG_ERROR,"Connection down!");
+////					
+////					
+////			}
+//		}
+//		}
+//		catch(Exception e) {
+//			this.driver.logger.log(LogService.LOG_ERROR,e.getMessage());
+//		}
+		
+			
+//			this.driver.networkDisconnected();
+			
+			
+//		}// end testing network
 	    
 	}
 
+	
 	/***
 	 * ping the gateway
 	 * @return boolean
@@ -110,7 +124,10 @@ public class KnxCommunication extends Thread{
 	}
 	
 	public void stopCommunication(){
-		this.running=false;
+//		this.running=false;
+
+		this.readerThread.interrupt();
+		//the MulticastSocket.receive is blocking -> manually close
 		this.reader.stopReader();
 	}
 
