@@ -7,6 +7,11 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.log.LogListener;
 import org.osgi.service.log.LogService;
 
+/***
+ * 
+ * @author Thomas Fuxreiter (foex@gmx.at)
+ *
+ */
 public class Activator implements BundleActivator {
 
 	KnxNetworkDriverImp driver;
@@ -37,8 +42,11 @@ public class Activator implements BundleActivator {
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
-		driver.unRegister();
 		//TODO stop thread KnxCommunication
+//		driver.network.stop();
+//		driver.network.interrupt();
+
+		driver.unRegister();
 	}
 
 }

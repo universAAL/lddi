@@ -20,6 +20,11 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
 
+/***
+ * 
+ * @author Thomas Fuxreiter (foex@gmx.at)
+ *
+ */
 public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 //,CommandProvider 
 {
@@ -94,7 +99,8 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 				}
 				
 				this.network=new KnxCommunication(this);
-				this.network.start();
+//				this.network.start();
+				this.network.init();
 				
 			} else {
 				this.logger.log(LogService.LOG_ERROR,"Unconfigured knx network driver!");
@@ -122,8 +128,7 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 	
 	public void networkDisconnected() {
-		this.regServiceKnx.unregister();
-		
+		this.unRegister();
 	}
 
 	public LogService getLogger() {
@@ -177,8 +182,11 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 
 	public void unRegister() {
+		this.network.stopCommunication();
+		
 		if(this.regServiceKnx!=null){
 			this.regServiceKnx.unregister();
+			this.regServiceKnx = null;
 		}
 	}
 	public void addDriver(String device, KnxDriver driver) {

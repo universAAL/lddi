@@ -3,17 +3,21 @@ package it.polito.elite.domotics.dog2.knxnetworkdriver;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.net.SocketException;
 
 import org.osgi.service.log.LogService;
 
 /** Provides readings from the knx gateway by the LAN.
  * Uses the encoder to operate translation from low level data
- * (knx) to high level data (sent to ?).
+ * (knx) to high level data (sent to uAAL).
  * @author Enrico Allione (enrico.allione@gmail.com)
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 
-public class KnxReader extends Thread {
+public class KnxReader 
+//extends Thread
+implements Runnable
+{
 
 	protected KnxNetworkDriverImp core;
 	protected KnxEncoder encoder;
@@ -21,42 +25,53 @@ public class KnxReader extends Thread {
 	static private int socketTimeout = 0;	// infinite timeout on receive()
 	static private int telegramLenght = 15;	// KNX core telegram length
 
-	private boolean running;
-
+//	private boolean running;
+	private MulticastSocket mcReceiver;
+	
 	public KnxReader(KnxNetworkDriverImp core) {
 		this.core = core;
-		this.running=true;
+//		this.running=true;
 	}
 
+//	public void stopReader(){
+//		this.running=false;
+//	}
+	
 	public void stopReader(){
-		this.running=false;
+		if (this.mcReceiver != null) 
+			this.mcReceiver.close();
 	}
 	
-	public void run()  {
-		while(running){
-			listen();
-			Thread.yield();
-		}
-	}
+//	public void run()  {
+//		while(running){
+//			listen();
+//			Thread.yield();
+//		}
+//	}
 
-	private void listen(){
+//	private void listen(){
+	public void run(){
 		int k = 0;
-		boolean flag = true;
+//		boolean flag = true;
 
 		try {
-			MulticastSocket mcReceiver = new MulticastSocket(core.getMyUdpPort());
+			this.mcReceiver = new MulticastSocket(core.getMyUdpPort());
 			InetAddress group = InetAddress.getByName(core.getMulticastIp());
-			mcReceiver.joinGroup(group);
+			this.mcReceiver.joinGroup(group);
 
-			mcReceiver.setSoTimeout(socketTimeout);
+			this.mcReceiver.setSoTimeout(socketTimeout);
 
 			core.getLogger().log(LogService.LOG_INFO,"Server KNX listening on port " + 
 					core.getMyUdpPort() + " (joined " + core.getMulticastIp() + ")");
 
-			while (flag) {
+//			while (flag) {
+			while (!Thread.currentThread().isInterrupted()) {
+				
 				byte buffer[] = new byte[mcReceiver.getReceiveBufferSize()];
 				DatagramPacket udpPacket = new DatagramPacket(buffer, buffer.length);
-				mcReceiver.receive(udpPacket);
+				
+				//blocking here...
+				this.mcReceiver.receive(udpPacket);
 				//The datagram packet contains also the sender's IP address, and the port number
 				//on the sender's machine. This method blocks until a datagram is received.
 
@@ -93,6 +108,9 @@ public class KnxReader extends Thread {
 				this.core.newMessageFromHouse(knxDevice, statusByte);
 			
 			}
+		}
+		catch (SocketException se){
+			core.getLogger().log(LogService.LOG_INFO,"UDP Multicast Socket closed! Stop listening!");
 		}
 		catch (Exception e){
 			core.getLogger().log(LogService.LOG_ERROR,e.getMessage());
