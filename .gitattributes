@@ -17,6 +17,15 @@ hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/service
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/OnOffLightService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/PresenceDetectorService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/TemperatureSensorService.java -text
+knx.devicemanager/conf/services/knx.devicemanager.properties -text
+knx.devicemanager/data/OfficeProject2.knxproj -text
+knx.devicemanager/pom.xml -text
+knx.devicemanager/readme.txt -text
+knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/Activator.java -text
+knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDeviceManager.java -text
+knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxGroupAddress.java -text
+knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxImporter.java -text
+knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker.java -text
 knx.networkdriver/conf/services/knx.networkdriver.properties -text
 knx.networkdriver/pom.xml -text
 knx.networkdriver/readme.txt -text
@@ -34,9 +43,11 @@ knx.networkdriver/src/main/java/org/universAAL/knx/networkdriver/util/LogTracker
 lddi.testing.frameworks/knx.framework/conf/all.policy -text
 lddi.testing.frameworks/knx.framework/conf/felix.client.run.properties -text
 lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
+lddi.testing.frameworks/knx.framework/conf/services/knx.devicemanager.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/knx.networkdriver.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/org.ops4j.pax.logging.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/org.universAAL.mw.data.representation.properties -text
+lddi.testing.frameworks/knx.framework/data/OfficeProject2.knxproj -text
 lddi.testing.frameworks/knx.framework/pom.xml -text
 lddi.testing.frameworks/knx.framework/run.bat -text
 pom/pom.xml -text
