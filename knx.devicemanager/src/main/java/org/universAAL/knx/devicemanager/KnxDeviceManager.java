@@ -3,6 +3,7 @@ package org.universAAL.knx.devicemanager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
 import java.util.Properties;
@@ -23,6 +24,7 @@ public class KnxDeviceManager implements ManagedService {
 	private LogService logger;
 	private String knxConfigFile;
 	private List<KnxGroupAddress> knxImportedGroupAddresses;
+	private List<KnxDevice> deviceList ;
 	
 	public KnxDeviceManager(BundleContext context, LogService log) {
 		this.context=context;
@@ -60,6 +62,34 @@ public class KnxDeviceManager implements ManagedService {
 					this.logger.log(LogService.LOG_INFO,
 							"Knx devices found in configuration: "
 							+ this.knxImportedGroupAddresses.toString());
+					
+					this.deviceList = new ArrayList<KnxDevice>();
+					for ( KnxGroupAddress knxGroupAddress : knxImportedGroupAddresses ) {
+						
+						if ( checkKnxGroupAddress(knxGroupAddress) ) {
+							KnxDevice knxDevice = new KnxDevice(knxGroupAddress,this.logger);
+							deviceList.add(knxDevice);
+
+							// register device in OSGi registry
+							Properties propDeviceService=new Properties();
+
+							propDeviceService.put(
+									org.osgi.service.device.Constants.DEVICE_CATEGORY, knxDevice.getDeviceCategory());
+
+							this.logger.log(LogService.LOG_INFO, "Register KNX device " +
+									knxDevice.getDeviceId() + " in OSGi registry under " +
+									"device category: " + knxDevice.getDeviceCategory());
+							this.context.registerService(
+									org.osgi.service.device.Device.class.getName(), knxDevice, propDeviceService);
+						} else {
+							this.logger.log(LogService.LOG_ERROR, "KNX device with group address " +
+									knxGroupAddress.getGroupAddress() + " has incorrect DPT property.");
+						}
+						
+					}
+					
+					
+					
 				} else {
 					this.logger.log(LogService.LOG_ERROR, "KNX configuration file name is empty!");
 				}
@@ -79,4 +109,19 @@ public class KnxDeviceManager implements ManagedService {
 		
 	}
 
+	/**
+	 * check for null properties
+	 * @param knxGroupAddress
+	 * @return
+	 */
+	private boolean checkKnxGroupAddress(KnxGroupAddress knxGroupAddress) {
+		// TODO more checks for wellformedness of KNX DPT
+		if ( knxGroupAddress.getDpt() != null && knxGroupAddress.getDpt().contains(".") ) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
 }
