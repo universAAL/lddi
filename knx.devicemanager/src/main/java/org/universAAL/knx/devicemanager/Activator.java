@@ -24,6 +24,7 @@ public class Activator implements BundleActivator {
 
 
 	public void stop(BundleContext context) throws Exception {
+		// TODO deregister managed service and device services if not done automatically
 	}
 
 }

@@ -22,7 +22,9 @@ knx.devicemanager/data/OfficeProject2.knxproj -text
 knx.devicemanager/pom.xml -text
 knx.devicemanager/readme.txt -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/Activator.java -text
+knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDevice.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDeviceManager.java -text
+knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDpt1.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxGroupAddress.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxImporter.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker.java -text
