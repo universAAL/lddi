@@ -17,6 +17,10 @@ hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/service
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/OnOffLightService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/PresenceDetectorService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/TemperatureSensorService.java -text
+knx.devicedrivers/knx.dpt1driver/pom.xml -text
+knx.devicedrivers/knx.dpt1driver/src/main/java/org/universAAL/knx/dpt1driver/Activator.java -text
+knx.devicedrivers/knx.dpt1driver/src/main/java/org/universAAL/knx/dpt1driver/KnxDpt1Driver.java -text
+knx.devicedrivers/knx.dpt1driver/src/main/java/org/universAAL/knx/dpt1driver/util/LogTracker.java -text
 knx.devicemanager/conf/services/knx.devicemanager.properties -text
 knx.devicemanager/data/OfficeProject2.knxproj -text
 knx.devicemanager/pom.xml -text
@@ -28,6 +32,12 @@ knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDpt1.java -t
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxGroupAddress.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxImporter.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker.java -text
+knx.library/pom.xml -text
+knx.library/src/main/java/org/universAAL/knx/devicecategory/KnxDpt1.java -text
+knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDevice.java -text
+knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDpt1Device.java -text
+knx.library/src/main/java/org/universAAL/knx/utils/KnxGroupAddress.java -text
+knx.library/src/main/java/org/universAAL/knx/utils/LogTracker.java -text
 knx.networkdriver/conf/services/knx.networkdriver.properties -text
 knx.networkdriver/pom.xml -text
 knx.networkdriver/readme.txt -text

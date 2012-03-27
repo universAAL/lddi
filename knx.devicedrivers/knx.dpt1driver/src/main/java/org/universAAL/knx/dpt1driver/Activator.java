@@ -1,8 +1,8 @@
-package org.universAAL.knx.devicemanager;
+package org.universAAL.knx.dpt1driver;
 
-import org.universAAL.knx.devicemanager.util.LogTracker;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.universAAL.knx.dpt1driver.util.LogTracker;
 
 /***
  * 
@@ -11,15 +11,15 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator implements BundleActivator {
 
+	private KnxDpt1Driver knxDpt1Driver;
 	private LogTracker logTracker;
-	private KnxDeviceManager knxDeviceManager;
 	
 	public void start(BundleContext context) throws Exception {
 		//use a service Tracker for LogService
 		logTracker = new LogTracker(context);
 		logTracker.open();
 		
-		knxDeviceManager = new KnxDeviceManager(context, logTracker);
+		knxDpt1Driver = new KnxDpt1Driver(context, logTracker);
 	}
 
 
