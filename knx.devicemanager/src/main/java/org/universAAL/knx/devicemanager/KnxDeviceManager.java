@@ -14,6 +14,9 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
 
+import org.universAAL.knx.devicemodel.KnxDevice;
+import org.universAAL.knx.utils.KnxGroupAddress;
+
 /**
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
@@ -75,7 +78,8 @@ public class KnxDeviceManager implements ManagedService {
 
 							propDeviceService.put(
 									org.osgi.service.device.Constants.DEVICE_CATEGORY, knxDevice.getDeviceCategory());
-
+							// more possible properties: description, serial, id
+							
 							this.logger.log(LogService.LOG_INFO, "Register KNX device " +
 									knxDevice.getDeviceId() + " in OSGi registry under " +
 									"device category: " + knxDevice.getDeviceCategory());
