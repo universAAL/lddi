@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.universAAL.knx.devicemodel.KnxDevice;
+
 //import it.polito.elite.domotics.dog2.doglibrary.DeviceState;
 //import it.polito.elite.domotics.dog2.doglibrary.DogDeviceCostants;
 //import it.polito.elite.domotics.dog2.doglibrary.DogDriver;
@@ -27,13 +29,14 @@ import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxNotification;
 public abstract class KnxDriver 
 //implements DogDriver 
 {
+	protected KnxNetwork network;
+	protected KnxDevice device;
 	
+
 	/**Driver state*/
 //	protected DeviceState currentState;
-//	protected ControllableDevice device;
 	protected Set<String> groupAddressList;
 	protected Map<String,KnxCommand> knxCommands;
-	protected KnxNetwork network;
 	/**Map that stores notifications. Key: notification name, Value=KnxCommand containing notification details */
 	protected HashMap<String, Set<KnxNotification>> knxNotifications;
 	/**Map that stores generic notifications. Key: groupAddress, Value=KnxCommand containing notification details */
@@ -51,8 +54,10 @@ public abstract class KnxDriver
 	public KnxDriver(KnxNetwork network
 //			,ControllableDevice device
 			){
-		   
+		
+		// my knx.network instance
 	    this.network=network;
+	    
 //	    this.device=device;
 	    //create the needed objects
 	    this.knxCommands=new HashMap<String, KnxCommand>();
@@ -60,10 +65,20 @@ public abstract class KnxDriver
 	    this.knxNotifications=new HashMap<String, Set<KnxNotification>>();
 	    this.knxGroupAddressHexNotificationsMap=new HashMap<String, Set<KnxNotification>>();
 	    this.knxGroupAddressNotificationsMap=new HashMap<String, Set<KnxNotification>>();
-	    this.configure();
+//	    this.configure();
 	
 	}
 
+	/**
+	 * Add this driver to the driver list in knx network driver
+	 * 
+	 * @param device the device to set
+	 */
+	public void setDevice(KnxDevice device) {
+		this.device = device;
+		this.network.addDriver(this.device.getGroupAddress(), this);
+	}
+	
 	/***
 	 * Default method called to configure the KNX devices
 	 */
@@ -104,7 +119,11 @@ public abstract class KnxDriver
 //			KnxDriver.addNotificationToMap(this.knxGroupAddressNotificationsMap, currentNotification, currentNotification.getGroupAddress());			
 //		}
 //		KnxDriver.addNotificationToMap(knxNotifications, currentNotification, currentNotification.getName());
+//
+//		
+//		**************************
 //		this.network.addDriver(groupAddress, this);
+//		**************************
 //	}
 	
 	}

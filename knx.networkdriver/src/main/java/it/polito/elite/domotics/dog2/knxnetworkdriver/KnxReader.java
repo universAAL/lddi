@@ -115,7 +115,7 @@ implements Runnable
 					statusByte[j]=temp[temp.length-2-oversize+j];
 				}
 				//TODO change to handle data value such as temperature
-				String knxDevice = KnxEncoder.getGroupAddress(deviceByte);
+				String groupAddress = KnxEncoder.getGroupAddress(deviceByte);
 				//String knxStatus = KnxEncoder.getStatus(statusByte);
 				
 				core.getLogger().log(LogService.LOG_DEBUG,"\n---------COMMAND FROM HOUSE TO DOG--------- " + udpPacket.getAddress().toString()+"BYTE "+KnxWriter.byteArrayToHexString(temp));
@@ -125,9 +125,9 @@ implements Runnable
 				
 
 				k += 1;
-				core.getLogger().log(LogService.LOG_DEBUG,"Source: " + knxDevice + "; TELEGRAM: " +KnxWriter.byteArrayToHexString(temp));
+				core.getLogger().log(LogService.LOG_DEBUG,"Source: " + groupAddress + "; TELEGRAM: " +KnxWriter.byteArrayToHexString(temp));
 
-				this.core.newMessageFromHouse(knxDevice, statusByte);
+				this.core.newMessageFromHouse(groupAddress, statusByte);
 			
 			}
 		}
