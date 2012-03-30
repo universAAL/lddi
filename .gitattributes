@@ -48,6 +48,15 @@ knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/K
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxDriver.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxNetwork.java -text
 knx.networkdriver/src/main/java/org/universAAL/knx/networkdriver/util/LogTracker.java -text
+knx.refinementdrivers/knx.dpt1driver/pom.xml -text
+knx.refinementdrivers/knx.dpt1driver/src/main/java/org/universAAL/knx/dpt1driver/Activator.java -text
+knx.refinementdrivers/knx.dpt1driver/src/main/java/org/universAAL/knx/dpt1driver/KnxDpt1Driver.java -text
+knx.refinementdrivers/knx.dpt1driver/src/main/java/org/universAAL/knx/dpt1driver/util/LogTracker.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver/pom.xml -text
+knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/Activator.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/KnxDpt1Instance.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/KnxDpt1RefinementDriver.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/util/LogTracker.java -text
 lddi.testing.frameworks/knx.framework/conf/all.policy -text
 lddi.testing.frameworks/knx.framework/conf/felix.client.run.properties -text
 lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream

@@ -168,13 +168,18 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 		return myUdpPort;
 	}
 
-	/**Forward the message from the house */
-	public void newMessageFromHouse(String knxDevice, byte[] statusByte) {
-		if(this.driverList.containsKey(knxDevice)){
+	/**
+	 * Forward the message from the house to driver; mapping on groupAddress
+	 * 
+	 * @param groupAddress the knx groupAddress
+	 * @param statusByte knx command/status bytes (representing e.g. on, off)  
+	 */
+	public void newMessageFromHouse(String groupAddress, byte[] statusByte) {
+		if(this.driverList.containsKey(groupAddress)){
 			synchronized(this.driverList)
 			{
-			for(KnxDriver driver:this.driverList.get(knxDevice)){
-				driver.newMessageFromHouse(knxDevice, statusByte);
+			for(KnxDriver driver:this.driverList.get(groupAddress)){
+				driver.newMessageFromHouse(groupAddress, statusByte);
 			}
 			}
 		}

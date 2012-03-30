@@ -49,6 +49,17 @@ public class KnxDevice implements Device{
 		this.deviceId = this.knxDeviceProperties.getGroupAddress();
 	}
 
+	public void noDriverFound() {
+
+		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for KNX device: " +
+				knxDeviceProperties.getGroupAddress() );
+		
+	}
+
+	public String getGroupAddress() {
+		return this.knxDeviceProperties.getGroupAddress();
+	}
+	
 	/**
 	 * @return the deviceCategory
 	 */
@@ -61,14 +72,6 @@ public class KnxDevice implements Device{
 	 */
 	public String getDeviceId() {
 		return deviceId;
-	}
-
-
-	public void noDriverFound() {
-
-		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for KNX device: " +
-				knxDeviceProperties.getGroupAddress() );
-		
 	}
 
 	/**

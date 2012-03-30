@@ -6,11 +6,12 @@
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>knx.networkdriver</artifactId>
+	<artifactId>knx.dpt1driver</artifactId>
 	<packaging>bundle</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>KNX network driver</name>
-	<description>This bundle connects to a UPD Multicast Channel on the local IP network where KNX bus messages can be sent and received. Usually a KNX/IP Gateway is used to connect the UDP Multicast Channel to the KNX bus system. The base source code is taken from the DOG2 project on http://domoticdog.sourceforge.net and slightly modified to run standalone.</description>
+	<name>KNX driver for Datapoint Type 1.*</name>
+	<description>Encoding and decoding of KNX Datapoint Types 1.* with Format B1. Is registered as OSGI driver service in the framework registry.
+	</description>
 	<inceptionYear>2012</inceptionYear>
 
 	<licenses>
@@ -54,9 +55,16 @@
 			<version>1.0</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- uAAL dependencies -->
 
+		<dependency>
+			<groupId>org.universAAL.lddi</groupId>
+			<artifactId>knxnetworkdriver</artifactId>
+			<version>0.0.1</version>
+			<type>bundle</type>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.library</artifactId>
@@ -84,11 +92,10 @@
 				<configuration>
 					<instructions>
 						<Bundle-Name>${project.name}</Bundle-Name>
-						<Bundle-Activator>it.polito.elite.domotics.dog2.knxnetworkdriver.Activator</Bundle-Activator>
+						<Bundle-Activator>org.universAAL.knx.dpt1driver.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Export-Package>it.polito.elite.domotics.dog2.knxnetworkdriver,
-										it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces</Export-Package>
+						<Export-Package>org.universAAL.knx.dpt1driver</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
