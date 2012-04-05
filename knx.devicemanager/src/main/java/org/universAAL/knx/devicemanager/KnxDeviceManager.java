@@ -15,6 +15,7 @@ import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
 
 import org.universAAL.knx.devicemodel.KnxDevice;
+import org.universAAL.knx.devicemodel.KnxDeviceFactory;
 import org.universAAL.knx.utils.KnxGroupAddress;
 
 /**
@@ -70,21 +71,36 @@ public class KnxDeviceManager implements ManagedService {
 					for ( KnxGroupAddress knxGroupAddress : knxImportedGroupAddresses ) {
 						
 						if ( checkKnxGroupAddress(knxGroupAddress) ) {
-							KnxDevice knxDevice = new KnxDevice(knxGroupAddress,this.logger);
+							
+							String dptMain = knxGroupAddress.getMainDpt();
+							int dptMainNumber = Integer.parseInt(dptMain);
+							
+							// create appropriate device from dpt main number
+							KnxDevice knxDevice = KnxDeviceFactory.getKnxDevice(dptMainNumber);
+
+							// set instance alive
+							knxDevice.setParams(knxGroupAddress,this.logger);
+							
+//							KnxDevice knxDevice = new KnxDevice(knxGroupAddress,this.logger);
+							
 							deviceList.add(knxDevice);
 
 							// register device in OSGi registry
 							Properties propDeviceService=new Properties();
 
 							propDeviceService.put(
-									org.osgi.service.device.Constants.DEVICE_CATEGORY, knxDevice.getDeviceCategory());
+									org.osgi.service.device.Constants.DEVICE_CATEGORY, 
+									knxDevice.getDeviceCategory());
 							// more possible properties: description, serial, id
 							
 							this.logger.log(LogService.LOG_INFO, "Register KNX device " +
 									knxDevice.getDeviceId() + " in OSGi registry under " +
 									"device category: " + knxDevice.getDeviceCategory());
+							
 							this.context.registerService(
-									org.osgi.service.device.Device.class.getName(), knxDevice, propDeviceService);
+									org.osgi.service.device.Device.class.getName(), knxDevice, 
+									propDeviceService);
+							
 						} else {
 							this.logger.log(LogService.LOG_ERROR, "KNX device with group address " +
 									knxGroupAddress.getGroupAddress() + " has incorrect DPT property.");
@@ -101,6 +117,9 @@ public class KnxDeviceManager implements ManagedService {
 			} catch (FileNotFoundException e) {
 				this.logger.log(LogService.LOG_ERROR, "KNX configuration xml file " +
 						knxConfigFile + " could not be opened!");
+				e.printStackTrace();
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

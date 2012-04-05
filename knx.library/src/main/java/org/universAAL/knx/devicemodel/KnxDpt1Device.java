@@ -1,8 +1,6 @@
 package org.universAAL.knx.devicemodel;
 
-import org.osgi.service.log.LogService;
 import org.universAAL.knx.devicecategory.KnxDpt1;
-import org.universAAL.knx.utils.*;
 
 /**
  * 
@@ -11,13 +9,12 @@ import org.universAAL.knx.utils.*;
 public class KnxDpt1Device extends KnxDevice implements KnxDpt1 {
 
 	/**
-	 * @param knxDeviceProperties
-	 * @param logger
+	 * empty constructor for factory
 	 */
-	public KnxDpt1Device(KnxGroupAddress knxDeviceProperties, LogService logger) {
-		super(knxDeviceProperties, logger);
-		// TODO Auto-generated constructor stub
+	public KnxDpt1Device() {
+		super();
 	}
+
 
 	/* (non-Javadoc)
 	 * @see org.universAAL.knx.devicecategory.KnxDpt1#receivePacket(long)
