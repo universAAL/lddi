@@ -14,13 +14,13 @@ import org.universAAL.knx.utils.*;
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public class KnxDevice implements Device{
+public abstract class KnxDevice implements Device{
 
 	/** OSGi DAS properties */
 
-	private String deviceCategory;
+	public String deviceCategory;
 	/** intended for end users */
-	private String deviceDescription;
+	public String deviceDescription;
 	/** unique serial number for this device */
 	private String deviceSerial;
 	/** should be set; every time the same hardware is plugged in, the same PIDs are used */
@@ -31,15 +31,27 @@ public class KnxDevice implements Device{
 	
 	private static String KNX_DEVICE_CATEGORY_PREFIX = "KnxDpt";
 	
+	// ref to OSGi attached driver
+	private Object driver;
+	
 	private LogService logger;
 
 	/**
-	 * @param knxDeviceProperties
+	 * empty constructor for factory
 	 */
-	public KnxDevice(KnxGroupAddress knxDeviceProperties,LogService logger) {
-		this.knxDeviceProperties = knxDeviceProperties;
+	public KnxDevice() {
+	}
+	
+	/**
+	 * Fill empty device with parameters and set it alive
+	 * 
+	 * @param knxGroupAddress
+	 * @param logger2
+	 */
+	public void setParams(KnxGroupAddress knxGroupAddress, LogService logger) {
+		this.knxDeviceProperties = knxGroupAddress;
 		this.logger = logger;
-		
+
 		this.deviceCategory = KNX_DEVICE_CATEGORY_PREFIX + this.knxDeviceProperties.getMainDpt();
 		
 //		this.deviceDescription;
@@ -49,6 +61,7 @@ public class KnxDevice implements Device{
 		this.deviceId = this.knxDeviceProperties.getGroupAddress();
 	}
 
+	
 	public void noDriverFound() {
 
 		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for KNX device: " +
@@ -94,4 +107,6 @@ public class KnxDevice implements Device{
 	public String getServicePid() {
 		return servicePid;
 	}
+
+
 }

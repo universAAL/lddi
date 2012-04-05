@@ -22,10 +22,7 @@ knx.devicemanager/data/OfficeProject2.knxproj -text
 knx.devicemanager/pom.xml -text
 knx.devicemanager/readme.txt -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/Activator.java -text
-knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDevice.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDeviceManager.java -text
-knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDpt1.java -text
-knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxGroupAddress.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxImporter.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker.java -text
 knx.library/pom.xml -text
@@ -48,6 +45,7 @@ knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/K
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxDriver.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxNetwork.java -text
 knx.networkdriver/src/main/java/org/universAAL/knx/networkdriver/util/LogTracker.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver/conf/services/knx.refinementdriver.properties -text
 knx.refinementdrivers/knx.dpt1refinementdriver/pom.xml -text
 knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/Activator.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/KnxDpt1Instance.java -text
@@ -58,6 +56,7 @@ lddi.testing.frameworks/knx.framework/conf/felix.client.run.properties -text
 lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
 lddi.testing.frameworks/knx.framework/conf/services/knx.devicemanager.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/knx.networkdriver.properties -text
+lddi.testing.frameworks/knx.framework/conf/services/knx.refinementdriver.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/org.ops4j.pax.logging.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/org.universAAL.mw.data.representation.properties -text
 lddi.testing.frameworks/knx.framework/data/OfficeProject2.knxproj -text

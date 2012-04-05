@@ -71,7 +71,7 @@
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Export-Package>org.universAAL.knx.devicecategory</Export-Package>
+						<Export-Package>org.universAAL.knx.devicecategory,org.universAAL.knx.devicemodel,org.universAAL.knx.utils</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>

@@ -1,6 +1,8 @@
 package org.universAAL.knx.dpt1refinementdriver;
 
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
 import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxNetwork;
 
@@ -35,7 +37,7 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
 	private KnxNetwork network;
 	private ServiceRegistration regDriver;
-//	private Vector<KnxActuatorInstance> connectedDriver;
+	private Set<KnxDpt1Instance> connectedDriver;
 	
 	/**
 	 * @param context
@@ -44,6 +46,8 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 	public KnxDpt1RefinementDriver(BundleContext context, LogTracker log) {
 		this.context=context;
 		this.logger=log;
+		
+		this.connectedDriver = new HashSet<KnxDpt1Instance>();
 		
 		// track on KnxNetwork service
 		try {
@@ -80,12 +84,17 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 		// create "driving" instance
 		KnxDpt1Instance instance = new KnxDpt1Instance(this.context, reference, network, this.logger);
 		
+		// register managed service
+		instance.registerManagedService();
+		
 		// from DOG
 //		KnxActuatorInstance instance=new KnxActuatorInstance(this.network, 
 //				(ControllableDevice) this.context.getService(reference));
-//		synchronized(this.connectedDriver){
-//			this.connectedDriver.add(instance);
-//		}
+		
+		synchronized(this.connectedDriver){
+			if ( ! this.connectedDriver.add(instance) )
+				this.logger.log(LogService.LOG_ERROR, "Duplicate Element in HashSet connectedDriver");
+		}
 
 		return null; // if attachment is correct
 	}

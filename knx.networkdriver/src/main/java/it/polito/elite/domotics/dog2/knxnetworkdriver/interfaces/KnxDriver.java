@@ -76,6 +76,8 @@ public abstract class KnxDriver
 	 */
 	public void setDevice(KnxDevice device) {
 		this.device = device;
+		
+		// add driver to driverList in knx.networkdriver
 		this.network.addDriver(this.device.getGroupAddress(), this);
 	}
 	

@@ -16,6 +16,9 @@ package org.universAAL.knx.devicecategory;
  *
  */
 public interface KnxDpt1 {
+	
+	public static String MY_DEVICE_CATEGORY = "KnxDpt1";
+	
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number
 	public static int MATCH_VERSION	= 8;	// matches the right class, make model and version
