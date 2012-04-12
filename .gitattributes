@@ -58,6 +58,7 @@ lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol
 lddi.testing.frameworks/knx.framework/conf/services/knx.devicemanager.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/knx.networkdriver.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/knx.refinementdriver.properties -text
+lddi.testing.frameworks/knx.framework/conf/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/org.ops4j.pax.logging.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/org.universAAL.mw.data.representation.properties -text
 lddi.testing.frameworks/knx.framework/data/OfficeProject2.knxproj -text
