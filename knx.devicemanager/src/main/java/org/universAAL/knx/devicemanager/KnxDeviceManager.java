@@ -3,13 +3,14 @@ package org.universAAL.knx.devicemanager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
@@ -28,11 +29,15 @@ public class KnxDeviceManager implements ManagedService {
 	private LogService logger;
 	private String knxConfigFile;
 	private List<KnxGroupAddress> knxImportedGroupAddresses;
-	private List<KnxDevice> deviceList ;
+//	private List<KnxDevice> deviceList ;
+//	private Map<KnxGroupAddress,KnxDevice> deviceList;
+	private Map<String,ServiceRegistration> deviceRegistrationList;
 	
 	public KnxDeviceManager(BundleContext context, LogService log) {
 		this.context=context;
 		this.logger=log;
+
+		this.deviceRegistrationList = new HashMap<String,ServiceRegistration>();
 
 		this.registerManagedService();
 		this.logger.log(LogService.LOG_DEBUG,"KnxDeviceManager started!");
@@ -67,10 +72,18 @@ public class KnxDeviceManager implements ManagedService {
 							"Knx devices found in configuration: "
 							+ this.knxImportedGroupAddresses.toString());
 					
-					this.deviceList = new ArrayList<KnxDevice>();
 					for ( KnxGroupAddress knxGroupAddress : knxImportedGroupAddresses ) {
 						
 						if ( checkKnxGroupAddress(knxGroupAddress) ) {
+							
+							ServiceRegistration knxGA = this.deviceRegistrationList.get(knxGroupAddress.getGroupAddress());
+							if ( knxGA != null ) {
+								// device service is already registered
+								// unregister
+								knxGA.unregister();
+								// and delete from list
+								this.deviceRegistrationList.remove(knxGroupAddress);
+							}
 							
 							String dptMain = knxGroupAddress.getMainDpt();
 							int dptMainNumber = Integer.parseInt(dptMain);
@@ -83,7 +96,8 @@ public class KnxDeviceManager implements ManagedService {
 							
 //							KnxDevice knxDevice = new KnxDevice(knxGroupAddress,this.logger);
 							
-							deviceList.add(knxDevice);
+							// add this device to my list
+//							deviceList.put(knxGroupAddress,knxDevice);
 
 							// register device in OSGi registry
 							Properties propDeviceService=new Properties();
@@ -97,9 +111,13 @@ public class KnxDeviceManager implements ManagedService {
 									knxDevice.getDeviceId() + " in OSGi registry under " +
 									"device category: " + knxDevice.getDeviceCategory());
 							
-							this.context.registerService(
+							ServiceRegistration deviceServiceReg = this.context.registerService(
 									org.osgi.service.device.Device.class.getName(), knxDevice, 
 									propDeviceService);
+							
+							// save this device registration to my list
+							this.deviceRegistrationList.put(knxGroupAddress.getGroupAddress(),deviceServiceReg);
+							
 							
 						} else {
 							this.logger.log(LogService.LOG_ERROR, "KNX device with group address " +
@@ -107,6 +125,7 @@ public class KnxDeviceManager implements ManagedService {
 						}
 						
 					}
+//					this.logger.log(LogService.LOG_INFO, "***********deviceregistrationlist: " + this.deviceRegistrationList.keySet());
 					
 					
 					
