@@ -1,5 +1,10 @@
 package org.universAAL.knx.dpt1refinementdriver;
 
+import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver;
+
+import java.util.Iterator;
+import java.util.Set;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.knx.dpt1refinementdriver.util.LogTracker;
@@ -26,6 +31,13 @@ public class Activator implements BundleActivator {
 	public void stop(BundleContext context) throws Exception {
 		// the OSGi framework automatically unregisters any services
 		// registered by this bundle when it is deactivated 
+		
+		// remove my references in network driver
+		for ( Iterator<KnxDpt1Instance> i = this.knxDpt1RefinementDriver.getConnectedDriver().iterator();
+			i.hasNext(); ) {
+			i.next().removeDriver();
+		}
+
 	}
 
 }
