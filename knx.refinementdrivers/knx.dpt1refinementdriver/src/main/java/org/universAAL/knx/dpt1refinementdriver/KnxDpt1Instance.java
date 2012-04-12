@@ -27,48 +27,92 @@ import org.universAAL.knx.devicemodel.KnxDpt1Device;
  *  
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt1Instance extends KnxDriver implements KnxDpt1, ServiceTrackerCustomizer, 
-Constants, ManagedService {
+public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
+//, ManagedService 
+,ServiceTrackerCustomizer, Constants {
 
 	private static final String KNX_DRIVER_CONFIG_NAME = "knx.refinementdriver";
 	private BundleContext context;
 	private LogService logger;
-	private Dictionary<String, String> knxIsoMappingProperties;
+	private Properties knxIsoMappingProperties;
+//	private Dictionary<String,String> knxIsoMappingProperties;
 
 	// called from the driver.attach method
-	public KnxDpt1Instance(BundleContext c, ServiceReference sr, KnxNetwork network, LogService log) throws InvalidSyntaxException {
-		super(network);
+	public KnxDpt1Instance(BundleContext c, ServiceReference sr, KnxNetwork network, 
+			LogService log) throws InvalidSyntaxException {
 
+		//initialize knxdriver and service tracker
+//		super(c,sr,null);
+//		super(network, c, sr);
+		super(network);
+//		open();
+		
 		this.context=c;
 		this.logger=log;
+
+//		this.logger.log(LogService.LOG_ERROR, "Hello Driver Instance!");
+
+		
+		//		this.knxIsoMappingProperties = knxIsoMappingProperties;
 		
 //		this.registerManagedService();
 		
-		ServiceTracker st=new ServiceTracker(c,sr, this);
-		st.open();
-		
+//		ServiceTracker st=new ServiceTracker(c,sr, this);
+//		st.open();
+	}
+
+	public void setKnxIsoMappingProperties(Properties knxIsoMappingProp) {
+		this.knxIsoMappingProperties = knxIsoMappingProp;
+//		this.knxIsoMappingProperties = new Properties();
+//		
+//		// groupAddress config format is "A-B-C"; change to "A/B/C"
+//		Enumeration<String> en = knxIsoMappingProp.keys(); 
+//		while (en.hasMoreElements()) {
+//			String key = en.nextElement();
+//			String newKey = key.replace('-', '/');
+//
+//			String value = knxIsoMappingProp.get(key);
+//			// convert key to char[] because Felix ConfigurationManager says '/' is an illegal character
+//			this.knxIsoMappingProperties.put(newKey, value);
+//		}
 	}
 	
-	/**
-	 * Register this class as Managed Service
-	 */
-	public void registerManagedService() {
-		Properties propManagedService=new Properties();
-		propManagedService.put(org.osgi.framework.Constants.SERVICE_PID, 
-				KNX_DRIVER_CONFIG_NAME);
-		this.context.registerService(ManagedService.class.getName(), this, propManagedService);
-	}
+	
+//	/**
+//	 * Register this class as Managed Service
+//	 */
+//	public void registerManagedService() {
+//		this.logger.log(LogService.LOG_ERROR, "Register managed service!");
+//
+//		Properties propManagedService=new Properties();
+//		propManagedService.put(org.osgi.framework.Constants.SERVICE_PID, 
+//				KNX_DRIVER_CONFIG_NAME);
+//		this.context.registerService(ManagedService.class.getName(), this, propManagedService);
+//	}
 
 	/*** ServiceTracker ***/
 	/* (non-Javadoc)
 	 * @see org.osgi.util.tracker.ServiceTracker#addingService(org.osgi.framework.ServiceReference)
 	 */
+//	@Override
 	public Object addingService(ServiceReference reference) {
-		// found device service
-		KnxDpt1Device knxDev = (KnxDpt1Device) context.getService(reference);
+//		Object o = super(reference);
+		// device service was found
+		
+		// get device service
+//		if ( this.context != null) this.logger.log(LogService.LOG_ERROR, "context is not null: "
+//				+ this.context);
+//		else this.logger.log(LogService.LOG_ERROR, "context is null!");
+//		
+//		if ( reference != null) this.logger.log(LogService.LOG_ERROR, "reference is not null: "
+//				+ reference);
+//		else this.logger.log(LogService.LOG_ERROR, "reference is null!");
+
+		
+		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
 		
 		// register driver in knx.network driverList
-		setDevice( (KnxDevice) knxDev);
+		this.setDevice( (KnxDevice) knxDev);
 		
 		
 		
@@ -78,13 +122,16 @@ Constants, ManagedService {
 		
 		// passendes ISO device erzeugen..........................
 		if ( !this.knxIsoMappingProperties.isEmpty() && this.device.getGroupAddress() != null ) {
-			
-			String mappingParam = this.knxIsoMappingProperties.get(this.device.getGroupAddress());
+
+//			this.logger.log(LogService.LOG_INFO, "KNX-ISO mapping config: " + this.knxIsoMappingProperties);
+
+			String mappingParam = (String) this.knxIsoMappingProperties.get(this.device.getGroupAddress());
 			
 			if (mappingParam != null) {
 
 				// do something..................
-				this.logger.log(LogService.LOG_INFO, "KNX - ISO mapping parameter: " + mappingParam);
+				this.logger.log(LogService.LOG_INFO, "KNX - ISO mapping parameter for device " + this.device.getGroupAddress() + 
+						": " + mappingParam);
 				
 				
 				
@@ -111,19 +158,23 @@ Constants, ManagedService {
 	/* (non-Javadoc)
 	 * @see it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver#setDevice(org.universAAL.knx.devicemodel.KnxDevice)
 	 */
-	@Override
-	public void setDevice(KnxDevice device) {
-		super.setDevice(device);
-	}
+//	@Override
+//	public void setDevice(KnxDevice device) {
+//		this.device = device;
+//		this.network.addDriver(this.device.getGroupAddress(), this);
+//	}
 
-	
+//	@Override
 	public void removedService(ServiceReference reference, Object service) {
 		// removed device service
+		this.context.ungetService(reference);
+		this.removeDriver();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#modifiedService(org.osgi.framework.ServiceReference, java.lang.Object)
 	 */
+//	@Override
 	public void modifiedService(ServiceReference reference, Object service) {
 		this.logger.log(LogService.LOG_INFO, "Tracked knx device service was modified. Going to update the KnxDpt1Instance");
 		removedService(reference, service);
@@ -174,20 +225,20 @@ Constants, ManagedService {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.service.cm.ManagedService#updated(java.util.Dictionary)
-	 */
-	public void updated(Dictionary properties) throws ConfigurationException {
-		this.logger.log(LogService.LOG_INFO, "KnxDpt1Driver updated. " +
-				"Mapping from KNX device to ISO 11073 device. " + properties);
-
-		if (properties != null) {
-			this.knxIsoMappingProperties = properties;
-		} else {
-			this.logger.log(LogService.LOG_ERROR, "No configuration found for Knx to ISO device mapping!");
-		}
-			
-	}
+//	/* (non-Javadoc)
+//	 * @see org.osgi.service.cm.ManagedService#updated(java.util.Dictionary)
+//	 */
+//	public void updated(Dictionary properties) throws ConfigurationException {
+//		this.logger.log(LogService.LOG_INFO, "KnxDpt1Driver updated. " +
+//				"Mapping from KNX device to ISO 11073 device. " + properties);
+//
+//		if (properties != null) {
+//			this.knxIsoMappingProperties = properties;
+//		} else {
+//			this.logger.log(LogService.LOG_ERROR, "No configuration found for Knx to ISO device mapping!");
+//		}
+//			
+//	}
 
 
 
