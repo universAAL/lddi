@@ -28,6 +28,7 @@ knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker
 knx.library/pom.xml -text
 knx.library/src/main/java/org/universAAL/knx/devicecategory/KnxDpt1.java -text
 knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDevice.java -text
+knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDeviceFactory.java -text
 knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDpt1Device.java -text
 knx.library/src/main/java/org/universAAL/knx/utils/KnxGroupAddress.java -text
 knx.library/src/main/java/org/universAAL/knx/utils/LogTracker.java -text
