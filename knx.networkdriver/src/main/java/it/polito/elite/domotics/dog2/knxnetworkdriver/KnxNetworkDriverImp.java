@@ -95,7 +95,9 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 				// properties numTry and myIP not used yet
 				
 				if(this.network!=null){
-					this.network.stopCommunication();
+					this.unRegister();
+//					this.network.stopCommunication();
+					this.network = null;
 				}
 				
 				this.network=new KnxCommunication(this);
@@ -187,14 +189,18 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 
 	public void unRegister() {
+		// stop reader thread
 		this.network.stopCommunication();
 		
+		// unregister network service
 		if(this.regServiceKnx!=null){
 			this.regServiceKnx.unregister();
 			this.regServiceKnx = null;
 		}
 	}
+	
 	public void addDriver(String device, KnxDriver driver) {
+
 		Set<KnxDriver> drivers=this.driverList.get(device);
 		if(drivers==null){
 			drivers=new HashSet<KnxDriver>();
@@ -205,12 +211,15 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 			}
 		}
 		drivers.add(driver);
-		
+		this.logger.log(LogService.LOG_INFO, "new driver added for device " + device);
 	}
+	
 	public void removeDriver(String device, KnxDriver driver) {
-		// TODO Auto-generated method stub
-		
+		Set<KnxDriver> drivers=this.driverList.get(device);
+		drivers.remove(driver);
+		this.logger.log(LogService.LOG_INFO, "removed driver for device " + device);
 	}
+	
 	public void sendCommand(String device, String command) {
 		this.sendCommand(device,command,KnxMessageType.WRITE);
 		

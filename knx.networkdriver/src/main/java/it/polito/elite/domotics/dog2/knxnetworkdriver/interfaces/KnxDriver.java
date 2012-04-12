@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.util.tracker.ServiceTracker;
+import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.knx.devicemodel.KnxDevice;
 
 //import it.polito.elite.domotics.dog2.doglibrary.DeviceState;
@@ -22,11 +26,13 @@ import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxNotification;
  * This abstract class is designed to help developing a knx driver.
  * It stores information about the groups addresses and commands retrieved from a KnxConfiguration object.
  * It registers all the groups address to the gateway (KnxNetwork.addDriver method).
+ * It provides an service tracker for the attached device service.
  * 
  * @author Emiliano Castellina
  *
  */
 public abstract class KnxDriver 
+//extends ServiceTracker
 //implements DogDriver 
 {
 	protected KnxNetwork network;
@@ -52,8 +58,14 @@ public abstract class KnxDriver
 	
 
 	public KnxDriver(KnxNetwork network
+//			, BundleContext c, ServiceReference sr 
+//			,ServiceTrackerCustomizer stCustomizer
 //			,ControllableDevice device
 			){
+
+		// initialize service tracker on device (sr)
+//		super(c, sr, null);
+//		open();
 		
 		// my knx.network instance
 	    this.network=network;
@@ -74,11 +86,23 @@ public abstract class KnxDriver
 	 * 
 	 * @param device the device to set
 	 */
-	public void setDevice(KnxDevice device) {
+	public final void setDevice(KnxDevice device) {
 		this.device = device;
 		
 		// add driver to driverList in knx.networkdriver
 		this.network.addDriver(this.device.getGroupAddress(), this);
+	}
+	
+	/**
+	 * Remove this driver from the driver list in knx network driver
+	 * 
+	 * @param device the device to set
+	 */
+	public final void removeDriver() {
+//		this.device = device;
+		
+		// add driver to driverList in knx.networkdriver
+		this.network.removeDriver(this.device.getGroupAddress(), this);
 	}
 	
 	/***
