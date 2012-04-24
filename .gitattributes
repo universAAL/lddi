@@ -52,6 +52,13 @@ knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/K
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxDriver.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxNetwork.java -text
 knx.networkdriver/src/main/java/org/universAAL/knx/networkdriver/util/LogTracker.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/pom.xml -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/Activator.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/KnxDpt1Instance.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver/conf/services/knx.refinementdriver.properties -text
 knx.refinementdrivers/knx.dpt1refinementdriver/pom.xml -text
 knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/Activator.java -text
