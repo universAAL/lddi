@@ -23,10 +23,14 @@ public class KnxGroupAddress {
         this.name = name;
     }
     
+    /**
+     * Returns the group address as String in format "M/L/D"
+     * @param groupAddress
+     */
     public String getGroupAddress() {
         return groupAddress;
     }
-    
+
     public void setGroupAddress(String groupAddress) {
         this.groupAddress = groupAddress;
     }

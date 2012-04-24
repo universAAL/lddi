@@ -68,7 +68,10 @@ public abstract class KnxDevice implements Device{
 				knxDeviceProperties.getGroupAddress() );
 		
 	}
-
+	
+	/**
+	 * @return knGroupAddress as String "M/S/D"
+	 */
 	public String getGroupAddress() {
 		return this.knxDeviceProperties.getGroupAddress();
 	}
