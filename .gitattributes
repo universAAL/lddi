@@ -17,6 +17,12 @@ hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/service
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/OnOffLightService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/PresenceDetectorService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/TemperatureSensorService.java -text
+iso11073.library/pom.xml -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/ActivityHubFactory.java -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/ActivityHubSensor.java -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/ContactClosureSensor.java -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/MotionSensor.java -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/SwitchSensor.java -text
 knx.devicemanager/conf/services/knx.devicemanager.properties -text
 knx.devicemanager/data/OfficeProject2.knxproj -text
 knx.devicemanager/pom.xml -text
