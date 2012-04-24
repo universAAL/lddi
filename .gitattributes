@@ -59,12 +59,6 @@ knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/univer
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver/conf/services/knx.refinementdriver.properties -text
-knx.refinementdrivers/knx.dpt1refinementdriver/pom.xml -text
-knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/Activator.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/KnxDpt1Instance.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/KnxDpt1RefinementDriver.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver/src/main/java/org/universAAL/knx/dpt1refinementdriver/util/LogTracker.java -text
 lddi.testing.frameworks/knx.framework/conf/all.policy -text
 lddi.testing.frameworks/knx.framework/conf/felix.client.run.properties -text
 lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
