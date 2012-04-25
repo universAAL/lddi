@@ -1,4 +1,5 @@
-package org.universAAL.iso11073.activityhub;
+package org.universAAL.iso11073.activityhub.devicemodel;
+
 
 /**
  * Factory for the ActivityHub sensors according to ISO 11073 - 
@@ -8,30 +9,30 @@ package org.universAAL.iso11073.activityhub;
  */
 public class ActivityHubFactory {
 
-	private enum ActivityHubDevice {
-		ISO11073_CONTACTCLOSURE,
+	private enum ActivityHubDeviceCategory {
+		ISO11073_CONTACTCLOSURESENSOR,
 		ISO11073_MOTIONSENSOR,
-		ISO11073_SWITCH
+		ISO11073_SWITCHSENSOR
 	}
 	
-    private static ActivityHubDevice toActivityHubDevice(String str)
+    private static ActivityHubDeviceCategory toActivityHubDevice(String str)
     {
         try {
-            return ActivityHubDevice.valueOf(str);
+            return ActivityHubDeviceCategory.valueOf(str);
         } 
         catch (Exception ex) {
             return null;
         }
     }
 	
-    public static ActivityHubSensor createInstance(String deviceName) {
+    public static ActivityHubDevice createInstance(String deviceName) {
 	
     	switch (toActivityHubDevice(deviceName)) {
-    		case ISO11073_CONTACTCLOSURE:
+    		case ISO11073_CONTACTCLOSURESENSOR:
     			return new ContactClosureSensor();
     		case ISO11073_MOTIONSENSOR:
     			return new MotionSensor();
-    		case ISO11073_SWITCH:
+    		case ISO11073_SWITCHSENSOR:
     			return new SwitchSensor();
     	}
 

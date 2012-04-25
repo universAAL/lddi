@@ -71,7 +71,7 @@
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Export-Package>org.universAAL.iso11073.activityhub</Export-Package>
+						<Export-Package>org.universAAL.iso11073.activityhub.*</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>

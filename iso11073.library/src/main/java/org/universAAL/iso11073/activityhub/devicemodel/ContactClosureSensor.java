@@ -1,4 +1,5 @@
-package org.universAAL.iso11073.activityhub;
+package org.universAAL.iso11073.activityhub.devicemodel;
+
 
 
 /**
@@ -14,9 +15,9 @@ package org.universAAL.iso11073.activityhub;
  * 
  * @author Thomas Fuxreiter 
  */
-public class ContactClosureSensor extends ActivityHubSensor {
+public class ContactClosureSensor extends ActivityHubDevice {
 
-	public static String MY_DEVICE_CATEGORY = "ISO11073_CONTACTCLOSURE";
+	//public static String MY_DEVICE_CATEGORY = "ISO11073_CONTACTCLOSURESENSOR";
 
 	public ContactClosureSensor() {
 	}
