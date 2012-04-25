@@ -13,8 +13,8 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.iso11073.activityhub.ActivityHubFactory;
-import org.universAAL.iso11073.activityhub.ActivityHubSensor;
+import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubDevice;
+import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubFactory;
 import org.universAAL.knx.devicecategory.KnxDpt1;
 import org.universAAL.knx.devicemodel.KnxDevice;
 import org.universAAL.knx.devicemodel.KnxDpt1Device;
@@ -118,12 +118,10 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 		this.setDevice( (KnxDevice) knxDev);
 		
 		
-		
-		// knx device and knx driver are coupled now
-		// Regeln für die decodierung in device_category ??
+		// TODO: Regeln für die decodierung in device_category ??
 		
 		
-		// passendes ISO device erzeugen..........................
+		// create appropriate ISO device
 		if ( !this.knxIsoMappingProperties.isEmpty() && this.device.getGroupAddress() != null ) {
 
 //			this.logger.log(LogService.LOG_INFO, "KNX-ISO mapping config: " + this.knxIsoMappingProperties);
@@ -141,11 +139,11 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 				// dazu wär wohl eine Factory angesagt
 				
 				// create appropriate ActivityHub device
-				ActivityHubSensor ahs = ActivityHubFactory.createInstance(isoDeviceType);
+				ActivityHubDevice ahd = ActivityHubFactory.createInstance(isoDeviceType);
 				
 				// set instance alive
 				// use knx group address for now as device ID !
-				ahs.setParams(isoDeviceType,this.device.getGroupAddress(),this.logger);
+				ahd.setParams(isoDeviceType,this.device.getGroupAddress(),this.logger);
 				
 				// register AH device in OSGi registry
 				Properties propDeviceService=new Properties();
@@ -156,11 +154,11 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 				// more possible properties from OSGi: description, serial, id
 				
 				this.logger.log(LogService.LOG_INFO, "Register ISO device " +
-						ahs.getDeviceId() + " in OSGi registry under " +
+						ahd.getDeviceId() + " in OSGi registry under " +
 						"device category: " + isoDeviceType);
 				
 				this.myIsoDeviceRegistration = this.context.registerService(
-						org.osgi.service.device.Device.class.getName(), ahs, 
+						org.osgi.service.device.Device.class.getName(), ahd, 
 						propDeviceService);
 				
 			} else {
@@ -221,7 +219,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	}
 
 	
-	/*** from KnxDriver ***/
+	/*** from ActivityHubDriver ***/
 	/* (non-Javadoc)
 	 * @see it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver#newMessageFromHouse(java.lang.String, byte[])
 	 */

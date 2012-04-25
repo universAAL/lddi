@@ -150,7 +150,7 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 //		instance.setKnxIsoMappingProperties(this.knxIsoMappingProperties);
 		instance.setKnxIsoMappingProperties(myKnxDevConf.getConfigurationProperties());
 		
-		// store to map
+		// store instance to config map
 		connectedDriverMap.put(myKnxDevConf.getConfigurationPid(), instance);
 		
 		
