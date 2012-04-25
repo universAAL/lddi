@@ -1,4 +1,9 @@
 * text=auto !eol
+hw.exporter.activityhub/pom.xml -text
+hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/Activator.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/ActivityHubDriverClientImp.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/util/LogTracker.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/knx/devices/listeners/PresenceDetectorListener.java -text
 hw.exporter.zigbee.ha/LICENSE -text
 hw.exporter.zigbee.ha/NOTICE -text
 hw.exporter.zigbee.ha/pom.xml -text
