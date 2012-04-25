@@ -1,4 +1,4 @@
-package org.universAAL.iso11073.activityhub;
+package org.universAAL.iso11073.activityhub.devicemodel;
 
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
@@ -9,7 +9,7 @@ import org.osgi.service.log.LogService;
  * @author Thomas Fuxreiter
  *
  */
-public abstract class ActivityHubSensor implements Device {
+public abstract class ActivityHubDevice implements Device {
 
 	public String deviceCategory;
 	private LogService logger;
@@ -19,7 +19,7 @@ public abstract class ActivityHubSensor implements Device {
 	/**
 	 * empty constructor for factory
 	 */
-	public ActivityHubSensor() {
+	public ActivityHubDevice() {
 	}
 
 	/**

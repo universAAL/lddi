@@ -1,4 +1,5 @@
-package org.universAAL.iso11073.activityhub;
+package org.universAAL.iso11073.activityhub.devicemodel;
+
 
 /**
  * Representation of a motion sensor according to ISO 11073 - 
@@ -14,9 +15,9 @@ package org.universAAL.iso11073.activityhub;
  * 
  * @author Thomas Fuxreiter
  */
-public class MotionSensor extends ActivityHubSensor {
+public class MotionSensor extends ActivityHubDevice {
 
-	public static String MY_DEVICE_CATEGORY = "ISO11073_MOTIONSENSOR";
+	//public static String MY_DEVICE_CATEGORY = "ISO11073_MOTIONSENSOR";
 
 	public MotionSensor() {
 	}

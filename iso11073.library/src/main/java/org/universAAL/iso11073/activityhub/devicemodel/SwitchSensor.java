@@ -1,4 +1,5 @@
-package org.universAAL.iso11073.activityhub;
+package org.universAAL.iso11073.activityhub.devicemodel;
+
 
 /**
  * Representation of a switch sensor according to ISO 11073 - 
@@ -13,9 +14,9 @@ package org.universAAL.iso11073.activityhub;
  * 
  * @author Thomas Fuxreiter
  */
-public class SwitchSensor extends ActivityHubSensor {
+public class SwitchSensor extends ActivityHubDevice {
 
-	public static String MY_DEVICE_CATEGORY = "ISO11073_SWITCH";
+	//public static String MY_DEVICE_CATEGORY = "ISO11073_SWITCHSENSOR";
 
 	public SwitchSensor() {
 	}
