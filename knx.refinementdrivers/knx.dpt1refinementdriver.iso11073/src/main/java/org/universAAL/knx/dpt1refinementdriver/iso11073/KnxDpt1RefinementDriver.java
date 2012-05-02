@@ -186,6 +186,9 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 	/* (non-Javadoc)
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.framework.ServiceReference)
 	 */
+	/**
+	 * @param KnxNetwork
+	 */
 	public Object addingService(ServiceReference reference) {
 		this.network=(KnxNetwork)this.context.getService(reference);
 		this.registerDriver();

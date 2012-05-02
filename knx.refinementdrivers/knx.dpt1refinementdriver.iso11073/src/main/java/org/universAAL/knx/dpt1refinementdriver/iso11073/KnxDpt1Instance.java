@@ -13,8 +13,12 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubDevice;
+import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil;
+import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubFactory;
+import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor;
+import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil;
+import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 import org.universAAL.knx.devicecategory.KnxDpt1;
 import org.universAAL.knx.devicemodel.KnxDevice;
 import org.universAAL.knx.devicemodel.KnxDpt1Device;
@@ -98,6 +102,9 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	 * @see org.osgi.util.tracker.ServiceTracker#addingService(org.osgi.framework.ServiceReference)
 	 */
 //	@Override
+	/**
+	 * @param KnxDpt1Device
+	 */
 	public Object addingService(ServiceReference reference) {
 //		Object o = super(reference);
 		// device service was found
@@ -128,22 +135,33 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 
 			// get knx-iso mapping properties for my device according to groupAddress
 			String isoDeviceType = (String) this.knxIsoMappingProperties.get("isoDeviceType");
+			ActivityHubDeviceCategory isoDeviceCategory = ActivityHubDeviceCategoryUtil.
+				toActivityHubDevice(isoDeviceType);
 			
-			if (isoDeviceType != null) {
+			if (isoDeviceCategory != null) {
 				// isoDeviceType configuration found
 				
-				this.logger.log(LogService.LOG_INFO, "KNX - ISO mapping parameter found for device " + this.device.getGroupAddress() + 
-						": " + isoDeviceType);
+				this.logger.log(LogService.LOG_INFO, "KNX - ISO mapping parameter found for " +
+						"device " + this.device.getGroupAddress() + ": " + isoDeviceType);
 
-				// na dann erzeug ma jetzt ein iso device nach dem isoDeviceType.........
-				// dazu wär wohl eine Factory angesagt
+				// check deviceLocation property
+				String loc = (String) this.knxIsoMappingProperties.get("deviceLocation");
+				ActivityHubLocation isoDeviceLocation = ActivityHubLocationUtil.
+					toActivityHubLocation(loc);
+				if (isoDeviceLocation == null) {
+					this.logger.log(LogService.LOG_WARNING, "Location for KNX device " +
+							this.device.getGroupAddress() + " not found!");
+				}
 				
 				// create appropriate ActivityHub device
-				ActivityHubDevice ahd = ActivityHubFactory.createInstance(isoDeviceType);
+				ActivityHubSensor ahd = ActivityHubFactory.createInstance(
+						isoDeviceCategory,
+						isoDeviceLocation,
+						this.device.getGroupAddress(),this.logger);
 				
-				// set instance alive
-				// use knx group address for now as device ID !
-				ahd.setParams(isoDeviceType,this.device.getGroupAddress(),this.logger);
+//				// set instance alive
+//				// use knx group address for now as device ID !
+//				ahd.setParams(isoDeviceType,this.device.getGroupAddress(),this.logger);
 				
 				// register AH device in OSGi registry
 				Properties propDeviceService=new Properties();
