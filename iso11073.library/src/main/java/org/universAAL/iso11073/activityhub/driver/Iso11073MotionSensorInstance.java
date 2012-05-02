@@ -40,43 +40,6 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 	}
 
 	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#newMessageFromAbove(java.lang.String, byte[])
-	 */
-	@Override
-	public void newMessageFromAbove(String deviceId, byte[] message) {
-		// und wos tua ma jetzt??
-		
-		this.logger.log(LogService.LOG_INFO, "Incoming message " + message + " from address " + 
-				deviceId);
-				
-	}
-
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#specificConfiguration()
-	 */
-	@Override
-	protected void specificConfiguration() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor#receivePacket(long)
-	 */
-	public byte[] receivePacket(long timeout) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor#sendPacket(byte[])
-	 */
-	public void sendPacket(byte[] data) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.framework.ServiceReference)
 	 */
 	public Object addingService(ServiceReference reference) {
@@ -110,6 +73,54 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 		this.removeDriver();		
 	}
 
+	/* (non-Javadoc)
+	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor#receiveSensorEvent(int)
+	 */
+	public boolean receiveSensorEvent(int value) {
+		this.logger.log(LogService.LOG_INFO, "receiving incoming sensor event with value: " + value);
+		try {
+			this.device.setSensorEvent(value);
+			return true;
+		} catch (AssertionError ae) {
+			this.logger.log(LogService.LOG_ERROR, "No suitable MotionSensorEvent found " +
+					"for value: " +	value);
+			ae.printStackTrace();
+			return false;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#getLastSensorEvent()
+	 */
+	@Override
+	public int getLastSensorEvent() {
+		return this.device.getSensorEventValue();
+	}
+
 	
+
+//	/* (non-Javadoc)
+//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#newMessageFromAbove(java.lang.String, byte[])
+//	 */
+//	@Override
+//	public void newMessageFromAbove(String deviceId, byte[] message) {
+//		// und wos tua ma jetzt??
+//		
+//		this.logger.log(LogService.LOG_INFO, "Incoming message " + message + " from address " + 
+//				deviceId);
+//				
+//	}
+//
+//	/* (non-Javadoc)
+//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#specificConfiguration()
+//	 */
+//	@Override
+//	protected void specificConfiguration() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
+
+
 	
 }

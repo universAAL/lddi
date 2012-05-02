@@ -1,5 +1,7 @@
 package org.universAAL.iso11073.activityhub.devicecategory;
 
+import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+
 /**
  * OSGi DeviceCategory for Activityhub ContactClosure sensor
  * 
@@ -16,7 +18,8 @@ package org.universAAL.iso11073.activityhub.devicecategory;
 public interface Iso11073ContactClosureSensor {
 
 	// used in driver match method
-	public static String MY_DEVICE_CATEGORY = "ISO11073_CONTACTCLOSURESENSOR";
+	public static String MY_DEVICE_CATEGORY = ActivityHubDeviceCategory.
+		MDC_AI_TYPE_SENSOR_CONTACTCLOSURE.toString();
 
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number
@@ -34,8 +37,8 @@ public interface Iso11073ContactClosureSensor {
 	public static String SERIAL			= "-";
 	
 	// example methods
-	void sendPacket( byte [] data);
+//	void sendPacket( byte [] data);
 	
-	byte [] receivePacket(long timeout);
+	boolean receiveSensorEvent(int value);
 
 }

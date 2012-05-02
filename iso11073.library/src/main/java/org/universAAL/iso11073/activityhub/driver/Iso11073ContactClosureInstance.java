@@ -13,7 +13,7 @@ import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverCl
 /**
  * Working instance of the ActivityHub ContactClosure driver.
  * Tracks on the ContactClosureSensor device service passed in the attach method 
- * in Iso11073ContactClosureDriver class.
+ * in Iso11073ContactClosureSensorDriver class.
  * This instance is passed to the consuming client (e.g. uAAL exporter bundle).
  * When the ContactClosureSensor device service disappears, this driver is removed
  * from the consuming client.
@@ -26,6 +26,8 @@ public class Iso11073ContactClosureInstance extends ActivityHubDriver
 	private BundleContext context;
 	private LogService logger;
 
+//	private ContactClosureSensorEvent lastSensorEvent;
+	
 	/**
 	 * @param c OSGi BundleContext
 	 * @param sr Service reference of ISO device
@@ -36,48 +38,26 @@ public class Iso11073ContactClosureInstance extends ActivityHubDriver
 		super(client);
 
 		this.context=c;
+		this.client=client;
 		this.logger=log;
+		
 	}
 
+	
 	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#newMessageFromAbove(java.lang.String, byte[])
+	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#getLastSensorEvent()
 	 */
 	@Override
-	public void newMessageFromAbove(String deviceId, byte[] message) {
-		// und wos tua ma jetzt??
-		
-		this.logger.log(LogService.LOG_INFO, "Incoming message " + message + " from address " + 
-				deviceId);
-				
+	public int getLastSensorEvent() {
+		return this.device.getSensorEventValue();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#specificConfiguration()
-	 */
-	@Override
-	protected void specificConfiguration() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor#receivePacket(long)
-	 */
-	public byte[] receivePacket(long timeout) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor#sendPacket(byte[])
-	 */
-	public void sendPacket(byte[] data) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/* (non-Javadoc)
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.framework.ServiceReference)
+	 */
+	/**
+	 * @param ActivityHubSensor
 	 */
 	public Object addingService(ServiceReference reference) {
 		
@@ -110,6 +90,51 @@ public class Iso11073ContactClosureInstance extends ActivityHubDriver
 		this.removeDriver();		
 	}
 
+
+	/* (non-Javadoc)
+	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor#receiveSensorEvent(int)
+	 */
+	public boolean receiveSensorEvent(int value) {
+		this.logger.log(LogService.LOG_INFO, "receiving incoming sensor event with value: " + value);
+		try {
+			this.device.setSensorEvent(value);
+			return true;
+		} catch (AssertionError ae) {
+			this.logger.log(LogService.LOG_ERROR, "No suitable ContactClosureSensorEvent found " +
+					"for value: " +	value);
+			ae.printStackTrace();
+			return false;
+		}
+	}
+
+
+
+
 	
 	
+//	/* (non-Javadoc)
+//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#newMessageFromAbove(java.lang.String, byte[])
+//	 */
+//	@Override
+//	public void newMessageFromAbove(String deviceId, byte[] message) {
+//		// und wos tua ma jetzt??
+//		
+//		this.logger.log(LogService.LOG_INFO, "Incoming message " + message + " from address " + 
+//				deviceId);
+//		
+//		// send to client!
+//		this.client.incomingSensorEvent(this.device.getDeviceId(), message);
+//		
+//	}
+
+	
+//	/* (non-Javadoc)
+//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#specificConfiguration()
+//	 */
+//	@Override
+//	protected void specificConfiguration() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
 }

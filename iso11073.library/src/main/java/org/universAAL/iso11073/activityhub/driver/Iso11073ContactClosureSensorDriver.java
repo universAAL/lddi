@@ -25,7 +25,7 @@ import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverCl
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public class Iso11073ContactClosureDriver implements Driver {
+public class Iso11073ContactClosureSensorDriver implements Driver {
 	
 	private BundleContext context;
 	private LogService logger;
@@ -34,7 +34,7 @@ public class Iso11073ContactClosureDriver implements Driver {
 
 	private static final String MY_DRIVER_ID = "org.universAAL.iso11073.contactclosure.0.0.1";
 
-	private ServiceRegistration regDriver;
+	private ServiceRegistration regDriver = null;
 	
 	// Set of driver instances 
 	private Set<Iso11073ContactClosureInstance> connectedDriver;
@@ -44,7 +44,7 @@ public class Iso11073ContactClosureDriver implements Driver {
 	 * @param context
 	 * @param logTracker
 	 */
-	public Iso11073ContactClosureDriver(ActivityHubDriverClient client,
+	public Iso11073ContactClosureSensorDriver(ActivityHubDriverClient client,
 			BundleContext context) {
 		this.client=client;
 		this.context=context;
@@ -56,8 +56,25 @@ public class Iso11073ContactClosureDriver implements Driver {
 	}
 
 	
+	/**
+	 * register this driver in OSGi registry
+	 */
+	private void registerDriver() {
+		Properties propDriver=new Properties();
+		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID );
+		this.regDriver=this.context.registerService(Driver.class.getName(), this, 
+				propDriver);
+		
+		if ( this.regDriver != null )
+			this.logger.log(LogService.LOG_INFO, "Iso11073ContactClosureSensorDriver registered!");
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
+	 */
+	/**
+	 * @param ActivityHubSensor
 	 */
 	public int match(ServiceReference reference) throws Exception {
 		// reference = device service
@@ -74,6 +91,9 @@ public class Iso11073ContactClosureDriver implements Driver {
 
 	/* (non-Javadoc)
 	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.ServiceReference)
+	 */
+	/**
+	 * @param ActivityHubSensor
 	 */
 	public String attach(ServiceReference reference) throws Exception {
 
@@ -95,17 +115,6 @@ public class Iso11073ContactClosureDriver implements Driver {
 		return null; // if attachment is correct
 	}
 	
-	
-	/**
-	 * register this driver in OSGi registry
-	 */
-	private void registerDriver() {
-		Properties propDriver=new Properties();
-		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID );
-		this.regDriver=this.context.registerService(Driver.class.getName(), this, 
-				propDriver);
-	}
-
 	
 	/**
 	 * @return the connectedDriver

@@ -1,53 +1,41 @@
 package org.universAAL.iso11073.activityhub.driver.interfaces;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
-import org.osgi.util.tracker.ServiceTracker;
-import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubDevice;
+import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor;
 
 /**
- * This abstract class is designed to help developing a activityhub driver.
+ * This abstract class is designed to help developing an activityhub driver.
  * It stores information about the deviceIds (which one?) and commands (from iso spec)
  * Additional client config necessary?
  * 
- * It registers all the devices in the uAAL busses (uAAL.addDriver method?).
- * It provides an service tracker for the attached device service.
+ * Actuators additionally have to implement the IActivityHubActuator IF.
+ * 
+ * It provides an OSGi service tracker for the attached ISO device service.
  * 
  * @author Thomas Fuxreiter
  *
  */
-public abstract class ActivityHubDriver
-{
+public abstract class ActivityHubDriver {
+	
+	protected ActivityHubSensor device;
+
+	//protected enum ActivityHubSensorEvent;
+	//Map<String, IActivityHubSensorEvent> map;
+	
+	/** upper layer instance */
 	protected ActivityHubDriverClient client; //->uAAL bus/exporter 
 
-	protected ActivityHubDevice device;
-	
-
-	/**Driver state*/
+	/** Driver state */
 //	protected DeviceState currentState;
 	protected Set<String> deviceIdSet;  //wozu?
 //	protected Map<String,IsoDeviceCommand> isoDeviceCommands; //iso events wie motion-detected??
 
-	/***
-	 * The specific drivers have to implement this method to receive events from the
-	 * consuming bundles (e.g. uAAL context bus events) 
-	 * 
-	 * @param deviceAddress  address of the device or the group that fire the message
-	 * @param message array of byte containing the information of the status or command
-	 */
-	public abstract void newMessageFromAbove(String deviceId,byte[] message);
-	
 	// TODO remove reference
-	public ActivityHubDriver(ActivityHubDriverClient user) {
+	public ActivityHubDriver(ActivityHubDriverClient client) {
 
 		// my knx.network instance
-	    this.client=user;
+	    this.client=client;
 	    
 //	    this.device=device;
 	    //create the needed objects
@@ -61,17 +49,41 @@ public abstract class ActivityHubDriver
 	}
 
 	/**
-	 * Add this driver to the driver list in my consumer with deviceId as key
-	 * 
+	 * Add this driver instance to the driver list in my consumer.
+	 * The driver is already coupled with a real device.
+	 * Key = deviceId
+	 *  
 	 * @param device the device to set
 	 */
-	public final void setDevice(ActivityHubDevice device) {
+	public final void setDevice(ActivityHubSensor device) {
 		this.device = device;
 		
-		// add driver to driverList in client
-		this.client.addDriver(this.device.getDeviceId(), this);
+		// add connected driver to driverList in client
+		this.client.addDriver(this.device.getDeviceId(), this.device.getDeviceCategory(), this);
 	}
+
+	/**
+	 * device access
+	 * @return
+	 */
+	public final ActivityHubSensor getDevice() {
+		return this.device;
+	}
+
+
+	/**
+	 * @return last incoming sensor event 
+	 */
+	public abstract int getLastSensorEvent();
+
 	
+//	/**
+//	 * @param sensorEvent the sensorEvent to set
+//	 */
+//	private void setLastSensorEvent(IActivityHubSensorEvent sensorEvent) {
+//		this.lastSensorEvent = sensorEvent;
+//	}
+
 	/**
 	 * Remove this driver from the driver list in knx network driver
 	 * 
@@ -81,10 +93,22 @@ public abstract class ActivityHubDriver
 		// remove driver from driverList in my consuming client
 		this.client.removeDriver(this.device.getDeviceId(), this);
 	}
+
+
+	public void detachDriver(String id) {
+		// TODO Auto-generated method stub
+	}
 	
-	/***
-	 * Default method called to configure the KNX devices
-	 */
+	
+
+//	/**This method must be implemented to modify the configuration in according with the 
+//	 * specific device needs*/
+//	protected abstract void specificConfiguration();
+//
+	
+//	/***
+//	 * Default method called to configure the KNX devices
+//	 */
 //	protected  void configure(){//list of group addresses
 //	this.groupAddressList=this.device.getDeviceDescriptor().getDevSimpleConfigurationParams().get(KnxNetwork.GROUP_ADDRESS);
 	//get specific command parameters. 
@@ -131,14 +155,6 @@ public abstract class ActivityHubDriver
 	
 //	}
 
-	/**This method must be implemented to modify the configuration in according with the 
-	 * specific device needs*/
-	protected abstract void specificConfiguration();
-	
-	public void detachDriver(String id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 //    /**
 //     * This method remove, if present, the "0x" prefix of the hexValue variable
