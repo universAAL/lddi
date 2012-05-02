@@ -10,7 +10,7 @@
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<artifactId>hw.exporter.activityhub</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	
 	<!-- ______________________________________________________ -->
@@ -62,10 +62,6 @@
 			<artifactId>mw.bus.context</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.service</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.phWorld</artifactId>
 		</dependency>
@@ -81,7 +77,21 @@
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>iso11073.library</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
+			<type>bundle</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.ontology</groupId>
+			<artifactId>ont.activityhub</artifactId>
+			<version>0.0.5</version>
+			<type>bundle</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.bus.service</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 			<type>bundle</type>
 			<scope>compile</scope>
 		</dependency>
