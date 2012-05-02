@@ -77,8 +77,6 @@ public class Iso11073SwitchSensorDriver implements Driver {
 	 */
 	public String attach(ServiceReference reference) throws Exception {
 
-		//ContactClosureSensor ccs = (ContactClosureSensor) this.context.getService(reference);
-
 		// create "driving" instance
 		Iso11073SwitchSensorInstance instance = new Iso11073SwitchSensorInstance(
 				this.context, reference, client, this.logger);
@@ -104,6 +102,9 @@ public class Iso11073SwitchSensorDriver implements Driver {
 		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID );
 		this.regDriver=this.context.registerService(Driver.class.getName(), this, 
 				propDriver);
+		
+		if ( this.regDriver != null )
+			this.logger.log(LogService.LOG_INFO, "Iso11073SwitchSensorDriver registered!");
 	}
 
 	

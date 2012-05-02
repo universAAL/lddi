@@ -34,8 +34,8 @@ public interface Iso11073SwitchSensor {
 	public static String SERIAL			= "-";
 	
 	// example methods
-	void sendPacket( byte [] data);
+//	void sendPacket( byte [] data);
 	
-	byte [] receivePacket(long timeout);
+	boolean receiveSensorEvent(int value);
 
 }
