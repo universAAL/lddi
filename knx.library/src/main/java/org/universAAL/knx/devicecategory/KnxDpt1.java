@@ -40,8 +40,16 @@ public interface KnxDpt1 {
 	public static String SERIAL			= "-";
 	
 	// example methods
-	void sendPacket( byte [] data);
+//	void sendPacket( byte [] data);
+//	
+//	byte [] receivePacket(long timeout);
+//	
 	
-	byte [] receivePacket(long timeout);
+	// TODO incoming event decoding rules !!!
+//	public static final String DEFAULT_FALSE_VALUE = "0x80";
+	public static final byte DEFAULT_FALSE_VALUE = (byte) 0x80;
+	public static final byte DEFAULT_TRUE_VALUE = (byte) 0x81;
+	
+	
 	
 }
