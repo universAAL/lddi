@@ -35,8 +35,8 @@ public class ActivityHubFactory {
 //    			return new FallSensor();
 //    		case MDC_AI_TYPE_SENSOR_GAS:
 //    			return new FallSensor();
-//    		case MDC_AI_TYPE_SENSOR_MOTION:
-//    			return new MotionSensor(deviceName, deviceLocation, deviceId, logger);
+    		case MDC_AI_TYPE_SENSOR_MOTION:
+    			return new MotionSensor(deviceName, deviceLocation, deviceId, logger);
 //    		case MDC_AI_TYPE_SENSOR_PROPEXIT:
 //    			return new FallSensor();
 //    		case MDC_AI_TYPE_SENSOR_ENURESIS:

@@ -20,7 +20,8 @@ class ActivityHubSensor implements Device {
 	private ActivityHubLocation deviceLocation;
 	// some kind of deviceID !?
 	private String deviceId = null;
-
+	private int incomingSensorEvent;
+	
 	private LogService logger;
 
 	
