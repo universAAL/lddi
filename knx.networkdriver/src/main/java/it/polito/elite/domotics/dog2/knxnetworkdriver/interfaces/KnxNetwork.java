@@ -1,6 +1,6 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces;
 
-import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxEncoder.KnxMessageType;
+import org.universAAL.knx.utils.KnxEncoder.KnxMessageType;
 
 public interface KnxNetwork {
 	public static String MANUFACTURER = "KONNEX";

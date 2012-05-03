@@ -72,7 +72,6 @@ knx.networkdriver/readme.txt -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/Activator.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommand.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommunication.java -text
-knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxEncoder.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkDriverImp.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNotification.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxReader.java -text
