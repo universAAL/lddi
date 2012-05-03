@@ -1,9 +1,6 @@
 package org.universAAL.knx.dpt1refinementdriver.iso11073;
 
-import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver;
-
 import java.util.Iterator;
-import java.util.Set;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

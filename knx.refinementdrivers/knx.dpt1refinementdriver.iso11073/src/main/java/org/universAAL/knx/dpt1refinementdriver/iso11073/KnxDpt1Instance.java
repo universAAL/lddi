@@ -38,6 +38,8 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	private BundleContext context;
 	private LogService logger;
 	private Dictionary knxIsoMappingProperties;
+	private ActivityHubSensor activityHubSensor;
+	
 //	private Dictionary<String,String> knxIsoMappingProperties;
 	
 	// the iso device I registered at osgi reg
@@ -57,7 +59,9 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 		this.context=c;
 		this.logger=log;
 
-//		this.logger.log(LogService.LOG_ERROR, "Hello Driver Instance!");
+		this.logger.log(LogService.LOG_WARNING, "CHECK default values: False: " + 
+				String.format("%02X", DEFAULT_FALSE_VALUE) + 
+				" True: " + String.format("%02X", DEFAULT_TRUE_VALUE));
 
 		
 		//		this.knxIsoMappingProperties = knxIsoMappingProperties;
@@ -154,10 +158,16 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 				}
 				
 				// create appropriate ActivityHub device
-				ActivityHubSensor ahd = ActivityHubFactory.createInstance(
+				this.activityHubSensor = ActivityHubFactory.createInstance(
 						isoDeviceCategory,
 						isoDeviceLocation,
 						this.device.getGroupAddress(),this.logger);
+				if (this.activityHubSensor==null) {
+					this.logger.log(LogService.LOG_ERROR, "Error on creating ActivityHubSensor " +
+							" for device category: " + isoDeviceCategory + " with deviceId: " + 
+							this.device.getGroupAddress());
+					return null;
+				}
 				
 //				// set instance alive
 //				// use knx group address for now as device ID !
@@ -172,11 +182,11 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 				// more possible properties from OSGi: description, serial, id
 				
 				this.logger.log(LogService.LOG_INFO, "Register ISO device " +
-						ahd.getDeviceId() + " in OSGi registry under " +
+						this.activityHubSensor.getDeviceId() + " in OSGi registry under " +
 						"device category: " + isoDeviceType);
 				
 				this.myIsoDeviceRegistration = this.context.registerService(
-						org.osgi.service.device.Device.class.getName(), ahd, 
+						org.osgi.service.device.Device.class.getName(), this.activityHubSensor, 
 						propDeviceService);
 				
 			} else {
@@ -242,13 +252,32 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	 * @see it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver#newMessageFromHouse(java.lang.String, byte[])
 	 */
 	@Override
-	public void newMessageFromHouse(String deviceAddress, byte[] message) {
+	public void newMessageFromHouse(String deviceAddress, byte event) {
 		
 		// und wos tua ma jetzt??
+		// try to display event byte readable. No good: Byte.toString(byte), Integer.toHexString(byte)
+		this.logger.log(LogService.LOG_INFO, "Incoming event " + String.format("%02X", event) + 
+				" from device " + deviceAddress);
+		if (this.activityHubSensor != null){
 		
-		this.logger.log(LogService.LOG_INFO, "Incoming message " + message + " from address " + 
-				deviceAddress);
-		
+			int sensorEvent = -1;
+			if ( event == DEFAULT_FALSE_VALUE ) {
+				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_FALSE_VALUE");
+				// TODO Set sensor event depending on ActivityHubSensor type
+				sensorEvent = 0;
+			} else if ( event == DEFAULT_TRUE_VALUE ) {
+				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_TRUE_VALUE");
+				// TODO Set sensor event depending on ActivityHubSensor type
+				sensorEvent = 1;
+			} else {
+				this.logger.log(LogService.LOG_ERROR, "No matches on incoming Event " + Integer.toHexString(event) +
+						" from device " + deviceAddress);
+				return;
+			}
+			this.activityHubSensor.setSensorEvent(sensorEvent);
+		} else {
+			//ERROR
+		}
 		
 	}
 

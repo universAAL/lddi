@@ -23,10 +23,10 @@ import org.osgi.service.device.Driver;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
+
 import org.universAAL.knx.devicecategory.KnxDpt1;
 import org.universAAL.knx.devicemodel.KnxDpt1Device;
 import org.universAAL.knx.dpt1refinementdriver.iso11073.util.KnxDeviceConfig;
-import org.universAAL.knx.dpt1refinementdriver.iso11073.util.LogTracker;
 
 /**
  * when an attached device service is unregistered:
@@ -68,13 +68,13 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 	 */
 	private final Map<String, KnxDpt1Instance> connectedDriverMap = new ConcurrentHashMap<String, KnxDpt1Instance>();
 	
-	private ServiceTracker tracker;
+//	private ServiceTracker tracker;
 
 	/**
 	 * @param context
 	 * @param logTracker
 	 */
-	public KnxDpt1RefinementDriver(BundleContext context, LogTracker log) {
+	public KnxDpt1RefinementDriver(BundleContext context, LogService log) {
 		this.context=context;
 		this.logger=log;
 		
@@ -155,7 +155,7 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 		
 		
 		// init service tracker
-		tracker = new ServiceTracker(this.context, reference, instance);
+		ServiceTracker tracker = new ServiceTracker(this.context, reference, instance);
 		tracker.open();
 		
 		// register managed service
