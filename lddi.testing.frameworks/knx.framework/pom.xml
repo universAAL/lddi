@@ -7,10 +7,10 @@
 
 	<groupId>org.universAAL.lddi.testingframework</groupId>
 	<artifactId>knx.framework</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>KNX Integration framework</name>
-	<description>This is the felix framework running the KNX hardware abstraction bundles. It's main purpose is to fetch all needed bundles from a maven repository and saves them in the dirs bundles (uAAL related bundles) and lib (thirdparty).</description>
+	<description>This is the felix framework running the KNX hardware abstraction bundles. It's main purpose is to fetch all needed bundles from a maven repository and saves them in the dirs bundles (uAAL related bundles) and lib (thirdparty). uAAL middleware version used: 1.1.0</description>
 	<inceptionYear>2012</inceptionYear>
 
 	<licenses>
@@ -167,7 +167,7 @@
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.library</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
@@ -177,7 +177,7 @@
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.networkdriver</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
@@ -200,86 +200,86 @@
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.lighting</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.samples</groupId>
 			<artifactId>smp.lighting.server</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.samples</groupId>
 			<artifactId>smp.lighting.client</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
 		
 	<!-- uAAL Middleware -->
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.acl.bridge</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.acl.interfaces</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.acl.rosgi</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.acl.upnp</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.bus.context</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.bus.io</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.bus.model</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.bus.service</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.container.osgi</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.container.xfaces</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.data.representation</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.data.serialization</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
+				<version>1.1.0</version>
 			</dependency>
 
 	<!-- uAAL Ontologies -->
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.phWorld</artifactId>
-			<version>1.0.1-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
 
 	<!-- Sonstiges -->
