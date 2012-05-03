@@ -10,7 +10,7 @@
 	
 	<groupId>org.universAAL.lddi</groupId>
 	<artifactId>lddi.pom</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<packaging>pom</packaging>
 	
 	<!-- ______________________________________________________ -->
@@ -23,6 +23,11 @@
 	
 	<modules>
 		<module>../knx.networkdriver/</module>
+		<module>../knx.library/</module>
+		<module>../knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/</module>
+		<module>../knx.devicemanager/</module>
+		<module>../iso11073.library/</module>
+		<module>../hw.exporter.activityhub/</module>
 		<module>../hw.exporter.zigbee.ha/</module>
 	</modules>
 
@@ -38,14 +43,14 @@
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.pom</artifactId>
-				<version>1.0.2-SNAPSHOT</version>
+				<version>1.1.0</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ontology</groupId>
 				<artifactId>ont.pom</artifactId>
-				<version>1.0.2-SNAPSHOT</version>
+				<version>1.1.0</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
