@@ -6,6 +6,8 @@ import java.net.MulticastSocket;
 import java.net.SocketException;
 
 import org.osgi.service.log.LogService;
+import org.universAAL.knx.utils.KnxEncoder;
+import org.universAAL.knx.utils.KnxTelegram;
 
 /** Provides readings from the knx gateway by the LAN.
  * Uses the encoder to operate translation from low level data
@@ -76,9 +78,12 @@ implements Runnable
 				//The datagram packet contains also the sender's IP address, and the port number
 				//on the sender's machine. This method blocks until a datagram is received.
 
-				
-				//remove trailing 0 (buffer is 8192 bytes long!)
 				byte[]temp = udpPacket.getData();
+
+				core.getLogger().log(LogService.LOG_DEBUG,"\n---COMMAND FROM KNX --- " + 
+						udpPacket.getAddress().toString()+" BYTEs "+KnxWriter.byteArrayToHexString(temp));
+
+				//remove trailing 0 (buffer is 8192 bytes long!)
 				int i = temp.length - 1;
 				while(temp[i] == 0)
 				    --i;
@@ -91,16 +96,27 @@ implements Runnable
 				byte[] knxPacket = new byte[l];
 				System.arraycopy(temp, 9, knxPacket, 0, l);
 				
-				
+				KnxTelegram telegram = KnxEncoder.decode(knxPacket);
+				String groupAddress = KnxEncoder.getGroupAddress(telegram.getDestByte());
+
 				core.getLogger().log(LogService.LOG_INFO,"KNX telegram received (" + knxPacket.length +
-						" bytes): " + KnxEncoder.decode(dataPacket));
-				
-				
+						" bytes): " + telegram.toString());
+				core.getLogger().log(LogService.LOG_DEBUG,"Source: " + groupAddress + 
+						"; TELEGRAM: " + KnxWriter.byteArrayToHexString(temp));
+
+				this.core.newMessageFromHouse(groupAddress, telegram.getValueByte());
+
 				
 				
 				
 				
 				byte[] deviceByte = new byte[2];
+				deviceByte[0] = temp[10];		
+				deviceByte[1] = temp[11];
+
+				byte[] groupByte = new byte[2];
+				groupByte[0] = temp[12];		
+				groupByte[1] = temp[13];
 				
 				//difference between the expected size of the telegram and the real one
 				int oversize = temp.length - KnxReader.telegramLenght;
@@ -108,26 +124,23 @@ implements Runnable
 				
 				
 				byte[] statusByte = new byte[oversize+2];
-				deviceByte[0] = temp[10];		
-				deviceByte[1] = temp[11];
+				
 				for(int j=0; j<statusByte.length; j++){
 					//statusByte[0] = temp[14]; //old version
 					statusByte[j]=temp[temp.length-2-oversize+j];
 				}
+				
 				//TODO change to handle data value such as temperature
-				String groupAddress = KnxEncoder.getGroupAddress(deviceByte);
+//				String groupAddress = KnxEncoder.getGroupAddress(groupByte);
 				//String knxStatus = KnxEncoder.getStatus(statusByte);
 				
-				core.getLogger().log(LogService.LOG_DEBUG,"\n---------COMMAND FROM HOUSE TO DOG--------- " + udpPacket.getAddress().toString()+"BYTE "+KnxWriter.byteArrayToHexString(temp));
 				
 				 //byteString=new StringBuilder();
 				
 				
 
 				k += 1;
-				core.getLogger().log(LogService.LOG_DEBUG,"Source: " + groupAddress + "; TELEGRAM: " +KnxWriter.byteArrayToHexString(temp));
 
-				this.core.newMessageFromHouse(groupAddress, statusByte);
 			
 			}
 		}

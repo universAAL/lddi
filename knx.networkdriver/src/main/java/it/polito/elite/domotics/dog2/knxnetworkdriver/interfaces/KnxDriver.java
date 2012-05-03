@@ -54,7 +54,7 @@ public abstract class KnxDriver
 	 * @param deviceAddress  address of the device or the group that fire the message
 	 * @param message array of byte containing the information of the status or command
 	 */
-	public abstract void newMessageFromHouse(String deviceAddress,byte[] message);
+	public abstract void newMessageFromHouse(String deviceAddress,byte event);
 	
 
 	public KnxDriver(KnxNetwork network

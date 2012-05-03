@@ -1,7 +1,6 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
 //import it.polito.elite.dog2.doglibrary.util.DogLogInstance;
-import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxEncoder.KnxMessageType;
 import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver;
 import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxNetwork;
 
@@ -19,6 +18,7 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
+import org.universAAL.knx.utils.KnxEncoder.KnxMessageType;
 
 /***
  * 
@@ -174,14 +174,14 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	 * Forward the message from the house to driver; mapping on groupAddress
 	 * 
 	 * @param groupAddress the knx groupAddress
-	 * @param statusByte knx command/status bytes (representing e.g. on, off)  
+	 * @param b knx command/status bytes (representing e.g. on, off)  
 	 */
-	public void newMessageFromHouse(String groupAddress, byte[] statusByte) {
+	public void newMessageFromHouse(String groupAddress, byte event) {
 		if(this.driverList.containsKey(groupAddress)){
 			synchronized(this.driverList)
 			{
 			for(KnxDriver driver:this.driverList.get(groupAddress)){
-				driver.newMessageFromHouse(groupAddress, statusByte);
+				driver.newMessageFromHouse(groupAddress, event);
 			}
 			}
 		}

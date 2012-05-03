@@ -1,10 +1,10 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
-import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxEncoder.KnxMessageType;
 
 import java.net.InetAddress;
 
 import org.osgi.service.log.LogService;
+import org.universAAL.knx.utils.KnxEncoder.KnxMessageType;
 
 /**
  * Manages reader and writer for communication to the knx gateway.
