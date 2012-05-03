@@ -65,13 +65,14 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	public void addDriver(String deviceId, ActivityHubDeviceCategory deviceCategory,
 			ActivityHubDriver activityHubDriver) {
 
-		ActivityHubDriver driver = this.driverList.get(deviceId);
+//		ActivityHubDriver driver = this.driverList.get(deviceId);
 
+		ActivityHubDriver oldDriver = null;
 		synchronized(this.driverList)
 		{
-			ActivityHubDriver oldDriver = this.driverList.put(deviceId, activityHubDriver);
+			oldDriver = this.driverList.put(deviceId, activityHubDriver);
 		}
-		if ( driver == null ){
+		if ( oldDriver != null ){
 			this.logger.log(LogService.LOG_WARNING, "An existing ActivityHub driver " +
 					"is now replaced by a new one for device " + deviceId
 					+ " and category: " + deviceCategory);
