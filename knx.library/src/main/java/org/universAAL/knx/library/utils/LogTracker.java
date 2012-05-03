@@ -1,4 +1,4 @@
-package org.universAAL.knx.utils;
+package org.universAAL.knx.library.utils;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
