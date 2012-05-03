@@ -14,7 +14,7 @@ public class LogTracker extends ServiceTracker implements LogService {
 	@Override
 	public Object addingService(ServiceReference reference) {
 		Object ret = super.addingService(reference);
-//		System.out.println("stdout: [KNX.DEVICEMANAGER] LogService added!");
+//		System.out.println("stdout: [KNX.DPT1REFINEMENTDRIVER.ISO11073] LogService added!");
 		log(LOG_DEBUG,"LogService added!");
 		return ret;
 	}
