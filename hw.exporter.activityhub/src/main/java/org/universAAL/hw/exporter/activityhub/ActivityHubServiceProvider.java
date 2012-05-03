@@ -45,11 +45,11 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 		/** register my services on uAAL service bus */
 		super(mc, ActivityHubServiceOntology.profiles);
 
-		this.logger.log(LogService.LOG_INFO, "Registered ActivityHubServiceOntology.profiles " +
-				"on uAAL service bus!");
-
 		this.theServer = busServer;
 		this.logger = busServer.getLogger();
+
+		this.logger.log(LogService.LOG_INFO, "Registered ActivityHubServiceOntology.profiles " +
+		"on uAAL service bus!");
 	}
 
 
