@@ -32,12 +32,12 @@ public class Iso11073ContactClosureSensorDriver implements Driver {
 	private ServiceTracker tracker;
 	private ActivityHubDriverClient client;
 
-	private static final String MY_DRIVER_ID = "org.universAAL.iso11073.contactclosure.0.0.1";
+	private static final String MY_DRIVER_ID = "org.universAAL.iso11073.contactclosuresensor.0.0.1";
 
 	private ServiceRegistration regDriver = null;
 	
 	// Set of driver instances 
-	private Set<Iso11073ContactClosureInstance> connectedDriver;
+	private Set<Iso11073ContactClosureSensorInstance> connectedDriver;
 
 
 	/**
@@ -50,7 +50,7 @@ public class Iso11073ContactClosureSensorDriver implements Driver {
 		this.context=context;
 		this.logger=client.getLogger();
 		
-		this.connectedDriver = new HashSet<Iso11073ContactClosureInstance>();
+		this.connectedDriver = new HashSet<Iso11073ContactClosureSensorInstance>();
 		
 		this.registerDriver();
 	}
@@ -66,7 +66,7 @@ public class Iso11073ContactClosureSensorDriver implements Driver {
 				propDriver);
 		
 		if ( this.regDriver != null )
-			this.logger.log(LogService.LOG_INFO, "Iso11073ContactClosureSensorDriver registered!");
+			this.logger.log(LogService.LOG_INFO, "Driver for Iso11073-ContactClosureSensor registered!");
 	}
 	
 	
@@ -100,7 +100,7 @@ public class Iso11073ContactClosureSensorDriver implements Driver {
 		//ContactClosureSensor ccs = (ContactClosureSensor) this.context.getService(reference);
 
 		// create "driving" instance
-		Iso11073ContactClosureInstance instance = new Iso11073ContactClosureInstance(
+		Iso11073ContactClosureSensorInstance instance = new Iso11073ContactClosureSensorInstance(
 				this.context, reference, client, this.logger);
 		
 		// init service tracker on device service for instance
@@ -119,7 +119,7 @@ public class Iso11073ContactClosureSensorDriver implements Driver {
 	/**
 	 * @return the connectedDriver
 	 */
-	public Set<Iso11073ContactClosureInstance> getConnectedDriver() {
+	public Set<Iso11073ContactClosureSensorInstance> getConnectedDriver() {
 		return connectedDriver;
 	}
 

@@ -38,8 +38,8 @@ iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/M
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/SwitchSensor.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/SwitchSensorEvent.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/ActivityHubDriverManager.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073ContactClosureInstance.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073ContactClosureSensorDriver.java -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073ContactClosureSensorInstance.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073MotionSensorDriver.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073MotionSensorInstance.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073SwitchSensorDriver.java -text

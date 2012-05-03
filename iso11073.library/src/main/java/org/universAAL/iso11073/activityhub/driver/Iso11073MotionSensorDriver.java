@@ -104,7 +104,7 @@ public class Iso11073MotionSensorDriver implements Driver {
 				propDriver);
 
 		if ( this.regDriver != null )
-			this.logger.log(LogService.LOG_INFO, "Iso11073MotionSensorDriver registered!");
+			this.logger.log(LogService.LOG_INFO, "Driver for Iso11073-MotionSensor registered!");
 	}
 
 	

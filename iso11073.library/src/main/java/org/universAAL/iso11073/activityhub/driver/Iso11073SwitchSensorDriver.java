@@ -104,7 +104,7 @@ public class Iso11073SwitchSensorDriver implements Driver {
 				propDriver);
 		
 		if ( this.regDriver != null )
-			this.logger.log(LogService.LOG_INFO, "Iso11073SwitchSensorDriver registered!");
+			this.logger.log(LogService.LOG_INFO, "Driver for Iso11073-SwitchSensor registered!");
 	}
 
 	

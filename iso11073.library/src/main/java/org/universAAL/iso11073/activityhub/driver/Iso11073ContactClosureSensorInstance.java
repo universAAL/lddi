@@ -20,7 +20,7 @@ import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverCl
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class Iso11073ContactClosureInstance extends ActivityHubDriver 
+public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver 
 	implements Iso11073ContactClosureSensor ,ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
@@ -33,7 +33,7 @@ public class Iso11073ContactClosureInstance extends ActivityHubDriver
 	 * @param sr Service reference of ISO device
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
-	public Iso11073ContactClosureInstance(BundleContext c, ServiceReference sr, 
+	public Iso11073ContactClosureSensorInstance(BundleContext c, ServiceReference sr, 
 			ActivityHubDriverClient client, LogService log) {
 		super(client);
 
@@ -76,7 +76,7 @@ public class Iso11073ContactClosureInstance extends ActivityHubDriver
 	 */
 	public void modifiedService(ServiceReference reference, Object service) {
 		this.logger.log(LogService.LOG_INFO, "Tracked ActivityHub device service was modified. " +
-				"Going to update the Iso11073ContactClosureInstance");
+				"Going to update the Iso11073ContactClosureSensorInstance");
 		removedService(reference, service);
 		addingService(reference);		
 	}
