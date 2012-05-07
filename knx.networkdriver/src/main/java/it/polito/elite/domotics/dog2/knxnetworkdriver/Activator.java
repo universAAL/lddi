@@ -1,11 +1,9 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
-import org.universAAL.knx.networkdriver.util.LogTracker;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
-import org.osgi.service.log.LogListener;
 import org.osgi.service.log.LogService;
+import org.universAAL.knx.networkdriver.util.LogTracker;
 
 /***
  * 
@@ -14,7 +12,7 @@ import org.osgi.service.log.LogService;
  */
 public class Activator implements BundleActivator {
 
-	KnxNetworkDriverImp driver;
+	KnxNetworkDriverImp networkDriver;
 	LogService logger;
 	private LogTracker logTracker;
 	
@@ -34,12 +32,12 @@ public class Activator implements BundleActivator {
 //        else
 //        	System.out.println("[KNX Network Driver] WARNING: No LogService instance found!");
 //        
-        driver=new KnxNetworkDriverImp(context,logTracker);
+        networkDriver=new KnxNetworkDriverImp(context,logTracker);
 	}
 
 
 	public void stop(BundleContext context) throws Exception {
-		driver.unRegister();
+		networkDriver.unRegister();
 	}
 
 }

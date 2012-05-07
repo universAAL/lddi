@@ -1,6 +1,6 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
-import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver;
+import org.universAAL.knx.utils.KnxEncoder;
 
 
 /***
@@ -69,7 +69,7 @@ public class KnxCommand {
      */
 	public boolean compatibleWith(String device, String status) {
 		
-		return this.groupAddress.equalsIgnoreCase(device) && status.equalsIgnoreCase(KnxDriver.clearHexValue(this.hexValue));
+		return this.groupAddress.equalsIgnoreCase(device) && status.equalsIgnoreCase(KnxEncoder.clearHexValue(this.hexValue));
 	}
 
 	

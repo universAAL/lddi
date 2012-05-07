@@ -50,6 +50,6 @@ public interface KnxDpt1 {
 	public static final byte DEFAULT_FALSE_VALUE = (byte) 0x80;
 	public static final byte DEFAULT_TRUE_VALUE = (byte) 0x81;
 	
-	
+	void newEventFromHardware(byte event);
 	
 }

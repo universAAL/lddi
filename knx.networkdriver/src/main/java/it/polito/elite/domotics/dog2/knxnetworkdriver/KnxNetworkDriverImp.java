@@ -1,8 +1,6 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
 //import it.polito.elite.dog2.doglibrary.util.DogLogInstance;
-import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver;
-import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxNetwork;
 
 import java.util.Dictionary;
 import java.util.HashSet;
@@ -18,6 +16,8 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
+import org.universAAL.knx.devicemodel.KnxDevice;
+import org.universAAL.knx.networkdriver.KnxNetwork;
 import org.universAAL.knx.utils.KnxEncoder.KnxMessageType;
 
 /***
@@ -33,7 +33,7 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	BundleContext context;
 	LogService logger;
 	
-	public static String manifacturer="KNX";
+//	public static String manifacturer="KNX";
 	
 
 	
@@ -47,7 +47,7 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	
 	KnxCommunication network;
 	private ServiceRegistration regServiceKnx;
-	private Hashtable<String, Set<KnxDriver>> driverList;
+	private Hashtable<String, Set<KnxDevice>> deviceList;
 	
 	/**
 	 * Class constructor
@@ -59,7 +59,13 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 		this.context=context;
 		this.logger=log;
 		this.network=null;
-		this.driverList=new Hashtable<String, Set<KnxDriver>>();
+		
+		/**
+		 * List of devices per groupAddress
+		 * key = groupAddress
+		 * value = Set of devices
+		 */
+		this.deviceList = new Hashtable<String, Set<KnxDevice>>();
 
 		//		this.context.registerService(CommandProvider.class.getName(), this, null);
 		//		TODO: change from equinox to felix shell command (uAAL is running on felix)
@@ -171,21 +177,20 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 
 	/**
-	 * Forward the message from the house to driver; mapping on groupAddress
+	 * Forward the message from the house to the device; mapping on groupAddress
 	 * 
 	 * @param groupAddress the knx groupAddress
 	 * @param b knx command/status bytes (representing e.g. on, off)  
 	 */
 	public void newMessageFromHouse(String groupAddress, byte event) {
-		if(this.driverList.containsKey(groupAddress)){
-			synchronized(this.driverList)
+		if ( this.deviceList.containsKey(groupAddress) ) {
+			synchronized(this.deviceList)
 			{
-			for(KnxDriver driver:this.driverList.get(groupAddress)){
-				driver.newMessageFromHouse(groupAddress, event);
+				for( KnxDevice device : this.deviceList.get(groupAddress) ) {
+					device.newMessageFromHouse(groupAddress, event);
 			}
 			}
 		}
-		
 	}
 
 	public void unRegister() {
@@ -199,32 +204,45 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 		}
 	}
 	
-	public void addDriver(String device, KnxDriver driver) {
+	/**
+	 * Devices can register here to get events from the knx bus
+	 */
+	public void addDevice(String deviceId, KnxDevice device) {
 
-		Set<KnxDriver> drivers=this.driverList.get(device);
-		if(drivers==null){
-			drivers=new HashSet<KnxDriver>();
+		Set<KnxDevice> devices = this.deviceList.get(deviceId);
+		if ( devices == null ) {
+			devices = new HashSet<KnxDevice>();
 			
-			synchronized(this.driverList)
+			synchronized(this.deviceList)
 			{
-			this.driverList.put(device, drivers);
+				this.deviceList.put(deviceId, devices);
 			}
 		}
-		drivers.add(driver);
-		this.logger.log(LogService.LOG_INFO, "new driver added for device " + device);
+		devices.add(device);
+		this.logger.log(LogService.LOG_INFO, "New device added for groupAddress " + deviceId);
 	}
 	
-	public void removeDriver(String device, KnxDriver driver) {
-		Set<KnxDriver> drivers=this.driverList.get(device);
-		drivers.remove(driver);
-		this.logger.log(LogService.LOG_INFO, "removed driver for device " + device);
+
+	/**
+	 * Devices can unregister here to stop getting events from the knx bus
+	 */
+	public void removeDevice(String deviceId, KnxDevice device) {
+		Set<KnxDevice> devices = this.deviceList.get(deviceId);
+		devices.remove(device);
+		this.logger.log(LogService.LOG_INFO, "Removed device for groupAddress " + deviceId);
 	}
 	
-	public void sendCommand(String device, String command) {
-		this.sendCommand(device,command,KnxMessageType.WRITE);
+	
+	public void sendCommand(String deviceId, String command) {
+		this.sendCommand(deviceId,command,KnxMessageType.WRITE);
 		
 	}
 	
+	public void sendCommand(String device, String command,
+			KnxMessageType messageType) {
+		this.network.sendCommand(device, command,messageType);
+		
+	}
 	/*@Override
 	public KnxConfiguration parseConfiguration(Properties propConfiguration) {
 		//initialize knx configuration object
@@ -256,8 +274,8 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 	*/
 	
-	public void readState(String device) {
-		this.network.readState(device);
+	public void readState(String deviceId) {
+		this.network.readState(deviceId);
 		
 	}
 	
@@ -288,13 +306,4 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 //		  
 //	}
 	
-	public void sendCommand(String device, String command,
-			KnxMessageType messageType) {
-		this.network.sendCommand(device, command,messageType);
-		
-	}
-
-	
-	
-
 }

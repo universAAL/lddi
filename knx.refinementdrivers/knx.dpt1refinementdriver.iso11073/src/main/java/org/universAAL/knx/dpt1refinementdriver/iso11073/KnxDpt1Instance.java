@@ -30,7 +30,7 @@ import org.universAAL.knx.devicemodel.KnxDpt1Device;
  *  
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
+public class KnxDpt1Instance extends KnxDevice implements KnxDpt1
 //, ManagedService 
 ,ServiceTrackerCustomizer, Constants {
 

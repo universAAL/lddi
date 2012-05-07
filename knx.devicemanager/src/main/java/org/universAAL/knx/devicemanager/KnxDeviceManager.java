@@ -1,29 +1,36 @@
 package org.universAAL.knx.devicemanager;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
+import org.osgi.framework.InvalidSyntaxException;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
+import org.osgi.util.tracker.ServiceTracker;
+import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
 import org.universAAL.knx.devicemodel.KnxDevice;
 import org.universAAL.knx.devicemodel.KnxDeviceFactory;
+import org.universAAL.knx.networkdriver.KnxNetwork;
 import org.universAAL.knx.utils.KnxGroupAddress;
 
 /**
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public class KnxDeviceManager implements ManagedService {
+public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomizer {
 
 	private BundleContext context;
 	private LogService logger;
@@ -31,16 +38,54 @@ public class KnxDeviceManager implements ManagedService {
 	private List<KnxGroupAddress> knxImportedGroupAddresses;
 //	private List<KnxDevice> deviceList ;
 //	private Map<KnxGroupAddress,KnxDevice> deviceList;
+	
+	/**
+	 * List of registered devices
+	 * key = groupAddress
+	 * value = org.osgi.framework.ServiceRegistration
+	 */
 	private Map<String,ServiceRegistration> deviceRegistrationList;
+
+	private Map<String,KnxDevice> deviceList;
+
+	private ServiceRegistration myManagedServiceRegistration;
+	
+	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
+	private KnxNetwork network;
 	
 	public KnxDeviceManager(BundleContext context, LogService log) {
 		this.context=context;
 		this.logger=log;
 
+//		this.deviceRegistrationList = new HashMap<String,ServiceRegistration>();
+//		this.deviceList = new HashMap<String, KnxDevice>();
+
+//		this.registerManagedService();
+//		this.logger.log(LogService.LOG_DEBUG,"KnxDeviceManager started!");
+		
+		// track on KnxNetwork service
+		try {
+			ServiceTracker st=new ServiceTracker(context,this.context.createFilter(filterQuery), this);
+			st.open();
+		} catch (InvalidSyntaxException e) {
+			this.logger.log(LogService.LOG_ERROR, "exception",e);
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * KnxNetwork service appeared
+	 */
+	public Object addingService(ServiceReference reference) {
+		this.network=(KnxNetwork)this.context.getService(reference);
+
+		// create my lists
 		this.deviceRegistrationList = new HashMap<String,ServiceRegistration>();
+		this.deviceList = new HashMap<String, KnxDevice>();
 
 		this.registerManagedService();
-		this.logger.log(LogService.LOG_DEBUG,"KnxDeviceManager started!");
+		this.logger.log(LogService.LOG_INFO,"KnxDeviceManager started!");
+		return reference;
 	}
 	
 	/***
@@ -51,6 +96,38 @@ public class KnxDeviceManager implements ManagedService {
 		propManagedService.put(Constants.SERVICE_PID, this.context.getBundle().getSymbolicName());
 		this.context.registerService(ManagedService.class.getName(), this, propManagedService);
 	}
+	
+	/**
+	 * KnxNetwork service has been modified
+	 */
+	public void modifiedService(ServiceReference reference, Object service) {
+		removedService(reference, service);
+		addingService(reference);
+		this.logger.log(LogService.LOG_INFO,"KnxDeviceManager restarted!");
+	}
+
+	/**
+	 * KnxNetwork service has been removed
+	 */
+	public void removedService(ServiceReference reference, Object service) {
+		// When knx.networkservice disappears: unregister all my devices
+		if ( this.deviceRegistrationList != null ) {
+			for (ServiceRegistration servReg : this.deviceRegistrationList.values()) {
+				servReg.unregister();
+			}
+		}
+		//clear lists
+		this.deviceRegistrationList = null;
+		this.deviceList = null;
+		
+		this.context.ungetService(reference);
+//		this.unregisterManagedService();
+		this.logger.log(LogService.LOG_WARNING,"KnxDeviceManager stopped!");
+	}
+
+//	private void unregisterManagedService() {
+//		this.myManagedServiceRegistration.unregister();
+//	}
 	
 	/***
 	 * get updated from ConfigurationAdmin
@@ -82,7 +159,7 @@ public class KnxDeviceManager implements ManagedService {
 								// unregister
 								knxGA.unregister();
 								// and delete from list
-								this.deviceRegistrationList.remove(knxGroupAddress);
+								this.deviceRegistrationList.remove(knxGroupAddress.getGroupAddress());
 							}
 							
 							String dptMain = knxGroupAddress.getMainDpt();
@@ -92,7 +169,7 @@ public class KnxDeviceManager implements ManagedService {
 							KnxDevice knxDevice = KnxDeviceFactory.getKnxDevice(dptMainNumber);
 
 							// set instance alive
-							knxDevice.setParams(knxGroupAddress,this.logger);
+							knxDevice.setParams(knxGroupAddress, this.network, this.logger);
 							
 //							KnxDevice knxDevice = new KnxDevice(knxGroupAddress,this.logger);
 							
@@ -117,6 +194,7 @@ public class KnxDeviceManager implements ManagedService {
 							
 							// save this device registration to my list
 							this.deviceRegistrationList.put(knxGroupAddress.getGroupAddress(),deviceServiceReg);
+							this.deviceList.put(knxGroupAddress.getGroupAddress(), knxDevice);
 							
 							
 						} else {
@@ -165,5 +243,23 @@ public class KnxDeviceManager implements ManagedService {
 		}
 		
 	}
-	
+
+	/**
+	 * remove all device references in network driver
+	 */
+	public void stop() {
+		
+		//this.unregisterManagedService();	is done automatically during bundle stop
+
+		if ( this.deviceList != null ) {
+			Iterator it = this.deviceList.keySet().iterator();
+			while ( it.hasNext() ) {
+				String deviceId = (String) it.next();
+				KnxDevice dev = this.deviceList.get(deviceId);
+				this.network.removeDevice(deviceId, dev);
+			}
+		}
+		this.logger.log(LogService.LOG_WARNING,"KnxDeviceManager stopped!");
+	}
+
 }
