@@ -407,4 +407,20 @@ public class KnxEncoder {
 		
 		return header + sepa + cs + sepa + source + sepa + dest + sepa + stuff + sepa + data ;
 	}
+	
+    /**
+     * This method remove, if present, the "0x" prefix of the hexValue variable
+     * @param hexValue string containing an hex value
+     * @return the same string without prefix
+     */
+	public static String clearHexValue(String hexValue) {
+		String correctHexValue;
+		if(hexValue.startsWith("0x")){
+			correctHexValue=hexValue.substring(2);
+		}else
+		{
+			correctHexValue=hexValue;
+		}
+		return correctHexValue;
+	}
 }

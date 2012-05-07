@@ -136,8 +136,8 @@ public class KnxCommunication
 		
 	}
 
-	public void readState(String device) {
-		this.writer.read(device);
+	public void readState(String deviceId) {
+		this.writer.read(deviceId);
 		
 	}
 

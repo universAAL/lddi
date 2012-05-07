@@ -1,4 +1,4 @@
-package it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces;
+package org.universAAL.knx.devicedriver;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,16 +9,16 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.knx.devicemodel.KnxDevice;
 
 //import it.polito.elite.domotics.dog2.doglibrary.DeviceState;
 //import it.polito.elite.domotics.dog2.doglibrary.DogDeviceCostants;
 //import it.polito.elite.domotics.dog2.doglibrary.DogDriver;
 //import it.polito.elite.domotics.dog2.doglibrary.DogElementDescription;
 //import it.polito.elite.domotics.dog2.doglibrary.devicecategory.ControllableDevice;
-import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxCommand;
-import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxNotification;
-//import it.polito.elite.domotics.model.notification.StateChangeNotification;
+//import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxCommand;
+//import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxNotification;
+////import it.polito.elite.domotics.model.notification.StateChangeNotification;
+//import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxNetwork;
 
 
 
@@ -31,24 +31,22 @@ import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxNotification;
  * @author Emiliano Castellina
  *
  */
-public abstract class KnxDriver 
-//extends ServiceTracker
-//implements DogDriver 
+public abstract class KnxDriver
 {
-	protected KnxNetwork network;
-	protected KnxDevice device;
+//	protected KnxNetwork network;
+	protected KnxDriver device;
 	
 
 	/**Driver state*/
 //	protected DeviceState currentState;
 	protected Set<String> groupAddressList;
-	protected Map<String,KnxCommand> knxCommands;
+//	protected Map<String,KnxCommand> knxCommands;
 	/**Map that stores notifications. Key: notification name, Value=KnxCommand containing notification details */
-	protected HashMap<String, Set<KnxNotification>> knxNotifications;
+//	protected HashMap<String, Set<KnxNotification>> knxNotifications;
 	/**Map that stores generic notifications. Key: groupAddress, Value=KnxCommand containing notification details */
-	protected HashMap<String, Set<KnxNotification>> knxGroupAddressNotificationsMap;
+//	protected HashMap<String, Set<KnxNotification>> knxGroupAddressNotificationsMap;
 	/**Map that stores generic notifications. Key: groupAddress, Value=KnxCommand containing notification details */
-	protected HashMap<String, Set<KnxNotification>> knxGroupAddressHexNotificationsMap;
+//	protected HashMap<String, Set<KnxNotification>> knxGroupAddressHexNotificationsMap;
 	/***
 	 * The specific drivers have to implement this method to receive low level messages from the network
 	 * @param deviceAddress  address of the device or the group that fire the message
@@ -57,7 +55,8 @@ public abstract class KnxDriver
 	public abstract void newMessageFromHouse(String deviceAddress,byte event);
 	
 
-	public KnxDriver(KnxNetwork network
+	public KnxDriver(
+//			KnxNetwork network
 //			, BundleContext c, ServiceReference sr 
 //			,ServiceTrackerCustomizer stCustomizer
 //			,ControllableDevice device
@@ -68,15 +67,15 @@ public abstract class KnxDriver
 //		open();
 		
 		// my knx.network instance
-	    this.network=network;
+//	    this.network=network;
 	    
 //	    this.device=device;
 	    //create the needed objects
-	    this.knxCommands=new HashMap<String, KnxCommand>();
+//	    this.knxCommands=new HashMap<String, KnxCommand>();
 	    this.groupAddressList=new HashSet<String>();
-	    this.knxNotifications=new HashMap<String, Set<KnxNotification>>();
-	    this.knxGroupAddressHexNotificationsMap=new HashMap<String, Set<KnxNotification>>();
-	    this.knxGroupAddressNotificationsMap=new HashMap<String, Set<KnxNotification>>();
+//	    this.knxNotifications=new HashMap<String, Set<KnxNotification>>();
+//	    this.knxGroupAddressHexNotificationsMap=new HashMap<String, Set<KnxNotification>>();
+//	    this.knxGroupAddressNotificationsMap=new HashMap<String, Set<KnxNotification>>();
 //	    this.configure();
 	
 	}
@@ -86,11 +85,11 @@ public abstract class KnxDriver
 	 * 
 	 * @param device the device to set
 	 */
-	public final void setDevice(KnxDevice device) {
+	public final void setDevice(KnxDriver device) {
 		this.device = device;
 		
 		// add driver to driverList in knx.networkdriver
-		this.network.addDriver(this.device.getGroupAddress(), this);
+//		this.network.addDriver(this.device.getGroupAddress(), this);
 	}
 	
 	/**
@@ -102,7 +101,7 @@ public abstract class KnxDriver
 //		this.device = device;
 		
 		// add driver to driverList in knx.networkdriver
-		this.network.removeDriver(this.device.getGroupAddress(), this);
+//		this.network.removeDriver(this.device.getGroupAddress(), this);
 	}
 	
 	/***
@@ -179,21 +178,21 @@ public abstract class KnxDriver
 		return correctHexValue;
 	}
 	
-	/**
-	 * This method check if the map contains the key, retrieves or create an HashSet<KnxNotification> associated to the key,
-	 * add the notification to the set
-	 * @param notificationMap   
-	 * @param notification
-	 * @param key
-	 */
-	public static void addNotificationToMap(HashMap<String, Set<KnxNotification>> notificationMap,KnxNotification notification,String key){
-		Set<KnxNotification> notificationSet=notificationMap.get(key);
-		if(notificationSet==null){
-			notificationSet=new HashSet<KnxNotification>();
-			notificationMap.put(key,notificationSet);
-		}
-		notificationSet.add(notification);
-	}
+//	/**
+//	 * This method check if the map contains the key, retrieves or create an HashSet<KnxNotification> associated to the key,
+//	 * add the notification to the set
+//	 * @param notificationMap   
+//	 * @param notification
+//	 * @param key
+//	 */
+//	public static void addNotificationToMap(HashMap<String, Set<KnxNotification>> notificationMap,KnxNotification notification,String key){
+//		Set<KnxNotification> notificationSet=notificationMap.get(key);
+//		if(notificationSet==null){
+//			notificationSet=new HashSet<KnxNotification>();
+//			notificationMap.put(key,notificationSet);
+//		}
+//		notificationSet.add(notification);
+//	}
 	
 	/**
 	 * Try to retrieve the real state from knx device

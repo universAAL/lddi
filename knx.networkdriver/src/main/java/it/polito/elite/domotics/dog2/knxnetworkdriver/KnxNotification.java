@@ -3,7 +3,7 @@
  */
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
-import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxDriver;
+import org.universAAL.knx.utils.KnxEncoder;
 
 /**
  * This class stores information about a Knx notification
@@ -35,7 +35,7 @@ public class KnxNotification extends KnxCommand {
 	
 
 	public String getAddressHex(){
-		return this.groupAddress+"#"+KnxDriver.clearHexValue(hexValue);
+		return this.groupAddress+"#"+KnxEncoder.clearHexValue(hexValue);
 	}
 	
 	

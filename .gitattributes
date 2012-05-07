@@ -59,10 +59,12 @@ knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxImporter.jav
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker.java -text
 knx.library/pom.xml -text
 knx.library/src/main/java/org/universAAL/knx/devicecategory/KnxDpt1.java -text
+knx.library/src/main/java/org/universAAL/knx/devicedriver/KnxDriver.java -text
 knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDevice.java -text
 knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDeviceFactory.java -text
 knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDpt1Device.java -text
 knx.library/src/main/java/org/universAAL/knx/library/utils/LogTracker.java -text
+knx.library/src/main/java/org/universAAL/knx/networkdriver/KnxNetwork.java -text
 knx.library/src/main/java/org/universAAL/knx/utils/KnxEncoder.java -text
 knx.library/src/main/java/org/universAAL/knx/utils/KnxGroupAddress.java -text
 knx.library/src/main/java/org/universAAL/knx/utils/KnxTelegram.java -text
@@ -76,8 +78,6 @@ knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/K
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNotification.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxReader.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriter.java -text
-knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxDriver.java -text
-knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/interfaces/KnxNetwork.java -text
 knx.networkdriver/src/main/java/org/universAAL/knx/networkdriver/util/LogTracker.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/pom.xml -text

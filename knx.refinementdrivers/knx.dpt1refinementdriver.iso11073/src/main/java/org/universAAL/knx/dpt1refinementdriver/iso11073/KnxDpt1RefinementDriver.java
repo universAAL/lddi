@@ -36,7 +36,8 @@ import org.universAAL.knx.dpt1refinementdriver.iso11073.util.KnxDeviceConfig;
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
+public class KnxDpt1RefinementDriver implements Driver
+//, ServiceTrackerCustomizer
 //, ManagedService
 , ManagedServiceFactory
 {
@@ -47,8 +48,8 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 	private static final String MY_KNX_DEVICE_CATEGORY = "KnxDpt1";
 	private static final String KNX_DRIVER_CONFIG_NAME = "knx.dpt1refinementdriver.iso11073";
 
-	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
-	private KnxNetwork network;
+//	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
+//	private KnxNetwork network;
 	private ServiceRegistration regDriver;
 	private Set<KnxDpt1Instance> connectedDriver;
 //	private Dictionary<String,String> knxIsoMappingProperties;
@@ -82,14 +83,14 @@ public class KnxDpt1RefinementDriver implements Driver, ServiceTrackerCustomizer
 		
 		this.registerManagedService();
 
-		// track on KnxNetwork service
-		try {
-			ServiceTracker st=new ServiceTracker(context,this.context.createFilter(filterQuery), this);
-			st.open();
-		} catch (InvalidSyntaxException e) {
-			this.logger.log(LogService.LOG_ERROR, "exception",e);
-			e.printStackTrace();
-		}
+//		// track on KnxNetwork service
+//		try {
+//			ServiceTracker st=new ServiceTracker(context,this.context.createFilter(filterQuery), this);
+//			st.open();
+//		} catch (InvalidSyntaxException e) {
+//			this.logger.log(LogService.LOG_ERROR, "exception",e);
+//			e.printStackTrace();
+//		}
 	}
 
 	/**

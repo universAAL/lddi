@@ -26,6 +26,8 @@ public class Activator implements BundleActivator {
 	public void stop(BundleContext context) throws Exception {
 		// the OSGi framework automatically unregisters any services
 		// registered by this bundle when it is deactivated 
+		// but references of devices in knx.networkdriver must be removed manually
+		knxDeviceManager.stop();
 	}
 
 }
