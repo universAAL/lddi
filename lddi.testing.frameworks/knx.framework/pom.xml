@@ -175,23 +175,23 @@
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.library</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
-		</dependency><!--
+		</dependency>
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>iso11073.library</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
-		--><dependency>
+		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.networkdriver</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
-		</dependency><!--
+		</dependency>
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.dpt1refinementdriver.iso11073</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
-		--><!--<dependency>
+		<!--<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>hw.exporter.activityhub</artifactId>
 			<version>0.0.2-SNAPSHOT</version>

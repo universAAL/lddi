@@ -5,7 +5,7 @@ package org.universAAL.knx.devicecategory;
  * 
  * In general DeviceCategories specify:
  * - rules and interfaces needed for the communication between device service
- * and driver service. Devices must implement this IF.
+ * and driver service. Both of them implement this IF.
  * 
  * - a set of service registration properties, their data types and semantics (mandatory or optional)
  * 
@@ -15,7 +15,7 @@ package org.universAAL.knx.devicecategory;
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public interface KnxDpt1 {
+public interface KnxDpt1 extends KnxBaseDeviceCategory {
 	
 	public static String MY_DEVICE_CATEGORY = "KnxDpt1";
 	
@@ -39,17 +39,10 @@ public interface KnxDpt1 {
 	public static String REVISION		= "-";
 	public static String SERIAL			= "-";
 	
-	// example methods
-//	void sendPacket( byte [] data);
-//	
-//	byte [] receivePacket(long timeout);
-//	
-	
+
 	// TODO incoming event decoding rules !!!
 //	public static final String DEFAULT_FALSE_VALUE = "0x80";
 	public static final byte DEFAULT_FALSE_VALUE = (byte) 0x80;
 	public static final byte DEFAULT_TRUE_VALUE = (byte) 0x81;
-	
-	void newEventFromHardware(byte event);
 	
 }

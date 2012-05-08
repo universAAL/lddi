@@ -1,7 +1,5 @@
 package org.universAAL.knx.dpt1refinementdriver.iso11073;
 
-import it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces.KnxNetwork;
-
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -29,6 +27,10 @@ import org.universAAL.knx.devicemodel.KnxDpt1Device;
 import org.universAAL.knx.dpt1refinementdriver.iso11073.util.KnxDeviceConfig;
 
 /**
+ * checks device references coming from OSGi DeviceManager; matching device category
+ * attaches exactly one driver instance per deviceId (first device)
+ * subsequent devices with the same deviceId are rejected!
+ * 
  * when an attached device service is unregistered:
  * drivers must take the appropriate action to release this device service
  * and peform any necessary cleanup, as described in their device category spec
@@ -50,27 +52,33 @@ public class KnxDpt1RefinementDriver implements Driver
 
 //	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
 //	private KnxNetwork network;
-	private ServiceRegistration regDriver;
-	private Set<KnxDpt1Instance> connectedDriver;
+	
+	/** Set of all DPT1 drivers registered here */
+//	private Set<KnxDpt1Instance> connectedDriver;
 //	private Dictionary<String,String> knxIsoMappingProperties;
 //	private Map<String,String> knxIsoMappingProperties;
 	private Properties knxIsoMappingProperties;
-
+	private ServiceRegistration myManagedServiceRegistration;
+	private ServiceRegistration myDriverRegistration;
+	
+	
 	/**
 	 * Key is the PID created dynamically from Configuration Admin
 	 * Value are the configuration properties stored in KnxDeviceConfig class
 	 */
-	private final Map<String, KnxDeviceConfig> configurationMap = new ConcurrentHashMap<String, KnxDeviceConfig>();
+	private final Map<String, KnxDeviceConfig> configurationMap = 
+		new ConcurrentHashMap<String, KnxDeviceConfig>();
 
 
 	/**
 	 * Key is the PID created dynamically from Configuration Admin
 	 * Value is the associated driver
 	 */
-	private final Map<String, KnxDpt1Instance> connectedDriverMap = new ConcurrentHashMap<String, KnxDpt1Instance>();
+	private final Map<String, KnxDpt1Instance> connectedDriverInstanceMap = 
+		new ConcurrentHashMap<String, KnxDpt1Instance>();
 	
-//	private ServiceTracker tracker;
 
+	
 	/**
 	 * @param context
 	 * @param logTracker
@@ -79,22 +87,15 @@ public class KnxDpt1RefinementDriver implements Driver
 		this.context=context;
 		this.logger=log;
 		
-		this.connectedDriver = new HashSet<KnxDpt1Instance>();
+//		this.connectedDriver = new HashSet<KnxDpt1Instance>();
 		
 		this.registerManagedService();
-
-//		// track on KnxNetwork service
-//		try {
-//			ServiceTracker st=new ServiceTracker(context,this.context.createFilter(filterQuery), this);
-//			st.open();
-//		} catch (InvalidSyntaxException e) {
-//			this.logger.log(LogService.LOG_ERROR, "exception",e);
-//			e.printStackTrace();
-//		}
+		this.registerDriver();
 	}
 
+	
 	/**
-	 * Register this class as Managed Service
+	 * Register this class as Managed Service Factory
 	 */
 	public void registerManagedService() {
 //		this.logger.log(LogService.LOG_ERROR, "Register managed service!");
@@ -104,130 +105,26 @@ public class KnxDpt1RefinementDriver implements Driver
 				KNX_DRIVER_CONFIG_NAME);
 
 		// register ManagedServiceFactory
-		this.context.registerService(ManagedServiceFactory.class.getName(), this, propManagedService);
+		this.myManagedServiceRegistration = this.context.registerService(ManagedServiceFactory.class.getName(),
+				this, propManagedService);
 
 		// register ManagedService
 		//this.context.registerService(ManagedService.class.getName(), this, propManagedService);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
-	 */
-	public int match(ServiceReference reference) throws Exception {
-		// reference = device service
-		int matchValue=Device.MATCH_NONE;
-		String deviceCategory=(String)reference.getProperty(Constants.DEVICE_CATEGORY);
-		// more possible properties to match: description, serial, id
-
-		if ( deviceCategory.equals(MY_KNX_DEVICE_CATEGORY) ) {
-			matchValue = KnxDpt1.MATCH_CLASS;
-		}
-		return matchValue; //must be > 0 to match
-	}
-
-
-	/* (non-Javadoc)
-	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.ServiceReference)
-	 */
-	public String attach(ServiceReference reference) throws Exception {
-
-		// get groupAddress
-		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
-		
-		KnxDeviceConfig myKnxDevConf = findConfiguration(knxDev.getGroupAddress());
-		
-		// exit if there is no configuration for this group address
-		if ( myKnxDevConf == null ) {
-			this.logger.log(LogService.LOG_WARNING, "no KNX to ISO mapping configuration found " +
-					"for " + knxDev.getGroupAddress());
-			return "no configuration found!";
-		}
-		
-		// create "driving" instance
-		KnxDpt1Instance instance = new KnxDpt1Instance(this.context, reference, network,
-				this.logger);
-		
-		// pass knx-to-iso config
-//		instance.setKnxIsoMappingProperties(this.knxIsoMappingProperties);
-		instance.setKnxIsoMappingProperties(myKnxDevConf.getConfigurationProperties());
-		
-		// store instance to config map
-		connectedDriverMap.put(myKnxDevConf.getConfigurationPid(), instance);
-		
-		
-		// init service tracker
-		ServiceTracker tracker = new ServiceTracker(this.context, reference, instance);
-		tracker.open();
-		
-		// register managed service
-//		instance.registerManagedService();
-		
-		// from DOG
-//		KnxActuatorInstance instance=new KnxActuatorInstance(this.network, 
-//				(ControllableDevice) this.context.getService(reference));
-		
-		synchronized(this.connectedDriver){
-			if ( ! this.connectedDriver.add(instance) )
-				this.logger.log(LogService.LOG_ERROR, "Duplicate Element in HashSet connectedDriver");
-		}
-
-		return null; // if attachment is correct
-	}
-	
-	private KnxDeviceConfig findConfiguration(String knxGA) {
-		for ( Iterator<KnxDeviceConfig> iter = configurationMap.values().iterator(); iter.hasNext(); ) {
-			KnxDeviceConfig knxDevConf = iter.next();
-			if ( knxDevConf.getKnxGroupAddress().equals(knxGA) ) {
-				return knxDevConf;
-			}
-		}
-		return null;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.framework.ServiceReference)
-	 */
-	/**
-	 * @param KnxNetwork
-	 */
-	public Object addingService(ServiceReference reference) {
-		this.network=(KnxNetwork)this.context.getService(reference);
-		this.registerDriver();
-		return reference;
-	}
-
+	/** register this driver in OSGi */
 	private void registerDriver() {
-		Properties propDriver=new Properties();
-		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID );
-		this.regDriver=this.context.registerService(Driver.class.getName(), this, propDriver);
+		Properties propDriver = new Properties();
+		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID);
+		this.myDriverRegistration = this.context.registerService(Driver.class.getName(), this, propDriver);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#modifiedService(org.osgi.framework.ServiceReference, java.lang.Object)
-	 */
-	public void modifiedService(ServiceReference reference, Object service) {
-		this.logger.log(LogService.LOG_INFO, "Tracked service KnxNetwork was modified. Going to update the KnxDpt1Refinement driver");
-		removedService(reference, service);
-		addingService(reference);		
-	}
-
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#removedService(org.osgi.framework.ServiceReference, java.lang.Object)
-	 */
-	public void removedService(ServiceReference reference, Object service) {
-		// When knx.networkservice disappears:
-		// unregister my driver and release device service
-		if(this.regDriver!=null){
-			this.regDriver.unregister();
-		}
-		this.context.ungetService(reference);
-	}
-
-	
-	/* (non-Javadoc)
+	/**
 	 * @see org.osgi.service.cm.ManagedServiceFactory#updated(java.lang.String, java.util.Dictionary)
 	 * 
 	 * update method from ManagedServiceFactory
+	 * is called extra for every config in the factory
+	 * the pid is generated by ConfigAdmin
 	 */
 	public void updated(String pid, Dictionary properties)
 			throws ConfigurationException {
@@ -248,26 +145,28 @@ public class KnxDpt1RefinementDriver implements Driver
 			KnxDeviceConfig knxDevConf = new KnxDeviceConfig(knxAddress, properties, pid);
 
 			// update configuration map
-			configurationMap.put(pid, knxDevConf);
+			this.configurationMap.put(pid, knxDevConf);
 
 			// update driver instance if there is one already
-			KnxDpt1Instance instance = connectedDriverMap.get(pid);
+			KnxDpt1Instance instance = this.connectedDriverInstanceMap.get(pid);
 			if ( instance != null ) {
 				if ( instance.updateConfiguration(properties) ) {				
 					this.logger.log(LogService.LOG_INFO, "Successfully updated configuration of driver instance " + pid);
 				} else {
 					this.logger.log(LogService.LOG_ERROR, "Error on updating configuration of driver instance " + pid);
 				}
+			} else {
+				// new instances are created after a device reference appears; in attach method
 			}
-
 		} else {
-			// delete driver instance
-			KnxDpt1Instance instance = connectedDriverMap.get(pid);
-			instance.destroy();
-			connectedDriverMap.remove(pid);
+			// if there are no properties for a specific pid it should be deleted !?
+			
+			KnxDpt1Instance instance = this.connectedDriverInstanceMap.get(pid);
+			instance.detachDriver();
+			this.connectedDriverInstanceMap.remove(pid);
 
 			// delete configuration
-			configurationMap.remove(pid);
+			this.configurationMap.remove(pid);
 
 			this.logger.log(LogService.LOG_INFO, "Driver instance and associated objects for " +
 					pid + " destroyed!");
@@ -275,56 +174,150 @@ public class KnxDpt1RefinementDriver implements Driver
 	}
 
 
-	
-	/* (non-Javadoc)
-	 * @see org.osgi.service.cm.ManagedService#updated(java.util.Dictionary)
-	 * 
-	 * update method from ManagedService
-	 */
-	public void updated(Dictionary properties) throws ConfigurationException {
-		this.logger.log(LogService.LOG_INFO, "KnxDpt1Driver updated. " +
-				"Mapping from KNX device to ISO 11073 device. " + properties);
+	/** 
+	 * called from OSGI DeviceManager
+	 * check device services if they have identical device_category as this driver 
+	 * @see org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
+	 */ 
+	public int match(ServiceReference reference) throws Exception {
+		// reference = device service
+		int matchValue=Device.MATCH_NONE;
+		String deviceCategory=(String)reference.getProperty(Constants.DEVICE_CATEGORY);
+		// more possible properties to match: description, serial, id
 
-		if (properties != null) {
-			this.knxIsoMappingProperties = new Properties();
-			
-			/** groupAddress configuration format is "A-B-C" because Felix ConfigurationManager says '/' is an illegal character;
-			* change here to "A/B/C" */
-			Enumeration<String> en = properties.keys(); 
-			while (en.hasMoreElements()) {
-				String key = en.nextElement();
-				String newKey = key.replace('-', '/');
-
-				String value = (String) properties.get(key);
-				this.knxIsoMappingProperties.put(newKey, value);
-			}
-			this.logger.log(LogService.LOG_INFO, "KNX-ISO mapping config: " + this.knxIsoMappingProperties);
-		} else {
-			this.logger.log(LogService.LOG_ERROR, "No configuration found for Knx to ISO device mapping!");
-			return;
+		if ( deviceCategory.equals(MY_KNX_DEVICE_CATEGORY) ) {
+			matchValue = KnxDpt1.MATCH_CLASS;
 		}
+		return matchValue; //must be > 0 to match
 	}
 
 
 	/**
-	 * @return the connectedDriver
+	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.ServiceReference)
+	 * attach the device service reference to a "driving" instance; couple them
 	 */
-	public Set<KnxDpt1Instance> getConnectedDriver() {
-		return connectedDriver;
+	public String attach(ServiceReference reference) throws Exception {
+
+		// get groupAddress
+		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
+		
+		KnxDeviceConfig knxDevConf = findConfiguration(knxDev.getGroupAddress());
+		
+		// exit if there is no configuration for this group address
+		if ( knxDevConf == null ) {
+			this.logger.log(LogService.LOG_WARNING, "no KNX to ISO mapping configuration found " +
+					"for " + knxDev.getGroupAddress());
+			return "no configuration found!";
+		}
+		
+		if  ( this.connectedDriverInstanceMap.containsKey(knxDevConf.getKnxGroupAddress()) ) {
+			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for " +
+					" the device " + knxDevConf.getKnxGroupAddress());
+			return "driver already exists for this device!";
+		}
+		
+		// create "driving" instance
+		KnxDpt1Instance instance = new KnxDpt1Instance(this.context, this.logger);
+		
+		// pass knx-to-iso config
+//		instance.setKnxIsoMappingProperties(this.knxIsoMappingProperties);
+		instance.setKnxIsoMappingProperties(knxDevConf.getConfigurationProperties());
+		
+		// store instance
+		this.connectedDriverInstanceMap.put(knxDevConf.getConfigurationPid(), instance);
+		
+		// init service tracker; the driver instance itself tracks on the device reference!
+		ServiceTracker tracker = new ServiceTracker(this.context, reference, instance);
+		tracker.open();
+		
+		return null; // if attachment is correct
 	}
+	
+	/** helper method
+	 * finds configuration previously injected by ConfigAdmin for a specific knx groupAddress
+	 * in the field configurationMap
+	 * @param knx groupAddress (1/2/3)
+	 * @return null if no config found
+	 */
+	private KnxDeviceConfig findConfiguration(String knxGA) {
+		for ( Iterator<KnxDeviceConfig> iter = this.configurationMap.values().iterator(); iter.hasNext(); ) {
+			KnxDeviceConfig knxDevConf = iter.next();
+			if ( knxDevConf.getKnxGroupAddress().equals(knxGA) ) {
+				return knxDevConf;
+			}
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * delete instance references 
+	 * unregister my services ?
+	 */
+	public void stop() {
+		
+		// delete instance references !!
+		for ( Iterator<KnxDpt1Instance> it = this.connectedDriverInstanceMap.values().iterator(); it.hasNext(); ) {
+			it.next().detachDriver();
+		}
+
+		// the managed service and driver service is unregistered automatically by the OSGi framework!
+	}
+
 
 	/* (non-Javadoc)
 	 * @see org.osgi.service.cm.ManagedServiceFactory#deleted(java.lang.String)
 	 */
 	public void deleted(String pid) {
-		// TODO Auto-generated method stub
 		
+		KnxDpt1Instance instance = this.connectedDriverInstanceMap.get(pid);
+		instance.detachDriver();
+		this.connectedDriverInstanceMap.remove(pid);
+
+		// delete configuration
+		this.configurationMap.remove(pid);
+
+		this.logger.log(LogService.LOG_INFO, "Driver instance and associated objects for " +
+				pid + " destroyed!");		
 	}
 
+	
 	/* (non-Javadoc)
 	 * @see org.osgi.service.cm.ManagedServiceFactory#getName()
 	 */
 	public String getName() {
-		return "Configuration Admin Service for KNX devices with data point type 1";
+		return "Configuration Factory for KNX devices with data point type 1; " +
+				"Mapping parameters for ISO11073 devices";
 	}
+
+	
+//	/* (non-Javadoc)
+//	 * @see org.osgi.service.cm.ManagedService#updated(java.util.Dictionary)
+//	 * 
+//	 * update method from ManagedService
+//	 */
+//	public void updated(Dictionary properties) throws ConfigurationException {
+//		this.logger.log(LogService.LOG_INFO, "KnxDpt1Driver updated. " +
+//				"Mapping from KNX device to ISO 11073 device. " + properties);
+//
+//		if (properties != null) {
+//			this.knxIsoMappingProperties = new Properties();
+//			
+//			/** groupAddress configuration format is "A-B-C" because Felix ConfigurationManager says '/' is an illegal character;
+//			* change here to "A/B/C" */
+//			Enumeration<String> en = properties.keys(); 
+//			while (en.hasMoreElements()) {
+//				String key = en.nextElement();
+//				String newKey = key.replace('-', '/');
+//
+//				String value = (String) properties.get(key);
+//				this.knxIsoMappingProperties.put(newKey, value);
+//			}
+//			this.logger.log(LogService.LOG_INFO, "KNX-ISO mapping config: " + this.knxIsoMappingProperties);
+//		} else {
+//			this.logger.log(LogService.LOG_ERROR, "No configuration found for Knx to ISO device mapping!");
+//			return;
+//		}
+//	}
+
 }

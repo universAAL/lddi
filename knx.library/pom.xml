@@ -74,6 +74,7 @@
 						<Export-Package>org.universAAL.knx.devicecategory,
 						org.universAAL.knx.devicemodel,
 						org.universAAL.knx.networkdriver,
+						org.universAAL.knx.devicedriver,
 						org.universAAL.knx.utils</Export-Package>
 					</instructions>
 				</configuration>

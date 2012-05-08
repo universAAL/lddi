@@ -19,31 +19,18 @@ public class KnxDpt1Device extends KnxDevice implements KnxDpt1 {
 	@Override
 	public void newMessageFromHouse(String deviceAddress, byte event) {
 		this.logger.log(LogService.LOG_INFO, "Device " + this.getDeviceId() + " got event: " + event);
-		
-//		this.newEventFromHardware(event);
-		//send event to my driver...
+
+		// TODO apply here encoding/decoding rules from KnxDpt1 IF ?? 
+		this.driver.newMessageFromKnxBus(event);
 	}
 
-	public void newEventFromHardware(byte event) {
-		// TODO Auto-generated method stub
-		
+	/* (non-Javadoc)
+	 * @see org.universAAL.knx.devicecategory.KnxDpt1#newMessageFromKnxBus(byte)
+	 */
+	public void newMessageFromKnxBus(byte event) {
+		// not used in device; this method is called in driver!
 	}
 
 
-//	/* (non-Javadoc)
-//	 * @see org.universAAL.knx.devicecategory.KnxDpt1#receivePacket(long)
-//	 */
-//	public byte[] receivePacket(long timeout) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	/* (non-Javadoc)
-//	 * @see org.universAAL.knx.devicecategory.KnxDpt1#sendPacket(byte[])
-//	 */
-//	public void sendPacket(byte[] data) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 }
