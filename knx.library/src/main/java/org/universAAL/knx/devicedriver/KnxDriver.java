@@ -1,7 +1,6 @@
 package org.universAAL.knx.devicedriver;
 
 import org.universAAL.knx.devicecategory.KnxBaseDeviceCategory;
-import org.universAAL.knx.devicecategory.KnxDpt1;
 import org.universAAL.knx.devicemodel.KnxDevice;
 
 /**
@@ -21,7 +20,7 @@ public abstract class KnxDriver {
 	
 	/**
 	 * store the device
-	 * 
+	 * link this driver to the device
 	 * @param the device to set
 	 */
 	public final boolean setDevice(KnxDevice device) {

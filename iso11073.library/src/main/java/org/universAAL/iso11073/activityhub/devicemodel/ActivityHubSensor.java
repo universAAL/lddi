@@ -2,11 +2,13 @@ package org.universAAL.iso11073.activityhub.devicemodel;
 
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
+import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubBaseDeviceCategory;
 import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
 /**
  * Activity hub sensor base class
+ * 
  * 
  * @author Thomas Fuxreiter
  *
@@ -15,21 +17,17 @@ public
 abstract 
 class ActivityHubSensor implements Device {
 
+	private LogService logger;
 	private ActivityHubDeviceCategory deviceCategory;
-//	protected int sensorEvent;
 	private ActivityHubLocation deviceLocation;
 	// some kind of deviceID !?
 	private String deviceId = null;
-	private int incomingSensorEvent;
-	
-	private LogService logger;
 
-	
-//	/**
-//	 * empty constructor for factory
-//	 */
-//	public ActivityHubSensor() {
-//	}
+	protected Object lastSensorEvent;
+
+	/** reference to my driver instance; can be just one! */
+	protected ActivityHubBaseDeviceCategory driver;
+
 	
 	public ActivityHubSensor(ActivityHubDeviceCategory deviceCategory, 
 			ActivityHubLocation deviceLocation, String deviceId, LogService logger) {
@@ -40,27 +38,38 @@ class ActivityHubSensor implements Device {
 	}
 	
 	
-//	/**
-//	 * Fill empty device with parameters and set it alive
-//	 * 
-//	 * @param knxGroupAddress
-//	 * @param logger2
-//	 */
-//	public void setParams(String deviceCategory, String deviceId, LogService logger) {
-//		this.deviceCategory = deviceCategory;
-//		this.deviceId = deviceId;
-//		this.logger = logger;
-//
-////		this.deviceCategory = KNX_DEVICE_CATEGORY_PREFIX + this.knxDeviceProperties.getMainDpt();
-//		
-////		this.deviceDescription;
-////		this.deviceSerial;
-////		this.servicePid;
-//		
-////		this.deviceId = this.knxDeviceProperties.getGroupAddress();
-//	}
+	/** store a driver reference for this device */
+	public void addDriver(ActivityHubBaseDeviceCategory driverInstance) {
+		this.driver = driverInstance;
+	}
 	
 
+	/** remove the driver reference of this device */
+	public void removeDriver() {
+		this.driver = null;
+	}
+	
+	
+	/** 
+	 * set sensor event to on (e.g. switch-on)
+	 * if input comes from an 1-bit sensor 
+	 */
+	public abstract void setSensorEventOn();
+
+	/** 
+	 * set sensor event to off (e.g. switch-off) 
+	 * if input comes from an 1-bit sensor 
+	 */
+	public abstract void setSensorEventOff();
+	
+	/** 
+	 * send sensor event to driver (upper layer) 
+	 */
+	protected void sendEvent(int event) {
+		this.driver.incomingSensorEvent(event);
+	}
+	
+	
 	/**
 	 * @return the deviceCategory
 	 */
@@ -81,10 +90,10 @@ class ActivityHubSensor implements Device {
 	public abstract int getSensorEventValue();
 
 
-	/**
-	 * @param sensorEvent the sensorEvent to set
-	 */
-	public abstract void setSensorEvent(int sensorEvent);
+//	/**
+//	 * @param sensorEvent the sensorEvent to set
+//	 */
+//	public abstract void setSensorEvent(int sensorEvent);
 
 	/**
 	 * @return the deviceLocation

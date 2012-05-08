@@ -42,7 +42,7 @@ public interface KnxDpt1 extends KnxBaseDeviceCategory {
 
 	// TODO incoming event decoding rules !!!
 //	public static final String DEFAULT_FALSE_VALUE = "0x80";
-	public static final byte DEFAULT_FALSE_VALUE = (byte) 0x80;
-	public static final byte DEFAULT_TRUE_VALUE = (byte) 0x81;
+	public static final byte DEFAULT_VALUE_OFF = (byte) 0x80;
+	public static final byte DEFAULT_VALUE_ON = (byte) 0x81;
 	
 }

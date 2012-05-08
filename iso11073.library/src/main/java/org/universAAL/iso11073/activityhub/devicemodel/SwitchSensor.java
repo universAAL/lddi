@@ -1,6 +1,7 @@
 package org.universAAL.iso11073.activityhub.devicemodel;
 
 import org.osgi.service.log.LogService;
+import org.universAAL.iso11073.activityhub.devicecategory.Iso11073SwitchSensor;
 import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
@@ -18,7 +19,7 @@ import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.Acti
  * 
  * @author Thomas Fuxreiter
  */
-public class SwitchSensor extends ActivityHubSensor {
+public class SwitchSensor extends ActivityHubSensor implements Iso11073SwitchSensor{
 
 	private SwitchSensorEvent lastsensorEvent;
 
@@ -38,16 +39,32 @@ public class SwitchSensor extends ActivityHubSensor {
 		return this.lastsensorEvent.value();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
-	 */
+//	/* (non-Javadoc)
+//	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
+//	 */
+//	@Override
+//	public void setSensorEvent(int sensorEvent) {
+//		this.lastsensorEvent = SwitchSensorEvent.getSwitchSensorEvent(sensorEvent);
+//	}
+//
+//	public void setSensorEvent(SwitchSensorEvent sse) {
+//		this.lastsensorEvent = sse;
+//	}
+
 	@Override
-	public void setSensorEvent(int sensorEvent) {
-		this.lastsensorEvent = SwitchSensorEvent.getSwitchSensorEvent(sensorEvent);
+	public void setSensorEventOff() {
+		this.lastSensorEvent = SwitchSensorEvent.SWITCH_OFF;
+		this.sendEvent(SwitchSensorEvent.SWITCH_OFF.value());
 	}
 
-	public void setSensorEvent(SwitchSensorEvent sse) {
-		this.lastsensorEvent = sse;
+	@Override
+	public void setSensorEventOn() {
+		this.lastSensorEvent = SwitchSensorEvent.SWITCH_ON;
+		this.sendEvent(SwitchSensorEvent.SWITCH_ON.value());
+	}
+
+	public void incomingSensorEvent(int event) {
+		// driver instances must implement this method; device instances not 
 	}
 
 }

@@ -1,6 +1,7 @@
 package org.universAAL.iso11073.activityhub.devicemodel;
 
 import org.osgi.service.log.LogService;
+import org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor;
 import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
@@ -23,7 +24,7 @@ import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.Acti
  * 
  * @author Thomas Fuxreiter 
  */
-public class ContactClosureSensor extends ActivityHubSensor {
+public class ContactClosureSensor extends ActivityHubSensor implements Iso11073ContactClosureSensor{
 
 	//public static String MY_DEVICE_CATEGORY = "ISO11073_CONTACTCLOSURESENSOR";
 	private ContactClosureSensorEvent lastsensorEvent;
@@ -46,16 +47,32 @@ public class ContactClosureSensor extends ActivityHubSensor {
 		return this.lastsensorEvent.value();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
-	 */
+//	/* (non-Javadoc)
+//	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
+//	 */
+//	@Override
+//	public void setSensorEvent(int sensorEvent) {
+//		this.lastsensorEvent = ContactClosureSensorEvent.getContactClosureSensorEvent(sensorEvent);
+//	}
+//
+//	public void setSensorEvent(ContactClosureSensorEvent ccse) {
+//		this.lastsensorEvent = ccse;
+//	}
+
 	@Override
-	public void setSensorEvent(int sensorEvent) {
-		this.lastsensorEvent = ContactClosureSensorEvent.getContactClosureSensorEvent(sensorEvent);
+	public void setSensorEventOff() {
+		this.lastSensorEvent = ContactClosureSensorEvent.CONTACT_CLOSED;
+		this.sendEvent(ContactClosureSensorEvent.CONTACT_CLOSED.value());
 	}
 
-	public void setSensorEvent(ContactClosureSensorEvent ccse) {
-		this.lastsensorEvent = ccse;
+	@Override
+	public void setSensorEventOn() {
+		this.lastSensorEvent = ContactClosureSensorEvent.CONTACT_OPENED;
+		this.sendEvent(ContactClosureSensorEvent.CONTACT_OPENED.value());
+	}
+
+	public void incomingSensorEvent(int event) {
+		// driver instances must implement this method; device instances not 
 	}
 
 }

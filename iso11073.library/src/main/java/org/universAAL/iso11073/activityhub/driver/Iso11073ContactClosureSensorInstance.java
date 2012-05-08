@@ -7,6 +7,7 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor;
 import org.universAAL.iso11073.activityhub.devicemodel.ContactClosureSensor;
+import org.universAAL.iso11073.activityhub.devicemodel.ContactClosureSensorEvent;
 import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver;
 import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 
@@ -16,7 +17,7 @@ import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverCl
  * in Iso11073ContactClosureSensorDriver class.
  * This instance is passed to the consuming client (e.g. uAAL exporter bundle).
  * When the ContactClosureSensor device service disappears, this driver is removed
- * from the consuming client.
+ * from the consuming client and from the device.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -33,14 +34,12 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 	 * @param sr Service reference of ISO device
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
-	public Iso11073ContactClosureSensorInstance(BundleContext c, ServiceReference sr, 
+	public Iso11073ContactClosureSensorInstance(BundleContext c,  
 			ActivityHubDriverClient client, LogService log) {
 		super(client);
 
 		this.context=c;
-		this.client=client;
 		this.logger=log;
-		
 	}
 
 	
@@ -57,7 +56,7 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.framework.ServiceReference)
 	 */
 	/**
-	 * @param ActivityHubSensor
+	 * @param ActivityHubSensor service
 	 */
 	public Object addingService(ServiceReference reference) {
 		
@@ -65,7 +64,7 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 		
 		// register driver in client driverList
 		// MAIN FUNCTION HERE !!!
-		this.setDevice( (ContactClosureSensor) ccs);
+		this.setDevice(ccs);
 
 		//return null; JavaDoc: @return The service object to be tracked for the ServiceReference object or null if the ServiceReference object should not be tracked.
 		return ccs;
@@ -87,54 +86,27 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 	public void removedService(ServiceReference reference, Object service) {
 		// removed device service
 		this.context.ungetService(reference);
-		this.removeDriver();		
+		this.detachDriver();
+		this.removeDriver();
 	}
 
-
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor#receiveSensorEvent(int)
+	/**
+	 * forward event to client
 	 */
-	public boolean receiveSensorEvent(int value) {
-		this.logger.log(LogService.LOG_INFO, "receiving incoming sensor event with value: " + value);
+	public void incomingSensorEvent(int event) {
+
+		// TODO send event to client
+		this.logger.log(LogService.LOG_INFO, "Driver " + Iso11073ContactClosureSensor.MY_DEVICE_CATEGORY +
+				" for device " + this.device.getDeviceId() + " received new event " + 
+				ContactClosureSensorEvent.getContactClosureSensorEvent(event).toString());
+
 		try {
-			this.device.setSensorEvent(value);
-			return true;
+			this.client.incomingSensorEvent(event);
 		} catch (AssertionError ae) {
 			this.logger.log(LogService.LOG_ERROR, "No suitable ContactClosureSensorEvent found " +
-					"for value: " +	value);
+					"for value: " +	event);
 			ae.printStackTrace();
-			return false;
 		}
 	}
-
-
-
-
-	
-	
-//	/* (non-Javadoc)
-//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#newMessageFromAbove(java.lang.String, byte[])
-//	 */
-//	@Override
-//	public void newMessageFromAbove(String deviceId, byte[] message) {
-//		// und wos tua ma jetzt??
-//		
-//		this.logger.log(LogService.LOG_INFO, "Incoming message " + message + " from address " + 
-//				deviceId);
-//		
-//		// send to client!
-//		this.client.incomingSensorEvent(this.device.getDeviceId(), message);
-//		
-//	}
-
-	
-//	/* (non-Javadoc)
-//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#specificConfiguration()
-//	 */
-//	@Override
-//	protected void specificConfiguration() {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 }

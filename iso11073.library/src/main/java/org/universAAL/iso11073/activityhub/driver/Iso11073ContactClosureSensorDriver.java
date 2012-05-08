@@ -101,7 +101,7 @@ public class Iso11073ContactClosureSensorDriver implements Driver {
 
 		// create "driving" instance
 		Iso11073ContactClosureSensorInstance instance = new Iso11073ContactClosureSensorInstance(
-				this.context, reference, client, this.logger);
+				this.context, client, this.logger);
 		
 		// init service tracker on device service for instance
 		tracker = new ServiceTracker(this.context, reference, instance);

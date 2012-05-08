@@ -2,6 +2,7 @@ package org.universAAL.iso11073.activityhub.driver.interfaces;
 
 import java.util.Set;
 
+import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubBaseDeviceCategory;
 import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor;
 
 /**
@@ -49,19 +50,43 @@ public abstract class ActivityHubDriver {
 	}
 
 	/**
+	 * store the device
 	 * Add this driver instance to the driver list in my consumer.
-	 * The driver is already coupled with a real device.
 	 * Key = deviceId
 	 *  
+	 * link this driver to the device
 	 * @param device the device to set
 	 */
-	public final void setDevice(ActivityHubSensor device) {
+	public final boolean setDevice(ActivityHubSensor device) {
 		this.device = device;
 		
 		// add connected driver to driverList in client
 		this.client.addDriver(this.device.getDeviceId(), this.device.getDeviceCategory(), this);
+		
+		return attachDriver();
 	}
 
+	/**
+ 	 * coupling this driver to device reference
+	 * @param id
+	 */
+	protected boolean attachDriver() {
+		if (this.device != null) {
+			this.device.addDriver( (ActivityHubBaseDeviceCategory) this);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * decoupling this driver from device reference
+	 */
+	public final void detachDriver() {
+		if (this.device != null)
+			this.device.removeDriver();
+	}
+	
 	/**
 	 * device access
 	 * @return

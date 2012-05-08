@@ -56,13 +56,8 @@ public class Activator implements BundleActivator {
 	 *
 	 */
 	class MyThread implements Runnable{
-
 		public MyThread() {
 		}
-
-		/* (non-Javadoc)
-		 * @see java.lang.Runnable#run()
-		 */
 		public void run() {
 			serviceProvider = new ActivityHubServiceProvider(moduleContext, busServer);			
 		}

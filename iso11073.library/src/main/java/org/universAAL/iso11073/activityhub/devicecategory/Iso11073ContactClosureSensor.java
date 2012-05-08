@@ -15,7 +15,7 @@ import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCateg
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface Iso11073ContactClosureSensor {
+public interface Iso11073ContactClosureSensor extends ActivityHubBaseDeviceCategory {
 
 	// used in driver match method
 	public static String MY_DEVICE_CATEGORY = ActivityHubDeviceCategory.
@@ -36,9 +36,4 @@ public interface Iso11073ContactClosureSensor {
 	public static String REVISION		= "-";
 	public static String SERIAL			= "-";
 	
-	// example methods
-//	void sendPacket( byte [] data);
-	
-	boolean receiveSensorEvent(int value);
-
 }

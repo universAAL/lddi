@@ -23,6 +23,9 @@ import org.universAAL.knx.devicemodel.KnxDpt1Device;
  * Working instance of the KnxDpt1 driver. Registers a service/device.
  * Tracks on the KNX device service passed in the attach method in KnxDpt1RefinementDriver class. 
  * When the KNX device disappears, this service/device is unregistered.
+ * 
+ * This driver handles 1-bit events (knx datapoint 1), which is on/off.
+ * It maps to the appropriate sensor-event of the created ISO11073 sensor. 
  *  
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -47,10 +50,10 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 		this.context=c;
 		this.logger=log;
 		
-		// test
-		this.logger.log(LogService.LOG_WARNING, "CHECK default values: False: " + 
-				String.format("%02X", DEFAULT_FALSE_VALUE) + 
-				" True: " + String.format("%02X", DEFAULT_TRUE_VALUE));
+//		// test
+//		this.logger.log(LogService.LOG_WARNING, "CHECK default values: False: " + 
+//				String.format("%02X", DEFAULT_FALSE_VALUE) + 
+//				" True: " + String.format("%02X", DEFAULT_TRUE_VALUE));
 		
 		//this.knxIsoMappingProperties = knxIsoMappingProperties;
 	}
@@ -80,7 +83,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 			this.logger.log(LogService.LOG_ERROR, "Error coupling " + KnxDpt1.MY_DEVICE_CATEGORY
 					+ " driver to device " + this.device.getGroupAddress() + ". No appropriate " +
 					"ISO device created!");
-			return knxDev;
+			return null;
 		}
 		
 		// TODO: Regeln für die decodierung in device_category ??
@@ -164,33 +167,30 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 		// try to display event byte readable. No good: Byte.toString(byte), Integer.toHexString(byte)
 		this.logger.log(LogService.LOG_INFO, "Driver " + KnxDpt1.MY_DEVICE_CATEGORY + " for device " + 
 				this.device.getGroupAddress() + " received new knx message " + String.format("%02X", event));
-		
-		// TODO process....
-		// und wos tua ma jetzt??
 
 		if (this.activityHubSensor != null){
 		
-			int sensorEvent = -1;
-			if ( event == DEFAULT_FALSE_VALUE ) {
+			if ( event == DEFAULT_VALUE_OFF ) {
 				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_FALSE_VALUE");
-				// TODO Set sensor event depending on ActivityHubSensor type
-				sensorEvent = 0;
-			} else if ( event == DEFAULT_TRUE_VALUE ) {
+				this.activityHubSensor.setSensorEventOff();
+			} else if ( event == DEFAULT_VALUE_ON ) {
 				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_TRUE_VALUE");
-				// TODO Set sensor event depending on ActivityHubSensor type
-				sensorEvent = 1;
+				this.activityHubSensor.setSensorEventOff();
 			} else {
 				this.logger.log(LogService.LOG_ERROR, "No matches on incoming Event " + Integer.toHexString(event) +
 						" from device " + this.device.getGroupAddress());
 				return;
 			}
-			this.activityHubSensor.setSensorEvent(sensorEvent);
 		} else {
-			//ERROR
+			this.logger.log(LogService.LOG_ERROR, "Driver " + KnxDpt1.MY_DEVICE_CATEGORY + " for device " + 
+					this.device.getGroupAddress() + " lost its mapping ISO11073 sensor! " +
+							"Cannot forward incoming message!");
 		}
 	}
 
-	
+	/**
+	 * @param reference device service
+	 */
 	public void removedService(ServiceReference reference, Object service) {
 		// removed device service
 		this.context.ungetService(reference);

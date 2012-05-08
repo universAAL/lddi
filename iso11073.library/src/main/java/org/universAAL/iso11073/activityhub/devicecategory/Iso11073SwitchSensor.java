@@ -15,7 +15,7 @@ import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCateg
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface Iso11073SwitchSensor {
+public interface Iso11073SwitchSensor extends ActivityHubBaseDeviceCategory {
 
 	// used in driver match method
 	public static String MY_DEVICE_CATEGORY = ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_SWITCH.toString(); 
@@ -35,10 +35,5 @@ public interface Iso11073SwitchSensor {
 	public static String MANUFACTURER 	= "-";
 	public static String REVISION		= "-";
 	public static String SERIAL			= "-";
-	
-	// example methods
-//	void sendPacket( byte [] data);
-	
-	boolean receiveSensorEvent(int value);
 
 }
