@@ -2,6 +2,8 @@ package org.universAAL.knx.devicemodel;
 
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
+import org.universAAL.knx.devicecategory.KnxBaseDeviceCategory;
+import org.universAAL.knx.devicecategory.KnxDpt1;
 import org.universAAL.knx.devicedriver.KnxDriver;
 import org.universAAL.knx.networkdriver.KnxNetwork;
 import org.universAAL.knx.utils.*;
@@ -30,11 +32,12 @@ public abstract class KnxDevice implements Device{
 	
 	private static String KNX_DEVICE_CATEGORY_PREFIX = "KnxDpt";
 	
-	// ref to OSGi attached driver
-	protected KnxDevice driver;
-	
 	protected LogService logger;
 	protected KnxNetwork network;
+	
+	/** reference to my driver instance; can be just one! */
+	protected KnxBaseDeviceCategory driver;
+	
 
 	/**
 	 * empty constructor for factory
@@ -68,6 +71,18 @@ public abstract class KnxDevice implements Device{
 		this.logger.log(LogService.LOG_INFO, "Registered device " + deviceId + " in knx.networkdriver.");
 	}
 
+	/** store a driver reference for this device */
+	public void addDriver(KnxBaseDeviceCategory driverInstance) {
+		this.driver = driverInstance;
+	}
+	
+
+	/** remove the driver reference of this device */
+	public void removeDriver() {
+		this.driver = null;
+	}
+
+	
 	/**
 	 * The specific devices have to implement this method to receive low level messages from the network
 	 * @param deviceAddress  address of the device or the group that fire the message
@@ -77,10 +92,8 @@ public abstract class KnxDevice implements Device{
 
 	
 	public void noDriverFound() {
-
 		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for KNX device: " +
 				knxDeviceProperties.getGroupAddress() );
-		
 	}
 	
 	/**

@@ -1,7 +1,5 @@
 package org.universAAL.knx.dpt1refinementdriver.iso11073;
 
-import java.util.Iterator;
-
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.knx.dpt1refinementdriver.iso11073.util.LogTracker;
@@ -29,12 +27,9 @@ public class Activator implements BundleActivator {
 		// the OSGi framework automatically unregisters any services
 		// registered by this bundle when it is deactivated 
 		
-		// remove my references in network driver
-		for ( Iterator<KnxDpt1Instance> i = this.knxDpt1RefinementDriver.getConnectedDriver().iterator();
-			i.hasNext(); ) {
-			i.next().removeDriver();
-		}
-
+		// references must be removed manually
+		knxDpt1RefinementDriver.stop();
+		knxDpt1RefinementDriver = null;
 	}
 
 }

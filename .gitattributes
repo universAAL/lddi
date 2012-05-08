@@ -58,6 +58,7 @@ knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDeviceManage
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxImporter.java -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker.java -text
 knx.library/pom.xml -text
+knx.library/src/main/java/org/universAAL/knx/devicecategory/KnxBaseDeviceCategory.java -text
 knx.library/src/main/java/org/universAAL/knx/devicecategory/KnxDpt1.java -text
 knx.library/src/main/java/org/universAAL/knx/devicedriver/KnxDriver.java -text
 knx.library/src/main/java/org/universAAL/knx/devicemodel/KnxDevice.java -text
