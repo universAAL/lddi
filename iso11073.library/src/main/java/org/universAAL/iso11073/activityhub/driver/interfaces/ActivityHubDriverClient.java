@@ -14,9 +14,9 @@ public interface ActivityHubDriverClient {
 			ActivityHubDriver activityHubDriver);
 	public void removeDriver(String deviceId, ActivityHubDriver activityHubDriver);
 	public LogService getLogger();
+	
 	/**
-	 * @param deviceId
-	 * @param message
+	 * @param event
 	 */
-	public void incomingSensorEvent(String deviceId, byte[] message);
+	public void incomingSensorEvent(int event);
 }

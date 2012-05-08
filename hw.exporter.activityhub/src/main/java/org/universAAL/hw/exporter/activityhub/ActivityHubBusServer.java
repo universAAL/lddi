@@ -102,11 +102,11 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	/* (non-Javadoc)
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#incomingSensorEvent(java.lang.String, byte[])
 	 */
-	public void incomingSensorEvent(String deviceId, byte[] message) {
-		this.logger.log(LogService.LOG_INFO, "received sensor event: " + message);
+	public void incomingSensorEvent(int event) {
+		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + event);
 		
 		// TODO create context event!
-		
+		// from which sensor is this event ??
 		
 		
 	}

@@ -7,6 +7,7 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
 import org.universAAL.iso11073.activityhub.devicemodel.MotionSensor;
+import org.universAAL.iso11073.activityhub.devicemodel.MotionSensorEvent;
 import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver;
 import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 
@@ -16,7 +17,7 @@ import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverCl
  * in Iso11073MotionSensorDriver class.
  * This instance is passed to the consuming client (e.g. uAAL exporter bundle).
  * When the MotionSensor device service disappears, this driver is removed
- * from the consuming client.
+ * from the consuming client and from the device.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -31,7 +32,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 	 * @param sr Service reference of ISO device
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
-	public Iso11073MotionSensorInstance(BundleContext c, ServiceReference sr, 
+	public Iso11073MotionSensorInstance(BundleContext c,
 			ActivityHubDriverClient client, LogService log) {
 		super(client);
 
@@ -48,7 +49,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 		
 		// register driver in client driverList
 		// MAIN FUNCTION HERE !!!
-		this.setDevice( (MotionSensor) ms);
+		this.setDevice(ms);
 
 		//return null; JavaDoc: @return The service object to be tracked for the ServiceReference object or null if the ServiceReference object should not be tracked.
 		return ms;
@@ -70,22 +71,24 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 	public void removedService(ServiceReference reference, Object service) {
 		// removed device service
 		this.context.ungetService(reference);
+		this.detachDriver();
 		this.removeDriver();		
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor#receiveSensorEvent(int)
+	/**
+	 * forward event to client
 	 */
-	public boolean receiveSensorEvent(int value) {
-		this.logger.log(LogService.LOG_INFO, "receiving incoming sensor event with value: " + value);
+	public void incomingSensorEvent(int event) {
+		this.logger.log(LogService.LOG_INFO, "Driver " + Iso11073MotionSensor.MY_DEVICE_CATEGORY +
+				" for device " + this.device.getDeviceId() + " received new event " + 
+				MotionSensorEvent.getMotionSensorEvent(event).toString());
+
 		try {
-			this.device.setSensorEvent(value);
-			return true;
+			this.client.incomingSensorEvent(event);
 		} catch (AssertionError ae) {
 			this.logger.log(LogService.LOG_ERROR, "No suitable MotionSensorEvent found " +
-					"for value: " +	value);
+					"for value: " +	event);
 			ae.printStackTrace();
-			return false;
 		}
 	}
 
@@ -97,30 +100,4 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 		return this.device.getSensorEventValue();
 	}
 
-	
-
-//	/* (non-Javadoc)
-//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#newMessageFromAbove(java.lang.String, byte[])
-//	 */
-//	@Override
-//	public void newMessageFromAbove(String deviceId, byte[] message) {
-//		// und wos tua ma jetzt??
-//		
-//		this.logger.log(LogService.LOG_INFO, "Incoming message " + message + " from address " + 
-//				deviceId);
-//				
-//	}
-//
-//	/* (non-Javadoc)
-//	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#specificConfiguration()
-//	 */
-//	@Override
-//	protected void specificConfiguration() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-
-
-	
 }

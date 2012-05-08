@@ -1,6 +1,7 @@
 package org.universAAL.iso11073.activityhub.devicemodel;
 
 import org.osgi.service.log.LogService;
+import org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
 import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
@@ -19,16 +20,17 @@ import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.Acti
  * 
  * @author Thomas Fuxreiter
  */
-public class MotionSensor extends ActivityHubSensor {
-
-	private MotionSensorEvent lastsensorEvent;
+public class MotionSensor extends ActivityHubSensor
+implements Iso11073MotionSensor
+{
+	protected MotionSensorEvent lastSensorEvent;
  
 	public MotionSensor(ActivityHubDeviceCategory deviceCategory, 
 			ActivityHubLocation deviceLocation, String deviceId, LogService logger) {
 		super(deviceCategory, deviceLocation, deviceId, logger);
 		
 		// init value is NO_CONDITION_DETECTED
-		this.lastsensorEvent = MotionSensorEvent.NO_CONDITION_DETECTED;
+		this.lastSensorEvent = MotionSensorEvent.NO_CONDITION_DETECTED;
 	}
 
 	/* (non-Javadoc)
@@ -36,18 +38,34 @@ public class MotionSensor extends ActivityHubSensor {
 	 */
 	@Override
 	public int getSensorEventValue() {
-		return this.lastsensorEvent.value();
+		return this.lastSensorEvent.value();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
-	 */
+//	/* (non-Javadoc)
+//	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
+//	 */
+//	@Override
+//	public void setSensorEvent(int sensorEvent) {
+//		this.lastSensorEvent = MotionSensorEvent.getMotionSensorEvent(sensorEvent);
+//	}
+
+//	public void setSensorEvent(MotionSensorEvent mse) {
+//		this.lastSensorEvent = mse;
+//	}
+
 	@Override
-	public void setSensorEvent(int sensorEvent) {
-		this.lastsensorEvent = MotionSensorEvent.getMotionSensorEvent(sensorEvent);
+	public void setSensorEventOff() {
+		this.lastSensorEvent = MotionSensorEvent.NO_CONDITION_DETECTED;
+		this.sendEvent(MotionSensorEvent.NO_CONDITION_DETECTED.value());
 	}
 
-	public void setSensorEvent(MotionSensorEvent mse) {
-		this.lastsensorEvent = mse;
+	@Override
+	public void setSensorEventOn() {
+		this.lastSensorEvent = MotionSensorEvent.MOTION_DETECTED;
+		this.sendEvent(MotionSensorEvent.MOTION_DETECTED.value());
+	}
+
+	public void incomingSensorEvent(int event) {
+		// driver instances must implement this method; device instances not 
 	}
 }

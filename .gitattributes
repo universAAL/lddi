@@ -25,6 +25,7 @@ hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/service
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/PresenceDetectorService.java -text
 hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/TemperatureSensorService.java -text
 iso11073.library/pom.xml -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicecategory/Iso11073ContactClosureSensor.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicecategory/Iso11073MotionSensor.java -text

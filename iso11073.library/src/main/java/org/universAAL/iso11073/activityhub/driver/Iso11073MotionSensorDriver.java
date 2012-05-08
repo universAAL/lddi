@@ -79,7 +79,7 @@ public class Iso11073MotionSensorDriver implements Driver {
 
 		// create "driving" instance
 		Iso11073MotionSensorInstance instance = new Iso11073MotionSensorInstance(
-				this.context, reference, client, this.logger);
+				this.context, client, this.logger);
 		
 		// init service tracker on device service for instance
 		tracker = new ServiceTracker(this.context, reference, instance);
