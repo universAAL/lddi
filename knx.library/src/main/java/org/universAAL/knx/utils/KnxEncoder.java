@@ -72,7 +72,7 @@ public class KnxEncoder {
 
 	/**
 	 * @param message: udpTelegram from knx
-	 * @return message as String
+	 * @return message as String; null if telegram is not valid
 	 */
 	public static KnxTelegram decode(byte knxMessage[]){
 		/* Receive the bytecode and  decode it in a knxMessage */
@@ -88,6 +88,11 @@ public class KnxEncoder {
 		 * 		5-6) stuff = d100;?
 		 * 		7) command or state;
 		 */
+		
+		// check if telegram valid
+		if (knxMessage.length < 8)
+			return null;
+		
 		KnxTelegram telegram = new KnxTelegram();
 		telegram.setSourceByte(new byte[] {knxMessage[1], knxMessage[2]});
 		telegram.setDestByte(new byte[] {knxMessage[3], knxMessage[4]});

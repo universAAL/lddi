@@ -98,6 +98,7 @@ lddi.testing.frameworks/knx.framework/conf/services/org.apache.felix.webconsole.
 lddi.testing.frameworks/knx.framework/conf/services/org.ops4j.pax.logging.properties -text
 lddi.testing.frameworks/knx.framework/conf/services/org.universAAL.mw.data.representation.properties -text
 lddi.testing.frameworks/knx.framework/data/OfficeProject2.knxproj -text
+lddi.testing.frameworks/knx.framework/data/OfficeProject3.knxproj -text
 lddi.testing.frameworks/knx.framework/pom.xml -text
 lddi.testing.frameworks/knx.framework/run.bat -text
 pom/pom.xml -text

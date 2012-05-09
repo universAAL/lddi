@@ -1,7 +1,7 @@
 package org.universAAL.knx.devicecategory;
 
 /**
- * DeviceCategory for KNX datapoint type 1.***
+ * Base DeviceCategory for KNX datapoint types B1 (1 bit)
  * 
  * In general DeviceCategories specify:
  * - rules and interfaces needed for the communication between device service
@@ -40,9 +40,28 @@ public interface KnxDpt1 extends KnxBaseDeviceCategory {
 	public static String SERIAL			= "-";
 	
 
-	// TODO incoming event decoding rules !!!
-//	public static final String DEFAULT_FALSE_VALUE = "0x80";
-	public static final byte DEFAULT_VALUE_OFF = (byte) 0x80;
-	public static final byte DEFAULT_VALUE_ON = (byte) 0x81;
-	
+	// default on/off constants for all dpt1 devices
+	public static byte DEFAULT_VALUE_ON =  (byte) 0x81;
+	public static byte DEFAULT_VALUE_OFF = (byte) 0x80;
+
+//	// constants for specific dpt1 devices
+
+//	/** 1.001 - DPT_Switch */
+//	/** 1 = on */
+//	public static byte DEFAULT_VALUE_ON_1_001 =  DEFAULT_VALUE_ON;
+//	/** 0 = off */
+//	public static byte DEFAULT_VALUE_OFF_1_001 = DEFAULT_VALUE_OFF;
+//	
+//	/** 1.005 - DPT_Alarm */
+//	/** 1 = alarm */
+//	public static byte DEFAULT_VALUE_ON_1_005 =  DEFAULT_VALUE_ON;
+//	/** 0 = no alarm */
+//	public static byte DEFAULT_VALUE_OFF_1_005 = DEFAULT_VALUE_OFF;
+//
+//	/** 1.009 - DPT_OpenClose */
+//	/** 1 = close */
+//	public static byte DEFAULT_VALUE_ON_1_009 =  DEFAULT_VALUE_ON;
+//	/** 0 = open */
+//	public static byte DEFAULT_VALUE_OFF_1_009 = DEFAULT_VALUE_OFF;
+
 }

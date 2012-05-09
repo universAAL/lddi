@@ -104,6 +104,13 @@ public abstract class KnxDevice implements Device{
 	}
 	
 	/**
+	 * @return knGroupAddress as String "M/S/D"
+	 */
+	public String getDatapointType() {
+		return this.knxDeviceProperties.getDpt();
+	}
+	
+	/**
 	 * @return the deviceCategory
 	 */
 	public String getDeviceCategory() {

@@ -166,10 +166,17 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	public void newMessageFromKnxBus(byte event) {
 		// try to display event byte readable. No good: Byte.toString(byte), Integer.toHexString(byte)
 		this.logger.log(LogService.LOG_INFO, "Driver " + KnxDpt1.MY_DEVICE_CATEGORY + " for device " + 
-				this.device.getGroupAddress() + " received new knx message " + String.format("%02X", event));
+				this.device.getGroupAddress() + " with knx datapoint type " + this.device.getDatapointType() +
+				" received new knx message " + String.format("%02X", event));
 
 		if (this.activityHubSensor != null){
 		
+//			// map on dpt!!
+//			String dptString = "_" + this.device.getDatapointType().replace('.', '_');
+//			this.logger.log(LogService.LOG_INFO, "Datapoint type String: " + dptString); 
+//			
+//			String constName = KnxDpt1.DEFAULT_VALUE_ON
+//			
 			if ( event == DEFAULT_VALUE_OFF ) {
 				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_VALUE_OFF");
 				this.activityHubSensor.setSensorEventOff();
