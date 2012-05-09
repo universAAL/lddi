@@ -102,12 +102,21 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	/* (non-Javadoc)
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#incomingSensorEvent(java.lang.String, byte[])
 	 */
-	public void incomingSensorEvent(int event) {
+	public void incomingSensorEvent(String deviceId, ActivityHubDeviceCategory activityHubDeviceCategory, int event) {
 		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + event);
 		
-		// TODO create context event!
-		// from which sensor is this event ??
+//		ActivityHubDriver driver = this.driverList.get(deviceId);
 		
+		// TODO create context event!
+		// create semantic representation of event
+		
+		// Use a factory for creation of ISO-SENSOR
+		// switch on activityHubDeviceCategory
+		// create URI with trailing deviceId
+
+		// create appropriate event
+		
+		// create RDF-triple
 		
 	}
 

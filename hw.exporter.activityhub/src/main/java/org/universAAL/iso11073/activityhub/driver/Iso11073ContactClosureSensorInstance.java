@@ -62,10 +62,17 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 		
 		ContactClosureSensor ccs = (ContactClosureSensor) this.context.getService(reference);
 		
-		// register driver in client driverList
-		// MAIN FUNCTION HERE !!!
-		this.setDevice(ccs);
-
+		/** now couple my driver to the device */
+		if ( this.setDevice(ccs) )
+			this.logger.log(LogService.LOG_INFO, "Successfully coupled " + Iso11073ContactClosureSensor.MY_DEVICE_CATEGORY 
+					+ " driver to device " + this.device.getDeviceId());
+		else {
+			this.logger.log(LogService.LOG_ERROR, "Error coupling " + Iso11073ContactClosureSensor.MY_DEVICE_CATEGORY
+					+ " driver to device " + this.device.getDeviceId() + ". No appropriate " +
+					"ISO device created!");
+			return null;
+		}
+		
 		//return null; JavaDoc: @return The service object to be tracked for the ServiceReference object or null if the ServiceReference object should not be tracked.
 		return ccs;
 	}
@@ -101,7 +108,7 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 				ContactClosureSensorEvent.getContactClosureSensorEvent(event).toString());
 
 		try {
-			this.client.incomingSensorEvent(event);
+			this.client.incomingSensorEvent(this.device.getDeviceId(), this.device.getDeviceCategory(), event);
 		} catch (AssertionError ae) {
 			this.logger.log(LogService.LOG_ERROR, "No suitable ContactClosureSensorEvent found " +
 					"for value: " +	event);

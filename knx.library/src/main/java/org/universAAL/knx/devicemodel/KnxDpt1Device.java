@@ -18,10 +18,14 @@ public class KnxDpt1Device extends KnxDevice implements KnxDpt1 {
 
 	@Override
 	public void newMessageFromHouse(String deviceAddress, byte event) {
-		this.logger.log(LogService.LOG_INFO, "Device " + this.getDeviceId() + " got event: " + event);
+		this.logger.log(LogService.LOG_INFO, "Device " + this.getDeviceId() + " got event: " + 
+				String.format("%02X", event));
 
-		// TODO apply here encoding/decoding rules from KnxDpt1 IF ?? 
-		this.driver.newMessageFromKnxBus(event);
+		if ( this.driver !=null )
+			this.driver.newMessageFromKnxBus(event);
+		else
+			this.logger.log(LogService.LOG_WARNING, "No driver for device " + this.getDeviceId() + 
+					" coupled! Cannot forward knx message!");
 	}
 
 	/* (non-Javadoc)

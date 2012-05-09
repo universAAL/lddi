@@ -154,13 +154,13 @@
 		</dependency>
 		
 		
-	<!-- uAAL artifacts LDDI --><!--
+	<!-- uAAL artifacts LDDI -->
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.activityhub</artifactId>
-			<version>0.0.4</version>
+			<version>0.0.5</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>smp.activityhub.server</artifactId>
 			<version>0.0.4</version>
@@ -169,9 +169,9 @@
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>smp.activityhub.client</artifactId>
 			<version>0.0.1</version>
-		</dependency>
+		</dependency>-->
 
-		--><dependency>
+		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.library</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
@@ -191,12 +191,12 @@
 			<artifactId>knx.dpt1refinementdriver.iso11073</artifactId>
 			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
-		<!--<dependency>
+		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>hw.exporter.activityhub</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
-		--><dependency>
+		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.devicemanager</artifactId>
 			<version>0.0.3-SNAPSHOT</version>

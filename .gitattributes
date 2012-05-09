@@ -6,6 +6,13 @@ hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/Act
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/ActivityHubServiceProvider.java -text
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/util/LogTracker.java -text
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/knx/devices/listeners/PresenceDetectorListener.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/iso11073/activityhub/driver/ActivityHubDriverManager.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073ContactClosureSensorDriver.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073ContactClosureSensorInstance.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073MotionSensorDriver.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073MotionSensorInstance.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073SwitchSensorDriver.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073SwitchSensorInstance.java -text
 hw.exporter.zigbee.ha/LICENSE -text
 hw.exporter.zigbee.ha/NOTICE -text
 hw.exporter.zigbee.ha/pom.xml -text
@@ -38,13 +45,6 @@ iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/M
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/MotionSensorEvent.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/SwitchSensor.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/SwitchSensorEvent.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/ActivityHubDriverManager.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073ContactClosureSensorDriver.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073ContactClosureSensorInstance.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073MotionSensorDriver.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073MotionSensorInstance.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073SwitchSensorDriver.java -text
-iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/Iso11073SwitchSensorInstance.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/interfaces/ActivityHubDriver.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/interfaces/ActivityHubDriverClient.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/interfaces/IActivityHubActuator.java -text

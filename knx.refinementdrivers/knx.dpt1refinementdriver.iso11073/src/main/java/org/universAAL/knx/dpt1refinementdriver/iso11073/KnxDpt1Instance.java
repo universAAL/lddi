@@ -171,11 +171,11 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 		if (this.activityHubSensor != null){
 		
 			if ( event == DEFAULT_VALUE_OFF ) {
-				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_FALSE_VALUE");
+				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_VALUE_OFF");
 				this.activityHubSensor.setSensorEventOff();
 			} else if ( event == DEFAULT_VALUE_ON ) {
-				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_TRUE_VALUE");
-				this.activityHubSensor.setSensorEventOff();
+				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_VALUE_ON");
+				this.activityHubSensor.setSensorEventOn();
 			} else {
 				this.logger.log(LogService.LOG_ERROR, "No matches on incoming Event " + Integer.toHexString(event) +
 						" from device " + this.device.getGroupAddress());
