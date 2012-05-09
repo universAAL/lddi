@@ -5,24 +5,25 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.iso11073.activityhub.devicecategory.Iso11073SwitchSensor;
-import org.universAAL.iso11073.activityhub.devicemodel.SwitchSensor;
-import org.universAAL.iso11073.activityhub.devicemodel.SwitchSensorEvent;
+import org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor;
+import org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
+import org.universAAL.iso11073.activityhub.devicemodel.MotionSensor;
+import org.universAAL.iso11073.activityhub.devicemodel.MotionSensorEvent;
 import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver;
 import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 
 /**
- * Working instance of the ActivityHub SwitchSensor driver.
- * Tracks on the SwitchSensor device service passed in the attach method 
- * in Iso11073SwitchSensorDriver class.
+ * Working instance of the ActivityHub MotionSensor driver.
+ * Tracks on the MotionSensor device service passed in the attach method 
+ * in Iso11073MotionSensorDriver class.
  * This instance is passed to the consuming client (e.g. uAAL exporter bundle).
- * When the SwitchSensor device service disappears, this driver is removed
+ * When the MotionSensor device service disappears, this driver is removed
  * from the consuming client and from the device.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class Iso11073SwitchSensorInstance extends ActivityHubDriver 
-	implements Iso11073SwitchSensor ,ServiceTrackerCustomizer, Constants {
+public class Iso11073MotionSensorInstance extends ActivityHubDriver 
+	implements Iso11073MotionSensor ,ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
 	private LogService logger;
@@ -32,7 +33,7 @@ public class Iso11073SwitchSensorInstance extends ActivityHubDriver
 	 * @param sr Service reference of ISO device
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
-	public Iso11073SwitchSensorInstance(BundleContext c, 
+	public Iso11073MotionSensorInstance(BundleContext c,
 			ActivityHubDriverClient client, LogService log) {
 		super(client);
 
@@ -40,20 +41,26 @@ public class Iso11073SwitchSensorInstance extends ActivityHubDriver
 		this.logger=log;
 	}
 
-
 	/* (non-Javadoc)
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.framework.ServiceReference)
 	 */
 	public Object addingService(ServiceReference reference) {
 		
-		SwitchSensor ss = (SwitchSensor) this.context.getService(reference);
+		MotionSensor ms = (MotionSensor) this.context.getService(reference);
 		
-		// register driver in client driverList
-		// MAIN FUNCTION HERE !!!
-		this.setDevice(ss);
+		/** now couple my driver to the device */
+		if ( this.setDevice(ms) )
+			this.logger.log(LogService.LOG_INFO, "Successfully coupled " + Iso11073MotionSensor.MY_DEVICE_CATEGORY 
+					+ " driver to device " + this.device.getDeviceId());
+		else {
+			this.logger.log(LogService.LOG_ERROR, "Error coupling " + Iso11073MotionSensor.MY_DEVICE_CATEGORY
+					+ " driver to device " + this.device.getDeviceId() + ". No appropriate " +
+					"ISO device created!");
+			return null;
+		}
 
 		//return null; JavaDoc: @return The service object to be tracked for the ServiceReference object or null if the ServiceReference object should not be tracked.
-		return ss;
+		return ms;
 	}
 
 	/* (non-Javadoc)
@@ -61,7 +68,7 @@ public class Iso11073SwitchSensorInstance extends ActivityHubDriver
 	 */
 	public void modifiedService(ServiceReference reference, Object service) {
 		this.logger.log(LogService.LOG_INFO, "Tracked ActivityHub device service was modified. " +
-				"Going to update the Iso11073SwitchSensorInstance");
+				"Going to update the Iso11073MotionSensorInstance");
 		removedService(reference, service);
 		addingService(reference);		
 	}
@@ -76,6 +83,22 @@ public class Iso11073SwitchSensorInstance extends ActivityHubDriver
 		this.removeDriver();		
 	}
 
+	/**
+	 * forward event to client
+	 */
+	public void incomingSensorEvent(int event) {
+		this.logger.log(LogService.LOG_INFO, "Driver " + Iso11073MotionSensor.MY_DEVICE_CATEGORY +
+				" for device " + this.device.getDeviceId() + " received new event " + 
+				MotionSensorEvent.getMotionSensorEvent(event).toString());
+
+		try {
+			this.client.incomingSensorEvent(this.device.getDeviceId(), this.device.getDeviceCategory(), event);
+		} catch (AssertionError ae) {
+			this.logger.log(LogService.LOG_ERROR, "No suitable MotionSensorEvent found " +
+					"for value: " +	event);
+			ae.printStackTrace();
+		}
+	}
 
 	/* (non-Javadoc)
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#getLastSensorEvent()
@@ -83,21 +106,6 @@ public class Iso11073SwitchSensorInstance extends ActivityHubDriver
 	@Override
 	public int getLastSensorEvent() {
 		return this.device.getSensorEventValue();
-	}
-
-
-	public void incomingSensorEvent(int event) {
-		this.logger.log(LogService.LOG_INFO, "Driver " + Iso11073SwitchSensor.MY_DEVICE_CATEGORY +
-				" for device " + this.device.getDeviceId() + " received new event " + 
-				SwitchSensorEvent.getSwitchSensorEvent(event).toString());
-
-		try {
-			this.client.incomingSensorEvent(event);
-		} catch (AssertionError ae) {
-			this.logger.log(LogService.LOG_ERROR, "No suitable SwitchSensorEvent found " +
-					"for value: " +	event);
-			ae.printStackTrace();
-		}		
 	}
 
 }

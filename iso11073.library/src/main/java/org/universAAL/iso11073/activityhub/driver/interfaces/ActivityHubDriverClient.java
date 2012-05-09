@@ -5,7 +5,7 @@ import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCateg
 
 
 /**
- * 
+ * Applications using ActivityHubDriver should implement this IF to get event messages
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface ActivityHubDriverClient {
@@ -16,7 +16,8 @@ public interface ActivityHubDriverClient {
 	public LogService getLogger();
 	
 	/**
+	 * get event message from underlying devices
 	 * @param event
 	 */
-	public void incomingSensorEvent(int event);
+	public void incomingSensorEvent(String deviceId, ActivityHubDeviceCategory activityHubDeviceCategory, int event);
 }
