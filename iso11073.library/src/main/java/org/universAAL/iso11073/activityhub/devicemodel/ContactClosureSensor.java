@@ -61,14 +61,14 @@ public class ContactClosureSensor extends ActivityHubSensor implements Iso11073C
 
 	@Override
 	public void setSensorEventOff() {
-		this.lastSensorEvent = ContactClosureSensorEvent.CONTACT_CLOSED;
-		this.sendEvent(ContactClosureSensorEvent.CONTACT_CLOSED.value());
+		this.lastSensorEvent = ContactClosureSensorEvent.CONTACT_OPENED;
+		this.sendEvent(ContactClosureSensorEvent.CONTACT_OPENED.value());
 	}
 
 	@Override
 	public void setSensorEventOn() {
-		this.lastSensorEvent = ContactClosureSensorEvent.CONTACT_OPENED;
-		this.sendEvent(ContactClosureSensorEvent.CONTACT_OPENED.value());
+		this.lastSensorEvent = ContactClosureSensorEvent.CONTACT_CLOSED;
+		this.sendEvent(ContactClosureSensorEvent.CONTACT_CLOSED.value());
 	}
 
 	public void incomingSensorEvent(int event) {

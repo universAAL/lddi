@@ -97,6 +97,12 @@ implements Runnable
 				System.arraycopy(temp, 9, knxPacket, 0, l);
 				
 				KnxTelegram telegram = KnxEncoder.decode(knxPacket);
+				if (telegram == null) {
+					core.getLogger().log(LogService.LOG_WARNING,"\n--- Incoming COMMAND FROM KNX bus is not valid " +
+							"and will not be processed! --- " + 
+							udpPacket.getAddress().toString()+" BYTEs "+KnxWriter.byteArrayToHexString(temp));
+					continue;
+				}
 				String groupAddress = KnxEncoder.getGroupAddress(telegram.getDestByte());
 
 				core.getLogger().log(LogService.LOG_INFO,"KNX telegram received (" + knxPacket.length +
