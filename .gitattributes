@@ -2,6 +2,7 @@
 hw.exporter.activityhub/pom.xml -text
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/Activator.java -text
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/ActivityHubBusServer.java -text
+hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/ActivityHubContextProvider.java -text
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/ActivityHubServiceOntology.java -text
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/ActivityHubServiceProvider.java -text
 hw.exporter.activityhub/src/main/java/org/universAAL/hw/exporter/activityhub/util/LogTracker.java -text
