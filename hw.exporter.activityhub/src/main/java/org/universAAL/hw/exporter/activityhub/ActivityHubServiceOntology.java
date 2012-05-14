@@ -1,5 +1,8 @@
 package org.universAAL.hw.exporter.activityhub;
 
+import java.util.Hashtable;
+
+import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.SimpleOntology;
 import org.universAAL.middleware.rdf.Resource;
@@ -26,11 +29,21 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 	public static final String MY_URI =	
 		ACTIVITYHUB_SERVER_NAMESPACE + "ActivityHubService";
 
+	public static final String DEVICE_URI_PREFIX = 
+    	ActivityHubServiceOntology.ACTIVITYHUB_SERVER_NAMESPACE + 
+    	"controlledActivityHubDevice";
+
 	// define service URIs
+	static final String SERVICE_GET_CONTROLLED_ACTIVITYHUB_SENSORS =
+		ACTIVITYHUB_SERVER_NAMESPACE + "getControlledActivityHubSensors";
+	
 	static final String SERVICE_GET_ACTIVITYHUB_SENSOR_INFO = 
 		ACTIVITYHUB_SERVER_NAMESPACE + "getActivityHubSensorInfo";
 
 	// define service parameter URIs
+	static final String OUTPUT_CONTROLLED_ACTIVITYHUB_SENSORS =
+		ACTIVITYHUB_SERVER_NAMESPACE + "controlledActivityHubSensors";
+	
     static final String INPUT_SENSOR_URI = 
     	ACTIVITYHUB_SERVER_NAMESPACE + "deviceURI";
 
@@ -42,12 +55,14 @@ public class ActivityHubServiceOntology  extends ActivityHub {
     
     
 	// declaration of uaal bus service profiles
-    static final ServiceProfile[] profiles = new ServiceProfile[1];
+    static final ServiceProfile[] profiles = new ServiceProfile[2];
 
-    
+    private static Hashtable serverLightingRestrictions = new Hashtable();
 
-	/** we need to register all classes in the ontology for the serialization of 
-	 * the object */
+
+	/** 
+	 * we need to register all classes in the ontology for the serialization of the object 
+	 */
     static {
 		OntologyManagement.getInstance().register(
 				new SimpleOntology(MY_URI, ActivityHub.MY_URI,
@@ -60,11 +75,55 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 				})
 		);
 
-		/**
-		 * create the service description #1 to be registered with the service
-		 * bus
+		/** 
+		 * Help structures to define property paths used more than once below
 		 */
+		String[] ppControls = new String[] { ActivityHub.PROP_CONTROLS };
+//		String[] ppBrightness = new String[] { Lighting.PROP_CONTROLS,
+//			LightSource.PROP_SOURCE_BRIGHTNESS };
 
+		
+		// Copied/refactored from smp.lighting.server !! don't know if this MUST be done !?
+		/**
+		 * class-level restrictions"
+		 */
+		// that are inherent to the underlying service component (ActivityHubBusServer)
+
+		// Before adding our own restrictions, we first "inherit" the
+		// restrictions defined by the superclass
+		addRestriction((MergedRestriction) ActivityHub.getClassRestrictionsOnProperty(
+				ActivityHub.MY_URI, ActivityHub.PROP_CONTROLS).copy(),
+				ppControls, serverLightingRestrictions);
+		
+		// ActivityHub controls ActivityHubSensors
+		addRestriction(MergedRestriction.getAllValuesRestriction(
+				ActivityHub.PROP_CONTROLS, ActivityHubSensor.MY_URI), 
+				ppControls, serverLightingRestrictions);
+		
+		/**
+		 * create the service description #1 to be registered with the service bus
+		 */
+		// Create the service-object for retrieving the controlled light bulbs
+		ActivityHubServiceOntology getControlledActivityHubSensors = new ActivityHubServiceOntology(
+			SERVICE_GET_CONTROLLED_ACTIVITYHUB_SENSORS);
+		// Add an output with the given URI (parameter #1) and the following
+		// additional info to the service-profile:
+		// - it delivers an indefinite number (parameters #3 & #4) of
+		//   ActivityHubSensor (parameter #2) objects
+		// - that are those controlled by this class of services (parameter #5)
+		// Note that because no filtering has been defined, the output will
+		// contain all of the controlled ActivityHub Sensors
+		getControlledActivityHubSensors.addOutput(OUTPUT_CONTROLLED_ACTIVITYHUB_SENSORS,
+			ActivityHubSensor.MY_URI, 0, 0, ppControls);
+		
+		// we are finished and can add this profile to the list of service
+		// profiles to be registered with the service bus
+		profiles[0] = getControlledActivityHubSensors.myProfile;
+
+		
+		/**
+		 * create the service description #2 to be registered with the service bus
+		 */
 		// Create the service-object for retrieving info about the location and
 		// state of one specific ActivityHub device
 		ActivityHubServiceOntology getActivityHubSensorInfo = new ActivityHubServiceOntology(
@@ -106,7 +165,7 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 				new String[] { ActivityHub.PROP_CONTROLS, PhysicalThing.PROP_PHYSICAL_LOCATION });
 		// we are finished and can add this profile to the list of service
 		// profiles to be registered with the service bus
-		profiles[0] = getActivityHubSensorInfo.myProfile;
+		profiles[1] = getActivityHubSensorInfo.myProfile;
 
 	}
 
