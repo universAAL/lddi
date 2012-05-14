@@ -24,6 +24,7 @@ public class Activator implements BundleActivator {
     public static ModuleContext moduleContext = null;
     private ActivityHubBusServer busServer;
     private ActivityHubServiceProvider serviceProvider;
+    private ActivityHubContextProvider contextProvider;
     private LogTracker logTracker;
 	private Thread thread;
 
@@ -59,7 +60,8 @@ public class Activator implements BundleActivator {
 		public MyThread() {
 		}
 		public void run() {
-			serviceProvider = new ActivityHubServiceProvider(moduleContext, busServer);			
+			serviceProvider = new ActivityHubServiceProvider(moduleContext, busServer);
+			contextProvider = new ActivityHubContextProvider(moduleContext, busServer);
 		}
 	}
 }
