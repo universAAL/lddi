@@ -9,7 +9,7 @@ import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 /**
  * This bundle listens for ActivityHub device services (OSGi registry) 
- * and provides access to them by registering services in the uAAL service bus.
+ * and provides access to them by offering/registering services on the uAAL service bus.
  * 
  * Creates context patterns and handles context events (uAAL context bus)
  * for those devices.

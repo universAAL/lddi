@@ -28,21 +28,31 @@ public abstract class ActivityHubDeviceCategoryUtil {
      * device category format from ISO 11073-10471 Nomenclature
      */
     public enum ActivityHubDeviceCategory {
-    	MDC_AI_TYPE_SENSOR_FALL,
-    	MDC_AI_TYPE_SENSOR_PERS,
-    	MDC_AI_TYPE_SENSOR_SMOKE,
-    	MDC_AI_TYPE_SENSOR_CO,
-    	MDC_AI_TYPE_SENSOR_WATER,
-    	MDC_AI_TYPE_SENSOR_GAS,
-    	MDC_AI_TYPE_SENSOR_MOTION,
-    	MDC_AI_TYPE_SENSOR_PROPEXIT,
-    	MDC_AI_TYPE_SENSOR_ENURESIS,
-    	MDC_AI_TYPE_SENSOR_CONTACTCLOSURE,
-    	MDC_AI_TYPE_SENSOR_USAGE,
-    	MDC_AI_TYPE_SENSOR_SWITCH,
-    	MDC_AI_TYPE_SENSOR_DOSAGE,
-    	MDC_AI_TYPE_SENSOR_TEMP
+    	MDC_AI_TYPE_SENSOR_FALL(1),
+    	MDC_AI_TYPE_SENSOR_PERS(2),
+    	MDC_AI_TYPE_SENSOR_SMOKE(3),
+    	MDC_AI_TYPE_SENSOR_CO(4),
+    	MDC_AI_TYPE_SENSOR_WATER(5),
+    	MDC_AI_TYPE_SENSOR_GAS(6),
+    	MDC_AI_TYPE_SENSOR_MOTION(7),
+    	MDC_AI_TYPE_SENSOR_PROPEXIT(8),
+    	MDC_AI_TYPE_SENSOR_ENURESIS(9),
+    	MDC_AI_TYPE_SENSOR_CONTACTCLOSURE(10),
+    	MDC_AI_TYPE_SENSOR_USAGE(11),
+    	MDC_AI_TYPE_SENSOR_SWITCH(12),
+    	MDC_AI_TYPE_SENSOR_DOSAGE(13),
+    	MDC_AI_TYPE_SENSOR_TEMP(14);
 
+    	private int typecode;
+    	
+    	private ActivityHubDeviceCategory(int typecode) {
+    		this.typecode = typecode;
+    	}
+    	
+    	public int getTypeCode() {
+    		return typecode;
+    	}
+    	
     	//	ISO11073_CONTACTCLOSURESENSOR,
     	//	ISO11073_MOTIONSENSOR,
     	//	ISO11073_SWITCHSENSOR

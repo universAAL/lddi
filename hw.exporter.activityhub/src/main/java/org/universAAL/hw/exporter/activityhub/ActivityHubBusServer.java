@@ -1,8 +1,11 @@
 package org.universAAL.hw.exporter.activityhub;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
@@ -40,8 +43,11 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 */
 	private Hashtable<String, ActivityHubDriver> driverList;
 	
-	
+    private ArrayList<ActivityHubContextProvider> listeners = new ArrayList<ActivityHubContextProvider>();
+
+    
 	/**
+	 * constructor
 	 * @param context
 	 */
 	public ActivityHubBusServer(BundleContext context, LogService logger) {
@@ -71,6 +77,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 		synchronized(this.driverList)
 		{
 			oldDriver = this.driverList.put(deviceId, activityHubDriver);
+			int i = activityHubDriver.getDevice().getDeviceCategory().getTypeCode();
 		}
 		if ( oldDriver != null ){
 			this.logger.log(LogService.LOG_WARNING, "An existing ActivityHub driver " +
@@ -99,16 +106,26 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	}
 
 	
-	/* (non-Javadoc)
+	/**
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#incomingSensorEvent(java.lang.String, byte[])
+	 * 
+	 * the correct sensor type must be identified according to the parameters
+	 * @param deviceId (e.g. knx group address 1/2/3)
+	 * @param device category (one category for each activityhub sensor type)
+	 * @param event code (sensor type dependent!)
 	 */
 	public void incomingSensorEvent(String deviceId, ActivityHubDeviceCategory activityHubDeviceCategory, int event) {
 		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + event);
 		
 //		ActivityHubDriver driver = this.driverList.get(deviceId);
 		
-		// TODO create context event!
-		// create semantic representation of event
+		// TODO create context event! not here -> contextprovider class
+		for (Iterator<ActivityHubContextProvider> i = listeners.iterator(); i.hasNext();)
+			((ActivityHubContextProvider) i.next()).activityHubSensorStateChanged(deviceId, 
+					activityHubDeviceCategory, event);
+		
+		// create semantic representation of event -> has to be done beforehand. 
+		// create context event patterns in contextprovider
 		
 		// Use a factory for creation of ISO-SENSOR
 		// switch on activityHubDeviceCategory
@@ -120,6 +137,13 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 		
 	}
 
+//	public void sendContextEvent() {
+//	    for (Iterator<ActivityHubContextProvider> i = listeners.iterator(); i.hasNext();)
+//			((ActivityHubContextProvider) i.next()).sendContextEvent();
+//	    
+//		//lampStateChanged(lampID,myLampDB[lampID].loc, false)
+//	}
+	
 
 	/* (non-Javadoc)
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#removeDriver(java.lang.String, org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver)
@@ -181,6 +205,43 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 			this.logger.log(LogService.LOG_WARNING, "No recent sensor event found for " +
 					"device: " + deviceId);
 			return -1;
+		}
+	}
+
+
+	/**
+	 * store listener for context bus connection 
+	 * @param activityHubContextProvider
+	 */
+	public void addListener(
+			ActivityHubContextProvider activityHubContextProvider) {
+		listeners.add(activityHubContextProvider);
+	}
+
+	/**
+	 * @param activityHubContextProvider
+	 */
+	public void removeListener(
+			ActivityHubContextProvider activityHubContextProvider) {
+		listeners.remove(activityHubContextProvider);
+	}
+
+
+	/**
+	 * copy deviceId(String) and ActivityHub device category(Integer) into sensorList parameter
+	 * for all available ActivityHub sensors
+	 * @param sensorList
+	 */
+	public void getActivityHubSensorList(Hashtable<String,Integer> sensorList) {
+		synchronized (driverList) {
+			synchronized (sensorList) {
+				Iterator<Entry<String,ActivityHubDriver>> it = this.driverList.entrySet().iterator();
+				while (it.hasNext()) {
+					Entry<String,ActivityHubDriver> entry = it.next();
+					sensorList.put(new String(entry.getKey()),
+							new Integer(entry.getValue().getDevice().getDeviceCategory().getTypeCode()) );
+				}
+			}
 		}
 	}
 
