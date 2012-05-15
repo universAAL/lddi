@@ -3,8 +3,6 @@ package org.universAAL.knx.devicemodel;
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
 import org.universAAL.knx.devicecategory.KnxBaseDeviceCategory;
-import org.universAAL.knx.devicecategory.KnxDpt1;
-import org.universAAL.knx.devicedriver.KnxDriver;
 import org.universAAL.knx.networkdriver.KnxNetwork;
 import org.universAAL.knx.utils.*;
 

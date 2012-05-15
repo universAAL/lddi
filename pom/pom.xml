@@ -22,12 +22,12 @@
 	<!-- ______________________________________________________ -->
 	
 	<modules>
-<!--		<module>../knx.networkdriver/</module>-->
-<!--		<module>../knx.library/</module>-->
-<!--		<module>../knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/</module>-->
-<!--		<module>../knx.devicemanager/</module>-->
-<!--		<module>../iso11073.library/</module>-->
-<!--		<module>../hw.exporter.activityhub/</module>-->
+		<module>../knx.networkdriver/</module>
+		<module>../knx.library/</module>
+		<module>../knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/</module>
+		<module>../knx.devicemanager/</module>
+		<module>../iso11073.library/</module>
+		<module>../hw.exporter.activityhub/</module>
 <!--		<module>../hw.exporter.zigbee.ha/</module>-->
 	</modules>
 

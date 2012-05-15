@@ -80,7 +80,7 @@
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.activityhub</artifactId>
-			<version>0.0.5</version>
+			<version>0.0.5-SNAPSHOT</version>
 			<type>bundle</type>
 			<scope>compile</scope>
 		</dependency>
