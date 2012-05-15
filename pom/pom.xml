@@ -55,11 +55,11 @@
 				<scope>import</scope>
 			</dependency>
 			<!-- ADD all Modules as Dependencies to be imported all at once -->
-			<dependency>
+<!-- 			<dependency>
 				<groupId>org.universAAL.lddi</groupId>
 				<artifactId>hw.exporter.zigbee.ha</artifactId>
 				<version>1.0.1-SNAPSHOT</version>
-			</dependency>
+			</dependency> -->
 			<!-- <dependency> <groupId>org.universAAL.support</groupId> <artifactId>itests</artifactId> 
 				<version>1.0.1-SNAPSHOT</version> <scope>test</scope> </dependency> -->
 		</dependencies>

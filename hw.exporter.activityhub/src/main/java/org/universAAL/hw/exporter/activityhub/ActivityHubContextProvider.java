@@ -3,6 +3,7 @@ package org.universAAL.hw.exporter.activityhub;
 import org.osgi.service.log.LogService;
 import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.ContextPublisher;
@@ -72,21 +73,22 @@ public class ActivityHubContextProvider {
     				ActivityHubSensor.PROP_MEASURED_VALUE);
 
     	// the reported value will always be of type ActivityHubSensorEvent
-    	MergedRestriction objectRestriction = MergedRestriction
-    		.getAllValuesRestrictionWithCardinality(
-    			ContextEvent.PROP_RDF_OBJECT, 
-    			new TypeURI(ActivityHubSensorEvent.MY_URI, false)
-    			, 1, 1);
+//    	MergedRestriction objectRestriction = MergedRestriction
+//    		.getAllValuesRestrictionWithCardinality(
+//    			ContextEvent.PROP_RDF_OBJECT, 
+//    			new TypeURI(ActivityHubSensorEvent.MY_URI, false)
+//    			, 1, 1);
     	
     	ContextEventPattern cep1 = new ContextEventPattern();
     	cep1.addRestriction(subjectRestriction);
     	cep1.addRestriction(predicateRestriction);
-    	cep1.addRestriction(objectRestriction);
+//    	cep1.addRestriction(objectRestriction);
     	
     	//ContextEventPattern cep2 = new ContextEventPattern();
     	// do we need another pattern?
+    	ContextEventPattern cep2 = new ContextEventPattern();
 
-		return new ContextEventPattern[] { cep1 };
+		return new ContextEventPattern[] { cep1, cep2 };
     }
     
     public void activityHubSensorStateChanged(String deviceId, 
@@ -121,6 +123,9 @@ public class ActivityHubContextProvider {
     	
 		// create appropriate event
 
+    	LogUtils.logInfo(Activator.moduleContext, ActivityHubContextProvider.class,
+			"activityHubSensorStateChanged", new Object[] { "publishing a context event on the state of a " +
+					"activityhub sensor!" }, null);
     	
     	// finally create an context event and publish it with the ActivityHubSensor
     	// as subject and the property that changed as predicate

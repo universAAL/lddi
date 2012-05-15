@@ -86,14 +86,14 @@
 			<artifactId>org.osgi.compendium</artifactId>
 			<version>4.2.0</version>
 		</dependency>
- 
-<!-- 		<dependency>
+ 		<!--  Devicemanager and upnp driver need different compendium versions -->
+ 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>osgi_R4_compendium</artifactId>
 			<version>1.0</version>
 			<scope>compile</scope>
 		</dependency>
- -->		<!--dependency>
+		<!--dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.osgi.compendium</artifactId>
 			<version>1.4.0</version>
@@ -204,7 +204,7 @@
 		
 		
 	<!-- uAAL samples -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.lighting</artifactId>
 			<version>1.1.0</version>
@@ -218,7 +218,7 @@
 			<groupId>org.universAAL.samples</groupId>
 			<artifactId>smp.lighting.client</artifactId>
 			<version>1.1.0</version>
-		</dependency>
+		</dependency> -->
 		
 	<!-- uAAL Middleware -->
 			<dependency>
