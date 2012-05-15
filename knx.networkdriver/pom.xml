@@ -87,8 +87,7 @@
 						<Bundle-Activator>it.polito.elite.domotics.dog2.knxnetworkdriver.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Export-Package>it.polito.elite.domotics.dog2.knxnetworkdriver,
-										it.polito.elite.domotics.dog2.knxnetworkdriver.interfaces</Export-Package>
+						<Export-Package>it.polito.elite.domotics.dog2.knxnetworkdriver</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
