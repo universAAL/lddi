@@ -89,6 +89,18 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 			// fetch data from my server
 			theServer.getActivityHubSensorList(sensorList);
 
+//			LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class,
+//					"getControlledActivityHubSensors",
+//					new Object[] { "sensorList size: " + sensorList.size() }, null);
+			
+			// return if no sensors available
+			if (sensorList.size() == 0) {
+				ServiceResponse errorResponse = new ServiceResponse(CallStatus.serviceSpecificFailure);
+				errorResponse.addOutput(new ProcessOutput(
+		    			ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "No ActivityHub Sensors available!"));
+				return errorResponse;
+			}
+			
 			// prepare array for service output
 			ArrayList activityHubSensorList = new ArrayList(sensorList.size());
 
@@ -104,6 +116,11 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 
 				this.logger.log(LogService.LOG_INFO, "ActivityHubSensor URI: " + ahs.getURI() +
 						" sensorType: " + ahs.getSensorType());
+				
+//				LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class,
+//						"getControlledActivityHubSensors",
+//						new Object[] { "ActivityHubSensor URI: " + ahs.getURI() +
+//							" sensorType: " + ahs.getSensorType() }, null);
 				
 				activityHubSensorList.add(ahs);
 			}
