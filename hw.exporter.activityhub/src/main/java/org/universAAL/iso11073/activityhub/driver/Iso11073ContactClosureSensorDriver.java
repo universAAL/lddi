@@ -79,11 +79,16 @@ public class Iso11073ContactClosureSensorDriver implements Driver {
 	public int match(ServiceReference reference) throws Exception {
 		// reference = device service
 		int matchValue=Device.MATCH_NONE;
-		String deviceCategory=(String)reference.getProperty(Constants.DEVICE_CATEGORY);
-		// more possible properties to match: description, serial, id
+		try {
+			String deviceCategory=(String)reference.getProperty(Constants.DEVICE_CATEGORY);
+			// more possible properties to match: description, serial, id
 
-		if ( deviceCategory.equals(Iso11073ContactClosureSensor.MY_DEVICE_CATEGORY) ) {
-			matchValue = Iso11073ContactClosureSensor.MATCH_CLASS;
+			if ( deviceCategory.equals(Iso11073ContactClosureSensor.MY_DEVICE_CATEGORY) ) {
+				matchValue = Iso11073ContactClosureSensor.MATCH_CLASS;
+			}
+		} catch (ClassCastException e) {
+			this.logger.log(LogService.LOG_WARNING, "Could not cast DEVICE_CATEGORY of requesting" +
+			" device to String. No match!");
 		}
 		return matchValue; //must be > 0 to match
 	}
