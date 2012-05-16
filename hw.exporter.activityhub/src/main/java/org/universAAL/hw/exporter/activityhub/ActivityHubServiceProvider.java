@@ -256,9 +256,12 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 		
 		/** following operations all need input value */
 		Object input = call.getInputValue(ActivityHubServiceOntology.INPUT_SENSOR_URI);
-		if (input == null) return null;
+		if (input == null) {
+			this.logger.log(LogService.LOG_WARNING, "Incoming call but input is missing!");
+			return invalidInput;
+		}
 
-		this.logger.log(LogService.LOG_INFO, "incoming call for: " + input.toString());
+		this.logger.log(LogService.LOG_INFO, "Incoming call for: " + input.toString());
 
 		if (operation
 			.startsWith(ActivityHubServiceOntology.SERVICE_GET_ACTIVITYHUB_SENSOR_INFO)) {

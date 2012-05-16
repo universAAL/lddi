@@ -182,11 +182,16 @@ public class KnxDpt1RefinementDriver implements Driver
 	public int match(ServiceReference reference) throws Exception {
 		// reference = device service
 		int matchValue=Device.MATCH_NONE;
-		String deviceCategory=(String)reference.getProperty(Constants.DEVICE_CATEGORY);
-		// more possible properties to match: description, serial, id
+		try {
+			String deviceCategory=(String)reference.getProperty(Constants.DEVICE_CATEGORY);
+			// more possible properties to match: description, serial, id
 
-		if ( deviceCategory.equals(MY_KNX_DEVICE_CATEGORY) ) {
-			matchValue = KnxDpt1.MATCH_CLASS;
+			if ( deviceCategory.equals(MY_KNX_DEVICE_CATEGORY) ) {
+				matchValue = KnxDpt1.MATCH_CLASS;
+			}
+		} catch (ClassCastException e) {
+			this.logger.log(LogService.LOG_WARNING, "Could not cast DEVICE_CATEGORY of requesting" +
+					" device to String. No match!");
 		}
 		return matchValue; //must be > 0 to match
 	}
