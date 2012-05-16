@@ -91,25 +91,4 @@ knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/univer
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
-lddi.testing.frameworks/knx.framework/Unterschiede[!!-~]zur[!!-~]Lighting[!!-~]Pax[!!-~]Config.txt -text
-lddi.testing.frameworks/knx.framework/conf/all.policy -text
-lddi.testing.frameworks/knx.framework/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
-lddi.testing.frameworks/knx.framework/conf/felix.client.run.properties -text
-lddi.testing.frameworks/knx.framework/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
-lddi.testing.frameworks/knx.framework/conf/services/knx.devicemanager.properties -text
-lddi.testing.frameworks/knx.framework/conf/services/knx.networkdriver.properties -text
-lddi.testing.frameworks/knx.framework/conf/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
-lddi.testing.frameworks/knx.framework/conf/services/org.ops4j.pax.logging.properties -text
-lddi.testing.frameworks/knx.framework/conf/services/org.universAAL.mw.data.representation.properties -text
-lddi.testing.frameworks/knx.framework/data/OfficeProject2.knxproj -text
-lddi.testing.frameworks/knx.framework/data/OfficeProject3.knxproj -text
-lddi.testing.frameworks/knx.framework/ext/install_3rd_party_jars_to_maven_repo.bat -text
-lddi.testing.frameworks/knx.framework/ext/jce.jdk13-144.jar -text
-lddi.testing.frameworks/knx.framework/ext/jgcl-1.0.jar -text
-lddi.testing.frameworks/knx.framework/ext/jmxri.jar -text
-lddi.testing.frameworks/knx.framework/ext/jmxtools.jar -text
-lddi.testing.frameworks/knx.framework/ext/org.apache.felix.devicemanager-0.9.0-SNAPSHOT.jar -text
-lddi.testing.frameworks/knx.framework/ext/org.ops4j.pax.configmanager_0.2.2.jar -text
-lddi.testing.frameworks/knx.framework/pom.xml -text
-lddi.testing.frameworks/knx.framework/run.bat -text
 pom/pom.xml -text
