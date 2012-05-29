@@ -10,7 +10,6 @@ import org.universAAL.middleware.rdf.impl.ResourceFactoryImpl;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.activityhub.ActivityHub;
 import org.universAAL.ontology.activityhub.ActivityHubSensor;
-import org.universAAL.ontology.activityhub.ActivityHubSensorEvent;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
 
@@ -79,8 +78,8 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 		 * Help structures to define property paths used more than once below
 		 */
 		String[] ppControls = new String[] { ActivityHub.PROP_CONTROLS };
-//		String[] ppLocation = new String[] { ActivityHub.PROP_CONTROLS, 
-//				ActivityHubSensor.PROP_PHYSICAL_LOCATION };
+		String[] ppLocation = new String[] { ActivityHub.PROP_CONTROLS, 
+				PhysicalThing.PROP_PHYSICAL_LOCATION };
 
 		
 		// Copied/refactored from smp.lighting.server !! don't know if this MUST be done !?
@@ -99,6 +98,11 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 		addRestriction(MergedRestriction.getAllValuesRestriction(
 				ActivityHub.PROP_CONTROLS, ActivityHubSensor.MY_URI), 
 				ppControls, serverLightingRestrictions);
+		
+		// obwohl PROP_CONTROLS vom Typ ActivityHubSensor sein muss
+		// kommen auch die getSensorInfo requests rein -> ist aber ne Instance Restriction
+		// InstanceRestrictions sind ansch. vom Konzept her klar getrennt zu TypeRestrictions
+		
 		
 		/**
 		 * create the service description #1 to be registered with the service bus
@@ -140,11 +144,23 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 		// objects addressed by 'ppControls' only those are selected that have
 		// the same identity as the value passed for this input parameter
 		
+		// next try
+		// now we expect the real sensor type as input (e.g. from type MotionSensor) 
+		getActivityHubSensorInfo.addFilteringInput(INPUT_SENSOR_URI, ActivityHubSensor.MY_URI, 1, 1,
+				ppControls);
 		
 		//kann ich hier den wirklichen sensor ermitteln???
 //		getActivityHubSensorInfo.addFilteringInput(INPUT_SENSOR_URI, 
-//				ActivityHubSensor.MY_URI, 1, 1,  new String[] { ActivityHub.PROP_CONTROLS });
+////				ActivityHubSensor.MY_URI, 
+//				TypeMapper.getDatatypeURI(String.class),
+//				1, 1, ppControls);
 		
+		
+		// Als input kommt die konkrete deviceURI - ist ev. eine InstanceLevelRestriction
+//		getActivityHubSensorInfo.addInstanceLevelRestriction(
+//				MergedRestriction.getAllValuesRestriction(INPUT_SENSOR_URI,
+//						TypeMapper.getDatatypeURI(String.class))
+//				, ppControls);
 		
 		//if ( )
 		
@@ -161,8 +177,9 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 		// input parameter); this info will be a single (parameters #3 & #4)
 		// object of type Location (parameter #2) that is assigned to an output
 		// parameter identifiable by the given URI (parameter 1)
-		getActivityHubSensorInfo.addOutput(OUTPUT_SENSOR_LOCATION, Location.MY_URI, 1, 1,
-				new String[] { ActivityHub.PROP_CONTROLS, PhysicalThing.PROP_PHYSICAL_LOCATION });
+		getActivityHubSensorInfo.addOutput(OUTPUT_SENSOR_LOCATION,
+				Location.MY_URI, 1, 1, ppLocation);
+		
 		// we are finished and can add this profile to the list of service
 		// profiles to be registered with the service bus
 		profiles[1] = getActivityHubSensorInfo.myProfile;

@@ -175,6 +175,9 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 		if ( loc == null ) {
 			this.logger.log(LogService.LOG_WARNING, "No location specified for " +
 					"device: " + deviceId);
+		} else {
+			this.logger.log(LogService.LOG_INFO, "Location for " +
+					"device: " + deviceId + ": " + loc.toString());
 		}
 		return loc;
 	}
@@ -185,6 +188,8 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 * @return
 	 */
 	public boolean validateDevice(String deviceId) {
+		this.logger.log(LogService.LOG_INFO, "deviceIds in driverList: " + this.driverList.keySet().toString());
+		
 		if( this.driverList.get(deviceId) == null ) return false;
 		return true;
 	}
@@ -200,6 +205,8 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 		//return last incoming device event from driver instance
 		ActivityHubDriver driver = this.driverList.get(deviceId);
 		if ( driver != null ) {
+			this.logger.log(LogService.LOG_INFO, "Last sensor event found for " +
+					"device: " + deviceId + ": " + driver.getLastSensorEvent());
 			return driver.getLastSensorEvent();
 		} else {
 			this.logger.log(LogService.LOG_WARNING, "No recent sensor event found for " +

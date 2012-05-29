@@ -1,4 +1,8 @@
 package org.universAAL.iso11073.activityhub.devicecategory;
+
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
  
  /**
   * Definition of device categories from ISO 11073-10471 Nomenclature
@@ -23,7 +27,7 @@ public abstract class ActivityHubDeviceCategoryUtil {
             return null;
         }
     }
-
+    
     /**
      * device category format from ISO 11073-10471 Nomenclature
      */
@@ -45,6 +49,14 @@ public abstract class ActivityHubDeviceCategoryUtil {
 
     	private int typecode;
     	
+    	private static final Map<Integer,ActivityHubDeviceCategory> lookup = 
+    		new HashMap<Integer,ActivityHubDeviceCategory>();
+        
+    	static {
+            for(ActivityHubDeviceCategory s : EnumSet.allOf(ActivityHubDeviceCategory.class))
+                 lookup.put(s.getTypeCode(), s);
+        }
+        
     	private ActivityHubDeviceCategory(int typecode) {
     		this.typecode = typecode;
     	}
@@ -53,6 +65,10 @@ public abstract class ActivityHubDeviceCategoryUtil {
     		return typecode;
     	}
     	
+        public static ActivityHubDeviceCategory get(int code) { 
+            return lookup.get(code); 
+        }
+        
     	//	ISO11073_CONTACTCLOSURESENSOR,
     	//	ISO11073_MOTIONSENSOR,
     	//	ISO11073_SWITCHSENSOR
