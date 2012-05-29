@@ -10,6 +10,7 @@ import org.universAAL.middleware.rdf.impl.ResourceFactoryImpl;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.activityhub.ActivityHub;
 import org.universAAL.ontology.activityhub.ActivityHubSensor;
+import org.universAAL.ontology.activityhub.ActivityHubSensorEvent;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
 
@@ -46,8 +47,8 @@ public class ActivityHubServiceOntology  extends ActivityHub {
     static final String INPUT_SENSOR_URI = 
     	ACTIVITYHUB_SERVER_NAMESPACE + "deviceURI";
 
-    static final String OUTPUT_SENSOR_EVENT = 
-    	ACTIVITYHUB_SERVER_NAMESPACE + "event";
+    static final String OUTPUT_SENSOR_MEASUREMENT = 
+    	ACTIVITYHUB_SERVER_NAMESPACE + "measurement";
 
     static final String OUTPUT_SENSOR_LOCATION = 
     	ACTIVITYHUB_SERVER_NAMESPACE + "location";
@@ -144,11 +145,6 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 		// objects addressed by 'ppControls' only those are selected that have
 		// the same identity as the value passed for this input parameter
 		
-		// next try
-		// now we expect the real sensor type as input (e.g. from type MotionSensor) 
-		getActivityHubSensorInfo.addFilteringInput(INPUT_SENSOR_URI, ActivityHubSensor.MY_URI, 1, 1,
-				ppControls);
-		
 		//kann ich hier den wirklichen sensor ermitteln???
 //		getActivityHubSensorInfo.addFilteringInput(INPUT_SENSOR_URI, 
 ////				ActivityHubSensor.MY_URI, 
@@ -162,18 +158,24 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 //						TypeMapper.getDatatypeURI(String.class))
 //				, ppControls);
 		
-		//if ( )
+		// next try
+		// now we expect the real sensor type as input (e.g. from type MotionSensor) 
+		// this works!!
+		getActivityHubSensorInfo.addFilteringInput(INPUT_SENSOR_URI, ActivityHubSensor.MY_URI, 1, 1,
+				ppControls);
+		
 		
 		// one of the results of using this service is the delivery of info
-		// about the status (parameter #5) of the adaptor plug in the scope
+		// about the status (parameter #5) of the sensor in the scope
 		// (cf. the input parameter); this info will be a single (parameters #3
-		// & #4) AdaptorPlugActuatorEvent (parameter #2) that is assigned to an
+		// & #4) ActivityHubSensorEvent (parameter #2) that is assigned to an
 		// output parameter identifiable by the given URI (parameter 1)
-//		getActivityHubSensorInfo.addOutput(OUTPUT_SENSOR_EVENT, 
-//				ActivityHubSensorEvent.MY_URI, 1, 1, 
-//				new String[] { ActivityHub.PROP_CONTROLS, ActivityHubSensor.PROP_LASTEVENT });
+		getActivityHubSensorInfo.addOutput(OUTPUT_SENSOR_MEASUREMENT, 
+				ActivityHubSensorEvent.MY_URI, 1, 1, 
+				new String[] { ActivityHub.PROP_CONTROLS, ActivityHubSensor.PROP_LASTEVENT });
+		
 		// another result of using this service is the delivery of info about
-		// the location (parameter #5) of the adaptor plug in the scope (cf. the
+		// the location (parameter #5) of the sensor in the scope (cf. the
 		// input parameter); this info will be a single (parameters #3 & #4)
 		// object of type Location (parameter #2) that is assigned to an output
 		// parameter identifiable by the given URI (parameter 1)
