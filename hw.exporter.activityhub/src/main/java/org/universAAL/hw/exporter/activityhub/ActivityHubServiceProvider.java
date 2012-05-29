@@ -158,7 +158,7 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 //		this.logger.log(LogService.LOG_INFO, "Service called: getActivityHubDeviceInfo" +
 //				" for sensorURI: " + activityHubSensor.getURI());
 		
-	    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
+	    LogUtils.logDebug(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
 			    new Object[] { "Service called: getActivityHubDeviceInfo" +
 			" for sensorURI: " + activityHubSensor.getURI()},null);
 
@@ -166,7 +166,7 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 			// collect the needed data
 			String deviceId = extractLocalIDfromdeviceUri(activityHubSensor.getURI());
 			
-		    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
+		    LogUtils.logDebug(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
 				    new Object[] { "extracted deviceId: " + deviceId },null);
 
 //			this.logger.log(LogService.LOG_INFO, "extracted deviceId: " + deviceId);
@@ -207,7 +207,7 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 			// create and add a ProcessOutput-Event that binds the output URI to
 			// the last event of the device
 			sr.addOutput(new ProcessOutput(
-					ActivityHubServiceOntology.OUTPUT_SENSOR_EVENT, ahse));
+					ActivityHubServiceOntology.OUTPUT_SENSOR_MEASUREMENT, ahse));
 			
 			
 			// create and add a ProcessOutput-Event that binds the output URI to

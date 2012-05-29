@@ -176,7 +176,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 			this.logger.log(LogService.LOG_WARNING, "No location specified for " +
 					"device: " + deviceId);
 		} else {
-			this.logger.log(LogService.LOG_INFO, "Location for " +
+			this.logger.log(LogService.LOG_DEBUG, "Location for " +
 					"device: " + deviceId + ": " + loc.toString());
 		}
 		return loc;
@@ -188,7 +188,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 * @return
 	 */
 	public boolean validateDevice(String deviceId) {
-		this.logger.log(LogService.LOG_INFO, "deviceIds in driverList: " + this.driverList.keySet().toString());
+		this.logger.log(LogService.LOG_DEBUG, "deviceIds in driverList: " + this.driverList.keySet().toString());
 		
 		if( this.driverList.get(deviceId) == null ) return false;
 		return true;
