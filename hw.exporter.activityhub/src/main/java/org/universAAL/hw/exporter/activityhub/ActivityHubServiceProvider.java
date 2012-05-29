@@ -154,32 +154,49 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 	 * @param activityHubDeviceURI
 	 * @return ServiceResponse with output objects 
 	 */
-	private ServiceResponse getActivityHubDeviceInfo(String deviceUri, Object input) {
-		this.logger.log(LogService.LOG_INFO, "Service called: getActivityHubDeviceInfo" +
-				" with parameter: " + deviceUri);
+	private ServiceResponse getActivityHubDeviceInfo(ActivityHubSensor activityHubSensor) {
+//		this.logger.log(LogService.LOG_INFO, "Service called: getActivityHubDeviceInfo" +
+//				" for sensorURI: " + activityHubSensor.getURI());
+		
+	    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
+			    new Object[] { "Service called: getActivityHubDeviceInfo" +
+			" for sensorURI: " + activityHubSensor.getURI()},null);
+
 		try {
 			// collect the needed data
-			String deviceId = extractLocalIDfromdeviceUri(deviceUri);
+			String deviceId = extractLocalIDfromdeviceUri(activityHubSensor.getURI());
 			
-			this.logger.log(LogService.LOG_INFO, "extracted deviceId: " + deviceId);
+		    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
+				    new Object[] { "extracted deviceId: " + deviceId },null);
+
+//			this.logger.log(LogService.LOG_INFO, "extracted deviceId: " + deviceId);
 			
 			// check device
-			if ( theServer.validateDevice(deviceId) ) {
+			if ( !theServer.validateDevice(deviceId) ) {
 				// no such device !
-				this.logger.log(LogService.LOG_ERROR, "no such device found! " + deviceId);
-				ServiceResponse sr = new ServiceResponse(CallStatus.noMatchingServiceFound);
+			    LogUtils.logError(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
+					    new Object[] { "no such device found! " + deviceId },null);
+//				this.logger.log(LogService.LOG_ERROR, "no such device found! " + deviceId);
+				ServiceResponse sr = new ServiceResponse(CallStatus.serviceSpecificFailure);
 				return sr;
 			}
 			
+		    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
+				    new Object[] { "matching device found for " + deviceId },null);
+//			this.logger.log(LogService.LOG_INFO, "matching device found for " + deviceId);
+
 			ActivityHubLocation loc = theServer.getDeviceLocation(deviceId);
 			
 			// which format needed for event?
 			int lastDeviceEvent = theServer.getLastDeviceEvent(deviceId);
 			
-			ActivityHubSensorEvent ahse = createSensorEvent(lastDeviceEvent, input);
+			ActivityHubSensorEvent ahse = createSensorEvent(lastDeviceEvent, activityHubSensor);
 			if (ahse == null) {
-				this.logger.log(LogService.LOG_ERROR, "Could not create a SensorEvent object " +
-						"for: " + input.toString() + " and sensor value: " + lastDeviceEvent); 
+			    LogUtils.logError(Activator.moduleContext, ActivityHubServiceProvider.class, "getActivityHubDeviceInfo",
+					new Object[] { "Could not create a SensorEvent object for: " + 
+			    	activityHubSensor.getURI() + " and sensor value: " + lastDeviceEvent },null);
+//				this.logger.log(LogService.LOG_ERROR, "Could not create a SensorEvent object " +
+//						"for: " + activityHubSensor.getURI() + " and sensor value: " + lastDeviceEvent); 
 				ServiceResponse sr = new ServiceResponse(CallStatus.serviceSpecificFailure);
 				return sr;
 			}
@@ -210,18 +227,22 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 	 * @param lastSensorEvent
 	 * @return
 	 */
-	private ActivityHubSensorEvent createSensorEvent(int lastSensorEvent, Object input) {
+	private ActivityHubSensorEvent createSensorEvent(int lastSensorEvent, ActivityHubSensor input) {
 		if (input instanceof MotionSensor)
 			return MotionSensorEvent.getEventByOrder(lastSensorEvent);
 		else if (input instanceof ContactClosureSensor)
 			return ContactClosureSensorEvent.getEventByOrder(lastSensorEvent);
 		else if (input instanceof SwitchSensor)
 			return SwitchSensorEvent.getEventByOrder(lastSensorEvent);
-
-		//...fill
+		//...fill...
 		
-		this.logger.log(LogService.LOG_ERROR, "No matching ActivityHubSensor found for service bus call: " + 
-				input.toString());
+		
+	    LogUtils.logError(Activator.moduleContext, ActivityHubServiceProvider.class, "createSensorEvent",
+			new Object[] { "No matching ActivityHubSensorType found for service bus call: " + 
+			input.getURI() }, null);
+		
+//		this.logger.log(LogService.LOG_ERROR, "No matching ActivityHubSensor found for service bus call: " + 
+//				input.toString());
 		return null;
 	}
 
@@ -241,12 +262,19 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 	 */
 	@Override
 	public ServiceResponse handleCall(ServiceCall call) {
+	    LogUtils.logDebug(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
+			    new Object[] { "I'm here" }, null);
+	    
 		if (call == null)
 		    return null;
 
 		String operation = call.getProcessURI();
 		if (operation == null)
 		    return null;
+
+		
+	    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
+			    new Object[] { "operation: " + operation }, null);
 
 		
 		/** operations without input */
@@ -257,16 +285,18 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 		/** following operations all need input value */
 		Object input = call.getInputValue(ActivityHubServiceOntology.INPUT_SENSOR_URI);
 		if (input == null) {
-			this.logger.log(LogService.LOG_WARNING, "Incoming call but input is missing!");
+		    LogUtils.logWarn(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
+				    new Object[] { "Incoming call but input is missing!" }, null);
 			return invalidInput;
 		}
 
-		this.logger.log(LogService.LOG_INFO, "Incoming call for: " + input.toString());
+		//input sollte ein ActivityHubSensor sein
+		
+	    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
+			    new Object[] { "Incoming call for: " + ((ActivityHubSensor)input).getURI() }, null);
 
-		if (operation
-			.startsWith(ActivityHubServiceOntology.SERVICE_GET_ACTIVITYHUB_SENSOR_INFO)) {
-
-			return getActivityHubDeviceInfo(input.toString(), input);
+		if (operation.startsWith(ActivityHubServiceOntology.SERVICE_GET_ACTIVITYHUB_SENSOR_INFO)) {
+			return getActivityHubDeviceInfo((ActivityHubSensor)input);
 		}
 		    
 		// no match
