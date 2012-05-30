@@ -109,7 +109,9 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	/**
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#incomingSensorEvent(java.lang.String, byte[])
 	 * 
-	 * the correct sensor type must be identified according to the parameters
+	 * Just passing the incoming sensor event to uAAL-MW related class (-> context provider)
+	 * No storage of event here!
+	 * 
 	 * @param deviceId (e.g. knx group address 1/2/3)
 	 * @param device category (one category for each activityhub sensor type)
 	 * @param event code (sensor type dependent!)
