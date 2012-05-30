@@ -27,7 +27,7 @@ import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.Acti
 public class ContactClosureSensor extends ActivityHubSensor implements Iso11073ContactClosureSensor{
 
 	//public static String MY_DEVICE_CATEGORY = "ISO11073_CONTACTCLOSURESENSOR";
-	private ContactClosureSensorEvent lastsensorEvent;
+	private ContactClosureSensorEvent lastSensorEvent;
 
 //	public ContactClosureSensor() {
 //	}
@@ -36,7 +36,7 @@ public class ContactClosureSensor extends ActivityHubSensor implements Iso11073C
 		super(deviceCategory, deviceLocation, deviceId, logger);
 		
 		// init value is NO_CONDITION_DETECTED
-		this.lastsensorEvent = ContactClosureSensorEvent.NO_CONDITION_DETECTED;
+		this.lastSensorEvent = ContactClosureSensorEvent.NO_CONDITION_DETECTED;
 	}
 
 	/* (non-Javadoc)
@@ -44,7 +44,7 @@ public class ContactClosureSensor extends ActivityHubSensor implements Iso11073C
 	 */
 	@Override
 	public int getSensorEventValue() {
-		return this.lastsensorEvent.value();
+		return this.lastSensorEvent.value();
 	}
 
 //	/* (non-Javadoc)

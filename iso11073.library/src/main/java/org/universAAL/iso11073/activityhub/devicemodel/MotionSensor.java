@@ -20,9 +20,8 @@ import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.Acti
  * 
  * @author Thomas Fuxreiter
  */
-public class MotionSensor extends ActivityHubSensor
-implements Iso11073MotionSensor
-{
+public class MotionSensor extends ActivityHubSensor implements Iso11073MotionSensor {
+	
 	protected MotionSensorEvent lastSensorEvent;
  
 	public MotionSensor(ActivityHubDeviceCategory deviceCategory, 
