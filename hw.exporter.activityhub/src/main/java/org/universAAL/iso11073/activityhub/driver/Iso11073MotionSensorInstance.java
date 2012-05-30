@@ -84,7 +84,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 	}
 
 	/**
-	 * forward event to client
+	 * just forward event to client
 	 */
 	public void incomingSensorEvent(int event) {
 		this.logger.log(LogService.LOG_INFO, "Driver " + Iso11073MotionSensor.MY_DEVICE_CATEGORY +
