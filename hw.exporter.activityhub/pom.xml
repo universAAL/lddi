@@ -13,9 +13,9 @@
 	<artifactId>hw.exporter.activityhub</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
 	<packaging>bundle</packaging>
-	
+
 	<!-- ______________________________________________________ -->
-	
+
 	<name>Exporter of ActivityHub devices (ISO 11073-10471) for uAAL</name>
 	<description>Hardware exporter of Home Automation components based on ISO 11073-10471 devices/model (health device communication - independent living activity hub) for the universAAL middleware</description>
 	<inceptionYear>2012</inceptionYear>
@@ -42,14 +42,21 @@
 		</developer>
 	</developers>
 	<contributors />
-	
+
 	<!-- ______________________________________________________ -->
-	
+
 	<dependencies>
+		<!-- itest should be 1. dependency in list -->
+		<dependency>
+			<groupId>org.universAAL.support</groupId>
+			<artifactId>itests</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.osgi.core</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.data.representation</artifactId>
@@ -74,21 +81,16 @@
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>iso11073.library</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
-			<type>bundle</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.activityhub</artifactId>
 			<version>0.0.5-SNAPSHOT</version>
-			<type>bundle</type>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<!-- ______________________________________________________ -->
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -96,7 +98,7 @@
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<instructions>	
+					<instructions>
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Activator>org.universAAL.hw.exporter.activityhub.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
@@ -106,7 +108,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<!-- ______________________________________________________ -->
 
 	<scm>
@@ -114,24 +116,77 @@
 		<developerConnection>${svn.base}/${project.artifactId}</developerConnection>
 		<url>${svn.base.url}${project.artifactId}</url>
 	</scm>
-	
-	<repositories>
-		<repository>
-			<id>aaloa</id>
-			<name>aaloa Repositories</name>
-			<url>http://nexus.aaloa.org/content/repositories/releases/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>aaloa-snapshots</id>
-			<name>aaloa Snapshot Repositories</name>
-			<url>http://nexus.aaloa.org/content/repositories/snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-	</repositories>
-	
+
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>aaloa</id>-->
+<!--			<name>aaloa Repositories</name>-->
+<!--			<url>http://nexus.aaloa.org/content/repositories/releases/</url>-->
+<!--			<snapshots>-->
+<!--				<enabled>false</enabled>-->
+<!--			</snapshots>-->
+<!--		</repository>-->
+<!--		<repository>-->
+<!--			<id>aaloa-snapshots</id>-->
+<!--			<name>aaloa Snapshot Repositories</name>-->
+<!--			<url>http://nexus.aaloa.org/content/repositories/snapshots/</url>-->
+<!--			<releases>-->
+<!--				<enabled>false</enabled>-->
+<!--			</releases>-->
+<!--		</repository>-->
+<!--	</repositories>-->
+
+	<!-- Instructions for uaal-maven-plugin for which dependencies should be used in the composite -->
+	<profiles>
+		<profile>
+			<id>uAAL-Runtime</id>
+			<dependencies>
+				<!--				<dependency>-->
+				<!--					<groupId>org.osgi</groupId>-->
+				<!--					<artifactId>org.osgi.compendium</artifactId>-->
+				<!--					<version>4.2.0</version>-->
+				<!--				</dependency>-->
+				<dependency>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>org.apache.felix.dependencymanager.lddi</artifactId>
+					<version>3.0.0</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>org.apache.felix.devicemanager</artifactId>
+					<version>0.9.0-SNAPSHOT</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.library</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.networkdriver</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.dpt1refinementdriver.iso11073</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.devicemanager</artifactId>
+				</dependency>
+				
+				<dependency>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>org.apache.felix.http.jetty</artifactId>
+					<version>2.2.0</version>		
+				</dependency>	
+				<dependency>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>org.apache.felix.webconsole</artifactId>
+					<version>3.1.8</version>		
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
 </project>
