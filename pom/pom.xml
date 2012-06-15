@@ -15,7 +15,7 @@
 	
 	<!-- ______________________________________________________ -->
 	
-	<name>Local Device Descovery and Integration</name>
+	<name>Local Device Discovery and Integration</name>
 	<description/>
 	<inceptionYear>2010</inceptionYear>
 	
@@ -36,6 +36,7 @@
 		<maven.compile.source>1.5</maven.compile.source>
 		<maven.compile.target>1.5</maven.compile.target>
 		<gforge.project.name>lddi</gforge.project.name>
+		<lddi.version>0.0.3-SNAPSHOT</lddi.version>
 	</properties>
 
 	<dependencyManagement>
@@ -62,6 +63,38 @@
 			</dependency> -->
 			<!-- <dependency> <groupId>org.universAAL.support</groupId> <artifactId>itests</artifactId> 
 				<version>1.0.1-SNAPSHOT</version> <scope>test</scope> </dependency> -->
+
+
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.library</artifactId>
+					<version>${lddi.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>iso11073.library</artifactId>
+					<version>${lddi.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.networkdriver</artifactId>
+					<version>${lddi.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.dpt1refinementdriver.iso11073</artifactId>
+					<version>${lddi.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>hw.exporter.activityhub</artifactId>
+					<version>${lddi.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.universAAL.lddi</groupId>
+					<artifactId>knx.devicemanager</artifactId>
+					<version>${lddi.version}</version>
+				</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -83,5 +116,18 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.universAAL.support</groupId>
+				<artifactId>uaal-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

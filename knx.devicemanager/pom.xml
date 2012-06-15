@@ -26,7 +26,7 @@
 		<name>Austrian Institute of Technology (AIT)</name>
 		<url>http://www.ait.ac.at/</url>
 	</organization>
-	
+
 	<developers>
 		<developer>
 			<id>foex</id>
@@ -38,12 +38,12 @@
 			<timezone>CEST/CET</timezone>
 		</developer>
 	</developers>
-	
+
 	<properties>
 		<gforge.project.name>lddi</gforge.project.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
@@ -69,16 +69,10 @@
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.library</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
-			<type>bundle</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
 			<artifactId>knx.networkdriver</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
-			<type>bundle</type>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -109,4 +103,18 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>uAAL-Runtime</id>
+			<dependencies>
+				<dependency>
+					<groupId>jaxen</groupId>
+					<artifactId>jaxen</artifactId>
+					<version>1.1.3</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>
