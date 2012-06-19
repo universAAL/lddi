@@ -27,8 +27,10 @@ import org.universAAL.knx.networkdriver.KnxNetwork;
 import org.universAAL.knx.utils.KnxGroupAddress;
 
 /**
+ * This bundle tracks on KnxNetwork service
+ * When this service appears, this bundle is initialized
+ * 
  * @author Thomas Fuxreiter (foex@gmx.at)
- *
  */
 public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomizer {
 
@@ -75,6 +77,8 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	
 	/**
 	 * KnxNetwork service appeared
+	 * Initialization of this bundle
+	 * ManagedService registration in OSGi
 	 */
 	public Object addingService(ServiceReference reference) {
 		this.network=(KnxNetwork)this.context.getService(reference);
@@ -84,7 +88,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 		this.deviceList = new HashMap<String, KnxDevice>();
 
 		this.registerManagedService();
-		this.logger.log(LogService.LOG_INFO,"KnxDeviceManager started!");
+		this.logger.log(LogService.LOG_DEBUG,"KnxDeviceManager started!");
 		return reference;
 	}
 	
@@ -99,15 +103,19 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	
 	/**
 	 * KnxNetwork service has been modified
+	 * removing my managed service
+	 * and adding again
 	 */
 	public void modifiedService(ServiceReference reference, Object service) {
 		removedService(reference, service);
 		addingService(reference);
-		this.logger.log(LogService.LOG_INFO,"KnxDeviceManager restarted!");
+		this.logger.log(LogService.LOG_INFO,"KnxDeviceManager restarted because KnxNetwork service was modified!");
 	}
 
 	/**
 	 * KnxNetwork service has been removed
+	 * removing my managed service
+	 * clear storage objects -> set this bundle to "idle" mode
 	 */
 	public void removedService(ServiceReference reference, Object service) {
 		// When knx.networkservice disappears: unregister all my devices
@@ -122,7 +130,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 		
 		this.context.ungetService(reference);
 //		this.unregisterManagedService();
-		this.logger.log(LogService.LOG_WARNING,"KnxDeviceManager stopped!");
+		this.logger.log(LogService.LOG_WARNING,"KnxDeviceManager stopped because KnxNetwork service was removed!");
 	}
 
 //	private void unregisterManagedService() {
@@ -131,10 +139,14 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	
 	/***
 	 * get updated from ConfigurationAdmin
+	 * get configuration file from ETS4
+	 * extract groupAddress information
+	 * create virtual KNX devices
+	 * and register them as device services in OSGi 
 	 */
 	@SuppressWarnings("unchecked")
 	public void updated(Dictionary properties) throws ConfigurationException {
-		this.logger.log(LogService.LOG_INFO, "KnxDeviceManager.updated: " + properties);
+		this.logger.log(LogService.LOG_DEBUG, "KnxDeviceManager.updated: " + properties);
 
 		if (properties != null){
 			this.knxConfigFile = (String) properties.get("knxConfigFile");
@@ -144,7 +156,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 				if (knxConfigFile != null && knxConfigFile != "") {
 					InputStream is = new FileInputStream(knxConfigFile);
 					this.knxImportedGroupAddresses = new KnxImporter().importETS4Configuration(is);
-					this.logger.log(LogService.LOG_INFO,
+					this.logger.log(LogService.LOG_DEBUG,
 							"Knx devices found in configuration: "
 							+ this.knxImportedGroupAddresses.toString());
 					
@@ -161,7 +173,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 								this.deviceRegistrationList.remove(knxGroupAddress.getGroupAddress());
 							}
 							
-							String dptMain = knxGroupAddress.getMainDpt();
+							String dptMain = knxGroupAddress.getDptMain();
 							int dptMainNumber = Integer.parseInt(dptMain);
 							
 							// create appropriate device from dpt main number
@@ -183,13 +195,13 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 									knxDevice.getDeviceCategory());
 							// more possible properties: description, serial, id
 							
-							this.logger.log(LogService.LOG_INFO, "Register KNX device " +
-									knxDevice.getDeviceId() + " in OSGi registry under " +
-									"device category: " + knxDevice.getDeviceCategory());
-							
 							ServiceRegistration deviceServiceReg = this.context.registerService(
 									org.osgi.service.device.Device.class.getName(), knxDevice, 
 									propDeviceService);
+							
+							this.logger.log(LogService.LOG_INFO, "Registered KNX device " +
+									knxDevice.getDeviceId() + " in OSGi registry under " +
+									"device category: " + knxDevice.getDeviceCategory());
 							
 							// save this device registration to my list
 							this.deviceRegistrationList.put(knxGroupAddress.getGroupAddress(),deviceServiceReg);
