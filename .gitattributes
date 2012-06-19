@@ -77,6 +77,7 @@ iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/devicemodel/S
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/interfaces/ActivityHubDriver.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/interfaces/ActivityHubDriverClient.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/driver/interfaces/IActivityHubActuator.java -text
+iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/knxmapping/KnxMappingFactory.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/location/ActivityHubLocationUtil.java -text
 iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/util/LogTracker.java -text
 knx.devicemanager/conf/services/knx.devicemanager.properties -text
