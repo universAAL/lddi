@@ -26,6 +26,7 @@ public abstract class KnxDevice implements Device{
 	private String servicePid;
 
 	private String deviceId = "-";
+	/** including groupAddress and dpt */ 
 	private KnxGroupAddress knxDeviceProperties;
 	
 	private static String KNX_DEVICE_CATEGORY_PREFIX = "KnxDpt";
@@ -55,7 +56,7 @@ public abstract class KnxDevice implements Device{
 		this.network = network;
 		this.logger = logger; 
 
-		this.deviceCategory = KNX_DEVICE_CATEGORY_PREFIX + this.knxDeviceProperties.getMainDpt();
+		this.deviceCategory = KNX_DEVICE_CATEGORY_PREFIX + this.knxDeviceProperties.getDptMain();
 		
 //		this.deviceDescription;
 //		this.deviceSerial;
@@ -66,7 +67,7 @@ public abstract class KnxDevice implements Device{
 		// add device to deviceList in knx.networkdriver
 		this.network.addDevice(this.deviceId, this);
 		
-		this.logger.log(LogService.LOG_INFO, "Registered device " + deviceId + " in knx.networkdriver.");
+		this.logger.log(LogService.LOG_DEBUG, "Registered device " + deviceId + " in knx.networkdriver.");
 	}
 
 	/** store a driver reference for this device */
@@ -95,17 +96,49 @@ public abstract class KnxDevice implements Device{
 	}
 	
 	/**
-	 * @return knGroupAddress as String "M/S/D"
+	 * @return knxGroupAddress as String "M/S/D"
 	 */
 	public String getGroupAddress() {
 		return this.knxDeviceProperties.getGroupAddress();
 	}
 	
 	/**
-	 * @return knGroupAddress as String "M/S/D"
+	 * @return knx datapoint type as String "M.mmm"
 	 */
 	public String getDatapointType() {
 		return this.knxDeviceProperties.getDpt();
+	}
+	
+	/**
+	 * Returns 0 on error
+	 * {@code for dpt "1.018" this method will return 18}
+	 * @return knx datapoint main type
+	 */
+	public int getDatapointTypeMainNumber() {
+		try {
+			return Integer.parseInt(this.knxDeviceProperties.getDptMain());
+		} catch (NumberFormatException e) {
+			this.logger.log(LogService.LOG_ERROR, "Error on converting main datatype number of knx device " +
+					this.deviceId);
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	/**
+	 * Returns 0 on error
+	 * {@code for dpt "1.018" this method will return 18}
+	 * @return knx datapoint minor type
+	 */
+	public int getDatapointTypeSubNumber() {
+		try {
+			return Integer.parseInt(this.knxDeviceProperties.getDptSub());
+		} catch (NumberFormatException e) {
+			this.logger.log(LogService.LOG_ERROR, "Error on converting minor datatype number of knx device " +
+					this.deviceId + " with dpt " + this.getDatapointType());
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 	/**

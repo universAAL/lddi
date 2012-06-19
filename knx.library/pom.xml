@@ -9,7 +9,7 @@
 	<groupId>org.universAAL.lddi</groupId>
 	<artifactId>knx.library</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>KNX Datapoint Type Library</name>
 	<description>KNX Device Categories for OSGi DeviceManager are Interfaces for all KNX Datapoint Types specifying methods for communication with device services.
 	</description>

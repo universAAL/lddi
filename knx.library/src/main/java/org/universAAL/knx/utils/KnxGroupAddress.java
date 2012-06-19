@@ -7,6 +7,7 @@ public class KnxGroupAddress {
     private String dpt;
     private String command = "N/A";
     private Boolean importGA = Boolean.FALSE;
+    //location (room)
     
     public KnxGroupAddress(String dpt, String groupAddress, String name) {
         super();
@@ -67,8 +68,13 @@ public class KnxGroupAddress {
     		getCommand();
     }
     
-    public String getMainDpt() {
+    public String getDptMain() {
 		String temp = this.getDpt().trim();
 		return temp.substring(0, temp.indexOf(".") );
+    }
+
+    public String getDptSub() {
+		String temp = this.getDpt().trim();
+		return temp.substring(temp.indexOf(".")+1);
     }
 }
