@@ -34,7 +34,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 
 	private BundleContext context;
 	private LogService logger;
-	private Dictionary knxIsoMappingProperties;
+//	private Dictionary knxIsoMappingProperties;
 	
 	// my mapping ISO device; exactly one
 	private ActivityHubSensor activityHubSensor;
@@ -44,11 +44,13 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	// the ISO device I registered at OSGi registry
 	private ServiceRegistration myIsoDeviceRegistration;
 	
+	private ActivityHubDeviceCategory isoDeviceCategory = null;
 	
 	// constructor called from the driver.attach method
-	public KnxDpt1Instance(BundleContext c, LogService log) {
-		this.context=c;
-		this.logger=log;
+	public KnxDpt1Instance(BundleContext c, LogService log, ActivityHubDeviceCategory ahDevCat) {
+		this.context = c;
+		this.logger = log;
+		this.isoDeviceCategory = ahDevCat;
 		
 //		// test
 //		this.logger.log(LogService.LOG_WARNING, "CHECK default values: False: " + 
@@ -58,12 +60,12 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 		//this.knxIsoMappingProperties = knxIsoMappingProperties;
 	}
 
-	
-	/** set my KNX-to-ISO device mapping properties */
-	public void setKnxIsoMappingProperties(Dictionary dictionary) {
-		this.knxIsoMappingProperties = dictionary;
-//		this.knxIsoMappingProperties = new Properties();
-	}
+
+//	/** set my KNX-to-ISO device mapping properties */
+//	public void setKnxIsoMappingProperties(Dictionary dictionary) {
+//		this.knxIsoMappingProperties = dictionary;
+////		this.knxIsoMappingProperties = new Properties();
+//	}
 	
 	
 	/**
@@ -90,34 +92,40 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 		
 		
 		/** create appropriate ISO device */
-		if ( !this.knxIsoMappingProperties.isEmpty() && this.device.getGroupAddress() != null ) {
+		if ( this.isoDeviceCategory != null ) {
 
 //			this.logger.log(LogService.LOG_INFO, "KNX-ISO mapping config: " + this.knxIsoMappingProperties);
 
-			// get knx-iso mapping properties for my device according to groupAddress
-			String isoDeviceType = (String) this.knxIsoMappingProperties.get("isoDeviceType");
-			ActivityHubDeviceCategory isoDeviceCategory = ActivityHubDeviceCategoryUtil.
-				toActivityHubDevice(isoDeviceType);
+//			// get knx-iso mapping properties for my device according to groupAddress
+//			String isoDeviceType = (String) this.knxIsoMappingProperties.get("isoDeviceType");
+//			ActivityHubDeviceCategory isoDeviceCategory = ActivityHubDeviceCategoryUtil.
+//				toActivityHubDevice(isoDeviceType);
 			
-			if (isoDeviceCategory != null) {
+			if ( this.device.getGroupAddress() != null ) {
 				// isoDeviceType configuration found
 				
-				this.logger.log(LogService.LOG_INFO, "KNX - ISO mapping parameter found for " +
-						"device " + this.device.getGroupAddress() + ": " + isoDeviceType);
+				this.logger.log(LogService.LOG_INFO, "KNX to ISO mapping parameter found for " +
+						"device " + this.device.getGroupAddress() + " with KNX datapoint type " +
+						this.device.getDatapointType() + " : " +isoDeviceCategory);
 
-				// check deviceLocation property
-				String loc = (String) this.knxIsoMappingProperties.get("deviceLocation");
-				ActivityHubLocation isoDeviceLocation = ActivityHubLocationUtil.
-					toActivityHubLocation(loc);
-				if (isoDeviceLocation == null) {
-					this.logger.log(LogService.LOG_WARNING, "Location for KNX device " +
-							this.device.getGroupAddress() + " not found!");
-				}
+//				// check deviceLocation property
+//				String loc = (String) this.knxIsoMappingProperties.get("deviceLocation");
+//				ActivityHubLocation isoDeviceLocation = ActivityHubLocationUtil.
+//					toActivityHubLocation(loc);
+//				if (isoDeviceLocation == null) {
+//					this.logger.log(LogService.LOG_WARNING, "Location for KNX device " +
+//							this.device.getGroupAddress() + " not found!");
+//				}
+				
+				//
+				// TODO store location type and description from ETS export in KnxDevice
+				//
 				
 				// create appropriate ActivityHub device
 				this.activityHubSensor = ActivityHubFactory.createInstance(
 						isoDeviceCategory,
-						isoDeviceLocation,
+//						isoDeviceLocation,
+						null, // this might cause an error on uAAL middleware service calling
 						this.device.getGroupAddress(),this.logger);
 				if (this.activityHubSensor==null) {
 					this.logger.log(LogService.LOG_ERROR, "Error on creating ActivityHubSensor " +
@@ -135,24 +143,27 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 
 				// use properties value as device category
 				propDeviceService.put(
-						org.osgi.service.device.Constants.DEVICE_CATEGORY, isoDeviceType);
+						org.osgi.service.device.Constants.DEVICE_CATEGORY, isoDeviceCategory.toString());
 				// more possible properties from OSGi: description, serial, id
-				
-				this.logger.log(LogService.LOG_INFO, "Register ISO device " +
-						this.activityHubSensor.getDeviceId() + " in OSGi registry under " +
-						"device category: " + isoDeviceType);
 				
 				this.myIsoDeviceRegistration = this.context.registerService(
 						org.osgi.service.device.Device.class.getName(), this.activityHubSensor, 
 						propDeviceService);
 				
+				this.logger.log(LogService.LOG_INFO, "Registered ISO device " +
+						this.activityHubSensor.getDeviceId() + " in OSGi registry under " +
+						"device category: " + isoDeviceCategory);
+				
 			} else {
-				this.logger.log(LogService.LOG_ERROR, "No configuration parameter found for Knx" +
-						" to Iso device mapping for knx device " + this.device.getGroupAddress());
+				String s1 = "KNX group address is null for device " + this.device.getGroupAddress();
+				this.logger.log(LogService.LOG_ERROR, s1);
+				throw new NullPointerException(s1);
 			}
 		} else {
-			this.logger.log(LogService.LOG_ERROR, "No configuration parameter found for " +
-					"Knx to ISO mapping!");
+			String s2 = "No configuration parameter found for Knx to ISO mapping for device " +
+				this.device.getGroupAddress() + "; isoDeviceType=null";
+			this.logger.log(LogService.LOG_ERROR, s2);
+			throw new NullPointerException(s2);
 		}
 		return knxDev;
 	}

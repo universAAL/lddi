@@ -9,7 +9,7 @@
 	<groupId>org.universAAL.lddi</groupId>
 	<artifactId>knx.dpt1refinementdriver.iso11073</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>KNX Refinement driver for Datapoint Type 1.* to ISO 11073-10471 device</name>
 	<description>Encoding and decoding of KNX Datapoint Types 1.* with Format B1. Is registered as OSGI driver service in the framework registry. This refinement driver maps and creates a suitable device from ISO 11073-10471 specification and registers it in the OSGi registry.
 	</description>
