@@ -22,11 +22,11 @@
 	<!-- ______________________________________________________ -->
 	
 	<modules>
-		<module>../knx.networkdriver/</module>
 		<module>../knx.library/</module>
+		<module>../iso11073.library/</module>
+		<module>../knx.networkdriver/</module>
 		<module>../knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/</module>
 		<module>../knx.devicemanager/</module>
-		<module>../iso11073.library/</module>
 		<module>../hw.exporter.activityhub/</module>
 <!--		<module>../hw.exporter.zigbee.ha/</module>-->
 	</modules>
@@ -36,7 +36,7 @@
 		<maven.compile.source>1.5</maven.compile.source>
 		<maven.compile.target>1.5</maven.compile.target>
 		<gforge.project.name>lddi</gforge.project.name>
-		<lddi.version>0.0.3-SNAPSHOT</lddi.version>
+		<lddi.version>0.0.4-SNAPSHOT</lddi.version>
 	</properties>
 
 	<dependencyManagement>
