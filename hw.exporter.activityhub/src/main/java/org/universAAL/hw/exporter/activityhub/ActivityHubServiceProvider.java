@@ -212,10 +212,10 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 			
 			// create and add a ProcessOutput-Event that binds the output URI to
 			// the location of the device
+			// loc maybe null !!
 			sr.addOutput(new ProcessOutput(
 					ActivityHubServiceOntology.OUTPUT_SENSOR_LOCATION, new Room(
 							constructLocationURIfromLocalID(loc))));
-			
 			return sr;
 			
 		} catch (Exception e) {
@@ -234,7 +234,12 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 			return ContactClosureSensorEvent.getEventByOrder(lastSensorEvent);
 		else if (input instanceof SwitchSensor)
 			return SwitchSensorEvent.getEventByOrder(lastSensorEvent);
-		//...fill...
+		//
+		// TODO: ...complete...
+		//
+		
+		
+		
 		
 		
 	    LogUtils.logError(Activator.moduleContext, ActivityHubServiceProvider.class, "createSensorEvent",
@@ -250,9 +255,14 @@ public class ActivityHubServiceProvider extends ServiceCallee {
     	return deviceUri.substring(ActivityHubServiceOntology.DEVICE_URI_PREFIX.length());
     }
 
+	/**
+	 * If param loc is null "unknown" is returned
+	 * @param loc
+	 * @return URI of room
+	 */
     private static String constructLocationURIfromLocalID(ActivityHubLocation loc) {
-    	return LOCATION_URI_PREFIX + loc.toString().substring(
-    			ACTIVITYHUB_LOCATION_PREFIX.length());
+    	if ( loc == null ) return LOCATION_URI_PREFIX + "unknown"; 
+    	else return LOCATION_URI_PREFIX + loc.toString().substring(ACTIVITYHUB_LOCATION_PREFIX.length());
     }
 
 
@@ -262,8 +272,8 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 	 */
 	@Override
 	public ServiceResponse handleCall(ServiceCall call) {
-	    LogUtils.logDebug(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
-			    new Object[] { "I'm here" }, null);
+//	    LogUtils.logDebug(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
+//			    new Object[] { "I'm here" }, null);
 	    
 		if (call == null)
 		    return null;
@@ -273,7 +283,7 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 		    return null;
 
 		
-	    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
+	    LogUtils.logDebug(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
 			    new Object[] { "operation: " + operation }, null);
 
 		
@@ -292,7 +302,7 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 
 		//input sollte ein ActivityHubSensor sein
 		
-	    LogUtils.logInfo(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
+	    LogUtils.logDebug(Activator.moduleContext, ActivityHubServiceProvider.class, "handleCall",
 			    new Object[] { "Incoming call for: " + ((ActivityHubSensor)input).getURI() }, null);
 
 		if (operation.startsWith(ActivityHubServiceOntology.SERVICE_GET_ACTIVITYHUB_SENSOR_INFO)) {

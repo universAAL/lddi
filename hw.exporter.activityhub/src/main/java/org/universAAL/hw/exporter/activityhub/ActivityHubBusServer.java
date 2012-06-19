@@ -60,8 +60,8 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 		// start all ActivityHub drivers
 		ActivityHubDriverManager.startAllDrivers(this, this.context);
 	
-		this.logger.log(LogService.LOG_INFO, "I hope all ActivityHub drivers are" +
-				" online now.............");
+//		this.logger.log(LogService.LOG_INFO, "I hope all ActivityHub drivers are" +
+//				" online now.............");
 	}
 
 
@@ -167,6 +167,8 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 
 
 	/**
+	 * Returns null if no location available!
+	 * 
 	 * @param deviceId
 	 * @return
 	 */
@@ -199,6 +201,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 
 	/**
 	 * Find the driver for the requested device according to unique deviceId
+	 * Returns -1 if no driver found for this device
 	 * 
 	 * @param deviceId
 	 * @return integer value of last device event from device dependent event enumeration 

@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>org.universAAL.lddi</groupId>
 	<artifactId>hw.exporter.activityhub</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<!-- ______________________________________________________ -->
@@ -61,7 +61,11 @@
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.data.representation</artifactId>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.data.serialization</artifactId>
+		</dependency>
+ -->		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.bus.model</artifactId>
 		</dependency>
@@ -146,12 +150,20 @@
 				<!--					<artifactId>org.osgi.compendium</artifactId>-->
 				<!--					<version>4.2.0</version>-->
 				<!--				</dependency>-->
+				
 				<dependency>
+					<groupId>org.universAAL.middleware</groupId>
+					<artifactId>mw.data.serialization</artifactId>
+				</dependency>
+
+				<dependency>
+					<!-- from uAAL-thirdparty repo; modified to work within uAAL framework -->
 					<groupId>org.apache.felix</groupId>
 					<artifactId>org.apache.felix.dependencymanager.lddi</artifactId>
 					<version>3.0.0</version>
 					<scope>provided</scope>
 				</dependency>
+				
 				<dependency>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>org.apache.felix.devicemanager</artifactId>
