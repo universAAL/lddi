@@ -86,7 +86,7 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 
 //	@Override
 	public void updated(@SuppressWarnings("unchecked") Dictionary settings) throws ConfigurationException {
-		this.logger.log(LogService.LOG_INFO, "KnxNetworkDriverImp.updated: " + settings);
+		this.logger.log(LogService.LOG_DEBUG, "KnxNetworkDriverImp.updated: " + settings);
 
 		try {
 			if (settings != null){
@@ -219,7 +219,7 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 			}
 		}
 		devices.add(device);
-		this.logger.log(LogService.LOG_INFO, "New device added for groupAddress " + deviceId);
+		this.logger.log(LogService.LOG_DEBUG, "New device added for groupAddress " + deviceId);
 	}
 	
 

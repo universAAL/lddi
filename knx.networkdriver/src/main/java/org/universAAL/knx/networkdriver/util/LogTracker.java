@@ -14,7 +14,7 @@ public class LogTracker extends ServiceTracker implements LogService {
 	@Override
 	public Object addingService(ServiceReference reference) {
 		Object ret = super.addingService(reference);
-		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService added!");
+//		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService added!");
 		log(LOG_DEBUG,"LogService added!");
 		return ret;
 	}
@@ -22,14 +22,14 @@ public class LogTracker extends ServiceTracker implements LogService {
 	@Override
 	public void modifiedService(ServiceReference reference, Object service) {
 		super.modifiedService(reference, service);
-		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService modified!");
+//		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService modified!");
 		log(LOG_DEBUG,"LogService modified!");
 	}
 
 	@Override
 	public void removedService(ServiceReference reference, Object service) {
 		super.removedService(reference, service);
-		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService removed!");
+//		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService removed!");
 		log(LOG_DEBUG,"LogService removed!");
 	}
 
