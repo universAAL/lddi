@@ -9,7 +9,7 @@
 	<groupId>org.universAAL.lddi</groupId>
 	<artifactId>iso11073.library</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>Java class library for ISO/IEEE 11073 standard</name>
 	<description>
 	</description>
