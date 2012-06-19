@@ -9,7 +9,7 @@
 	<groupId>org.universAAL.lddi</groupId>
 	<artifactId>knx.devicemanager</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>KNX device manager</name>
 	<description>This bundle reads KNX device configuration from XML files (exported by ETS4). A OSGI device service is registered in the framework for every KNX device.
 	</description>
