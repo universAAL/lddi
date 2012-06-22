@@ -200,7 +200,8 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 									propDeviceService);
 							
 							this.logger.log(LogService.LOG_INFO, "Registered KNX device " +
-									knxDevice.getDeviceId() + " in OSGi registry under " +
+									knxDevice.getDeviceId() + " (" + knxDevice.getDeviceLocationType() +
+									": " + knxDevice.getDeviceLocation() + ") in OSGi registry under " +
 									"device category: " + knxDevice.getDeviceCategory());
 							
 							// save this device registration to my list

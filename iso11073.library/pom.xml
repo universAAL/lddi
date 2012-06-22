@@ -11,8 +11,7 @@
 	<packaging>bundle</packaging>
 	<version>0.0.4-SNAPSHOT</version>
 	<name>Java class library for ISO/IEEE 11073 standard</name>
-	<description>
-	</description>
+	<description>ISO 11073 Device Categories for OSGi DeviceManager are Interfaces for all ISO 11073 sensor types, specifying methods for communication with device services.</description>
 	<inceptionYear>2012</inceptionYear>
 
 	<licenses>

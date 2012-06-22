@@ -8,7 +8,7 @@ import org.universAAL.knx.utils.*;
 
 /**
  * One KNX device represents one groupAddress (with additional properties) from ETS4 XML export.
- * This device is registered in OSGi framework.
+ * This device is registered in OSGi framework. 
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
@@ -16,7 +16,6 @@ import org.universAAL.knx.utils.*;
 public abstract class KnxDevice implements Device{
 
 	/** OSGi DAS properties */
-
 	public String deviceCategory;
 	/** intended for end users */
 	public String deviceDescription;
@@ -141,6 +140,20 @@ public abstract class KnxDevice implements Device{
 		return 0;
 	}
 	
+	/**
+	 * @return name of the location, e.g. roomname
+	 */
+	public String getDeviceLocation() {
+		return this.knxDeviceProperties.getBpName();
+	}
+
+	/**
+	 * @return type of the location, e.g. Room, Corridor
+	 */
+	public String getDeviceLocationType() {
+		return this.knxDeviceProperties.getBpType();
+	}
+
 	/**
 	 * @return the deviceCategory
 	 */

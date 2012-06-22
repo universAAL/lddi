@@ -1,6 +1,5 @@
 * text=auto !eol
 hw.exporter.activityhub/README.txt -text
-hw.exporter.activityhub/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 hw.exporter.activityhub/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
 hw.exporter.activityhub/conf/services/knx.devicemanager.properties -text
 hw.exporter.activityhub/conf/services/knx.networkdriver.properties -text
@@ -13,7 +12,6 @@ hw.exporter.activityhub/launches/Run.bat -text
 hw.exporter.activityhub/launches/clean.bat -text
 hw.exporter.activityhub/launches/pax.configuration -text
 hw.exporter.activityhub/launches/pom.xml -text
-hw.exporter.activityhub/launches/runner/configurations/factories/knx.dpt1refinementdriver.iso11073.properties -text
 hw.exporter.activityhub/launches/runner/configurations/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
 hw.exporter.activityhub/launches/runner/configurations/services/knx.devicemanager.properties -text
 hw.exporter.activityhub/launches/runner/configurations/services/knx.networkdriver.properties -text
@@ -83,6 +81,21 @@ iso11073.library/src/main/java/org/universAAL/iso11073/activityhub/util/LogTrack
 knx.devicemanager/conf/services/knx.devicemanager.properties -text
 knx.devicemanager/data/OfficeProject2.knxproj -text
 knx.devicemanager/data/OfficeProject3.knxproj -text
+knx.devicemanager/launches/README.txt -text
+knx.devicemanager/launches/Run.bat -text
+knx.devicemanager/launches/clean.bat -text
+knx.devicemanager/launches/pax.configuration -text
+knx.devicemanager/launches/pom.xml -text
+knx.devicemanager/launches/runner/configurations/mw.bus.model/sodapop.key -text
+knx.devicemanager/launches/runner/configurations/services/knx.devicemanager.properties -text
+knx.devicemanager/launches/runner/configurations/services/knx.networkdriver.properties -text
+knx.devicemanager/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
+knx.devicemanager/launches/runner/configurations/services/org.ops4j.pax.logging.properties -text
+knx.devicemanager/launches/runner/data/OfficeProject3.knxproj -text
+knx.devicemanager/launches/runner/data/OfficeProject4.knxproj -text
+knx.devicemanager/launches/runner/felix/system.properties -text
+knx.devicemanager/launches/runner/remoteDebug.bat -text
+knx.devicemanager/launches/runner/run.bat -text
 knx.devicemanager/pom.xml -text
 knx.devicemanager/readme.txt -text
 knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/Activator.java -text
@@ -124,7 +137,6 @@ knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/configur
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/configurations/services/org.ops4j.pax.logging.properties -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/data/OfficeProject3.knxproj -text
-knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/deploy-pom.xml -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/felix/system.properties -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/remoteDebug.bat -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/run.bat -text

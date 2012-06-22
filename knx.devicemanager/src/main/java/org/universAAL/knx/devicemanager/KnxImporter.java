@@ -62,23 +62,31 @@ public class KnxImporter
       document = builder.build(in);
 
       // Query all GroupAddress elements
-      XPath xpath = XPath.newInstance("//knx:GroupAddress");
-      xpath.addNamespace("knx", "http://knx.org/xml/project/10");
-      List<Element> xresult = xpath.selectNodes(document);
-      for (Element element : xresult)
-      {
+      XPath xpathGA = XPath.newInstance("//knx:GroupAddress");
+      xpathGA.addNamespace("knx", "http://knx.org/xml/project/10");
+      List<Element> xresultGA = xpathGA.selectNodes(document);
 
+      for (Element element : xresultGA)
+      {
         String id = element.getAttributeValue("Id");
         String name = element.getAttributeValue("Name");
         String address = element.getAttributeValue("Address");
+        String description = element.getAttributeValue("Description");
         String dpt = null;
+
+        String deviceId = null;
+        String bpType = null; //BuildingPart Type
+        String bpName = null; //BuildingPart Name
+        String bpDescription = null;
+        
         // Query referenced ComObjectInstanceRef element which holds DPT
-        xpath = XPath.newInstance("//knx:Send[@GroupAddressRefId='" + id + "']/../..");
-        xpath.addNamespace("knx", "http://knx.org/xml/project/10");
-        List<Element> result2 = xpath.selectNodes(document);
-        if (result2.size() > 0)
+        XPath xpathCO = XPath.newInstance("//knx:Send[@GroupAddressRefId='" + id + "']/../..");
+        xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
+        List<Element> resultSGA = xpathCO.selectNodes(document);
+        
+        if (resultSGA.size() > 0)
         {
-          dpt = result2.get(0).getAttributeValue("DatapointType");
+          dpt = resultSGA.get(0).getAttributeValue("DatapointType");
           if (dpt != null && dpt != "")
           {
             StringTokenizer st = new StringTokenizer(dpt, "-");
@@ -95,8 +103,37 @@ public class KnxImporter
             dpt = null;
           }
         }
+        
+        // BuildingPart are linked to devices
+        // from GA go to DeviceInstance Id, then search for BuildingPart
+
+        // Query referenced DeviceInstance element which holds DPT
+        XPath xpathDI = XPath.newInstance("//knx:Send[@GroupAddressRefId='" + id + "']/../../../..");
+        xpathDI.addNamespace("knx", "http://knx.org/xml/project/10");
+        List<Element> resultDI = xpathDI.selectNodes(document);
+        if (resultDI.size() > 0)
+        {
+          deviceId = resultDI.get(0).getAttributeValue("Id");
+          if (deviceId != null && deviceId != "")
+          {
+        	  // now, search for BuildingPart
+              // Query referenced BuildingPart element which holds name and type
+              XPath xpathBP = XPath.newInstance("//knx:DeviceInstanceRef[@RefId='" + deviceId + "']/..");
+              xpathBP.addNamespace("knx", "http://knx.org/xml/project/10");
+              List<Element> xresultBP = xpathBP.selectNodes(document); 
+              
+              if (xresultBP.size() > 0)
+              {
+            	  bpName = xresultBP.get(0).getAttributeValue("Name");
+            	  bpType = xresultBP.get(0).getAttributeValue("Type");
+            	  bpDescription = xresultBP.get(0).getAttributeValue("Description");
+              }
+          }
+        }
+
         String levelAddress = getAddressFromInt(Integer.parseInt(address));
-        result.add(new KnxGroupAddress(dpt, levelAddress, name));
+//        result.add(new KnxGroupAddress(dpt, levelAddress, name));
+        result.add(new KnxGroupAddress(dpt, levelAddress, name, description, bpType, bpName, bpDescription));
 //        LOGGER.debug("Created GroupAddress: " + levelAddress + " - " + name + " - " + dpt);
       }
     }
