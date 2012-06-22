@@ -118,14 +118,18 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 //				}
 				
 				//
-				// TODO store location type and description from ETS export in KnxDevice
+				// TODO mapping of location names from ETS4 (could be any String) to ISO defined ActivityHubLocation
+				// manual mapping??
 				//
+				this.logger.log(LogService.LOG_WARNING, "Mapping of locations from ETS config " +
+						"(could be any String) to ISO defined ActivityHubLocation is not in place yet!");
+
 				
 				// create appropriate ActivityHub device
 				this.activityHubSensor = ActivityHubFactory.createInstance(
 						isoDeviceCategory,
 //						isoDeviceLocation,
-						null, // this might cause an error on uAAL middleware service calling
+						null,
 						this.device.getGroupAddress(),this.logger);
 				if (this.activityHubSensor==null) {
 					this.logger.log(LogService.LOG_ERROR, "Error on creating ActivityHubSensor " +
