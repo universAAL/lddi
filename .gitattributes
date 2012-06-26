@@ -1,6 +1,6 @@
 * text=auto !eol
 hw.exporter.activityhub/README.txt -text
-hw.exporter.activityhub/conf/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
+hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 hw.exporter.activityhub/conf/services/knx.devicemanager.properties -text
 hw.exporter.activityhub/conf/services/knx.networkdriver.properties -text
 hw.exporter.activityhub/conf/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
@@ -12,7 +12,7 @@ hw.exporter.activityhub/launches/Run.bat -text
 hw.exporter.activityhub/launches/clean.bat -text
 hw.exporter.activityhub/launches/pax.configuration -text
 hw.exporter.activityhub/launches/pom.xml -text
-hw.exporter.activityhub/launches/runner/configurations/mw.bus.model/sodapop.key -text svneol=unset#application/octet-stream
+hw.exporter.activityhub/launches/runner/configurations/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 hw.exporter.activityhub/launches/runner/configurations/services/knx.devicemanager.properties -text
 hw.exporter.activityhub/launches/runner/configurations/services/knx.networkdriver.properties -text
 hw.exporter.activityhub/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text

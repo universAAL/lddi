@@ -1,9 +1,6 @@
 package org.universAAL.hwexporter.activityhub.test;
 
-import java.util.List;
-
 import org.osgi.framework.BundleContext;
-import org.springframework.util.Assert;
 import org.universAAL.itests.IntegrationTest;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
@@ -32,10 +29,10 @@ public class ArtifactIntegrationTest extends IntegrationTest {
 
 		// start uAAL bus consumer threads
 		
-		serviceConsumer = new MyActivityHubServiceConsumer(mc,ahc);
-		contextListener = new MyActivityHubContextListener(mc,ahc);
+//		serviceConsumer = new MyActivityHubServiceConsumer(mc,ahc);
+//		contextListener = new MyActivityHubContextListener(mc,ahc);
 
-		List list = serviceConsumer.getControlledActivityHubSensors();
+//		List list = serviceConsumer.getControlledActivityHubSensors();
 //		Assert.isTrue(list.size() == 2);
 		// This is not working because this bundle is started last in the composite 
 		// Devicemanager starts before and cannot find ISO-drivers!
