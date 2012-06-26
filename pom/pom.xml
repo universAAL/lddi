@@ -3,14 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>uAAL.pom</artifactId>
 		<groupId>org.universAAL</groupId>
-		<version>1.1.0</version>
+		<artifactId>uAAL.pom</artifactId>
+		<version>1.1.1-SNAPSHOT</version>
 	</parent>
 	
 	<groupId>org.universAAL.lddi</groupId>
 	<artifactId>lddi.pom</artifactId>
-	<version>1.1.0</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<!-- ______________________________________________________ -->
@@ -28,7 +28,7 @@
 		<module>../knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/</module>
 		<module>../knx.devicemanager/</module>
 		<module>../hw.exporter.activityhub/</module>
-<!--		<module>../hw.exporter.zigbee.ha/</module>-->
+		<!-- <module>../hw.exporter.zigbee.ha/</module> -->
 	</modules>
 
 	<properties>
@@ -44,17 +44,29 @@
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
 				<artifactId>mw.pom</artifactId>
-				<version>1.1.0</version>
+<!--				<version>1.1.0</version>-->
+				<version>1.1.2-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.universAAL.ontology</groupId>
-				<artifactId>ont.pom</artifactId>
-				<version>1.1.0</version>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.pom.osgi</artifactId>
+				<version>1.1.2-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
+			</dependency> 		
+
+			
+<!-- 			<dependency>
+				<groupId>org.universAAL.ontology</groupId>
+				<artifactId>ont.pom.osgi</artifactId>
+				<version>1.1.2-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency> -->
+			
+			
 			<!-- ADD all Modules as Dependencies to be imported all at once -->
 <!-- 			<dependency>
 				<groupId>org.universAAL.lddi</groupId>
