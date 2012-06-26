@@ -14,8 +14,8 @@ import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.TypeURI;
 import org.universAAL.ontology.activityhub.ActivityHubSensor;
 import org.universAAL.ontology.activityhub.ActivityHubSensorEvent;
-import org.universAAL.ontology.activityhub.factory.ActivityHubEventFactory;
 import org.universAAL.ontology.activityhub.factory.ActivityHubFactory;
+import org.universAAL.ontology.activityhub.factory.ActivityHubEventFactory;
 
 
 /**
