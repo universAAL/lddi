@@ -100,11 +100,11 @@ knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/felix/sy
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/remoteDebug.bat -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/runner/run.bat -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/pom.xml -text
-knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/Activator.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/KnxDpt1Instance.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
-knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/Activator.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1Instance.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
+knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
 lddi.hw.exporter.activityhub/README.txt -text
 lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub/conf/services/knx.devicemanager.properties -text

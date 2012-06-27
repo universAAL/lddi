@@ -1,32 +1,22 @@
-package org.universAAL.knx.dpt1refinementdriver.iso11073;
+package org.universAAL.lddi.knx.dpt1refinementdriver.iso11073;
 
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
-import org.osgi.service.cm.ConfigurationException;
-import org.osgi.service.cm.ManagedServiceFactory;
 import org.osgi.service.device.Constants;
 import org.osgi.service.device.Device;
 import org.osgi.service.device.Driver;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
-import org.osgi.util.tracker.ServiceTrackerCustomizer;
-
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
-import org.universAAL.iso11073.activityhub.knxmapping.KnxMappingFactory;
-import org.universAAL.knx.devicecategory.KnxDpt1;
-import org.universAAL.knx.devicemodel.KnxDpt1Device;
-import org.universAAL.knx.dpt1refinementdriver.iso11073.util.KnxDeviceConfig;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.knxmapping.KnxMappingFactory;
+import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
+import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 
 /**
  * checks device references coming from OSGi DeviceManager; matching device category

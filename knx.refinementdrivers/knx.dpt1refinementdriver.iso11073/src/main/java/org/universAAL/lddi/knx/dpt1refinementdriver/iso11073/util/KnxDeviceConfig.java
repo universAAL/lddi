@@ -1,4 +1,4 @@
-package org.universAAL.knx.dpt1refinementdriver.iso11073.util;
+package org.universAAL.lddi.knx.dpt1refinementdriver.iso11073.util;
 
 import java.util.Dictionary;
 
