@@ -6,5 +6,9 @@ knx.networkdriver/.classpath
 knx.networkdriver/.project
 knx.networkdriver/.settings
 knx.networkdriver/target
+lddi.knx.networkdriver/.classpath
+lddi.knx.networkdriver/.project
+lddi.knx.networkdriver/.settings
+lddi.knx.networkdriver/target
 pom/.project
 pom/.settings
