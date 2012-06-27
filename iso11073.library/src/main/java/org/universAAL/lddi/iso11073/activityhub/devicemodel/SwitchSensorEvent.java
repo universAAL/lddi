@@ -1,4 +1,4 @@
-package org.universAAL.iso11073.activityhub.devicemodel;
+package org.universAAL.lddi.iso11073.activityhub.devicemodel;
 
 /**
  * sensor events of switch sensor ISO 11073-10471

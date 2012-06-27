@@ -1,4 +1,4 @@
-package org.universAAL.iso11073.activityhub.util;
+package org.universAAL.lddi.iso11073.activityhub.util;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;

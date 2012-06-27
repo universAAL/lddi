@@ -1,9 +1,9 @@
-package org.universAAL.iso11073.activityhub.devicemodel;
+package org.universAAL.lddi.iso11073.activityhub.devicemodel;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
-import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
 
 /**
@@ -33,7 +33,7 @@ public class MotionSensor extends ActivityHubSensor implements Iso11073MotionSen
 	}
 
 	/* (non-Javadoc)
-	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#getSensorEventValue()
+	 * @see org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor#getSensorEventValue()
 	 */
 	@Override
 	public int getSensorEventValue() {
@@ -41,7 +41,7 @@ public class MotionSensor extends ActivityHubSensor implements Iso11073MotionSen
 	}
 
 //	/* (non-Javadoc)
-//	 * @see org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
+//	 * @see org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
 //	 */
 //	@Override
 //	public void setSensorEvent(int sensorEvent) {

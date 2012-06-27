@@ -1,6 +1,6 @@
-package org.universAAL.iso11073.activityhub.knxmapping;
+package org.universAAL.lddi.iso11073.activityhub.knxmapping;
 
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 
 /**
  * Mapping of KNX datapoint types to ActivityHubSensors
