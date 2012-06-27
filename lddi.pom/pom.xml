@@ -22,11 +22,11 @@
 	<!-- ______________________________________________________ -->
 	
 	<modules>
-		<module>../knx.library/</module>
-		<module>../iso11073.library/</module>
-		<module>../knx.networkdriver/</module>
-		<module>../knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/</module>
-		<module>../knx.devicemanager/</module>
+		<module>../lddi.knx.library/</module>
+		<module>../lddi.iso11073.library/</module>
+		<module>../lddi.knx.networkdriver/</module>
+		<module>../lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/</module>
+		<module>../lddi.knx.devicemanager/</module>
 		<module>../lddi.hw.exporter.activityhub/</module>
 		<!-- <module>../hw.exporter.zigbee.ha/</module> -->
 	</modules>
