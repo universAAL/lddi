@@ -1,9 +1,9 @@
-package org.universAAL.iso11073.activityhub.devicecategory;
+package org.universAAL.lddi.iso11073.activityhub.devicecategory;
 
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 
 /**
- * OSGi DeviceCategory for Activityhub motion sensor
+ * OSGi DeviceCategory for Activityhub switch sensor
  * 
  * In general DeviceCategories specify:
  * - rules and interfaces needed for the communication between device service
@@ -15,11 +15,11 @@ import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCateg
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface Iso11073MotionSensor extends ActivityHubBaseDeviceCategory {
+public interface Iso11073SwitchSensor extends ActivityHubBaseDeviceCategory {
 
 	// used in driver match method
-	public static String MY_DEVICE_CATEGORY = ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_MOTION.toString(); 
-		//"ISO11073_MOTIONSENSOR";
+	public static String MY_DEVICE_CATEGORY = ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_SWITCH.toString(); 
+		//"ISO11073_SWITCHSENSOR";
 
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number

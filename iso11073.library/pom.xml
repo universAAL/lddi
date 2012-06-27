@@ -2,14 +2,13 @@
 	<parent>
 		<groupId>org.universAAL.lddi</groupId>
 		<artifactId>lddi.pom</artifactId>
-		<version>1.1.0</version>
+		<version>1.1.1-SNAPSHOT</version>
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.universAAL.lddi</groupId>
-	<artifactId>iso11073.library</artifactId>
+	<artifactId>lddi.iso11073.library</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>Java class library for ISO/IEEE 11073 standard</name>
 	<description>ISO 11073 Device Categories for OSGi DeviceManager are Interfaces for all ISO 11073 sensor types, specifying methods for communication with device services.</description>
 	<inceptionYear>2012</inceptionYear>
@@ -70,7 +69,7 @@
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Export-Package>org.universAAL.iso11073.activityhub.*</Export-Package>
+						<Export-Package>org.universAAL.lddi.iso11073.activityhub.*</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>

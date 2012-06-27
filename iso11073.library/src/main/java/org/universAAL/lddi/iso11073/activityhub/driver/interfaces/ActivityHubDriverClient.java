@@ -1,7 +1,7 @@
-package org.universAAL.iso11073.activityhub.driver.interfaces;
+package org.universAAL.lddi.iso11073.activityhub.driver.interfaces;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 
 
 /**

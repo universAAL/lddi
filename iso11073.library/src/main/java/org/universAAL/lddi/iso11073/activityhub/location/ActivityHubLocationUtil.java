@@ -1,4 +1,4 @@
-package org.universAAL.iso11073.activityhub.location;
+package org.universAAL.lddi.iso11073.activityhub.location;
  
  /**
   * Definition of location codes from ISO 11073-10471 Nomenclature

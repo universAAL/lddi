@@ -1,4 +1,4 @@
-package org.universAAL.iso11073.activityhub.driver.interfaces;
+package org.universAAL.lddi.iso11073.activityhub.driver.interfaces;
 
 /**
  * An actuator device is controllable. It should implement this interface.

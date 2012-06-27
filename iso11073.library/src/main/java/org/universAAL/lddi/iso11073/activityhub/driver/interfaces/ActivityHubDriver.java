@@ -1,9 +1,9 @@
-package org.universAAL.iso11073.activityhub.driver.interfaces;
+package org.universAAL.lddi.iso11073.activityhub.driver.interfaces;
 
 import java.util.Set;
 
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubBaseDeviceCategory;
-import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubBaseDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor;
 
 /**
  * This abstract class is designed to help developing an activityhub driver.

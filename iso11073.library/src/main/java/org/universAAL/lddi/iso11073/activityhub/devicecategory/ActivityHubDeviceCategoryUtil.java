@@ -1,4 +1,4 @@
-package org.universAAL.iso11073.activityhub.devicecategory;
+package org.universAAL.lddi.iso11073.activityhub.devicecategory;
 
 import java.util.EnumSet;
 import java.util.HashMap;
