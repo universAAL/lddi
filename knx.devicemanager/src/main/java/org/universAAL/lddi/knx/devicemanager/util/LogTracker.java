@@ -1,4 +1,4 @@
-package org.universAAL.knx.devicemanager.util;
+package org.universAAL.lddi.knx.devicemanager.util;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;

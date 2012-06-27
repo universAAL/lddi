@@ -2,14 +2,13 @@
 	<parent>
 		<groupId>org.universAAL.lddi</groupId>
 		<artifactId>lddi.pom</artifactId>
-		<version>1.1.0</version>
+		<version>1.1.1-SNAPSHOT</version>
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.universAAL.lddi</groupId>
-	<artifactId>knx.devicemanager</artifactId>
+	<artifactId>lddi.knx.devicemanager</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>KNX device manager</name>
 	<description>This bundle reads KNX device configuration from XML files (exported by ETS4). A OSGI device service is registered in the framework for every KNX device.
 	</description>
@@ -68,11 +67,11 @@
 
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
-			<artifactId>knx.library</artifactId>
+			<artifactId>lddi.knx.library</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
-			<artifactId>knx.networkdriver</artifactId>
+			<artifactId>lddi.knx.networkdriver</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
@@ -94,10 +93,10 @@
 				<configuration>
 					<instructions>
 						<Bundle-Name>${project.name}</Bundle-Name>
-						<Bundle-Activator>org.universAAL.knx.devicemanager.Activator</Bundle-Activator>
+						<Bundle-Activator>org.universAAL.lddi.knx.devicemanager.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Export-Package>org.universAAL.knx.devicemanager</Export-Package>
+						<Export-Package>org.universAAL.lddi.knx.devicemanager</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>

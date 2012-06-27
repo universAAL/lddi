@@ -1,6 +1,6 @@
-package org.universAAL.knx.devicemanager;
+package org.universAAL.lddi.knx.devicemanager;
 
-import org.universAAL.knx.devicemanager.util.LogTracker;
+import org.universAAL.lddi.knx.devicemanager.util.LogTracker;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
