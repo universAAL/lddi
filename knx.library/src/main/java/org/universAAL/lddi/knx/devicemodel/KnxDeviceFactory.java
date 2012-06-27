@@ -1,4 +1,4 @@
-package org.universAAL.knx.devicemodel;
+package org.universAAL.lddi.knx.devicemodel;
 
 /**
  * Factory for KNX devices for each data point type

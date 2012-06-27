@@ -1,4 +1,4 @@
-package org.universAAL.knx.devicecategory;
+package org.universAAL.lddi.knx.devicecategory;
 
 /**
  * Base DeviceCategory for KNX datapoint types B1 (1 bit)

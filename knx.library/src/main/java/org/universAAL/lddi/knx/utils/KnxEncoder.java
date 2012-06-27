@@ -1,4 +1,4 @@
-package org.universAAL.knx.utils;
+package org.universAAL.lddi.knx.utils;
 
 
 

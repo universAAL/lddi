@@ -1,7 +1,7 @@
-package org.universAAL.knx.networkdriver;
+package org.universAAL.lddi.knx.networkdriver;
 
-import org.universAAL.knx.devicemodel.KnxDevice;
-import org.universAAL.knx.utils.KnxEncoder.KnxMessageType;
+import org.universAAL.lddi.knx.devicemodel.KnxDevice;
+import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
 
 public interface KnxNetwork {
 	public static String MANUFACTURER = "KONNEX";

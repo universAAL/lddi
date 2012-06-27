@@ -1,7 +1,7 @@
-package org.universAAL.knx.devicemodel;
+package org.universAAL.lddi.knx.devicemodel;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.knx.devicecategory.KnxDpt1;
+import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
 
 /**
  * 
@@ -29,7 +29,7 @@ public class KnxDpt1Device extends KnxDevice implements KnxDpt1 {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.universAAL.knx.devicecategory.KnxDpt1#newMessageFromKnxBus(byte)
+	 * @see org.universAAL.lddi.knx.devicecategory.KnxDpt1#newMessageFromKnxBus(byte)
 	 */
 	public void newMessageFromKnxBus(byte event) {
 		// not used in device; this method is called in driver!

@@ -1,7 +1,7 @@
-package org.universAAL.knx.devicedriver;
+package org.universAAL.lddi.knx.devicedriver;
 
-import org.universAAL.knx.devicecategory.KnxBaseDeviceCategory;
-import org.universAAL.knx.devicemodel.KnxDevice;
+import org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory;
+import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 
 /**
  * This abstract class is designed to help developing a knx driver.

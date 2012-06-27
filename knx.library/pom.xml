@@ -2,14 +2,13 @@
 	<parent>
 		<groupId>org.universAAL.lddi</groupId>
 		<artifactId>lddi.pom</artifactId>
-		<version>1.1.0</version>
+		<version>1.1.1-SNAPSHOT</version>
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.universAAL.lddi</groupId>
-	<artifactId>knx.library</artifactId>
+	<artifactId>lddi.knx.library</artifactId>
 	<packaging>bundle</packaging>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>KNX Datapoint Type Library</name>
 	<description>KNX Device Categories for OSGi DeviceManager are Interfaces for all KNX Datapoint Types specifying methods for communication with device services.
 	</description>
@@ -71,11 +70,11 @@
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Export-Package>org.universAAL.knx.devicecategory,
-						org.universAAL.knx.devicemodel,
-						org.universAAL.knx.networkdriver,
-						org.universAAL.knx.devicedriver,
-						org.universAAL.knx.utils</Export-Package>
+						<Export-Package>org.universAAL.lddi.knx.devicecategory,
+						org.universAAL.lddi.knx.devicemodel,
+						org.universAAL.lddi.knx.networkdriver,
+						org.universAAL.lddi.knx.devicedriver,
+						org.universAAL.lddi.knx.utils</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>
