@@ -1,8 +1,8 @@
-package org.universAAL.hw.exporter.activityhub;
+package org.universAAL.lddi.hw.exporter.activityhub;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.universAAL.hw.exporter.activityhub.util.LogTracker;
+import org.universAAL.lddi.hw.exporter.activityhub.util.LogTracker;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 

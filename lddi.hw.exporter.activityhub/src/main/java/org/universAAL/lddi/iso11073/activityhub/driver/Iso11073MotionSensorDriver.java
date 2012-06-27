@@ -1,4 +1,4 @@
-package org.universAAL.iso11073.activityhub.driver;
+package org.universAAL.lddi.iso11073.activityhub.driver;
 
 import java.util.HashSet;
 import java.util.Properties;
@@ -12,8 +12,8 @@ import org.osgi.service.device.Device;
 import org.osgi.service.device.Driver;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
-import org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
-import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
+import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 
 /**
  * This Driver class manages driver instances for MotionSensor devices.

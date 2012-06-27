@@ -73,7 +73,7 @@ knx.library/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxNetwork.java 
 knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxEncoder.java -text
 knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.java -text
 knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
-knx.networkdriver/conf/services/knx.networkdriver.properties -text
+knx.networkdriver/conf/services/lddi.knx.networkdriver.properties -text
 knx.networkdriver/pom.xml -text
 knx.networkdriver/readme.txt -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/Activator.java -text
@@ -107,8 +107,8 @@ knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/univer
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
 lddi.hw.exporter.activityhub/README.txt -text
 lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
-lddi.hw.exporter.activityhub/conf/services/knx.devicemanager.properties -text
-lddi.hw.exporter.activityhub/conf/services/knx.networkdriver.properties -text
+lddi.hw.exporter.activityhub/conf/services/lddi.knx.devicemanager.properties -text
+lddi.hw.exporter.activityhub/conf/services/lddi.knx.networkdriver.properties -text
 lddi.hw.exporter.activityhub/conf/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
 lddi.hw.exporter.activityhub/conf/services/org.ops4j.pax.logging.properties -text
 lddi.hw.exporter.activityhub/conf/services/org.universAAL.mw.data.representation.properties -text
@@ -142,8 +142,8 @@ lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activity
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073MotionSensorInstance.java -text
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073SwitchSensorDriver.java -text
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073SwitchSensorInstance.java -text
-lddi.hw.exporter.activityhub/src/test/java/org/universAAL/hwexporter/activityhub/test/ActivityHubClient.java -text
-lddi.hw.exporter.activityhub/src/test/java/org/universAAL/hwexporter/activityhub/test/ArtifactIntegrationTest.java -text
-lddi.hw.exporter.activityhub/src/test/java/org/universAAL/hwexporter/activityhub/test/MyActivityHubContextListener.java -text
-lddi.hw.exporter.activityhub/src/test/java/org/universAAL/hwexporter/activityhub/test/MyActivityHubServiceConsumer.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/ActivityHubClient.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/ArtifactIntegrationTest.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/MyActivityHubContextListener.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/MyActivityHubServiceConsumer.java -text
 pom/pom.xml -text

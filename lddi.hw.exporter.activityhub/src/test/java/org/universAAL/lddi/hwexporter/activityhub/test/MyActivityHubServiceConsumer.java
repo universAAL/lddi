@@ -1,4 +1,4 @@
-package org.universAAL.hwexporter.activityhub.test;
+package org.universAAL.lddi.hwexporter.activityhub.test;
 
 import java.util.ArrayList;
 import java.util.Iterator;

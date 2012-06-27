@@ -1,4 +1,4 @@
-package org.universAAL.hwexporter.activityhub.test;
+package org.universAAL.lddi.hwexporter.activityhub.test;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,9 +16,9 @@ import javax.swing.JTextArea;
 import javax.swing.ListModel;
 import javax.swing.WindowConstants;
 
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
-import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubFactory;
-import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubFactory;
+import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor;
 
 /**
  * This is the connector class to the uAAL related ontology classes, mainly MyActivityHubServiceConsumer.java

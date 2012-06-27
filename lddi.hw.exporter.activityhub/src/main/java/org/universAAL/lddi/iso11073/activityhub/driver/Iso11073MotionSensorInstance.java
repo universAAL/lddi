@@ -1,16 +1,15 @@
-package org.universAAL.iso11073.activityhub.driver;
+package org.universAAL.lddi.iso11073.activityhub.driver;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.iso11073.activityhub.devicecategory.Iso11073ContactClosureSensor;
-import org.universAAL.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
-import org.universAAL.iso11073.activityhub.devicemodel.MotionSensor;
-import org.universAAL.iso11073.activityhub.devicemodel.MotionSensorEvent;
-import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver;
-import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.Iso11073MotionSensor;
+import org.universAAL.lddi.iso11073.activityhub.devicemodel.MotionSensor;
+import org.universAAL.lddi.iso11073.activityhub.devicemodel.MotionSensorEvent;
+import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriver;
+import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 
 /**
  * Working instance of the ActivityHub MotionSensor driver.

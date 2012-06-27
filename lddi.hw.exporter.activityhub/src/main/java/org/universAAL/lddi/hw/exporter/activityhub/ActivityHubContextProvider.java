@@ -1,7 +1,7 @@
-package org.universAAL.hw.exporter.activityhub;
+package org.universAAL.lddi.hw.exporter.activityhub;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;

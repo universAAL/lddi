@@ -1,4 +1,4 @@
-package org.universAAL.hw.exporter.activityhub;
+package org.universAAL.lddi.hw.exporter.activityhub;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
+import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.service.CallStatus;

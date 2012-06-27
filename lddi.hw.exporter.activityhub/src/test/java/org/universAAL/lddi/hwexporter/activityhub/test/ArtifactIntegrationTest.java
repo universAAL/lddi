@@ -1,4 +1,4 @@
-package org.universAAL.hwexporter.activityhub.test;
+package org.universAAL.lddi.hwexporter.activityhub.test;
 
 import org.osgi.framework.BundleContext;
 import org.universAAL.itests.IntegrationTest;

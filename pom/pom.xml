@@ -27,7 +27,7 @@
 		<module>../knx.networkdriver/</module>
 		<module>../knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/</module>
 		<module>../knx.devicemanager/</module>
-		<module>../hw.exporter.activityhub/</module>
+		<module>../lddi.hw.exporter.activityhub/</module>
 		<!-- <module>../hw.exporter.zigbee.ha/</module> -->
 	</modules>
 
@@ -36,7 +36,7 @@
 		<maven.compile.source>1.5</maven.compile.source>
 		<maven.compile.target>1.5</maven.compile.target>
 		<gforge.project.name>lddi</gforge.project.name>
-		<lddi.version>0.0.4-SNAPSHOT</lddi.version>
+		<lddi.version>0.0.5-SNAPSHOT</lddi.version>
 	</properties>
 
 	<dependencyManagement>
@@ -79,32 +79,32 @@
 
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.library</artifactId>
+					<artifactId>lddi.knx.library</artifactId>
 					<version>${lddi.version}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>iso11073.library</artifactId>
+					<artifactId>lddi.iso11073.library</artifactId>
 					<version>${lddi.version}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.networkdriver</artifactId>
+					<artifactId>lddi.knx.networkdriver</artifactId>
 					<version>${lddi.version}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.dpt1refinementdriver.iso11073</artifactId>
+					<artifactId>lddi.knx.dpt1refinementdriver.iso11073</artifactId>
 					<version>${lddi.version}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>hw.exporter.activityhub</artifactId>
+					<artifactId>lddi.hw.exporter.activityhub</artifactId>
 					<version>${lddi.version}</version>
 				</dependency>
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.devicemanager</artifactId>
+					<artifactId>lddi.knx.devicemanager</artifactId>
 					<version>${lddi.version}</version>
 				</dependency>
 		</dependencies>
