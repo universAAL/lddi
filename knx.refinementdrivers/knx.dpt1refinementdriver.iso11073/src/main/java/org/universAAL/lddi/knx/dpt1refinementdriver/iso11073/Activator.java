@@ -1,8 +1,8 @@
-package org.universAAL.knx.dpt1refinementdriver.iso11073;
+package org.universAAL.lddi.knx.dpt1refinementdriver.iso11073;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.universAAL.knx.dpt1refinementdriver.iso11073.util.LogTracker;
+import org.universAAL.lddi.knx.dpt1refinementdriver.iso11073.util.LogTracker;
 
 /***
  * 

@@ -1,4 +1,4 @@
-package org.universAAL.knx.dpt1refinementdriver.iso11073;
+package org.universAAL.lddi.knx.dpt1refinementdriver.iso11073;
 
 import java.util.Dictionary;
 import java.util.Properties;
@@ -9,15 +9,12 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil;
-import org.universAAL.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
-import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubFactory;
-import org.universAAL.iso11073.activityhub.devicemodel.ActivityHubSensor;
-import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil;
-import org.universAAL.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
-import org.universAAL.knx.devicecategory.KnxDpt1;
-import org.universAAL.knx.devicedriver.KnxDriver;
-import org.universAAL.knx.devicemodel.KnxDpt1Device;
+import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
+import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubFactory;
+import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor;
+import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
+import org.universAAL.lddi.knx.devicedriver.KnxDriver;
+import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 
 /**
  * Working instance of the KnxDpt1 driver. Registers a service/device.
