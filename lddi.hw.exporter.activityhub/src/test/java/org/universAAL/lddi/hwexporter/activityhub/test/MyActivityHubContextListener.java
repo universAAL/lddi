@@ -1,4 +1,4 @@
-package org.universAAL.hwexporter.activityhub.test;
+package org.universAAL.lddi.hwexporter.activityhub.test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

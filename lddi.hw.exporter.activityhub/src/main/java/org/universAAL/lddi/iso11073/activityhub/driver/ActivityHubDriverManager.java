@@ -1,7 +1,7 @@
-package org.universAAL.iso11073.activityhub.driver;
+package org.universAAL.lddi.iso11073.activityhub.driver;
 
 import org.osgi.framework.BundleContext;
-import org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
+import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 
 /**
  * 

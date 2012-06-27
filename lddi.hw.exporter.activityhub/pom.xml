@@ -10,7 +10,7 @@
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<artifactId>lddi.hw.exporter.activityhub</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<!-- ______________________________________________________ -->
@@ -89,7 +89,7 @@
 
 		<dependency>
 			<groupId>org.universAAL.lddi</groupId>
-			<artifactId>iso11073.library</artifactId>
+			<artifactId>lddi.iso11073.library</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
@@ -109,7 +109,7 @@
 				<configuration>
 					<instructions>
 						<Bundle-Name>${project.name}</Bundle-Name>
-						<Bundle-Activator>org.universAAL.hw.exporter.activityhub.Activator</Bundle-Activator>
+						<Bundle-Activator>org.universAAL.lddi.hw.exporter.activityhub.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 					</instructions>
@@ -179,15 +179,15 @@
 
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.library</artifactId>
+					<artifactId>lddi.knx.library</artifactId>
 				</dependency>
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.networkdriver</artifactId>
+					<artifactId>lddi.knx.networkdriver</artifactId>
 				</dependency>
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.dpt1refinementdriver.iso11073</artifactId>
+					<artifactId>lddi.knx.dpt1refinementdriver.iso11073</artifactId>
 				</dependency>
 				
 				<dependency>
@@ -205,7 +205,7 @@
 				 but current artifact is always the last one!! -->
 				<dependency>
 					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>knx.devicemanager</artifactId>
+					<artifactId>lddi.knx.devicemanager</artifactId>
 				</dependency>
 
 			</dependencies>

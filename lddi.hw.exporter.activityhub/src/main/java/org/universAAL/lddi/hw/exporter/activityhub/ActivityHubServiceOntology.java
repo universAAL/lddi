@@ -1,4 +1,4 @@
-package org.universAAL.hw.exporter.activityhub;
+package org.universAAL.lddi.hw.exporter.activityhub;
 
 import java.util.Hashtable;
 
