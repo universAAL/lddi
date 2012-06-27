@@ -6,11 +6,11 @@
 	<parent>
 		<groupId>org.universAAL.lddi</groupId>
 		<artifactId>lddi.pom</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.1.1-SNAPSHOT</version>
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<artifactId>hw.exporter.zigbee.ha</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	
 	<!-- ______________________________________________________ -->
@@ -45,36 +45,39 @@
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.data.representation</artifactId>
+			<artifactId>mw.data.representation.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.model</artifactId>
+			<artifactId>mw.bus.model.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.context</artifactId>
+			<artifactId>mw.bus.context.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.service</artifactId>
+			<artifactId>mw.bus.service.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.phWorld</artifactId>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.lighting</artifactId>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.device.extra</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.weather</artifactId>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
