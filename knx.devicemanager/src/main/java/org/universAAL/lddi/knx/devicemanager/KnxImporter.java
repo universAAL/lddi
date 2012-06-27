@@ -1,4 +1,4 @@
-package org.universAAL.knx.devicemanager;
+package org.universAAL.lddi.knx.devicemanager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +19,7 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.XPath;
-import org.universAAL.knx.utils.KnxGroupAddress;
+import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
 /**
  * The class takes a ets4 export file as inputstream and creates a list of

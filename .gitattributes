@@ -37,7 +37,7 @@ iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/i
 iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/knxmapping/KnxMappingFactory.java -text
 iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/location/ActivityHubLocationUtil.java -text
 iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/util/LogTracker.java -text
-knx.devicemanager/conf/services/knx.devicemanager.properties -text
+knx.devicemanager/conf/services/lddi.knx.devicemanager.properties -text
 knx.devicemanager/data/OfficeProject2.knxproj -text
 knx.devicemanager/data/OfficeProject3.knxproj -text
 knx.devicemanager/launches/README.txt -text
@@ -57,10 +57,10 @@ knx.devicemanager/launches/runner/remoteDebug.bat -text
 knx.devicemanager/launches/runner/run.bat -text
 knx.devicemanager/pom.xml -text
 knx.devicemanager/readme.txt -text
-knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/Activator.java -text
-knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxDeviceManager.java -text
-knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/KnxImporter.java -text
-knx.devicemanager/src/main/java/org/universAAL/knx/devicemanager/util/LogTracker.java -text
+knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/Activator.java -text
+knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxDeviceManager.java -text
+knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxImporter.java -text
+knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/util/LogTracker.java -text
 knx.library/pom.xml -text
 knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxBaseDeviceCategory.java -text
 knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxDpt1.java -text

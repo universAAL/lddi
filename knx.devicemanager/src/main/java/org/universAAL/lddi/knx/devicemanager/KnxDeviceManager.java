@@ -1,4 +1,4 @@
-package org.universAAL.knx.devicemanager;
+package org.universAAL.lddi.knx.devicemanager;
 
 
 import java.io.FileInputStream;
@@ -21,10 +21,10 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
-import org.universAAL.knx.devicemodel.KnxDevice;
-import org.universAAL.knx.devicemodel.KnxDeviceFactory;
-import org.universAAL.knx.networkdriver.KnxNetwork;
-import org.universAAL.knx.utils.KnxGroupAddress;
+import org.universAAL.lddi.knx.devicemodel.KnxDevice;
+import org.universAAL.lddi.knx.devicemodel.KnxDeviceFactory;
+import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
+import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
 /**
  * This bundle tracks on KnxNetwork service
