@@ -3,7 +3,7 @@
  */
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
-import org.universAAL.knx.utils.KnxEncoder;
+import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
  * This class stores information about a Knx notification

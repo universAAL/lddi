@@ -16,9 +16,9 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
-import org.universAAL.knx.devicemodel.KnxDevice;
-import org.universAAL.knx.networkdriver.KnxNetwork;
-import org.universAAL.knx.utils.KnxEncoder.KnxMessageType;
+import org.universAAL.lddi.knx.devicemodel.KnxDevice;
+import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
+import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
 
 /***
  * 

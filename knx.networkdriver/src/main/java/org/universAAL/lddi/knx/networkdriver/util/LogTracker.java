@@ -1,4 +1,4 @@
-package org.universAAL.knx.networkdriver.util;
+package org.universAAL.lddi.knx.networkdriver.util;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
