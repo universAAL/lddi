@@ -83,7 +83,7 @@ knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/K
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNotification.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxReader.java -text
 knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriter.java -text
-knx.networkdriver/src/main/java/org/universAAL/knx/networkdriver/util/LogTracker.java -text
+knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/README.txt -text
 knx.refinementdrivers/knx.dpt1refinementdriver.iso11073/launches/Run.bat -text

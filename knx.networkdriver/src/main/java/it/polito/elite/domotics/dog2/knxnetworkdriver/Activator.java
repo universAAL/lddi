@@ -3,7 +3,7 @@ package it.polito.elite.domotics.dog2.knxnetworkdriver;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
-import org.universAAL.knx.networkdriver.util.LogTracker;
+import org.universAAL.lddi.knx.networkdriver.util.LogTracker;
 
 /***
  * 

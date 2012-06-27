@@ -6,8 +6,8 @@ import java.net.MulticastSocket;
 import java.net.SocketException;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.knx.utils.KnxEncoder;
-import org.universAAL.knx.utils.KnxTelegram;
+import org.universAAL.lddi.knx.utils.KnxEncoder;
+import org.universAAL.lddi.knx.utils.KnxTelegram;
 
 /** Provides readings from the knx gateway by the LAN.
  * Uses the encoder to operate translation from low level data
