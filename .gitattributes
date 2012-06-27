@@ -31,8 +31,8 @@ lddi.hw.exporter.activityhub/launches/clean.bat -text
 lddi.hw.exporter.activityhub/launches/pax.configuration -text
 lddi.hw.exporter.activityhub/launches/pom.xml -text
 lddi.hw.exporter.activityhub/launches/runner/configurations/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
-lddi.hw.exporter.activityhub/launches/runner/configurations/services/knx.devicemanager.properties -text
-lddi.hw.exporter.activityhub/launches/runner/configurations/services/knx.networkdriver.properties -text
+lddi.hw.exporter.activityhub/launches/runner/configurations/services/lddi.knx.devicemanager.properties -text
+lddi.hw.exporter.activityhub/launches/runner/configurations/services/lddi.knx.networkdriver.properties -text
 lddi.hw.exporter.activityhub/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
 lddi.hw.exporter.activityhub/launches/runner/configurations/services/org.ops4j.pax.logging.properties -text
 lddi.hw.exporter.activityhub/launches/runner/data/OfficeProject3.knxproj -text
