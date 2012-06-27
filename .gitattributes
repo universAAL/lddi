@@ -146,4 +146,16 @@ lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/dri
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/knxmapping/KnxMappingFactory.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/location/ActivityHubLocationUtil.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/util/LogTracker.java -text
+lddi.knx.library/pom.xml -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxBaseDeviceCategory.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxDpt1.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicedriver/KnxDriver.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDevice.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDeviceFactory.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt1Device.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/library/utils/LogTracker.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxNetwork.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxEncoder.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
 pom/pom.xml -text
