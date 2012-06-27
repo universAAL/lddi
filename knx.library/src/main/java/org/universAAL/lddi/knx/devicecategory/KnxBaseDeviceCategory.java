@@ -1,4 +1,4 @@
-package org.universAAL.knx.devicecategory;
+package org.universAAL.lddi.knx.devicecategory;
 
 /**
  * 
