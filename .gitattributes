@@ -235,4 +235,4 @@ lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
-pom/pom.xml -text
+lddi.pom/pom.xml -text

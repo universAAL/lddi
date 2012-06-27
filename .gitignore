@@ -10,5 +10,5 @@ lddi.knx.networkdriver/.classpath
 lddi.knx.networkdriver/.project
 lddi.knx.networkdriver/.settings
 lddi.knx.networkdriver/target
-pom/.project
-pom/.settings
+lddi.pom/.project
+lddi.pom/.settings
