@@ -12,7 +12,6 @@
 	<artifactId>lddi.hw.exporter.activityhub</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.5-SNAPSHOT</version>
-	<!-- version is here equal to the level of version of the middleware -->
 	<name>Runner Folder</name>
 	<description>PaxRunner configuration for lddi.hw.exporter.activityhub artifact</description>
 
