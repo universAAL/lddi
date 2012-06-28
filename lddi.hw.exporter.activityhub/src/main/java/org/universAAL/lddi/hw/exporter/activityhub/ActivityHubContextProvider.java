@@ -40,7 +40,7 @@ public class ActivityHubContextProvider {
 		ContextProvider info = new ContextProvider(
 				ActivityHubServiceOntology.ACTIVITYHUB_SERVER_NAMESPACE
 				+ "ActivityHubContextProvider");
-		info.setType(ContextProviderType.controller);
+		info.setType(ContextProviderType.gauge);
 		info.setProvidedEvents(providedEvents());
 		cp = new DefaultContextPublisher(mc, info);
 		

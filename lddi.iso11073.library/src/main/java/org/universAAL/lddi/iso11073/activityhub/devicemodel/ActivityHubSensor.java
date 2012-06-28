@@ -9,26 +9,38 @@ import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil
 /**
  * Activity hub sensor base class
  * 
+ * Now all ActivityHub sensors are implemented as on/off sensors having 
+ * setSensorEventOn and setSensorEventOff methods.
+ * 
+ * TODO: check if it's possible/better to use any value setSensorEvent(int sensorEvent)
+ * 
+ * TODO: Implement generic sensor properties flags for activity hub sensors
  * 
  * @author Thomas Fuxreiter
- *
  */
-public  
-abstract 
-class ActivityHubSensor implements Device {
+public abstract class ActivityHubSensor implements Device {
 
 	private LogService logger;
 	private ActivityHubDeviceCategory deviceCategory;
 	private ActivityHubLocation deviceLocation;
-	// some kind of deviceID !?
+
+	/** any kind of deviceID; for KNX devices this is the group address */
 	private String deviceId = null;
 
+	/** all inherited classes must use the same member name, even though they have different types */
 	protected Object lastSensorEvent;
 
 	/** reference to my driver instance; can be just one! */
 	protected ActivityHubBaseDeviceCategory driver;
 
-	
+	/**
+	 * Constructor
+	 *  	
+	 * @param deviceCategory
+	 * @param deviceLocation
+	 * @param deviceId
+	 * @param logger
+	 */
 	public ActivityHubSensor(ActivityHubDeviceCategory deviceCategory, 
 			ActivityHubLocation deviceLocation, String deviceId, LogService logger) {
 		this.deviceCategory = deviceCategory;
@@ -53,6 +65,10 @@ class ActivityHubSensor implements Device {
 	/** 
 	 * set sensor event to on (e.g. switch-on)
 	 * if input comes from an 1-bit sensor 
+	 * 
+	 * called by refinement driver
+	 * 
+	 * is in/off feasible for all ActivityHubSensors ????????????????
 	 */
 	public abstract void setSensorEventOn();
 
@@ -69,6 +85,18 @@ class ActivityHubSensor implements Device {
 		this.driver.incomingSensorEvent(event);
 	}
 	
+	/**
+	 * @return the sensorEvent
+	 */
+	public abstract int getSensorEventValue();
+
+
+//	?????????????????	
+//	/**
+//	 * @param sensorEvent the sensorEvent to set
+//	 */
+//	public abstract void setSensorEvent(int sensorEvent);
+
 	
 	/**
 	 * @return the deviceCategory
@@ -76,24 +104,14 @@ class ActivityHubSensor implements Device {
 	public ActivityHubDeviceCategory getDeviceCategory() {
 		return deviceCategory;
 	}
-
+	
+//	Only allowed in constructor
 //	/**
 //	 * @param deviceCategory the deviceCategory to set
 //	 */
 //	public void setDeviceCategory(ActivityHubDeviceCategory deviceCategory) {
 //		this.deviceCategory = deviceCategory;
 //	}
-
-	/**
-	 * @return the sensorEvent
-	 */
-	public abstract int getSensorEventValue();
-
-
-//	/**
-//	 * @param sensorEvent the sensorEvent to set
-//	 */
-//	public abstract void setSensorEvent(int sensorEvent);
 
 	/**
 	 * @return the deviceLocation
@@ -109,6 +127,7 @@ class ActivityHubSensor implements Device {
 		return deviceId;
 	}
 
+//	Only allowed in constructor
 //	/**
 //	 * @param deviceId the deviceId to set
 //	 */
@@ -124,6 +143,5 @@ class ActivityHubSensor implements Device {
 		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for ActivityHub device: " +
 				this.deviceCategory + " - " + this.deviceId);		
 	}
-	
 	
 }
