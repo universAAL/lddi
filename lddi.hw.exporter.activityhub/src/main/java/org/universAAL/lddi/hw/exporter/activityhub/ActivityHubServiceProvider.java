@@ -15,14 +15,7 @@ import org.universAAL.middleware.service.ServiceCallee;
 import org.universAAL.middleware.service.ServiceResponse;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
-import org.universAAL.ontology.activityhub.ActivityHubSensor;
-import org.universAAL.ontology.activityhub.ActivityHubSensorEvent;
-import org.universAAL.ontology.activityhub.ContactClosureSensor;
-import org.universAAL.ontology.activityhub.ContactClosureSensorEvent;
-import org.universAAL.ontology.activityhub.MotionSensor;
-import org.universAAL.ontology.activityhub.MotionSensorEvent;
-import org.universAAL.ontology.activityhub.SwitchSensor;
-import org.universAAL.ontology.activityhub.SwitchSensorEvent;
+import org.universAAL.ontology.activityhub.*;
 import org.universAAL.ontology.activityhub.factory.ActivityHubFactory;
 import org.universAAL.ontology.location.indoor.Room;
 
@@ -224,23 +217,43 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 	}
 
     /**
+     * Creates sensor event object from ontology (from enums).
+     * The abstract class ActivityHubSensorEvent is used here.
+     * 
 	 * @param lastSensorEvent
-	 * @return
+	 * @return sensor specific event object from ontology
 	 */
 	private ActivityHubSensorEvent createSensorEvent(int lastSensorEvent, ActivityHubSensor input) {
-		if (input instanceof MotionSensor)
+
+		/** list of sensors: org.universAAL.ontology.activityhub.util.ActivityHubSensorType */
+		if (input instanceof FallSensor)
+			return FallSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof PersSensor)
+			return PersSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof SmokeSensor)
+			return EnvironmentalSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof CoSensor)
+			return EnvironmentalSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof WaterSensor)
+			return EnvironmentalSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof GasSensor)
+			return EnvironmentalSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof MotionSensor)
 			return MotionSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof PropertyExitSensor)
+			return PropertyExitSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof EnuresisSensor)
+			return EnuresisSensorEvent.getEventByOrder(lastSensorEvent);
 		else if (input instanceof ContactClosureSensor)
 			return ContactClosureSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof UsageSensor)
+			return UsageSensorEvent.getEventByOrder(lastSensorEvent);
 		else if (input instanceof SwitchSensor)
 			return SwitchSensorEvent.getEventByOrder(lastSensorEvent);
-		//
-		// TODO: ...complete...
-		//
-		
-		
-		
-		
+		else if (input instanceof MedicationDosageSensor)
+			return MedicationDosageSensorEvent.getEventByOrder(lastSensorEvent);
+		else if (input instanceof TemperatureSensor)
+			return TemperatureSensorEvent.getEventByOrder(lastSensorEvent);
 		
 	    LogUtils.logError(Activator.moduleContext, ActivityHubServiceProvider.class, "createSensorEvent",
 			new Object[] { "No matching ActivityHubSensorType found for service bus call: " + 
