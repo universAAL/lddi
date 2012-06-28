@@ -5,13 +5,7 @@ import org.universAAL.lddi.iso11073.activityhub.devicecategory.Iso11073ContactCl
 import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
-
-
 /**
- * 
- * Do we really need this class or should we use just ActivityHubSensor ???
- * 
- * 
  * Representation of a contact closure sensor according to
  * ISO 11073 - Part 10471 (Indepentend living activity hub).
  * 
@@ -20,7 +14,8 @@ import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil
  * - contact closed
  * - no condition detected (optional)
  * 
- * TODO: Implement generic sensor properties flags for activity hub sensors
+ * Initially NO_CONDITION_DETECTED is set.
+ * Later, current sensor value can be set to CONTACT_OPENED and CONTACT_CLOSED
  * 
  * @author Thomas Fuxreiter 
  */
@@ -71,8 +66,9 @@ public class ContactClosureSensor extends ActivityHubSensor implements Iso11073C
 		this.sendEvent(ContactClosureSensorEvent.CONTACT_CLOSED.value());
 	}
 
+	
 	public void incomingSensorEvent(int event) {
-		// driver instances must implement this method; device instances not 
+		// driver instances must implement this method; device instances not!
 	}
 
 }

@@ -5,7 +5,6 @@ import org.universAAL.lddi.iso11073.activityhub.devicecategory.Iso11073MotionSen
 import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
-
 /**
  * Representation of a motion sensor according to ISO 11073 - 
  * Part 10471 (Indepentend living activity hub), edition 2010-05-01
@@ -16,7 +15,9 @@ import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil
  * - tamper detected (optional)
  * - no condition detected (optional)
  * 
- * TODO: Implement generic sensor properties flags for activity hub sensors
+ * Initially NO_CONDITION_DETECTED is set.
+ * Later, current sensor value can be set to MOTION_DETECTED and NO_CONDITION_DETECTED.
+ * Events MOTION_DETECTED_DELAYED and TAMPER_DETECTED are not implemented yet!
  * 
  * @author Thomas Fuxreiter
  */
@@ -65,6 +66,6 @@ public class MotionSensor extends ActivityHubSensor implements Iso11073MotionSen
 	}
 
 	public void incomingSensorEvent(int event) {
-		// driver instances must implement this method; device instances not 
+		// driver instances must implement this method; device instances not!
 	}
 }

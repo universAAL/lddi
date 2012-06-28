@@ -68,11 +68,5 @@ public abstract class ActivityHubDeviceCategoryUtil {
         public static ActivityHubDeviceCategory get(int code) { 
             return lookup.get(code); 
         }
-        
-    	//	ISO11073_CONTACTCLOSURESENSOR,
-    	//	ISO11073_MOTIONSENSOR,
-    	//	ISO11073_SWITCHSENSOR
     }
-
-	
 }
