@@ -1,7 +1,3 @@
-hw.exporter.zigbee.ha/.classpath
-hw.exporter.zigbee.ha/.project
-hw.exporter.zigbee.ha/.settings
-hw.exporter.zigbee.ha/target
 lddi.knx.networkdriver/.classpath
 lddi.knx.networkdriver/.project
 lddi.knx.networkdriver/.settings

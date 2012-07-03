@@ -1,22 +1,4 @@
 * text=auto !eol
-hw.exporter.zigbee.ha/LICENSE -text
-hw.exporter.zigbee.ha/NOTICE -text
-hw.exporter.zigbee.ha/pom.xml -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/Activator.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/PresenceDetectorCallee.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/TemperatureSensorCallee.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/DimmerLightListener.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OnOffLightListener.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/PresenceDetectorListener.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/DimmerLightService.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/HAServiceFactory.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/HAServicesOntology.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/OnOffLightService.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/PresenceDetectorService.java -text
-hw.exporter.zigbee.ha/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/TemperatureSensorService.java -text
 lddi.hw.exporter.activityhub/README.txt -text
 lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub/conf/services/lddi.knx.devicemanager.properties -text
@@ -147,3 +129,21 @@ lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
 lddi.pom/pom.xml -text
+lddi.zigbee.exporter/LICENSE -text
+lddi.zigbee.exporter/NOTICE -text
+lddi.zigbee.exporter/pom.xml -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/Activator.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/PresenceDetectorCallee.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/TemperatureSensorCallee.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/DimmerLightListener.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OnOffLightListener.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/PresenceDetectorListener.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/DimmerLightService.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/HAServiceFactory.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/HAServicesOntology.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/OnOffLightService.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/PresenceDetectorService.java -text
+lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/services/TemperatureSensorService.java -text
