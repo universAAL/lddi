@@ -28,7 +28,7 @@
 		<module>../lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/</module>
 		<module>../lddi.knx.devicemanager/</module>
 		<module>../lddi.hw.exporter.activityhub/</module>
-		<module>../hw.exporter.zigbee.ha/</module>
+		<module>../lddi.zigbee.exporter/</module>
 	</modules>
 
 	<properties>
