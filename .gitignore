@@ -10,6 +10,10 @@ lddi.knx.networkdriver/.classpath
 lddi.knx.networkdriver/.project
 lddi.knx.networkdriver/.settings
 lddi.knx.networkdriver/target
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.classpath
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.project
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.settings
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/target
 pom/.project
 pom/.settings
 pom/target
