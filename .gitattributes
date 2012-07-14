@@ -31,4 +31,15 @@ lddi.knx.library/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxNetwork.
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxEncoder.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
+lddi.knx.networkdriver/conf/services/lddi.knx.networkdriver.properties -text
+lddi.knx.networkdriver/pom.xml -text
+lddi.knx.networkdriver/readme.txt -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/Activator.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommand.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommunication.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkDriverImp.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNotification.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxReader.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriter.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 pom/pom.xml -text
