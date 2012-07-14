@@ -1,4 +1,24 @@
 * text=auto !eol
+lddi.iso11073.library/pom.xml -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/Iso11073ContactClosureSensor.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/Iso11073MotionSensor.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/Iso11073SwitchSensor.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/ActivityHubFactory.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/ActivityHubSensor.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/ContactClosureSensor.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/ContactClosureSensorEvent.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/MotionSensor.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/MotionSensorEvent.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/SwitchSensor.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicemodel/SwitchSensorEvent.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/interfaces/ActivityHubDriver.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/interfaces/ActivityHubDriverClient.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/interfaces/IActivityHubActuator.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/knxmapping/KnxMappingFactory.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/location/ActivityHubLocationUtil.java -text
+lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/util/LogTracker.java -text
 lddi.knx.library/pom.xml -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxBaseDeviceCategory.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxDpt1.java -text
