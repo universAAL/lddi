@@ -1,208 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<parent>
-		<groupId>org.universAAL.lddi</groupId>
-		<artifactId>lddi.pom</artifactId>
-		<version>1.1.1-SNAPSHOT</version>
-		<relativePath>../pom/pom.xml</relativePath>
-	</parent>
-	<artifactId>lddi.hw.exporter.activityhub</artifactId>
-	<version>0.0.5-SNAPSHOT</version>
-	<packaging>bundle</packaging>
-
-	<!-- ______________________________________________________ -->
-
-	<name>Exporter of ActivityHub devices (ISO 11073-10471) for uAAL</name>
-	<description>Hardware exporter of Home Automation components based on ISO 11073-10471 devices/model (health device communication - independent living activity hub) for the universAAL middleware</description>
-	<inceptionYear>2012</inceptionYear>
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<organization>
-		<name>Austrian Institute of Technology (AIT)</name>
-		<url>http://www.ait.ac.at/</url>
-	</organization>
-	<developers>
-		<developer>
-			<id>foex</id>
-			<name>Thomas Fuxreiter</name>
-			<email>thomas.fuxreiter@ait.ac.at</email>
-			<roles>
-				<role>developer</role>
-			</roles>
-			<timezone>CEST/CET</timezone>
-		</developer>
-	</developers>
-	<contributors />
-
-	<!-- ______________________________________________________ -->
-
-	<dependencies>
-		<!-- itest should be 1. dependency in list -->
-		<dependency>
-			<groupId>org.universAAL.support</groupId>
-			<artifactId>itests</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.osgi.core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.container.xfaces.osgi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.data.representation.osgi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.model.osgi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.context.osgi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.service.osgi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.lddi</groupId>
-			<artifactId>lddi.iso11073.library</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.ontology</groupId>
-			<artifactId>ont.activityhub</artifactId>
-			<version>1.1.5-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.ontology</groupId>
-			<artifactId>ont.phWorld</artifactId>
-			<version>1.1.4-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
-
-	<!-- ______________________________________________________ -->
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<Bundle-Name>${project.name}</Bundle-Name>
-						<Bundle-Activator>org.universAAL.lddi.hw.exporter.activityhub.Activator</Bundle-Activator>
-						<Bundle-Description>${project.description}</Bundle-Description>
-						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-					</instructions>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-	<!-- ______________________________________________________ -->
-
-	<scm>
-		<connection>${svn.base}/${project.artifactId}</connection>
-		<developerConnection>${svn.base}/${project.artifactId}</developerConnection>
-		<url>${svn.base.url}${project.artifactId}</url>
-	</scm>
-
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>aaloa</id>-->
-<!--			<name>aaloa Repositories</name>-->
-<!--			<url>http://nexus.aaloa.org/content/repositories/releases/</url>-->
-<!--			<snapshots>-->
-<!--				<enabled>false</enabled>-->
-<!--			</snapshots>-->
-<!--		</repository>-->
-<!--		<repository>-->
-<!--			<id>aaloa-snapshots</id>-->
-<!--			<name>aaloa Snapshot Repositories</name>-->
-<!--			<url>http://nexus.aaloa.org/content/repositories/snapshots/</url>-->
-<!--			<releases>-->
-<!--				<enabled>false</enabled>-->
-<!--			</releases>-->
-<!--		</repository>-->
-<!--	</repositories>-->
-
-	<!-- Instructions for uaal-maven-plugin for which dependencies should be used in the composite -->
-	<profiles>
-		<profile>
-			<id>uAAL-Runtime</id>
-			<dependencies>
-				<!--				<dependency>-->
-				<!--					<groupId>org.osgi</groupId>-->
-				<!--					<artifactId>org.osgi.compendium</artifactId>-->
-				<!--					<version>4.2.0</version>-->
-				<!--				</dependency>-->
-				
-				<dependency>
-					<groupId>org.universAAL.middleware</groupId>
-					<artifactId>mw.data.serialization.osgi</artifactId>
-				</dependency>
-
-				<dependency>
-					<!-- from uAAL-thirdparty repo; modified to work within uAAL framework -->
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.dependencymanager.lddi</artifactId>
-					<version>3.0.0</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.devicemanager</artifactId>
-					<version>0.9.0-SNAPSHOT</version>
-					<scope>provided</scope>
-				</dependency>
-
-				<!-- some more? -->
-
-				<dependency>
-					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>lddi.knx.library</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>lddi.knx.networkdriver</artifactId>
-				</dependency>
-				<dependency>
-					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>lddi.knx.dpt1refinementdriver.iso11073</artifactId>
-				</dependency>
-				
-				<dependency>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.http.jetty</artifactId>
-					<version>2.2.0</version>		
-				</dependency>	
-				<dependency>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>org.apache.felix.webconsole</artifactId>
-					<version>3.1.8</version>		
-				</dependency>
-
-				<!-- knx.devicemanager should start as last bundle,
-				 but current artifact is always the last one!! -->
-				<dependency>
-					<groupId>org.universAAL.lddi</groupId>
-					<artifactId>lddi.knx.devicemanager</artifactId>
-				</dependency>
-
-			</dependencies>
-		</profile>
-	</profiles>
-
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>lddi.pom</artifactId>
+    <groupId>org.universAAL.lddi</groupId>
+    <version>1.2.1-SNAPSHOT</version>
+    <relativePath>../lddi.pom</relativePath>
+  </parent>
+  <artifactId>lddi.hw.exporter.activityhub</artifactId>
+  <version>1.2.1-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  <name>Exporter of ActivityHub devices (ISO 11073-10471) for uAAL</name>
+  <description>Hardware exporter of Home Automation components based on ISO 11073-10471 devices/model (health device communication - independent living activity hub) for the universAAL middleware</description>
+  <inceptionYear>2012</inceptionYear>
+  <organization>
+    <name>Austrian Institute of Technology (AIT)</name>
+    <url>http://www.ait.ac.at/</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>foex</id>
+      <name>Thomas Fuxreiter</name>
+      <email>thomas.fuxreiter@ait.ac.at</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
+  </developers>
+  <scm>
+    <connection>${svn.base}/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}${project.artifactId}</url>
+  </scm>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Bundle-Activator>org.universAAL.lddi.hw.exporter.activityhub.Activator</Bundle-Activator>
+            <Bundle-Description>${project.description}</Bundle-Description>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>uAAL-Runtime</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.universAAL.middleware</groupId>
+          <artifactId>mw.data.serialization.osgi</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.dependencymanager.lddi</artifactId>
+          <version>3.0.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.devicemanager</artifactId>
+          <version>0.9.0-SNAPSHOT</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.universAAL.lddi</groupId>
+          <artifactId>lddi.knx.library</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.universAAL.lddi</groupId>
+          <artifactId>lddi.knx.networkdriver</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.universAAL.lddi</groupId>
+          <artifactId>lddi.knx.dpt1refinementdriver.iso11073</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.http.jetty</artifactId>
+          <version>2.2.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.webconsole</artifactId>
+          <version>3.1.8</version>
+        </dependency>
+        <dependency>
+          <groupId>org.universAAL.lddi</groupId>
+          <artifactId>lddi.knx.devicemanager</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+  <dependencies>
+    <dependency>
+      <groupId>org.universAAL.support</groupId>
+      <artifactId>itests</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.container.xfaces.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.data.representation.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.bus.model.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.bus.context.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.bus.service.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.iso11073.library</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.activityhub</artifactId>
+      <version>1.1.5-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.phWorld</artifactId>
+      <version>1.1.4-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>

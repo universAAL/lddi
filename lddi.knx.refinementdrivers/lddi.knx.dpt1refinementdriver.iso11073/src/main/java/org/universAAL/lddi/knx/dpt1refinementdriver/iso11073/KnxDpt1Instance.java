@@ -85,7 +85,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 			return null;
 		}
 		
-		// TODO: Regeln für die decodierung in device_category ??
+		// TODO: Regeln for die decodierung in device_category ??
 		
 		
 		/** create appropriate ISO device */
