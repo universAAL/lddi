@@ -1,4 +1,45 @@
 * text=auto !eol
+lddi.hw.exporter.activityhub/README.txt -text
+lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
+lddi.hw.exporter.activityhub/conf/services/lddi.knx.devicemanager.properties -text
+lddi.hw.exporter.activityhub/conf/services/lddi.knx.networkdriver.properties -text
+lddi.hw.exporter.activityhub/conf/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
+lddi.hw.exporter.activityhub/conf/services/org.ops4j.pax.logging.properties -text
+lddi.hw.exporter.activityhub/conf/services/org.universAAL.mw.data.representation.properties -text
+lddi.hw.exporter.activityhub/data/OfficeProject3.knxproj -text
+lddi.hw.exporter.activityhub/launches/README.txt -text
+lddi.hw.exporter.activityhub/launches/Run.bat -text
+lddi.hw.exporter.activityhub/launches/clean.bat -text
+lddi.hw.exporter.activityhub/launches/pax.configuration -text
+lddi.hw.exporter.activityhub/launches/pom.xml -text
+lddi.hw.exporter.activityhub/launches/runner/configurations/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
+lddi.hw.exporter.activityhub/launches/runner/configurations/services/lddi.knx.devicemanager.properties -text
+lddi.hw.exporter.activityhub/launches/runner/configurations/services/lddi.knx.networkdriver.properties -text
+lddi.hw.exporter.activityhub/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
+lddi.hw.exporter.activityhub/launches/runner/configurations/services/org.ops4j.pax.logging.properties -text
+lddi.hw.exporter.activityhub/launches/runner/data/OfficeProject3.knxproj -text
+lddi.hw.exporter.activityhub/launches/runner/felix/system.properties -text
+lddi.hw.exporter.activityhub/launches/runner/remoteDebug.bat -text
+lddi.hw.exporter.activityhub/launches/runner/run.bat -text
+lddi.hw.exporter.activityhub/pom.xml -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/hw/exporter/activityhub/Activator.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/hw/exporter/activityhub/ActivityHubBusServer.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/hw/exporter/activityhub/ActivityHubContextProvider.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/hw/exporter/activityhub/ActivityHubServiceOntology.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/hw/exporter/activityhub/ActivityHubServiceProvider.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/hw/exporter/activityhub/util/LogTracker.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/hw/exporter/knx/devices/listeners/PresenceDetectorListener.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/ActivityHubDriverManager.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073ContactClosureSensorDriver.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073ContactClosureSensorInstance.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073MotionSensorDriver.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073MotionSensorInstance.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073SwitchSensorDriver.java -text
+lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073SwitchSensorInstance.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/ActivityHubClient.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/ArtifactIntegrationTest.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/MyActivityHubContextListener.java -text
+lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/MyActivityHubServiceConsumer.java -text
 lddi.iso11073.library/pom.xml -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java -text
