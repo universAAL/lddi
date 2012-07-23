@@ -5,22 +5,22 @@
 	<parent>
 		<groupId>org.universAAL.support</groupId>
 		<artifactId>support.pom</artifactId>
-		<version>1.1.1-SNAPSHOT</version>
+		<version>1.2.1-SNAPSHOT</version>
 	</parent>
 	
 	<groupId>org.universAAL.runners</groupId>
 	<artifactId>lddi.hw.exporter.activityhub</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>1.2.1-SNAPSHOT</version>
 	<name>Runner Folder</name>
 	<description>PaxRunner configuration for lddi.hw.exporter.activityhub artifact</description>
 
-	<properties>
+<!-- 	<properties>
 		<mw.snapshot.version>1.1.1-SNAPSHOT</mw.snapshot.version>
 		<mw.release.version>1.1.0</mw.release.version>
 		<lddi.snapshot.version>0.0.5-SNAPSHOT</lddi.snapshot.version>
 		<lddi.release.version>1.1.0</lddi.release.version>
-	</properties>
+	</properties> -->
 	
 	<build>
 		<plugins>
