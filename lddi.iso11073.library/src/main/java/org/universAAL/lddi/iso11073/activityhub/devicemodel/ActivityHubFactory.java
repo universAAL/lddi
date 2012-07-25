@@ -14,12 +14,12 @@ import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil
  */
 public class ActivityHubFactory {
 	
-    public static ActivityHubSensor createInstance(ActivityHubDeviceCategory deviceName,
+    public static ActivityHubSensor createInstance(ActivityHubDeviceCategory deviceCategory,
     		ActivityHubLocation deviceLocation, String deviceId, LogService logger) {
 	
     	switch (
 //    			ActivityHubDeviceCategoryUtil.toActivityHubDevice(
-    					deviceName
+    					deviceCategory
 //    					)
     					) {
     	
@@ -36,21 +36,21 @@ public class ActivityHubFactory {
 //    		case MDC_AI_TYPE_SENSOR_GAS:
 //    			return new FallSensor();
     		case MDC_AI_TYPE_SENSOR_MOTION:
-    			return new MotionSensor(deviceName, deviceLocation, deviceId, logger);
+    			return new MotionSensor(deviceCategory, deviceLocation, deviceId, logger);
 //    		case MDC_AI_TYPE_SENSOR_PROPEXIT:
 //    			return new FallSensor();
 //    		case MDC_AI_TYPE_SENSOR_ENURESIS:
 //    			return new FallSensor();
     		case MDC_AI_TYPE_SENSOR_CONTACTCLOSURE:
-    			return new ContactClosureSensor(deviceName, deviceLocation, deviceId, logger);
-//    		case MDC_AI_TYPE_SENSOR_USAGE:
-//    			return new FallSensor();
+    			return new ContactClosureSensor(deviceCategory, deviceLocation, deviceId, logger);
+    		case MDC_AI_TYPE_SENSOR_USAGE:
+    			return new UsageSensor(deviceCategory, deviceLocation, deviceId, logger);
     		case MDC_AI_TYPE_SENSOR_SWITCH:
-    			return new SwitchSensor(deviceName, deviceLocation, deviceId, logger);
+    			return new SwitchSensor(deviceCategory, deviceLocation, deviceId, logger);
 //    		case MDC_AI_TYPE_SENSOR_DOSAGE:
 //    			return new FallSensor();
-//    		case MDC_AI_TYPE_SENSOR_TEMP:
-//    			return new FallSensor();
+    		case MDC_AI_TYPE_SENSOR_TEMP:
+    			return new TemperatureSensor(deviceCategory, deviceLocation, deviceId, logger);
     	}
 
     	return null;

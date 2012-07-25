@@ -15,7 +15,7 @@ public class ActivityHubDriverManager {
 		new Iso11073ContactClosureSensorDriver(user, context);
 		new Iso11073MotionSensorDriver(user, context);
 		new Iso11073SwitchSensorDriver(user, context);
-		
+		new Iso11073UsageSensorDriver(user, context);		
 	}
 
 }

@@ -8,6 +8,11 @@ package org.universAAL.lddi.knx.devicemodel;
  */
 public abstract class KnxDeviceFactory {
 
+	/**
+	 * 
+	 * @param dptMainNumber e.g.: 1
+	 * @return KnxDevice object or null if no implementation for the given datapoint number exists
+	 */
 	public static KnxDevice getKnxDevice(int dptMainNumber) {
 	
     	switch (dptMainNumber) {

@@ -19,6 +19,8 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.XPath;
+import org.osgi.service.cm.ConfigurationException;
+import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
 /**
@@ -29,8 +31,16 @@ import org.universAAL.lddi.knx.utils.KnxGroupAddress;
  */
 public class KnxImporter
 {
+  private LogService logger;
+	
+  /**
+	 * @param logger
+	 */
+	public KnxImporter(LogService logger) {
+		this.logger = logger;
+	}
 
-  @SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked")
   public List<KnxGroupAddress> importETS4Configuration(InputStream inputStream) throws Exception
   {
 
@@ -61,9 +71,10 @@ public class KnxImporter
       StringReader in = new StringReader(xmlData);
       document = builder.build(in);
 
-      // Query all GroupAddress elements
+      // Query all <GroupAddress> elements
       XPath xpathGA = XPath.newInstance("//knx:GroupAddress");
       xpathGA.addNamespace("knx", "http://knx.org/xml/project/10");
+      // Store all <GroupAddress> elements in xresultGA
       List<Element> xresultGA = xpathGA.selectNodes(document);
 
       for (Element element : xresultGA)
@@ -71,6 +82,8 @@ public class KnxImporter
         String id = element.getAttributeValue("Id");
         String name = element.getAttributeValue("Name");
         String address = element.getAttributeValue("Address");
+        // Convert address in readable KNX format M/S/G
+        String levelAddress = getAddressFromInt(Integer.parseInt(address));
         String description = element.getAttributeValue("Description");
         String dpt = null;
 
@@ -79,10 +92,17 @@ public class KnxImporter
         String bpName = null; //BuildingPart Name
         String bpDescription = null;
         
-        // Query referenced ComObjectInstanceRef element which holds DPT
+        // Query referenced <Send> element within ComObjectInstanceRef element which holds DPT
         XPath xpathCO = XPath.newInstance("//knx:Send[@GroupAddressRefId='" + id + "']/../..");
         xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
         List<Element> resultSGA = xpathCO.selectNodes(document);
+        
+        if (resultSGA.size() == 0) {
+        	// The reference could also be in the <Receive> element
+            xpathCO = XPath.newInstance("//knx:Receive[@GroupAddressRefId='" + id + "']/../..");
+            xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
+            resultSGA = xpathCO.selectNodes(document);
+        }
         
         if (resultSGA.size() > 0)
         {
@@ -100,8 +120,16 @@ public class KnxImporter
             }
           } else
           {
-            dpt = null;
+          	this.logger.log(LogService.LOG_WARNING, "No KNX data type specified for devices in groupAddress " + 
+          			levelAddress + " - Skipping this groupAddress!");
+        	continue;
+//            dpt = null;
           }
+        }
+        else {
+        	this.logger.log(LogService.LOG_WARNING, "No corresponging device found in knxproj file" +
+        			" for groupAddress " + levelAddress + " - Skipping this groupAddress!");
+        	continue;
         }
         
         // BuildingPart are linked to devices
@@ -131,7 +159,6 @@ public class KnxImporter
           }
         }
 
-        String levelAddress = getAddressFromInt(Integer.parseInt(address));
 //        result.add(new KnxGroupAddress(dpt, levelAddress, name));
         result.add(new KnxGroupAddress(dpt, levelAddress, name, description, bpType, bpName, bpDescription));
 //        LOGGER.debug("Created GroupAddress: " + levelAddress + " - " + name + " - " + dpt);
