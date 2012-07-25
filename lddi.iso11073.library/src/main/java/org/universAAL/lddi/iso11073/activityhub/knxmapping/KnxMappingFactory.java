@@ -32,6 +32,10 @@ public class KnxMappingFactory {
 			//...
 			case 6: // DPT_BinaryValue (low/high)
 				return ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_TEMP;
+			case 7:
+				return null;
+			case 8: // DPT_UpDown (up/down)
+				return ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_SWITCH;
 			case 9: // DPT_OpenClose (open/close)
 				return ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_CONTACTCLOSURE;
 			case 10: // DPT_Start (start/stop)
@@ -56,10 +60,39 @@ public class KnxMappingFactory {
 			}
 			break;
 
-		// knx datapoint type main number 3
+		// knx datapoint type main number 3 (4 bit)
 		case 3:
 			switch(knxDptSub){
-			case 1:
+			case 7: // DPT_Control_Dimming ***************************NEEDED
+				return null;
+			case 8: // DPT_Control_Blinds
+				return null;
+			}
+			break;
+
+		// knx datapoint type main number 4 (8 bit - Character Set)
+		case 4:
+			switch(knxDptSub){
+			case 1: // DPT_Char_ASCII
+				return null;
+			case 2: // DPT_Char_8859_1 ***************************NEEDED
+				return null;
+			}
+			break;
+
+		// knx datapoint type main number 5 (8 Bit - Unsigned Value)
+		case 5:
+			switch(knxDptSub){
+			case 1: // DPT_Scaling ***************************NEEDED
+				return null;
+			//...
+			}
+			break;
+
+		// knx datapoint type main number 9 (2-Octet Float Value)
+		case 9:
+			switch(knxDptSub){
+			case 1: // DPT_Value_Temp ***************************NEEDED
 				return null;
 			case 2:
 				return null;

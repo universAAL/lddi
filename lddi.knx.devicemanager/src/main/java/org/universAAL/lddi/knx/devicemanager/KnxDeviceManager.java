@@ -155,7 +155,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 
 				if (knxConfigFile != null && knxConfigFile != "") {
 					InputStream is = new FileInputStream(knxConfigFile);
-					this.knxImportedGroupAddresses = new KnxImporter().importETS4Configuration(is);
+					this.knxImportedGroupAddresses = new KnxImporter(logger).importETS4Configuration(is);
 					this.logger.log(LogService.LOG_DEBUG,
 							"Knx devices found in configuration: "
 							+ this.knxImportedGroupAddresses.toString());
@@ -178,7 +178,15 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 							
 							// create appropriate device from dpt main number
 							KnxDevice knxDevice = KnxDeviceFactory.getKnxDevice(dptMainNumber);
-
+							
+							// startover with next device if no appropriate KnxDevice implementation found!
+							if (knxDevice==null) {
+								this.logger.log(LogService.LOG_WARNING, "KNX data type " +
+										knxGroupAddress.getDpt() + " is not supported yet!" +
+										" Skipping device " + knxGroupAddress.getGroupAddress() + "!");
+								continue;
+							}
+							
 							// set instance alive
 							knxDevice.setParams(knxGroupAddress, this.network, this.logger);
 							
