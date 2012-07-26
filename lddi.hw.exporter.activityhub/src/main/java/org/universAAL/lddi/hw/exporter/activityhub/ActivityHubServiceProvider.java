@@ -3,6 +3,8 @@ package org.universAAL.lddi.hw.exporter.activityhub;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import org.osgi.service.log.LogService;
@@ -77,7 +79,7 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 		ServiceResponse sr = null;
 //		try {
 			// create a list including the available sensors and sensor types
-			Hashtable<String,Integer> sensorList = new Hashtable<String,Integer>();
+			Map<String,Integer> sensorList = new TreeMap<String,Integer>();
 
 			// fetch data from my server
 			theServer.getActivityHubSensorList(sensorList);
