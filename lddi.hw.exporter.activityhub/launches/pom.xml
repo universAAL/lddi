@@ -51,7 +51,7 @@
 						<!-- Whatever you want, like: -->
 							<!-- <provision>{opt:wrap}:mvn:{groupId}/{artifactId}/{version}@{opt:#level | nostart | noupdate}</provision> -->
 
-  							<provision>scan-composite:file:../target/artifact.composite</provision>
+  							<provision>scan-composite:file:artifact.composite</provision>
 
 
 							

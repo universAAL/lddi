@@ -56,6 +56,33 @@
           </instructions>
         </configuration>
       </plugin>
+	  
+	  <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>launches</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>target</directory>
+                  <filtering>true</filtering>
+		          <includes>
+					<include>**/*.composite</include>
+				  </includes>
+                </resource>
+              </resources>              
+            </configuration>            
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
   <profiles>
