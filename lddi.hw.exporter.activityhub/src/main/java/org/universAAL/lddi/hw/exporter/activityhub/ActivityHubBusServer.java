@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import org.osgi.framework.BundleContext;
@@ -15,6 +17,7 @@ import org.universAAL.lddi.iso11073.activityhub.driver.ActivityHubDriverManager;
 import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriver;
 import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
+import org.universAAL.ontology.activityhub.ActivityHubSensor;
 
 /**
  * Instanciates all ActivityHub drivers from ISO11073 library.
@@ -41,7 +44,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 * key = deviceId
 	 * value = ActivityHubDriver
 	 */
-	private Hashtable<String, ActivityHubDriver> driverList;
+	private Map<String, ActivityHubDriver> driverList;
 	
     private ArrayList<ActivityHubContextProvider> listeners = new ArrayList<ActivityHubContextProvider>();
 
@@ -55,7 +58,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 		this.logger = logger;		
 		this.driverListForCategory = new Hashtable<ActivityHubDeviceCategory, 
 			Set<ActivityHubDriver>>();
-		this.driverList = new Hashtable<String, ActivityHubDriver>();
+		this.driverList = new TreeMap<String, ActivityHubDriver>();
 
 		// start all ActivityHub drivers
 		ActivityHubDriverManager.startAllDrivers(this, this.context);
@@ -244,12 +247,13 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 * for all available ActivityHub sensors
 	 * @param sensorList
 	 */
-	public void getActivityHubSensorList(Hashtable<String,Integer> sensorList) {
+	public void getActivityHubSensorList(Map<String,Integer> sensorList) {
 		synchronized (driverList) {
 			synchronized (sensorList) {
-				Iterator<Entry<String,ActivityHubDriver>> it = this.driverList.entrySet().iterator();
-				while (it.hasNext()) {
-					Entry<String,ActivityHubDriver> entry = it.next();
+				for (Entry<String, ActivityHubDriver> entry : driverList.entrySet() ) {
+//				Iterator<Entry<String,ActivityHubDriver>> it = this.driverList.entrySet().iterator();
+//				while (it.hasNext()) {
+//					Entry<String,ActivityHubDriver> entry = it.next();
 					sensorList.put(new String(entry.getKey()),
 							new Integer(entry.getValue().getDevice().getDeviceCategory().getTypeCode()) );
 				}
