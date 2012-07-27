@@ -41,4 +41,4 @@ scan-bundle:mvn:org.apache.felix/org.apache.felix.webconsole/3.1.8
 scan-bundle:wrap:mvn:org.jdom/jdom/1.1.3
 scan-bundle:wrap:mvn:jaxen/jaxen/1.1.3
 scan-bundle:mvn:org.universAAL.lddi/lddi.knx.devicemanager/1.2.1-SNAPSHOT
-scan-bundle:mvn:org.universAAL.lddi/lddi.hw.exporter.activityhub/1.2.1-SNAPSHOT
+scan-bundle:mvn:org.universAAL.lddi/lddi.hw.exporter.activityhub/1.2.2-SNAPSHOT
