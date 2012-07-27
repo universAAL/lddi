@@ -9,7 +9,7 @@
     <relativePath>../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.knx.library</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>KNX Datapoint Type Library</name>
   <description>KNX Device Categories for OSGi DeviceManager are Interfaces for all KNX Datapoint Types specifying methods for communication with device services.</description>

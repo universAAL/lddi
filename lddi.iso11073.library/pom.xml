@@ -9,7 +9,7 @@
     <relativePath>../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.iso11073.library</artifactId>
-  <version>1.2.1-SNAPSHOT</version>
+  <version>1.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Java class library for ISO/IEEE 11073 standard</name>
   <description>ISO 11073 Device Categories for OSGi DeviceManager are Interfaces for all ISO 11073 sensor types, specifying methods for communication with device services.</description>
