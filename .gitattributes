@@ -11,8 +11,10 @@ lddi.hw.exporter.activityhub/launches/README.txt -text
 lddi.hw.exporter.activityhub/launches/Run.bat -text
 lddi.hw.exporter.activityhub/launches/artifact.composite -text
 lddi.hw.exporter.activityhub/launches/clean.bat -text
+lddi.hw.exporter.activityhub/launches/clean.sh -text
 lddi.hw.exporter.activityhub/launches/pax.configuration -text
 lddi.hw.exporter.activityhub/launches/pom.xml -text
+lddi.hw.exporter.activityhub/launches/run.sh -text
 lddi.hw.exporter.activityhub/launches/runner/configurations/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub/launches/runner/configurations/services/lddi.knx.devicemanager.properties -text
 lddi.hw.exporter.activityhub/launches/runner/configurations/services/lddi.knx.networkdriver.properties -text
