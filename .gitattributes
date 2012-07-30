@@ -46,6 +46,16 @@ lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activi
 lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/ArtifactIntegrationTest.java -text
 lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/MyActivityHubContextListener.java -text
 lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/MyActivityHubServiceConsumer.java -text
+lddi.hw.exporter.x73/launches/artifact-test.composite -text
+lddi.hw.exporter.x73/launches/artifact.composite -text
+lddi.hw.exporter.x73/lib/install-dbus-lib-to-local-maven-repo.sh -text
+lddi.hw.exporter.x73/lib/install-dbus-lib-to-local-maven-repo.sh~ -text
+lddi.hw.exporter.x73/lib/libdbus-java-2.7.jar -text
+lddi.hw.exporter.x73/pom.xml -text
+lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/Activator.java -text
+lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/ISO11073ContextProvider.java -text
+lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/ISO11073DBusServer.java -text
+lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/util/LogTracker.java -text
 lddi.iso11073.library/pom.xml -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java -text
