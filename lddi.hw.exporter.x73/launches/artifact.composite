@@ -23,6 +23,8 @@ scan-bundle:wrap:mvn:jp.go.ipa/jgcl/1.0
 scan-bundle:mvn:org.universAAL.ontology/ont.phWorld/1.2.1-SNAPSHOT
 scan-bundle:mvn:org.universAAL.ontology/ont.iso11073/1.2.2-SNAPSHOT
 scan-bundle:wrap:mvn:org.freedesktop.dbus/libdbus-java/2.7
+scan-bundle:wrap:mvn:cx.ath.matthew/unix/0.5
+scan-bundle:wrap:mvn:cx.ath.matthew/utils/0.2
 scan-bundle:mvn:org.universAAL.middleware/mw.data.serialization.osgi/1.2.1-SNAPSHOT
 scan-bundle:wrap:mvn:javax.servlet/servlet-api/2.5
 scan-bundle:mvn:org.mortbay.jetty/jetty-util/6.1.24
