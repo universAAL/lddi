@@ -6,4 +6,3 @@ Would be nice if pax-runner could load this from somewhere! Nexus?
 Clean (deleting runtime dirs) is necessary to get new versions of artifacts!
 
 .sh scripts are for linux execution
-
