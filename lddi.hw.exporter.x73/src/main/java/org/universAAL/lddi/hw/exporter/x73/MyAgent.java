@@ -78,8 +78,8 @@ public class MyAgent implements agent {
 	}
 
 	public void Associated(String dev, String data) {
-		System.out.println("Associated dev " + dev);
-		System.out.println("Associated data " + data);
+		//System.out.println("Associated dev " + dev);
+		//System.out.println("Associated data " + data);
 		writeFile("Associated.xml",data);
 		Document xmlData = null;
 
@@ -100,8 +100,8 @@ public class MyAgent implements agent {
 	}
 
 	public void MeasurementData(String dev, String data) {
-		System.out.println("MeasurementData dev " + dev);
-		System.out.println("MeasurementData data " + data);
+		//System.out.println("MeasurementData dev " + dev);
+		//System.out.println("MeasurementData data " + data);
 		writeFile("MeasurementData.xml",data);
 
 		Document xmlData = null;
@@ -159,8 +159,8 @@ public class MyAgent implements agent {
 	}
 
 	public void DeviceAttributes(String dev, String data){
-		System.out.println("DeviceAttributes dev " + dev);
-		System.out.println("DeviceAttributes data " + data);
+		//System.out.println("DeviceAttributes dev " + dev);
+		//System.out.println("DeviceAttributes data " + data);
 		writeFile("DeviceAttributes.xml",data);
 		
 		Document xmlData = null;
@@ -201,7 +201,7 @@ public class MyAgent implements agent {
 
 	public void Disassociated(String dev){
 		System.out.println("Disassociated dev " + dev);
-/*		
+		
 		System.out.println("Extracted data: ");
 		System.out.println("unit: " + unit + " - " +unitCode);
 //		System.out.println("value_type: " + value_type);
@@ -211,7 +211,7 @@ public class MyAgent implements agent {
 		System.out.println("SystemID: " + systemId);
 		System.out.println("systemTypeSpecList: " + systemTypeSpecList);
 		System.out.println("System-Model: " + manufacturer + " - " + modelNumber);
-*/	}
+	}
 
 	public void Disconnected(String dev) {
 		System.out.println("Disconnected " + dev);

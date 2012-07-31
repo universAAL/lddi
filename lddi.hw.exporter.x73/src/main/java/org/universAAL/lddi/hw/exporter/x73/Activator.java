@@ -57,7 +57,7 @@ public class Activator implements BundleActivator {
 		public MyThread() {
 		}
 		public void run() {
-//			serviceProvider = new ActivityHubServiceProvider(moduleContext, busServer);
+			//serviceProvider = new ActivityHubServiceProvider(moduleContext, busServer);
 			contextProvider = new ISO11073ContextProvider(moduleContext, x73Server);
 		}
 	}
