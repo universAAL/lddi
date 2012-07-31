@@ -172,6 +172,7 @@ lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
+lddi.pom/composite/pom.xml -text
 lddi.pom/pom.xml -text
 lddi.zigbee.exporter/LICENSE -text
 lddi.zigbee.exporter/NOTICE -text

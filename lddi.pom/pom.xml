@@ -38,6 +38,7 @@
     <module>../lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/</module>
     <module>../lddi.knx.devicemanager/</module>
     <module>../lddi.hw.exporter.activityhub/</module>
+	<module>composite</module>
   </modules>
   <repositories>
     <repository>
@@ -100,6 +101,11 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.devicemanager</artifactId>
+        <version>1.2.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.composite</artifactId>
         <version>1.2.2-SNAPSHOT</version>
       </dependency>
     </dependencies>

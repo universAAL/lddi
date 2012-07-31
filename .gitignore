@@ -25,6 +25,7 @@ lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.settings
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/target
 lddi.pom/.project
 lddi.pom/.settings
+lddi.pom/composite/target
 lddi.pom/target
 lddi.zigbee.exporter/.classpath
 lddi.zigbee.exporter/.project
