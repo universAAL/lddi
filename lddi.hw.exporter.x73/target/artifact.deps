@@ -33,4 +33,3 @@ scan-bundle:mvn:org.apache.felix/org.apache.felix.http.api/2.2.0
 scan-bundle:mvn:org.apache.felix/org.apache.felix.http.base/2.2.0
 scan-bundle:mvn:org.apache.felix/org.apache.felix.http.jetty/2.2.0
 scan-bundle:mvn:org.apache.felix/org.apache.felix.webconsole/3.1.8
-scan-bundle:mvn:org.universAAL.lddi/lddi.hw.exporter.x73/1.2.2-SNAPSHOT
