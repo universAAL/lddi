@@ -2,6 +2,7 @@ package org.universAAL.lddi.hw.exporter.x73;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.log.LogService;
 import org.universAAL.lddi.hw.exporter.x73.util.LogTracker;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
@@ -31,6 +32,7 @@ public class Activator implements BundleActivator {
 		//use a service Tracker for LogService
 		logTracker = new LogTracker(context);
 		logTracker.open();
+        LogService logservice = (LogService) logTracker.getService();
 
 		// init server
 		x73Server = new ISO11073DBusServer(context, logTracker);
