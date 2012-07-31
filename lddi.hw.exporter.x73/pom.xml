@@ -159,5 +159,10 @@
 		<artifactId>unix</artifactId>
 		<version>0.5</version>
 	</dependency>
+		<dependency>
+		<groupId>cx.ath.matthew</groupId>
+		<artifactId>utils</artifactId>
+		<version>0.2</version>
+	</dependency>
   </dependencies>
 </project>
