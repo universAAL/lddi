@@ -60,8 +60,6 @@ lddi.hw.exporter.x73/launches/runner/configurations/services/org.ops4j.pax.loggi
 lddi.hw.exporter.x73/launches/runner/felix/system.properties -text
 lddi.hw.exporter.x73/launches/runner/remoteDebug.bat -text
 lddi.hw.exporter.x73/launches/runner/run.bat -text
-lddi.hw.exporter.x73/lib/install-dbus-lib-to-local-maven-repo.sh -text
-lddi.hw.exporter.x73/lib/libdbus-java-2.7.jar -text
 lddi.hw.exporter.x73/pom.xml -text
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/Activator.java -text
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/ISO11073ContextProvider.java -text
