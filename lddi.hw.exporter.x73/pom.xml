@@ -154,5 +154,10 @@
     	<artifactId>libdbus-java</artifactId>
     	<version>2.7</version>
     </dependency>
+	<dependency>
+		<groupId>cx.ath.matthew</groupId>
+		<artifactId>unix</artifactId>
+		<version>0.5</version>
+	</dependency>
   </dependencies>
 </project>
