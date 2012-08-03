@@ -23,14 +23,17 @@ public class Activator implements BundleActivator {
 
 	// HDP manager object
 	private hdpManager manager = null;	
-    
+	
+	//
+	private BundleContext ctx = null;    
 
 	// Methods
 	/** Start */
 	public void start(BundleContext context) throws Exception {		
-		uaalPublisher = new Publisher(context);
+		ctx = context;
 		new Thread(){
-			public void run(){       	
+			public void run(){   
+				uaalPublisher = new Publisher(ctx);
 				// Start manager and wait for agent events
 				manager = new hdpManager(uaalPublisher);
 				manager.init();					
@@ -41,6 +44,7 @@ public class Activator implements BundleActivator {
 	/** Stop */
 	public void stop(BundleContext arg0) throws Exception {		
 		manager.exit();		
+		ctx = null;
 		uaalPublisher = null;
 		manager = null;	
 	}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.EquinoxLauncher">
+<booleanAttribute key="append.args" value="true"/>
+<booleanAttribute key="automaticAdd" value="true"/>
+<booleanAttribute key="automaticValidate" value="false"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="false"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/rundir/ltba.publisher"/>
+<booleanAttribute key="default_auto_start" value="true"/>
+<intAttribute key="default_start_level" value="20"/>
+<stringAttribute key="deselected_workspace_plugins" value="org.universAAL.continua"/>
+<booleanAttribute key="includeOptional" value="true"/>
+<stringAttribute key="org.eclipse.debug.core.source_locator_id" value="org.eclipse.pde.ui.launcher.PDESourceLookupDirector"/>
+<stringAttribute key="org.eclipse.debug.core.source_locator_memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;sourceLookupDirector&gt;&#13;&#10;&lt;sourceContainers duplicates=&quot;false&quot;&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/mw.bus.ui/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/ui.handler.gui/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/mw.bus.context/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/ui.dm/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/mw.bus.model/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/mw.bus.service/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/mw.data.representation/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/mw.data.serialization/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/ont.lighting/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/ont.phWorld/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/smp.lighting.client/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;folder nest=&amp;quot;false&amp;quot; path=&amp;quot;/smp.lighting.server/src/main/java&amp;quot;/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.folder&quot;/&gt;&#13;&#10;&lt;container memento=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; standalone=&amp;quot;no&amp;quot;?&amp;gt;&amp;#13;&amp;#10;&amp;lt;default/&amp;gt;&amp;#13;&amp;#10;&quot; typeId=&quot;org.eclipse.debug.core.containerType.default&quot;/&gt;&#13;&#10;&lt;/sourceContainers&gt;&#13;&#10;&lt;/sourceLookupDirector&gt;&#13;&#10;"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-console --obrRepositories=http://depot.universaal.org/nexus/content/repositories/snapshots/repository.xml,http://depot.universaal.org/nexus/content/repositories/releases/repository.xml,http://bundles.osgi.org/obr/browse?_xml=1&amp;amp;cmd=repository --org.ops4j.pax.url.mvn.repositories=+http://depot.universaal.org/nexus/content/groups/public,http://depot.universaal.org/nexus/content/repositories/snapshots@snapshots@noreleases --log=DEBUG"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.noShutdown=true -Dfelix.log.level=4 -Dorg.universAAL.middleware.peer.is_coordinator=true -Dorg.universAAL.middleware.peer.member_of=urn:org.universAAL.aal_space:test_env -Dbundles.configuration.location=${workspace_loc}/rundir/confadmin -Djava.library.path=/home/angel/jni_lib"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc}/rundir/ltba.publisher"/>
+<stringAttribute key="org.ops4j.pax.cursor.logLevel" value="DEBUG"/>
+<booleanAttribute key="org.ops4j.pax.cursor.overwrite" value="false"/>
+<booleanAttribute key="org.ops4j.pax.cursor.overwriteSystemBundles" value="false"/>
+<booleanAttribute key="org.ops4j.pax.cursor.overwriteUserBundles" value="false"/>
+<listAttribute key="org.ops4j.pax.cursor.profiles">
+<listEntry value="obr"/>
+</listAttribute>
+<mapAttribute key="org.ops4j.pax.cursor.provisionItems">
+<mapEntry key="mvn:org.universAAL.ontology/ont.profile/1.1.0" value="true@true@4@true"/>
+<mapEntry key="mvn:org.apache.felix/org.apache.felix.configadmin/1.2.4" value="true@true@2@false"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.container.osgi/1.1.0" value="true@true@2@true"/>
+<mapEntry key="wrap:mvn:jp.go.ipa/jgcl/1.0" value="true@true@2@false"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.acl.interfaces/1.1.0" value="true@true@2@true"/>
+<mapEntry key="wrap:mvn:mysql/mysql-connector-java/5.1.17" value="true@true@2@true"/>
+<mapEntry key="wrap:mvn:org.ops4j.pax.logging/pax-logging-api/1.6.2" value="true@true@2@false"/>
+<mapEntry key="wrap:mvn:java3d/vecmath/1.3.1" value="true@true@2@false"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.data.representation/1.1.0" value="true@true@4@true"/>
+<mapEntry key="wrap:mvn:org.ops4j.pax.confman/pax-confman-propsloader/0.2.2" value="true@true@3@false"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.container.xfaces/1.1.0" value="true@true@2@true"/>
+<mapEntry key="wrap:mvn:org.bouncycastle/jce.jdk13/144" value="true@true@2@false"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.bus.context/1.1.0" value="true@true@5@true"/>
+<mapEntry key="mvn:org.universAAL.ontology/org.universAAL.ontology.x73/0.1" value="true@true@4@true"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.bus.ui/1.1.0" value="true@true@5@true"/>
+<mapEntry key="wrap:mvn:java3d/j3d-core/1.3.1" value="true@true@2@false"/>
+<mapEntry key="mvn:org.universAAL.continua/weighingScalePublisher/1.0.0" value="true@false@9@true"/>
+<mapEntry key="mvn:org.universAAL.ontology/ont.phWorld/1.1.0" value="true@true@6@true"/>
+<mapEntry key="mvn:org.universAAL.ui/ui.dm/1.1.0" value="false@true@7@true"/>
+<mapEntry key="mvn:org.universAAL.context/ctxt.jena.converter/1.1.0" value="true@true@3@true"/>
+<mapEntry key="mvn:org.apache.felix/org.osgi.core" value="false@true@2@false"/>
+<mapEntry key="wrap:mvn:org.universAAL.continua/ieee.x73.std/1.1.0" value="true@true@6@false"/>
+<mapEntry key="mvn:org.universAAL.ui/ui.handler.gui/1.1.0" value="false@true@8@true"/>
+<mapEntry key="wrap:mvn:org.ops4j.pax.logging/pax-logging-service/1.6.2" value="true@true@3@false"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.data.serialization/1.1.0" value="true@true@4@true"/>
+<mapEntry key="wrap:mvn:org.osgi/osgi_R4_compendium/1.0" value="false@true@2@true"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.bus.model/1.1.0" value="true@true@3@true"/>
+<mapEntry key="mvn:org.universAAL.ontology/ont.impairment/1.1.0" value="false@true@6@true"/>
+<mapEntry key="wrap:mvn:org.universAAL.support/jena.osgi/1.0.0" value="true@true@2@true"/>
+<mapEntry key="mvn:org.universAAL.ontology/ont.activityhub" value="true@true@6@true"/>
+<mapEntry key="mvn:org.universaal.ontology/ont.profile.health/1.1.0" value="false@true@6@true"/>
+<mapEntry key="mvn:org.universAAl.ontology/ont.profile.uipreferences/1.1.0" value="false@true@6@true"/>
+<mapEntry key="mvn:org.universAAL.middleware/mw.bus.service/1.1.0" value="true@true@5@true"/>
+</mapAttribute>
+<listAttribute key="org.ops4j.pax.cursor.runArguments">
+<listEntry value="--overwrite=false"/>
+<listEntry value="--overwriteUserBundles=false"/>
+<listEntry value="--overwriteSystemBundles=false"/>
+<listEntry value="--log=DEBUG"/>
+<listEntry value="--profiles=obr"/>
+<listEntry value="mvn:org.universAAL.ontology/ont.profile/1.1.0@4@update"/>
+<listEntry value="mvn:org.apache.felix/org.apache.felix.configadmin/1.2.4@2"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.container.osgi/1.1.0@2@update"/>
+<listEntry value="wrap:mvn:jp.go.ipa/jgcl/1.0@2"/>
+<listEntry value="wrap:mvn:mysql/mysql-connector-java/5.1.17@2@update"/>
+<listEntry value="wrap:mvn:java3d/vecmath/1.3.1@2"/>
+<listEntry value="wrap:mvn:org.ops4j.pax.confman/pax-confman-propsloader/0.2.2@3"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.bus.ui/1.1.0@5@update"/>
+<listEntry value="mvn:org.universAAL.ontology/ont.phWorld/1.1.0@6@update"/>
+<listEntry value="mvn:org.universAAL.continua/weighingScalePublisher/1.0.0@9@nostart@update"/>
+<listEntry value="mvn:org.universAAL.context/ctxt.jena.converter/1.1.0@3@update"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.data.serialization/1.1.0@4@update"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.bus.model/1.1.0@3@update"/>
+<listEntry value="wrap:mvn:org.universAAL.support/jena.osgi/1.0.0@2@update"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.acl.interfaces/1.1.0@2@update"/>
+<listEntry value="wrap:mvn:org.ops4j.pax.logging/pax-logging-api/1.6.2@2"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.data.representation/1.1.0@4@update"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.container.xfaces/1.1.0@2@update"/>
+<listEntry value="wrap:mvn:org.bouncycastle/jce.jdk13/144@2"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.bus.context/1.1.0@5@update"/>
+<listEntry value="mvn:org.universAAL.ontology/org.universAAL.ontology.x73/0.1@4@update"/>
+<listEntry value="wrap:mvn:java3d/j3d-core/1.3.1@2"/>
+<listEntry value="wrap:mvn:org.universAAL.continua/ieee.x73.std/1.1.0@6"/>
+<listEntry value="wrap:mvn:org.ops4j.pax.logging/pax-logging-service/1.6.2@3"/>
+<listEntry value="mvn:org.universAAL.ontology/ont.activityhub@6@update"/>
+<listEntry value="mvn:org.universAAL.middleware/mw.bus.service/1.1.0@5@update"/>
+</listAttribute>
+<stringAttribute key="osgi_framework_id" value="--platform=felix --version=2.0.1"/>
+<stringAttribute key="pde.version" value="3.3"/>
+<booleanAttribute key="show_selected_only" value="true"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useDefaultConfigArea" value="false"/>
+</launchConfiguration>
