@@ -1,5 +1,6 @@
 * text=auto !eol
 lddi.continua.bluetooth/no_uaal/doc/javadoc.rar -text
+lddi.continua.bluetooth/no_uaal/doc/uAAL_developers_guide.pdf -text
 lddi.continua.bluetooth/no_uaal/libraries/x073implementation.jar -text
 lddi.continua.bluetooth/no_uaal/samples/BloodPressureMonitor_x073_Sample/src/bluetooth/hdpManager.java -text
 lddi.continua.bluetooth/no_uaal/samples/BloodPressureMonitor_x073_Sample/src/bluetooth/hdpManagerListener.java -text
