@@ -629,10 +629,12 @@ lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/main.java -te
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/mdnf/FloatType.java -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/mdnf/SFloatType.java -text
 lddi.continua.bluetooth/uaal/libraries/libHDPnative.zip -text
+lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/pom.xml -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/Activator.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/Publisher.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/hdpManager.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/hdpManagerListener.java -text
+lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/target/surefire/weighingScalePublisher.launch -text
 lddi.hw.exporter.activityhub/README.txt -text
 lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub/conf/services/lddi.knx.devicemanager.properties -text

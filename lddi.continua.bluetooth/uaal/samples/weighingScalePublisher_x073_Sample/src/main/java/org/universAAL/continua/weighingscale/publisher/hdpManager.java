@@ -349,12 +349,15 @@ public class hdpManager implements hdpManagerListener {
 		rmp = x73manager.getMessageProcessor();
 		byte[] response = x73manager.getAPDU(hdpReceivedDataFrame);
 		sendHDPDataToDevice(hdpDataChannelFileDescriptor,response);		
-		if(fsm.getStringChannelState().equals("ASSOCIATED - OPERATING")) {
-			String valueTemp = finalData.getWeighValue();			
-			if(valueTemp == null) 
-				uaalPublisher.publishEvent("[x073 weighing scale] Unable to get data value");				
-			else 
-				uaalPublisher.publishEvent(valueTemp);				
+		if(fsm.getStringChannelState().equals("ASSOCIATED - OPERATING")) {			 
+			if (finalData != null) {
+				String valueTemp = finalData.getWeighValue();
+				if (valueTemp == null)
+					uaalPublisher
+							.publishEvent("[x073 weighing scale] Unable to get data value");
+				else
+					uaalPublisher.publishEvent(valueTemp);
+			}				
 		}
 	}
 
