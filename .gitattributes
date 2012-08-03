@@ -627,6 +627,7 @@ lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/fsm/StateMach
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/main.java -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/mdnf/FloatType.java -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/mdnf/SFloatType.java -text
+lddi.continua.bluetooth/uaal/libraries/libHDPnative.zip -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/Activator.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/Publisher.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/hdpManager.java -text
