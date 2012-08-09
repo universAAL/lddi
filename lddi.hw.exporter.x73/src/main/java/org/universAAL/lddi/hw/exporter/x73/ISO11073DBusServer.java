@@ -9,6 +9,7 @@ import org.freedesktop.dbus.DBusConnection;
 import org.freedesktop.dbus.DBusInterface;
 import org.freedesktop.dbus.DBusInterfaceName;
 import com.signove.health.*;
+import cx.ath.matthew.unix.*;
 
 public class ISO11073DBusServer {
 

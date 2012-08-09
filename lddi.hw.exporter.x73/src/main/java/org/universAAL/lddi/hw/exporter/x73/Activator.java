@@ -61,4 +61,14 @@ public class Activator implements BundleActivator {
 			contextProvider = new ISO11073ContextProvider(moduleContext, x73Server);
 		}
 	}
+	
+//	static {
+//		try {			
+//			System.out.println("111 D-Bus connection");
+//			System.loadLibrary("unix-java");			
+//			System.out.println("222 D-Bus connection");
+//		}catch(Exception ex) {
+//			System.out.println("Unable to load native library. Please, check your path and OSGi manifest settings...");
+//		}
+//	}
 }

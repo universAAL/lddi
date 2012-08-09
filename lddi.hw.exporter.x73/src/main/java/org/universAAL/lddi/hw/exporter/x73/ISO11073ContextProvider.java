@@ -2,6 +2,7 @@ package org.universAAL.lddi.hw.exporter.x73;
 
 import org.osgi.service.log.LogService;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
@@ -12,6 +13,8 @@ import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.TypeURI;
 import org.universAAL.ontology.X73Ontology;
+import org.universAAL.ontology.location.Location;
+import org.universAAL.ontology.phThing.Sensor;
 import org.universAAL.ontology.x73.BodyWeight;
 import org.universAAL.ontology.x73.MDS;
 import org.universAAL.ontology.x73.MDSAttribute;
@@ -42,6 +45,8 @@ public class ISO11073ContextProvider {
 				+ "x73ContextProvider");
 		info.setType(ContextProviderType.gauge);
 		info.setProvidedEvents(getWeighingCEP());
+		// Set the provided events to unknown with an empty pattern
+		//info.setProvidedEvents(new ContextEventPattern[] { new ContextEventPattern() });
 		cp = new DefaultContextPublisher(mc, info);
 		
 		//theServer.addListener(this);
@@ -71,10 +76,21 @@ public class ISO11073ContextProvider {
 		return new ContextEventPattern[] { cep_weight };
 	}
 	
-
+	public void publishEvent(String weight) {		
+		Sensor ws = new Sensor("http://www.tsbtecnologias.es/WeighingScale.owl#WeighingScale");
+		ws.setLocation(new Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
+		ws.setProperty(Sensor.PROP_MEASURED_VALUE,weight);		
+		cp.publish(new ContextEvent(ws,Sensor.PROP_MEASURED_VALUE));
+	}	
 
 	//called by MyAgent.Disassociated
 	public void measureWeight(String deviceId, String measuredWeight) {
+
+		this.logger.log(LogService.LOG_INFO, "test1");
+				
+		publishEvent(measuredWeight);
+		
+		this.logger.log(LogService.LOG_INFO, "test2");
 		
 		WeighingScale ws = new WeighingScale(deviceId);
 		BodyWeight bw = new BodyWeight();
