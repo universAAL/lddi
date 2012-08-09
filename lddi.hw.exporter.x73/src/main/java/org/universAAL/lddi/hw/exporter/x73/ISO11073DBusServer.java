@@ -14,7 +14,9 @@ import cx.ath.matthew.unix.*;
 public class ISO11073DBusServer {
 
 	private BundleContext context;
+	private ISO11073ContextProvider contextProvider;
 	private LogService logger;
+	private agent agt;
 	
 	public ISO11073DBusServer(BundleContext context, LogService logger) throws IOException, DBusException {
 		this.context = context;
@@ -47,7 +49,7 @@ public class ISO11073DBusServer {
 		//Agent object
 		String agent_pid = "/com/signove/health/agent/" + ((int) (1 + Math.random() * 2000000000));
 		System.out.println("agent_pid: " +agent_pid);
-		agent agt = new MyAgent(conn);
+		agt = new MyAgent(conn, contextProvider);
 		conn.exportObject(agent_pid, agt);
 
 		System.out.println("Configuring...");
@@ -57,8 +59,13 @@ public class ISO11073DBusServer {
 		System.out.println("Waiting...");		
 		
 	}
-	
-	
+
+	public void setContextProvider(ISO11073ContextProvider t_contextProvider) {
+		this.contextProvider = t_contextProvider;
+		this.logger.log(LogService.LOG_INFO, "contextProvider set " + contextProvider.toString());
+		((MyAgent)agt).setContextProvider(t_contextProvider);
+	}
+
 	public LogService getLogger() {
 		return this.logger;
 	}
