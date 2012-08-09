@@ -15,9 +15,11 @@ import org.universAAL.middleware.owl.TypeURI;
 import org.universAAL.ontology.X73Ontology;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.Sensor;
+import org.universAAL.ontology.x73.AbsoluteTimeStamp;
 import org.universAAL.ontology.x73.BodyWeight;
 import org.universAAL.ontology.x73.MDS;
 import org.universAAL.ontology.x73.MDSAttribute;
+import org.universAAL.ontology.x73.SystemModel;
 import org.universAAL.ontology.x73.WeighingScale;
 import org.universAAL.ontology.x73.X73Factory;
 
@@ -77,6 +79,7 @@ public class ISO11073ContextProvider {
 	}
 	
 	public void publishEvent(String weight) {		
+		this.logger.log(LogService.LOG_INFO, "publishEvent");
 		Sensor ws = new Sensor("http://www.tsbtecnologias.es/WeighingScale.owl#WeighingScale");
 		ws.setLocation(new Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
 		ws.setProperty(Sensor.PROP_MEASURED_VALUE,weight);		
@@ -86,18 +89,24 @@ public class ISO11073ContextProvider {
 	//called by MyAgent.Disassociated
 	public void measureWeight(String deviceId, String measuredWeight) {
 
-		this.logger.log(LogService.LOG_INFO, "test1");
+		System.out.println("measureWeight started " + measuredWeight);
 				
-		publishEvent(measuredWeight);
+		//publishEvent(measuredWeight);
 		
+		this.logger.log(LogService.LOG_INFO, "test1");
+		
+		WeighingScale bw = new WeighingScale(deviceId);
 		this.logger.log(LogService.LOG_INFO, "test2");
+		bw.setProperty(SystemModel.PROP_MANUFACTURER, measuredWeight);
+		this.logger.log(LogService.LOG_INFO, "test3");
 		
-		WeighingScale ws = new WeighingScale(deviceId);
-		BodyWeight bw = new BodyWeight();
+		
+
+		//BodyWeight bw = new BodyWeight();
 		//set BodyWeight
-		ws.setHasMeasuredWeight(bw);
+		//ws.setHasMeasuredWeight(bw);
 		
-		cp.publish(new ContextEvent(ws, WeighingScale.PROP_HAS_MEASURED_WEIGHT));
+		cp.publish(new ContextEvent(bw, SystemModel.PROP_MANUFACTURER));
 		
 		
 		// create instanceURI with trailing deviceId (is different from static SensorConceptURI!)
@@ -113,10 +122,10 @@ public class ISO11073ContextProvider {
 //	mds.setMeasuredValue(mdsAttrURI);
 	
 		// create appropriate event
-		LogUtils.logInfo(Activator.moduleContext, ISO11073ContextProvider.class,
+/*		LogUtils.logInfo(Activator.moduleContext, ISO11073ContextProvider.class,
 			"x73StateChanged", new Object[] { "publishing a context event on the state of a " +
 					"x73 device!" }, null);
-		
+*/		
 		// finally create an context event and publish it with the ActivityHubSensor
 		// as subject and the property that changed as predicate
 //TODO

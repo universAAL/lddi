@@ -23,7 +23,8 @@ import javax.xml.parsers.*;
 import javax.xml.xpath.*;
 
 public class MyAgent implements agent {
-	private DBusConnection conn = null;
+	private DBusConnection conn = null;	
+	private ISO11073ContextProvider contextProvider = null;
 	
 	// unit of measurement
 	private String unit = null;
@@ -45,7 +46,7 @@ public class MyAgent implements agent {
 	private String manufacturer = null;
 	private String modelNumber = null;
 	
-	public MyAgent(DBusConnection t_conn) {
+	public MyAgent(DBusConnection t_conn, ISO11073ContextProvider t_contextProvider) {
 		conn = t_conn;
 	}
 	
@@ -211,10 +212,17 @@ public class MyAgent implements agent {
 		System.out.println("SystemID: " + systemId);
 		System.out.println("systemTypeSpecList: " + systemTypeSpecList);
 		System.out.println("System-Model: " + manufacturer + " - " + modelNumber);
+		
+		contextProvider.measureWeight(dev,manufacturer);
+		System.out.println("measureWeight finished");
 	}
 
 	public void Disconnected(String dev) {
 		System.out.println("Disconnected " + dev);
 	}
-
+	
+	public void setContextProvider(ISO11073ContextProvider t_contextProvider) {
+		this.contextProvider = t_contextProvider;
+		System.out.println("contextProvider set in MyAgent " + contextProvider.toString());
+	}
 }

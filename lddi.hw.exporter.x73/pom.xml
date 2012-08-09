@@ -53,6 +53,21 @@
             <Bundle-Activator>org.universAAL.lddi.hw.exporter.x73.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+				<Embed-Dependency></Embed-Dependency>
+				<Export-Package>
+					cx.ath.matthew.unix*,
+					cx.ath.matthew.utils*
+				</Export-Package>
+				<Include-Resource>
+					lib,
+					src/main/resources
+				</Include-Resource>
+				<Import-Package>*</Import-Package>
+				<Bundle-NativeCode>
+					libunix-java.so;
+					osname=Linux;
+					processor=x86; processor=x86_64
+				</Bundle-NativeCode>
           </instructions>
         </configuration>
       </plugin>
@@ -82,34 +97,6 @@
           </execution>
         </executions>
       </plugin>
-      
-      <plugin>
-      	<groupId>org.apache.felix</groupId>
-   		<artifactId>maven-bundle-plugin</artifactId>
-		<extensions>true</extensions>
-		<configuration>
-			<instructions>
-				<Embed-Dependency>
-					unix;scope=compile|runtime;inline=true,
-					utils;scope=compile|runtime;inline=true,
-				</Embed-Dependency>
-				<Export-Package>
-					cx.ath.matthew.unix*,
-					cx.ath.matthew.utils*
-				</Export-Package>
-				<Include-Resource>
-<!-- 					lib, -->
-					src/main/resources
-				</Include-Resource>
-				<Import-Package>*</Import-Package>
-				<Bundle-NativeCode>
-					libunix-java.so;
-					osname=Linux;
-					processor=x86; processor=x86_64
-				</Bundle-NativeCode>
-			</instructions>
-		</configuration>
-	</plugin>
   </plugins>
 </build>
 <profiles>
@@ -186,13 +173,13 @@
 		<groupId>cx.ath.matthew</groupId>
 		<artifactId>unix</artifactId>
 		<version>0.5</version>
-		<scope>compile</scope>
+		<scope>provided</scope>
 	</dependency>
 		<dependency>
 		<groupId>cx.ath.matthew</groupId>
 		<artifactId>utils</artifactId>
 		<version>0.2</version>
-		<scope>compile</scope>
+		<scope>provided</scope>
 	</dependency>
   </dependencies>
 </project>
