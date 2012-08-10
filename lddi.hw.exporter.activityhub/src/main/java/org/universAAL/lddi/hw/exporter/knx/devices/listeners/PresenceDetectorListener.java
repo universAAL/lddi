@@ -100,7 +100,7 @@
 //	OccupancySensor PresenceDetectorService = (OccupancySensor) context
 //		.getService(sr);
 //	presenceDetectorDevices.put(sr, new PresenceDetectorCallee(
-//		Activator.moduleContext, PresenceDetectorService));
+//		Activator.mc, PresenceDetectorService));
 //    }
 //
 //    private void douAALUnregistering(ServiceReference sr) {
