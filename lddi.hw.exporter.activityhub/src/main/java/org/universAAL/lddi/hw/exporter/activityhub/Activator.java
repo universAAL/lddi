@@ -21,7 +21,7 @@ import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 public class Activator implements BundleActivator {
 	
     public static BundleContext context = null;
-    public static ModuleContext moduleContext = null;
+    public static ModuleContext mc = null;
     private ActivityHubBusServer busServer;
     private ActivityHubServiceProvider serviceProvider;
     private ActivityHubContextProvider contextProvider;
@@ -30,7 +30,7 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
-		Activator.moduleContext = uAALBundleContainer.THE_CONTAINER
+		Activator.mc = uAALBundleContainer.THE_CONTAINER
 			.registerModule(new Object[] { context });
 		
 		//use a service Tracker for LogService
@@ -60,8 +60,8 @@ public class Activator implements BundleActivator {
 		public MyThread() {
 		}
 		public void run() {
-			serviceProvider = new ActivityHubServiceProvider(moduleContext, busServer);
-			contextProvider = new ActivityHubContextProvider(moduleContext, busServer);
+			serviceProvider = new ActivityHubServiceProvider(mc, busServer);
+			contextProvider = new ActivityHubContextProvider(mc, busServer);
 		}
 	}
 }

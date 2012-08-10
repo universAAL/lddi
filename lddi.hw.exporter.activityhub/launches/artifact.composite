@@ -1,3 +1,4 @@
+scan-bundle:wrap:mvn:org.osgi/osgi_R4_compendium/1.0
 scan-bundle:mvn:org.universAAL.middleware/mw.container.xfaces.osgi/1.2.1-SNAPSHOT
 scan-bundle:mvn:org.ops4j.pax.logging/pax-logging-api/1.6.2
 scan-bundle:mvn:org.ops4j.pax.logging/pax-logging-service/1.6.2
@@ -16,7 +17,6 @@ scan-bundle:mvn:org.apache.felix/org.apache.felix.upnp.basedriver/0.8.0
 scan-bundle:mvn:org.universAAL.middleware/mw.bus.model.osgi/1.2.1-SNAPSHOT
 scan-bundle:mvn:org.universAAL.middleware/mw.bus.context.osgi/1.2.1-SNAPSHOT
 scan-bundle:mvn:org.universAAL.middleware/mw.bus.service.osgi/1.2.1-SNAPSHOT
-scan-bundle:wrap:mvn:org.osgi/osgi_R4_compendium/1.0
 scan-bundle:mvn:org.universAAL.lddi/lddi.iso11073.library/1.2.2-SNAPSHOT
 scan-bundle:wrap:mvn:java3d/vecmath/1.3.1
 scan-bundle:wrap:mvn:java3d/j3d-core/1.3.1

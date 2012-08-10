@@ -11,16 +11,14 @@ import java.util.Map.Entry;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
-
 import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.lddi.iso11073.activityhub.driver.ActivityHubDriverManager;
 import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriver;
 import org.universAAL.lddi.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient;
 import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
-import org.universAAL.ontology.activityhub.ActivityHubSensor;
 
 /**
- * Instanciates all ActivityHub drivers from ISO11073 library.
+ * Instantiates all ActivityHub drivers from ISO11073 library.
  * The drivers call back and register themselves in the driverList.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)

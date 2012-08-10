@@ -123,7 +123,7 @@ public class ActivityHubContextProvider {
     	
 		// create appropriate event
 
-    	LogUtils.logInfo(Activator.moduleContext, ActivityHubContextProvider.class,
+    	LogUtils.logInfo(Activator.mc, ActivityHubContextProvider.class,
 			"activityHubSensorStateChanged", new Object[] { "publishing a context event on the state of a " +
 					"activityhub sensor!" }, null);
     	
