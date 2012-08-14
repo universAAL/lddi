@@ -695,6 +695,16 @@ lddi.hw.exporter.x73/launches/runner/felix/config.ini -text
 lddi.hw.exporter.x73/launches/runner/felix/system.properties -text
 lddi.hw.exporter.x73/launches/runner/remoteDebug.bat -text
 lddi.hw.exporter.x73/launches/runner/run.bat -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/NotConnectedException.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/USInputStream.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/USOutputStream.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/UnixIOException.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/UnixServerSocket.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/UnixSocket.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/UnixSocketAddress.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/testclient.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/unix/testserver.class -text
+lddi.hw.exporter.x73/lib/cx/ath/matthew/utils/Hexdump.class -text
 lddi.hw.exporter.x73/pom.xml -text
 lddi.hw.exporter.x73/src/main/java/com/signove/health/agent.java -text
 lddi.hw.exporter.x73/src/main/java/com/signove/health/device.java -text
