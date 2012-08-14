@@ -12,7 +12,6 @@ import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.TypeURI;
-import org.universAAL.ontology.X73.X73Ontology;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.Sensor;
 import org.universAAL.ontology.X73.AbsoluteTimeStamp;
@@ -22,6 +21,7 @@ import org.universAAL.ontology.X73.MDSAttribute;
 import org.universAAL.ontology.X73.SystemModel;
 import org.universAAL.ontology.X73.WeighingScale;
 import org.universAAL.ontology.X73Factory;
+import org.universAAL.ontology.X73.X73Ontology;
 
 /**
  * Provides context event patterns for the uAAL context bus
@@ -34,7 +34,7 @@ public class ISO11073ContextProvider {
 	private ISO11073DBusServer theServer;
 	private LogService logger;
 	private static X73Factory factory = new X73Factory();
-
+	
 	public ISO11073ContextProvider(ModuleContext mc,
 			ISO11073DBusServer x73Server) {
 		
@@ -95,7 +95,7 @@ public class ISO11073ContextProvider {
 		
 		this.logger.log(LogService.LOG_INFO, "test1");
 		
-		SystemModel bw = new SystemModel(deviceId);
+		SystemModel bw = new SystemModel(constructx73URIfromLocalID(deviceId));
 		this.logger.log(LogService.LOG_INFO, "test2");
 		bw.setProperty(SystemModel.PROP_MANUFACTURER, measuredWeight);
 		this.logger.log(LogService.LOG_INFO, "test3");

@@ -64,7 +64,12 @@
 				</Include-Resource>
 				<Import-Package>*</Import-Package>
 				<Bundle-NativeCode>
-					libunix-java.so;
+					libunix-java-32.so;
+					osname=Linux;
+					processor=x86; processor=x86_32
+				</Bundle-NativeCode>
+				<Bundle-NativeCode>
+					libunix-java-64.so;
 					osname=Linux;
 					processor=x86; processor=x86_64
 				</Bundle-NativeCode>
@@ -117,6 +122,12 @@
         <artifactId>org.apache.felix.webconsole</artifactId>
         <version>3.1.8</version>
       </dependency>
+      
+      <dependency>
+        <groupId>org.universAAL.ontology</groupId>
+        <artifactId>ont.activityhub</artifactId>
+      </dependency>
+      
     </dependencies>
   </profile>
 </profiles>
