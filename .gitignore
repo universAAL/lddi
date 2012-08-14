@@ -6,6 +6,8 @@ lddi.hw.exporter.activityhub/target
 lddi.hw.exporter.x73/.classpath
 lddi.hw.exporter.x73/.project
 lddi.hw.exporter.x73/.settings
+lddi.hw.exporter.x73/launches/artifact-test.composite
+lddi.hw.exporter.x73/launches/artifact.composite
 lddi.hw.exporter.x73/launches/runner/bundles
 lddi.hw.exporter.x73/launches/runner/cache
 lddi.hw.exporter.x73/launches/runner/felix/cache
