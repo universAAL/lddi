@@ -20,7 +20,7 @@ import org.universAAL.ontology.X73.MDS;
 import org.universAAL.ontology.X73.MDSAttribute;
 import org.universAAL.ontology.X73.SystemModel;
 import org.universAAL.ontology.X73.WeighingScale;
-import org.universAAL.ontology.X73Factory;
+import org.universAAL.ontology.X73.X73Factory;
 import org.universAAL.ontology.X73.X73Ontology;
 
 /**
