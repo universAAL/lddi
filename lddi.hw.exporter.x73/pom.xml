@@ -123,10 +123,10 @@
         <version>3.1.8</version>
       </dependency>
       
-      <dependency>
-        <groupId>org.universAAL.ontology</groupId>
-        <artifactId>ont.activityhub</artifactId>
-      </dependency>
+<!--      <dependency>-->
+<!--        <groupId>org.universAAL.ontology</groupId>-->
+<!--        <artifactId>ont.activityhub</artifactId>-->
+<!--      </dependency>-->
       
     </dependencies>
   </profile>
