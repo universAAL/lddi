@@ -20,7 +20,6 @@ import org.universAAL.ontology.X73.MDS;
 import org.universAAL.ontology.X73.MDSAttribute;
 import org.universAAL.ontology.X73.SystemModel;
 import org.universAAL.ontology.X73.WeighingScale;
-import org.universAAL.ontology.X73.X73Factory;
 import org.universAAL.ontology.X73.X73Ontology;
 
 /**
@@ -33,7 +32,7 @@ public class ISO11073ContextProvider {
     private ContextPublisher cp;
 	private ISO11073DBusServer theServer;
 	private LogService logger;
-	private static X73Factory factory = new X73Factory();
+//	private static X73Factory factory = new X73Factory();
 	
 	public ISO11073ContextProvider(ModuleContext mc,
 			ISO11073DBusServer x73Server) {
