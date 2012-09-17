@@ -83,6 +83,21 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <groupId>org.universAAL.support</groupId>
+        <artifactId>uaal-maven-plugin</artifactId>
+        <configuration>
+          <startArtifacts>
+            <artifact>
+              <groupId>org.universAAL.lddi</groupId>
+              <artifactId>lddi.knx.devicemanager</artifactId>
+              <!-- nostart>true</nostart -->
+              <startlevel>6</startlevel>
+            </artifact>
+          </startArtifacts>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
   <profiles>
