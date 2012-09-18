@@ -30,7 +30,9 @@ public class hdpManager implements hdpManagerListener {
 	private static final String CONTINUA_DEVICE_WEIGHTING_SCALE ="WeightingScale";
 
 	// Dinamic library name and path where it can be found (IMPORTANT: without "lib" prefix)	
-	private static String libNameWithoutExtension = "HDPnative_test";	
+	//private static String libNameWithoutExtension = "HDPnative_test";
+	//private static String libNameWithoutExtension = "HDPnative";
+	private static String libNameWithExtension = "libHDPnative.so";
 
 	// MAC address remote device (Continua WS, just for testing)
 	private static String macAddressRemoteDevice = "00:09:1F:80:0A:E0";	
@@ -382,7 +384,8 @@ public class hdpManager implements hdpManagerListener {
 	// Load dinamic library (.so in GNU/Linux or .dll in M$ platforms)
 	static {
 		try {			
-			System.loadLibrary(libNameWithoutExtension);			
+			//System.loadLibrary(libNameWithoutExtension);
+			System.load(System.getenv("HOME")+"/jni_lib/"+libNameWithExtension);
 		}catch(Exception ex) {
 			System.out.println("Unable to load native library. Please, check your path and OSGi manifest settings...");
 		}

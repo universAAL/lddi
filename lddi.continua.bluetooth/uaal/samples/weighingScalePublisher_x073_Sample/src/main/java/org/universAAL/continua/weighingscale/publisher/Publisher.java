@@ -19,8 +19,6 @@ import org.universAAL.middleware.context.ContextPublisher;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
-import org.universAAL.ontology.location.Location;
-import org.universAAL.ontology.phThing.Sensor;
 import org.universAAL.ontology.x73.MDS;
 import org.universAAL.ontology.x73.WeighingScale;
 
@@ -56,19 +54,13 @@ public class Publisher {
 	/** Publish weighting scale events to uAAL bus.  
 	 *  @param weight - weight measured value
 	 * */
-//	public void publishEvent(String weight) {		
+	public void publishEvent(String weight) {	
+		System.out.println("[TEST] WS event published to uaal context bus");
 //		WeighingScale ws = new WeighingScale("http://www.tsbtecnologias.es/WeighingScale.owl#WeighingScale");		
 //		ws.setLocation(new Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));		
 //		ws.setProperty(WeighingScale.PROP_HAS_MEASURED_WEIGHT,weight);
 //		System.out.println("I'm alive - 1");
 //		cp.publish(new ContextEvent(ws,WeighingScale.PROP_HAS_MEASURED_WEIGHT));
 //		System.out.println("I'm alive - 2");
-//	}
-	
-	public void publishEvent(String weight) {		
-		Sensor ws = new Sensor("http://www.tsbtecnologias.es/WeighingScale.owl#WeighingScale");
-		ws.setLocation(new Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
-		ws.setProperty(Sensor.PROP_MEASURED_VALUE,weight);		
-		cp.publish(new ContextEvent(ws,Sensor.PROP_MEASURED_VALUE));
 	}	
 }
