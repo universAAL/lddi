@@ -6,6 +6,7 @@ lddi.continua.bluetooth/no_uaal/libraries/x073implementation.jar -text
 lddi.continua.bluetooth/no_uaal/samples/BloodPressureMonitor_x073_Sample/src/bluetooth/hdpManager.java -text
 lddi.continua.bluetooth/no_uaal/samples/BloodPressureMonitor_x073_Sample/src/bluetooth/hdpManagerListener.java -text
 lddi.continua.bluetooth/uaal/doc/javadoc.rar -text
+lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.odt -text
 lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.pdf -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/pom.xml -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/bluetooth/hdpManager.java -text
