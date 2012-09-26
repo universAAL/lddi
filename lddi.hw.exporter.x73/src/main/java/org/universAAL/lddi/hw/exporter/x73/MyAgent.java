@@ -38,6 +38,11 @@ public class MyAgent implements agent {
 	// absoluteTimeStamp
 	private int century = -1;
 	private int year = -1;
+	private int month = -1;
+	private int day = -1;
+	private int hour = -1;
+	private int minute = -1;
+	private int second = -1;
 	// systemId
 	private String systemId = null;
 	// systemTypeSpecList
@@ -149,6 +154,21 @@ public class MyAgent implements agent {
 				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='year']/value/text()");
 				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
 				year = Integer.parseInt(nodes.item(0).getNodeValue());
+				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='month']/value/text()");
+				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
+				month = Integer.parseInt(nodes.item(0).getNodeValue());
+				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='day']/value/text()");
+				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
+				day = Integer.parseInt(nodes.item(0).getNodeValue());
+				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='hour']/value/text()");
+				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
+				hour = Integer.parseInt(nodes.item(0).getNodeValue());
+				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='minute']/value/text()");
+				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
+				minute = Integer.parseInt(nodes.item(0).getNodeValue());
+				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='second']/value/text()");
+				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
+				second = Integer.parseInt(nodes.item(0).getNodeValue());
 			
 //				for (int i = 0; i < nodes.getLength(); i++) {
 //				    System.out.println("Value: " + nodes.item(i).getNodeValue()); 
@@ -204,16 +224,16 @@ public class MyAgent implements agent {
 		System.out.println("Disassociated dev " + dev);
 		
 		System.out.println("Extracted data: ");
-		System.out.println("unit: " + unit + " - " +unitCode);
-//		System.out.println("value_type: " + value_type);
-		System.out.println("compoundObservedValue: " + measuredValue_18949 + measuredValue_18950 + measuredValue_18951);
-		System.out.println("basicNuObservedValue: " + basicNuObservedValue);
-		System.out.println("TimeStamp: " + century + year);
-		System.out.println("SystemID: " + systemId);
-		System.out.println("systemTypeSpecList: " + systemTypeSpecList);
 		System.out.println("System-Model: " + manufacturer + " - " + modelNumber);
+		System.out.println("SystemID: " + systemId);
+		System.out.println("Measured Value: " + basicNuObservedValue);
+		System.out.println("Unit: " + unit + " - " +unitCode);
+//		System.out.println("value_type: " + value_type);
+//		System.out.println("compoundObservedValue: " + measuredValue_18949 + measuredValue_18950 + measuredValue_18951);
+		System.out.println("TimeStamp: " + century + year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second);
+//		System.out.println("systemTypeSpecList: " + systemTypeSpecList);
 		
-		contextProvider.measureWeight(dev,manufacturer);
+		//contextProvider.measureWeight(dev,manufacturer);
 		System.out.println("measureWeight finished");
 	}
 
