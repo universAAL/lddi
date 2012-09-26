@@ -25,6 +25,11 @@ public class Activator implements BundleActivator {
     private ISO11073ContextProvider contextProvider;
 	
 	public void start(BundleContext context) throws Exception {
+		//if(1==1)
+		//	throw new RuntimeException("Test in Activator: " + "http://ontology.universAAL.org/X73.owl#BloodPressureMonitor");
+
+		
+		
 		Activator.context = context;
 		Activator.moduleContext = uAALBundleContainer.THE_CONTAINER
 			.registerModule(new Object[] { context });
@@ -62,7 +67,7 @@ public class Activator implements BundleActivator {
 			System.out.println("pre contextProvider in Activator");
 			x73Server.setContextProvider(contextProvider);
 			System.out.println("post contextProvider in Activator");
-			contextProvider.measureWeight("test-dev", "test-value");
+			//contextProvider.measureWeight("test-dev", "test-value");
 		}
 	}
 	

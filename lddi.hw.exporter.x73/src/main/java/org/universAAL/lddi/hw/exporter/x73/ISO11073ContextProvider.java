@@ -14,12 +14,8 @@ import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.TypeURI;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.Sensor;
-import org.universAAL.ontology.X73.AbsoluteTimeStamp;
-import org.universAAL.ontology.X73.BodyWeight;
-import org.universAAL.ontology.X73.MDS;
-import org.universAAL.ontology.X73.MDSAttribute;
-import org.universAAL.ontology.X73.SystemModel;
-import org.universAAL.ontology.X73.WeighingScale;
+import org.universAAL.ontology.X73.*;
+import org.universAAL.ontology.X73Ontology;
 import org.universAAL.ontology.X73.X73Ontology;
 
 /**
@@ -79,8 +75,8 @@ public class ISO11073ContextProvider {
 	
 	public void publishEvent(String weight) {		
 		this.logger.log(LogService.LOG_INFO, "publishEvent");
-		Sensor ws = new Sensor("http://www.tsbtecnologias.es/WeighingScale.owl#WeighingScale");
-		ws.setLocation(new Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
+		Sensor ws = new Sensor("http://www.ait.ac.at/WeighingScale.owl#WeighingScale");
+		ws.setLocation(new Location("http://www.ait.ac.at/location.owl#AITlocation","AIT"));
 		ws.setProperty(Sensor.PROP_MEASURED_VALUE,weight);		
 		cp.publish(new ContextEvent(ws,Sensor.PROP_MEASURED_VALUE));
 	}	
@@ -88,24 +84,35 @@ public class ISO11073ContextProvider {
 	//called by MyAgent.Disassociated
 	public void measureWeight(String deviceId, String measuredWeight) {
 
-		System.out.println("measureWeight started " + measuredWeight);
+		//System.out.println("measureWeight started " + measuredWeight);
 				
-		//publishEvent(measuredWeight);
+		publishEvent(measuredWeight);
 		
-		this.logger.log(LogService.LOG_INFO, "test1");
+/*		this.logger.log(LogService.LOG_INFO, "test1");
+		BloodPressureMonitor test3 = new BloodPressureMonitor("test");
+		test3.setLocation(new Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
+		test3.setProperty(Sensor.PROP_MEASURED_VALUE,test3);		
+		cp.publish(new ContextEvent(test3,Sensor.PROP_MEASURED_VALUE));
+//		x73 test = new x73("test");
+//		MDSAttribute test2 = MDSAttribute("test2");
 		
+<<<<<<< .mine
+//		MDSAttribute bw = new MDSAttribute(deviceId);
+=======
 		SystemModel bw = new SystemModel(constructx73URIfromLocalID(deviceId));
+>>>>>>> .r278
 		this.logger.log(LogService.LOG_INFO, "test2");
-		bw.setProperty(SystemModel.PROP_MANUFACTURER, measuredWeight);
+//		bw.setProperty(SystemModel.PROP_MANUFACTURER, measuredWeight);
+
 		this.logger.log(LogService.LOG_INFO, "test3");
 		
-		
+*/		
 
 		//BodyWeight bw = new BodyWeight();
 		//set BodyWeight
 		//ws.setHasMeasuredWeight(bw);
 		
-		cp.publish(new ContextEvent(bw, SystemModel.PROP_MANUFACTURER));
+//		cp.publish(new ContextEvent(bw, SystemModel.PROP_MANUFACTURER));
 		
 		
 		// create instanceURI with trailing deviceId (is different from static SensorConceptURI!)
