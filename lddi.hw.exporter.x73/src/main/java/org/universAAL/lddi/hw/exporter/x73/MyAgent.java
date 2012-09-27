@@ -4,7 +4,7 @@
  *
  * Modified by Patrick Stern, AIT
  * patrick.stern@ait.ac.at
- * 2012-07-24
+ * 2012-09-26
  */
 
 package org.universAAL.lddi.hw.exporter.x73;
@@ -43,6 +43,7 @@ public class MyAgent implements agent {
 	private int hour = -1;
 	private int minute = -1;
 	private int second = -1;
+	private int sec_fractions = -1;
 	// systemId
 	private String systemId = null;
 	// systemTypeSpecList
@@ -84,7 +85,7 @@ public class MyAgent implements agent {
 	}
 
 	public void Associated(String dev, String data) {
-		//System.out.println("Associated dev " + dev);
+		System.out.println("Associated dev " + dev);
 		//System.out.println("Associated data " + data);
 		writeFile("Associated.xml",data);
 		Document xmlData = null;
@@ -106,7 +107,7 @@ public class MyAgent implements agent {
 	}
 
 	public void MeasurementData(String dev, String data) {
-		//System.out.println("MeasurementData dev " + dev);
+		System.out.println("MeasurementData dev " + dev);
 		//System.out.println("MeasurementData data " + data);
 		writeFile("MeasurementData.xml",data);
 
@@ -114,7 +115,6 @@ public class MyAgent implements agent {
 		try {
 			xmlData = loadXMLFromString(data);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -169,6 +169,9 @@ public class MyAgent implements agent {
 				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='second']/value/text()");
 				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
 				second = Integer.parseInt(nodes.item(0).getNodeValue());
+				expr = xpath.compile("//entries/entry/compound[name='Absolute-Time-Stamp']/entries/entry/simple[name='sec_fractions']/value/text()");
+				nodes = (NodeList) expr.evaluate(xmlData, XPathConstants.NODESET);
+				sec_fractions = Integer.parseInt(nodes.item(0).getNodeValue());
 			
 //				for (int i = 0; i < nodes.getLength(); i++) {
 //				    System.out.println("Value: " + nodes.item(i).getNodeValue()); 
@@ -180,7 +183,7 @@ public class MyAgent implements agent {
 	}
 
 	public void DeviceAttributes(String dev, String data){
-		//System.out.println("DeviceAttributes dev " + dev);
+		System.out.println("DeviceAttributes dev " + dev);
 		//System.out.println("DeviceAttributes data " + data);
 		writeFile("DeviceAttributes.xml",data);
 		
@@ -188,7 +191,6 @@ public class MyAgent implements agent {
 		try {
 			xmlData = loadXMLFromString(data);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -223,18 +225,30 @@ public class MyAgent implements agent {
 	public void Disassociated(String dev){
 		System.out.println("Disassociated dev " + dev);
 		
-		System.out.println("Extracted data: ");
-		System.out.println("System-Model: " + manufacturer + " - " + modelNumber);
+/*		Debug Output:
+ * 
+ 		System.out.println("Extracted data: ");
+		System.out.println("unit: " + unit + " - " +unitCode);
+		System.out.println("compoundObservedValue: " + measuredValue_18949 + measuredValue_18950 + measuredValue_18951);
+		System.out.println("basicNuObservedValue: " + basicNuObservedValue);
+		System.out.println("TimeStamp: " + century + year + "-" + month + "-" + day);
 		System.out.println("SystemID: " + systemId);
-		System.out.println("Measured Value: " + basicNuObservedValue);
-		System.out.println("Unit: " + unit + " - " +unitCode);
-//		System.out.println("value_type: " + value_type);
-//		System.out.println("compoundObservedValue: " + measuredValue_18949 + measuredValue_18950 + measuredValue_18951);
-		System.out.println("TimeStamp: " + century + year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second);
-//		System.out.println("systemTypeSpecList: " + systemTypeSpecList);
-		
-		//contextProvider.measureWeight(dev,manufacturer);
-		System.out.println("measureWeight finished");
+		System.out.println("systemTypeSpecList: " + systemTypeSpecList);
+		System.out.println("System-Model: " + manufacturer + " - " + modelNumber);
+ */		
+
+		// depending on the device model different methods with different parameters have to be called
+		if(modelNumber.compareTo("UC-321PBT-C")==0) {
+			contextProvider.publishWeight(dev,basicNuObservedValue,unitCode,century,year,month,day,hour,minute,second,sec_fractions,manufacturer,modelNumber,systemId,systemTypeSpecList);
+			System.out.println("measureWeight finished");
+		}
+		// the blood pressure monitor measures only the pulse
+		else if(modelNumber.compareTo("UA-767PBT-C")==0) {
+			contextProvider.publishPulse(dev,basicNuObservedValue,unitCode,century,year,month,day,hour,minute,second,sec_fractions,manufacturer,modelNumber,systemId,systemTypeSpecList);
+			System.out.println("measurePulse finished");
+		}
+		else
+			System.out.println("This device is not supported.");
 	}
 
 	public void Disconnected(String dev) {
