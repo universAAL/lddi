@@ -11,6 +11,11 @@ import org.freedesktop.dbus.DBusInterfaceName;
 import com.signove.health.*;
 import cx.ath.matthew.unix.*;
 
+/**
+ * Connects to the D-Bus
+ * 
+ * @author Patrick Stern (sternp@gmx.at)
+ */
 public class ISO11073DBusServer {
 
 	private BundleContext context;

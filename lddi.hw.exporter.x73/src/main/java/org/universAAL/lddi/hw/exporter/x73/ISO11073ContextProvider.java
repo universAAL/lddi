@@ -2,8 +2,6 @@ package org.universAAL.lddi.hw.exporter.x73;
 
 import org.osgi.service.log.LogService;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.ContextPublisher;
@@ -14,21 +12,26 @@ import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.TypeURI;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.Sensor;
-import org.universAAL.ontology.X73.*;
-import org.universAAL.ontology.X73Ontology;
+import org.universAAL.ontology.X73.AbsoluteTimeStamp;
+import org.universAAL.ontology.X73.BloodPressureMonitor;
+import org.universAAL.ontology.X73.BodyWeight;
+import org.universAAL.ontology.X73.MDS;
+import org.universAAL.ontology.X73.Pulse;
+import org.universAAL.ontology.X73.SystemModel;
+import org.universAAL.ontology.X73.WeighingScale;
 import org.universAAL.ontology.X73.X73Ontology;
 
 /**
  * Provides context event patterns for the uAAL context bus
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
+ * @author Patrick Stern (sternp@gmx.at)
  */
 public class ISO11073ContextProvider {
 
     private ContextPublisher cp;
 	private ISO11073DBusServer theServer;
 	private LogService logger;
-//	private static X73Factory factory = new X73Factory();
 	
 	public ISO11073ContextProvider(ModuleContext mc,
 			ISO11073DBusServer x73Server) {
@@ -53,90 +56,106 @@ public class ISO11073ContextProvider {
 
 	private static ContextEventPattern[] getWeighingCEP() {
 			
-		MergedRestriction subjectRestriction = MergedRestriction
+		/*MergedRestriction subjectRestriction = MergedRestriction
 				.getAllValuesRestriction(ContextEvent.PROP_RDF_SUBJECT,
 						WeighingScale.MY_URI);
 		
 		MergedRestriction predicateRestriction = MergedRestriction
-				.getAllValuesRestriction(ContextEvent.PROP_RDF_PREDICATE,
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
 						WeighingScale.PROP_HAS_MEASURED_WEIGHT);
 		
-		/*MergedRestriction objectRestriction = MergedRestriction
+		MergedRestriction objectRestriction = MergedRestriction
 				.getFixedValueRestriction(ContextEvent.PROP_RDF_OBJECT,
 						MDSAttribute.basicNuObservedValue);
 		*/
+		
 		ContextEventPattern cep_weight = new ContextEventPattern();
-		cep_weight.addRestriction(subjectRestriction);
-		cep_weight.addRestriction(predicateRestriction);
+		//cep_weight.addRestriction(subjectRestriction);
+		//cep_weight.addRestriction(predicateRestriction);
 		//cep_weight.addRestriction(objectRestriction);
 	
 		return new ContextEventPattern[] { cep_weight };
 	}
-	
-	public void publishEvent(String weight) {		
-		this.logger.log(LogService.LOG_INFO, "publishEvent");
-		Sensor ws = new Sensor("http://www.ait.ac.at/WeighingScale.owl#WeighingScale");
-		ws.setLocation(new Location("http://www.ait.ac.at/location.owl#AITlocation","AIT"));
-		ws.setProperty(Sensor.PROP_MEASURED_VALUE,weight);		
-		cp.publish(new ContextEvent(ws,Sensor.PROP_MEASURED_VALUE));
-	}	
 
 	//called by MyAgent.Disassociated
-	public void measureWeight(String deviceId, String measuredWeight) {
+	public void publishDevData(String deviceId, String manufacturer, String modelNumber, int century, int year, int month, int day, int hour, int minute, int second, int sec_fractions, SystemModel sm, AbsoluteTimeStamp as) {
 
-		//System.out.println("measureWeight started " + measuredWeight);
-				
-		publishEvent(measuredWeight);
-		
-/*		this.logger.log(LogService.LOG_INFO, "test1");
-		BloodPressureMonitor test3 = new BloodPressureMonitor("test");
-		test3.setLocation(new Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
-		test3.setProperty(Sensor.PROP_MEASURED_VALUE,test3);		
-		cp.publish(new ContextEvent(test3,Sensor.PROP_MEASURED_VALUE));
-//		x73 test = new x73("test");
-//		MDSAttribute test2 = MDSAttribute("test2");
-		
-<<<<<<< .mine
-//		MDSAttribute bw = new MDSAttribute(deviceId);
-=======
-		SystemModel bw = new SystemModel(constructx73URIfromLocalID(deviceId));
->>>>>>> .r278
-		this.logger.log(LogService.LOG_INFO, "test2");
-//		bw.setProperty(SystemModel.PROP_MANUFACTURER, measuredWeight);
-
-		this.logger.log(LogService.LOG_INFO, "test3");
-		
-*/		
-
-		//BodyWeight bw = new BodyWeight();
-		//set BodyWeight
-		//ws.setHasMeasuredWeight(bw);
-		
-//		cp.publish(new ContextEvent(bw, SystemModel.PROP_MANUFACTURER));
-		
-		
-		// create instanceURI with trailing deviceId (is different from static SensorConceptURI!)
-		//String instanceURI = constructx73URIfromLocalID(deviceId);
+		sm.setManufacturer(manufacturer);
+		cp.publish(new ContextEvent(sm, SystemModel.PROP_MANUFACTURER));
+		sm.setModelNumber(modelNumber);
+		cp.publish(new ContextEvent(sm, SystemModel.PROP_MODEL_NUMBER));
 	
-		// Use a factory for creation of ontology
-		//create new x73 device from ontology
-//		MDS mds = (MDS) factory.createInstance(null, instanceURI, factoryIndex);
-		
-		// create correct eventURI
-		// event factory switching on device category, passing event (int)
-//	MDSAttribute mdsAttrURI = ActivityHubEventFactory.createInstance(factoryIndex, event);
-//	mds.setMeasuredValue(mdsAttrURI);
+		as.setCentury(century);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_CENTURY));
+		as.setYear(year);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_YEAR));
+		as.setMonth(month);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_MONTH));
+		as.setDay(day);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_DAY)); 
+		as.setHour(hour);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_HOUR));
+		as.setMinute(minute);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_MINUTE));
+		as.setSecond(second);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_SECOND));
+		as.setSecfractions(sec_fractions);
+		cp.publish(new ContextEvent(as, AbsoluteTimeStamp.PROP_SECFRACTIONS));
+	}
 	
-		// create appropriate event
-/*		LogUtils.logInfo(Activator.moduleContext, ISO11073ContextProvider.class,
-			"x73StateChanged", new Object[] { "publishing a context event on the state of a " +
-					"x73 device!" }, null);
-*/		
-		// finally create an context event and publish it with the ActivityHubSensor
-		// as subject and the property that changed as predicate
-//TODO
-//		cp.publish(new ContextEvent(mds, MDS.PROP_MEASURED_VALUE));
+	// This method is called by MyAgent.Disassociated and publishes the measurements of the bathing scale
+	// to the context bus. Such a method has to be implemented for every device model.
+	public void publishWeight(String deviceId, String weight, String unitCode, int century, int year, int month, int day, int hour, int minute, int second, int sec_fractions, String manufacturer, String modelNumber, String systemId, String typeSpecList) {
+
+		SystemModel sm = new SystemModel(SystemModel.MY_URI + systemId);
+		AbsoluteTimeStamp as = new AbsoluteTimeStamp(AbsoluteTimeStamp.MY_URI + systemId); 
+		publishDevData(deviceId,manufacturer,modelNumber, century, year, month, day, hour, minute, second, sec_fractions,sm,as);
 		
+		BodyWeight bw = new BodyWeight(BodyWeight.MY_URI + systemId); 
+		bw.setAbsoluteTimeStamp(as);
+		cp.publish(new ContextEvent(bw, BodyWeight.PROP_ABSOLUTE_TIME_STAMP));
+		bw.setBasicNuObservedValue(weight);
+		cp.publish(new ContextEvent(bw, BodyWeight.PROP_BASIC_NU_OBSERVED_VALUE));
+		bw.setUnitCode(unitCode);
+		cp.publish(new ContextEvent(bw, BodyWeight.PROP_UNIT_CODE));
+
+		WeighingScale ws = new WeighingScale(WeighingScale.MY_URI + systemId); 
+		ws.setSystemId(systemId);
+		cp.publish(new ContextEvent(ws, WeighingScale.PROP_SYSTEM_ID));
+		ws.setSystemTypeSpecList(typeSpecList);
+		cp.publish(new ContextEvent(ws, WeighingScale.PROP_SYSTEM_TYPE_SPEC_LIST));
+		ws.setSystemModel(sm);
+		cp.publish(new ContextEvent(ws, WeighingScale.PROP_SYSTEM_MODEL));
+		ws.setHasMeasuredWeight(bw);
+		cp.publish(new ContextEvent(ws, WeighingScale.PROP_HAS_MEASURED_WEIGHT));
+	}
+	
+	// This method is called by MyAgent.Disassociated and publishes the pulse measurements
+	// to the context bus. Such a method has to be implemented for every device model.
+	public void publishPulse(String deviceId, String pulse, String unitCode, int century, int year, int month, int day, int hour, int minute, int second, int sec_fractions, String manufacturer, String modelNumber, String systemId, String typeSpecList) {
+
+
+		SystemModel sm = new SystemModel(SystemModel.MY_URI + systemId);
+		AbsoluteTimeStamp as = new AbsoluteTimeStamp(AbsoluteTimeStamp.MY_URI + systemId); 
+		publishDevData(deviceId,manufacturer,modelNumber, century, year, month, day, hour, minute, second, sec_fractions,sm,as);
+		
+		Pulse pu = new Pulse(Pulse.MY_URI + systemId); 
+		pu.setAbsoluteTimeStamp(as);
+		cp.publish(new ContextEvent(pu, Pulse.PROP_ABSOLUTE_TIME_STAMP));
+		pu.setBasicNuObservedValue(pulse);
+		cp.publish(new ContextEvent(pu, Pulse.PROP_BASIC_NU_OBSERVED_VALUE));
+		pu.setUnitCode(unitCode);
+		cp.publish(new ContextEvent(pu, Pulse.PROP_UNIT_CODE));
+
+		BloodPressureMonitor bpm = new BloodPressureMonitor(BloodPressureMonitor.MY_URI + systemId); 
+		bpm.setSystemId(systemId);
+		cp.publish(new ContextEvent(bpm, BloodPressureMonitor.PROP_SYSTEM_ID));
+		bpm.setSystemTypeSpecList(typeSpecList);
+		cp.publish(new ContextEvent(bpm, BloodPressureMonitor.PROP_SYSTEM_TYPE_SPEC_LIST));
+		bpm.setSystemModel(sm);
+		cp.publish(new ContextEvent(bpm, BloodPressureMonitor.PROP_SYSTEM_MODEL));
+		bpm.setHasMeasuredPulse(pu);
+		cp.publish(new ContextEvent(bpm, BloodPressureMonitor.PROP_HAS_MEASURED_PULSE));
 	}
 	
 	private static String constructx73URIfromLocalID(String localID) {
