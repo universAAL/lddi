@@ -64,9 +64,7 @@ public class Activator implements BundleActivator {
 		public void run() {
 			//serviceProvider = new ActivityHubServiceProvider(moduleContext, busServer);
 			contextProvider = new ISO11073ContextProvider(moduleContext, x73Server);
-			System.out.println("pre contextProvider in Activator");
 			x73Server.setContextProvider(contextProvider);
-			System.out.println("post contextProvider in Activator");
 			//contextProvider.measureWeight("test-dev", "test-value");
 		}
 	}
