@@ -20,7 +20,6 @@ public class KnxNotification extends KnxCommand {
 	public KnxNotification(String commandName, String groupAddress,
 			String hexValue) {
 		super(commandName, groupAddress, hexValue);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -29,7 +28,6 @@ public class KnxNotification extends KnxCommand {
 	 */
 	public KnxNotification(String notificationName, String groupAddress2) {
 		super(notificationName, groupAddress2);
-		// TODO Auto-generated constructor stub
 	}
 	
 	

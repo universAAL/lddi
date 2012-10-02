@@ -9,17 +9,19 @@ import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 import org.universAAL.lddi.knx.utils.KnxTelegram;
 
-/** Provides readings from the knx gateway by the LAN.
+/** 
+ * Provides readings from the knx gateway by the LAN.
  * Uses the encoder to operate translation from low level data
  * (knx) to high level data (sent to uAAL).
+ *
  * @author Enrico Allione (enrico.allione@gmail.com)
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-
 public class KnxReader 
 //extends Thread
 implements Runnable
 {
+	/* Changed from Thread to Runnable */
 
 	protected KnxNetworkDriverImp core;
 	protected KnxEncoder encoder;
@@ -53,7 +55,7 @@ implements Runnable
 
 //	private void listen(){
 	public void run(){
-		int k = 0;
+//		int k = 0;
 //		boolean flag = true;
 
 		try {
@@ -111,43 +113,40 @@ implements Runnable
 						"; TELEGRAM: " + KnxWriter.byteArrayToHexString(temp));
 
 				this.core.newMessageFromHouse(groupAddress, telegram.getValueByte());
-
-				
-				
-				
-				
-				byte[] deviceByte = new byte[2];
-				deviceByte[0] = temp[10];		
-				deviceByte[1] = temp[11];
-
-				byte[] groupByte = new byte[2];
-				groupByte[0] = temp[12];		
-				groupByte[1] = temp[13];
-				
-				//difference between the expected size of the telegram and the real one
-				int oversize = temp.length - KnxReader.telegramLenght;
-				oversize=oversize<0?0:oversize; //avoid array index exception
-				
-				
-				byte[] statusByte = new byte[oversize+2];
-				
-				for(int j=0; j<statusByte.length; j++){
-					//statusByte[0] = temp[14]; //old version
-					statusByte[j]=temp[temp.length-2-oversize+j];
-				}
-				
-				//TODO change to handle data value such as temperature
-//				String groupAddress = KnxEncoder.getGroupAddress(groupByte);
-				//String knxStatus = KnxEncoder.getStatus(statusByte);
-				
-				
-				 //byteString=new StringBuilder();
-				
-				
-
-				k += 1;
-
 			
+				
+				
+				
+//				byte[] deviceByte = new byte[2];
+//				deviceByte[0] = temp[10];		
+//				deviceByte[1] = temp[11];
+//
+//				byte[] groupByte = new byte[2];
+//				groupByte[0] = temp[12];		
+//				groupByte[1] = temp[13];
+//				
+//				//difference between the expected size of the telegram and the real one
+//				int oversize = temp.length - KnxReader.telegramLenght;
+//				oversize=oversize<0?0:oversize; //avoid array index exception
+//				
+//				
+//				byte[] statusByte = new byte[oversize+2];
+//				
+//				for(int j=0; j<statusByte.length; j++){
+//					//statusByte[0] = temp[14]; //old version
+//					statusByte[j]=temp[temp.length-2-oversize+j];
+//				}
+//				
+//				//TODO change to handle data value such as temperature
+////				String groupAddress = KnxEncoder.getGroupAddress(groupByte);
+//				//String knxStatus = KnxEncoder.getStatus(statusByte);
+//				
+//				
+//				 //byteString=new StringBuilder();
+//				
+//				
+//
+//				k += 1;
 			}
 		}
 		catch (SocketException se){
