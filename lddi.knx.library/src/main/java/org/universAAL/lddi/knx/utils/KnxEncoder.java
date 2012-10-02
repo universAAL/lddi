@@ -201,57 +201,6 @@ public class KnxEncoder {
 	   return bTest;
 	}
 
-//	/**
-//	 * @param message: udpTelegram from knx
-//	 * @return message as String
-//	 */
-//	private static String getInfoFromMessage(byte message[]){
-//		
-//		/*	message[]:
-//		 * 		0-8) udp header;
-//		 * 		9) control
-//		 * 		10-11) source;	// device which provides its state
-//		 * 		12-13) destination;	// can be both group (managed) or single (unmanaged) 
-//		 * 		14-15) stuff = d100;?
-//		 * 		16) command or state;
-//		 */
-//		//String telegram = new String();
-//		KnxTelegram telegram = new KnxTelegram();
-//		
-////		byte sourceByte[] = new byte[2];
-////		byte destByte[] = new byte[2];
-////		byte valueByte[] = new byte[1];
-////		byte drlByte[] = new byte[1]; //DRL-Byte (Destination-address-flag, Routing-counter, Length)
-////		byte typeByte[] = new byte[2];
-//		
-////		sourceByte[0] = message[10];		sourceByte[1] = message[11];
-//		telegram.setSourceByte(new byte[] {message[10], message[11]});
-////		destByte[0] = message[12];		destByte[1] = message[13];
-//		telegram.setDestByte(new byte[] {message[12], message[13]});
-////		drlByte[0] = message[14];
-//		telegram.setDrlByte(message[14]);
-////		valueByte[0] = message[16];
-//		telegram.setValueByte(message[16]);
-//		
-////		String source = KnxEncoder.getAddress(sourceByte);
-//
-//		// TODO Decoding group Address, but can also be single address!
-////		String destination = KnxEncoder.getGroupAddress(destByte); 
-//		
-////		String value = KnxEncoder.getStatus(valueByte);
-//
-////		int dataLength = KnxEncoder.getDataLength(drlByte);
-//		
-//		// TODO type is not read
-////		String type = KnxEncoder.getType(typeByte);
-//		
-////		telegram = source + "#" + destination + "#" + value + "#" + dataLength;
-//		
-////		return telegram;
-//		return null;
-//
-//	}
-
 	
 	/**
 	 * @param drlByte
