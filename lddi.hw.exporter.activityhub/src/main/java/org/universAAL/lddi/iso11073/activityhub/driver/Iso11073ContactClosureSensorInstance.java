@@ -102,7 +102,6 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 	 */
 	public void incomingSensorEvent(int event) {
 
-		// TODO send event to client
 		this.logger.log(LogService.LOG_INFO, "Driver " + Iso11073ContactClosureSensor.MY_DEVICE_CATEGORY +
 				" for device " + this.device.getDeviceId() + " received new event " + 
 				ContactClosureSensorEvent.getContactClosureSensorEvent(event).toString());

@@ -119,25 +119,10 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 */
 	public void incomingSensorEvent(String deviceId, ActivityHubDeviceCategory activityHubDeviceCategory, int event) {
 		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + event);
-		
-//		ActivityHubDriver driver = this.driverList.get(deviceId);
-		
-		// TODO create context event! not here -> contextprovider class
+
 		for (Iterator<ActivityHubContextProvider> i = listeners.iterator(); i.hasNext();)
 			((ActivityHubContextProvider) i.next()).activityHubSensorStateChanged(deviceId, 
 					activityHubDeviceCategory, event);
-		
-		// create semantic representation of event -> has to be done beforehand. 
-		// create context event patterns in contextprovider
-		
-		// Use a factory for creation of ISO-SENSOR
-		// switch on activityHubDeviceCategory
-		// create URI with trailing deviceId
-
-		// create appropriate event
-		
-		// create RDF-triple
-		
 	}
 
 //	public void sendContextEvent() {
