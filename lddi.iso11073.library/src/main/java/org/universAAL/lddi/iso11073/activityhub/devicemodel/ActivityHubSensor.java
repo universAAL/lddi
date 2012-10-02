@@ -11,10 +11,15 @@ import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil
  * 
  * Now all ActivityHub sensors are implemented as on/off sensors having 
  * setSensorEventOn and setSensorEventOff methods.
+ * TODO: check if it's possible/better to use any value setSensorEvent(int sensorEvent); for KNX datapoint type 1.*** (which are used mainly during development) on/off is sufficient
  * 
- * TODO: check if it's possible/better to use any value setSensorEvent(int sensorEvent)
- * 
- * TODO: Implement generic sensor properties flags for activity hub sensors
+ * Generic sensor properties flags for activity hub sensors are not implement yet!
+ * (Because they are not supported by KNX sensors)
+ * auto-presence-received(16)	(For sensors that have “heartbeat” operational status: indicates that the “heartbeat” has been seen and is ok. This flag shall be reset if Auto-Presence-Failed is set.)
+ * auto-presence-failed(17)		(For sensors that have “heartbeat” operational status: indicates that the “heartbeat” has not been seen as expected. This flag shall be reset if Auto-Presence-Received is set.)
+ * low-battery(18)				(Indicates the sensor is in the low battery condition. This determination is unique to the sensor.)
+ * fault(19)					(Indicates that the sensor is in a fault condition and needs attention. This determination is unique to the sensor.)
+ * end-of-life(20)				(Indicates that the sensor has reached end of life and needs replacement. This indication is unique to the sensor.)
  * 
  * @author Thomas Fuxreiter
  */
@@ -68,7 +73,7 @@ public abstract class ActivityHubSensor implements Device {
 	 * 
 	 * called by refinement driver
 	 * 
-	 * is on/off feasible for all ActivityHubSensors ????????????????
+	 * is on/off feasible for all ActivityHubSensors?
 	 */
 	public abstract void setSensorEventOn();
 

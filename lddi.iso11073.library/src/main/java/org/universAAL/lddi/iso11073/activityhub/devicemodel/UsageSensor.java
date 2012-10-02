@@ -73,8 +73,7 @@ public class UsageSensor extends ActivityHubSensor implements
 	 * @see org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubBaseDeviceCategory#incomingSensorEvent(int)
 	 */
 	public void incomingSensorEvent(int event) {
-		// TODO Auto-generated method stub
-
+		// driver instances must implement this method; device instances not! 
 	}
 
 }

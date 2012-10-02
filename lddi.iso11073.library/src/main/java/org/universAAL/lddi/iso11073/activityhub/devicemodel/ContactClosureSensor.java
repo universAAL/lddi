@@ -68,7 +68,7 @@ public class ContactClosureSensor extends ActivityHubSensor implements Iso11073C
 
 	
 	public void incomingSensorEvent(int event) {
-		// driver instances must implement this method; device instances not!
+		// driver instances must implement this method; device instances not! 
 	}
 
 }
