@@ -7,7 +7,7 @@ import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil
 
 /**
  * Representation of a motion sensor according to ISO 11073 - 
- * Part 10471 (Indepentend living activity hub), edition 2010-05-01
+ * Part 10471 (Independent living activity hub), edition 2010-05-01
  * 
  * Specific sensor events (from standard specification):
  * - motion detected

@@ -32,7 +32,7 @@ public abstract class ActivityHubDriver {
 	protected Set<String> deviceIdSet;  //wozu?
 //	protected Map<String,IsoDeviceCommand> isoDeviceCommands; //iso events wie motion-detected??
 
-	// TODO remove reference
+
 	public ActivityHubDriver(ActivityHubDriverClient client) {
 
 		// my knx.network instance
@@ -120,9 +120,9 @@ public abstract class ActivityHubDriver {
 	}
 
 
-	public void detachDriver(String id) {
-		// TODO Auto-generated method stub
-	}
+//	public void detachDriver(String id) {
+//		// TODO Auto-generated method stub
+//	}
 	
 	
 
