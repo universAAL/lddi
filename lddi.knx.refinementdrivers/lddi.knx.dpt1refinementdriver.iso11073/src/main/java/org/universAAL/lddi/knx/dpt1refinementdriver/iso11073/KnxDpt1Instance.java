@@ -1,6 +1,5 @@
 package org.universAAL.lddi.knx.dpt1refinementdriver.iso11073;
 
-import java.util.Dictionary;
 import java.util.Properties;
 
 import org.osgi.framework.BundleContext;
@@ -24,6 +23,16 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
  * This driver handles 1-bit events (knx datapoint 1), which is on/off.
  * It maps to the appropriate sensor-event of the created ISO11073 sensor. 
  *  
+ * Initially it was planned to map certain parameters of KNX sensors to ISO sensors (e.g. location)
+ * where this mapping info is stored in a config file. Although, in universAAL this kind of configuration
+ * should be done by other components (e.g. AAL Space Configurator). Therefore all knx-iso-mapping code
+ * is commented below.
+ * 
+ * Possibility for automatic location mapping from ETS config: 
+ * In ETS Building Parts can be assigned free name and description (String). As a convention the
+ * location name according to ISO 11073 (e.g. MDC_AI_LOCATION_BEDROOM) can be assigned in name or
+ * description field in ETS. But this may conflict with ETS planning/config from electrical engineers! 
+ * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
@@ -85,9 +94,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 			return null;
 		}
 		
-		// TODO: Regeln for die decodierung in device_category ??
-		
-		
+
 		/** create appropriate ISO device */
 		if ( this.isoDeviceCategory != null ) {
 
@@ -114,12 +121,12 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 //							this.device.getGroupAddress() + " not found!");
 //				}
 				
-				//
-				// TODO mapping of location names from ETS4 (could be any String) to ISO defined ActivityHubLocation
-				// manual mapping??
-				//
+
 				this.logger.log(LogService.LOG_WARNING, "Mapping of locations from ETS config " +
-						"(could be any String) to ISO defined ActivityHubLocation is not in place yet!");
+						"to ISO defined ActivityHubLocation is not in place yet! " +
+						"Location info from ETS:: Name: " + this.device.getDeviceLocation() +
+						"; Type: " + this.device.getDeviceLocationType() +
+						"; Description: " + this.device.getDeviceLocationDescription());
 
 				
 				// create appropriate ActivityHub device
@@ -189,6 +196,9 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 //			
 //			String constName = KnxDpt1.DEFAULT_VALUE_ON
 //			
+			/**
+			 * KNX datapoint type 1.*** is a 1-bit signal; therefore only on/off is forwarded to ISO devices!  
+			 */
 			if ( event == DEFAULT_VALUE_OFF ) {
 				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_VALUE_OFF");
 				this.activityHubSensor.setSensorEventOff();
@@ -226,16 +236,15 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	}
 
 
-	/**
-	 * Managed associated ISO devices according to configuration change.
-	 * Maybe destroy old ISO object and create new one.
-	 * 
-	 * @param properties 
-	 * @return true if successful
-	 */
-	public boolean updateConfiguration(Dictionary properties) {
-		// TODO Auto-generated method stub
-		return true;
-	}
+//	/**
+//	 * Managed associated ISO devices according to configuration change.
+//	 * Maybe destroy old ISO object and create new one.
+//	 * 
+//	 * @param properties 
+//	 * @return true if successful
+//	 */
+//	public boolean updateConfiguration(Dictionary properties) {
+//		return true;
+//	}
 
 }

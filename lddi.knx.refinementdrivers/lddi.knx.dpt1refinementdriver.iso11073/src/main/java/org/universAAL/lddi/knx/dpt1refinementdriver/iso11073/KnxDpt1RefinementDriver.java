@@ -27,6 +27,10 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
  * drivers must take the appropriate action to release this device service
  * and peform any necessary cleanup, as described in their device category spec
  *  
+ * Initially a manual mapping config from KNX to ISO sensors were implemented. But
+ * in universAAL this configuration should be done by AAL Space configurator. Therefore
+ * this code is commented; but kept here for potential later use.
+ * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
@@ -47,9 +51,9 @@ public class KnxDpt1RefinementDriver implements Driver
 	
 	/** Set of all DPT1 drivers registered here */
 //	private Set<KnxDpt1Instance> connectedDriver;
+
 //	private Dictionary<String,String> knxIsoMappingProperties;
-//	private Map<String,String> knxIsoMappingProperties;
-//	private Properties knxIsoMappingProperties;
+
 //	private ServiceRegistration myManagedServiceRegistration;
 	private ServiceRegistration myDriverRegistration;
 	
@@ -78,9 +82,7 @@ public class KnxDpt1RefinementDriver implements Driver
 	public KnxDpt1RefinementDriver(BundleContext context, LogService log) {
 		this.context=context;
 		this.logger=log;
-		
-//		this.connectedDriver = new HashSet<KnxDpt1Instance>();
-		
+	
 //		this.registerManagedService();
 		this.registerDriver();
 	}
@@ -240,8 +242,6 @@ public class KnxDpt1RefinementDriver implements Driver
 		// pass knx-to-iso config
 		//instance.setKnxIsoMappingProperties(this.knxIsoMappingProperties);
 //		instance.setKnxIsoMappingProperties(knxDevConf.getConfigurationProperties());
-		//TODO
-		//instance.setKnxIsoMappingCategory(ahDevCat); --> directly in Constructor!
 		
 		
 		// store instance
