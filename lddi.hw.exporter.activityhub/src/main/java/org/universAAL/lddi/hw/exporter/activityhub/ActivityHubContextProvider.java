@@ -91,11 +91,15 @@ public class ActivityHubContextProvider {
 		return new ContextEventPattern[] { cep1, cep2 };
     }
     
+    /**
+     * publish activityhub sensor event on the uAAL context bus
+     * 
+     * @param deviceId
+     * @param activityHubDeviceCategory
+     * @param event
+     */
     public void activityHubSensorStateChanged(String deviceId, 
     		ActivityHubDeviceCategory activityHubDeviceCategory, int event) {
-    	
-		// TODO create context event patterns above
-
     	
 		// create instanceURI with trailing deviceId (is different from static SensorConceptURI!)
     	String instanceURI = constructActivityHubSensorURIfromLocalID(deviceId);
@@ -119,10 +123,6 @@ public class ActivityHubContextProvider {
     	// Set the properties of the sensor (location and measurement)
 //    	ahs.setLocation(new Room(constructLocationURIfromLocalID(loc)));
     	
-    	
-    	
-		// create appropriate event
-
     	LogUtils.logInfo(Activator.mc, ActivityHubContextProvider.class,
 			"activityHubSensorStateChanged", new Object[] { "publishing a context event on the state of a " +
 					"activityhub sensor!" }, null);

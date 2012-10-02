@@ -334,8 +334,8 @@ public class ActivityHubServiceProvider extends ServiceCallee {
 	 */
 	@Override
 	public void communicationChannelBroken() {
-		// TODO Auto-generated method stub
-
+		LogUtils.logWarn(Activator.mc, ActivityHubServiceProvider.class, "communicationChannelBroken",
+			    new Object[] { "Service Bus is stopped by the uAAL middleware!"}, null);
 	}
 
 

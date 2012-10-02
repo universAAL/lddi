@@ -644,6 +644,7 @@ lddi.hw.exporter.activityhub/conf/services/org.apache.felix.webconsole.internal.
 lddi.hw.exporter.activityhub/conf/services/org.ops4j.pax.logging.properties -text
 lddi.hw.exporter.activityhub/conf/services/org.universAAL.mw.data.representation.properties -text
 lddi.hw.exporter.activityhub/data/OfficeProject3.knxproj -text
+lddi.hw.exporter.activityhub/data/OfficeProject5.knxproj -text
 lddi.hw.exporter.activityhub/launches/README.txt -text
 lddi.hw.exporter.activityhub/launches/Run.bat -text
 lddi.hw.exporter.activityhub/launches/artifact.composite -text
