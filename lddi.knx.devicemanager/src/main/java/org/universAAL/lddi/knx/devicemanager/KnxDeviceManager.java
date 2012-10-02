@@ -236,10 +236,10 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 						knxConfigFile + " could not be opened!");
 				e.printStackTrace();
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
+				this.logger.log(LogService.LOG_ERROR, "Parsing KNX datapoint type failed!");
 				e.printStackTrace();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				this.logger.log(LogService.LOG_ERROR, "Ups, something went wrong....");
 				e.printStackTrace();
 			}
 
@@ -252,16 +252,15 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	/**
 	 * check for null properties
 	 * @param knxGroupAddress
-	 * @return
+	 * @return true if OK
 	 */
 	private boolean checkKnxGroupAddress(KnxGroupAddress knxGroupAddress) {
-		// TODO more checks for wellformedness of KNX DPT
-		if ( knxGroupAddress.getDpt() != null && knxGroupAddress.getDpt().contains(".") ) {
+		if ( knxGroupAddress.getDpt() != null && knxGroupAddress.getDpt().contains(".") &&
+				knxGroupAddress.getGroupAddress() != null && knxGroupAddress.getGroupAddress().contains("/")) {
 			return true;
 		} else {
 			return false;
 		}
-		
 	}
 
 	/**
