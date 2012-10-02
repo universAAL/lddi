@@ -25,9 +25,12 @@ import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
 /**
  * The class takes a ets4 export file as inputstream and creates a list of
- * KnxGroupAddress objects
+ * KnxGroupAddress objects including building part information if available
+ * Name and description of building parts are editable in ETS; type is fixed:
+ * Floor, Room, Corridor, Cabinet, Stairway or Building Part
  * 
  * @author marcus@openremote.org
+ * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxImporter
 {
@@ -141,6 +144,7 @@ public class KnxImporter
         List<Element> resultDI = xpathDI.selectNodes(document);
         if (resultDI.size() > 0)
         {
+          // TODO: Only the first occurence of GroupAddressRefId is used!! 1 group address can include several devices which have different locations!! How solve this??
           deviceId = resultDI.get(0).getAttributeValue("Id");
           if (deviceId != null && deviceId != "")
           {
@@ -214,6 +218,12 @@ public class KnxImporter
     }
   }
 
+  /**
+   * Transform a plain integer KNX group address to 1/2/3 format
+   *  
+   * @param knxaddress
+   * @return readable group address
+   */
   public static String getAddressFromInt(int knxaddress)
   {
     int maingroup, subgroup, group;

@@ -753,6 +753,7 @@ lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/uti
 lddi.knx.devicemanager/conf/services/lddi.knx.devicemanager.properties -text
 lddi.knx.devicemanager/data/OfficeProject2.knxproj -text
 lddi.knx.devicemanager/data/OfficeProject3.knxproj -text
+lddi.knx.devicemanager/data/OfficeProject5.knxproj -text
 lddi.knx.devicemanager/launches/README.txt -text
 lddi.knx.devicemanager/launches/Run.bat -text
 lddi.knx.devicemanager/launches/clean.bat -text
@@ -765,6 +766,7 @@ lddi.knx.devicemanager/launches/runner/configurations/services/org.apache.felix.
 lddi.knx.devicemanager/launches/runner/configurations/services/org.ops4j.pax.logging.properties -text
 lddi.knx.devicemanager/launches/runner/data/OfficeProject3.knxproj -text
 lddi.knx.devicemanager/launches/runner/data/OfficeProject4.knxproj -text
+lddi.knx.devicemanager/launches/runner/data/OfficeProject5.knxproj -text
 lddi.knx.devicemanager/launches/runner/felix/system.properties -text
 lddi.knx.devicemanager/launches/runner/remoteDebug.bat -text
 lddi.knx.devicemanager/launches/runner/run.bat -text
