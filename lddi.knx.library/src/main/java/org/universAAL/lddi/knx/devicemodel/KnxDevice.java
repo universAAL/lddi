@@ -141,19 +141,26 @@ public abstract class KnxDevice implements Device{
 	}
 	
 	/**
-	 * @return name of the location, e.g. roomname
+	 * @return name of the location, e.g. Main room, Living room
 	 */
 	public String getDeviceLocation() {
 		return this.knxDeviceProperties.getBpName();
 	}
 
 	/**
-	 * @return type of the location, e.g. Room, Corridor
+	 * @return type of the location, e.g. Floor, Room, Corridor, Cabinet, Stairway or Building Part
 	 */
 	public String getDeviceLocationType() {
 		return this.knxDeviceProperties.getBpType();
 	}
 
+	/**
+	 * @return description of the location, e.g. Room, Corridor
+	 */
+	public String getDeviceLocationDescription() {
+		return this.knxDeviceProperties.getBpDescription();
+	}
+	
 	/**
 	 * @return the deviceCategory
 	 */
