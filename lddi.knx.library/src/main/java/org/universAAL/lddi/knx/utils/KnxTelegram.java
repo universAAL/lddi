@@ -9,6 +9,7 @@ public class KnxTelegram {
 
 	byte sourceByte[] = new byte[2];
 	byte destByte[] = new byte[2];
+	
 	byte valueByte;
 	byte drlByte; //DRL-Byte (Destination-address-flag, Routing-counter, Length)
 	byte typeByte[] = new byte[2];
@@ -20,7 +21,7 @@ public class KnxTelegram {
 		builder.append('#');
 		builder.append(KnxEncoder.getGroupAddress(destByte));
 		builder.append('#');
-		builder.append(KnxEncoder.getStatus(valueByte));
+		builder.append(KnxEncoder.getDataValue(valueByte));
 		builder.append('#');
 		builder.append(KnxEncoder.getDataLength(drlByte));
 		// type?

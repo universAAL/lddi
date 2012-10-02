@@ -81,12 +81,16 @@ public class KnxEncoder {
 //		readMessage = KnxEncoder.getInfoFromMessage(message);	
 //		return readMessage;
 		
-		/*	knxmessage[]:
+		/*	KNX packet structure: http://de.wikipedia.org/wiki/Europ%C3%A4ischer_Installationsbus
+		 *  
+		 * 	knxmessage[]:
 		 * 		0) control
 		 * 		1-2) source;	// device which provides its state
 		 * 		3-4) destination;	// can be both group (managed) or single (unmanaged) 
-		 * 		5-6) stuff = d100;?
-		 * 		7) command or state;
+		 * 		5) DRL (Destination-adress-flag, Routing-counter, LENGTH(data))
+		 * 		6) TPCI/APCI
+		 * 		7) Data/ACPI (command or state; there are 15 different command types)
+		 * 		following bytes) data
 		 */
 		
 		// check if telegram valid
@@ -251,7 +255,7 @@ public class KnxEncoder {
 	
 	/**
 	 * @param drlByte
-	 * @return
+	 * @return drl bits (4 bits)
 	 */
 	static int getDataLength(byte drlByte) {
 		
@@ -259,6 +263,15 @@ public class KnxEncoder {
 		
 	}
 
+	
+	/**
+	 * @param valueByte
+	 * @return string representation of valueByte
+	 */
+	static String getDataValue(byte valueByte) {
+		  int i = valueByte & 0xFF;
+		  return Integer.toHexString(i);
+	}
 
 	/**
 	 * Convert address from bytes to address in x.y.z format
@@ -324,44 +337,46 @@ public class KnxEncoder {
 		return groupAddress;
 	}
 
-	
-	/**
-	 * octet number 7 in KNX prot
-	 * 
-	 * @param valueByte status in bytes
-	 * @return status as String
-	 */
-	public static String getStatus(byte stateByte){
-		// Di per se � un byte, ma se si scopre che centrano anche quelli prima serve un array
-		String status = new String();//Integer.toHexString(buffer[0]);
-		// Quindi buffer[0] contiene l'int che rappresenta lo stato 
-		//		(40=off; 41=on) in hexa; 	(64=off; 65=on) in decimale ???????????????? sembra 80 e 81
-		//		(80=off; 81=on) in hexa; 	(128=off; 129=on) in decimal
-		/*if (buffer[0]==-128) status = "Off";
-		else if (buffer[0]==-127) status = "On";
-		else {
-			// Per visualizzare stato HEXA a video
-			status = Integer.toHexString(buffer[0]);
-			if (status.length()==1) {
-				status = "0" + status;
-			   }
-		   else if(status.length()==8){
-			   status = (String)status.subSequence(6,8);
-		   }
-		}
-			*/
-		
-		// FIXME include knx datapointtypes; this decoding should be done in the drivers; remove this hack
-		byte one=1;
-//		byte stateByte=valueByte[0];
-		int lastBit=stateByte & one;
-		if(lastBit==1)
-			status="On";
-		else
-			status="Off";
-		// prende byte e restituisce lo stato: occhio a ffffff se > 15
-		return status;
-	}
+//	The mapping to existing devices (devicetypes) is not possible at this stage. It is done in KnxNetworkDriverImp
+//	Therefore we cannot transfer valueByte value to a command here!
+//	
+//	/**
+//	 * octet number 7 in KNX prot
+//	 * 
+//	 * @param valueByte status in bytes
+//	 * @return status as String
+//	 */
+//	public static String getStatus(byte valueByte){
+//		// Di per se � un byte, ma se si scopre che centrano anche quelli prima serve un array
+//		String status = new String();//Integer.toHexString(buffer[0]);
+//		// Quindi buffer[0] contiene l'int che rappresenta lo stato 
+//		//		(40=off; 41=on) in hexa; 	(64=off; 65=on) in decimale ???????????????? sembra 80 e 81
+//		//		(80=off; 81=on) in hexa; 	(128=off; 129=on) in decimal
+//		/*if (buffer[0]==-128) status = "Off";
+//		else if (buffer[0]==-127) status = "On";
+//		else {
+//			// Per visualizzare stato HEXA a video
+//			status = Integer.toHexString(buffer[0]);
+//			if (status.length()==1) {
+//				status = "0" + status;
+//			   }
+//		   else if(status.length()==8){
+//			   status = (String)status.subSequence(6,8);
+//		   }
+//		}
+//			*/
+//		
+//		// include knx datapointtypes; this decoding should be done in the drivers; remove this hack
+//		byte one=1;
+////		byte stateByte=valueByte[0];
+//		int lastBit=valueByte & one;
+//		if(lastBit==1)
+//			status="On";
+//		else
+//			status="Off";
+//		// prende byte e restituisce lo stato: occhio a ffffff se > 15
+//		return status;
+//	}
 	
 	/**
 	 * @param buffer message type in bytes
