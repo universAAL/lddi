@@ -14,7 +14,7 @@ import org.universAAL.middleware.container.osgi.uAALBundleContainer;
  * Creates context patterns and handles context events (uAAL context bus)
  * for those devices.
  * 
- * @author Thomas Fuxreiter
+ * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
 
@@ -23,8 +23,8 @@ public class Activator implements BundleActivator {
     public static BundleContext context = null;
     public static ModuleContext mc = null;
     private ActivityHubBusServer busServer;
-    private ActivityHubServiceProvider serviceProvider;
-    private ActivityHubContextProvider contextProvider;
+//    private ActivityHubServiceProvider serviceProvider;
+//    private ActivityHubContextProvider contextProvider;
     private LogTracker logTracker;
 	private Thread thread;
 
@@ -51,17 +51,19 @@ public class Activator implements BundleActivator {
 	}
 
 	/**
-	 * Runnable helper class for starting ActivityHubServiceProvider
+	 * Runnable helper class for starting ActivityHubServiceProvider.
 	 * 
-	 * @author fuxreitert
+	 * @author Thomas Fuxreiter (foex@gmx.at)
 	 *
 	 */
 	class MyThread implements Runnable{
 		public MyThread() {
 		}
 		public void run() {
-			serviceProvider = new ActivityHubServiceProvider(mc, busServer);
-			contextProvider = new ActivityHubContextProvider(mc, busServer);
+//			serviceProvider = 
+				new ActivityHubServiceProvider(mc, busServer);
+//			contextProvider = 
+				new ActivityHubContextProvider(mc, busServer);
 		}
 	}
 }

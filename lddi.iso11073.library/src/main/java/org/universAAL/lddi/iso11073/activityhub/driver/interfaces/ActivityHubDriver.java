@@ -1,7 +1,5 @@
 package org.universAAL.lddi.iso11073.activityhub.driver.interfaces;
 
-import java.util.Set;
-
 import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubBaseDeviceCategory;
 import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor;
 
@@ -29,7 +27,7 @@ public abstract class ActivityHubDriver {
 
 	/** Driver state */
 //	protected DeviceState currentState;
-	protected Set<String> deviceIdSet;  //wozu?
+//	protected Set<String> deviceIdSet;  //wozu?
 //	protected Map<String,IsoDeviceCommand> isoDeviceCommands; //iso events wie motion-detected??
 
 
@@ -121,7 +119,6 @@ public abstract class ActivityHubDriver {
 
 
 //	public void detachDriver(String id) {
-//		// TODO Auto-generated method stub
 //	}
 	
 	

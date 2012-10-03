@@ -55,7 +55,7 @@ public class KnxEncoder {
 		String source = KnxEncoder.createAddress(sourceAddress);
 		
 	   // Destination
-		String destination = new String();
+		String destination = "";
 		
 		if (deviceAddress.contains("/")) 
 			destination = KnxEncoder.createGroupAddress(deviceAddress);	// group address
@@ -228,7 +228,6 @@ public class KnxEncoder {
 	 * @return device address as String
 	 */
 	static String getAddress(byte buffer[]){
-		String address = new String();
 
 		// buffer[0]: higher bits
 		// buffer[1]: lower bits
@@ -250,8 +249,7 @@ public class KnxEncoder {
 	    //line code 4lsbits
 	    int linea = highAddress & 0xf; 	// prendi i 4 bit + bassi: => 0000 1111
 
-	    address = area + "." + linea + "." + lowAddress;
-	    return address;
+	    return area + "." + linea + "." + lowAddress;
 	}
 
 	
@@ -261,7 +259,6 @@ public class KnxEncoder {
 	 * @return group address as String
 	 */
 	public static String getGroupAddress(byte buffer[]){
-		String groupAddress = new String();
 
 		// buffer[0]: higher bits
 		// buffer[1]: lower bits
@@ -281,9 +278,7 @@ public class KnxEncoder {
 		//middle group 3 lsbits
 		int middle = highAddress & 0x7; // prendi i 3 bit + bassi: => 0000 0111
 		
-		groupAddress = main + "/" + middle + "/" + lowAddress;
-	
-		return groupAddress;
+		return main + "/" + middle + "/" + lowAddress;
 	}
 
 //	The mapping to existing devices (devicetypes) is not possible at this stage. It is done in KnxNetworkDriverImp
@@ -333,30 +328,30 @@ public class KnxEncoder {
 	 */
 	static String getType(byte buffer[]){
 		// Di per se � un byte, ma se si scopre che centrano anche quelli prima serve un array
-		String status = new String();
+		StringBuffer status = new StringBuffer();
 		switch (buffer[0]){
-			case 'b' : status = "WRITE"; 
-			break;
-			case 'c': status = "READ"; 
-			break;
+			case 'b' : return "WRITE"; 
+			
+			case 'c': return "READ"; 
+			
 			//default: status = "UNKNOWN";
 			default: {
 				// Per visualizzare stato HEXA non codificato (son 2byte almeno)
-				String appoggioStatus = new String();
+//				String appoggioStatus = "";
 				for (int k=0; k<buffer.length; k++){
-					appoggioStatus = Integer.toHexString(buffer[k]);
+					String appoggioStatus = Integer.toHexString(buffer[k]);
 					if (appoggioStatus.length()==1) {
-						status = status + "0" + appoggioStatus;
+						status.append("0" + appoggioStatus);
 					   	//appo = "<" + appo + ">"; // per stampare a video visuale campi
 					   }
 				   else if(appoggioStatus.length()==8){
-					   status = status + (String)appoggioStatus.subSequence(6,8);
+					   status.append(appoggioStatus.subSequence(6,8));
 				   }
 				}
 			}
 		}
 		// prende byte e restituisce lo stato: occhio a ffffff se > 15
-		return status;
+		return status.toString();
 	}
 
 	

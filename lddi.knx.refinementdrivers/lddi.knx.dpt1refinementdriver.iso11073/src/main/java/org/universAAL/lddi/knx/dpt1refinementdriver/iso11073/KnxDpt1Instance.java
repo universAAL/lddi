@@ -1,10 +1,8 @@
 package org.universAAL.lddi.knx.dpt1refinementdriver.iso11073;
 
 import java.util.Properties;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
@@ -48,7 +46,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 //	private Dictionary<String,String> knxIsoMappingProperties;
 	
 	// the ISO device I registered at OSGi registry
-	private ServiceRegistration myIsoDeviceRegistration;
+//	private ServiceRegistration myIsoDeviceRegistration;
 	
 	private ActivityHubDeviceCategory isoDeviceCategory = null;
 	
@@ -154,7 +152,8 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 						org.osgi.service.device.Constants.DEVICE_CATEGORY, isoDeviceCategory.toString());
 				// more possible properties from OSGi: description, serial, id
 				
-				this.myIsoDeviceRegistration = this.context.registerService(
+//				this.myIsoDeviceRegistration = 
+					this.context.registerService(
 						org.osgi.service.device.Device.class.getName(), this.activityHubSensor, 
 						propDeviceService);
 				

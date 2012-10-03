@@ -24,10 +24,10 @@ implements Runnable
 	/* Changed from Thread to Runnable */
 
 	protected KnxNetworkDriverImp core;
-	protected KnxEncoder encoder;
+//	protected KnxEncoder encoder;
 	
 	static private int socketTimeout = 0;	// infinite timeout on receive()
-	static private int telegramLenght = 17;	// KNX core telegram length
+//	static private int telegramLenght = 17;	// KNX core telegram length
 
 //	private boolean running;
 	private MulticastSocket mcReceiver;
@@ -137,7 +137,6 @@ implements Runnable
 //					statusByte[j]=temp[temp.length-2-oversize+j];
 //				}
 //				
-//				//TODO change to handle data value such as temperature
 ////				String groupAddress = KnxEncoder.getGroupAddress(groupByte);
 //				//String knxStatus = KnxEncoder.getStatus(statusByte);
 //				

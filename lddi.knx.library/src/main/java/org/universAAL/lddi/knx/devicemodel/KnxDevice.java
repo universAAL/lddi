@@ -18,11 +18,11 @@ public abstract class KnxDevice implements Device{
 	/** OSGi DAS properties */
 	public String deviceCategory;
 	/** intended for end users */
-	public String deviceDescription;
+//	public String deviceDescription;
 	/** unique serial number for this device */
-	private String deviceSerial;
+//	private String deviceSerial;
 	/** should be set; every time the same hardware is plugged in, the same PIDs are used */
-	private String servicePid;
+//	private String servicePid;
 
 	private String deviceId = "-";
 	/** including groupAddress and dpt */ 
@@ -175,26 +175,26 @@ public abstract class KnxDevice implements Device{
 		return deviceId;
 	}
 
-	/**
-	 * @return the deviceDescription
-	 */
-	public String getDeviceDescription() {
-		return deviceDescription;
-	}
+//	/**
+//	 * @return the deviceDescription
+//	 */
+//	public String getDeviceDescription() {
+//		return deviceDescription;
+//	}
 
-	/**
-	 * @return the deviceSerial
-	 */
-	public String getDeviceSerial() {
-		return deviceSerial;
-	}
-
-	/**
-	 * @return the servicePid
-	 */
-	public String getServicePid() {
-		return servicePid;
-	}
+//	/**
+//	 * @return the deviceSerial
+//	 */
+//	public String getDeviceSerial() {
+//		return deviceSerial;
+//	}
+//
+//	/**
+//	 * @return the servicePid
+//	 */
+//	public String getServicePid() {
+//		return servicePid;
+//	}
 
 
 }

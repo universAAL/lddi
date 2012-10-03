@@ -19,7 +19,6 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.XPath;
-import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 

@@ -1,7 +1,6 @@
 package org.universAAL.lddi.hw.exporter.activityhub;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;

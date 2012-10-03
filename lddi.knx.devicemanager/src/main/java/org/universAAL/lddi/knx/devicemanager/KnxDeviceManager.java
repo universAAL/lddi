@@ -50,7 +50,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 
 	private Map<String,KnxDevice> deviceList;
 
-	private ServiceRegistration myManagedServiceRegistration;
+//	private ServiceRegistration myManagedServiceRegistration;
 	
 	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
 	private KnxNetwork network;
