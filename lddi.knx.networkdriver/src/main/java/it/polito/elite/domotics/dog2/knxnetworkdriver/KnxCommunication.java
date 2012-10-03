@@ -101,27 +101,27 @@ public class KnxCommunication
 	}
 
 	
-	/***
-	 * ping the gateway
-	 * @return boolean
-	 */
-	private boolean testHouse() {
-		boolean reacheble=false;
-		try {
-
-			this.driver.getLogger().log(LogService.LOG_INFO,"Testing if " + this.driver.getHouseIp() + " is reachable"); 
-
-			InetAddress houseAddress = InetAddress.getByName(this.driver.getHouseIp());
-			if (houseAddress.isReachable(this.driver.getTimeout())){
-				this.driver.getLogger().log(LogService.LOG_INFO,this.driver.getHouseIp()+ " REACHABLE!");
-				reacheble= true;
-			}
-		}catch (Exception e) {
-			this.driver.getLogger().log(LogService.LOG_ERROR, "exception", e);
-		}
-			
-		return reacheble;
-	}
+//	/***
+//	 * ping the gateway
+//	 * @return boolean
+//	 */
+//	private boolean testHouse() {
+//		boolean reacheble=false;
+//		try {
+//
+//			this.driver.getLogger().log(LogService.LOG_INFO,"Testing if " + this.driver.getHouseIp() + " is reachable"); 
+//
+//			InetAddress houseAddress = InetAddress.getByName(this.driver.getHouseIp());
+//			if (houseAddress.isReachable(this.driver.getTimeout())){
+//				this.driver.getLogger().log(LogService.LOG_INFO,this.driver.getHouseIp()+ " REACHABLE!");
+//				reacheble= true;
+//			}
+//		}catch (Exception e) {
+//			this.driver.getLogger().log(LogService.LOG_ERROR, "exception", e);
+//		}
+//			
+//		return reacheble;
+//	}
 	
 	public void stopCommunication(){
 //		this.running=false;

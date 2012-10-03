@@ -29,7 +29,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	private LogService logger;
 	
 	/**
-	 * stores activityHubInstances for deviceCategories
+	 * stores activityHubInstances for deviceCategories.
 	 * 
 	 * key = deviceCategory
 	 * value = ActivityHubDriver
@@ -37,7 +37,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	private Hashtable<ActivityHubDeviceCategory, Set<ActivityHubDriver>> driverListForCategory;
 
 	/**
-	 * stores the activityHubInstance (there should be just one!) for each deviceId
+	 * stores the activityHubInstance (there should be just one!) for each deviceId.
 	 * 
 	 * key = deviceId
 	 * value = ActivityHubDriver
@@ -47,9 +47,8 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
     private ArrayList<ActivityHubContextProvider> listeners = new ArrayList<ActivityHubContextProvider>();
 
     
-	/**
-	 * constructor
-	 * @param context
+	/*
+	 * Constructor
 	 */
 	public ActivityHubBusServer(BundleContext context, LogService logger) {
 		this.context = context;
@@ -78,7 +77,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 		synchronized(this.driverList)
 		{
 			oldDriver = this.driverList.put(deviceId, activityHubDriver);
-			int i = activityHubDriver.getDevice().getDeviceCategory().getTypeCode();
+			activityHubDriver.getDevice().getDeviceCategory().getTypeCode();
 		}
 		if ( oldDriver != null ){
 			this.logger.log(LogService.LOG_WARNING, "An existing ActivityHub driver " +
@@ -110,11 +109,11 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	/**
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#incomingSensorEvent(java.lang.String, byte[])
 	 * 
-	 * Just passing the incoming sensor event to uAAL-MW related class (-> context provider)
+	 * Just passing the incoming sensor event to uAAL-MW related class (-> context provider).
 	 * No storage of event here!
 	 * 
 	 * @param deviceId (e.g. knx group address 1/2/3)
-	 * @param device category (one category for each activityhub sensor type)
+	 * @param activityHubDeviceCategory (one category for each activityhub sensor type)
 	 * @param event code (sensor type dependent!)
 	 */
 	public void incomingSensorEvent(String deviceId, ActivityHubDeviceCategory activityHubDeviceCategory, int event) {
@@ -156,7 +155,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 * Returns null if no location available!
 	 * 
 	 * @param deviceId
-	 * @return
+	 * @return ActivityHubLocation
 	 */
 	public ActivityHubLocation getDeviceLocation(String deviceId) {
 
@@ -175,7 +174,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 
 	/**
 	 * @param deviceId
-	 * @return
+	 * @return boolean
 	 */
 	public boolean validateDevice(String deviceId) {
 		this.logger.log(LogService.LOG_DEBUG, "deviceIds in driverList: " + this.driverList.keySet().toString());
@@ -186,7 +185,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 
 
 	/**
-	 * Find the driver for the requested device according to unique deviceId
+	 * Find the driver for the requested device according to unique deviceId.
 	 * Returns -1 if no driver found for this device
 	 * 
 	 * @param deviceId
@@ -208,7 +207,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 
 
 	/**
-	 * store listener for context bus connection 
+	 * store listener for context bus connection.
 	 * @param activityHubContextProvider
 	 */
 	public void addListener(
@@ -227,7 +226,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 
 	/**
 	 * copy deviceId(String) and ActivityHub device category(Integer) into sensorList parameter
-	 * for all available ActivityHub sensors
+	 * for all available ActivityHub sensors.
 	 * @param sensorList
 	 */
 	public void getActivityHubSensorList(Map<String,Integer> sensorList) {
@@ -237,8 +236,8 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 //				Iterator<Entry<String,ActivityHubDriver>> it = this.driverList.entrySet().iterator();
 //				while (it.hasNext()) {
 //					Entry<String,ActivityHubDriver> entry = it.next();
-					sensorList.put(new String(entry.getKey()),
-							new Integer(entry.getValue().getDevice().getDeviceCategory().getTypeCode()) );
+					sensorList.put(entry.getKey(),
+							Integer.valueOf(entry.getValue().getDevice().getDeviceCategory().getTypeCode()) );
 				}
 			}
 		}

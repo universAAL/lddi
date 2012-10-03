@@ -7,7 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.device.Constants;
 import org.osgi.service.device.Device;
 import org.osgi.service.device.Driver;
@@ -55,7 +54,7 @@ public class KnxDpt1RefinementDriver implements Driver
 //	private Dictionary<String,String> knxIsoMappingProperties;
 
 //	private ServiceRegistration myManagedServiceRegistration;
-	private ServiceRegistration myDriverRegistration;
+//	private ServiceRegistration myDriverRegistration;
 	
 	
 //	/**
@@ -110,7 +109,8 @@ public class KnxDpt1RefinementDriver implements Driver
 	private void registerDriver() {
 		Properties propDriver = new Properties();
 		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID);
-		this.myDriverRegistration = this.context.registerService(Driver.class.getName(), this, propDriver);
+//		this.myDriverRegistration = 
+			this.context.registerService(Driver.class.getName(), this, propDriver);
 	}
 	
 //	/**

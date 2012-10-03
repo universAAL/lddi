@@ -34,68 +34,79 @@ public class KnxTelegram {
 	 * @return the sourceByte
 	 */
 	public byte[] getSourceByte() {
-		return sourceByte;
+		return this.sourceByte.clone();
 	}
+
 	/**
 	 * @param sourceByte the sourceByte to set
 	 */
 	public void setSourceByte(byte[] sourceByte) {
 		this.sourceByte = sourceByte;
 	}
+
 	/**
 	 * @return the destByte
 	 */
 	public byte[] getDestByte() {
-		return destByte;
+		return this.destByte.clone();
 	}
+
 	/**
 	 * @param destByte the destByte to set
 	 */
 	public void setDestByte(byte[] destByte) {
 		this.destByte = destByte;
 	}
+
 	/**
 	 * @return the valueByte
 	 */
 	public byte getValueByte() {
 		return valueByte;
 	}
+	
 	/**
 	 * @param valueByte the valueByte to set
 	 */
 	public void setValueByte(byte valueByte) {
 		this.valueByte = valueByte;
 	}
+	
 	/**
 	 * @return the drlByte
 	 */
 	public byte getDrlByte() {
 		return drlByte;
 	}
+	
 	/**
 	 * @param drlByte the drlByte to set
 	 */
 	public void setDrlByte(byte drlByte) {
 		this.drlByte = drlByte;
 	}
+	
 	/**
 	 * @return the typeByte
 	 */
 	public byte[] getTypeByte() {
-		return typeByte;
+		return this.typeByte.clone();
 	}
+	
 	/**
 	 * @param typeByte the typeByte to set
 	 */
 	public void setTypeByte(byte[] typeByte) {
 		this.typeByte = typeByte;
 	}
+	
 	/**
 	 * @return the dataLength
 	 */
 	public int getDataLength() {
 		return dataLength;
 	}
+	
 	/**
 	 * @param dataLength the dataLength to set
 	 */

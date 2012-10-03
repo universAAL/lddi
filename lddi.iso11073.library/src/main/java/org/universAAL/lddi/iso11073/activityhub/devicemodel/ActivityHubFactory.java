@@ -1,7 +1,6 @@
 package org.universAAL.lddi.iso11073.activityhub.devicemodel;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil;
 import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
