@@ -11,10 +11,13 @@ import org.universAAL.lddi.knx.networkdriver.util.LogTracker;
  */
 public class Activator implements BundleActivator {
 
-	KnxNetworkDriverImp networkDriver;
+	public static BundleContext context = null;
+	public static KnxNetworkDriverImp networkDriver;
 	private LogTracker logTracker;
 	
 	public void start(BundleContext context) throws Exception {
+		Activator.context = context;
+		
 		//use a service Tracker for LogService
 		logTracker = new LogTracker(context);
 		logTracker.open();

@@ -157,6 +157,7 @@
     </profile>
   </profiles>
   <dependencies>
+  
     <dependency>
       <groupId>org.universAAL.support</groupId>
       <artifactId>itests</artifactId>
@@ -171,6 +172,7 @@
       <version>1.0</version>
       <scope>compile</scope>
     </dependency>
+    
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.xfaces.osgi</artifactId>

@@ -11,16 +11,22 @@ public class KnxEncoder {
 	public static enum KnxMessageType{READ,WRITE,SCENARIO}; 
 	
 	/**
-	 * Not reviewed yet!
 	 * 
 	 * @param deviceAddress address of the device
 	 * @param highStatus status to be set to the device
 	 * @return
 	 */
-	public static byte[] encode(String deviceAddress, String command, KnxMessageType messageType){
+	public static byte[] encode(boolean repeatBit, String deviceAddress, String command, KnxMessageType messageType){
 
+		// Is repeat Bit really important? (bit number 5 in first byte)
+		// When sending a packet the first time it should be 1;
+		// 0 when the packet is repeated (http://de.wikipedia.org/wiki/Europ%C3%A4ischer_Installationsbus)
+		
+		
+		// TODO Whole method must be rewritten!!!
+		
 		// Costant fields
-		String header = "1006000f0201";	// Konnex Header
+		String header = "e000000000010080";	// Konnex Header
 		
 		String type="";
 		String stuff = ""; // Stuff (a least one time it became d101..!?!		
@@ -69,6 +75,9 @@ public class KnxEncoder {
 		return  messagge;
 	}
 	
+	public static byte[] encode(String deviceAddress, String command, KnxMessageType messageType){
+		return encode(false, deviceAddress, command, messageType);
+	}
 
 	/**
 	 * @param message: udpTelegram from knx

@@ -1,9 +1,6 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
 
-import java.net.InetAddress;
-
-import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
 
 /**
@@ -36,7 +33,8 @@ public class KnxCommunication
 	public void init() {
 //		while(running){
 			
-			//Siemens KNX/IP gateway N146 is not pingable!
+			// Siemens KNX/IP gateway N146 is not pingable!!!!!!!!!
+			//
 			//        boolean netReachable = false;
 			//		while (!netReachable){
 			//			if (this.testHouse())
@@ -141,9 +139,8 @@ public class KnxCommunication
 		
 	}
 
-	public void sendCommand(String device, String command,
-			KnxMessageType messageType) {
-		this.writer.write(device, command,messageType);
+	public void sendCommand(String device, String command, KnxMessageType messageType) {
+		this.writer.write(device, command, messageType);
 		
 	}
 	
