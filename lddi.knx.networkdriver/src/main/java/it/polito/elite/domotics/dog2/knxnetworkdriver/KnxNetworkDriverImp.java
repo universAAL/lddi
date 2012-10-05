@@ -20,12 +20,12 @@ import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
 
-/***
+/**
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
+public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 //,CommandProvider 
 {
 	
@@ -34,8 +34,6 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	LogService logger;
 	
 //	public static String manifacturer="KNX";
-	
-
 	
 	private String knxGatewayIp;
 	private String multicastIp;
@@ -46,7 +44,13 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	private long checkingTime;
 	
 	KnxCommunication network;
-	private ServiceRegistration regServiceKnx;
+	public ServiceRegistration regServiceKnx = null;
+	
+	/**
+	 * List of devices per groupAddress
+	 * key = groupAddress
+	 * value = Set of devices
+	 */
 	private Hashtable<String, Set<KnxDevice>> deviceList;
 	
 	/**
@@ -60,11 +64,6 @@ public class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 		this.logger=log;
 		this.network=null;
 		
-		/**
-		 * List of devices per groupAddress
-		 * key = groupAddress
-		 * value = Set of devices
-		 */
 		this.deviceList = new Hashtable<String, Set<KnxDevice>>();
 
 		//		this.context.registerService(CommandProvider.class.getName(), this, null);
