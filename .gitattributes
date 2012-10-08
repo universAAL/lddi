@@ -805,6 +805,7 @@ lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdri
 lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 lddi.knx.networkdriver/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommandTest.java -text
 lddi.knx.networkdriver/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkdriverFunctionalTest.java -text
+lddi.knx.networkdriver/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriterTest.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/README.txt -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/Run.bat -text
