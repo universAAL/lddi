@@ -112,7 +112,7 @@ implements Runnable
 				core.getLogger().log(LogService.LOG_DEBUG,"Source: " + groupAddress + 
 						"; TELEGRAM: " + KnxWriter.byteArrayToHexString(temp));
 
-				this.core.newMessageFromHouse(groupAddress, telegram.getValueByte());
+				this.core.newMessageFromHouse(groupAddress, telegram.getDataByte()[0]);
 			
 				
 				

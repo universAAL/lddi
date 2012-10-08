@@ -95,7 +95,7 @@ public class KnxWriter {
 				this.lastDeviceStatus == deviceStatus &&
 				this.lastMessageType == messageType) {
 			// same command as last time; set Repeat-Bit
-			this.repeatBit = true;
+			this.repeatBit = false;
 		}
 
 		try {
