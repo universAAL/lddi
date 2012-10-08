@@ -1,5 +1,7 @@
 package org.universAAL.lddi.knx.utils;
 
+import java.beans.Encoder;
+
 
 
 /** Provides bottom-up (knx to uAAL) and top-down (uAAL to knx) translation of commands.
@@ -18,62 +20,48 @@ public class KnxEncoder {
 	 */
 	public static byte[] encode(boolean repeatBit, String deviceAddress, String command, KnxMessageType messageType){
 
+		// TODO what is the front part of the data telegram?
+		String header = "0610053000112900bc";
+		
 		// Is repeat Bit really important? (bit number 5 in first byte)
 		// When sending a packet the first time it should be 1;
 		// 0 when the packet is repeated (http://de.wikipedia.org/wiki/Europ%C3%A4ischer_Installationsbus)
+		String controlbyte = repeatBit ? "d0" : "e0";
 		
+		// Sending commands from ETS sets source address to 0/0/0. So do we.
+		String sourceAddress = "0000";
 		
-		// TODO Whole method must be rewritten!!!
+		String destAddress = "00";
+		if (deviceAddress.contains("/")) 
+			destAddress = KnxEncoder.createGroupAddress(deviceAddress);	// group address
+		else if (deviceAddress.contains(".")) 
+			destAddress = KnxEncoder.createAddress(deviceAddress); // physical address
 		
-		// Costant fields
-		String header = "e000000000010080";	// Konnex Header
+		String drl ="01";
 		
-		String type="";
-		String stuff = ""; // Stuff (a least one time it became d101..!?!		
-		String lowStatus ="";
+		String pci = "00";
 		
+		String data = "00";
+
 		switch (messageType) {
 		case READ:
-			type="290c";
-			stuff="d100";
-			lowStatus="00";
+			data = "00";
 			break;
 		case WRITE:
-			type="29bc";
-			stuff="d100";
-			lowStatus=command;
-
-			break;
 		case SCENARIO:
-			type="29bc";
-			stuff="b100";
-			lowStatus=command;
+			data = command;
 			break;
-
 		default:
 			break;
 		}
-		
-		// Response "bc"; Otherwise "0c" for reading (?)
-		String sourceAddress = "1.0.252"; // Source physical address
-		
 
-		String source = KnxEncoder.createAddress(sourceAddress);
-		
-	   // Destination
-		String destination = "";
-		
-		if (deviceAddress.contains("/")) 
-			destination = KnxEncoder.createGroupAddress(deviceAddress);	// group address
-		else if (deviceAddress.contains(".")) 
-			destination = KnxEncoder.createAddress(deviceAddress);			// physical addres
+		String stringTelegram = header + controlbyte + sourceAddress + destAddress + drl + pci + data;  
 
-		String stringTelegram =  header + type + source + destination + stuff + lowStatus;
-
-		byte messagge[] = KnxEncoder.toBytes(stringTelegram);
+		byte message[] = KnxEncoder.toBytes(stringTelegram);
 		
-		return  messagge;
+		return  message;
 	}
+	
 	
 	public static byte[] encode(String deviceAddress, String command, KnxMessageType messageType){
 		return encode(false, deviceAddress, command, messageType);
@@ -110,18 +98,22 @@ public class KnxEncoder {
 		telegram.setSourceByte(new byte[] {knxMessage[1], knxMessage[2]});
 		telegram.setDestByte(new byte[] {knxMessage[3], knxMessage[4]});
 		telegram.setDrlByte(knxMessage[5]);
-		telegram.setValueByte(knxMessage[7]);
+		
+		int dataLength = KnxEncoder.getDataLength(knxMessage[5]);
+		byte[] data = new byte[dataLength];
+		System.arraycopy(knxMessage, 7, data, 0, dataLength);
+		telegram.setDataByte(data);
+
 		return telegram;
 	}
 	
 
 	/**
-	 * Not reviewed yet!
 	 * 
 	 * @param address: address of the device as x.y.z
-	 * @return the address as hex
+	 * @return the address as hex String (2 bytes)
 	 */
-	private static String createAddress(String address){
+	public static String createAddress(String address){
 		/* This method is called for the device physical address
 		 * 	Input: string "x.y.z" physical address
 		 * 	Output: string "xy" physical address in hexadecimal format
@@ -156,39 +148,36 @@ public class KnxEncoder {
 	}
 
 	/**
-	 * Not reviewed yet!
+	 * This method is called for the device group address
+	 * x is 0-15 on 5 bits; y is 0-7 on 3 bits; z is 0-255 on 8 bits;
 	 * 
-	 * @param address: address of group of device as x.y.z
-	 * @return the address as hex
+	 * @param string "x/y/z" group address
+	 * @return string "xy" hexadecimal group address
 	 */
-	private static String createGroupAddress(String address){
-		/* This method is called for the device group address
-		 * 	Input: stringa "x/y/z" group address
-		 * 	Output: stringa "xy" hexadecimal group address
-		 * 		x is 0-15 on 5 bits; y is 0-7 on 3 bits; z is 0-255 on 8 bits;
-		 */ 
+	public static String createGroupAddress(String address){
 		String dest = "0000";
 		String vectorAddress[] = address.split("[/]"); 
-		int xInt = Integer.parseInt(vectorAddress[0]);
-		int yInt = Integer.parseInt(vectorAddress[1]);
+		int main = Integer.parseInt(vectorAddress[0]);
+		int middle = Integer.parseInt(vectorAddress[1]);
 		int highInt = 0;
-		int zInt = Integer.parseInt(vectorAddress[2]);
+		int sub = Integer.parseInt(vectorAddress[2]);
 				
-		xInt = xInt & 0x1f;	// lower 5 bits  (1f => 0001 1111)
-		yInt = yInt & 0x7; 	// lower 3 bit ( 7 => 0000 0111)
-		xInt <<= 3; // left shift of  3 bits
-		highInt = xInt + yInt;
+		main = main & 0x1f;	// lower 5 bits  (1f => 0001 1111)
+		main <<= 3; // left shift of  4 bits
 
-		// highInt:higher 8 bits
-		// zInt: lower 8 bits
+		middle = middle & 0x7; 	// lower 3 bit (7 => 0000 0111)
+		highInt = main + middle;
+
+		// highHex:higher 8 bits
+		// lowHex: lower 8 bits
 	
 		// highAddress: from highInt into 2 hexa digits (highHex)
 		String highHex = Integer.toHexString(highInt);
 		if (highInt < 16) highHex = "0" + highHex;
 		
-		// DEVICE: from zInt into 2 hexa digits (lowHex)
-		String lowHex = Integer.toHexString(zInt);
-		if (zInt < 16) lowHex = "0" + lowHex;
+		// from sub into 2 hexa digits (lowHex)
+		String lowHex = Integer.toHexString(sub);
+		if (sub < 16) lowHex = "0" + lowHex;
 		   		
 		dest = highHex + lowHex;   
 	
@@ -201,7 +190,7 @@ public class KnxEncoder {
 	 * @param test: a message string
 	 * @return the message as hex
 	 */
-	private static byte [] toBytes (String test){
+	public static byte [] toBytes (String test){
 		
 	   byte bTest[] = new byte[test.length() / 2];
 	   for (int i = 0; i < bTest.length; i++) {
@@ -210,7 +199,20 @@ public class KnxEncoder {
 	   return bTest;
 	}
 
-	
+	/**
+	 * @param b byte[]
+	 * @return hex representation of the byte array as a String
+	 */
+	public static String getHexString(byte[] b) {
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < b.length; i++) {
+			if (i > 0)
+				sb.append(':');
+			sb.append(Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1));
+		}
+		return sb.toString();
+	}
+
 	/**
 	 * @param drlByte
 	 * @return drl bits (4 bits)
@@ -226,10 +228,12 @@ public class KnxEncoder {
 	 * @param valueByte
 	 * @return string representation of valueByte
 	 */
-	static String getDataValue(byte valueByte) {
-		  int i = valueByte & 0xFF;
-		  return Integer.toHexString(i);
+	static String getDataValue(byte[] dataByte) {
+//		  int i = dataByte & 0xFF;
+//		  return Integer.toHexString(i);
+		return new String(dataByte);
 	}
+	
 
 	/**
 	 * Convert address from bytes to address in x.y.z format
