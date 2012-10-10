@@ -14,7 +14,7 @@ public interface KnxNetwork {
 	public static char DAFAULT_READ_CHAR = '4';
 	public static char DAFAULT_STATUS_CHAR = '8';
 //	public static Object NOTIFICATION_NAME = "notificationName";
-	public void readState(String deviceId);
+	public void requestState(String deviceId);
 	public void sendCommand(String deviceId,String command);
 	public void sendCommand(String deviceId,String command, KnxMessageType messageType);
 	public void addDevice(String deviceId,KnxDevice device);
