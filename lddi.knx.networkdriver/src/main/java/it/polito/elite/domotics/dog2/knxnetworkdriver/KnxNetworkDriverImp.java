@@ -25,8 +25,7 @@ import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork
-//,CommandProvider 
+public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork 
 {
 	
 	/**OSGi Framework*/

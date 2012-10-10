@@ -1,7 +1,10 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
+import java.util.Hashtable;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.universAAL.lddi.knx.networkdriver.util.KnxShellCommand;
 import org.universAAL.lddi.knx.networkdriver.util.LogTracker;
 
 /***
@@ -15,6 +18,7 @@ public class Activator implements BundleActivator {
 	public static KnxNetworkDriverImp networkDriver;
 	private LogTracker logTracker;
 	
+	@SuppressWarnings("unchecked")
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
 		
@@ -34,7 +38,14 @@ public class Activator implements BundleActivator {
 //        	System.out.println("[KNX Network Driver] WARNING: No LogService instance found!");
 //        
         networkDriver=new KnxNetworkDriverImp(context,logTracker);
-	}
+
+        // Register Gogo shell command
+        Hashtable props = new Hashtable();
+        props.put("osgi.command.scope", "uaal");
+        props.put("osgi.command.function", new String[] {"knxcommand"});
+        context.registerService(
+            KnxShellCommand.class.getName(), new KnxShellCommand(networkDriver), props);
+}
 
 
 	public void stop(BundleContext context) throws Exception {
