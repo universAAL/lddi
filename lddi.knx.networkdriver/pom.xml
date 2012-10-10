@@ -86,7 +86,11 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.gogo.runtime</artifactId>
+			<version>0.10.0</version>
+		</dependency>
 		<!--
 			http://team.ops4j.org/wiki/display/paxexam/Pax+Exam+Maven+Dependencies
 			<dependency> <groupId>org.ops4j.pax.exam</groupId>
@@ -121,12 +125,12 @@
 			<artifactId>lddi.knx.library</artifactId>
 		</dependency>
 	</dependencies>
-	
+
 	<properties>
 		<gforge.project.name>lddi</gforge.project.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<profiles>
 		<profile>
 			<id>uAAL-Test-Runtime</id>
