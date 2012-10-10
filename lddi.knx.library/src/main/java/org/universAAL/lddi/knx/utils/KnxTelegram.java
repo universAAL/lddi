@@ -22,7 +22,7 @@ public class KnxTelegram {
 	// legacy fields
 //	byte valueByte;
 	byte typeByte[] = new byte[2];
-	int dataLength;
+//	int dataLength;
 	
 	/**
 	 * @param controlByte (must be 1 byte)
@@ -53,13 +53,13 @@ public class KnxTelegram {
 
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(KnxEncoder.getAddress(sourceByte));
+		builder.append(KnxEncoder.convertDeviceAddressToReadable(this.sourceByte));
 		builder.append('#');
-		builder.append(KnxEncoder.getGroupAddress(destByte));
+		builder.append(KnxEncoder.convertGroupAddressToReadable(this.destByte));
 		builder.append('#');
-		builder.append(KnxEncoder.getDataValue(dataByte));
+		builder.append(KnxEncoder.convertToReadableHex(this.dataByte));
 		builder.append('#');
-		builder.append(KnxEncoder.getDataLength(drlByte));
+		builder.append(KnxEncoder.extractPayloadLength(this.drlByte));
 		// type?
 //		builder.append('#');
 //		builder.append(KnxEncoder.getType(typeByte));
@@ -105,6 +105,8 @@ public class KnxTelegram {
 	 * @param valueByte the valueByte to set
 	 */
 	public void setDataByte(byte[] dataByte) {
+//		this.dataByte = new byte[dataByte.length];
+//		System.arraycopy(dataByte, 0, this.dataByte, 0, dataByte.length);
 		this.dataByte = dataByte;
 	}
 	
@@ -140,14 +142,14 @@ public class KnxTelegram {
 	 * @return the dataLength
 	 */
 	public int getDataLength() {
-		return dataLength;
+		return this.dataByte.length;
 	}
 	
-	/**
-	 * @param dataLength the dataLength to set
-	 */
-	public void setDataLength(int dataLength) {
-		this.dataLength = dataLength;
-	}
+//	/**
+//	 * @param dataLength the dataLength to set
+//	 */
+//	public void setDataLength(int dataLength) {
+//		this.dataLength = dataLength;
+//	}
 
 }
