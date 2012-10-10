@@ -4,59 +4,59 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
+import java.util.Arrays;
 
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 import org.universAAL.lddi.knx.utils.KnxTelegram;
 
-/** 
- * Provides readings from the knx gateway by the LAN.
- * Uses the encoder to operate translation from low level data
- * (knx) to high level data (sent to uAAL).
- *
+/**
+ * Provides readings from the knx gateway by the LAN. Uses the encoder to
+ * operate translation from low level data (knx) to high level data (sent to
+ * uAAL).
+ * 
  * @author Enrico Allione (enrico.allione@gmail.com)
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxReader 
-//extends Thread
-implements Runnable
-{
+public class KnxReader
+// extends Thread
+		implements Runnable {
 	/* Changed from Thread to Runnable */
 
 	protected KnxNetworkDriverImp core;
-//	protected KnxEncoder encoder;
-	
-	static private int socketTimeout = 0;	// infinite timeout on receive()
-//	static private int telegramLenght = 17;	// KNX core telegram length
+	// protected KnxEncoder encoder;
 
-//	private boolean running;
+	static private int socketTimeout = 0; // infinite timeout on receive()
+	// static private int telegramLenght = 17; // KNX core telegram length
+
+	// private boolean running;
 	private MulticastSocket mcReceiver;
-	
+
 	public KnxReader(KnxNetworkDriverImp core) {
 		this.core = core;
-//		this.running=true;
+		// this.running=true;
 	}
 
-//	public void stopReader(){
-//		this.running=false;
-//	}
-	
-	public void stopReader(){
-		if (this.mcReceiver != null) 
+	// public void stopReader(){
+	// this.running=false;
+	// }
+
+	public void stopReader() {
+		if (this.mcReceiver != null)
 			this.mcReceiver.close();
 	}
-	
-//	public void run()  {
-//		while(running){
-//			listen();
-//			Thread.yield();
-//		}
-//	}
 
-//	private void listen(){
-	public void run(){
-//		int k = 0;
-//		boolean flag = true;
+	// public void run() {
+	// while(running){
+	// listen();
+	// Thread.yield();
+	// }
+	// }
+
+	// private void listen(){
+	public void run() {
+		// int k = 0;
+		// boolean flag = true;
 
 		try {
 			this.mcReceiver = new MulticastSocket(core.getMyUdpPort());
@@ -65,98 +65,108 @@ implements Runnable
 
 			this.mcReceiver.setSoTimeout(socketTimeout);
 
-			core.getLogger().log(LogService.LOG_INFO,"Server KNX listening on port " + 
-					core.getMyUdpPort() + " (joined " + core.getMulticastIp() + ")");
+			core.getLogger().log(
+					LogService.LOG_INFO,
+					"Server KNX listening on port " + core.getMyUdpPort()
+							+ " (joined " + core.getMulticastIp() + ")");
 
-//			while (flag) {
+			// while (flag) {
 			while (!Thread.currentThread().isInterrupted()) {
-				
+
 				byte buffer[] = new byte[mcReceiver.getReceiveBufferSize()];
-				//buffer is 8192 bytes !!
-				DatagramPacket udpPacket = new DatagramPacket(buffer, buffer.length);
-				
-				//blocking here...
+				// buffer is 8192 bytes !!
+				DatagramPacket udpPacket = new DatagramPacket(buffer,
+						buffer.length);
+
+				// blocking here...
 				this.mcReceiver.receive(udpPacket);
-				//The datagram packet contains also the sender's IP address, and the port number
-				//on the sender's machine. This method blocks until a datagram is received.
+				// The datagram packet contains also the sender's IP address,
+				// and the port number
+				// on the sender's machine. This method blocks until a datagram
+				// is received.
 
-				byte[]temp = udpPacket.getData();
+				byte[] temp = udpPacket.getData();
 
-				core.getLogger().log(LogService.LOG_DEBUG,"\n---COMMAND FROM KNX --- " + 
-						udpPacket.getAddress().toString()+" BYTEs "+KnxWriter.byteArrayToHexString(temp));
+				// Outsourced to KnxEncoder !
+				// //remove trailing 0 (buffer is 8192 bytes long!)
+				// int i = temp.length - 1;
+				// while(temp[i] == 0)
+				// --i;
+				// // now temp[i] is the last non-zero byte
+				// byte[] dataPacket = new byte[i+1];
+				// System.arraycopy(temp, 0, dataPacket, 0, i+1);
 
-				//remove trailing 0 (buffer is 8192 bytes long!)
-				int i = temp.length - 1;
-				while(temp[i] == 0)
-				    --i;
-				// now temp[i] is the last non-zero byte
-				byte[] dataPacket = new byte[i+1];
-				System.arraycopy(temp, 0, dataPacket, 0, i+1);
-				
-				//remove also the UDP header
-				int l = (i+1) - 9;	//9 bytes UDP header
-				byte[] knxPacket = new byte[l];
-				System.arraycopy(temp, 9, knxPacket, 0, l);
-				
-				KnxTelegram telegram = KnxEncoder.decode(knxPacket);
-				if (telegram == null) {
-					core.getLogger().log(LogService.LOG_WARNING,"\n--- Incoming COMMAND FROM KNX bus is not valid " +
-							"and will not be processed! --- " + 
-							udpPacket.getAddress().toString()+" BYTEs "+KnxWriter.byteArrayToHexString(temp));
+				byte[] dataPacket = KnxEncoder.removeTrailingZeros(temp);
+
+				core.getLogger().log(
+						LogService.LOG_DEBUG,
+						"Incoming command from KNX: "
+								+ udpPacket.getAddress().toString() + " "
+								+ KnxEncoder.convertToReadableHex(dataPacket));
+
+				// if this packet was just sent by KnxWriter discard it
+				if (Arrays.equals(dataPacket, core.network.getLastSentPacket())) {
+					core.getLogger().log(
+							LogService.LOG_DEBUG,
+							"Discard incoming UDP Multicast Packet "
+									+ "which was just sent by KnxWriter "
+									+ KnxEncoder
+											.convertToReadableHex(dataPacket));
 					continue;
 				}
-				String groupAddress = KnxEncoder.getGroupAddress(telegram.getDestByte());
+				// core.getLogger().log(LogService.LOG_DEBUG,"incoming byte[] "
+				// + new String(dataPacket));
+				
+				byte [] lastPacket = core.network.getLastSentPacket();
+				if (lastPacket != null) {
+				core.getLogger().log(
+						LogService.LOG_DEBUG,
+						"last sent command: "
+								+ KnxEncoder.convertToReadableHex(lastPacket));
+				}
 
-				core.getLogger().log(LogService.LOG_INFO,"KNX telegram received (" + knxPacket.length +
-						" bytes): " + telegram.toString());
-				core.getLogger().log(LogService.LOG_DEBUG,"Source: " + groupAddress + 
-						"; TELEGRAM: " + KnxWriter.byteArrayToHexString(temp));
+				// remove also the header
+				int l = (dataPacket.length) - 9; // 9 bytes header
+				byte[] knxPacket = new byte[l];
+				System.arraycopy(temp, 9, knxPacket, 0, l);
 
-				this.core.newMessageFromHouse(groupAddress, telegram.getDataByte()[0]);
-			
-				
-				
-				
-//				byte[] deviceByte = new byte[2];
-//				deviceByte[0] = temp[10];		
-//				deviceByte[1] = temp[11];
-//
-//				byte[] groupByte = new byte[2];
-//				groupByte[0] = temp[12];		
-//				groupByte[1] = temp[13];
-//				
-//				//difference between the expected size of the telegram and the real one
-//				int oversize = temp.length - KnxReader.telegramLenght;
-//				oversize=oversize<0?0:oversize; //avoid array index exception
-//				
-//				
-//				byte[] statusByte = new byte[oversize+2];
-//				
-//				for(int j=0; j<statusByte.length; j++){
-//					//statusByte[0] = temp[14]; //old version
-//					statusByte[j]=temp[temp.length-2-oversize+j];
-//				}
-//				
-////				String groupAddress = KnxEncoder.getGroupAddress(groupByte);
-//				//String knxStatus = KnxEncoder.getStatus(statusByte);
-//				
-//				
-//				 //byteString=new StringBuilder();
-//				
-//				
-//
-//				k += 1;
+				KnxTelegram telegram = KnxEncoder.decode(knxPacket);
+				if (telegram == null) {
+					core.getLogger().log(
+							LogService.LOG_WARNING,
+							"Incoming command from KNX bus is not valid "
+									+ "and will not be processed! --- "
+									+ udpPacket.getAddress().toString()
+									+ " BYTEs "
+									+ KnxEncoder
+											.convertToReadableHex(dataPacket));
+					continue;
+				}
+				String groupAddress = KnxEncoder
+						.convertGroupAddressToReadable(telegram.getDestByte());
+
+				core.getLogger().log(
+						LogService.LOG_INFO,
+						"KNX telegram received (" + knxPacket.length
+								+ " bytes - data length:"
+								+ telegram.getDataLength() + "): "
+								+ telegram.toString());
+				core.getLogger().log(
+						LogService.LOG_DEBUG,
+						"Source: " + groupAddress + "; TELEGRAM: "
+								+ KnxEncoder.convertToReadableHex(knxPacket));
+
+				this.core.newMessageFromHouse(groupAddress, telegram
+						.getDataByte()[0]);
+
 			}
-		}
-		catch (SocketException se){
-			core.getLogger().log(LogService.LOG_INFO,"UDP Multicast Socket closed! Stop listening!");
-		}
-		catch (Exception e){
-			core.getLogger().log(LogService.LOG_ERROR,e.getMessage());
-			 e.printStackTrace();
+		} catch (SocketException se) {
+			core.getLogger().log(LogService.LOG_INFO,
+					"UDP Multicast Socket closed! Stop listening!");
+		} catch (Exception e) {
+			core.getLogger().log(LogService.LOG_ERROR, e.getMessage());
+			e.printStackTrace();
 		}
 	}
-
-
 
 }

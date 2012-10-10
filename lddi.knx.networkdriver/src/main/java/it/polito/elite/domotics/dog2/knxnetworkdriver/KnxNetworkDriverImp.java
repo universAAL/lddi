@@ -273,7 +273,7 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 	*/
 	
-	public void readState(String deviceId) {
+	public void requestState(String deviceId) {
 		this.network.readState(deviceId);
 		
 	}

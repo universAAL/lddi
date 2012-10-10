@@ -118,13 +118,24 @@ public class KnxNetworkdriverFunctionalTest extends IntegrationTest{
 //		KnxNetworkDriverImp netDrv = new KnxNetworkDriverImp(Activator.context, null); 
 		
 		Activator.networkDriver.sendCommand("0/0/2", "81");		
+		wait1s();
+		Activator.networkDriver.requestState("0/0/2");
+		wait1s();
+		Activator.networkDriver.sendCommand("0/0/2", "80");
+		wait1s();
+		Activator.networkDriver.requestState("0/0/2");
+		wait1s();
+
+		//requests to knx device address directly gives no response!!
+		//Activator.networkDriver.requestState("1.1.5");
+	}
+	
+	void wait1s() {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		Activator.networkDriver.sendCommand("0/0/2", "80");		
-
 	}
 	
 //	private LogTracker logTracker;

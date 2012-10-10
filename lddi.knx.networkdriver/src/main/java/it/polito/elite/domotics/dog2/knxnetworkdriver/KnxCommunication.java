@@ -19,9 +19,8 @@ public class KnxCommunication
 	private KnxWriter writer;
 	private KnxReader reader;
 	private Thread readerThread;
-//	private boolean running;
-	
-	
+
+
 	public KnxCommunication(KnxNetworkDriverImp driver){
 //		super();
 		this.driver=driver;
@@ -135,13 +134,17 @@ public class KnxCommunication
 	}
 
 	public void readState(String deviceId) {
-		this.writer.read(deviceId);
+		this.writer.requestDeviceStatus(deviceId);
 		
 	}
 
 	public void sendCommand(String device, String command, KnxMessageType messageType) {
 		this.writer.write(device, command, messageType);
 		
+	}
+	
+	public byte[] getLastSentPacket() {
+		return this.writer.getLastPacketSent();
 	}
 	
 	
