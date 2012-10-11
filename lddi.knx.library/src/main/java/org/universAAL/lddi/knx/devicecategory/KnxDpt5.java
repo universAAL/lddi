@@ -1,8 +1,9 @@
 package org.universAAL.lddi.knx.devicecategory;
 
 /**
- * Base DeviceCategory for KNX datapoint types B1 (1 bit).
- * 
+ * Base DeviceCategory for KNX datapoint type U8 (8-Bit Unsigned Value).
+ * Possible values are from 0 - 255.
+ *  
  * In general DeviceCategories specify:
  * - rules and interfaces needed for the communication between device service
  * and driver service. Both of them implement this IF.
@@ -13,9 +14,9 @@ package org.universAAL.lddi.knx.devicecategory;
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt1 extends KnxBaseDeviceCategory {
+public interface KnxDpt5 extends KnxBaseDeviceCategory {
 	
-	public static String MY_DEVICE_CATEGORY = "KnxDpt1";
+	public static String MY_DEVICE_CATEGORY = "KnxDpt5";
 	
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number
@@ -34,28 +35,34 @@ public interface KnxDpt1 extends KnxBaseDeviceCategory {
 	public static String SERIAL			= "-";
 	
 
-	// default on/off constants for all dpt1 devices
-	public static byte DEFAULT_VALUE_ON =  (byte) 0x81;
-	public static byte DEFAULT_VALUE_OFF = (byte) 0x80;
+	// default max/min constants for all dpt5 devices
+	public static byte DEFAULT_MAX_VALUE = (byte) 0xFF;
+	public static byte DEFAULT_MIN_VALUE = (byte) 0x00;
 
-//	// constants for specific dpt1 devices
+	
+	// constants for specific dpt5 devices
+	/** 5.001 - DPT_Scaling
+	 * From 0 - 100% - This gives a resolution of about 0,4% (100 / 256 = 0,390625)
+	 */
+	public static int RESOLUTION_5_001 =  100/256;
 
-//	/** 1.001 - DPT_Switch */
-//	/** 1 = on */
-//	public static byte DEFAULT_VALUE_ON_1_001 =  DEFAULT_VALUE_ON;
-//	/** 0 = off */
-//	public static byte DEFAULT_VALUE_OFF_1_001 = DEFAULT_VALUE_OFF;
-//	
-//	/** 1.005 - DPT_Alarm */
-//	/** 1 = alarm */
-//	public static byte DEFAULT_VALUE_ON_1_005 =  DEFAULT_VALUE_ON;
-//	/** 0 = no alarm */
-//	public static byte DEFAULT_VALUE_OFF_1_005 = DEFAULT_VALUE_OFF;
-//
-//	/** 1.009 - DPT_OpenClose */
-//	/** 1 = close */
-//	public static byte DEFAULT_VALUE_ON_1_009 =  DEFAULT_VALUE_ON;
-//	/** 0 = open */
-//	public static byte DEFAULT_VALUE_OFF_1_009 = DEFAULT_VALUE_OFF;
+	/** 5.003 - DPT_Angle
+	 * From 0 - 360°- This gives a resolution of about 1,4° (360 / 256 = 1,40625)
+	 */
+	public static int RESOLUTION_5_003 =  360/256;
+	
+	/** 5.004 - DPT_Percent_U8
+	 * From 0 - 255% !! - Resolution is 1 //64h = 100%; FFh = 255%
+	 */
+	public static int RESOLUTION_5_004 =  1;
+	
+	/** 5.005 - DPT_DecimalFactor
+	 * no spec !!
+	 */
 
+	/** 5.010 - DPT_Value_1_Ucount
+	 * From 0 - 255 - Resolution is 1 //64h = 100 counter pulses; FFh = 255 counter pulses
+	 */
+	public static int RESOLUTION_5_010 =  1;
+	
 }

@@ -27,8 +27,8 @@ import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
 /**
- * This bundle tracks on KnxNetwork service
- * When this service appears, this bundle is initialized
+ * This bundle tracks on KnxNetwork service.
+ * When this service appears, this bundle is initialized.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -38,8 +38,6 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	private LogService logger;
 	private String knxConfigFile;
 	private List<KnxGroupAddress> knxImportedGroupAddresses;
-//	private List<KnxDevice> deviceList ;
-//	private Map<KnxGroupAddress,KnxDevice> deviceList;
 	
 	/**
 	 * List of registered devices
@@ -50,8 +48,6 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 
 	private Map<String,KnxDevice> deviceList;
 
-//	private ServiceRegistration myManagedServiceRegistration;
-	
 	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
 	private KnxNetwork network;
 	
@@ -59,12 +55,6 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 		this.context=context;
 		this.logger=log;
 
-//		this.deviceRegistrationList = new HashMap<String,ServiceRegistration>();
-//		this.deviceList = new HashMap<String, KnxDevice>();
-
-//		this.registerManagedService();
-//		this.logger.log(LogService.LOG_DEBUG,"KnxDeviceManager started!");
-		
 		// track on KnxNetwork service
 		try {
 			ServiceTracker st=new ServiceTracker(context,this.context.createFilter(filterQuery), this);
@@ -76,9 +66,8 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	}
 	
 	/**
-	 * KnxNetwork service appeared
-	 * Initialization of this bundle
-	 * ManagedService registration in OSGi
+	 * KnxNetwork service appeared, initialization of this bundle;
+	 * ManagedService registration in OSGi.
 	 */
 	public Object addingService(ServiceReference reference) {
 		this.network=(KnxNetwork)this.context.getService(reference);
@@ -93,7 +82,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	}
 	
 	/***
-	 * Register this class as Managed Service
+	 * Register this class as Managed Service.
 	 */
 	private void registerManagedService() {
 		Properties propManagedService=new Properties();
@@ -102,9 +91,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	}
 	
 	/**
-	 * KnxNetwork service has been modified
-	 * removing my managed service
-	 * and adding again
+	 * KnxNetwork service has been modified: removing my managed service and adding again.
 	 */
 	public void modifiedService(ServiceReference reference, Object service) {
 		removedService(reference, service);
@@ -113,9 +100,8 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	}
 
 	/**
-	 * KnxNetwork service has been removed
-	 * removing my managed service
-	 * clear storage objects -> set this bundle to "idle" mode
+	 * KnxNetwork service has been removed: removing my managed service,
+	 * clear storage objects -> set this bundle to "idle" mode.
 	 */
 	public void removedService(ServiceReference reference, Object service) {
 		// When knx.networkservice disappears: unregister all my devices
@@ -138,11 +124,11 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 //	}
 	
 	/***
-	 * get updated from ConfigurationAdmin
-	 * get configuration file from ETS4
-	 * extract groupAddress information
-	 * create virtual KNX devices
-	 * and register them as device services in OSGi 
+	 * Get updated from ConfigurationAdmin:
+	 * get configuration file from ETS4,
+	 * extract groupAddress information,
+	 * create virtual KNX devices,
+	 * and register them as device services in OSGi. 
 	 */
 	@SuppressWarnings("unchecked")
 	public void updated(Dictionary properties) throws ConfigurationException {
@@ -173,8 +159,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 								this.deviceRegistrationList.remove(knxGroupAddress.getGroupAddress());
 							}
 							
-							String dptMain = knxGroupAddress.getDptMain();
-							int dptMainNumber = Integer.parseInt(dptMain);
+							int dptMainNumber = Integer.parseInt(knxGroupAddress.getDptMain());
 							
 							// create appropriate device from dpt main number
 							KnxDevice knxDevice = KnxDeviceFactory.getKnxDevice(dptMainNumber);
@@ -190,11 +175,6 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 							// set instance alive
 							knxDevice.setParams(knxGroupAddress, this.network, this.logger);
 							
-//							KnxDevice knxDevice = new KnxDevice(knxGroupAddress,this.logger);
-							
-							// add this device to my list
-//							deviceList.put(knxGroupAddress,knxDevice);
-
 							// register device in OSGi registry
 							Properties propDeviceService=new Properties();
 
@@ -216,17 +196,11 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 							this.deviceRegistrationList.put(knxGroupAddress.getGroupAddress(),deviceServiceReg);
 							this.deviceList.put(knxGroupAddress.getGroupAddress(), knxDevice);
 							
-							
 						} else {
 							this.logger.log(LogService.LOG_ERROR, "KNX device with group address " +
 									knxGroupAddress.getGroupAddress() + " has incorrect DPT property.");
 						}
-						
 					}
-//					this.logger.log(LogService.LOG_INFO, "***********deviceregistrationlist: " + this.deviceRegistrationList.keySet());
-					
-					
-					
 				} else {
 					this.logger.log(LogService.LOG_ERROR, "KNX configuration file name is empty!");
 				}
@@ -271,9 +245,9 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 		//this.unregisterManagedService();	is done automatically during bundle stop
 
 		if ( this.deviceList != null ) {
-			Iterator it = this.deviceList.keySet().iterator();
+			Iterator<String> it = this.deviceList.keySet().iterator();
 			while ( it.hasNext() ) {
-				String deviceId = (String) it.next();
+				String deviceId = it.next();
 				KnxDevice dev = this.deviceList.get(deviceId);
 				this.network.removeDevice(deviceId, dev);
 			}

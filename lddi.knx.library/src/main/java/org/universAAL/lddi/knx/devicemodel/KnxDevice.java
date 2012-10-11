@@ -82,12 +82,22 @@ public abstract class KnxDevice implements Device{
 
 	
 	/**
-	 * The specific devices have to implement this method to receive low level messages from the network
+	 * The specific devices have to implement this method to receive low level messages from the network.
 	 * @param deviceAddress  address of the device or the group that fire the message
 	 * @param message array of byte containing the information of the status or command
 	 */
-	public abstract void newMessageFromHouse(String deviceAddress, byte event);
+//	public abstract void newMessageFromHouse(String deviceAddress, byte event);
+	public void newMessageFromHouse(String deviceAddress, byte value) {
 
+	this.logger.log(LogService.LOG_INFO, "Device " + this.getDeviceId() + " got value: " + 
+			String.format("%02X", value));
+
+	if ( this.driver !=null )
+		this.driver.newMessageFromKnxBus(value);
+	else
+		this.logger.log(LogService.LOG_WARNING, "No driver for device " + this.getDeviceId() + 
+				" coupled! Cannot forward knx message!");
+	}
 	
 	public void noDriverFound() {
 		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for KNX device: " +
@@ -110,7 +120,7 @@ public abstract class KnxDevice implements Device{
 	
 	/**
 	 * Returns 0 on error
-	 * {@code for dpt "1.018" this method will return 18}
+	 * {@code for dpt "1.018" this method will return 1}
 	 * @return knx datapoint main type
 	 */
 	public int getDatapointTypeMainNumber() {
