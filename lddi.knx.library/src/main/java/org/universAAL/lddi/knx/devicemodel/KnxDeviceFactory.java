@@ -1,7 +1,7 @@
 package org.universAAL.lddi.knx.devicemodel;
 
 /**
- * Factory for KNX devices for each data point type
+ * Factory for KNX devices for each data point type.
  * According to spec: "KXN Datapoint Types v1.5.00 AS"
  * 
  * @author Thomas Fuxreiter
@@ -9,7 +9,6 @@ package org.universAAL.lddi.knx.devicemodel;
 public abstract class KnxDeviceFactory {
 
 	/**
-	 * 
 	 * @param dptMainNumber e.g.: 1
 	 * @return KnxDevice object or null if no implementation for the given datapoint number exists
 	 */
@@ -20,7 +19,7 @@ public abstract class KnxDeviceFactory {
 //			case 2: return new KnxDpt2Device();
 //			case 3: return new KnxDpt3Device();
 //			case 4: return new KnxDpt4Device();
-//			case 5: return new KnxDpt5Device();
+			case 5: return new KnxDpt5Device();
 //			case 6: return new KnxDpt6Device();
 //			case 7: return new KnxDpt7Device();
 //			case 8: return new KnxDpt8Device();

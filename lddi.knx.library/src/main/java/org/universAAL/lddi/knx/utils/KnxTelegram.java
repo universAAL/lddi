@@ -2,7 +2,7 @@ package org.universAAL.lddi.knx.utils;
 
 
 /**
- * Structure of a KNX telegram
+ * Structure of a KNX telegram.
  * Octet 
  * 0 				1 		2 		3 		4 		5 		6 			7 					8 ... N-1 	N<=22
  * Controlbyte 		Sourceaddress 	Destaddress 	DRL 	TPCI 	APCI 	Data / APCI 	Data 		Checksum

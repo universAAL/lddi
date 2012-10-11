@@ -5,7 +5,7 @@ import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 
 /**
  * This abstract class is designed to help developing a knx driver.
- * It stores information about the coupled device 
+ * It stores information about the coupled device.
  * It provides an service tracker for the attached device service.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)

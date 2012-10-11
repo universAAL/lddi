@@ -41,7 +41,6 @@ public class KnxEncoderTest {
 	@Test
 	public void encodeTest() {
 		String hexString = "0610053000112900bce000000901010081";
-		byte[] message = new byte[] {(byte) 0xe0, 0, 0, 9, 1, 1, 0, (byte) 0x81 };
 		
 		assertTrue("KnxEncoder.encode(false, '1/1/1', '81', KnxMessageType.WRITE) returns " + 
 				KnxEncoder.convertToReadableHex(KnxEncoder.encode(false, "1/1/1", "81", KnxMessageType.WRITE)) +

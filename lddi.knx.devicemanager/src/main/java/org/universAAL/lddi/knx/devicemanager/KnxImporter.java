@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.XPath;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
+
 
 /**
  * The class takes a ets4 export file as inputstream and creates a list of
@@ -218,7 +218,7 @@ public class KnxImporter
   }
 
   /**
-   * Transform a plain integer KNX group address to 1/2/3 format
+   * Transform a plain integer KNX group address to 1/2/3 format.
    *  
    * @param knxaddress
    * @return readable group address
