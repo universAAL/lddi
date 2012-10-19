@@ -769,6 +769,7 @@ lddi.knx.devicemanager/launches/runner/configurations/services/org.ops4j.pax.log
 lddi.knx.devicemanager/launches/runner/data/OfficeProject3.knxproj -text
 lddi.knx.devicemanager/launches/runner/data/OfficeProject4.knxproj -text
 lddi.knx.devicemanager/launches/runner/data/OfficeProject5.knxproj -text
+lddi.knx.devicemanager/launches/runner/data/OfficeProject6.knxproj -text
 lddi.knx.devicemanager/launches/runner/felix/system.properties -text
 lddi.knx.devicemanager/launches/runner/remoteDebug.bat -text
 lddi.knx.devicemanager/launches/runner/run.bat -text
@@ -781,11 +782,13 @@ lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/util/
 lddi.knx.library/pom.xml -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxBaseDeviceCategory.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxDpt1.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxDpt2.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxDpt5.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicedriver/KnxDriver.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDevice.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDeviceFactory.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt1Device.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt2Device.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt5Device.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/library/utils/LogTracker.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxNetwork.java -text

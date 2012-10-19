@@ -160,7 +160,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 							}
 							
 							int dptMainNumber = Integer.parseInt(knxGroupAddress.getDptMain());
-							
+
 							// create appropriate device from dpt main number
 							KnxDevice knxDevice = KnxDeviceFactory.getKnxDevice(dptMainNumber);
 							

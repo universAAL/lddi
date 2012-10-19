@@ -115,11 +115,15 @@ public class KnxEncoder {
 		telegram.setDestByte(new byte[] { knxMessage[3], knxMessage[4] });
 		telegram.setDrlByte(knxMessage[5]);
 
-		int dataLength = KnxEncoder.extractPayloadLength(knxMessage[5]);
-		byte[] data = new byte[dataLength];
-		System.arraycopy(knxMessage, 7, data, 0, dataLength);
-		telegram.setDataByte(data);
-
+		try {
+			int dataLength = KnxEncoder.extractPayloadLength(knxMessage[5]);
+			byte[] data = new byte[dataLength];
+			System.arraycopy(knxMessage, 7, data, 0, dataLength);
+			telegram.setDataByte(data);
+		} catch (IndexOutOfBoundsException ex) {
+			return null;
+		}
+		
 		return telegram;
 	}
 
