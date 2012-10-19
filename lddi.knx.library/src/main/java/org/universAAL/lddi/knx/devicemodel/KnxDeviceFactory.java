@@ -16,7 +16,7 @@ public abstract class KnxDeviceFactory {
 	
     	switch (dptMainNumber) {
 			case 1: return new KnxDpt1Device();
-//			case 2: return new KnxDpt2Device();
+			case 2: return new KnxDpt2Device();
 //			case 3: return new KnxDpt3Device();
 //			case 4: return new KnxDpt4Device();
 			case 5: return new KnxDpt5Device();
