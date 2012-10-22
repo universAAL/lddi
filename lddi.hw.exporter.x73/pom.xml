@@ -69,7 +69,7 @@
 					processor=x86; processor=x86_32
 				</Bundle-NativeCode>
 				<Bundle-NativeCode>
-					libunix-java.so;
+					libunix-java-64.so;
 					osname=Linux;
 					processor=x86; processor=x86_64
 				</Bundle-NativeCode>
