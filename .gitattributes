@@ -682,12 +682,6 @@ lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activity
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073UsageSensorDriver.java -text
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073UsageSensorInstance.java -text
 lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/HwExporterActivityHubTest.java -text
-lddi.hw.exporter.x73/.classpath -text
-lddi.hw.exporter.x73/.project -text
-lddi.hw.exporter.x73/.settings/org.eclipse.core.resources.prefs -text
-lddi.hw.exporter.x73/.settings/org.eclipse.jdt.core.prefs -text
-lddi.hw.exporter.x73/.settings/org.eclipse.m2e.core.prefs -text
-lddi.hw.exporter.x73/.settings/org.maven.ide.eclipse.prefs -text
 lddi.hw.exporter.x73/launches/Run.bat -text
 lddi.hw.exporter.x73/launches/artifact-test.composite -text
 lddi.hw.exporter.x73/launches/artifact.composite -text
