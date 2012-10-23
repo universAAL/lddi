@@ -636,6 +636,7 @@ lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/hdpManager.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/hdpManagerListener.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/target/surefire/weighingScalePublisher.launch -text
+lddi.hw.exporter.activityhub/MITX.txt -text
 lddi.hw.exporter.activityhub/README.txt -text
 lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub/conf/services/lddi.knx.devicemanager.properties -text
@@ -682,6 +683,7 @@ lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activity
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073UsageSensorDriver.java -text
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073UsageSensorInstance.java -text
 lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/HwExporterActivityHubTest.java -text
+lddi.hw.exporter.x73/MITX.txt -text
 lddi.hw.exporter.x73/launches/Run.bat -text
 lddi.hw.exporter.x73/launches/artifact-test.composite -text
 lddi.hw.exporter.x73/launches/artifact.composite -text
@@ -709,6 +711,7 @@ lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/ISO11073C
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/ISO11073DBusServer.java -text
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/MyAgent.java -text
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/util/LogTracker.java -text
+lddi.iso11073.library/MITX.txt -text
 lddi.iso11073.library/pom.xml -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java -text
@@ -746,6 +749,7 @@ lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/dri
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/knxmapping/KnxMappingFactory.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/location/ActivityHubLocationUtil.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/util/LogTracker.java -text
+lddi.knx.devicemanager/MITX.txt -text
 lddi.knx.devicemanager/conf/services/lddi.knx.devicemanager.properties -text
 lddi.knx.devicemanager/data/OfficeProject2.knxproj -text
 lddi.knx.devicemanager/data/OfficeProject3.knxproj -text
@@ -773,6 +777,7 @@ lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/Activ
 lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxDeviceManager.java -text
 lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxImporter.java -text
 lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/util/LogTracker.java -text
+lddi.knx.library/MITX.txt -text
 lddi.knx.library/pom.xml -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxBaseDeviceCategory.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxDpt1.java -text
@@ -790,6 +795,7 @@ lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxEncoder.java -te
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
 lddi.knx.library/src/test/java/org/universAAL/lddi/knx/utils/KnxEncoderTest.java -text
+lddi.knx.networkdriver/MITX.txt -text
 lddi.knx.networkdriver/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.knx.networkdriver/conf/services/lddi.knx.networkdriver.properties -text
 lddi.knx.networkdriver/pom.xml -text
@@ -805,6 +811,7 @@ lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/
 lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 lddi.knx.networkdriver/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommandTest.java -text
 lddi.knx.networkdriver/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkdriverFunctionalTest.java -text
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/MITX.txt -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/README.txt -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/Run.bat -text
