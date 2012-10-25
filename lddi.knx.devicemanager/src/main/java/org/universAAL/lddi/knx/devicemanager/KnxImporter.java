@@ -21,12 +21,14 @@ import org.jdom.xpath.XPath;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
-
 /**
  * The class takes a ets4 export file as inputstream and creates a list of
- * KnxGroupAddress objects including building part information if available
- * Name and description of building parts are editable in ETS; type is fixed:
- * Floor, Room, Corridor, Cabinet, Stairway or Building Part
+ * KnxGroupAddress objects including building part information if available Name
+ * and description of building parts are editable in ETS; type is fixed: Floor,
+ * Room, Corridor, Cabinet, Stairway or Building Part
+ * 
+ * This class is only tested with ETS4 XML data schema 1.0 and 1.1 ! Higher
+ * schema versions may require refinement of this code !!
  * 
  * @author marcus@openremote.org
  * @author Thomas Fuxreiter (foex@gmx.at)
@@ -35,14 +37,23 @@ public class KnxImporter
 {
   private LogService logger;
 	
-  /**
+	/**
 	 * @param logger
 	 */
 	public KnxImporter(LogService logger) {
 		this.logger = logger;
 	}
 
-@SuppressWarnings("unchecked")
+	/**
+	 * This method can import ETS4 XML data schemas version 1.0 and 1.1 Higher
+	 * schema versions may require refinement of this code !!
+	 * 
+	 * @param inputStream
+	 *            of ETS4 export file (zip file)
+	 * @return list of KnxGroupAddress objects
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
   public List<KnxGroupAddress> importETS4Configuration(InputStream inputStream) throws Exception
   {
 
@@ -75,10 +86,18 @@ public class KnxImporter
 
       // Query all <GroupAddress> elements
       XPath xpathGA = XPath.newInstance("//knx:GroupAddress");
-      xpathGA.addNamespace("knx", "http://knx.org/xml/project/10");
+//      xpathGA.addNamespace("knx", "http://knx.org/xml/project/10");
+      xpathGA.addNamespace("knx", document.getRootElement().getNamespace().getURI() );
+
       // Store all <GroupAddress> elements in xresultGA
       List<Element> xresultGA = xpathGA.selectNodes(document);
 
+//      // If list is empty try any namespace
+//      if (xresultGA.isEmpty()) {
+//    	  xpathGA = XPath.newInstance("//*[local-name()='GroupAddress']");
+//          xresultGA = xpathGA.selectNodes(document);
+//      }
+      
       for (Element element : xresultGA)
       {
         String id = element.getAttributeValue("Id");
@@ -87,6 +106,7 @@ public class KnxImporter
         // Convert address in readable KNX format M/S/G
         String levelAddress = getAddressFromInt(Integer.parseInt(address));
         String description = element.getAttributeValue("Description");
+        String comment = element.getAttributeValue("Comment");
         String dpt = null;
 
         String deviceId = null;
@@ -96,13 +116,17 @@ public class KnxImporter
         
         // Query referenced <Send> element within ComObjectInstanceRef element which holds DPT
         XPath xpathCO = XPath.newInstance("//knx:Send[@GroupAddressRefId='" + id + "']/../..");
-        xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
+//        xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
+        xpathCO.addNamespace("knx", document.getRootElement().getNamespace().getURI() );
+
         List<Element> resultSGA = xpathCO.selectNodes(document);
         
         if (resultSGA.size() == 0) {
         	// The reference could also be in the <Receive> element
             xpathCO = XPath.newInstance("//knx:Receive[@GroupAddressRefId='" + id + "']/../..");
-            xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
+//            xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
+            xpathCO.addNamespace("knx", document.getRootElement().getNamespace().getURI() );
+
             resultSGA = xpathCO.selectNodes(document);
         }
         
@@ -139,7 +163,9 @@ public class KnxImporter
 
         // Query referenced DeviceInstance element which holds DPT
         XPath xpathDI = XPath.newInstance("//knx:Send[@GroupAddressRefId='" + id + "']/../../../..");
-        xpathDI.addNamespace("knx", "http://knx.org/xml/project/10");
+//        xpathDI.addNamespace("knx", "http://knx.org/xml/project/10");
+        xpathDI.addNamespace("knx", document.getRootElement().getNamespace().getURI() );
+
         List<Element> resultDI = xpathDI.selectNodes(document);
         if (resultDI.size() > 0)
         {
@@ -150,7 +176,9 @@ public class KnxImporter
         	  // now, search for BuildingPart
               // Query referenced BuildingPart element which holds name and type
               XPath xpathBP = XPath.newInstance("//knx:DeviceInstanceRef[@RefId='" + deviceId + "']/..");
-              xpathBP.addNamespace("knx", "http://knx.org/xml/project/10");
+//              xpathBP.addNamespace("knx", "http://knx.org/xml/project/10");
+              xpathBP.addNamespace("knx", document.getRootElement().getNamespace().getURI() );
+
               List<Element> xresultBP = xpathBP.selectNodes(document); 
               
               if (xresultBP.size() > 0)
@@ -163,7 +191,7 @@ public class KnxImporter
         }
 
 //        result.add(new KnxGroupAddress(dpt, levelAddress, name));
-        result.add(new KnxGroupAddress(dpt, levelAddress, name, description, bpType, bpName, bpDescription));
+        result.add(new KnxGroupAddress(dpt, levelAddress, name, description, comment, bpType, bpName, bpDescription));
 //        LOGGER.debug("Created GroupAddress: " + levelAddress + " - " + name + " - " + dpt);
       }
     }
