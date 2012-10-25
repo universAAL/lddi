@@ -142,10 +142,17 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 				if (knxConfigFile != null && knxConfigFile != "") {
 					InputStream is = new FileInputStream(knxConfigFile);
 					this.knxImportedGroupAddresses = new KnxImporter(logger).importETS4Configuration(is);
-					this.logger.log(LogService.LOG_DEBUG,
-							"Knx devices found in configuration: "
-							+ this.knxImportedGroupAddresses.toString());
+					if ( this.knxImportedGroupAddresses.isEmpty() ) {
+						this.logger.log(LogService.LOG_WARNING,
+								"No KNX devices found in configuration!!!!");
+					} else {
+						this.logger.log(LogService.LOG_DEBUG,
+								"Knx devices found in configuration: "
+										+ this.knxImportedGroupAddresses
+												.toString());
+					}
 					
+					//Step through device list
 					for ( KnxGroupAddress knxGroupAddress : knxImportedGroupAddresses ) {
 						
 						if ( checkKnxGroupAddress(knxGroupAddress) ) {
