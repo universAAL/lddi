@@ -9,6 +9,7 @@ public class KnxGroupAddress {
     private Boolean importGA = Boolean.FALSE;
     
     private String description;
+    private String comment;
     private String bpType; //BuildingPart Type
     private String bpName; //BuildingPart Name
     private String bpDescription;
@@ -33,11 +34,12 @@ public class KnxGroupAddress {
 	 * @param bpDescription
 	 */
 	public KnxGroupAddress(String dpt, String groupAddress, String name,
-			String description, String bpType, String bpName, String bpDescription) {
+			String description, String comment, String bpType, String bpName, String bpDescription) {
 		this.name = name;
 		this.groupAddress = groupAddress;
 		this.dpt = dpt;
 		this.description = description;
+		this.comment = comment;
 		this.bpType = bpType;
 		this.bpName = bpName;
 		this.bpDescription = bpDescription;
@@ -100,12 +102,20 @@ public class KnxGroupAddress {
     		getGroupAddress() + "; " +
     		getDpt() + "; " +
     		getDescription() + "; " +
+    		getComment() + "; " +
     		getBpType() + "; " +
     		getBpName() + "; " +
     		getBpDescription();
     }
     
     /**
+	 * @return comment on KNX device
+	 */
+	private String getComment() {
+		return this.comment;
+	}
+
+	/**
      * @return main datapoint type number of the KNX device 
      */
     public String getDptMain() {
