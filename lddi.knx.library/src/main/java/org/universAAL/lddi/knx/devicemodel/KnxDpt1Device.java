@@ -9,17 +9,15 @@ import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
  */
 public class KnxDpt1Device extends KnxDevice implements KnxDpt1 {
 
-	/**
-	 * empty constructor for factory
-	 */
-	public KnxDpt1Device() {
-		super();
-	}
+    /**
+     * empty constructor for factory
+     */
+    public KnxDpt1Device() {
+	super();
+    }
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.knx.devicecategory.KnxDpt1#newMessageFromKnxBus(byte)
-	 */
-	public void newMessageFromKnxBus(byte event) {
-		// not used in device; this method is called in driver!
-	}
+    @Deprecated
+    public void newMessageFromKnxBus(byte event) {
+	// not used in device; this method is called in driver!
+    }
 }
