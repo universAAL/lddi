@@ -3,6 +3,9 @@ package org.universAAL.lddi.knx.devicecategory;
 /**
  * Base DeviceCategory for KNX datapoint types B2 (2 bit).
  * 
+ * c = control bit
+ * v = value bit (according to DPT 1.xxx)
+ * 
  * In general DeviceCategories specify:
  * - rules and interfaces needed for the communication between device service
  * and driver service. Both of them implement this IF.
