@@ -83,8 +83,9 @@ public class KnxMappingFactory {
 		// knx datapoint type main number 5 (8 Bit - Unsigned Value)
 		case 5:
 			switch(knxDptSub){
-			case 1: // DPT_Scaling ***************************NEEDED
-				return null;
+			case 1: // DPT_Scaling
+			    // WHICH NEW TYPE SHOULD BE DEFINED FOR THIS ????????
+			    //return ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_SWITCH;
 			//...
 			}
 			break;
