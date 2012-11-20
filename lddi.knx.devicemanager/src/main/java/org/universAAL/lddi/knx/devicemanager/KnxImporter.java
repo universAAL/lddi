@@ -153,8 +153,8 @@ public class KnxImporter
           }
         }
         else {
-        	this.logger.log(LogService.LOG_WARNING, "No corresponging device found in knxproj file" +
-        			" for groupAddress " + levelAddress + " - Skipping this groupAddress!");
+        	this.logger.log(LogService.LOG_WARNING, "No corresponding device found in KNX config" +
+        			" for groupAddress " + levelAddress + " - Skipping this empty groupAddress!");
         	continue;
         }
         
