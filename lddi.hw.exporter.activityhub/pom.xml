@@ -11,7 +11,7 @@
   <artifactId>lddi.hw.exporter.activityhub</artifactId>
   <version>1.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>Exporter of ActivityHub devices (ISO 11073-10471) for uAAL</name>
+  <name>universAAL Local Device Discovery and Integration Exporter of ActivityHub devices (ISO 11073-10471)</name>
   <description>Hardware exporter of Home Automation components based on ISO 11073-10471 devices/model (health device communication - independent living activity hub) for the universAAL middleware</description>
   <inceptionYear>2012</inceptionYear>
   <organization>
