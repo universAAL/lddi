@@ -10,7 +10,7 @@
   </parent>
   <artifactId>lddi.composite</artifactId>
   <version>1.2.2-SNAPSHOT</version>
-  <name>Local Device Discovery and Integration Composite</name>
+  <name>universAAL Local Device Discovery and Integration Composite</name>
   <description>Artifact responsible for generating composite file of universAAL lddi</description>
   <url></url>
   <scm>

@@ -11,7 +11,7 @@
   <artifactId>lddi.pom</artifactId>
   <version>1.2.2-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Local Device Discovery and Integration</name>
+  <name>universAAL Local Device Discovery and Integration Suite</name>
   <description></description>
   <inceptionYear>2010</inceptionYear>
   <scm>
