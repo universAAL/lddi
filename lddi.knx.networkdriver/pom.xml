@@ -12,7 +12,7 @@
 	<artifactId>lddi.knx.networkdriver</artifactId>
 	<version>1.2.2-SNAPSHOT</version>
 	<packaging>bundle</packaging>
-	<name>universAAL Local Device Discovery and Integration KNX network driver</name>
+	<name>universAAL LDDI KNX network driver</name>
 	<description>This bundle connects to a UPD Multicast Channel on the local IP network where KNX bus messages can be sent and received. Usually a KNX/IP Gateway is used to connect the UDP Multicast Channel to the KNX bus system. The base source code is taken from the DOG2 project on http://domoticdog.sourceforge.net and slightly modified to run standalone.</description>
 	<inceptionYear>2012</inceptionYear>
 	<organization>
