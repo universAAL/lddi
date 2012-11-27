@@ -11,7 +11,7 @@
   <artifactId>lddi.knx.library</artifactId>
   <version>1.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>universAAL Local Device Discovery and Integration KNX Datapoint Type Library</name>
+  <name>universAAL LDDI KNX Datapoint Type Library</name>
   <description>KNX Device Categories for OSGi DeviceManager are Interfaces for all KNX Datapoint Types specifying methods for communication with device services.</description>
   <inceptionYear>2012</inceptionYear>
   <organization>
