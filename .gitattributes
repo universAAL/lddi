@@ -59,5 +59,21 @@ lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxEncoder.java -te
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
 lddi.knx.library/src/test/java/org/universAAL/lddi/knx/utils/KnxEncoderTest.java -text
+lddi.knx.networkdriver/MITX.txt -text
+lddi.knx.networkdriver/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
+lddi.knx.networkdriver/conf/services/lddi.knx.networkdriver.properties -text
+lddi.knx.networkdriver/pom.xml -text
+lddi.knx.networkdriver/readme.txt -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/Activator.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommand.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommunication.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkDriverImp.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNotification.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxReader.java -text
+lddi.knx.networkdriver/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriter.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/KnxShellCommand.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
+lddi.knx.networkdriver/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommandTest.java -text
+lddi.knx.networkdriver/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkdriverFunctionalTest.java -text
 lddi.pom/composite/pom.xml -text
 lddi.pom/pom.xml -text
