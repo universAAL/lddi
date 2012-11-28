@@ -129,3 +129,5 @@ lddi.knx.networkdriver-0.0.5-SNAPSHOT/src/main/java/it/polito/elite/domotics/dog
 lddi.knx.networkdriver-0.0.5-SNAPSHOT/src/main/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxWriter.java -text
 lddi.knx.networkdriver-0.0.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 lddi.pom-1.1.1-SNAPSHOT/pom.xml -text
+lddi.pom-1.2.2-SNAPSHOT/composite/pom.xml -text
+lddi.pom-1.2.2-SNAPSHOT/pom.xml -text
