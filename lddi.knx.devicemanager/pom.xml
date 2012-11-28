@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>lddi.pom</artifactId>
     <groupId>org.universAAL.lddi</groupId>
-    <version>1.2.2-SNAPSHOT</version>
+    <artifactId>lddi.pom</artifactId>
+    <version>1.3.1-SNAPSHOT</version>
     <relativePath>../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.knx.devicemanager</artifactId>
-  <version>1.2.2-SNAPSHOT</version>
+  <version>1.3.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX device manager</name>
   <description>This bundle reads KNX device configuration from XML files (exported by ETS4). A OSGI device service is registered in the framework for every KNX device.</description>
@@ -36,6 +36,36 @@
       <timezone>CEST/CET</timezone>
     </developer>
   </developers>
+  <properties>
+    <gforge.project.name>lddi</gforge.project.name>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi_R4_compendium</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jdom</groupId>
+      <artifactId>jdom</artifactId>
+      <version>1.1.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.library</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.networkdriver</artifactId>
+    </dependency>
+  </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -77,34 +107,4 @@
       </dependencies>
     </profile>
   </profiles>
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.osgi.core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>osgi_R4_compendium</artifactId>
-      <version>1.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jdom</groupId>
-      <artifactId>jdom</artifactId>
-      <version>1.1.3</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.library</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.networkdriver</artifactId>
-    </dependency>
-  </dependencies>
-  <properties>
-    <gforge.project.name>lddi</gforge.project.name>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
 </project>
