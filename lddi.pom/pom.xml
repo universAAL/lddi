@@ -15,9 +15,9 @@
   <description></description>
   <inceptionYear>2010</inceptionYear>
   <scm>
-    <connection>${svn.base}/pom</connection>
-    <developerConnection>${svn.base}/pom</developerConnection>
-    <url>${svn.base.url}pom</url>
+    <connection>${svn.base}/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}${project.artifactId}</url>
   </scm>
   <build>
     <plugins>
