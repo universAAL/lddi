@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.universAAL</groupId>
     <artifactId>uAAL.pom</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.3.0</version>
   </parent>
   <groupId>org.universAAL.lddi</groupId>
   <artifactId>lddi.pom</artifactId>
@@ -38,21 +38,21 @@
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
+        <version>1.3.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom.osgi</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
+        <version>1.3.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.ontology</groupId>
         <artifactId>ont.pom</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
+        <version>1.3.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
