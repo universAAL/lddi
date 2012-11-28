@@ -1,4 +1,5 @@
 * text=auto !eol
+lddi.composite-1.2.2-SNAPSHOT/pom.xml -text
 lddi.hw.exporter.activityhub-0.0.5-SNAPSHOT/README.txt -text
 lddi.hw.exporter.activityhub-0.0.5-SNAPSHOT/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub-0.0.5-SNAPSHOT/conf/services/lddi.knx.devicemanager.properties -text
