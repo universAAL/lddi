@@ -153,6 +153,7 @@ public class Measurement {
 			DecimalFormat df = generateFloatFormat(measure.getExponent());			
 			Logging.logMeasurement(df.format(measure.getFloatValue()) + " " + ASNUtils.getUnitName(unit_code));
 			weightValue = df.format(measure.getFloatValue());
+			System.out.println("DATA_RECEIVED_VALUE: "+weightValue);
 			weightUnit = ASNUtils.getUnitName(unit_code);	
 		} catch (Exception e) {
 			e.printStackTrace();
