@@ -26,6 +26,11 @@ public class Measurement {
 	private String weightValue = null;
 	private String weightUnit = null;
 	private String weightTimestamp = null;
+	
+	public static Double weightMeasurement = null;
+	public static String sysMeasurement = null;
+	public static String diaMeasurement = null;
+	public static String hrMeasurement = null;
 
 
 	private static MeasurementValue[] measures;
@@ -144,20 +149,15 @@ public class Measurement {
 	
 
 
-	private void printSimpleNuObsValue(SimpleNuObsValue obj, int unit_code) {
-		System.out.println("*************************************************************");
-		System.out.println("*************************************************************");
-		System.out.println("***********************1   **********************************");
-		System.out.println("*************************************************************");
-		FLOAT_Type float_type = obj.getValue();
-		
+	private void printSimpleNuObsValue(SimpleNuObsValue obj, int unit_code) {		
+		FLOAT_Type float_type = obj.getValue();		
 		FloatType measure;
 		try {
 			measure = new FloatType(float_type.getValue().getValue());
 			DecimalFormat df = generateFloatFormat(measure.getExponent());			
 			Logging.logMeasurement(df.format(measure.getFloatValue()) + " " + ASNUtils.getUnitName(unit_code));
 			weightValue = df.format(measure.getFloatValue());
-			System.out.println("DATA_RECEIVED_VALUE: "+weightValue);
+			setWeightMeasurement(measure.getFloatValue());			
 			weightUnit = ASNUtils.getUnitName(unit_code);	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -400,5 +400,7 @@ public class Measurement {
 		return modified_values;
 	}
 	
-	
+	public void setWeightMeasurement(Double f) {
+		weightMeasurement = f;
+	}	
 }
