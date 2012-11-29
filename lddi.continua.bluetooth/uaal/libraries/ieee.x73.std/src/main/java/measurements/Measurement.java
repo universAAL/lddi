@@ -145,6 +145,10 @@ public class Measurement {
 
 
 	private void printSimpleNuObsValue(SimpleNuObsValue obj, int unit_code) {
+		System.out.println("*************************************************************");
+		System.out.println("*************************************************************");
+		System.out.println("***********************1   **********************************");
+		System.out.println("*************************************************************");
 		FLOAT_Type float_type = obj.getValue();
 		
 		FloatType measure;
@@ -161,7 +165,10 @@ public class Measurement {
 	}
 
 	private void printBasicNuObsValue(BasicNuObsValue obj, int unit_code) {
-
+		System.out.println("*************************************************************");
+		System.out.println("*************************************************************");
+		System.out.println("***********************2   **********************************");
+		System.out.println("*************************************************************");
 		SFLOAT_Type sfloat_type = obj.getValue();
 		SFloatType measure;
 		try {
@@ -197,7 +204,10 @@ public class Measurement {
 
 	
 	private void printSimpleNuObsValueCmp(SimpleNuObsValueCmp obj, int unit_code) {
-
+		System.out.println("*************************************************************");
+		System.out.println("*************************************************************");
+		System.out.println("***********************3   **********************************");
+		System.out.println("*************************************************************");
 		Iterator<SimpleNuObsValue> it = obj.getValue().iterator();
 
 		while (it.hasNext()){
