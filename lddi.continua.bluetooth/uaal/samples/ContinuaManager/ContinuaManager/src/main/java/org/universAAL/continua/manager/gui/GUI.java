@@ -231,12 +231,12 @@ public class GUI extends JDialog implements ActionListener {
 				// Random values
 				if(remoteDeviceType.equals("WeightingScale")) {
 					uaalX73Publisher.publishWeightEvent(Integer.parseInt(uaalPublisherWeightValueTextfield.getText()));
-					stopPublisherGUI();
+					//stopPublisherGUI();
 				} else {					
 					uaalX73Publisher.publishBloodPressureEvent(Integer.parseInt(uaalPublisherBloodPressureSysValueTextfield.getText()),
 							   Integer.parseInt(uaalPublisherBloodPressureDiaValueTextfield.getText()),
 							   Integer.parseInt(uaalPublisherBloodPressurePulValueTextfield.getText()));
-					stopPublisherGUI();
+					//stopPublisherGUI();
 				}
 			}			
 		}
@@ -255,7 +255,7 @@ public class GUI extends JDialog implements ActionListener {
 		    public void windowClosing(WindowEvent e) {
 		    	//@TODO do something
 		    	setVisible(true);
-		    	resetComponentsStatus();
+		    	stopPublisherGUI();
 		    }
 		});		
 		// Main panel
@@ -412,8 +412,8 @@ public class GUI extends JDialog implements ActionListener {
 	
 	/** Exit all */
 	public void stopGUI() {
-		if(manager != null)
-			manager.exit();
+//		if(manager != null)
+//			manager.exit();
 		resetComponentsStatus();
 		dispose();
 	}
