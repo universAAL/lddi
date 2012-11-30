@@ -91,9 +91,9 @@ public class GUI extends JDialog implements ActionListener {
 	
 	/** Final data to be published */
 	public static double finalMeasuredWeightData = -1.0;
-	public static int finalSysBloodPressureData = -1;
-	public static int finalDiaBloodPressureData = -1;
-	public static int finalHrBloodPressureData = -1;
+	public static double finalSysBloodPressureData = -1;
+	public static double finalDiaBloodPressureData = -1;
+	public static double finalHrBloodPressureData = -1;
 	
 	/** Real or simulated measurement */
 	public static boolean realMeasurement = false;
@@ -209,19 +209,23 @@ public class GUI extends JDialog implements ActionListener {
 		} else if(e.getActionCommand().equals("publishData")) {
 			// Publish data to uAAL context bus. Ensure that values are not NULL
 			uaalX73Publisher = new Publisher(ctx);			
-			if(realMeasurement) {
-				System.out.println("medida real");
+			if(realMeasurement) {				
 				// Real values
 				if(remoteDeviceType.equals("WeightingScale")) {					
 					if(finalMeasuredWeightData != -1.0) {						
 						double temp_1 = shortDecimalNumber(finalMeasuredWeightData)*1000;
-						int temp = (int) temp_1;				
-						System.out.println(temp);
+						int temp = (int) temp_1;						
 						uaalX73Publisher.publishWeightEvent(temp);	
 						//stopPublisherGUI();
 					}	
 				} else {
-					
+					if((finalDiaBloodPressureData != -1)&&(finalHrBloodPressureData != -1)&&(finalSysBloodPressureData != -1)) {						
+						int temp_0 = (int) finalSysBloodPressureData;
+						int temp_1 = (int) finalDiaBloodPressureData;
+						int temp_2 = (int) finalHrBloodPressureData;						
+						uaalX73Publisher.publishBloodPressureEvent(temp_0,temp_1,temp_2);	
+						//stopPublisherGUI();
+					}
 				}				
 			} else {				
 				// Random values
