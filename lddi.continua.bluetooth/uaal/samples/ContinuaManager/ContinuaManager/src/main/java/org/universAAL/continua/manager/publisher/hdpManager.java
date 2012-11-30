@@ -247,7 +247,7 @@ public class hdpManager implements hdpManagerListener {
 		if(remoteDeviceType.equals("BloodPressureMonitor")) {
 			CONTINUA_DEVICE = "BloodPressureMonitor";
 			//TODO Please, put here your MAC address device
-			macAddressRemoteDevice = "";
+			macAddressRemoteDevice = "00:09:1F:80:04:D6";
 		} else {			
 			CONTINUA_DEVICE = "WeightingScale";
 			//TODO Please, put here your MAC address device
@@ -366,9 +366,8 @@ public class hdpManager implements hdpManagerListener {
 				
 			} else {	
 				if(Measurement.weightMeasurement != null) {
-					Double temp = Measurement.weightMeasurement;
-					System.out.println(temp);
-					GUI.finalData = temp;
+					Double temp = Measurement.weightMeasurement;					
+					GUI.finalMeasuredWeightData = temp;
 					GUI.uaalPublisherWeightValueTextfield.setText(Double.toString(shortDecimalNumber(temp)));					
 					GUI.uaalPublisherWeightUnitTextfield.setText("kg");	
 					GUI.mainPanel.repaint();				
