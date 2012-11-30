@@ -680,6 +680,8 @@ lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/target/surefire/surefire6324
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/target/surefire/surefire6559404879576166290tmp -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/target/surefire/surefire8495203767661370807tmp -text
 lddi.continua.bluetooth/uaal/libraries/libHDPnative.zip -text
+lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/libHDPnative_unix_32.so.zip -text
+lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/libHDPnative_unix_64.so.zip -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/libHDPnative_unix_32.so -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/pom.xml -text
