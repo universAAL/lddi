@@ -28,9 +28,9 @@ public class Measurement {
 	private String weightTimestamp = null;
 	
 	public static Double weightMeasurement = null;
-	public static String sysMeasurement = null;
-	public static String diaMeasurement = null;
-	public static String hrMeasurement = null;
+	public static Double sysMeasurement = null;
+	public static Double diaMeasurement = null;
+	public static Double hrMeasurement = null;
 
 
 	private static MeasurementValue[] measures;
@@ -157,6 +157,7 @@ public class Measurement {
 			DecimalFormat df = generateFloatFormat(measure.getExponent());			
 			Logging.logMeasurement(df.format(measure.getFloatValue()) + " " + ASNUtils.getUnitName(unit_code));
 			weightValue = df.format(measure.getFloatValue());
+			// Weight measurement from weight scale
 			setWeightMeasurement(measure.getFloatValue());			
 			weightUnit = ASNUtils.getUnitName(unit_code);	
 		} catch (Exception e) {
@@ -164,11 +165,7 @@ public class Measurement {
 		}		
 	}
 
-	private void printBasicNuObsValue(BasicNuObsValue obj, int unit_code) {
-		System.out.println("*************************************************************");
-		System.out.println("*************************************************************");
-		System.out.println("***********************2   **********************************");
-		System.out.println("*************************************************************");
+	private void printBasicNuObsValue(BasicNuObsValue obj, int unit_code) {		
 		SFLOAT_Type sfloat_type = obj.getValue();
 		SFloatType measure;
 		try {
@@ -177,6 +174,8 @@ public class Measurement {
 			DecimalFormat df = generateFloatFormat(measure.getExponent());			
 			Logging.logMeasurement(df.format(measure.getFloatValue()) + " " + ASNUtils.getUnitName(unit_code));
 			weightValue = df.format(measure.getFloatValue());
+			// Heart rate measurement from blood pressure monitor
+			setHeartRateMeasurement(measure.getFloatValue());
 			weightUnit = ASNUtils.getUnitName(unit_code);	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,13 +202,8 @@ public class Measurement {
 	}
 
 	
-	private void printSimpleNuObsValueCmp(SimpleNuObsValueCmp obj, int unit_code) {
-		System.out.println("*************************************************************");
-		System.out.println("*************************************************************");
-		System.out.println("***********************3   **********************************");
-		System.out.println("*************************************************************");
+	private void printSimpleNuObsValueCmp(SimpleNuObsValueCmp obj, int unit_code) {		
 		Iterator<SimpleNuObsValue> it = obj.getValue().iterator();
-
 		while (it.hasNext()){
 			SimpleNuObsValue value = it.next();
 			FLOAT_Type float_value = value.getValue();
@@ -220,7 +214,6 @@ public class Measurement {
 				Logging.logMeasurement(df.format(measure.getFloatValue()) + " " + ASNUtils.getUnitName(unit_code));
 				weightValue = df.format(measure.getFloatValue());
 				weightUnit = ASNUtils.getUnitName(unit_code);	
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -242,10 +235,9 @@ public class Measurement {
 		return weightTimestamp;
 	}
 	
-	private void printBasicNuObsValueCmp(BasicNuObsValueCmp obj, int unit_code) {
-
+	private void printBasicNuObsValueCmp(BasicNuObsValueCmp obj, int unit_code) {	
+		int counter = 0;
 		Iterator<BasicNuObsValue> it = obj.getValue().iterator();
-
 		while (it.hasNext()){
 			BasicNuObsValue value = it.next();
 			SFLOAT_Type sfloat_value = value.getValue();
@@ -255,11 +247,17 @@ public class Measurement {
 				DecimalFormat df = generateFloatFormat(measure.getExponent());			
 				Logging.logMeasurement(df.format(measure.getFloatValue()) + " " + ASNUtils.getUnitName(unit_code));
 				weightValue = df.format(measure.getFloatValue());
+				if(counter == 0)
+					// Sys measurement from blood pressure monitor
+					setSysMeasurement(measure.getFloatValue());
+				else if(counter == 1) 
+					// Dia measurement from blood pressure monitor
+					setDiaMeasurement(measure.getFloatValue());				
 				weightUnit = ASNUtils.getUnitName(unit_code);	
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+			counter++;
 		}
 	}
 	
@@ -403,4 +401,16 @@ public class Measurement {
 	public void setWeightMeasurement(Double f) {
 		weightMeasurement = f;
 	}	
+	
+	public void setHeartRateMeasurement(Double f) {
+		hrMeasurement = f;
+	}
+	
+	public void setSysMeasurement(Double f) {
+		sysMeasurement = f;
+	}
+	
+	public void setDiaMeasurement(Double f) {
+		diaMeasurement = f;
+	}
 }
