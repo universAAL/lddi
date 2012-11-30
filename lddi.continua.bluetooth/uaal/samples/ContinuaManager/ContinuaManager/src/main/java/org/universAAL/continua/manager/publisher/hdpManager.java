@@ -363,7 +363,18 @@ public class hdpManager implements hdpManagerListener {
 		sendHDPDataToDevice(hdpDataChannelFileDescriptor,response);
 		if(fsm.getStringChannelState().equals("ASSOCIATED - OPERATING")) {					
 			if(remoteDeviceType.equals("BloodPressureMonitor")) {
-				
+				if((Measurement.hrMeasurement != null)&&(Measurement.sysMeasurement != null)&&(Measurement.diaMeasurement != null)) {
+					Double temp_0 = Measurement.hrMeasurement;
+					Double temp_1 = Measurement.sysMeasurement;
+					Double temp_2 = Measurement.diaMeasurement;
+					GUI.finalHrBloodPressureData = temp_0;
+					GUI.finalSysBloodPressureData = temp_1;
+					GUI.finalDiaBloodPressureData = temp_2;
+					GUI.uaalPublisherBloodPressurePulValueTextfield.setText(Double.toString(temp_0));					
+					GUI.uaalPublisherBloodPressureSysValueTextfield.setText(Double.toString(temp_1));					
+					GUI.uaalPublisherBloodPressureDiaValueTextfield.setText(Double.toString(temp_2));
+					GUI.mainPanel.repaint();
+				}
 			} else {	
 				if(Measurement.weightMeasurement != null) {
 					Double temp = Measurement.weightMeasurement;					
