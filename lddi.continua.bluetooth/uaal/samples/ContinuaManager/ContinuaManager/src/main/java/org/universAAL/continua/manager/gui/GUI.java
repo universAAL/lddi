@@ -90,7 +90,13 @@ public class GUI extends JDialog implements ActionListener {
 	private String remoteDeviceType = null;
 	
 	/** Final data to be published */
-	public static double finalData = -1.0;
+	public static double finalMeasuredWeightData = -1.0;
+	public static int finalSysBloodPressureData = -1;
+	public static int finalDiaBloodPressureData = -1;
+	public static int finalHrBloodPressureData = -1;
+	
+	/** Real or simulated measurement */
+	public static boolean realMeasurement = false;
 	
 	// Constructor	
 	public GUI(BundleContext context) {
@@ -184,31 +190,51 @@ public class GUI extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("bloodPressure")) {
 			// Blood pressure device
-			if(realMeasurementButton.isSelected())
-				createUaalPublisher("bloodPressure","real");			
-			if(simulatedMeasurementButton.isSelected())
-				createUaalPublisher("bloodPressure","simulated");		
+			if(realMeasurementButton.isSelected()) {
+				realMeasurement = true;
+				createUaalPublisher("bloodPressure","real");				
+			} else if(simulatedMeasurementButton.isSelected()) {
+				realMeasurement = false;
+				createUaalPublisher("bloodPressure","simulated");				
+			}	
 		} else if(e.getActionCommand().equals("weighingScale")) {
 			// Weighing scale device
-			if(realMeasurementButton.isSelected())
-				createUaalPublisher("weighingScale","real");
-			if(simulatedMeasurementButton.isSelected())
-				createUaalPublisher("weighingScale","simulated");
+			if(realMeasurementButton.isSelected()) {
+				realMeasurement = true;
+				createUaalPublisher("weighingScale","real");				
+			} else if(simulatedMeasurementButton.isSelected()) {
+				realMeasurement = false;
+				createUaalPublisher("weighingScale","simulated");				
+			}
 		} else if(e.getActionCommand().equals("publishData")) {
 			// Publish data to uAAL context bus. Ensure that values are not NULL
 			uaalX73Publisher = new Publisher(ctx);			
-			//if((remoteDeviceType.equals("WeightingScale"))&&(finalData != -1.0)) {
-			if((remoteDeviceType.equals("WeightingScale"))&&(uaalPublisherWeightValueTextfield.getText() != null)) {
-				double temp_1 = shortDecimalNumber(finalData)*1000;
-				int temp = (int) temp_1;				
-				uaalX73Publisher.publishWeightEvent(temp);
-			} else if((uaalPublisherBloodPressureSysValueTextfield != null)&&
-					  (uaalPublisherBloodPressureDiaValueTextfield != null)&&
-					  (uaalPublisherBloodPressurePulValueTextfield != null)) {
-				uaalX73Publisher.publishBloodPressureEvent(Integer.parseInt(uaalPublisherBloodPressureSysValueTextfield.getText()),
-														   Integer.parseInt(uaalPublisherBloodPressureDiaValueTextfield.getText()),
-														   Integer.parseInt(uaalPublisherBloodPressurePulValueTextfield.getText()));
-			}
+			if(realMeasurement) {
+				System.out.println("medida real");
+				// Real values
+				if(remoteDeviceType.equals("WeightingScale")) {					
+					if(finalMeasuredWeightData != -1.0) {						
+						double temp_1 = shortDecimalNumber(finalMeasuredWeightData)*1000;
+						int temp = (int) temp_1;				
+						System.out.println(temp);
+						uaalX73Publisher.publishWeightEvent(temp);	
+						//stopPublisherGUI();
+					}	
+				} else {
+					
+				}				
+			} else {				
+				// Random values
+				if(remoteDeviceType.equals("WeightingScale")) {
+					uaalX73Publisher.publishWeightEvent(Integer.parseInt(uaalPublisherWeightValueTextfield.getText()));
+					stopPublisherGUI();
+				} else {					
+					uaalX73Publisher.publishBloodPressureEvent(Integer.parseInt(uaalPublisherBloodPressureSysValueTextfield.getText()),
+							   Integer.parseInt(uaalPublisherBloodPressureDiaValueTextfield.getText()),
+							   Integer.parseInt(uaalPublisherBloodPressurePulValueTextfield.getText()));
+					stopPublisherGUI();
+				}
+			}			
 		}
 	}    
 	
@@ -270,10 +296,12 @@ public class GUI extends JDialog implements ActionListener {
 		} else {
 			// Generate random values
 			if(device.equals("bloodPressure")) {
+				remoteDeviceType = "BloodPressureMonitor";
 				uaalPublisherBloodPressureSysValueTextfield.setText(""+getRandomValue(90,119));
 				uaalPublisherBloodPressureDiaValueTextfield.setText(""+getRandomValue(60,79));
 				uaalPublisherBloodPressurePulValueTextfield.setText(""+getRandomValue(49,198));
 			} else {
+				remoteDeviceType = "WeightingScale";
 				uaalPublisherWeightValueTextfield.setText(""+getRandomValue(50,110));
 				uaalPublisherWeightUnitTextfield.setText("kg");
 			}
@@ -337,6 +365,11 @@ public class GUI extends JDialog implements ActionListener {
 		uaalPublisherBloodPressurePulValueLabel = null;
 		uaalPublisherBloodPressurePulValueTextfield = null;
 		remoteDeviceType = null;
+		realMeasurement = false;
+		finalMeasuredWeightData = -1.0;
+		finalSysBloodPressureData = -1;
+		finalDiaBloodPressureData = -1;
+		finalHrBloodPressureData = -1;
 	}
 	
 	/** Shorten number of decimals */
@@ -363,6 +396,15 @@ public class GUI extends JDialog implements ActionListener {
 			}			
 		}.start();
 	}	
+	
+	/** */
+	public void stopPublisherGUI() {
+		if(manager != null)
+			manager.exit();
+		resetComponentsStatus();
+		uaalPublisher.dispose();
+		setVisible(true);
+	}
 	
 	/** Exit all */
 	public void stopGUI() {
