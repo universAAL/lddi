@@ -684,6 +684,7 @@ lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/libHDPnative_unix_32.so.zi
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/libHDPnative_unix_64.so.zip -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/libHDPnative_unix_32.so -text
+lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/libHDPnative_unix_64.so -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/pom.xml -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/java/org/universAAL/continua/manager/gui/GUI.java -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/java/org/universAAL/continua/manager/publisher/Activator.java -text

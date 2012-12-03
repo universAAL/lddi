@@ -32,13 +32,17 @@
 						<Include-Resource>
 							lib,
 							src/main/resources
-						</Include-Resource>				
+						</Include-Resource>	
+						<Import-Package>*</Import-Package>			
 						<Bundle-NativeCode>
 							libHDPnative_unix_32.so;
 							osname=Linux;
 							processor=x86; processor=x86_32
+							libHDPnative_unix_64.so;
+							osname=Linux;
+							processor=x86; processor=x86_64
 						</Bundle-NativeCode>
-					</instructions>
+						</instructions>
 				</configuration>
 			</plugin>
 		</plugins>
