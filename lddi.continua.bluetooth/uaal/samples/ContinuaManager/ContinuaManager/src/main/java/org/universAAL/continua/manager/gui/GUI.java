@@ -403,8 +403,10 @@ public class GUI extends JDialog implements ActionListener {
 	
 	/** */
 	public void stopPublisherGUI() {
-		if(manager != null)
+		if(manager != null) {
 			manager.exit();
+			manager = null;
+		}	
 		resetComponentsStatus();
 		uaalPublisher.dispose();
 		setVisible(true);
@@ -412,9 +414,13 @@ public class GUI extends JDialog implements ActionListener {
 	
 	/** Exit all */
 	public void stopGUI() {
-//		if(manager != null)
-//			manager.exit();
+		if(manager != null) {
+			manager.exit();
+			manager = null;
+		}	
 		resetComponentsStatus();
+		if(uaalPublisher != null)
+			uaalPublisher.dispose();	
 		dispose();
 	}
 }

@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 import org.universAAL.continua.manager.gui.GUI;;
 
 // Main class
@@ -38,6 +39,11 @@ public class Activator implements BundleActivator {
 		gui.addWindowListener(new WindowAdapter() {				
 			public void windowClosing(WindowEvent e) {
 				gui.stopGUI();
+				try {
+					ctx.getBundle().stop();
+				} catch (BundleException e1) {					
+					e1.printStackTrace();
+				}				
 			}
 		});
 		gui.setVisible(true);

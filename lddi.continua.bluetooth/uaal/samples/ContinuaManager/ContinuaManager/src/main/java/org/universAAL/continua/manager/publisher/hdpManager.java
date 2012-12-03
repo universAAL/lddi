@@ -32,7 +32,10 @@ public class hdpManager implements hdpManagerListener {
 
 	// Dinamic library name and path where it can be found (IMPORTANT: without "lib" prefix)
 	//TODO Please, check the name and location of the native library (/lib folder)
-	private static String libNameWithoutExtension = "HDPnative_unix_32";	
+	private static String libNameWithoutExtension_unix_32 = "HDPnative_unix_32";
+	private static String libNameWithoutExtension_unix_64 = "HDPnative_unix_64";
+	private static String libNameWithoutExtension_windows_32 = "";
+	private static String libNameWithoutExtension_windows_64 = "";
 
 	// MAC address remote device
 	private static String macAddressRemoteDevice = null;	
@@ -247,13 +250,13 @@ public class hdpManager implements hdpManagerListener {
 		if(remoteDeviceType.equals("BloodPressureMonitor")) {
 			CONTINUA_DEVICE = "BloodPressureMonitor";
 			//TODO Please, put here your MAC address device
-			macAddressRemoteDevice = "00:09:1F:80:04:D6";
+			macAddressRemoteDevice = "00:09:1F:80:04:D6";			
 		} else {			
 			CONTINUA_DEVICE = "WeightingScale";
 			//TODO Please, put here your MAC address device
 			macAddressRemoteDevice = "00:09:1F:80:0A:E0";		
 		}
-		dataTypeValue = CONTINUA_DEVICE;
+		dataTypeValue = CONTINUA_DEVICE;		
 	}
 
 	/** Java methods */	
@@ -327,10 +330,10 @@ public class hdpManager implements hdpManagerListener {
 		// Get the object path of the just created HDP channel
 		if(remoteDevicePath != null) {
 			hdpDataChannelPath = getHDPDataChannelPath(remoteDevicePath);
-			System.out.println("HDP channel path: "+hdpDataChannelPath);
-			// Show HDP main properties
-			System.out.println("HDP data channel properties:");
+			System.out.println("HDP channel path: "+hdpDataChannelPath);			
 			if(hdpDataChannelPath != null) {				
+				// Show HDP main properties
+				System.out.println("HDP data channel properties:");
 				showHDPDataChannelProperties(hdpDataChannelPath);
 				// We need a valid file descriptor prior sending or receiving data bytes between managers and agents. If the file descriptor getted is not
 				// valid a -1 value will be returned
@@ -401,19 +404,39 @@ public class hdpManager implements hdpManagerListener {
 	/** */
 	public void onMessage(String str) {		
 		System.out.println(str);		
-	}		
+	}
+	
+	/** Reset components */
+	public void resetComponentsStatus() {
+		CONTINUA_DEVICE = null;
+		macAddressRemoteDevice = null;
+		remoteDevicePath = null;
+		hdpDataChannelPath = null;		
+		hdpDataChannelFileDescriptor = -1;
+		x73manager = null;
+	}
 	
 	/** Close HDP channel and free resources */
 	public void exit() {
 		if(fsm != null)
 			fsm.transportDeactivate();
+		resetComponentsStatus();
 		closeHDPManager();
 	}
 
 	// Load dinamic library (.so in GNU/Linux or .dll in M$ platforms)
 	static {
-		try {			
-			System.loadLibrary(libNameWithoutExtension);			
+		try {	
+			// OS = GNU/Linux
+			if(System.getProperty("os.name").equals("Linux")) {
+				if(System.getProperty("os.arch").equals("i386")) {
+					// Arch = 32 bits					
+					System.loadLibrary(libNameWithoutExtension_unix_32);
+				} else {
+					// Arch = 64 bits					
+					System.loadLibrary(libNameWithoutExtension_unix_64);
+				}
+			}						
 		}catch(Exception ex) {
 			System.out.println("Unable to load native library. Please, check your path and OSGi manifest settings...");
 		}
