@@ -1,3 +1,13 @@
+lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/.classpath
+lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/.project
+lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/.settings
+lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/target
+lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/.settings
+lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/target
+lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.classpath
+lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.project
+lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.settings
+lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/target
 lddi.hw.exporter.activityhub/.classpath
 lddi.hw.exporter.activityhub/.project
 lddi.hw.exporter.activityhub/.settings
