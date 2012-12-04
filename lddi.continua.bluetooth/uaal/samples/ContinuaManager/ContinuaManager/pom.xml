@@ -3,12 +3,14 @@
 	<parent>
 		<artifactId>lddi.pom</artifactId>
 		<groupId>org.universAAL.lddi</groupId>
-		<version>1.2.1-SNAPSHOT</version>
+<!-- updated version due to dependency conflicts -->
+		<version>1.2.2-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.universAAL.continua</groupId>
 	<artifactId>uaalContinuaManagerClient</artifactId>
-	<version>1.2.1-SNAPSHOT</version>
+<!-- updated version -->
+	<version>1.2.2-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>uAAL Continua Manager Client</name>
 	<description>Continua Health Alliance agent event publisher</description>
@@ -21,7 +23,8 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.3.7</version>
+<!-- this version is managed by the parent pom -->
+<!-- 				<version>2.3.7</version> -->
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
@@ -47,6 +50,17 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>uAAL-Runtime</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.universAAL.middleware</groupId>
+					<artifactId>mw.data.serialization.osgi</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>	
 	<dependencies>
 		<dependency>
 			<groupId>org.universAAL.continua</groupId>
@@ -56,12 +70,14 @@
 		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.osgi.core</artifactId>
-			<version>1.4.0</version>
+<!-- this version is managed by the parent pom -->
+<!-- 			<version>1.4.0</version> -->
 		</dependency>
 		<dependency>
 		<groupId>org.universAAL.middleware</groupId>
 		<artifactId>mw.container.osgi</artifactId>
-		<version>1.2.0</version>
+<!-- this version is managed by the parent pom -->
+<!-- 		<version>1.2.0</version> -->
 	</dependency>
 	<dependency>
 		<groupId>org.universAAL.ontology</groupId>
