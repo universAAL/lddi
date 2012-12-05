@@ -17,7 +17,7 @@ public class KnxDpt3Device extends KnxDevice implements KnxDpt3 {
     }
 
     @Deprecated
-    public void newMessageFromKnxBus(byte event) {
+    public void newMessageFromKnxBus(byte[] event) {
 	// not used in device; this method is called in driver!
     }
     

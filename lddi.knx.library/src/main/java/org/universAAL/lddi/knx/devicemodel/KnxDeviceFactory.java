@@ -23,7 +23,7 @@ public abstract class KnxDeviceFactory {
 //			case 6: return new KnxDpt6Device();
 //			case 7: return new KnxDpt7Device();
 //			case 8: return new KnxDpt8Device();
-//			case 9: return new KnxDpt9Device();
+			case 9: return new KnxDpt9Device();
 //			case 10: return new KnxDpt10Device();
 //			case 11: return new KnxDpt11Device();
 //			case 12: return new KnxDpt12Device();
