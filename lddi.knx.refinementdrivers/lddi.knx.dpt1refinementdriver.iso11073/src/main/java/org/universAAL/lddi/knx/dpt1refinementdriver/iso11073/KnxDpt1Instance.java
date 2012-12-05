@@ -12,6 +12,7 @@ import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
 import org.universAAL.lddi.knx.devicedriver.KnxDriver;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
+import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
  * Working instance of the KnxDpt1 driver. Registers a service/device.
@@ -181,11 +182,13 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 	 * got new message from knx bus
 	 * pass to ISO device
 	 */
-	public void newMessageFromKnxBus(byte event) {
+	public void newMessageFromKnxBus(byte[] event) {
 		// try to display event byte readable. No good: Byte.toString(byte), Integer.toHexString(byte)
 		this.logger.log(LogService.LOG_INFO, "Driver " + KnxDpt1.MY_DEVICE_CATEGORY + " for device " + 
 				this.device.getGroupAddress() + " with knx datapoint type " + this.device.getDatapointType() +
-				" received new knx message " + String.format("%02X", event));
+				" received new knx message " + 
+				KnxEncoder.convertToReadableHex(event));
+//				String.format("%02X", event));
 
 		if (this.activityHubSensor != null){
 		
@@ -198,14 +201,14 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 			/**
 			 * KNX datapoint type 1.*** is a 1-bit signal; therefore only on/off is forwarded to ISO devices!  
 			 */
-			if ( event == DEFAULT_VALUE_OFF ) {
+			if ( event[0] == DEFAULT_VALUE_OFF ) {
 				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_VALUE_OFF");
 				this.activityHubSensor.setSensorEventOff();
-			} else if ( event == DEFAULT_VALUE_ON ) {
+			} else if ( event[0] == DEFAULT_VALUE_ON ) {
 				this.logger.log(LogService.LOG_INFO, "Event matches to DEFAULT_VALUE_ON");
 				this.activityHubSensor.setSensorEventOn();
 			} else {
-				this.logger.log(LogService.LOG_ERROR, "No matches on incoming Event " + Integer.toHexString(event) +
+				this.logger.log(LogService.LOG_ERROR, "No matches on incoming Event " + Integer.toHexString(event[0]) +
 						" from device " + this.device.getGroupAddress());
 				return;
 			}
