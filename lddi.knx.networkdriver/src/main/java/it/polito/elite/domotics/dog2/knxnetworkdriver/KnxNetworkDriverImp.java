@@ -180,7 +180,7 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	 * @param groupAddress the knx groupAddress
 	 * @param b knx command/status bytes (representing e.g. on, off)  
 	 */
-	public void newMessageFromHouse(String groupAddress, byte event) {
+	public void newMessageFromHouse(String groupAddress, byte[] event) {
 		if ( this.deviceList.containsKey(groupAddress) ) {
 			synchronized(this.deviceList)
 			{
