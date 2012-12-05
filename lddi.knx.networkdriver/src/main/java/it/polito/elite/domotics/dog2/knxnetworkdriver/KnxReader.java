@@ -157,7 +157,7 @@ public class KnxReader
 								+ KnxEncoder.convertToReadableHex(knxPacket));
 
 				this.core.newMessageFromHouse(groupAddress, telegram
-						.getDataByte()[0]);
+						.getDataByte());
 
 			}
 		} catch (SocketException se) {
