@@ -20,7 +20,7 @@ import org.universAAL.ontology.phThing.PhysicalThing;
  *  
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class ActivityHubServiceOntology  extends ActivityHub {
+public class ActivityHubServiceOntology extends ActivityHub {
 
 	// define namespace URIs
 	public static final String ACTIVITYHUB_SERVER_NAMESPACE = 
@@ -192,4 +192,7 @@ public class ActivityHubServiceOntology  extends ActivityHub {
 		super(uri);
 	}
 	
+	public String getClassURI() {
+		return MY_URI;
+	}
 }
