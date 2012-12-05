@@ -1,5 +1,7 @@
 package org.universAAL.lddi.knx.devicemodel;
 
+import java.util.Arrays;
+
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory;
@@ -87,10 +89,11 @@ public abstract class KnxDevice implements Device{
 	 * @param message array of byte containing the information of the status or command
 	 */
 //	public abstract void newMessageFromHouse(String deviceAddress, byte event);
-	public void newMessageFromHouse(String deviceAddress, byte value) {
+	public void newMessageFromHouse(String deviceAddress, byte[] value) {
 
 	this.logger.log(LogService.LOG_INFO, "Device " + this.getDeviceId() + " got value: " + 
-			String.format("%02X", value));
+			KnxEncoder.convertToReadableHex(value));
+			//			String.format("%02X", Arrays.toString(value)));
 
 	if ( this.driver !=null )
 		this.driver.newMessageFromKnxBus(value);
