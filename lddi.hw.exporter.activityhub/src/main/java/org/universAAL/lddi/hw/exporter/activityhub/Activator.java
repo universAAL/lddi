@@ -8,11 +8,9 @@ import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 
 /**
- * This bundle listens for ActivityHub device services (OSGi registry) 
- * and provides access to them by offering/registering services on the uAAL service bus.
- * 
- * Creates context patterns and handles context events (uAAL context bus)
- * for those devices.
+ * This bundle provides drivers for ActivityHub device services in OSGi registry.
+ * It provides access to ActivityHub devices by offering/registering services on the uAAL service bus.
+ * It also sends context events to the uAAL context bus for arising ActivityHub sensor messages.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
@@ -22,9 +20,9 @@ public class Activator implements BundleActivator {
 	
     public static BundleContext context = null;
     public static ModuleContext mc = null;
-    private ActivityHubBusServer busServer;
-//    private ActivityHubServiceProvider serviceProvider;
-//    private ActivityHubContextProvider contextProvider;
+    private AHManager ahManager;
+//    private AHServiceProvider serviceProvider;
+//    private AHContextPublisher contextProvider;
     private LogTracker logTracker;
 	private Thread thread;
 
@@ -38,7 +36,7 @@ public class Activator implements BundleActivator {
 		logTracker.open();
 		
 		// init server
-		busServer = new ActivityHubBusServer(context, logTracker);
+		ahManager = new AHManager(context, logTracker);
 		
 		// start uAAL service provider
 		MyThread runnable = new MyThread(); 
@@ -51,19 +49,18 @@ public class Activator implements BundleActivator {
 	}
 
 	/**
-	 * Runnable helper class for starting ActivityHubServiceProvider.
+	 * Runnable helper class for access to running servers/threads.
 	 * 
 	 * @author Thomas Fuxreiter (foex@gmx.at)
-	 *
 	 */
 	class MyThread implements Runnable{
 		public MyThread() {
 		}
 		public void run() {
 //			serviceProvider = 
-				new ActivityHubServiceProvider(mc, busServer);
+				new AHServiceProvider(mc, ahManager);
 //			contextProvider = 
-				new ActivityHubContextProvider(mc, busServer);
+				new AHContextPublisher(mc, ahManager);
 		}
 	}
 }

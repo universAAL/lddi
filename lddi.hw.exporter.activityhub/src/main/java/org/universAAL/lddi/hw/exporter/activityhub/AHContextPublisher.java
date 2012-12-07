@@ -23,23 +23,23 @@ import org.universAAL.ontology.activityhub.factory.ActivityHubEventFactory;
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class ActivityHubContextProvider {
+public class AHContextPublisher {
 
-    private ContextPublisher cp;
-    private ActivityHubBusServer theServer;
+    private DefaultContextPublisher cp;
+    private AHManager theServer;
 	private LogService logger;
 	private static ActivityHubFactory factory = new ActivityHubFactory();
 	//private static ActivityHubEventFactory eventFactory = new ActivityHubEventFactory();
 	
 
-	public ActivityHubContextProvider(ModuleContext mc, ActivityHubBusServer busServer) {
+	public AHContextPublisher(ModuleContext mc, AHManager busServer) {
 		this.theServer = busServer;
 		this.logger = busServer.getLogger();
 		
 		// prepare for context publishing
 		ContextProvider info = new ContextProvider(
-				ActivityHubServiceOntology.ACTIVITYHUB_SERVER_NAMESPACE
-				+ "ActivityHubContextProvider");
+				AHServiceOntology.ACTIVITYHUB_SERVER_NAMESPACE
+				+ "AHContextPublisher");
 		info.setType(ContextProviderType.gauge);
 		info.setProvidedEvents(providedEvents());
 		cp = new DefaultContextPublisher(mc, info);
@@ -53,7 +53,7 @@ public class ActivityHubContextProvider {
     	//look at sample server...
     	//which events (subjects, predicates, objects) ???
     	
-    	// theServer controls only ActivityHub Sensors
+    	// ahManager controls only ActivityHub Sensors
     	
     	// subject: ActivityHubSensor
     	// predicate: PROP_MEASURED_VALUE from phTing.Sensor
@@ -123,7 +123,7 @@ public class ActivityHubContextProvider {
     	// Set the properties of the sensor (location and measurement)
 //    	ahs.setLocation(new Room(constructLocationURIfromLocalID(loc)));
     	
-    	LogUtils.logInfo(Activator.mc, ActivityHubContextProvider.class,
+    	LogUtils.logInfo(Activator.mc, AHContextPublisher.class,
 			"activityHubSensorStateChanged", new Object[] { "publishing a context event on the state of a " +
 					"activityhub sensor!" }, null);
     	
@@ -134,7 +134,7 @@ public class ActivityHubContextProvider {
     }
     
     private static String constructActivityHubSensorURIfromLocalID(String localID) {
-    	return ActivityHubServiceOntology.DEVICE_URI_PREFIX + localID;
+    	return AHServiceOntology.DEVICE_URI_PREFIX + localID;
     }
     
 //    /*
