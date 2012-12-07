@@ -15,7 +15,7 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
- * Working instance of the KnxDpt1 driver. Registers a service/device.
+ * Working instance of the KnxDpt1 driver. Registers a service/device in OSGi registry.
  * Tracks on the KNX device service passed in the attach method in KnxDpt1RefinementDriver class. 
  * When the KNX device disappears, this service/device is unregistered.
  * 
@@ -101,7 +101,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1
 
 //			// get knx-iso mapping properties for my device according to groupAddress
 //			String isoDeviceType = (String) this.knxIsoMappingProperties.get("isoDeviceType");
-//			ActivityHubDeviceCategory isoDeviceCategory = ActivityHubDeviceCategoryUtil.
+//			KnxDeviceCategory isoDeviceCategory = KnxDeviceCategoryUtil.
 //				toActivityHubDevice(isoDeviceType);
 			
 			if ( this.device.getGroupAddress() != null ) {
