@@ -20,7 +20,7 @@ import org.universAAL.ontology.phThing.PhysicalThing;
  *  
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class ActivityHubServiceOntology extends ActivityHub {
+public class AHServiceOntology extends ActivityHub {
 
 	// define namespace URIs
 	public static final String ACTIVITYHUB_SERVER_NAMESPACE = 
@@ -30,7 +30,7 @@ public class ActivityHubServiceOntology extends ActivityHub {
 		ACTIVITYHUB_SERVER_NAMESPACE + "ActivityHubService";
 
 	public static final String DEVICE_URI_PREFIX = 
-    	ActivityHubServiceOntology.ACTIVITYHUB_SERVER_NAMESPACE + 
+    	AHServiceOntology.ACTIVITYHUB_SERVER_NAMESPACE + 
     	"controlledActivityHubDevice";
 
 	// define service URIs
@@ -70,7 +70,7 @@ public class ActivityHubServiceOntology extends ActivityHub {
 					@Override
 					public Resource createInstance(String classURI,
 							String instanceURI, int factoryIndex) {
-						return new ActivityHubServiceOntology(instanceURI);
+						return new AHServiceOntology(instanceURI);
 					}
 				})
 		);
@@ -87,7 +87,7 @@ public class ActivityHubServiceOntology extends ActivityHub {
 		/**
 		 * class-level restrictions"
 		 */
-		// that are inherent to the underlying service component (ActivityHubBusServer)
+		// that are inherent to the underlying service component (AHManager)
 
 		// Before adding our own restrictions, we first "inherit" the
 		// restrictions defined by the superclass
@@ -109,7 +109,7 @@ public class ActivityHubServiceOntology extends ActivityHub {
 		 * create the service description #1 to be registered with the service bus
 		 */
 		// Create the service-object for retrieving the controlled light bulbs
-		ActivityHubServiceOntology getControlledActivityHubSensors = new ActivityHubServiceOntology(
+		AHServiceOntology getControlledActivityHubSensors = new AHServiceOntology(
 			SERVICE_GET_CONTROLLED_ACTIVITYHUB_SENSORS);
 		// Add an output with the given URI (parameter #1) and the following
 		// additional info to the service-profile:
@@ -131,7 +131,7 @@ public class ActivityHubServiceOntology extends ActivityHub {
 		 */
 		// Create the service-object for retrieving info about the location and
 		// state of one specific ActivityHub device
-		ActivityHubServiceOntology getActivityHubSensorInfo = new ActivityHubServiceOntology(
+		AHServiceOntology getActivityHubSensorInfo = new AHServiceOntology(
 				SERVICE_GET_ACTIVITYHUB_SENSOR_INFO);
 		// Add an input with the given URI (parameter #1) and the following
 		// additional info to the service-profile:
@@ -188,7 +188,7 @@ public class ActivityHubServiceOntology extends ActivityHub {
 
 	}
 
-	private ActivityHubServiceOntology(String uri) {
+	private AHServiceOntology(String uri) {
 		super(uri);
 	}
 	

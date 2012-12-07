@@ -23,7 +23,7 @@ import org.universAAL.lddi.iso11073.activityhub.location.ActivityHubLocationUtil
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class ActivityHubBusServer implements ActivityHubDriverClient {
+public class AHManager implements ActivityHubDriverClient {
 
 	private BundleContext context;
 	private LogService logger;
@@ -44,13 +44,13 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	 */
 	private Map<String, ActivityHubDriver> driverList;
 	
-    private ArrayList<ActivityHubContextProvider> listeners = new ArrayList<ActivityHubContextProvider>();
+    private ArrayList<AHContextPublisher> listeners = new ArrayList<AHContextPublisher>();
 
     
 	/*
 	 * Constructor
 	 */
-	public ActivityHubBusServer(BundleContext context, LogService logger) {
+	public AHManager(BundleContext context, LogService logger) {
 		this.context = context;
 		this.logger = logger;		
 		this.driverListForCategory = new Hashtable<ActivityHubDeviceCategory, 
@@ -119,14 +119,14 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	public void incomingSensorEvent(String deviceId, ActivityHubDeviceCategory activityHubDeviceCategory, int event) {
 		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + event);
 
-		for (Iterator<ActivityHubContextProvider> i = listeners.iterator(); i.hasNext();)
-			((ActivityHubContextProvider) i.next()).activityHubSensorStateChanged(deviceId, 
+		for (Iterator<AHContextPublisher> i = listeners.iterator(); i.hasNext();)
+			((AHContextPublisher) i.next()).activityHubSensorStateChanged(deviceId, 
 					activityHubDeviceCategory, event);
 	}
 
 //	public void sendContextEvent() {
-//	    for (Iterator<ActivityHubContextProvider> i = listeners.iterator(); i.hasNext();)
-//			((ActivityHubContextProvider) i.next()).sendContextEvent();
+//	    for (Iterator<AHContextPublisher> i = listeners.iterator(); i.hasNext();)
+//			((AHContextPublisher) i.next()).sendContextEvent();
 //	    
 //		//lampStateChanged(lampID,myLampDB[lampID].loc, false)
 //	}
@@ -135,8 +135,7 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 	/* (non-Javadoc)
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#removeDriver(java.lang.String, org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver)
 	 */
-	public void removeDriver(String deviceId,
-			ActivityHubDriver activityHubDriver) {
+	public void removeDriver(String deviceId, ActivityHubDriver activityHubDriver) {
 		this.driverList.remove(deviceId);
 		this.logger.log(LogService.LOG_INFO, "removed ActivityHub driver for " +
 				"device " + deviceId);
@@ -208,19 +207,19 @@ public class ActivityHubBusServer implements ActivityHubDriverClient {
 
 	/**
 	 * store listener for context bus connection.
-	 * @param activityHubContextProvider
+	 * @param aHContextPublisher
 	 */
 	public void addListener(
-			ActivityHubContextProvider activityHubContextProvider) {
-		listeners.add(activityHubContextProvider);
+			AHContextPublisher aHContextPublisher) {
+		listeners.add(aHContextPublisher);
 	}
 
 	/**
-	 * @param activityHubContextProvider
+	 * @param aHContextPublisher
 	 */
 	public void removeListener(
-			ActivityHubContextProvider activityHubContextProvider) {
-		listeners.remove(activityHubContextProvider);
+			AHContextPublisher aHContextPublisher) {
+		listeners.remove(aHContextPublisher);
 	}
 
 
