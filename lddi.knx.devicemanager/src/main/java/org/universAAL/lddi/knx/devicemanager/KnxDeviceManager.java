@@ -187,7 +187,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 
 							propDeviceService.put(
 									org.osgi.service.device.Constants.DEVICE_CATEGORY, 
-									knxDevice.getDeviceCategory());
+									knxDevice.getDeviceCategory().toString());
 							// more possible properties: description, serial, id
 							
 							ServiceRegistration deviceServiceReg = this.context.registerService(
