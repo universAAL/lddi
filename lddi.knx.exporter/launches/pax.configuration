@@ -1,0 +1,10 @@
+#This is a line comment
+--startLevel=9
+--console
+--obrRepositories=http://depot.universaal.org/nexus/content/repositories/snapshots/repository.xml,http://depot.universaal.org/nexus/content/repositories/releases/repository.xml,http://bundles.osgi.org/obr/browse?_xml=1&amp;cmd=repository,http://repository.ops4j.org/maven2
+# added thirdparty-snapshots repo to correctly load org.apache.felix.devicemanager-0.9.0-SNAPSHOT
+--org.ops4j.pax.url.mvn.repositories=+http://depot.universaal.org/nexus/content/groups/public,http://depot.universaal.org/nexus/content/repositories/thirdparty-snapshots,http://depot.universaal.org/nexus/content/repositories/snapshots@snapshots@noreleases,http://repo.aduna-software.org/maven2/releases/
+--log=INFO
+--sp=sun.reflect,sun.misc,sun.audio
+--downloadFeedback=false
+--vmOptions=-Dfelix.system.properties=file:felix/system.properties
