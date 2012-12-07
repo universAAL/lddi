@@ -15,7 +15,14 @@ public abstract class KnxDriver {
 	// the device I am driving
 	protected KnxDevice device;
 
+	/** upper layer instance */
+	protected KnxDriverClient client; //->uAAL bus/exporter 
+
 	public KnxDriver() {
+	}
+	
+	public KnxDriver(KnxDriverClient client) {
+		this.client = client;
 	}
 	
 	/**
@@ -26,6 +33,10 @@ public abstract class KnxDriver {
 	public final boolean setDevice(KnxDevice device) {
 		this.device = device;
 
+		// add connected driver to driverList in client, if available
+		if ( this.client != null )
+			this.client.addDriver(this.device.getDeviceId(), this.device.getDeviceCategory(), this);
+		
 		return attachDriver();
 	}
 	
@@ -56,6 +67,16 @@ public abstract class KnxDriver {
 	public final void detachDriver() {
 		if (this.device != null)
 			this.device.removeDriver();
+	}
+	
+	/**
+	 * Remove this driver from the driver list in knx network driver
+	 * 
+	 * @param device the device to remove
+	 */
+	public final void removeDriver() {
+		// remove driver from driverList in my consuming client
+		this.client.removeDriver(this.device.getDeviceId(), this);
 	}
 	
     /**

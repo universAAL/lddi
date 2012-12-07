@@ -1,5 +1,7 @@
 package org.universAAL.lddi.knx.devicecategory;
 
+import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+
 /**
  * Base DeviceCategory for KNX datapoint type “2-Octet Float Value”.
  * 
@@ -30,7 +32,8 @@ package org.universAAL.lddi.knx.devicecategory;
  */
 public interface KnxDpt9 extends KnxBaseDeviceCategory {
 	
-	public static String MY_DEVICE_CATEGORY = "KnxDpt9";
+	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_9; 
+		//"KnxDpt9";
 	
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number

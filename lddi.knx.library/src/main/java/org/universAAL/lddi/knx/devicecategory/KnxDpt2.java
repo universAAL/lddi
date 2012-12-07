@@ -1,5 +1,7 @@
 package org.universAAL.lddi.knx.devicecategory;
 
+import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+
 /**
  * Base DeviceCategory for KNX datapoint types B2 (2 bit).
  * 
@@ -18,7 +20,8 @@ package org.universAAL.lddi.knx.devicecategory;
  */
 public interface KnxDpt2 extends KnxBaseDeviceCategory {
 
-	public static String MY_DEVICE_CATEGORY = "KnxDpt2";
+	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_2; 
+//	public static String MY_DEVICE_CATEGORY = "KnxDpt2";
 	
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number

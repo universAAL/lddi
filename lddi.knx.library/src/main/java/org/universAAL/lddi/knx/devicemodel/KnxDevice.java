@@ -1,10 +1,9 @@
 package org.universAAL.lddi.knx.devicemodel;
 
-import java.util.Arrays;
-
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory;
+import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
 import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
 import org.universAAL.lddi.knx.utils.*;
 
@@ -18,7 +17,7 @@ import org.universAAL.lddi.knx.utils.*;
 public abstract class KnxDevice implements Device{
 
 	/** OSGi DAS properties */
-	public String deviceCategory;
+	public KnxDeviceCategory deviceCategory;
 	/** intended for end users */
 //	public String deviceDescription;
 	/** unique serial number for this device */
@@ -30,7 +29,7 @@ public abstract class KnxDevice implements Device{
 	/** including groupAddress and dpt */ 
 	private KnxGroupAddress knxDeviceProperties;
 	
-	private static String KNX_DEVICE_CATEGORY_PREFIX = "KnxDpt";
+//	private static String KNX_DEVICE_CATEGORY_PREFIX = "KnxDpt";
 	
 	protected LogService logger;
 	protected KnxNetwork network;
@@ -42,7 +41,8 @@ public abstract class KnxDevice implements Device{
 	/**
 	 * empty constructor for factory
 	 */
-	public KnxDevice() {
+	public KnxDevice(KnxDeviceCategory knxDeviceCategory) {
+		this.deviceCategory = knxDeviceCategory;
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public abstract class KnxDevice implements Device{
 		this.network = network;
 		this.logger = logger; 
 
-		this.deviceCategory = KNX_DEVICE_CATEGORY_PREFIX + this.knxDeviceProperties.getDptMain();
+		//this.deviceCategory = KNX_DEVICE_CATEGORY_PREFIX + this.knxDeviceProperties.getDptMain();
 		
 //		this.deviceDescription;
 //		this.deviceSerial;
@@ -89,14 +89,14 @@ public abstract class KnxDevice implements Device{
 	 * @param message array of byte containing the information of the status or command
 	 */
 //	public abstract void newMessageFromHouse(String deviceAddress, byte event);
-	public void newMessageFromHouse(String deviceAddress, byte[] value) {
+	public void newMessageFromHouse(String deviceAddress, byte[] event) {
 
 	this.logger.log(LogService.LOG_INFO, "Device " + this.getDeviceId() + " got value: " + 
-			KnxEncoder.convertToReadableHex(value));
+			KnxEncoder.convertToReadableHex(event));
 			//			String.format("%02X", Arrays.toString(value)));
 
 	if ( this.driver !=null )
-		this.driver.newMessageFromKnxBus(value);
+		this.driver.newMessageFromKnxBus(event);
 	else
 		this.logger.log(LogService.LOG_WARNING, "No driver for device " + this.getDeviceId() + 
 				" coupled! Cannot forward knx message!");
@@ -122,7 +122,7 @@ public abstract class KnxDevice implements Device{
 	}
 	
 	/**
-	 * Returns 0 on error
+	 * Returns 0 on error.
 	 * {@code for dpt "1.018" this method will return 1}
 	 * @return knx datapoint main type
 	 */
@@ -138,7 +138,7 @@ public abstract class KnxDevice implements Device{
 	}
 	
 	/**
-	 * Returns 0 on error
+	 * Returns 0 on error.
 	 * {@code for dpt "1.018" this method will return 18}
 	 * @return knx datapoint minor type
 	 */
@@ -175,9 +175,9 @@ public abstract class KnxDevice implements Device{
 	}
 	
 	/**
-	 * @return the deviceCategory
+	 * @return deviceCategory from KnxDeviceCategory Enum (i.e. KNX_DPT_1) 
 	 */
-	public String getDeviceCategory() {
+	public KnxDeviceCategory getDeviceCategory() {
 		return deviceCategory;
 	}
 

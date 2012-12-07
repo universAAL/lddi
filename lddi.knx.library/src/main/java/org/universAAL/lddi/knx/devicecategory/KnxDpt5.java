@@ -1,5 +1,7 @@
 package org.universAAL.lddi.knx.devicecategory;
 
+import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+
 /**
  * Base DeviceCategory for KNX datapoint type U8 (8-Bit Unsigned Value).
  * Possible values are from 0 - 255.
@@ -16,7 +18,8 @@ package org.universAAL.lddi.knx.devicecategory;
  */
 public interface KnxDpt5 extends KnxBaseDeviceCategory {
 	
-	public static String MY_DEVICE_CATEGORY = "KnxDpt5";
+	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_5; 
+//	public static String MY_DEVICE_CATEGORY = "KnxDpt5";
 	
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number

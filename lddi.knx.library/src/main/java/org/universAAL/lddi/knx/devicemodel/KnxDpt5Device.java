@@ -13,7 +13,7 @@ public class KnxDpt5Device extends KnxDevice implements KnxDpt5 {
      * empty constructor for factory
      */
     public KnxDpt5Device() {
-	super();
+    	super(MY_DEVICE_CATEGORY);
     }
 
     @Deprecated
