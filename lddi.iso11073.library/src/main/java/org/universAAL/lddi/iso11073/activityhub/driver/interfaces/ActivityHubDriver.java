@@ -110,7 +110,7 @@ public abstract class ActivityHubDriver {
 	/**
 	 * Remove this driver from the driver list in knx network driver
 	 * 
-	 * @param device the device to set
+	 * @param device the device to remove
 	 */
 	public final void removeDriver() {
 		// remove driver from driverList in my consuming client
