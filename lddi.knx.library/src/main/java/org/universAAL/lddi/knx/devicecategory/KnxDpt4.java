@@ -4,6 +4,8 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+
 /**
  * Base DeviceCategory for KNX datapoint type Character Set (8-Bit Unsigned
  * Value). Possible values are from 0 - 255.
@@ -21,7 +23,8 @@ import java.util.Map;
  */
 public interface KnxDpt4 extends KnxBaseDeviceCategory {
 
-    public static String MY_DEVICE_CATEGORY = "KnxDpt4";
+	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_4; 
+//    public static String MY_DEVICE_CATEGORY = "KnxDpt4";
 
     // from OSGi DAS Spec
     public static int MATCH_SERIAL = 10; // an exact match including the serial
