@@ -14,7 +14,9 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
 import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.lddi.iso11073.activityhub.knxmapping.KnxMappingFactory;
+import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
+import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 
 /**
@@ -31,7 +33,6 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
  * this code is commented; but kept here for potential later use.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
- *
  */
 public class KnxDpt1RefinementDriver implements Driver
 //, ServiceTrackerCustomizer
@@ -42,7 +43,9 @@ public class KnxDpt1RefinementDriver implements Driver
 	private BundleContext context;
 	private LogService logger;
 	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt1.0.0.1"; //"Knx_DoorWindowActuator"
-	private static final String MY_KNX_DEVICE_CATEGORY = "KnxDpt1";
+//	private static final String MY_KNX_DEVICE_CATEGORY = "KnxDpt1";
+	private static final KnxDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_1; 
+
 //	private static final String KNX_DRIVER_CONFIG_NAME = "knx.dpt1refinementdriver.iso11073";
 
 //	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
@@ -176,10 +179,12 @@ public class KnxDpt1RefinementDriver implements Driver
 	public int match(ServiceReference reference) throws Exception {
 		// reference = device service
 		int matchValue = Device.MATCH_NONE;
-		String deviceCategory = null;
-		
+//		String deviceCategory = null;
+		KnxDeviceCategory deviceCategory = null;
+
 		try {
-			deviceCategory = (String)reference.getProperty(Constants.DEVICE_CATEGORY);
+			deviceCategory = KnxDeviceCategoryUtil.toKnxDevice(
+					(String)reference.getProperty(Constants.DEVICE_CATEGORY)	);
 		} catch (ClassCastException e) {
 			this.logger.log(LogService.LOG_DEBUG, "Could not cast DEVICE_CATEGORY of requesting" +
 					" device service " + reference.getProperty(org.osgi.framework.Constants.SERVICE_ID) + " to String. No match!");
@@ -188,7 +193,7 @@ public class KnxDpt1RefinementDriver implements Driver
 		
 		// match check
 		// more possible properties to match: description, serial, id
-		if ( deviceCategory.equals(MY_KNX_DEVICE_CATEGORY) ) {
+		if ( deviceCategory == MY_KNX_DEVICE_CATEGORY ) {
 			matchValue = KnxDpt1.MATCH_CLASS;
 		} else {
 			this.logger.log(LogService.LOG_DEBUG, "Requesting device service " + deviceCategory +
@@ -228,10 +233,10 @@ public class KnxDpt1RefinementDriver implements Driver
 		ActivityHubDeviceCategory ahDevCat = KnxMappingFactory.getAHDevCatForKnxDpt(knxDev.getDatapointTypeMainNumber(),
 				knxDev.getDatapointTypeSubNumber() );
 		if (ahDevCat == null) {
-			this.logger.log(LogService.LOG_WARNING, "There is no mapping ActivityHubDeviceCategory found " +
+			this.logger.log(LogService.LOG_WARNING, "There is no mapping KnxDeviceCategory found " +
 					"for the KNX device " + knxDev.getGroupAddress() + " with datapoint type " +
 					knxDev.getDatapointType() );
-			return "no mapping ActivityHubDeviceCategory found!";
+			return "no mapping KnxDeviceCategory found!";
 		}
 		
 		
