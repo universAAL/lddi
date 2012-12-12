@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1355308746876
+Build-Jdk: 1.7.0_09
+Built-By: root
+Bundle-Activator: org.universAAL.continua.caller.test.main.Activator
+Bundle-Description: Caller test to request Continua Health Alliance mana
+ ger services
+Bundle-DocURL: www.tsbtecnologias.es
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: uAAL Continua Manager service caller test
+Bundle-SymbolicName: lddi.continuahdpmanager.caller.test
+Bundle-Vendor: TSB Technologies for Health and Well-being
+Bundle-Version: 1.2.2.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.universAAL.continua.caller.test.main;uses:="org.osgi
+ .framework,org.universAAL.middleware.container,org.universAAL.middlewar
+ e.container.osgi,org.universAAL.continua.caller.test.gui";version="1.2.
+ 2.SNAPSHOT",org.universAAL.continua.caller.test.gui;uses:="org.universA
+ AL.middleware.rdf,org.universAAL.middleware.container,org.universAAL.mi
+ ddleware.service,javax.swing,org.universAAL.ontology.continua,org.unive
+ rsAAL.middleware.service.owl,javax.swing.border,org.osgi.framework,org.
+ universAAL.ontology.measurement,org.universAAL.middleware.container.osg
+ i,org.universAAL.middleware.context.owl,org.universAAL.middleware.conte
+ xt,org.universAAL.ontology.personalhealthdevice";version="1.2.2.SNAPSHO
+ T"
+Import-Package: javax.swing,javax.swing.border,org.osgi.framework;versio
+ n="[1.3,2)",org.universAAL.middleware.container;version="[1.2,2)",org.u
+ niversAAL.middleware.container.osgi;version="[1.2,2)",org.universAAL.mi
+ ddleware.context,org.universAAL.middleware.context.owl,org.universAAL.m
+ iddleware.rdf;version="[1.2,2)",org.universAAL.middleware.service,org.u
+ niversAAL.middleware.service.owl,org.universAAL.ontology.continua;versi
+ on="[1.2,2)",org.universAAL.ontology.measurement;version="[1.2,2)",org.
+ universAAL.ontology.personalhealthdevice;version="[1.2,2)"
+Tool: Bnd-1.50.0
