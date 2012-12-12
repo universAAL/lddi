@@ -693,7 +693,10 @@ lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/ja
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/resources/bp.png -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/resources/uaal_logo_resized.jpg -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/resources/ws.png -text
+lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/META-INF/MANIFEST.MF -text
+lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/MITX.txt -text
+lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/pom.xml -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/src/main/java/org/universAAL/continua/caller/test/gui/GUI.java -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/src/main/java/org/universAAL/continua/caller/test/gui/Publisher.java -text
@@ -703,7 +706,10 @@ lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/src/main/r
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/src/main/resources/ws.png -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/target/classes/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/target/lddi.continuahdpmanager.caller.test-1.2.2-SNAPSHOT.jar -text
+lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/META-INF/MANIFEST.MF -text
+lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/MITX.txt -text
+lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/pom.xml -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/java/org/universAAL/continua/subscriber/test/gui/GUI.java -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/java/org/universAAL/continua/subscriber/test/gui/Subscriber.java -text
