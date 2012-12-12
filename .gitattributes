@@ -1,5 +1,6 @@
 * text=auto !eol
 lddi.continua.bluetooth/no_uaal/doc/javadoc.rar -text
+lddi.continua.bluetooth/no_uaal/doc/uAAL_developers_guide.odt -text
 lddi.continua.bluetooth/no_uaal/doc/uAAL_developers_guide.pdf -text
 lddi.continua.bluetooth/no_uaal/libraries/libHDPnative_NOUAAL.zip -text
 lddi.continua.bluetooth/no_uaal/libraries/x073implementation.jar -text
