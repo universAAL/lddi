@@ -49,14 +49,16 @@ public class Activator implements BundleActivator {
 		.registerModule(new Object[] { context });
 	listeners[0] = new DimmerLightListener(context);
 	listeners[1] = new OnOffLightListener(context);
-	listeners[2] = new PresenceDetectorListener(context);
+//	listeners[2] = new PresenceDetectorListener(context);
+	listeners[2] = new OccupancySensorListener(context);
 	listeners[3] = new TemperatureSensorListener(context);
     }
 
     public void stop(BundleContext arg0) throws Exception {
 	((DimmerLightListener) listeners[0]).douAALUnregistering();
 	((OnOffLightListener) listeners[1]).douAALUnregistering();
-	((PresenceDetectorListener) listeners[2]).douAALUnregistering();
+//	((PresenceDetectorListener) listeners[2]).douAALUnregistering();
+	((OccupancySensorListener) listeners[2]).douAALUnregistering();
 	((TemperatureSensorListener) listeners[3]).douAALUnregistering();
     }
 
