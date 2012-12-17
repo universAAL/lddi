@@ -47,19 +47,23 @@ public class Activator implements BundleActivator {
 	Activator.context = context;
 	Activator.moduleContext = uAALBundleContainer.THE_CONTAINER
 		.registerModule(new Object[] { context });
-	listeners[0] = new DimmerLightListener(context);
-	listeners[1] = new OnOffLightListener(context);
+//	listeners[0] = new DimmerLightListener(context);
+//	listeners[1] = new OnOffLightListener(context);
 //	listeners[2] = new PresenceDetectorListener(context);
-	listeners[2] = new OccupancySensorListener(context);
-	listeners[3] = new TemperatureSensorListener(context);
+//	listeners[3] = new TemperatureSensorListener(context);
+	
+	listeners[0] = new OccupancySensorListener(context);
+	listeners[1] = new IASZoneListener(context);
     }
 
     public void stop(BundleContext arg0) throws Exception {
-	((DimmerLightListener) listeners[0]).douAALUnregistering();
-	((OnOffLightListener) listeners[1]).douAALUnregistering();
+//	((DimmerLightListener) listeners[0]).douAALUnregistering();
+//	((OnOffLightListener) listeners[1]).douAALUnregistering();
 //	((PresenceDetectorListener) listeners[2]).douAALUnregistering();
-	((OccupancySensorListener) listeners[2]).douAALUnregistering();
-	((TemperatureSensorListener) listeners[3]).douAALUnregistering();
+//	((TemperatureSensorListener) listeners[3]).douAALUnregistering();
+	
+	((OccupancySensorListener) listeners[0]).douAALUnregistering();
+	((IASZoneListener) listeners[1]).douAALUnregistering();
     }
 
     /**
