@@ -125,10 +125,11 @@ public class KnxReader
 								+ KnxEncoder.convertToReadableHex(lastPacket));
 				}
 
-				// remove also the header
-				int l = (dataPacket.length) - 9; // 9 bytes header
+				// 17 data bytes minimum!
+				// remove the header from the data packet (8 bytes)
+				int l = (dataPacket.length) - 8; // 8 bytes header
 				byte[] knxPacket = new byte[l];
-				System.arraycopy(temp, 9, knxPacket, 0, l);
+				System.arraycopy(temp, 8, knxPacket, 0, l);
 
 				KnxTelegram telegram = KnxEncoder.decode(knxPacket);
 				if (telegram == null) {
@@ -142,6 +143,7 @@ public class KnxReader
 											.convertToReadableHex(dataPacket));
 					continue;
 				}
+				
 				String groupAddress = KnxEncoder
 						.convertGroupAddressToReadable(telegram.getDestByte());
 
@@ -156,8 +158,11 @@ public class KnxReader
 						"Source: " + groupAddress + "; TELEGRAM: "
 								+ KnxEncoder.convertToReadableHex(knxPacket));
 
-				this.core.newMessageFromHouse(groupAddress, telegram
-						.getDataByte());
+				if (telegram.isTelegramIsDatapointType1()) {
+					this.core.newMessageFromHouse(groupAddress, new byte[]{telegram.getDpt1DataByte()} );
+				}else{
+					this.core.newMessageFromHouse(groupAddress, telegram.getDataByte());
+				}
 
 			}
 		} catch (SocketException se) {

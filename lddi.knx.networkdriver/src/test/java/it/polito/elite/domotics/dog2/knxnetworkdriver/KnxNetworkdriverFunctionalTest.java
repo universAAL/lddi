@@ -20,12 +20,14 @@ import org.osgi.framework.Constants;
 //
 //import static org.ops4j.pax.exam.CoreOptions.*;
 import org.universAAL.itests.IntegrationTest;
+import org.universAAL.lddi.knx.utils.KnxCommand;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
- * Tests are by default disabled in the main middleware pom file (mw.pom). To enable them an argument "-DskipTests=false" has to be added to the "mvn" invocation in the command line.
+ * Tests are by default disabled in the main middleware pom file (mw.pom).
+ * To enable them an argument "-DskipTests=false" has to be added to the "mvn" invocation in the command line.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -117,11 +119,11 @@ public class KnxNetworkdriverFunctionalTest extends IntegrationTest{
 //		This is done automatically during bundle start
 //		KnxNetworkDriverImp netDrv = new KnxNetworkDriverImp(Activator.context, null); 
 		
-		Activator.networkDriver.sendCommand("0/0/2", "81");		
+		Activator.networkDriver.sendCommand("0/0/2", true, KnxCommand.VALUE_WRITE);		
 		wait1s();
 		Activator.networkDriver.requestState("0/0/2");
 		wait1s();
-		Activator.networkDriver.sendCommand("0/0/2", "80");
+		Activator.networkDriver.sendCommand("0/0/2", false, KnxCommand.VALUE_WRITE);
 		wait1s();
 		Activator.networkDriver.requestState("0/0/2");
 		wait1s();

@@ -18,7 +18,7 @@ import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
-import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
+import org.universAAL.lddi.knx.utils.KnxCommand;
 
 /**
  * 
@@ -231,14 +231,14 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork
 	}
 	
 	
-	public void sendCommand(String deviceId, String command) {
-		this.sendCommand(deviceId,command,KnxMessageType.WRITE);
+	public void sendCommand(String deviceId, boolean command) {
+		this.sendCommand(deviceId, command, KnxCommand.VALUE_WRITE);
 		
 	}
 	
-	public void sendCommand(String device, String command,
-			KnxMessageType messageType) {
-		this.network.sendCommand(device, command,messageType);
+	public void sendCommand(String device, boolean command,
+			KnxCommand commandType) {
+		this.network.sendCommand(device, command, commandType);
 		
 	}
 	/*@Override
