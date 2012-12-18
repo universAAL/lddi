@@ -1,7 +1,7 @@
 package org.universAAL.lddi.knx.networkdriver;
 
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
-import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
+import org.universAAL.lddi.knx.utils.KnxCommand;
 
 public interface KnxNetwork {
 	public static String MANUFACTURER = "KONNEX";
@@ -15,8 +15,8 @@ public interface KnxNetwork {
 	public static char DAFAULT_STATUS_CHAR = '8';
 //	public static Object NOTIFICATION_NAME = "notificationName";
 	public void requestState(String deviceId);
-	public void sendCommand(String deviceId,String command);
-	public void sendCommand(String deviceId,String command, KnxMessageType messageType);
+	public void sendCommand(String deviceId,boolean command);
+	public void sendCommand(String deviceId,boolean command, KnxCommand commandType);
 	public void addDevice(String deviceId,KnxDevice device);
 	public void removeDevice(String deviceId,KnxDevice device);
 	//public KnxConfiguration parseConfiguration(Properties configuration);

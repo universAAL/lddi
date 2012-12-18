@@ -38,8 +38,8 @@ public interface KnxDpt1 extends KnxBaseDeviceCategory {
 	
 
 	// default on/off constants for all dpt1 devices
-	public static byte DEFAULT_VALUE_ON =  (byte) 0x81;
-	public static byte DEFAULT_VALUE_OFF = (byte) 0x80;
+	public static byte DEFAULT_VALUE_ON =  (byte) 1;
+	public static byte DEFAULT_VALUE_OFF = (byte) 0;
 
 //	// constants for specific dpt1 devices
 
