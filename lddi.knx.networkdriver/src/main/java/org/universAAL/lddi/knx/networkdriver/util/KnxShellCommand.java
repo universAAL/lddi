@@ -3,6 +3,7 @@ package org.universAAL.lddi.knx.networkdriver.util;
 import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxNetworkDriverImp;
 
 import org.apache.felix.service.command.Descriptor;
+import org.universAAL.lddi.knx.utils.KnxCommand;
 
 /**
  * Provide Gogo shell commands.
@@ -20,13 +21,19 @@ public class KnxShellCommand {
 	 * Provide Gogo shell command: 'knxcommand'
 	 * @param knx group address
 	 * @param command
+	 * @param command type
 	 */
     @Descriptor("send knx command to knx bus")
     public void knxcommand(
     		@Descriptor("group address (1/2/3)") String ga,
-    		@Descriptor("command (81)") String command) {
+    		@Descriptor("on/off command (0 or 1)") String command,
+    		@Descriptor("command type: read or write  (r or w)") String commandType) {
     	
-    	nwDriver.sendCommand(ga, command);
+    	KnxCommand type = KnxCommand.VALUE_WRITE;
+    	if (commandType.equals("r")) type = KnxCommand.VALUE_READ;
+    	
+    	if (command.equals("1")) nwDriver.sendCommand(ga, true, type);
+    	else nwDriver.sendCommand(ga, false, type);
 
     }
 }

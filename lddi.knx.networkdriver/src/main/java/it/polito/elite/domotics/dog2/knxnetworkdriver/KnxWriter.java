@@ -3,8 +3,8 @@ package it.polito.elite.domotics.dog2.knxnetworkdriver;
 import java.net.*;
 
 import org.osgi.service.log.LogService;
+import org.universAAL.lddi.knx.utils.KnxCommand;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
-import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
 
 /**
  * Provides the writing to the knx gateway. Uses the encoder to operate
@@ -18,8 +18,8 @@ public class KnxWriter {
 
 	protected KnxNetworkDriverImp core;
 	private String lastDeviceAddress;
-	private String lastDeviceStatus;
-	private KnxMessageType lastMessageType;
+	private boolean lastDeviceStatus;
+	private KnxCommand lastCommandType;
 	private boolean repeatBit = false;
 	private volatile byte[] lastPacketSent;
 
@@ -97,10 +97,10 @@ public class KnxWriter {
 	// }
 
 	/**
-	 * Wrapper for write method. Without message type.
+	 * Wrapper for write method. Without command type.
 	 */
-	public void write(String deviceAddress, String deviceStatus) {
-		write(deviceAddress, deviceStatus, KnxMessageType.WRITE);
+	public void write(String deviceAddress, boolean deviceStatus) {
+		write(deviceAddress, deviceStatus, KnxCommand.VALUE_WRITE);
 	}
 
 	/**
@@ -110,13 +110,13 @@ public class KnxWriter {
 	 *            knx group address (1/2/3)
 	 * @param deviceStatus
 	 *            knx command
-	 * @param messageType
+	 * @param commandType
 	 */
-	public void write(String deviceAddress, String deviceStatus,
-			KnxMessageType messageType) {
+	public void write(String deviceAddress, boolean deviceStatus,
+			KnxCommand commandType) {
 		if (this.lastDeviceAddress == deviceAddress
 				&& this.lastDeviceStatus == deviceStatus
-				&& this.lastMessageType == messageType) {
+				&& this.lastCommandType == commandType) {
 			// same command as last time; set Repeat-Bit
 			this.repeatBit = false;
 		}
@@ -133,7 +133,7 @@ public class KnxWriter {
 
 			// Translating commands from String to byte[]
 			byte[] telegram = KnxEncoder.encode(repeatBit, deviceAddress,
-					deviceStatus, messageType);
+					deviceStatus, commandType);
 
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,
@@ -150,7 +150,7 @@ public class KnxWriter {
 			sender.close();
 			this.lastDeviceAddress = deviceAddress;
 			this.lastDeviceStatus = deviceStatus;
-			this.lastMessageType = messageType;
+			this.lastCommandType = commandType;
 
 		} catch (Exception e) {
 			core.getLogger().log(LogService.LOG_ERROR,
@@ -181,8 +181,8 @@ public class KnxWriter {
 
 			// Translating commands from String to byte[]
 			// adding 00 for status and READ as message type
-			byte[] telegram = KnxEncoder.encode(deviceId, "00",
-					KnxMessageType.READ);
+			byte[] telegram = KnxEncoder.encode(deviceId, false,
+					KnxCommand.VALUE_READ);
 
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,

@@ -1,7 +1,7 @@
 package it.polito.elite.domotics.dog2.knxnetworkdriver;
 
 
-import org.universAAL.lddi.knx.utils.KnxEncoder.KnxMessageType;
+import org.universAAL.lddi.knx.utils.KnxCommand;
 
 /**
  * Manages reader and writer for communication to the knx gateway.
@@ -128,7 +128,7 @@ public class KnxCommunication
 		this.reader.stopReader();
 	}
 
-	public void sendCommand(String device, String command) {
+	public void sendCommand(String device, boolean command) {
 		this.writer.write(device, command);
 		
 	}
@@ -138,8 +138,8 @@ public class KnxCommunication
 		
 	}
 
-	public void sendCommand(String device, String command, KnxMessageType messageType) {
-		this.writer.write(device, command, messageType);
+	public void sendCommand(String device, boolean command, KnxCommand commandType) {
+		this.writer.write(device, command, commandType);
 		
 	}
 	
