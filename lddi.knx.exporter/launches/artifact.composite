@@ -17,7 +17,7 @@ scan-bundle:mvn:org.apache.felix/org.apache.felix.upnp.basedriver/0.8.0
 scan-bundle:mvn:org.universAAL.middleware/mw.bus.model.osgi/1.3.1-SNAPSHOT
 scan-bundle:mvn:org.universAAL.middleware/mw.bus.context.osgi/1.3.1-SNAPSHOT
 scan-bundle:mvn:org.universAAL.middleware/mw.bus.service.osgi/1.3.1-SNAPSHOT
-scan-bundle:mvn:org.universAAL.lddi/lddi.knx.library/1.3.1-SNAPSHOT
+scan-bundle:mvn:org.universAAL.lddi/lddi.knx.library/1.3.2-SNAPSHOT
 scan-bundle:wrap:mvn:java3d/vecmath/1.3.1
 scan-bundle:wrap:mvn:java3d/j3d-core/1.3.1
 scan-bundle:wrap:mvn:jp.go.ipa/jgcl/1.0
@@ -28,7 +28,7 @@ scan-bundle:mvn:org.universAAL.middleware/mw.data.serialization.osgi/1.3.1-SNAPS
 scan-bundle:mvn:org.apache.felix/org.apache.felix.dependencymanager.lddi/3.0.0
 scan-bundle:mvn:org.apache.felix/org.apache.felix.devicemanager/0.9.0-SNAPSHOT
 scan-bundle:mvn:org.apache.felix/org.apache.felix.gogo.runtime/0.10.0
-scan-bundle:mvn:org.universAAL.lddi/lddi.knx.networkdriver/1.3.1-SNAPSHOT
+scan-bundle:mvn:org.universAAL.lddi/lddi.knx.networkdriver/1.3.2-SNAPSHOT
 scan-bundle:wrap:mvn:javax.servlet/servlet-api/2.5
 scan-bundle:mvn:org.mortbay.jetty/jetty-util/6.1.24
 scan-bundle:mvn:org.mortbay.jetty/servlet-api/2.5-20081211
@@ -40,5 +40,5 @@ scan-bundle:mvn:org.apache.felix/org.apache.felix.http.jetty/2.2.0
 scan-bundle:mvn:org.apache.felix/org.apache.felix.webconsole/3.1.8
 scan-bundle:wrap:mvn:org.jdom/jdom/1.1.3
 scan-bundle:wrap:mvn:jaxen/jaxen/1.1.3
-scan-bundle:mvn:org.universAAL.lddi/lddi.knx.devicemanager/1.3.1-SNAPSHOT@nostart
-scan-bundle:mvn:org.universAAL.lddi/lddi.knx.exporter/1.3.1-SNAPSHOT
+scan-bundle:mvn:org.universAAL.lddi/lddi.knx.devicemanager/1.3.2-SNAPSHOT@nostart
+scan-bundle:mvn:org.universAAL.lddi/lddi.knx.exporter/1.3.2-SNAPSHOT
