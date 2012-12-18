@@ -889,6 +889,7 @@ lddi.knx.exporter/launches/runner/configurations/services/lddi.knx.networkdriver
 lddi.knx.exporter/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
 lddi.knx.exporter/launches/runner/configurations/services/org.ops4j.pax.logging.properties -text
 lddi.knx.exporter/launches/runner/data/OfficeProject7.knxproj -text
+lddi.knx.exporter/launches/runner/data/OfficeProject8.knxproj -text
 lddi.knx.exporter/launches/runner/felix/config.ini -text
 lddi.knx.exporter/launches/runner/felix/system.properties -text
 lddi.knx.exporter/launches/runner/remoteDebug.bat -text

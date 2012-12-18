@@ -102,8 +102,8 @@ public class KnxDpt9Instance extends KnxDriver implements KnxDpt9 ,ServiceTracke
 	public float calculateFloatValue(byte[] payload) {
 		// there are 3 bytes payload for a temperature event where the last 2 are important
 		// the first seems always to be 80!?
-		byte MSB = payload[1]; 
-		byte LSB = payload[2];
+		byte MSB = payload[0]; 
+		byte LSB = payload[1];
 		
 		byte M_MSB = (byte) (MSB & 0x87);
 		byte M_LSB = (byte) (LSB & 0xFF);
