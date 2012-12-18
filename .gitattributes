@@ -863,6 +863,7 @@ lddi.knx.devicemanager/launches/runner/data/OfficeProject3.knxproj -text
 lddi.knx.devicemanager/launches/runner/data/OfficeProject4.knxproj -text
 lddi.knx.devicemanager/launches/runner/data/OfficeProject5.knxproj -text
 lddi.knx.devicemanager/launches/runner/data/OfficeProject6.knxproj -text
+lddi.knx.devicemanager/launches/runner/data/OfficeProject7.knxproj -text
 lddi.knx.devicemanager/launches/runner/felix/system.properties -text
 lddi.knx.devicemanager/launches/runner/remoteDebug.bat -text
 lddi.knx.devicemanager/launches/runner/run.bat -text
