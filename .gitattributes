@@ -924,8 +924,10 @@ lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt5Device
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt9Device.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/library/utils/LogTracker.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxNetwork.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxCommand.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxEncoder.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.java -text
+lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxPacketPriority.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
 lddi.knx.library/src/test/java/org/universAAL/lddi/knx/utils/KnxEncoderTest.java -text
 lddi.knx.networkdriver/MITX.txt -text

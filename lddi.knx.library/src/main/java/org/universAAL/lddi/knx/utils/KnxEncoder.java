@@ -14,71 +14,70 @@ public class KnxEncoder {
 	};
 
 	/**
-	 * Encode a knx telegram for sending to a knx bus.
+	 * Encode a knx telegram for sending to a knx bus. Only for DPT1 (on/off)!
 	 * 
 	 * @param repeatBit
 	 *            ; has this telegram been sent already?
-	 * @param knxAddress
+	 * @param targetAddress
 	 *            address of the device; could be device or group address
-	 * @param command
+	 * @param value
 	 *            knx status
-	 * @param messageType (read, write, scenario)
+	 * @param messageType
+	 *            (read, write, scenario)
 	 * @return knx telegram for sending to knx bus
 	 */
-	public static byte[] encode(boolean repeatBit, String knxAddress,
-			String command, KnxMessageType messageType) {
+	public static byte[] encode(boolean repeatBit, String targetAddress,
+			boolean value, KnxCommand commandType) {
 
-		// TODO what is the front part of the data telegram?
-		String header = "0610053000112900bc";
+		String header = "0610053000112900";
 
-		// Is repeat Bit really important? (bit number 5 in first byte)
-		// When sending a packet the first time it should be 1;
-		// 0 when the packet is repeated
-		// (http://de.wikipedia.org/wiki/Europ%C3%A4ischer_Installationsbus)
-		String controlbyte = repeatBit ? "d0" : "e0";
+		KnxTelegram telegram = new KnxTelegram();
 
-		// Sending commands from ETS sets source address to 0/0/0. So do we.
-		String sourceAddress = "0000";
+		telegram.createDefaultControlByte();
+		
+		if (repeatBit) telegram.setRepeatBit();
+		
+		// Sending commands from ETS sets source address to 15/15/255. So do we.
+		telegram.setSourceByte(new byte[] { (byte) 0xFF, (byte) 0xFF });
 
-		String destAddress = "00";
-		if (knxAddress.contains("/"))
-			destAddress = KnxEncoder.convertGroupAddressToHex(knxAddress); // group
-																		// address
-		else if (knxAddress.contains("."))
-			destAddress = KnxEncoder.convertDeviceAddressToHex(knxAddress); // physical
-																// address
-		String drl = "01";
-		String pci = "00";
-		String data = "00";
-
-		switch (messageType) {
-		case READ:
-			data = "00";
-			break;
-		case WRITE:
-		case SCENARIO:
-			data = command;
-			break;
-		default:
-			break;
+		if (targetAddress.contains("/")) {
+			// group address
+			telegram.setDestByte(KnxEncoder.convertToByteArray(KnxEncoder
+					.convertGroupAddressToHex(targetAddress)));
+		} else if (targetAddress.contains(".")) {
+			// physical address
+			telegram.setDestByte(KnxEncoder.convertToByteArray(KnxEncoder
+					.convertDeviceAddressToHex(targetAddress)));
 		}
 
-		String stringTelegram = header + controlbyte + sourceAddress
-				+ destAddress + drl + pci + data;
+		telegram.setDataLength(1);
+		
+		telegram.setDpt1Data(value);
+		
+		telegram.setKnxCommandType(commandType);
 
-		byte message[] = KnxEncoder.convertToByteArray(stringTelegram);
 
+//		String stringTelegram = header + controlbyte + sourceAddress
+//				+ destAddress + drl + pci + data;
+//		KnxEncoder.convertToByteArray(stringTelegram);
+//		
+		byte B_header[] = KnxEncoder.convertToByteArray(header);
+		byte B_telegram[] = telegram.getByteArray();
+		byte message[] = new byte[B_header.length + B_telegram.length];
+		System.arraycopy(B_header, 0, message, 0, B_header.length);
+		System.arraycopy(B_telegram, 0, message, B_header.length, B_telegram.length);
 		return message;
 	}
-	
+
 	/**
 	 * Wrapper for other encode method. Just adding false as repeatBit.
-	 * @see public static byte[] encode(boolean repeatBit, String knxAddress, 
-	 * 		String command, KnxMessageType messageType)
+	 * 
+	 * @see public static byte[] encode(boolean repeatBit, String knxAddress,
+	 *      String command, KnxMessageType messageType)
 	 */
-	public static byte[] encode(String deviceAddress, String command,
-			KnxMessageType messageType) {
-		return encode(false, deviceAddress, command, messageType);
+	public static byte[] encode(String deviceAddress, boolean command,
+			KnxCommand commandType) {
+		return encode(false, deviceAddress, command, commandType);
 	}
 
 	/**
@@ -106,24 +105,29 @@ public class KnxEncoder {
 		 * 15 different command types) following bytes) data
 		 */
 
-		// check if telegram valid
-		if (knxMessage.length < 8)
+		// check if telegram valid (minimum 9 bytes)
+		if (knxMessage.length < 9)
 			return null;
 
-		KnxTelegram telegram = new KnxTelegram();
-		telegram.setSourceByte(new byte[] { knxMessage[1], knxMessage[2] });
-		telegram.setDestByte(new byte[] { knxMessage[3], knxMessage[4] });
-		telegram.setDrlByte(knxMessage[5]);
+		KnxTelegram telegram = new KnxTelegram(knxMessage);
+		// telegram.setSourceByte(new byte[] { knxMessage[1], knxMessage[2] });
+		// telegram.setDestByte(new byte[] { knxMessage[3], knxMessage[4] });
+		// telegram.setDrlByte(knxMessage[5]);
 
-		try {
-			int dataLength = KnxEncoder.extractPayloadLength(knxMessage[5]);
-			byte[] data = new byte[dataLength];
-			System.arraycopy(knxMessage, 7, data, 0, dataLength);
-			telegram.setDataByte(data);
-		} catch (IndexOutOfBoundsException ex) {
+		// try {
+		// int dataLength = KnxEncoder.extractPayloadLength(knxMessage[5]);
+		// byte[] data = new byte[dataLength];
+		// System.arraycopy(knxMessage, 7, data, 0, dataLength);
+		// telegram.setDataByte(data);
+		// } catch (IndexOutOfBoundsException ex) {
+		// return null;
+		// }
+
+		// If the length of the byte array doesn't match with data length field
+		// discard this telegram!
+		if (!telegram.telegramDatalengthIsCorrect)
 			return null;
-		}
-		
+
 		return telegram;
 	}
 
@@ -186,10 +190,11 @@ public class KnxEncoder {
 	}
 
 	/**
-	 * Converts a readable knx group address to hex encoded string.
-	 *  x is 0-15 on 5 bits; y is 0-7 on 3 bits; z is 0-255 on 8 bits;
+	 * Converts a readable knx group address to hex encoded string. x is 0-15 on
+	 * 5 bits; y is 0-7 on 3 bits; z is 0-255 on 8 bits;
 	 * 
-	 * @param readable string "x/y/z" group address
+	 * @param readable
+	 *            string "x/y/z" group address
 	 * @return hex-encoded string "xy" hexadecimal group address
 	 */
 	public static String convertGroupAddressToHex(String address) {
@@ -201,7 +206,7 @@ public class KnxEncoder {
 		int sub = Integer.parseInt(vectorAddress[2]);
 
 		main = main & 0x1f; // lower 5 bits (1f => 0001 1111)
-		main <<= 3; // left shift of 4 bits
+		main <<= 3; // left shift of 3 bits
 
 		middle = middle & 0x7; // lower 3 bit (7 => 0000 0111)
 		highInt = main + middle;
@@ -226,7 +231,9 @@ public class KnxEncoder {
 
 	/**
 	 * Converts a hex-encoded knx message to byte array.
-	 * @param a hex-encoded message string
+	 * 
+	 * @param a
+	 *            hex-encoded message string
 	 * @return the message as byte array
 	 */
 	public static byte[] convertToByteArray(String hexString) {
@@ -241,6 +248,7 @@ public class KnxEncoder {
 
 	/**
 	 * Convert byte array to readable hex-encoded string.
+	 * 
 	 * @param
 	 * @return hex representation of the byte array as a String with semicolons
 	 *         as delimiter
@@ -257,7 +265,9 @@ public class KnxEncoder {
 
 	/**
 	 * Extract bits representing knx message data length (payload).
-	 * @param drlByte of knx telegram
+	 * 
+	 * @param drlByte
+	 *            of knx telegram
 	 * @return length of payload
 	 */
 	static int extractPayloadLength(byte drlByte) {
@@ -265,7 +275,6 @@ public class KnxEncoder {
 		return ((int) drlByte) & 0xf; // mask 4 right bits
 
 	}
-
 
 	/**
 	 * Convert address from knx encoded bytes to device address in x.y.z format.
@@ -288,7 +297,7 @@ public class KnxEncoder {
 
 		// device address 8bit
 		int lowAddress = ((int) buffer[1]) & 0xff; // prendi gli 8 bit + alti:
-													// => 1111 1111
+		// => 1111 1111
 
 		// area code 4msbits
 		int area = highAddress & 0xf0; // prendi i 4 bit + alti: => 1111 0000
@@ -301,7 +310,8 @@ public class KnxEncoder {
 	}
 
 	/**
-	 * Convert knx group address from knx encoded bytes to readable x/y/z format.
+	 * Convert knx group address from knx encoded bytes to readable x/y/z
+	 * format.
 	 * 
 	 * @param buffer
 	 *            group device address in bytes
@@ -375,41 +385,41 @@ public class KnxEncoder {
 	// return status;
 	// }
 
-//	/**
-//	 * @param buffer
-//	 *            message type in bytes
-//	 * @return message type as String
-//	 */
-//	static String getType(byte buffer[]) {
-//		// Di per se � un byte, ma se si scopre che centrano anche quelli
-//		// prima serve un array
-//		StringBuffer status = new StringBuffer();
-//		switch (buffer[0]) {
-//		case 'b':
-//			return "WRITE";
-//
-//		case 'c':
-//			return "READ";
-//
-//			// default: status = "UNKNOWN";
-//		default: {
-//			// Per visualizzare stato HEXA non codificato (son 2byte almeno)
-//			// String appoggioStatus = "";
-//			for (int k = 0; k < buffer.length; k++) {
-//				String appoggioStatus = Integer.toHexString(buffer[k]);
-//				if (appoggioStatus.length() == 1) {
-//					status.append("0" + appoggioStatus);
-//					// appo = "<" + appo + ">"; // per stampare a video visuale
-//					// campi
-//				} else if (appoggioStatus.length() == 8) {
-//					status.append(appoggioStatus.subSequence(6, 8));
-//				}
-//			}
-//		}
-//		}
-//		// prende byte e restituisce lo stato: occhio a ffffff se > 15
-//		return status.toString();
-//	}
+	// /**
+	// * @param buffer
+	// * message type in bytes
+	// * @return message type as String
+	// */
+	// static String getType(byte buffer[]) {
+	// // Di per se � un byte, ma se si scopre che centrano anche quelli
+	// // prima serve un array
+	// StringBuffer status = new StringBuffer();
+	// switch (buffer[0]) {
+	// case 'b':
+	// return "WRITE";
+	//
+	// case 'c':
+	// return "READ";
+	//
+	// // default: status = "UNKNOWN";
+	// default: {
+	// // Per visualizzare stato HEXA non codificato (son 2byte almeno)
+	// // String appoggioStatus = "";
+	// for (int k = 0; k < buffer.length; k++) {
+	// String appoggioStatus = Integer.toHexString(buffer[k]);
+	// if (appoggioStatus.length() == 1) {
+	// status.append("0" + appoggioStatus);
+	// // appo = "<" + appo + ">"; // per stampare a video visuale
+	// // campi
+	// } else if (appoggioStatus.length() == 8) {
+	// status.append(appoggioStatus.subSequence(6, 8));
+	// }
+	// }
+	// }
+	// }
+	// // prende byte e restituisce lo stato: occhio a ffffff se > 15
+	// return status.toString();
+	// }
 
 	// /**
 	// * @param the konnex telegram
