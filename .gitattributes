@@ -6,6 +6,17 @@ lddi.continua.bluetooth/no_uaal/libraries/libHDPnative_NOUAAL.zip -text
 lddi.continua.bluetooth/no_uaal/libraries/x073implementation.jar -text
 lddi.continua.bluetooth/no_uaal/samples/BloodPressureMonitor_x073_Sample/src/bluetooth/hdpManager.java -text
 lddi.continua.bluetooth/no_uaal/samples/BloodPressureMonitor_x073_Sample/src/bluetooth/hdpManagerListener.java -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/META-INF/MANIFEST.MF -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/lib/libHDPnative_unix_32.so -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/lib/libHDPnative_unix_64.so -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/pom.xml -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/hdp/Activator.java -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/hdp/ContinuaHdpManagerProvider.java -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/hdp/ProvidedContinuaHdpManagerService.java -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/Publisher.java -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManager.java -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManagerListener.java -text
+lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/target/lddi.continuahdpmanagerservice-1.2.2-SNAPSHOT.jar -text
 lddi.continua.bluetooth/uaal/doc/javadoc.rar -text
 lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.odt -text
 lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.pdf -text
