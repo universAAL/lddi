@@ -72,6 +72,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 	LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
 		"PresenceDetectorCallee",
 		new String[] { "Ready to subscribe" }, null);
+	System.out.println("Ready to subscribe");
 	zbDevice = serv;
 
 	// Info Setup
@@ -115,6 +116,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 	zbDevice.getIASZone().addZoneStatusChangeNotificationListener(this);
 	LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
 		"PresenceDetectorCallee", new String[] { "Subscribed" }, null);
+	System.out.println("Subscribed");
 
     }
 
@@ -124,6 +126,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 		"getPresence",
 		new String[] { "The service called was 'get the status'" },
 		null);
+	System.out.println("The service called was 'get the status'");
 	ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	Boolean finalValue = new Boolean(false);
 	try {
@@ -164,6 +167,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 	LogUtils.logDebug(Activator.moduleContext,
 		PresenceDetectorCallee.class, "zoneStatusChangeNotification",
 		new String[] { "Changed-Event received: "+ arg0 }, null);
+	System.out.println("Changed-Event received: ");
 	ontologyDevice.set(arg0 > 0 ? StatusValue.Activated
 		: StatusValue.NotActivated);
 	cp.publish(new ContextEvent(ontologyDevice,
