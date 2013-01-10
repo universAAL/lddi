@@ -51,7 +51,7 @@ public class Activator implements BundleActivator {
 //	listeners[1] = new OnOffLightListener(context);
 //	listeners[2] = new PresenceDetectorListener(context);
 //	listeners[3] = new TemperatureSensorListener(context);
-	
+	System.out.println("registering activator");
 	listeners[0] = new OccupancySensorListener(context);
 	listeners[1] = new IASZoneListener(context);
     }
@@ -61,7 +61,7 @@ public class Activator implements BundleActivator {
 //	((OnOffLightListener) listeners[1]).douAALUnregistering();
 //	((PresenceDetectorListener) listeners[2]).douAALUnregistering();
 //	((TemperatureSensorListener) listeners[3]).douAALUnregistering();
-	
+	System.out.println("unregistering activator");
 	((OccupancySensorListener) listeners[0]).douAALUnregistering();
 	((IASZoneListener) listeners[1]).douAALUnregistering();
     }
