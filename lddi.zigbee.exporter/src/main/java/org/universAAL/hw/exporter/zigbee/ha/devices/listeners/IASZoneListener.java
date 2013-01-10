@@ -54,13 +54,13 @@ public class IASZoneListener extends ExporterListener {
     public IASZoneListener(BundleContext context)
 	    throws InvalidSyntaxException {
 	super(context);
-	System.out.println("fin construct listener");
+	System.out.println(">>>>fin construct listener");
     }
 
     @Override
     protected void doRegisteruAALService(ServiceReference sr) {
 	log.debug("Creating a instance of device in uAAL");
-	System.out.println("Creating a instance of device in uAAL");
+	System.out.println(">>>>Creating a instance of device in uAAL");
 	IAS_ZoneAAL service = (IAS_ZoneAAL) context.getService(sr);
 	setOfDevices.put(sr, new IASZoneCallee(Activator.moduleContext,
 		service));
@@ -69,7 +69,7 @@ public class IASZoneListener extends ExporterListener {
     @Override
     protected void douAALUnregistering(ServiceReference sr) {
 	log.debug("Removing a instance of device in uAAL");
-	System.out.println("Removing a instance of device in uAAL");
+	System.out.println(">>>>Removing a instance of device in uAAL");
 	((IASZoneCallee) setOfDevices.remove(sr)).unregister();
 	context.ungetService(sr);
     }
@@ -77,7 +77,7 @@ public class IASZoneListener extends ExporterListener {
     @Override
     public void douAALUnregistering() {
 	log.debug("Removing all instances of these devices in uAAL");
-	System.out.println("Removing all instances of these devices in uAAL");
+	System.out.println(">>>>Removing all instances of these devices in uAAL");
 	Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();
