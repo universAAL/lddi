@@ -30,9 +30,11 @@ import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
+import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
+import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceResponse;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
@@ -111,6 +113,16 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 	ContextProvider info = new ContextProvider(NAMESPACE
 		+ "zbIASZoneContextProvider");
 	info.setType(ContextProviderType.gauge);
+	ContextEventPattern cep=new ContextEventPattern();
+	cep.addRestriction(MergedRestriction
+		    .getFixedValueRestriction(
+			    ContextEvent.PROP_RDF_SUBJECT,
+			    ontologyDevice));
+	cep.addRestriction(MergedRestriction
+		    .getFixedValueRestriction(
+			    ContextEvent.PROP_RDF_PREDICATE,
+			    ContactSensor.PROP_HAS_VALUE));
+	info.setProvidedEvents(new ContextEventPattern[]{cep});
 	cp = new DefaultContextPublisher(context, info);
 
 	// ZB device subscription
