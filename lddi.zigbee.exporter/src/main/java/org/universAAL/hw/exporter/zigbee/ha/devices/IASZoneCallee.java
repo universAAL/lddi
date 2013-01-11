@@ -36,6 +36,7 @@ import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceResponse;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
+import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.device.ContactSensor;
 import org.universAAL.ontology.device.StatusValue;
 import org.universAAL.ontology.phThing.DeviceService;
@@ -68,7 +69,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
      *            the abstraction layer
      */
     public IASZoneCallee(ModuleContext context, IAS_ZoneAAL serv) {
-	super(context, null);
+	super(context, new ServiceProfile[]{});
 	LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
 		"PresenceDetectorCallee",
 		new String[] { "Ready to subscribe" }, null);
