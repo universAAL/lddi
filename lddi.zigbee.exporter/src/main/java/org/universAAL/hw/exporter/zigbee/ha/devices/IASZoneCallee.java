@@ -84,7 +84,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 		.replace("\"", "");
 	String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
 	ontologyDevice = new ContactSensor(deviceURI);
-	ontologyDevice.set(StatusValue.NoCondition);
+	ontologyDevice.setValue(StatusValue.NoCondition);
 	// TODO Skip location and attachment for now
 	// String locationSuffix = Activator.getProperties().getProperty(
 	// deviceSuffix);
@@ -181,7 +181,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 		PresenceDetectorCallee.class, "zoneStatusChangeNotification",
 		new String[] { "Changed-Event received: "+ arg0 }, null);
 	System.out.println(">>>>Changed-Event received: ");
-	ontologyDevice.set(arg0 > 0 ? StatusValue.Activated
+	ontologyDevice.setValue(arg0 > 0 ? StatusValue.Activated
 		: StatusValue.NotActivated);
 	cp.publish(new ContextEvent(ontologyDevice,
 		ContactSensor.PROP_HAS_VALUE));
