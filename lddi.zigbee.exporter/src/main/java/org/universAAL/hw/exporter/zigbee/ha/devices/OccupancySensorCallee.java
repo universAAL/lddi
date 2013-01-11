@@ -81,7 +81,7 @@ public class OccupancySensorCallee extends ExporterSensorCallee implements
 		.replace("\"", "");
 	String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
 	ontologyDevice = new PresenceSensor(deviceURI);
-	ontologyDevice.set(StatusValue.NoCondition);
+	ontologyDevice.setValue(StatusValue.NoCondition);
 	// TODO Skip location and attachment for now
 	// String locationSuffix = Activator.getProperties().getProperty(
 	// deviceSuffix);
@@ -165,7 +165,7 @@ public class OccupancySensorCallee extends ExporterSensorCallee implements
 	LogUtils.logDebug(Activator.moduleContext,
 		PresenceDetectorCallee.class, "changedOccupancy",
 		new String[] { "Changed-Event received" }, null);
-	ontologyDevice.set(event.getEvent() > 0 ? StatusValue.Activated
+	ontologyDevice.setValue(event.getEvent() > 0 ? StatusValue.Activated
 		: StatusValue.NotActivated);
 	cp.publish(new ContextEvent(ontologyDevice,
 		PresenceSensor.PROP_HAS_VALUE));
