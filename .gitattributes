@@ -696,6 +696,8 @@ lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/MITX.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/libHDPnative_unix_64.so.zip -text
+lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/hdpNativeLib_win_x86_32.dll -text
+lddi.continua.bluetooth/uaal/native_libs/windows/x86_64/README.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/MITX.txt -text
