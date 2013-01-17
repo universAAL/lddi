@@ -23,7 +23,7 @@ public class EncoderMDER <T> extends Encoder<T> {
 	}
 
 
-	@Override
+	
 	/*
 	 * The encoding of an integer value is primitive, and the octets represent the value using a twos-complement
 		binary representation for signed integers and the absolute value for unsigned.
@@ -112,7 +112,7 @@ public class EncoderMDER <T> extends Encoder<T> {
 		
 	}
 
-	@Override
+	
 	/**
 	 * Two types of OctetString: 
 	 * - fixed-length (size constrained) 
@@ -137,7 +137,7 @@ public class EncoderMDER <T> extends Encoder<T> {
 		return resultSize;
 	}
 	
-	@Override
+	
 	/**
 	 * Three types of BitString:
 	 * - 8 bits
@@ -167,7 +167,7 @@ public class EncoderMDER <T> extends Encoder<T> {
 		return resultSize;
 	}
 
-	@Override
+	
 	public int encodeSequence(Object object, OutputStream stream,
 			ElementInfo elementInfo) throws Exception {
 		
@@ -192,7 +192,7 @@ public class EncoderMDER <T> extends Encoder<T> {
 	 * - Encoded elements, one after another 
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
+	
 	public int encodeSequenceOf(Object object, OutputStream stream,
 			ElementInfo elementInfo) throws Exception {
 		
@@ -279,7 +279,7 @@ public class EncoderMDER <T> extends Encoder<T> {
         return resultSize;
 	}
 
-	@Override
+	
 	/**
 	 * Two fields:
 	 * - Length in octets of the next field (INT_U16)
@@ -302,34 +302,34 @@ public class EncoderMDER <T> extends Encoder<T> {
 	
 	
 	@SuppressWarnings("rawtypes")
-	@Override
+	
 	public int encodeEnumItem(Object enumConstant, Class enumClass,
 			OutputStream stream, ElementInfo elementInfo) throws Exception {
 		throw new Exception("ENUMERATED not included in MDER");
 	}
-	@Override
+	
 	public int encodeBoolean(Object object, OutputStream stream,
 			ElementInfo elementInfo) throws Exception {
 		throw new Exception("BOOLEAN not included in MDER");
 	}
 	
-	@Override
+	
 	public int encodeObjectIdentifier(Object object, OutputStream steam,
 			ElementInfo elementInfo) throws Exception {
 		throw new Exception("OBJECT IDENTIFIER not included in MDER");
 	}
-	@Override
+	
 	public int encodeString(Object object, OutputStream steam,
 			ElementInfo elementInfo) throws Exception {
 		throw new Exception("STRING not included in MDER");
 	}
 	
-	@Override
+	
 	public int encodeNull(Object object, OutputStream stream,
 			ElementInfo elementInfo) throws Exception {
 		throw new Exception("NULL not included in MDER");
 	}
-	@Override
+	
 	public int encodeReal(Object object, OutputStream steam,
 			ElementInfo elementInfo) throws Exception {
 		throw new Exception("REAL not included in MDER");

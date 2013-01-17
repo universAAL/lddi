@@ -28,40 +28,34 @@ public class EpiCfgscanner extends CfgScanner implements EpiCfgScanner_Events{
 		return NomenclatureCodes.MDC_MOC_SCAN_CFG_EPI;
 	}
 
-	@Override
 	public ConfigReportRsp MDS_Configuration_Event(ConfigReport cfgreport) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void MDS_Dynamic_Data_Update_Var(ScanReportInfoVar scanreportinfovar) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void MDS_Dynamic_Data_Update_Fixed(
 			ScanReportInfoFixed scanreportinfofixed) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void MDS_Dynamic_Data_Update_MP_Var(
 			ScanReportInfoMPVar scanreportinfompvar) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void MDS_Dynamic_Data_Update_MP_Fixed(
 			ScanReportInfoMPFixed scanreportinfompfixed) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void GET() {
 		// TODO Auto-generated method stub
 
@@ -78,32 +72,26 @@ public class EpiCfgscanner extends CfgScanner implements EpiCfgScanner_Events{
 		// TODO Auto-generated method stub
 
 	}
-	@Override
 	public void Unbuf_Scan_Report_Var(ScanReportInfoVar sriv) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void Unbuf_Scan_Report_Fixed(ScanReportInfoFixed srif) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void Unbuf_Scan_Report_Grouped(ScanReportInfoGrouped srig) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void Unbuf_Scan_Report_MP_Var(ScanReportInfoMPVar srimpvar) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void Unbuf_Scan_Report_MP_Fixed(ScanReportInfoMPFixed srimpf) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void Unbuf_Scan_Report_MP_Grouped(ScanReportInfoMPGrouped srimpg) {
 		// TODO Auto-generated method stub
 		
