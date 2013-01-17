@@ -38,7 +38,6 @@ public class DecoderMDER extends Decoder {
 	 * @see org.bn.coders.IASN1TypesDecoder#decodeInteger(org.bn.coders.DecodedObject, java.lang.Class, org.bn.coders.ElementInfo, java.io.InputStream)
 	 */
 
-	@Override
 	public DecodedObject decodeInteger(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
 			throws Exception {
@@ -147,7 +146,6 @@ public class DecoderMDER extends Decoder {
 		(non-Javadoc)
 	 * @see org.bn.coders.IASN1TypesDecoder#decodeBitString(org.bn.coders.DecodedObject, java.lang.Class, org.bn.coders.ElementInfo, java.io.InputStream)
 	 */
-	@Override
 	public DecodedObject decodeBitString(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
 			throws Exception {
@@ -194,7 +192,6 @@ public class DecoderMDER extends Decoder {
 		(non-Javadoc)
 	 * @see org.bn.coders.IASN1TypesDecoder#decodeOctetString(org.bn.coders.DecodedObject, java.lang.Class, org.bn.coders.ElementInfo, java.io.InputStream)
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public DecodedObject decodeOctetString(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
@@ -297,7 +294,6 @@ public class DecoderMDER extends Decoder {
      * - INT_U16 : length,  octets of the elements encoded
      * - The encoded elements one after another.
      */
-	@Override
 	@SuppressWarnings("unchecked")
 	public DecodedObject decodeSequenceOf(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
@@ -413,7 +409,7 @@ public class DecoderMDER extends Decoder {
 	
 	
 	@SuppressWarnings("unchecked")
-	@Override
+	
 	/*
 	 * The ANY DEFINED BY type (ASN.1 1988/90) or the instance-of type (ASN.1 1994) is encoded by a
 		header of a length field to specify the number of octets in the encoding of the selected value that follows.
@@ -465,39 +461,39 @@ public class DecoderMDER extends Decoder {
 		return new DecodedObject(anyStream, length.getSize()); 
 	}
 	
-	@Override
+	
 	public DecodedObject decodeEnumItem(DecodedObject decodedTag,
 			Class objectClass, Class enumClass, ElementInfo elementInfo,
 			InputStream stream) throws Exception {
 		throw new Exception("ENUMERATED not included in MDER");
 	}
-	@Override
+	
 	public DecodedObject decodeObjectIdentifier(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
 			throws Exception {
 		throw new Exception("OBJECT IDENTIFIER not included in MDER");
 
 	}
-	@Override
+	
 	public DecodedObject decodeString(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
 			throws Exception {
 		throw new Exception("STRING not included in MDER");
 
 	}
-	@Override
+	
 	public DecodedObject decodeBoolean(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
 			throws Exception {
 		throw new Exception("BOOLEAN not included in MDER");
 	}
-	@Override
+	
 	public DecodedObject decodeReal(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
 			throws Exception {
 		throw new Exception("REAL not included in MDER");
 	}
-	@Override
+	
 	public DecodedObject decodeNull(DecodedObject decodedTag,
 			Class objectClass, ElementInfo elementInfo, InputStream stream)
 			throws Exception {
@@ -509,7 +505,7 @@ public class DecoderMDER extends Decoder {
     	throw new Exception ("SET is not included in MDER");
 	}  
 
-	@Override
+	
 	public DecodedObject decodeTag(InputStream stream) throws Exception {
 		return null;
 	}

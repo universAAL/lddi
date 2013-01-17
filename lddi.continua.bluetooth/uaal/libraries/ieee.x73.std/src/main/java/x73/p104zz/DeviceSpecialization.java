@@ -156,7 +156,6 @@ public class DeviceSpecialization extends MDS {
 	/**
 	 * Processing of a variable measurement received.
 	 */
-	@Override
 	public void MDS_Dynamic_Data_Update_Var(ScanReportInfoVar scanreportinfovar) {
 		Logging.log("Initiating processing of a received measurement from a "+this.toString());
 		Logging.blankLine();
@@ -206,7 +205,7 @@ public class DeviceSpecialization extends MDS {
 		
 	}
 
-	@Override
+	
 	/**
 	 * Processing of a fixed measurement
 	 */
@@ -279,21 +278,18 @@ public class DeviceSpecialization extends MDS {
 		measurement.printMeasurement(time_gap);
 	}
 
-	@Override
 	public void MDS_Dynamic_Data_Update_MP_Var(
 			ScanReportInfoMPVar scanreportinfompvar) {
 		// TODO Multi-Person variable measurement 
 		
 	}
 
-	@Override
 	public void MDS_Dynamic_Data_Update_MP_Fixed(
 			ScanReportInfoMPFixed scanreportinfompfixed) {
 		// TODO Multi-Person fixed measurement 
 		
 	}
 
-	@Override
 	public void GET() {
 		// TODO GET method for asking the MDS object of the Agent.
 		
