@@ -43,12 +43,6 @@
 							hdpNativeLib_win_x86_32.dll;
 							osname=win32;
 							processor=x86; processor=x86_32
-							libHDPnative_unix_32.so;
-							osname=Linux;
-							processor=x86; processor=x86_32
-							libHDPnative_unix_64.so;
-							osname=Linux;
-							processor=x86; processor=x86_64
 						</Bundle-NativeCode>
 						</instructions>
 				</configuration>
