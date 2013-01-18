@@ -705,7 +705,6 @@ lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/ASL2.0.txt 
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/NOTICE.txt -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/hdpNativeLib_win_x86_32.dll -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/libHDPnative_unix_32.so -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/libHDPnative_unix_64.so -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/pom.xml -text
