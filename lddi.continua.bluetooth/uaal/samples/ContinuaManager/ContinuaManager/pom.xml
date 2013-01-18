@@ -39,10 +39,7 @@
 						<Import-Package>*</Import-Package>			
 						<Bundle-NativeCode><!--
 						From the BundleNative javadoc: f you have more than one library for the same environment then you 
-						should include all of the libraries for that environment in the same Bundle-NativeCode entry.-->
-							hdpNativeLib_win_x86_32.dll;
-							osname=win32;
-							processor=x86; processor=x86_32
+						should include all of the libraries for that environment in the same Bundle-NativeCode entry.-->							
 							libHDPnative_unix_32.so;
 							osname=Linux;
 							processor=x86; processor=x86_32
