@@ -722,6 +722,7 @@ lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClie
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.settings/org.eclipse.jdt.core.prefs -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.settings/org.eclipse.m2e.core.prefs -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/ASL2.0.txt -text
+lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/Continua_manager_caller_test.launch -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/NOTICE.txt -text
