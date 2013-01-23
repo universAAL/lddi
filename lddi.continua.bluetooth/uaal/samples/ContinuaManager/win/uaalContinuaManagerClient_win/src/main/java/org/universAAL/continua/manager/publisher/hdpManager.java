@@ -133,7 +133,7 @@ public class hdpManager implements hdpManagerListener {
 	}
 
 	// Load dynamic library
-	static {
+	static {		
 		try {	
 			// OS = Windows 7
 			if(System.getProperty("os.name").equals("Windows 7")) {								

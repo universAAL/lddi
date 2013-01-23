@@ -12,7 +12,7 @@
 <!-- updated version -->
 	<version>${parent.version}</version>
 	<packaging>bundle</packaging>
-	<name>uAAL Continua Manager Client</name>
+	<name>uAAL Continua Manager Client (windows OS version)</name>
 	<description>Continua Health Alliance agent event publisher</description>
 	<organization>
 		<name>TSB Technologies for Health and Well-being</name>
@@ -41,8 +41,8 @@
 						From the BundleNative javadoc: f you have more than one library for the same environment then you 
 						should include all of the libraries for that environment in the same Bundle-NativeCode entry.-->
 							hdpNativeLib_win_x86_32.dll;
-							osname=win32;
-							processor=x86; processor=x86_32
+							osname=Windows7;
+							processor=x86
 						</Bundle-NativeCode>
 						</instructions>
 				</configuration>
