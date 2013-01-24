@@ -109,7 +109,7 @@ public class GUI extends JDialog implements ActionListener {
 	public void init() {		
 		// Main dialog
 		setResizable(false);
-		setBounds(100,100,450,325);
+		setBounds(100,100,450,375);
 		setTitle("uAAL Continua manager client");
 		getContentPane().setLayout(new BorderLayout());
 		// Main panel (content pane)
@@ -249,7 +249,7 @@ public class GUI extends JDialog implements ActionListener {
 		// Create dialog frame
 		uaalPublisher = new JDialog(this,"uAAL publisher",true);
 		uaalPublisher.setResizable(false);
-		uaalPublisher.setBounds(100,100,650,325);
+		uaalPublisher.setBounds(100,100,650,375);
 		uaalPublisher.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		uaalPublisher.addWindowListener(new WindowAdapter() {				
 		    public void windowClosing(WindowEvent e) {
@@ -403,13 +403,13 @@ public class GUI extends JDialog implements ActionListener {
 	
 	/** */
 	public void stopPublisherGUI() {
-		if(manager != null) {
-			manager.exit();
-			manager = null;
+		if(manager != null) {			
+			manager.exit();			
+			manager = null;			
 		}	
-		resetComponentsStatus();
-		uaalPublisher.dispose();
-		setVisible(true);
+		resetComponentsStatus();		
+		uaalPublisher.dispose();		
+		setVisible(true);		
 	}
 	
 	/** Exit all */
