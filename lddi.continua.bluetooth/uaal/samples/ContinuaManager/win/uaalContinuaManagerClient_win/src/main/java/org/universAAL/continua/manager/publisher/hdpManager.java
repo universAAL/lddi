@@ -64,7 +64,7 @@ public class hdpManager implements hdpManagerListener {
 	public void init() {		
 		if(initLibrary()) {
 			if(BtHdpOpen(CONTINUA_DEVICE)) {			
-				waitHDPDataFrames();				
+				waitHDPDataFrames();					
 			} else {
 				System.out.println("Unable to open HDP channel");
 			}
@@ -145,11 +145,10 @@ public class hdpManager implements hdpManagerListener {
 	}
 
 	public void onChannelConnected() {
-		// TODO Auto-generated method stub
+		
 		
 	}
-	public void onChannelDisconnected() {
-		// TODO Auto-generated method stub
+	public void onChannelDisconnected() {		
 		
 	}	
 }
