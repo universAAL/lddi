@@ -31,6 +31,12 @@ lddi.iso11073.library/target
 lddi.knx.devicemanager/.classpath
 lddi.knx.devicemanager/.project
 lddi.knx.devicemanager/.settings
+lddi.knx.devicemanager/launches/runner/bundles
+lddi.knx.devicemanager/launches/runner/cache
+lddi.knx.devicemanager/launches/runner/felix/cache
+lddi.knx.devicemanager/launches/runner/felix/config.ini
+lddi.knx.devicemanager/launches/runner/log
+lddi.knx.devicemanager/launches/target
 lddi.knx.devicemanager/target
 lddi.knx.exporter/.classpath
 lddi.knx.exporter/.project

@@ -895,10 +895,12 @@ lddi.knx.devicemanager/data/OfficeProject5.knxproj -text
 lddi.knx.devicemanager/data/OfficeProject6.knxproj -text
 lddi.knx.devicemanager/launches/README.txt -text
 lddi.knx.devicemanager/launches/Run.bat -text
+lddi.knx.devicemanager/launches/artifact-test.composite -text
+lddi.knx.devicemanager/launches/artifact.composite -text
 lddi.knx.devicemanager/launches/clean.bat -text
 lddi.knx.devicemanager/launches/pax.configuration -text
 lddi.knx.devicemanager/launches/pom.xml -text
-lddi.knx.devicemanager/launches/runner/configurations/mw.bus.model/sodapop.key -text
+lddi.knx.devicemanager/launches/runner/configurations/mw.bus.model.osgi/sodapop.key -text
 lddi.knx.devicemanager/launches/runner/configurations/services/lddi.knx.devicemanager.properties -text
 lddi.knx.devicemanager/launches/runner/configurations/services/lddi.knx.networkdriver.properties -text
 lddi.knx.devicemanager/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
