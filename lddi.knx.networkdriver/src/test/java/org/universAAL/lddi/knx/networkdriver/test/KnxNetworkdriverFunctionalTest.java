@@ -1,4 +1,4 @@
-package it.polito.elite.domotics.dog2.knxnetworkdriver;
+package org.universAAL.lddi.knx.networkdriver.test;
 
 // http://team.ops4j.org/wiki/display/paxexam/Getting+Started+with+OSGi+Tests
 
@@ -16,10 +16,11 @@ import org.osgi.framework.Constants;
 //import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 //import org.ops4j.pax.exam.spi.reactors.PerSuite;
 //import org.osgi.framework.BundleContext;
-////import org.universAAL.lddi.knx.networkdriver.util.LogTracker;
+////import org.universAAL.lddi.knx.networkdriver.test.util.LogTracker;
 //
 //import static org.ops4j.pax.exam.CoreOptions.*;
 import org.universAAL.itests.IntegrationTest;
+import org.universAAL.lddi.knx.networkdriver.Activator;
 import org.universAAL.lddi.knx.utils.KnxCommand;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;

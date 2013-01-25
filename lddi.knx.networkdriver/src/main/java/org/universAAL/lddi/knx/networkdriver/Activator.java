@@ -1,4 +1,4 @@
-package it.polito.elite.domotics.dog2.knxnetworkdriver;
+package org.universAAL.lddi.knx.networkdriver;
 
 import java.util.Hashtable;
 

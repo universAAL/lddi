@@ -1,4 +1,4 @@
-package it.polito.elite.domotics.dog2.knxnetworkdriver;
+package org.universAAL.lddi.knx.networkdriver;
 
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -11,55 +11,32 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
 import org.universAAL.lddi.knx.utils.KnxTelegram;
 
 /**
- * Provides readings from the knx gateway by the LAN. Uses the encoder to
+ * Listens on IP network for Multicast Packets. Uses KNXEncoder to
  * operate translation from low level data (knx) to high level data (sent to
  * uAAL).
  * 
- * @author Enrico Allione (enrico.allione@gmail.com)
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxReader
-// extends Thread
-		implements Runnable {
-	/* Changed from Thread to Runnable */
+public class KnxReader implements Runnable {
 
 	protected KnxNetworkDriverImp core;
-	// protected KnxEncoder encoder;
 
 	static private int socketTimeout = 0; // infinite timeout on receive()
-	// static private int telegramLenght = 17; // KNX core telegram length
 
-	// private boolean running;
 	private MulticastSocket mcReceiver;
 
 	public KnxReader(KnxNetworkDriverImp core) {
 		this.core = core;
-		// this.running=true;
 	}
-
-	// public void stopReader(){
-	// this.running=false;
-	// }
 
 	public void stopReader() {
 		if (this.mcReceiver != null)
 			this.mcReceiver.close();
 	}
 
-	// public void run() {
-	// while(running){
-	// listen();
-	// Thread.yield();
-	// }
-	// }
-
-	// private void listen(){
 	public void run() {
-		// int k = 0;
-		// boolean flag = true;
-
 		try {
-			this.mcReceiver = new MulticastSocket(core.getMyUdpPort());
+			this.mcReceiver = new MulticastSocket(core.getMulticastUdpPort());
 			InetAddress group = InetAddress.getByName(core.getMulticastIp());
 			this.mcReceiver.joinGroup(group);
 
@@ -67,14 +44,12 @@ public class KnxReader
 
 			core.getLogger().log(
 					LogService.LOG_INFO,
-					"Server KNX listening on port " + core.getMyUdpPort()
+					"Server KNX listening on port " + core.getMulticastUdpPort()
 							+ " (joined " + core.getMulticastIp() + ")");
 
-			// while (flag) {
 			while (!Thread.currentThread().isInterrupted()) {
 
 				byte buffer[] = new byte[mcReceiver.getReceiveBufferSize()];
-				// buffer is 8192 bytes !!
 				DatagramPacket udpPacket = new DatagramPacket(buffer,
 						buffer.length);
 
@@ -173,5 +148,4 @@ public class KnxReader
 			e.printStackTrace();
 		}
 	}
-
 }

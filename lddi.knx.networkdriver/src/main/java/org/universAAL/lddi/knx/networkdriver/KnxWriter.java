@@ -1,4 +1,4 @@
-package it.polito.elite.domotics.dog2.knxnetworkdriver;
+package org.universAAL.lddi.knx.networkdriver;
 
 import java.net.*;
 
@@ -7,11 +7,9 @@ import org.universAAL.lddi.knx.utils.KnxCommand;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
- * Provides the writing to the knx gateway. Uses the encoder to operate
- * translation from high-level commands to low-level command sent to the
- * gateway.
+ * Envelopes KNX commands to UDP Packets and sends them on a UDP Multicast Channel.
+ * Uses KNXEncoder to operate translation from high-level commands to low-level KNX commands.
  * 
- * @author Enrico Allione (enrico.allione@gmail.com)
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxWriter {
@@ -49,52 +47,6 @@ public class KnxWriter {
 		}
 		return byteString.toString();
 	}
-
-	// public static String byteArrayToHexString(byte in[]) {
-	//
-	// int i = 0;
-	//
-	// if (in == null || in.length <= 0)
-	//
-	// return null;
-	//
-	// String pseudo[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-	// "A", "B", "C", "D", "E", "F" };
-	//
-	// StringBuffer out = new StringBuffer(in.length * 3);
-	//
-	// // TODO 20 bytes hardcoded!
-	// while (i < in.length && i < 20) {
-	// byte ch = 0x00;
-	// byte ch2 = 0x00;
-	// ch = (byte) (in[i] & 0xF0); // Strip offhigh nibble
-	//
-	// ch = (byte) (ch >>> 4);
-	// // shift the bits down
-	//
-	// ch = (byte) (ch & 0x0F);
-	// // must do this is high order bit is on!
-	//
-	// // out.append(pseudo[ (int) ch]); // convert thenibble to a String
-	// // Character
-	//
-	// ch2 = (byte) (in[i] & 0x0F); // Strip offlow nibble
-	//
-	// out.append(pseudo[(int) ch] + pseudo[(int) ch2] + " "); // convert
-	// // thenibble
-	// // to a
-	// // String
-	// // Character
-	//
-	// i++;
-	//
-	// }
-	//
-	// String rslt = new String(out);
-	//
-	// return rslt;
-	//
-	// }
 
 	/**
 	 * Wrapper for write method. Without command type.
@@ -137,7 +89,7 @@ public class KnxWriter {
 
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,
-					telegram.length, addr, core.getHousePort());
+					telegram.length, addr, core.getMulticastUdpPort());
 
 			// Sending the packet
 			core.getLogger().log(
@@ -186,7 +138,7 @@ public class KnxWriter {
 
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,
-					telegram.length, addr, core.getHousePort());
+					telegram.length, addr, core.getMulticastUdpPort());
 
 			// Sending the packet
 			core.getLogger().log(LogService.LOG_INFO,
@@ -211,5 +163,4 @@ public class KnxWriter {
 					"Unable to write to KNX bus " + e);
 		}
 	}
-
 }
