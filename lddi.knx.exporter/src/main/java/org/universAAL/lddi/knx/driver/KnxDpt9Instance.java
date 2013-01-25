@@ -8,8 +8,8 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.devicedriver.KnxDriver;
-import org.universAAL.lddi.knx.devicedriver.KnxDriverClient;
+import org.universAAL.lddi.knx.interfaces.KnxDriver;
+import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 

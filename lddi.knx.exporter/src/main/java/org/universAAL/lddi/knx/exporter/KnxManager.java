@@ -8,8 +8,8 @@ import java.util.TreeMap;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.devicedriver.KnxDriver;
-import org.universAAL.lddi.knx.devicedriver.KnxDriverClient;
+import org.universAAL.lddi.knx.interfaces.KnxDriver;
+import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
 import org.universAAL.lddi.knx.driver.KnxDpt9Driver;
 import org.universAAL.lddi.knx.exporter.util.LogTracker;
 
