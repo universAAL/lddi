@@ -851,6 +851,7 @@ lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/MyAgent.j
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/util/LogTracker.java -text
 lddi.iso11073.library/MITX.txt -text
 lddi.iso11073.library/pom.xml -text
+lddi.iso11073.library/readme.txt -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/Iso11073CoSensor.java -text
