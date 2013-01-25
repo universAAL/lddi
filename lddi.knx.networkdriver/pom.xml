@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>1.3.1-SNAPSHOT</version>
+    <version>1.3.3-SNAPSHOT</version>
     <relativePath>../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.knx.networkdriver</artifactId>
-  <version>1.3.2-SNAPSHOT</version>
+  <version>1.3.3-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX network driver</name>
   <description>This bundle connects to a UPD Multicast Channel on the local IP network where KNX bus messages can be sent and received. Usually a KNX/IP Gateway is used to connect the UDP Multicast Channel to the KNX bus system. The base source code is taken from the DOG2 project on http://domoticdog.sourceforge.net and slightly modified to run standalone.</description>
@@ -90,10 +90,10 @@
         <configuration>
           <instructions>
             <Bundle-Name>${project.name}</Bundle-Name>
-            <Bundle-Activator>it.polito.elite.domotics.dog2.knxnetworkdriver.Activator</Bundle-Activator>
+            <Bundle-Activator>org.universAAL.lddi.knx.networkdriver.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Export-Package>it.polito.elite.domotics.dog2.knxnetworkdriver</Export-Package>
+            <Export-Package>org.universAAL.lddi.knx.networkdriver</Export-Package>
           </instructions>
         </configuration>
       </plugin>

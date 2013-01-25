@@ -1,5 +1,4 @@
-package it.polito.elite.domotics.dog2.knxnetworkdriver;
-
+package org.universAAL.lddi.knx.networkdriver;
 
 import org.universAAL.lddi.knx.utils.KnxCommand;
 
@@ -53,7 +52,6 @@ public class KnxCommunication
 			
 			// Starting the server listening from the gateway
 			reader = new KnxReader(this.driver);
-//			reader.start();
 			readerThread = new Thread(reader);
 			readerThread.start();
 
@@ -64,11 +62,6 @@ public class KnxCommunication
 			this.driver.networkConnected();
 
 
-		// Inizio parte test rete successiva
-
-		// Sleep per un po e poi ritesta rete: se � arrivato fin qui significa che la rete c'era,
-		//	quindi se non la trova + deve riavviarsi a cercare (stile BTicino), mentre se la trova
-		//		tutto va bene.
 //		try {
 //			boolean goOnChecking = true;
 //			while (goOnChecking){					
@@ -146,7 +139,5 @@ public class KnxCommunication
 	public byte[] getLastSentPacket() {
 		return this.writer.getLastPacketSent();
 	}
-	
-	
 
 }

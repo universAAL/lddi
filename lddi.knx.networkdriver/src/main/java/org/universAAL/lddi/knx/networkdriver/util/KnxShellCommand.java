@@ -1,8 +1,8 @@
 package org.universAAL.lddi.knx.networkdriver.util;
 
-import it.polito.elite.domotics.dog2.knxnetworkdriver.KnxNetworkDriverImp;
 
 import org.apache.felix.service.command.Descriptor;
+import org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp;
 import org.universAAL.lddi.knx.utils.KnxCommand;
 
 /**
