@@ -23,7 +23,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 import org.universAAL.lddi.knx.devicemodel.KnxDeviceFactory;
-import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
+import org.universAAL.lddi.knx.interfaces.KnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
 /**
