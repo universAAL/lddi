@@ -1008,6 +1008,7 @@ lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/runne
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/runner/remoteDebug.bat -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/runner/run.bat -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/pom.xml -text
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/readme.txt -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/Activator.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1Instance.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text

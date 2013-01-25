@@ -10,8 +10,8 @@ import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDevice
 import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubFactory;
 import org.universAAL.lddi.iso11073.activityhub.devicemodel.ActivityHubSensor;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
-import org.universAAL.lddi.knx.devicedriver.KnxDriver;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
+import org.universAAL.lddi.knx.interfaces.KnxDriver;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
