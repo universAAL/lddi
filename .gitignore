@@ -12,6 +12,12 @@ lddi.hw.exporter.activityhub/.classpath
 lddi.hw.exporter.activityhub/.project
 lddi.hw.exporter.activityhub/.settings
 lddi.hw.exporter.activityhub/launches/artifact-test.composite
+lddi.hw.exporter.activityhub/launches/runner/bundles
+lddi.hw.exporter.activityhub/launches/runner/cache
+lddi.hw.exporter.activityhub/launches/runner/felix/cache
+lddi.hw.exporter.activityhub/launches/runner/felix/config.ini
+lddi.hw.exporter.activityhub/launches/runner/log
+lddi.hw.exporter.activityhub/launches/target
 lddi.hw.exporter.activityhub/log
 lddi.hw.exporter.activityhub/target
 lddi.hw.exporter.x73/.classpath
