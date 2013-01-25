@@ -1,4 +1,4 @@
-package org.universAAL.lddi.knx.devicedriver;
+package org.universAAL.lddi.knx.interfaces;
 
 import org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory;
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;

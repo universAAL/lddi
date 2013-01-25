@@ -1,4 +1,4 @@
-package org.universAAL.lddi.knx.devicedriver;
+package org.universAAL.lddi.knx.interfaces;
 
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
