@@ -1,4 +1,4 @@
-package org.universAAL.lddi.knx.networkdriver;
+package org.universAAL.lddi.knx.interfaces;
 
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 import org.universAAL.lddi.knx.utils.KnxCommand;

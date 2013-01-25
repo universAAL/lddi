@@ -4,7 +4,7 @@ import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.networkdriver.KnxNetwork;
+import org.universAAL.lddi.knx.interfaces.KnxNetwork;
 import org.universAAL.lddi.knx.utils.*;
 
 /**
