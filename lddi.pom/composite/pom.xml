@@ -28,6 +28,10 @@
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.exporter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.devicemanager</artifactId>
     </dependency>
     <dependency>
