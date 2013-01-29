@@ -13,45 +13,59 @@ package org.universAAL.continua.manager.publisher;
 // Imports
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JDialog;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
-import org.universAAL.continua.manager.gui.GUI;;
+import org.universAAL.continua.manager.gui.GUI;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 // Main class
 public class Activator implements BundleActivator {
+	
+//	/Continua Health Manager|http://www.tsbtecnologias.es|http://ontologies.universAAL.com/CONTINUAHEALTHMANAGERUI.owl#ContinuaManager
 
 	// Attributes    
 	/** Main GUI object */
 	private GUI gui = null;	
 	
-	/** Bundle context object */
-	private BundleContext ctx = null;	
+//	/** Bundle context object */
+//	private BundleContext ctx = null;	
+	
+	private ModuleContext mdlContext;
+	private BundleContext bndContext;
+	private ServiceProvider service;
 	
 	// Methods
 	/** Start */
 	public void start(BundleContext context) throws Exception {	
-		ctx = context;	
+		mdlContext = uAALBundleContainer.THE_CONTAINER
+				.registerModule(new Object[] { context });				
 		// Create and show main GUI frame
-		gui = new GUI(ctx);								
+		gui = new GUI(bndContext);								
 		gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		gui.addWindowListener(new WindowAdapter() {				
 			public void windowClosing(WindowEvent e) {
 				gui.stopGUI();
 				try {
-					ctx.getBundle().stop();
+					bndContext.getBundle().stop();
 				} catch (BundleException e1) {					
 					e1.printStackTrace();
 				}				
 			}
 		});
-		gui.setVisible(true);
+//		gui.setVisible(true);
+		// Service callee
+		service = new ServiceProvider(mdlContext,gui);	
 	}
 
 	/** Stop */
 	public void stop(BundleContext arg0) throws Exception {		
 		gui.stopGUI();	
-		ctx = null;
+		bndContext = null;
+		mdlContext = null;
 	}	
 }
