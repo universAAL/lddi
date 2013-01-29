@@ -421,6 +421,6 @@ public class GUI extends JDialog implements ActionListener {
 		resetComponentsStatus();
 		if(uaalPublisher != null)
 			uaalPublisher.dispose();	
-		dispose();
+		//dispose();
 	}
 }
