@@ -50,12 +50,13 @@ public class Activator implements BundleActivator {
 		gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		gui.addWindowListener(new WindowAdapter() {				
 			public void windowClosing(WindowEvent e) {
-				gui.stopGUI();
-				try {
-					bndContext.getBundle().stop();
-				} catch (BundleException e1) {					
-					e1.printStackTrace();
-				}				
+				gui.setVisible(false); 
+//				gui.stopGUI();
+//				try {
+//					bndContext.getBundle().stop();
+//				} catch (BundleException e1) {					
+//					e1.printStackTrace();
+//				}				
 			}
 		});
 //		gui.setVisible(true);
