@@ -64,23 +64,23 @@ public class ServiceProvider extends ServiceCallee {
 //	}
 	
 	public ServiceResponse handleCall(ServiceCall call) {
-		  System.out.println("linea 1");
+//		  System.out.println("linea 1");
 		    if(call != null) {
-		  System.out.println("linea 2");
+//		  System.out.println("linea 2");
 		   String operation = call.getProcessURI();
-		   System.out.println("linea 3");
+//		   System.out.println("linea 3");
 		   if(operation != null && operation.startsWith(PROF_START_UI)) {
-		   System.out.println("linea 4");
+//		   System.out.println("linea 4");
 		    Object inputUser = call.getProperty(ServiceRequest.PROP_uAAL_INVOLVED_HUMAN_USER);
-		    System.out.println("linea 5");
+//		    System.out.println("linea 5");
 		    // Create and show main GUI frame    
 		    gui.setVisible(true);  
-		System.out.println("linea 6");    
+//		System.out.println("linea 6");    
 		    return new ServiceResponse(CallStatus.succeeded);
 		   }
-		   System.out.println("linea 7");
+//		   System.out.println("linea 7");
 		  }
-		  System.out.println("linea 8");
+//		  System.out.println("linea 8");
 		  return null;  
 		 }
 

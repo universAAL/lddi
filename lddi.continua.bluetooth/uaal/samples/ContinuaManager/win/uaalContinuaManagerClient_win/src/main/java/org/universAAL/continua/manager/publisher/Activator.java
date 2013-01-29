@@ -64,7 +64,8 @@ public class Activator implements BundleActivator {
 	}
 
 	/** Stop */
-	public void stop(BundleContext arg0) throws Exception {		
+	public void stop(BundleContext arg0) throws Exception {
+		gui.setVisible(false);
 		gui.stopGUI();	
 		bndContext = null;
 		mdlContext = null;
