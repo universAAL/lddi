@@ -50,18 +50,39 @@ public class ServiceProvider extends ServiceCallee {
 		return new ServiceProfile[] { prof };
 	}
 
+//	public ServiceResponse handleCall(ServiceCall call) {
+//		if(call != null) {
+//			String operation = call.getProcessURI();
+//			if(operation != null && operation.startsWith(PROF_START_UI)) {
+//				Object inputUser = call.getProperty(ServiceRequest.PROP_uAAL_INVOLVED_HUMAN_USER);
+//				// Create and show main GUI frame				
+//				gui.setVisible(true);				
+//				return new ServiceResponse(CallStatus.succeeded);
+//			}
+//		}
+//		return null;		
+//	}
+	
 	public ServiceResponse handleCall(ServiceCall call) {
-		if(call != null) {
-			String operation = call.getProcessURI();
-			if(operation != null && operation.startsWith(PROF_START_UI)) {
-				Object inputUser = call.getProperty(ServiceRequest.PROP_uAAL_INVOLVED_HUMAN_USER);
-				// Create and show main GUI frame				
-				gui.setVisible(true);				
-				return new ServiceResponse(CallStatus.succeeded);
-			}
-		}
-		return null;		
-	}
+		  System.out.println("linea 1");
+		    if(call != null) {
+		  System.out.println("linea 2");
+		   String operation = call.getProcessURI();
+		   System.out.println("linea 3");
+		   if(operation != null && operation.startsWith(PROF_START_UI)) {
+		   System.out.println("linea 4");
+		    Object inputUser = call.getProperty(ServiceRequest.PROP_uAAL_INVOLVED_HUMAN_USER);
+		    System.out.println("linea 5");
+		    // Create and show main GUI frame    
+		    gui.setVisible(true);  
+		System.out.println("linea 6");    
+		    return new ServiceResponse(CallStatus.succeeded);
+		   }
+		   System.out.println("linea 7");
+		  }
+		  System.out.println("linea 8");
+		  return null;  
+		 }
 
 	/**	 */
 	@Override
