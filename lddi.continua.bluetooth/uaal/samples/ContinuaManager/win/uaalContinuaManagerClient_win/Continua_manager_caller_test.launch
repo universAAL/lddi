@@ -82,8 +82,8 @@
 <listEntry value="mvn:org.universAAL.ontology/ont.measurement/1.3.1-SNAPSHOT@6"/>
 <listEntry value="mvn:org.universAAL.ontology/ont.continuahealthmanager/1.3.1-SNAPSHOT@7"/>
 <listEntry value="mvn:org.universAAL.ontology/ont.phWorld/1.3.1-SNAPSHOT@7"/>
-<listEntry value="mvn:org.universAAL.ontology/ont.personalhealthdevice/1.3.1-SNAPSHOT@8"/>
 <listEntry value="mvn:org.universAAL.continua/lddi.continuahdpmanager.subscriber.test/1.3.1-SNAPSHOT@8"/>
+<listEntry value="mvn:org.universAAL.ontology/ont.personalhealthdevice/1.3.1-SNAPSHOT@8"/>
 <listEntry value="mvn:org.universAAL.lddi.continua/lddi.uaalContinuaManagerClient/1.3.1-SNAPSHOT@9@nostart@update"/>
 </listAttribute>
 <stringAttribute key="osgi_framework_id" value="--platform=felix --version=2.0.1"/>
