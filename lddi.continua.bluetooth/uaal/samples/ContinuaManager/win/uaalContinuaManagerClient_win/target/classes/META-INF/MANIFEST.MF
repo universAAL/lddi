@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1359468746209
+Bnd-LastModified: 1359562758187
 Build-Jdk: 1.6.0_23
 Built-By: Administrador
 Bundle-Activator: org.universAAL.continua.manager.publisher.Activator

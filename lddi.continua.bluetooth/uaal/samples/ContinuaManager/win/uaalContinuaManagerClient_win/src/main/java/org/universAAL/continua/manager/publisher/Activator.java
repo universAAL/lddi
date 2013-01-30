@@ -16,10 +16,10 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JDialog;
 
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
-import org.osgi.service.packageadmin.PackageAdmin;
+import org.osgi.framework.BundleException;
 import org.universAAL.continua.manager.gui.GUI;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
@@ -52,14 +52,9 @@ public class Activator implements BundleActivator {
 		gui = new GUI(bndContext);								
 		gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		gui.addWindowListener(new WindowAdapter() {				
-			public void windowClosing(WindowEvent e) {
-				gui.setVisible(false); 
-//				gui.stopGUI();
-//				try {
-//					bndContext.getBundle().stop();
-//				} catch (BundleException e1) {					
-//					e1.printStackTrace();
-//				}				
+			public void windowClosing(WindowEvent e) {				
+				stopSafe(bndContext.getBundle());
+//				gui.stopGUI();				
 			}
 		});
 		gui.setVisible(false);
@@ -74,4 +69,18 @@ public class Activator implements BundleActivator {
 		bndContext = null;
 		mdlContext = null;
 	}	
+	
+	void stopSafe(final Bundle bundle) {		
+		new Thread() {
+			public void run() {
+				try {
+					bundle.stop();
+				} catch (BundleException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}.start();
+	}
+	
 }
