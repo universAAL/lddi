@@ -18,10 +18,13 @@ import javax.swing.JDialog;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleException;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.packageadmin.PackageAdmin;
 import org.universAAL.continua.manager.gui.GUI;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+
+
 
 // Main class
 public class Activator implements BundleActivator {
@@ -61,13 +64,13 @@ public class Activator implements BundleActivator {
 		});
 		gui.setVisible(false);
 		// Service callee
-		service = new ServiceProvider(mdlContext,gui);	
+		service = new ServiceProvider(mdlContext,gui);		
 	}
 
 	/** Stop */
-	public void stop(BundleContext arg0) throws Exception {
+	public void stop(BundleContext arg0) throws Exception {		
 		gui.setVisible(false);
-		gui.stopGUI();	
+		gui.stopGUI();					
 		bndContext = null;
 		mdlContext = null;
 	}	
