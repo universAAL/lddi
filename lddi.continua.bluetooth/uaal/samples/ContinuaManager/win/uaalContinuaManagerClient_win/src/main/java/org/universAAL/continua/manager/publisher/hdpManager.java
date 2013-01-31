@@ -14,6 +14,8 @@
 package org.universAAL.continua.manager.publisher;
 
 //Imports
+import java.math.BigDecimal;
+
 import org.universAAL.continua.manager.gui.GUI;
 
 // Class
@@ -75,16 +77,19 @@ public class hdpManager implements hdpManagerListener {
 		}		
 	}	
 	
-	/** Shorten number of decimals */
-	public double shortDecimalNumber(double d) {
-		return Math.round(d*Math.pow(10,2))/Math.pow(10,2); 
-	}		
+	/** Shorten number of decimals */	
+	public String shortDecimalNumber(double unrounded) {
+	    BigDecimal bd = new BigDecimal(unrounded);
+	    BigDecimal rounded = bd.setScale(2,BigDecimal.ROUND_HALF_UP);	    
+//	    return rounded.doubleValue();
+	    return rounded.toString();
+	}
 	
 	/** Data received from Weighing scale */
 	public void onWeightDataReceived(String str) {		
 		if(str != null) {								
 			GUI.finalMeasuredWeightData = Double.parseDouble(str);
-			GUI.uaalPublisherWeightValueTextfield.setText(str);					
+			GUI.uaalPublisherWeightValueTextfield.setText(shortDecimalNumber(Double.parseDouble(str)));					
 			GUI.uaalPublisherWeightUnitTextfield.setText("kg");	
 			GUI.mainPanel.repaint();				
 		}
@@ -94,7 +99,7 @@ public class hdpManager implements hdpManagerListener {
 	public void onDiastolicDataReceived(String str) {		
 		if(str != null) {			
 			GUI.finalDiaBloodPressureData = Double.parseDouble(str);								
-			GUI.uaalPublisherBloodPressureDiaValueTextfield.setText(str);			
+			GUI.uaalPublisherBloodPressureDiaValueTextfield.setText(shortDecimalNumber(Double.parseDouble(str)));			
 			GUI.mainPanel.repaint();
 		}
 	}
@@ -103,7 +108,7 @@ public class hdpManager implements hdpManagerListener {
 	public void onSystolicDataReceived(String str) {		
 		if(str != null) {			
 			GUI.finalSysBloodPressureData = Double.parseDouble(str);							
-			GUI.uaalPublisherBloodPressureSysValueTextfield.setText(str);			
+			GUI.uaalPublisherBloodPressureSysValueTextfield.setText(shortDecimalNumber(Double.parseDouble(str)));			
 			GUI.mainPanel.repaint();
 		}
 	}
@@ -112,15 +117,14 @@ public class hdpManager implements hdpManagerListener {
 	public void onHeartRateDataReceived(String str) {		
 		if(str != null) {			
 			GUI.finalHrBloodPressureData = Double.parseDouble(str);			
-			GUI.uaalPublisherBloodPressurePulValueTextfield.setText(str);			
+			GUI.uaalPublisherBloodPressurePulValueTextfield.setText(shortDecimalNumber(Double.parseDouble(str)));			
 			GUI.mainPanel.repaint();
 		}
 	}
 	
 	/** */
 	public void onMessage(String str) {	
-		if(str.equals("timeout")) {
-			System.out.println("timeout desde java");
+		if(str.equals("timeout")) {			
 			timeoutLaunched = true;
 		} else {
 			System.out.println(str);	
@@ -128,8 +132,7 @@ public class hdpManager implements hdpManagerListener {
 	}
 	
 	/** Reset components */
-	public void resetComponentsStatus() {
-		System.out.println("reset compnents desde java");
+	public void resetComponentsStatus() {		
 		CONTINUA_DEVICE = null;
 		dataTypeValue = null;
 		timeoutLaunched = false;
@@ -137,9 +140,8 @@ public class hdpManager implements hdpManagerListener {
 	
 	/** Close HDP channel and free resources */
 	public void exit() {	
-		if(!timeoutLaunched) {
-			System.out.println("bt chapado desde java");	
-			//BtHdpClose();
+		if(!timeoutLaunched) {				
+			BtHdpClose();
 		}
 		resetComponentsStatus();			
 	}

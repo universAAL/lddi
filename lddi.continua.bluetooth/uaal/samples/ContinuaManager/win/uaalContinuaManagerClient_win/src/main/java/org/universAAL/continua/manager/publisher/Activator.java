@@ -52,9 +52,7 @@ public class Activator implements BundleActivator {
 		gui = new GUI(bndContext);								
 		gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		gui.addWindowListener(new WindowAdapter() {				
-			public void windowClosing(WindowEvent e) {				
-				//stopSafe(bndContext.getBundle());
-//				gui.stopGUI();				
+			public void windowClosing(WindowEvent e) {			
 				gui.setVisible(false);
 			}
 		});
@@ -64,12 +62,9 @@ public class Activator implements BundleActivator {
 	}
 
 	/** Stop */
-	public void stop(BundleContext arg0) throws Exception {	
-		System.out.println("uno desde java");
-		gui.setVisible(false);
-		System.out.println("dos desde java");
-		gui.stopGUI();			
-		System.out.println("tres desde java");
+	public void stop(BundleContext arg0) throws Exception {		
+		gui.setVisible(false);		
+		//gui.stopGUI();		
 //		bndContext = null;
 //		mdlContext = null;
 	}	

@@ -252,9 +252,7 @@ public class GUI extends JDialog implements ActionListener {
 		uaalPublisher.setBounds(100,100,650,375);
 		uaalPublisher.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		uaalPublisher.addWindowListener(new WindowAdapter() {				
-		    public void windowClosing(WindowEvent e) {
-		    	//@TODO do something
-		    	setVisible(true);
+		    public void windowClosing(WindowEvent e) {		    	
 		    	stopPublisherGUI();
 		    }
 		});		
@@ -402,33 +400,25 @@ public class GUI extends JDialog implements ActionListener {
 	}	
 	
 	/** */
-	public void stopPublisherGUI() {
-		System.out.println("voy a mater al gui 1");
-		if(manager != null) {
-			System.out.println("voy a mater al gui 2");
-			manager.exit();		
-			System.out.println("voy a mater al gui 3");
+	public void stopPublisherGUI() {		
+		if(manager != null) {		
+			manager.exit();			
 			manager = null;			
-		}	
-		System.out.println("voy a mater al gui 4");	
-		resetComponentsStatus();		
-		System.out.println("voy a mater al gui 5");
-		uaalPublisher.dispose();		
-		System.out.println("voy a mater al gui 6");				
+		}				
+		//resetComponentsStatus();	
+		if(uaalPublisher != null)
+			uaalPublisher.dispose();
+		setVisible(false);
 	}
 	
 	/** Exit all */
 	public void stopGUI() {
-		if(manager != null) {
-			System.out.println("cuatro desde java");
+		if(manager != null) {			
 			manager.exit();
 			manager = null;
-		}	
-		System.out.println("cinco desde java");
-		resetComponentsStatus();
-		System.out.println("seis desde java");
+		}		
+		//resetComponentsStatus();		
 		if(uaalPublisher != null)
 			uaalPublisher.dispose();		
-		//dispose();
 	}
 }
