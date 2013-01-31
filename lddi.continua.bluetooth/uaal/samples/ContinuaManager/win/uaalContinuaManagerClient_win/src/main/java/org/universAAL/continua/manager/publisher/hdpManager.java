@@ -37,7 +37,8 @@ public class hdpManager implements hdpManagerListener {
 	// Remote device type
 	private String remoteDeviceType = null;
 	
-	private static boolean timeoutLaunched = false;
+	public static boolean timeoutLaunched = false;
+	public static boolean readyToCloseWindow = false;
 
 	/** Native functions */
 	// Init dll
@@ -126,9 +127,12 @@ public class hdpManager implements hdpManagerListener {
 	public void onMessage(String str) {	
 		if(str.equals("timeout")) {			
 			timeoutLaunched = true;
+		} else if(str.equals("Waiting for HDP frames...")) {
+			readyToCloseWindow = true;
+			System.out.println(str);
 		} else {
 			System.out.println(str);	
-		}				
+		}
 	}
 	
 	/** Reset components */
