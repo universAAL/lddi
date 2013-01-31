@@ -34,6 +34,8 @@ public class hdpManager implements hdpManagerListener {
 	
 	// Remote device type
 	private String remoteDeviceType = null;
+	
+	private static boolean timeoutLaunched = false;
 
 	/** Native functions */
 	// Init dll
@@ -116,20 +118,30 @@ public class hdpManager implements hdpManagerListener {
 	}
 	
 	/** */
-	public void onMessage(String str) {		
-		System.out.println(str);		
+	public void onMessage(String str) {	
+		if(str.equals("timeout")) {
+			System.out.println("timeout desde java");
+			timeoutLaunched = true;
+		} else {
+			System.out.println(str);	
+		}				
 	}
 	
 	/** Reset components */
 	public void resetComponentsStatus() {
+		System.out.println("reset compnents desde java");
 		CONTINUA_DEVICE = null;
 		dataTypeValue = null;
+		timeoutLaunched = false;
 	}
 	
 	/** Close HDP channel and free resources */
-	public void exit() {		
-		resetComponentsStatus();
-		BtHdpClose();
+	public void exit() {	
+		if(!timeoutLaunched) {
+			System.out.println("bt chapado desde java");	
+			//BtHdpClose();
+		}
+		resetComponentsStatus();			
 	}
 
 	// Load dynamic library
