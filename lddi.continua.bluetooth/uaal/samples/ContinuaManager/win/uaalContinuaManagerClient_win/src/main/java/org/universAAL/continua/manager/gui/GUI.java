@@ -401,14 +401,16 @@ public class GUI extends JDialog implements ActionListener {
 	
 	/** */
 	public void stopPublisherGUI() {		
-		if(manager != null) {		
-			manager.exit();			
-			manager = null;			
-		}				
-		//resetComponentsStatus();	
-		if(uaalPublisher != null)
-			uaalPublisher.dispose();
-		setVisible(false);
+		if(hdpManager.readyToCloseWindow) {			
+			if (manager != null) {
+				manager.exit();
+				manager = null;
+			}
+			//resetComponentsStatus();	
+			if (uaalPublisher != null)
+				uaalPublisher.dispose();
+			setVisible(false);
+		}		
 	}
 	
 	/** Exit all */
