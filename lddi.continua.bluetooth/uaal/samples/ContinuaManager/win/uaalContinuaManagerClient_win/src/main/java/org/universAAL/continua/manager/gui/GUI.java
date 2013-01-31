@@ -403,24 +403,32 @@ public class GUI extends JDialog implements ActionListener {
 	
 	/** */
 	public void stopPublisherGUI() {
-		if(manager != null) {			
-			manager.exit();			
+		System.out.println("voy a mater al gui 1");
+		if(manager != null) {
+			System.out.println("voy a mater al gui 2");
+			manager.exit();		
+			System.out.println("voy a mater al gui 3");
 			manager = null;			
 		}	
+		System.out.println("voy a mater al gui 4");	
 		resetComponentsStatus();		
+		System.out.println("voy a mater al gui 5");
 		uaalPublisher.dispose();		
-		setVisible(true);		
+		System.out.println("voy a mater al gui 6");				
 	}
 	
 	/** Exit all */
 	public void stopGUI() {
 		if(manager != null) {
+			System.out.println("cuatro desde java");
 			manager.exit();
 			manager = null;
 		}	
+		System.out.println("cinco desde java");
 		resetComponentsStatus();
+		System.out.println("seis desde java");
 		if(uaalPublisher != null)
-			uaalPublisher.dispose();	
+			uaalPublisher.dispose();		
 		//dispose();
 	}
 }

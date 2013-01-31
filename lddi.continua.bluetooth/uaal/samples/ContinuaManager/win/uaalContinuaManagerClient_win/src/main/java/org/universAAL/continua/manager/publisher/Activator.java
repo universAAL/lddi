@@ -53,21 +53,25 @@ public class Activator implements BundleActivator {
 		gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		gui.addWindowListener(new WindowAdapter() {				
 			public void windowClosing(WindowEvent e) {				
-				stopSafe(bndContext.getBundle());
+				//stopSafe(bndContext.getBundle());
 //				gui.stopGUI();				
+				gui.setVisible(false);
 			}
 		});
-		gui.setVisible(false);
+		gui.setVisible(true);
 		// Service callee
 		service = new ServiceProvider(mdlContext,gui);		
 	}
 
 	/** Stop */
-	public void stop(BundleContext arg0) throws Exception {		
+	public void stop(BundleContext arg0) throws Exception {	
+		System.out.println("uno desde java");
 		gui.setVisible(false);
-		gui.stopGUI();					
-		bndContext = null;
-		mdlContext = null;
+		System.out.println("dos desde java");
+		gui.stopGUI();			
+		System.out.println("tres desde java");
+//		bndContext = null;
+//		mdlContext = null;
 	}	
 	
 	void stopSafe(final Bundle bundle) {		
