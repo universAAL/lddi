@@ -48,7 +48,7 @@ public class Activator implements BundleActivator {
 		mdlContext = uAALBundleContainer.THE_CONTAINER
 				.registerModule(new Object[] { context });				
 		// Create and show main GUI frame
-		bndContext = context;
+		bndContext = context;		
 		gui = new GUI(bndContext);								
 		gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		gui.addWindowListener(new WindowAdapter() {				
