@@ -56,7 +56,7 @@ public class Activator implements BundleActivator {
 				gui.setVisible(false);
 			}
 		});
-		gui.setVisible(false);
+		gui.setVisible(true);
 		// Service callee
 		service = new ServiceProvider(mdlContext,gui);		
 	}

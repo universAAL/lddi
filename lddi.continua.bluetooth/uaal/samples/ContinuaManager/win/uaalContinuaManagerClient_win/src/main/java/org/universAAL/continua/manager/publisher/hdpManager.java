@@ -92,7 +92,9 @@ public class hdpManager implements hdpManagerListener {
 			GUI.finalMeasuredWeightData = Double.parseDouble(str);
 			GUI.uaalPublisherWeightValueTextfield.setText(shortDecimalNumber(Double.parseDouble(str)));					
 			GUI.uaalPublisherWeightUnitTextfield.setText("kg");	
-			GUI.mainPanel.repaint();				
+			GUI.mainPanel.repaint();
+			//TODO cambio para la review
+			GUI.publishDataToContextBus();
 		}
 	}
 	
@@ -120,6 +122,8 @@ public class hdpManager implements hdpManagerListener {
 			GUI.finalHrBloodPressureData = Double.parseDouble(str);			
 			GUI.uaalPublisherBloodPressurePulValueTextfield.setText(shortDecimalNumber(Double.parseDouble(str)));			
 			GUI.mainPanel.repaint();
+			//TODO cambio para la review
+			GUI.publishDataToContextBus();
 		}
 	}
 	

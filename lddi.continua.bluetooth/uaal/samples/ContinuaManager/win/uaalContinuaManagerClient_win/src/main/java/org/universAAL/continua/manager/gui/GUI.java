@@ -78,16 +78,16 @@ public class GUI extends JDialog implements ActionListener {
 	private static final String uaalLogoImage = "uaal_logo_resized.jpg";
 	
 	/** Bundle context object */
-	private BundleContext ctx = null;
+	private static BundleContext ctx = null;
 	
 	/** Publisher object to send events */
-	private Publisher uaalX73Publisher = null;
+	private static Publisher uaalX73Publisher = null;
 	
 	/** HDP manager object */
 	private hdpManager manager = null;
 	
 	/** Expected remote device type */
-	private String remoteDeviceType = null;
+	private static String remoteDeviceType = null;
 	
 	/** Final data to be published */
 	public static double finalMeasuredWeightData = -1.0;
@@ -323,7 +323,8 @@ public class GUI extends JDialog implements ActionListener {
 		addJLabelComponent(uaalPublisherWeightUnitTextfield);
 		mainPublisherPanel.add(uaalPublisherButton);
 		// Show
-		uaalPublisher.setVisible(true);
+		//TODO cambio para review true -> false
+		uaalPublisher.setVisible(false);
 	}
 	
 	/** Create JLabel */
@@ -375,7 +376,7 @@ public class GUI extends JDialog implements ActionListener {
 	}
 	
 	/** Shorten number of decimals */
-	public double shortDecimalNumber(double d) {
+	public static double shortDecimalNumber(double d) {
 		return Math.round(d*Math.pow(10,2))/Math.pow(10,2); 
 	}
 	
@@ -387,7 +388,43 @@ public class GUI extends JDialog implements ActionListener {
 		int maxValue = max;
 		output = r.nextInt(maxValue - minValue + 1) + minValue;
 		return output;
-	}	
+	}
+	
+	//TODO
+	public static void publishDataToContextBus() {
+		// Publish data to uAAL context bus. Ensure that values are not NULL
+					uaalX73Publisher = new Publisher(ctx);			
+					if(realMeasurement) {				
+						// Real values
+						if(remoteDeviceType.equals("WeightingScale")) {					
+							if(finalMeasuredWeightData != -1.0) {						
+								double temp_1 = shortDecimalNumber(finalMeasuredWeightData)*1000;
+								int temp = (int) temp_1;						
+								uaalX73Publisher.publishWeightEvent(temp);	
+								//stopPublisherGUI();
+							}	
+						} else {
+							if((finalDiaBloodPressureData != -1)&&(finalHrBloodPressureData != -1)&&(finalSysBloodPressureData != -1)) {						
+								int temp_0 = (int) finalSysBloodPressureData;
+								int temp_1 = (int) finalDiaBloodPressureData;
+								int temp_2 = (int) finalHrBloodPressureData;						
+								uaalX73Publisher.publishBloodPressureEvent(temp_0,temp_1,temp_2);	
+								//stopPublisherGUI();
+							}
+						}				
+					} else {				
+						// Random values
+						if(remoteDeviceType.equals("WeightingScale")) {
+							uaalX73Publisher.publishWeightEvent(Integer.parseInt(uaalPublisherWeightValueTextfield.getText()));
+							//stopPublisherGUI();
+						} else {					
+							uaalX73Publisher.publishBloodPressureEvent(Integer.parseInt(uaalPublisherBloodPressureSysValueTextfield.getText()),
+									   Integer.parseInt(uaalPublisherBloodPressureDiaValueTextfield.getText()),
+									   Integer.parseInt(uaalPublisherBloodPressurePulValueTextfield.getText()));
+							//stopPublisherGUI();
+						}
+					}
+	}
 	
 	/** Create a new HDP manager object */
 	public void instantiateHdpManager() {		
