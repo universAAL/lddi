@@ -145,7 +145,7 @@ public class hdpManager implements hdpManagerListener {
 	/** Close HDP channel and free resources */
 	public void exit() {	
 		//if(!timeoutLaunched) {				
-			BtHdpClose();
+			//BtHdpClose();
 		//}
 		resetComponentsStatus();			
 	}
