@@ -104,7 +104,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 		bc = bundleContext; 
 		Dictionary dic = new Hashtable();
-		dic.put("service.pid", "it.cnr.isti.demo.aal.configuration");
+		dic.put("service.pid", "lddi.zigbee.commissioning.configuration");
 
 		managedService = bc.registerService(ManagedService.class.getName(), this, dic); 
 
