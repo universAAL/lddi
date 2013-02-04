@@ -1030,6 +1030,7 @@ lddi.zigbee.commissioning/.project -text svneol=unset#text/plain
 lddi.zigbee.commissioning/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
 lddi.zigbee.commissioning/.settings/org.eclipse.m2e.core.prefs -text svneol=unset#text/plain
 lddi.zigbee.commissioning/configurationFile/it.cnr.isti.demo.aal.configuration.properties -text svneol=unset#text/plain
+lddi.zigbee.commissioning/configurationFile/lddi.zigbee.commissioning.configuration.properties -text svneol=unset#text/plain
 lddi.zigbee.commissioning/pom.xml -text svneol=unset#text/plain
 lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/Activator.java -text svneol=unset#text/plain
 lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/api/IASZoneAAL.java -text svneol=unset#text/plain
