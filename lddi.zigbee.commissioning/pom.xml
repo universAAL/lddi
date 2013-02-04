@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>it.cnr.isti.uAAL</groupId>
-	<artifactId>it.cnr.isti.uAAL.adapter</artifactId>
-	<version>0.2.1</version>
+	<groupId>lddi.zigbee.commissioning</groupId>
+	<artifactId>lddi.zigbee.commissioning.adapter</artifactId>
+	<version>0.3</version>
 	<packaging>bundle</packaging>
 
 	<name>uAAL ZB40 commissioning bundle</name>
@@ -129,12 +129,12 @@
 						<Bundle-Author><![CDATA[ Manlio Bacco <manlio.bacco@isti.cnr.it>]]></Bundle-Author>
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Bundle-Activator>it.cnr.isti.demo.aal.Activator</Bundle-Activator>
-						<Private-Package>it.cnr.isti.demo.aal,
-							it.cnr.isti.demo.aal.clusters.impl,
-							it.cnr.isti.demo.aal.devices.impl</Private-Package>
-						<Export-Package>it.cnr.isti.demo.aal.clusters.api.*,
-							it.cnr.isti.demo.aal.devices.api.*</Export-Package>
+						<Bundle-Activator>lddi.zigbee.commissioning.Activator</Bundle-Activator>
+						<Private-Package>lddi.zigbee.commissioning,
+							lddi.zigbee.commissioning.clusters.impl,
+							lddi.zigbee.commissioning.devices.impl</Private-Package>
+						<Export-Package>lddi.zigbee.commissioning.clusters.api.*,
+							lddi.zigbee.commissioning.devices.api.*</Export-Package>
 						<Import-Package>org.osgi.*,
 							org.slf4j.*,
 							it.cnr.isti.*
