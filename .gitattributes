@@ -720,9 +720,6 @@ lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/ja
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/resources/bp.png -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/resources/uaal_logo_resized.jpg -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/resources/ws.png -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.classpath -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.project -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.settings/org.maven.ide.eclipse.prefs -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/Continua_manager_caller_test.launch -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/META-INF/MANIFEST.MF -text
@@ -739,15 +736,6 @@ lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClie
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/src/main/resources/bp.png -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/src/main/resources/uaal_logo_resized.jpg -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/src/main/resources/ws.png -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/artifact-test.composite -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/artifact.composite -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/artifact.deps -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/classes/META-INF/MANIFEST.MF -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/classes/bp.png -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/classes/uaal_logo_resized.jpg -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/classes/ws.png -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/lddi.uaalContinuaManagerClient-1.3.1-SNAPSHOT.jar -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target/uaalContinuaManagerClient-1.3.1-SNAPSHOT.jar -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/MITX.txt -text
