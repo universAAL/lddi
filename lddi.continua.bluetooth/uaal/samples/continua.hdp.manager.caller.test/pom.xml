@@ -1,16 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>lddi.pom</artifactId>
 		<groupId>org.universAAL.lddi</groupId>
-<!-- updated version due to dependency conflicts -->
 		<version>1.3.1-SNAPSHOT</version>
 	</parent>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.universAAL.continua</groupId>
 	<artifactId>lddi.continuahdpmanager.caller.test</artifactId>
-<!-- updated version -->
-	<version>${parent.version}</version>
+	<version>1.3.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>uAAL Continua Manager service caller test</name>
 	<description>Caller test to request Continua Health Alliance manager services</description>
@@ -23,8 +20,8 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-<!-- this version is managed by the parent pom -->
-<!-- 				<version>2.3.7</version> -->
+				<!-- this version is managed by the parent pom -->
+				<!-- 				<version>2.3.7</version> -->
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
@@ -32,11 +29,11 @@
 						<Bundle-Activator>org.universAAL.continua.caller.test.main.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Include-Resource>							
+						<Include-Resource>
 							src/main/resources
-						</Include-Resource>	
-						<Import-Package>*</Import-Package>						
-						</instructions>
+						</Include-Resource>
+						<Import-Package>*</Import-Package>
+					</instructions>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -51,29 +48,29 @@
 				</dependency>
 			</dependencies>
 		</profile>
-	</profiles>	
-	<dependencies>		
+	</profiles>
+	<dependencies>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.osgi.core</artifactId>
-<!-- this version is managed by the parent pom -->
-<!-- 			<version>1.4.0</version> -->
+			<!-- this version is managed by the parent pom -->
+			<!-- 			<version>1.4.0</version> -->
 		</dependency>
 		<dependency>
-		<groupId>org.universAAL.middleware</groupId>
-		<artifactId>mw.container.osgi</artifactId>
-<!-- this version is managed by the parent pom -->
-<!-- 		<version>1.2.0</version> -->
-	</dependency>
-	<dependency>
-		<groupId>org.universAAL.ontology</groupId>
-		<artifactId>ont.personalhealthdevice</artifactId>
-		<version>1.2.1-SNAPSHOT</version>
-	</dependency>
-	<dependency>
-		<groupId>org.universAAL.ontology</groupId>
-		<artifactId>ont.continuahealthmanager</artifactId>
-		<version>1.3.1-SNAPSHOT</version>
-	</dependency>		
-	</dependencies>		
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.container.osgi</artifactId>
+			<!-- this version is managed by the parent pom -->
+			<!-- 		<version>1.2.0</version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.ontology</groupId>
+			<artifactId>ont.personalhealthdevice</artifactId>
+			<version>1.2.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.ontology</groupId>
+			<artifactId>ont.continuahealthmanager</artifactId>
+			<version>1.3.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>
