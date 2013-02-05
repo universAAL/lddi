@@ -763,12 +763,6 @@ lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/ma
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/java/org/universAAL/continua/subscriber/test/main/Activator.java -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/resources/bp.png -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/resources/ws.png -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/target/artifact-test.composite -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/target/artifact.composite -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/target/artifact.deps -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/target/classes/META-INF/MANIFEST.MF -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/target/lddi.continuahdpmanager.subscriber.test-1.2.2-SNAPSHOT.jar -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/target/lddi.continuahdpmanager.subscriber.test-1.3.1-SNAPSHOT.jar -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/NOTICE.txt -text
