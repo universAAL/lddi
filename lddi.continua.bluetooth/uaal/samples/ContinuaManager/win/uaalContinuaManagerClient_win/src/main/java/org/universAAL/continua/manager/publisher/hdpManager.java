@@ -67,14 +67,17 @@ public class hdpManager implements hdpManagerListener {
 	/** Java methods */	
 	// Init method
 	public void init() {		
-		if(initLibrary()) {
-			if(BtHdpOpen(CONTINUA_DEVICE)) {			
-				waitHDPDataFrames();					
+		if(Activator.dllReadyLatch) {
+			if(initLibrary()) {
+				if(BtHdpOpen(CONTINUA_DEVICE)) {
+					Activator.dllReadyLatch = false;
+					waitHDPDataFrames();
+				} else {
+					System.out.println("Unable to open HDP channel");
+				}
 			} else {
-				System.out.println("Unable to open HDP channel");
+				System.out.println("Ups. Bad news, the monkey who has developed this application ran out of nuts. Try again later...");
 			}
-		} else {
-			System.out.println("Ups. Bad news, the monkey who has developed this application ran out of nuts. Try again later...");
 		}		
 	}	
 	
@@ -158,8 +161,10 @@ public class hdpManager implements hdpManagerListener {
 	static {		
 		try {	
 			// OS = Windows 7
-			if(System.getProperty("os.name").equals("Windows 7")) {								
-					System.loadLibrary(dll_library_name_win_32);				
+			if(System.getProperty("os.name").equals("Windows 7")) {	
+				if(Activator.dllReadyLatch) {
+					System.loadLibrary(dll_library_name_win_32);					
+				}	
 			}						
 		}catch(Exception ex) {
 			System.out.println("Unable to load native library. Please, check your path and OSGi manifest settings...");

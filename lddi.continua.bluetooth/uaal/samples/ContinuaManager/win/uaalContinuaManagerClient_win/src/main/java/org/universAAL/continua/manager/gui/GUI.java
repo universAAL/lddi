@@ -109,7 +109,7 @@ public class GUI extends JDialog implements ActionListener {
 	public void init() {		
 		// Main dialog
 		setResizable(false);
-		setBounds(100,100,450,375);
+		setBounds(100,100,550,375);
 		setTitle("uAAL Continua manager client");
 		getContentPane().setLayout(new BorderLayout());
 		// Main panel (content pane)
@@ -131,7 +131,7 @@ public class GUI extends JDialog implements ActionListener {
 		// Radio buttons group
 		radiobuttonPanel = new JPanel();	
 		radiobuttonPanel.setLayout(new GridLayout(1,0));
-		radiobuttonPanel.setBounds(20,100,400,50);		
+		radiobuttonPanel.setBounds(20,100,475,50);		
 		radioButtonsGroup = new ButtonGroup();
 		realMeasurementButton = createJRadioButton("Real measurement");	
 		realMeasurementButton.setToolTipText("Continua devices should be paired first");
@@ -249,7 +249,7 @@ public class GUI extends JDialog implements ActionListener {
 		// Create dialog frame
 		uaalPublisher = new JDialog(this,"uAAL publisher",true);
 		uaalPublisher.setResizable(false);
-		uaalPublisher.setBounds(100,100,650,375);
+		uaalPublisher.setBounds(100,100,650,475);
 		uaalPublisher.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);			
 		uaalPublisher.addWindowListener(new WindowAdapter() {				
 		    public void windowClosing(WindowEvent e) {		    	
