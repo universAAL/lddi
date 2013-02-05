@@ -41,6 +41,7 @@ public class Activator implements BundleActivator {
 	private ModuleContext mdlContext;
 	private BundleContext bndContext;
 	private ServiceProvider service;
+	public static boolean dllReadyLatch = true;
 	
 	// Methods
 	/** Start */
@@ -57,14 +58,15 @@ public class Activator implements BundleActivator {
 			}
 		});
 		//TODO cambiar para la demo true -> false
-		gui.setVisible(false);
+		gui.setVisible(false);		
 		// Service callee
 		service = new ServiceProvider(mdlContext,gui);		
 	}
 
 	/** Stop */
 	public void stop(BundleContext arg0) throws Exception {		
-		gui.setVisible(false);		
+		gui.setVisible(false);
+		dllReadyLatch = true;
 		//gui.stopGUI();		
 //		bndContext = null;
 //		mdlContext = null;
