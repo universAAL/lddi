@@ -693,6 +693,7 @@ lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/mdnf/FloatTyp
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/src/x73/p20601/mdnf/SFloatType.java -text
 lddi.continua.bluetooth/uaal/libraries/libHDPnative.zip -text
 lddi.continua.bluetooth/uaal/native_libs/unix/universAAL_continua_HDP_manager.c -text
+lddi.continua.bluetooth/uaal/native_libs/unix/universAAL_continua_HDP_manager.h -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/MITX.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/NOTICE.txt -text
