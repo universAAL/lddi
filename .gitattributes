@@ -704,6 +704,7 @@ lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.cpp -text
 lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.h -text
 lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.vcxproj -text
 lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.vcxproj.filters -text
+lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.vcxproj.user -text
 lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/MITX.txt -text
 lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/NOTICE.txt -text
