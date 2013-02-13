@@ -47,6 +47,10 @@ lddi.hw.exporter.x73/launches/runner/cache
 lddi.hw.exporter.x73/launches/runner/felix/cache
 lddi.hw.exporter.x73/launches/runner/log
 lddi.hw.exporter.x73/target
+lddi.hw.simulator.activityhub/.classpath
+lddi.hw.simulator.activityhub/.project
+lddi.hw.simulator.activityhub/.settings
+lddi.hw.simulator.activityhub/target
 lddi.iso11073.library/.classpath
 lddi.iso11073.library/.project
 lddi.iso11073.library/.settings
