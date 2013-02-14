@@ -22,7 +22,7 @@
 
 package org.universAAL.hw.exporter.zigbee.ha.devices;
 
-import it.cnr.isti.demo.aal.devices.api.OccupancySensorAAL;
+import lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.event.OccupancyEvent;
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.event.OccupancyListener;
 import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;

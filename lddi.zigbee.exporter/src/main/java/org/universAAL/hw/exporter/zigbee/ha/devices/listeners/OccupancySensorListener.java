@@ -22,9 +22,9 @@
 
 package org.universAAL.hw.exporter.zigbee.ha.devices.listeners;
 
-import it.cnr.isti.demo.aal.devices.api.OccupancySensorAAL;
-
 import java.util.Iterator;
+
+import lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;

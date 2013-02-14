@@ -30,7 +30,6 @@ public abstract class ExporterListener implements ServiceListener {
 	    throws InvalidSyntaxException {
 	this.context = context;
 	synchronized (discoveryLock) {
-	    System.out.println(">>>>start construct listener proc");
 	    try {
 		context.addServiceListener(this, filter);
 	    } catch (InvalidSyntaxException e) {
@@ -48,7 +47,6 @@ public abstract class ExporterListener implements ServiceListener {
 
     public void serviceChanged(ServiceEvent event) {
 	synchronized (discoveryLock) {
-	    System.out.println(">>>>cahnged event listener");
 	    ServiceReference sr = event.getServiceReference();
 	    switch (event.getType()) {
 	    case ServiceEvent.REGISTERED:
