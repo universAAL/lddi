@@ -22,11 +22,11 @@
 
 package org.universAAL.hw.exporter.zigbee.ha.devices;
 
-import lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
 import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 import it.cnr.isti.zigbee.zcl.library.api.security_safety.ias_zone.ZoneStatusChangeNotificationListener;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
