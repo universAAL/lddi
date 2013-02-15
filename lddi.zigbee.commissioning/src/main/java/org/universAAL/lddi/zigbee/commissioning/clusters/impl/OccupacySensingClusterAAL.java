@@ -1,4 +1,4 @@
-package org.universaal.lddi.zigbee.commissioning.clusters.impl;
+package org.universAAL.lddi.zigbee.commissioning.clusters.impl;
 
 import it.cnr.isti.zigbee.api.ZigBeeDevice;
 import it.cnr.isti.zigbee.zcl.library.api.core.Attribute;

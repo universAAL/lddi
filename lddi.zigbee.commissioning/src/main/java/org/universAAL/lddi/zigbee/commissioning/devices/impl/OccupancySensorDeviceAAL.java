@@ -1,4 +1,4 @@
-package org.universaal.lddi.zigbee.commissioning.devices.impl;
+package org.universAAL.lddi.zigbee.commissioning.devices.impl;
 
 import it.cnr.isti.zigbee.api.ZigBeeDevice;
 import it.cnr.isti.zigbee.ha.cluster.glue.general.Groups;
@@ -10,8 +10,8 @@ import it.cnr.isti.zigbee.ha.driver.core.reflection.AbstractDeviceDescription;
 import it.cnr.isti.zigbee.ha.driver.core.reflection.DeviceDescription;
 
 import org.osgi.framework.BundleContext;
-import org.universaal.lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL;
-import org.universaal.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
 
 public class OccupancySensorDeviceAAL extends HADeviceBase implements OccupancySensorAAL {
 
