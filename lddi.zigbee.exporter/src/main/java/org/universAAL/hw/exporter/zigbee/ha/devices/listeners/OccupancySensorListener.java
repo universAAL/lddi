@@ -24,7 +24,6 @@ package org.universAAL.hw.exporter.zigbee.ha.devices.listeners;
 
 import java.util.Iterator;
 
-import lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
@@ -34,6 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
 
 /**
  * OSGi Service Listener that looks for a specific service published by the

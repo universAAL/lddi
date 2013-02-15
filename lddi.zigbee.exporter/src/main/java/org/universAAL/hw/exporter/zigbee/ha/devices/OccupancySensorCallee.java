@@ -22,12 +22,12 @@
 
 package org.universAAL.hw.exporter.zigbee.ha.devices;
 
-import lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.event.OccupancyEvent;
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.event.OccupancyListener;
 import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
