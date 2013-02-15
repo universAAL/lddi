@@ -1,6 +1,7 @@
-package lddi.zigbee.commissioning.devices.api;
+package org.universaal.lddi.zigbee.commissioning.devices.api;
 
-import lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
+import org.universaal.lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
+
 import it.cnr.isti.zigbee.ha.driver.ArraysUtil;
 import it.cnr.isti.zigbee.ha.driver.core.HADevice;
 import it.cnr.isti.zigbee.ha.driver.core.HAProfile;

@@ -1051,21 +1051,20 @@ lddi.zigbee.commissioning/.classpath -text svneol=unset#text/plain
 lddi.zigbee.commissioning/.project -text svneol=unset#text/plain
 lddi.zigbee.commissioning/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
 lddi.zigbee.commissioning/.settings/org.eclipse.m2e.core.prefs -text svneol=unset#text/plain
-lddi.zigbee.commissioning/configurationFile/it.cnr.isti.demo.aal.configuration.properties -text svneol=unset#text/plain
 lddi.zigbee.commissioning/configurationFile/lddi.zigbee.commissioning.configuration.properties -text svneol=unset#text/plain
 lddi.zigbee.commissioning/pom.xml -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/Activator.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/api/IASZoneAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/api/OccupacySensingAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/impl/IASZoneAALImpl.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/impl/IASZoneClusterAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/impl/OccupacySensingAALImpl.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/impl/OccupacySensingClusterAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/clusters/impl/OccupancyBridgeListenersAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/devices/api/IAS_ZoneAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java -text svneol=unset#text/plain
-lddi.zigbee.commissioning/src/main/java/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/Activator.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/clusters/api/IASZoneAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/clusters/api/OccupacySensingAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/clusters/impl/IASZoneAALImpl.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/clusters/impl/IASZoneClusterAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/clusters/impl/OccupacySensingAALImpl.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/clusters/impl/OccupacySensingClusterAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/clusters/impl/OccupancyBridgeListenersAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/devices/api/IAS_ZoneAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning/src/main/java/org/universaal/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java -text svneol=unset#text/plain
 lddi.zigbee.exporter/ASL2.0 -text
 lddi.zigbee.exporter/MITX -text
 lddi.zigbee.exporter/NOTICE -text
