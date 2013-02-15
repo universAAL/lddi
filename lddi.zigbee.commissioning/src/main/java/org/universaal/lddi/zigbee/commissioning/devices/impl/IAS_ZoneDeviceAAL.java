@@ -1,7 +1,5 @@
-package lddi.zigbee.commissioning.devices.impl;
+package org.universaal.lddi.zigbee.commissioning.devices.impl;
 
-import lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
-import lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
 import it.cnr.isti.zigbee.api.ZigBeeDevice;
 import it.cnr.isti.zigbee.ha.device.api.security_safety.IAS_Zone;
 import it.cnr.isti.zigbee.ha.driver.core.HADeviceBase;
@@ -11,6 +9,8 @@ import it.cnr.isti.zigbee.ha.driver.core.reflection.AbstractDeviceDescription;
 import it.cnr.isti.zigbee.ha.driver.core.reflection.DeviceDescription;
 
 import org.osgi.framework.BundleContext;
+import org.universaal.lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
+import org.universaal.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
 
 public class IAS_ZoneDeviceAAL extends HADeviceBase implements IAS_ZoneAAL {
 

@@ -1,6 +1,7 @@
-package lddi.zigbee.commissioning.devices.api;
+package org.universaal.lddi.zigbee.commissioning.devices.api;
 
-import lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL;
+import org.universaal.lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL;
+
 import it.cnr.isti.zigbee.ha.cluster.glue.general.Groups;
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.OccupacySensing;
 import it.cnr.isti.zigbee.ha.driver.ArraysUtil;

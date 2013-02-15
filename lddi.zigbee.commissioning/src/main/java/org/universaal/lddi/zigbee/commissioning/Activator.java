@@ -1,4 +1,4 @@
-package lddi.zigbee.commissioning;
+package org.universaal.lddi.zigbee.commissioning;
 
 import it.cnr.isti.thread.Stoppable;
 import it.cnr.isti.thread.ThreadUtils;
@@ -29,14 +29,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import lddi.zigbee.commissioning.clusters.impl.IASZoneAALImpl;
-import lddi.zigbee.commissioning.clusters.impl.IASZoneClusterAAL;
-import lddi.zigbee.commissioning.clusters.impl.OccupacySensingAALImpl;
-import lddi.zigbee.commissioning.clusters.impl.OccupacySensingClusterAAL;
-import lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
-import lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
-import lddi.zigbee.commissioning.devices.impl.IAS_ZoneDeviceAAL;
-import lddi.zigbee.commissioning.devices.impl.OccupancySensorDeviceAAL;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -46,6 +38,14 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.universaal.lddi.zigbee.commissioning.clusters.impl.IASZoneAALImpl;
+import org.universaal.lddi.zigbee.commissioning.clusters.impl.IASZoneClusterAAL;
+import org.universaal.lddi.zigbee.commissioning.clusters.impl.OccupacySensingAALImpl;
+import org.universaal.lddi.zigbee.commissioning.clusters.impl.OccupacySensingClusterAAL;
+import org.universaal.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
+import org.universaal.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
+import org.universaal.lddi.zigbee.commissioning.devices.impl.IAS_ZoneDeviceAAL;
+import org.universaal.lddi.zigbee.commissioning.devices.impl.OccupancySensorDeviceAAL;
 
 public class Activator implements BundleActivator, Stoppable, ManagedService {
 

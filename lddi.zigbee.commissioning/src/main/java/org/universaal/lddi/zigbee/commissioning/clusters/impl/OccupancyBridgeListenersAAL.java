@@ -20,7 +20,7 @@
    limitations under the License.
  */
 
-package lddi.zigbee.commissioning.clusters.impl;
+package org.universaal.lddi.zigbee.commissioning.clusters.impl;
 
 import it.cnr.isti.zigbee.ha.cluster.glue.Cluster;
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.event.OccupancyEvent;
