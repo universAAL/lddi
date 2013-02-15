@@ -62,18 +62,10 @@
 			<version>0.7.0-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.osgi.core</artifactId>
-			<version>1.4.0</version>
-			<type>bundle</type>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.osgi.compendium</artifactId>
-			<version>1.4.0</version>
-			<type>bundle</type>
-		</dependency>
+		<!-- <dependency> <groupId>org.apache.felix</groupId> <artifactId>org.osgi.core</artifactId> 
+			<version>1.4.0</version> <type>bundle</type> </dependency> <dependency> <groupId>org.apache.felix</groupId> 
+			<artifactId>org.osgi.compendium</artifactId> <version>1.4.0</version> <type>bundle</type> 
+			</dependency> -->
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
 			<artifactId>
