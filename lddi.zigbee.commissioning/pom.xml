@@ -10,6 +10,7 @@
 	</parent>
 	<artifactId>lddi.zigbee.commissioning.adapter</artifactId>
 	<version>0.3.0-SNAPSHOT</version>
+	<packaging>bundle</packaging>
 
 	<name>uAAL ZB40 commissioning bundle</name>
 
@@ -60,25 +61,26 @@
 			<groupId>org.aaloa.zb4osgi</groupId>
 			<artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>
 			<version>0.7.0-SNAPSHOT</version>
-			<type>bundle</type>
 		</dependency>
-		<!-- <dependency> <groupId>org.apache.felix</groupId> <artifactId>org.osgi.core</artifactId> 
-			<version>1.4.0</version> <type>bundle</type> </dependency> <dependency> <groupId>org.apache.felix</groupId> 
-			<artifactId>org.osgi.compendium</artifactId> <version>1.4.0</version> <type>bundle</type> 
-			</dependency> -->
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
 			<artifactId>
 				org.aaloa.zb4osgi.zigbee.basedriver.api
 			</artifactId>
 			<version>0.6.0-SNAPSHOT</version>
-			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
 			<artifactId>org.aaloa.zb4osgi.zigbee.common</artifactId>
 			<version>0.6.0-SNAPSHOT</version>
-			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
@@ -86,13 +88,11 @@
 				org.aaloa.zb4osgi.zigbee.zcl.library
 			</artifactId>
 			<version>0.8.0-SNAPSHOT</version>
-			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
 			<artifactId>org.aaloa.zb4osgi.zigbee.dongle.api</artifactId>
 			<version>0.7.0-SNAPSHOT</version>
-			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
@@ -100,13 +100,11 @@
 				org.aaloa.zb4osgi.zigbee.cc2480.datalink
 			</artifactId>
 			<version>0.8.0-SNAPSHOT</version>
-			<type>bundle</type>
 		</dependency>
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
 			<artifactId>org.aaloa.zb4osgi.zigbee.basedriver</artifactId>
 			<version>0.7.0-SNAPSHOT</version>
-			<type>bundle</type>
 		</dependency>
 	</dependencies>
 
@@ -125,16 +123,12 @@
 						<Bundle-Author><![CDATA[ Manlio Bacco <manlio.bacco@isti.cnr.it>]]></Bundle-Author>
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<Bundle-Activator>lddi.zigbee.commissioning.Activator</Bundle-Activator>
-						<Private-Package>lddi.zigbee.commissioning,
-							lddi.zigbee.commissioning.clusters.impl,
-							lddi.zigbee.commissioning.devices.impl</Private-Package>
-						<Export-Package>lddi.zigbee.commissioning.clusters.api.*,
-							lddi.zigbee.commissioning.devices.api.*</Export-Package>
-						<Import-Package>org.osgi.*,
-							org.slf4j.*,
-							it.cnr.isti.*
-						</Import-Package>
+						<Bundle-Activator>org.universAAL.lddi.zigbee.commissioning.Activator</Bundle-Activator>
+						<Private-Package>org.universAAL.lddi.zigbee.commissioning,
+							org.universAAL.lddi.zigbee.commissioning.clusters.impl,
+							org.universAAL.lddi.zigbee.commissioning.devices.impl</Private-Package>
+						<Export-Package>org.universAAL.lddi.zigbee.commissioning.clusters.api.*,
+							org.universAAL.lddi.zigbee.commissioning.devices.api.*</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>

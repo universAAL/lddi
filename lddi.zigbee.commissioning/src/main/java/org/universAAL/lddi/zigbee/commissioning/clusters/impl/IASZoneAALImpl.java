@@ -1,6 +1,6 @@
-package org.universaal.lddi.zigbee.commissioning.clusters.impl;
+package org.universAAL.lddi.zigbee.commissioning.clusters.impl;
 
-import org.universaal.lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
 
 import it.cnr.isti.zigbee.api.ZigBeeDevice;
 import it.cnr.isti.zigbee.ha.driver.core.ZigBeeHAException;
