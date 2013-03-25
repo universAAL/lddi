@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL</groupId>
     <artifactId>uAAL.pom</artifactId>
-    <version>1.3.1-SNAPSHOT</version>
+    <version>1.3.1-SNAPSHOT</version> <!-- This (1.3.1) is the last version before middleware 2.0 -->
   </parent>
   <groupId>org.universAAL.lddi</groupId>
   <artifactId>lddi.pom</artifactId>
-  <version>1.3.3-SNAPSHOT</version>
+  <version>1.3.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Suite</name>
   <description></description>
@@ -40,28 +40,28 @@
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom</artifactId>
-        <version>1.3.1-SNAPSHOT</version>
+        <version>1.3.1-SNAPSHOT</version> <!-- This (1.3.1) is the last version before middleware 2.0 -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
+<!--       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom.osgi</artifactId>
         <version>1.3.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
+      </dependency> -->
       <dependency>
         <groupId>org.universAAL.ontology</groupId>
         <artifactId>ont.pom</artifactId>
-        <version>1.3.1-SNAPSHOT</version>
+        <version>1.3.1-SNAPSHOT</version> <!-- This (1.3.1) is the last version before middleware 2.0 -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.library</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.4-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
@@ -71,7 +71,7 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.networkdriver</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.4-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
@@ -86,7 +86,7 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.exporter</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.4-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
