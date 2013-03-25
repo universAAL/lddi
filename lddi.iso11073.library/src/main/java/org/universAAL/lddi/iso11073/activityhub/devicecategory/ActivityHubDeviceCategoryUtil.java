@@ -32,6 +32,7 @@ public abstract class ActivityHubDeviceCategoryUtil {
      * device category format from ISO 11073-10471 Nomenclature
      */
     public enum ActivityHubDeviceCategory {
+		// each constant implicitly calls a constructor
     	MDC_AI_TYPE_SENSOR_FALL(1),
     	MDC_AI_TYPE_SENSOR_PERS(2),
     	MDC_AI_TYPE_SENSOR_SMOKE(3),
@@ -57,6 +58,7 @@ public abstract class ActivityHubDeviceCategoryUtil {
                  lookup.put(s.getTypeCode(), s);
         }
         
+    	// Constructor
     	private ActivityHubDeviceCategory(int typecode) {
     		this.typecode = typecode;
     	}
