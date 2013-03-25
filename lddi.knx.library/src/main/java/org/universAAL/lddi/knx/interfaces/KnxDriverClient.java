@@ -18,8 +18,17 @@ public interface KnxDriverClient {
 	
 	/**
 	 * get event message from underlying devices
+	 * with float value
 	 */
-	public void incomingSensorEvent(String deviceId, int datapointTypeMainNubmer, 
+	public void incomingSensorEventDpt9(String deviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, float value);
+
+	
+	/**
+	 * get event message from underlying devices
+	 * with bool value
+	 */
+	public void incomingSensorEventDpt1(String deviceId, int datapointTypeMainNubmer, 
+			int datapointTypeSubNubmer, boolean value);
 
 }
