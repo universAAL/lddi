@@ -66,7 +66,7 @@ public class KnxWriter {
 	 */
 	public void write(String deviceAddress, boolean deviceStatus,
 			KnxCommand commandType) {
-		if (this.lastDeviceAddress == deviceAddress
+		if (this.lastDeviceAddress.equals(deviceAddress)
 				&& this.lastDeviceStatus == deviceStatus
 				&& this.lastCommandType == commandType) {
 			// same command as last time; set Repeat-Bit
