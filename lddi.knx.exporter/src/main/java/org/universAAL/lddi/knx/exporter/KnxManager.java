@@ -10,6 +10,7 @@ import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
 import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
+import org.universAAL.lddi.knx.driver.KnxDpt1Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt9Driver;
 import org.universAAL.lddi.knx.exporter.util.LogTracker;
 
@@ -57,6 +58,7 @@ public class KnxManager implements KnxDriverClient {
 		this.driverList = new TreeMap<String, KnxDriver>();
 		
 		// start all KNX drivers
+		new KnxDpt1Driver(this, this.context);
 		new KnxDpt9Driver(this, this.context);
 	}
 
@@ -68,9 +70,9 @@ public class KnxManager implements KnxDriverClient {
 	 * @param datapointType (i.e. 9.001)
 	 * @param value (i.e. temperature value)
 	 * 
-	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient#incomingSensorEvent(java.lang.String, org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory, int)
+	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
 	 */
-	public void incomingSensorEvent(String deviceGroupAddress, int datapointTypeMainNubmer, 
+	public void incomingSensorEventDpt9(String deviceGroupAddress, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, float value) {
 		
 		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + value);
@@ -81,6 +83,28 @@ public class KnxManager implements KnxDriverClient {
 
 	}
 
+	/**
+	 * Just passing the incoming sensor value to uAAL-MW related class (-> context provider).
+	 * No storage of event here!
+	 * 
+	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
+	 * @param datapointType (i.e. 1.001)
+	 * @param value (on/off)
+	 * 
+	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
+	 */
+	public void incomingSensorEventDpt1(String deviceGroupAddress, int datapointTypeMainNubmer, 
+			int datapointTypeSubNubmer, boolean value) {
+		
+		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + value);
+		
+		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
+			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
+					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
+
+	}
+
+	
 	/** {@inheritDoc} */
 	public void addDriver(String deviceId, KnxDeviceCategory knxDeviceCategory, KnxDriver knxDriver) {
 
