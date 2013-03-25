@@ -9,7 +9,7 @@ import org.universAAL.lddi.iso11073.activityhub.devicecategory.ActivityHubDevice
  * this must be mapped by a human according to name and description of the KNX group address
  * configured in ETS
  * 
- * @author Thomas Fuxreiter
+ * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxMappingFactory {
 
