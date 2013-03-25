@@ -14,13 +14,13 @@ import org.osgi.service.device.Driver;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
+import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
 import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
+import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 
 /**
- * This Driver class manages driver instances for KNX DPT9 devices.
+ * This Driver class manages driver instances for KNX DPT1 devices.
  * It is called on new device references coming from OSGi DeviceManager; matching on device category.
  * It instantiates drivers for every matching KNX device.
  * Attaches exactly one driver instance per deviceId.
@@ -32,31 +32,30 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
  *  
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt9Driver implements Driver {
+public class KnxDpt1Driver implements Driver {
 
 	private KnxDriverClient client;
 	private BundleContext context;
 	private LogService logger;
 	private ServiceRegistration regDriver;
 
-	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt9.0.0.1";
-	private static final KnxDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_9; 
-		//"KnxDpt9";
+	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt1.0.0.1";
+	private static final KnxDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_1; 
 
 	/**
 	 * Management Map of instantiated driver instances.
 	 * Key is groupAddress of the KNX device
 	 * Value is the associated driver
 	 */
-	private final Map<String, KnxDpt9Instance> connectedDriverInstanceMap = 
-		new ConcurrentHashMap<String, KnxDpt9Instance>();
+	private final Map<String, KnxDpt1Instance> connectedDriverInstanceMap = 
+		new ConcurrentHashMap<String, KnxDpt1Instance>();
 	
 	
 	/**
 	 * @param knxManager
 	 * @param context
 	 */
-	public KnxDpt9Driver(KnxDriverClient client, BundleContext context) {
+	public KnxDpt1Driver(KnxDriverClient client, BundleContext context) {
 		this.client=client;
 		this.context=context;
 		this.logger=client.getLogger();
@@ -73,35 +72,9 @@ public class KnxDpt9Driver implements Driver {
 				propDriver);
 		
 		if ( this.regDriver != null )
-			this.logger.log(LogService.LOG_INFO, "Driver for KNX-DPT 9.001 registered!");
+			this.logger.log(LogService.LOG_INFO, "Driver for KNX-DPT 1.001 registered!");
 	}
 	
-
-	/* (non-Javadoc)
-	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.ServiceReference)
-	 */
-	public String attach(ServiceReference reference) throws Exception {
-		// get groupAddress
-		KnxDpt9Device knxDev = (KnxDpt9Device) this.context.getService(reference);
-
-		if  ( this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress()) ) {
-			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for " +
-					" the device " + knxDev.getGroupAddress());
-			return "driver already exists for this device!";
-		}
-		
-		// create "driving" instance
-		KnxDpt9Instance instance = new KnxDpt9Instance(this.context, this.client, this.logger);
-
-		// store instance
-		this.connectedDriverInstanceMap.put(knxDev.getGroupAddress(), instance);
-
-		// init service tracker; the driver instance itself tracks on the device reference!
-		ServiceTracker tracker = new ServiceTracker(this.context, reference, instance);
-		tracker.open();
-
-		return null;
-	}
 
 	/* (non-Javadoc)
 	 * @see org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
@@ -125,13 +98,40 @@ public class KnxDpt9Driver implements Driver {
 		// match check
 		// more possible properties to match: description, serial, id
 		if ( deviceCategory == MY_KNX_DEVICE_CATEGORY ) {
-			matchValue = KnxDpt9.MATCH_CLASS;
+			matchValue = KnxDpt1.MATCH_CLASS;
 		} else {
 			this.logger.log(LogService.LOG_DEBUG, "Requesting device service " + deviceCategory +
 					" doesn't match with driver. No match!");
 		}
 		
 		return matchValue; //must be > 0 to match
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.ServiceReference)
+	 */
+	public String attach(ServiceReference reference) throws Exception {
+		// get groupAddress
+		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
+
+		if  ( this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress()) ) {
+			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for " +
+					" the device " + knxDev.getGroupAddress());
+			return "driver already exists for this device!";
+		}
+		
+		// create "driving" instance
+		KnxDpt1Instance instance = new KnxDpt1Instance(this.context, this.client, this.logger);
+
+		// store instance
+		this.connectedDriverInstanceMap.put(knxDev.getGroupAddress(), instance);
+
+		// init service tracker; the driver instance itself tracks on the device reference!
+		ServiceTracker tracker = new ServiceTracker(this.context, reference, instance);
+		tracker.open();
+
+		return null;
 	}
 
 	
@@ -142,7 +142,7 @@ public class KnxDpt9Driver implements Driver {
 	public void stop() {
 		
 		// delete instance references !!
-		for ( Iterator<KnxDpt9Instance> it = this.connectedDriverInstanceMap.values().iterator(); it.hasNext(); ) {
+		for ( Iterator<KnxDpt1Instance> it = this.connectedDriverInstanceMap.values().iterator(); it.hasNext(); ) {
 			it.next().detachDriver();
 		}
 
