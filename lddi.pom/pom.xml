@@ -22,7 +22,6 @@
     <module>../lddi.knx.devicemanager</module>
     <module>../lddi.hw.exporter.activityhub</module>
     <module>../lddi.knx.exporter</module>
-    <module>../lddi.hw.simulator.activityhub</module>
     <module>composite</module>
   </modules>
   <scm>
@@ -93,11 +92,6 @@
         <artifactId>lddi.knx.devicemanager</artifactId>
         <version>1.3.3-SNAPSHOT</version>
       </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.hw.simulator.activityhub</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
-      </dependency>	  
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.composite</artifactId>
