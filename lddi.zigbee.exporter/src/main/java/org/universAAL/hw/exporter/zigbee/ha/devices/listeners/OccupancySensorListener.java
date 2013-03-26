@@ -29,11 +29,10 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee;
 import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
+import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
  * OSGi Service Listener that looks for a specific service published by the
@@ -43,8 +42,6 @@ import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
  * 
  */
 public class OccupancySensorListener extends ExporterListener {
-    private final static Logger log = LoggerFactory
-	    .getLogger(OccupancySensorListener.class);
 
     static {
 	filter = "(" + Constants.OBJECTCLASS + "=" + OccupancySensorAAL.class.getName()
@@ -57,23 +54,29 @@ public class OccupancySensorListener extends ExporterListener {
     }
 
     @Override
-    protected void doRegisteruAALService(ServiceReference sr) {
-	log.debug("Creating a instance of device in uAAL");
+    protected void registeruAALService(ServiceReference sr) {
+	LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class,
+		"registeruAALService",
+		new String[] { "Creating a instance of device in uAAL" }, null);
 	OccupancySensorAAL service = (OccupancySensorAAL) context.getService(sr);
 	setOfDevices.put(sr, new OccupancySensorCallee(Activator.moduleContext,
 		service));
     }
 
     @Override
-    protected void douAALUnregistering(ServiceReference sr) {
-	log.debug("Removing a instance of device in uAAL");
+    protected void unregisteruAALService(ServiceReference sr) {
+	LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class,
+		"registeruAALService",
+		new String[] { "Removing a instance of device in uAAL" }, null);
 	((OccupancySensorCallee) setOfDevices.remove(sr)).unregister();
 	context.ungetService(sr);
     }
 
     @Override
-    public void douAALUnregistering() {
-	log.debug("Removing all instances of these devices in uAAL");
+    public void unregisteruAALService() {
+	LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class,
+		"registeruAALService",
+		new String[] { "Removing all instances of these devices in uAAL" }, null);
 	Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();

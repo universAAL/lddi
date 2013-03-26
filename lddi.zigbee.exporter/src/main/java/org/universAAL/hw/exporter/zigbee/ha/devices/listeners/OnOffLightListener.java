@@ -24,19 +24,15 @@ package org.universAAL.hw.exporter.zigbee.ha.devices.listeners;
 
 import it.cnr.isti.zigbee.ha.device.api.lighting.OnOffLight;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.InvalidSyntaxException;
-import org.osgi.framework.ServiceEvent;
-import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee;
+import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
  * OSGi Service Listener that looks for a specific service published by the
@@ -45,15 +41,12 @@ import org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee;
  * @author alfiva
  * 
  */
-public class OnOffLightListener implements ServiceListener {
-    private final static String filter = "(" + Constants.OBJECTCLASS + "="
-	    + OnOffLight.class.getName() + ")";
-    private Object discovery = new Object();
-    private BundleContext context;
-    private HashMap onOffLigthDevices;
-    private ServiceReference[] srs;
-    private final static Logger log = LoggerFactory
-	    .getLogger(OnOffLightListener.class);
+public class OnOffLightListener extends ExporterListener {
+
+    static {
+	filter = "(" + Constants.OBJECTCLASS + "=" + OnOffLight.class.getName()
+		+ ")";
+    }
 
     /**
      * Constructor to be used in the exporter. Configures the listener and
@@ -67,76 +60,41 @@ public class OnOffLightListener implements ServiceListener {
      */
     public OnOffLightListener(BundleContext context)
 	    throws InvalidSyntaxException {
-	this.context = context;
-	synchronized (discovery) {
-	    try {
-		context.addServiceListener(this, filter);
-	    } catch (InvalidSyntaxException e) {
-		e.printStackTrace();
-	    }
-	    onOffLigthDevices = new HashMap();
-	    srs = context.getServiceReferences(null, filter);
-	    if (srs != null) {
-		log.debug("Detected a new device(s) by {} ", this.getClass()
-			.getName());
-		for (int i = 0; i < srs.length; i++) {
-		    doRegisteruAALService(srs[i]);
-		}
-	    }
-	}
+	super(context);
     }
 
-    public void serviceChanged(ServiceEvent event) {
-	synchronized (discovery) {
-	    ServiceReference sr = event.getServiceReference();
-	    switch (event.getType()) {
-	    case ServiceEvent.REGISTERED: {
-		doRegisteruAALService(sr);
-	    }
-		;
-		break;
-
-	    case ServiceEvent.MODIFIED: {
-		// never modified
-	    }
-		;
-		break;
-
-	    case ServiceEvent.UNREGISTERING: {
-		douAALUnregistering(sr);
-	    }
-		;
-		break;
-	    }
-	}
-    }
-
-    private void doRegisteruAALService(ServiceReference sr) {
-	log.debug("Creating a instance of device in uAAL");
+    @Override
+    protected void registeruAALService(ServiceReference sr) {
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightListener.class,
+		"registeruAALService",
+		new String[] { "Creating a instance of device in uAAL" }, null);
 	OnOffLight lightService = (OnOffLight) context.getService(sr);
-	onOffLigthDevices.put(sr, new OnOffLightCallee(Activator.moduleContext,
+	setOfDevices.put(sr, new OnOffLightCallee(Activator.moduleContext,
 		lightService));
     }
 
-    private void douAALUnregistering(ServiceReference sr) {
-	log.debug("Removing a instance of device in uAAL");
-	((OnOffLightCallee) onOffLigthDevices.remove(sr)).unregister();
+    @Override
+    protected void unregisteruAALService(ServiceReference sr) {
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightListener.class,
+		"registeruAALService",
+		new String[] { "Removing a instance of device in uAAL"}, null);
+	((OnOffLightCallee) setOfDevices.remove(sr)).unregister();
 	context.ungetService(sr);
     }
 
-    /**
-     * Disconnects and removes all instantiated exported devices of this type.
-     */
-    public void douAALUnregistering() {
-	log.debug("Removing all instances of these devices in uAAL");
-	Iterator iter = onOffLigthDevices.keySet().iterator();
+    @Override
+    public void unregisteruAALService() {
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightListener.class,
+		"registeruAALService",
+		new String[] { "Removing all instances of these devices in uAAL" }, null);
+	Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((OnOffLightCallee) onOffLigthDevices.get(sref)).unregister();
+	    ((OnOffLightCallee) setOfDevices.get(sref)).unregister();
 	    iter.remove();
 	    context.ungetService(sref);
 	}
-	onOffLigthDevices.clear();
+	setOfDevices.clear();
     }
 
 }

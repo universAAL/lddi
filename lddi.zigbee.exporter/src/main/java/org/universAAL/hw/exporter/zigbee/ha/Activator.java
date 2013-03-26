@@ -38,7 +38,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 public class Activator implements BundleActivator {
     public static BundleContext context = null;
     public static ModuleContext moduleContext = null;
-    private ServiceListener[] listeners = new ServiceListener[4];
+    private ServiceListener[] listeners = new ServiceListener[6];
     public static final String PROPS_FILE = "ZB.properties";
     public static final String COMMENTS = "This file stores location information for ZigBee HW devices";
     public static final String UNINITIALIZED_SUFFIX = "Unintialized";
@@ -47,23 +47,21 @@ public class Activator implements BundleActivator {
 	Activator.context = context;
 	Activator.moduleContext = uAALBundleContainer.THE_CONTAINER
 		.registerModule(new Object[] { context });
-//	listeners[0] = new DimmerLightListener(context);
-//	listeners[1] = new OnOffLightListener(context);
-//	listeners[2] = new PresenceDetectorListener(context);
-//	listeners[3] = new TemperatureSensorListener(context);
-	System.out.println(">>>>registering activator");
-	listeners[0] = new OccupancySensorListener(context);
-	listeners[1] = new IASZoneListener(context);
+	listeners[0] = new DimmerLightListener(context);
+	listeners[1] = new OnOffLightListener(context);
+	listeners[2] = new PresenceDetectorListener(context);
+	listeners[3] = new TemperatureSensorListener(context);
+	listeners[4] = new OccupancySensorListener(context);
+	listeners[5] = new IASZoneListener(context);
     }
 
     public void stop(BundleContext arg0) throws Exception {
-//	((DimmerLightListener) listeners[0]).douAALUnregistering();
-//	((OnOffLightListener) listeners[1]).douAALUnregistering();
-//	((PresenceDetectorListener) listeners[2]).douAALUnregistering();
-//	((TemperatureSensorListener) listeners[3]).douAALUnregistering();
-	System.out.println(">>>>unregistering activator");
-	((OccupancySensorListener) listeners[0]).douAALUnregistering();
-	((IASZoneListener) listeners[1]).douAALUnregistering();
+	((DimmerLightListener) listeners[0]).unregisteruAALService();
+	((OnOffLightListener) listeners[1]).unregisteruAALService();
+	((PresenceDetectorListener) listeners[2]).unregisteruAALService();
+	((TemperatureSensorListener) listeners[3]).unregisteruAALService();
+	((OccupancySensorListener) listeners[4]).unregisteruAALService();
+	((IASZoneListener) listeners[5]).unregisteruAALService();
     }
 
     /**

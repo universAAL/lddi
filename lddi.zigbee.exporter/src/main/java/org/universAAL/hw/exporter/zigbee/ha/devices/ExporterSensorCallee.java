@@ -12,7 +12,7 @@ import org.universAAL.middleware.service.owl.Service;
 import org.universAAL.middleware.service.owls.process.ProcessInput;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
-import org.universAAL.ontology.device.ValueDevice;
+import org.universAAL.ontology.device.Sensor;
 import org.universAAL.ontology.phThing.DeviceService;
 
 public abstract class ExporterSensorCallee extends ServiceCallee {
@@ -84,12 +84,12 @@ public abstract class ExporterSensorCallee extends ServiceCallee {
     protected abstract ServiceResponse getValue();
     
     public static ServiceProfile[] getServiceProfiles(String namespace,
-	    String ontologyURI, ValueDevice sensor) {
+	    String ontologyURI, Sensor sensor) {
 
 	ServiceProfile[] profiles = new ServiceProfile[1];
 
 	PropertyPath ppath = new PropertyPath(null, true, new String[] {
-		DeviceService.PROP_CONTROLS, ValueDevice.PROP_HAS_VALUE });
+		DeviceService.PROP_CONTROLS, Sensor.PROP_HAS_VALUE });
 
 	ProcessInput input = new ProcessInput(namespace + IN_DEVICE);
 	input.setParameterType(sensor.getClassURI());

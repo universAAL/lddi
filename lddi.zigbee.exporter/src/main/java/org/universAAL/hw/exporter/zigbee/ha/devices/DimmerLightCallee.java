@@ -30,25 +30,16 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 import java.util.Properties;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
-import org.universAAL.hw.exporter.zigbee.ha.services.DimmerLightService;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
-import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.rdf.TypeMapper;
-import org.universAAL.middleware.service.CallStatus;
-import org.universAAL.middleware.service.ServiceCall;
-import org.universAAL.middleware.service.ServiceCallee;
-import org.universAAL.middleware.service.ServiceResponse;
-import org.universAAL.middleware.service.owls.process.ProcessInput;
-import org.universAAL.middleware.service.owls.process.ProcessOutput;
-import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.ontology.lighting.LightSource;
+import org.universAAL.ontology.device.LightActuator;
 import org.universAAL.ontology.location.indoor.Room;
+import org.universAAL.ontology.phThing.DeviceService;
 
 /**
  * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
@@ -57,19 +48,15 @@ import org.universAAL.ontology.location.indoor.Room;
  * @author alfiva
  * 
  */
-public class DimmerLightCallee extends ServiceCallee implements
+public class DimmerLightCallee extends ExporterDimmerCallee implements
 	CurrentLevelListener {
-
-    static final String DEVICE_URI_PREFIX = DimmerLightService.LIGHTING_SERVER_NAMESPACE
-	    + "zbLamp";
-    static final String INPUT_DEVICE_URI = DimmerLightService.LIGHTING_SERVER_NAMESPACE
-	    + "lampURI";
+    static {
+	NAMESPACE = "http://ontology.igd.fhg.de/ZBDimmerLightingServer.owl#";
+    }
 
     private DimmableLight zbDevice;
+    LightActuator ontologyDevice;
     private DefaultContextPublisher cp;
-    LightSource ontologyDevice;
-
-    private ServiceProfile[] newProfiles = DimmerLightService.profiles;
 
     /**
      * Constructor to be used in the exporter, which sets up all the exporting
@@ -88,11 +75,12 @@ public class DimmerLightCallee extends ServiceCallee implements
 		null);
 	zbDevice = serv;
 
-	// Commissioning
+	// Info
 	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
 		.replace("\"", "");
-	String deviceURI = DEVICE_URI_PREFIX + deviceSuffix;
-	ontologyDevice = new LightSource(deviceURI);
+	String deviceURI = NAMESPACE + "actuator" + deviceSuffix;
+	ontologyDevice = new LightActuator(deviceURI);
+	// Commissioning
 	String locationSuffix = Activator.getProperties().getProperty(
 		deviceSuffix);
 	if (locationSuffix != null
@@ -107,44 +95,15 @@ public class DimmerLightCallee extends ServiceCallee implements
 	    Activator.setProperties(prop);
 	}
 	// Serv reg
-	ServiceProfile[] newProfiles = DimmerLightService.profiles;
-
-	ProcessInput input = new ProcessInput(DimmerLightService.INPUT_LAMP);
-	input.setParameterType(LightSource.MY_URI);
-	input.setCardinality(1, 0);
-
-	ProcessInput inputb = new ProcessInput(
-		DimmerLightService.INPUT_LAMP_BRIGHTNESS);
-	inputb.setParameterType(TypeMapper.getDatatypeURI(Integer.class));
-	inputb.setCardinality(1, 1);
-
-	MergedRestriction r = MergedRestriction.getFixedValueRestriction(
-		DimmerLightService.PROP_CONTROLS, ontologyDevice);
-
-	newProfiles[0].addInput(input);
-	newProfiles[0].getTheService().addInstanceLevelRestriction(r,
-		new String[] { DimmerLightService.PROP_CONTROLS });
-	newProfiles[1].addInput(input);
-	newProfiles[1].getTheService().addInstanceLevelRestriction(r,
-		new String[] { DimmerLightService.PROP_CONTROLS });
-	newProfiles[2].addInput(input);
-	newProfiles[2].getTheService().addInstanceLevelRestriction(r,
-		new String[] { DimmerLightService.PROP_CONTROLS });
-	newProfiles[3].addInput(input);
-	newProfiles[3].addInput(inputb);
-	newProfiles[3].getTheService().addInstanceLevelRestriction(r,
-		new String[] { DimmerLightService.PROP_CONTROLS });
-	newProfiles[3].addChangeEffect(new String[] {
-		DimmerLightService.PROP_CONTROLS,
-		LightSource.PROP_SOURCE_BRIGHTNESS },
-		inputb.asVariableReference());
+	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
+		ontologyDevice);
 	this.addNewRegParams(newProfiles);
-	// CP
-	ContextProvider info = new ContextProvider(
-		DimmerLightService.LIGHTING_SERVER_NAMESPACE
-			+ "zbLightingContextProvider");
+	// Context reg
+	ContextProvider info = new ContextProvider(NAMESPACE
+		+ "zbLightingContextProvider");
 	info.setType(ContextProviderType.controller);
 	cp = new DefaultContextPublisher(context, info);
+	// ZB reg
 	if (zbDevice.getLevelControl().subscribe(this)) {
 	    LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
 		    "DimmerLightCallee", new String[] { "Subscribed" }, null);
@@ -155,142 +114,42 @@ public class DimmerLightCallee extends ServiceCallee implements
 	}
     }
 
-    /**
-     * Disconnects this exported device from the middleware.
-     * 
-     */
-    public void unregister() {
-	this.removeMatchingRegParams(newProfiles);
-    }
-
-    public void communicationChannelBroken() {
-	unregister();
-    }
-
-    public ServiceResponse handleCall(ServiceCall call) {
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"handleCall", new String[] { "Received a call" }, null);
-	ServiceResponse response;
-	if (call == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Null Call!"));
-	    return response;
-	}
-
-	String operation = call.getProcessURI();
-	if (operation == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Null Operation!"));
-	    return response;
-	}
-
-	if (operation.startsWith(DimmerLightService.SERVICE_GET_ON_OFF)) {
-	    return getStatus();
-	} else if (operation.startsWith(DimmerLightService.SERVICE_TURN_ON)) {
-	    return setOnStatus();
-	} else if (operation.startsWith(DimmerLightService.SERVICE_TURN_OFF)) {
-	    return setOffStatus();
-	} else if (operation.startsWith(DimmerLightService.SERVICE_SET_DIMMER)) {
-	    // return setStatus((Integer) call.getInputValue(INPUT_LAMP_VALUE));
-	    Integer setvalue = (Integer) call
-		    .getInputValue(DimmerLightService.INPUT_LAMP_BRIGHTNESS);
-	    if (setvalue.intValue() == 0) {
-		return setOnStatus();
-	    } else if (setvalue.intValue() == 100) {
-		return setOffStatus();
-	    } else if (0 <= setvalue.intValue() && setvalue.intValue() <= 100) {
-		int val = setvalue.intValue() * (254) / (100);
-		return setStatus(val);
-	    } else {
-		LogUtils.logError(
-			Activator.moduleContext,
-			DimmerLightCallee.class,
-			"handleCall",
-			new String[] { "Input dimmer value not permitted (0 to 100 only)" },
-			null);
-		return new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    }
-	} else {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Invlaid Operation!"));
-	    return response;
-	}
-    }
-
-    private ServiceResponse setOffStatus() {
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"setOffStatus",
-		new String[] { "The service called was 'set the status OFF'" },
-		null);
-	try {
-	    zbDevice.getLevelControl().moveToLevel(Short.parseShort("0"), 20);
-	    return new ServiceResponse(CallStatus.succeeded);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
-	}
-    }
-
-    private ServiceResponse setOnStatus() {
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"setOnStatus",
-		new String[] { "The service called was 'set the status ON'" },
-		null);
-	try {
-	    zbDevice.getLevelControl().moveToLevel(
-		    Short.decode("0xFE").shortValue(), 20);
-	    return new ServiceResponse(CallStatus.succeeded);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
-	}
-    }
-
-    private ServiceResponse setStatus(int value) {
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"setStatus",
-		new String[] { "The service called was 'set the status' "
-			+ value }, null);
-	try {
-	    zbDevice.getLevelControl().moveToLevel((short) value, 10);
-	    return new ServiceResponse(CallStatus.succeeded);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
-	}
-    }
-
-    private ServiceResponse getStatus() {
+    @Override
+    public Integer executeGet() {
 	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
 		"getStatus",
 		new String[] { "The service called was 'get the status'" },
 		null);
 	try {
-	    ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
-	    sr.addOutput(new ProcessOutput(
-		    DimmerLightService.OUTPUT_LAMP_BRIGHTNESS,
-		    (Integer) zbDevice.getLevelControl().getCurrentLevel()
-			    .getValue()));
-	    return sr;
+	    return (Integer) zbDevice.getLevelControl().getCurrentLevel()
+		    .getValue();
 	} catch (ZigBeeClusterException e) {
-	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
+	    return null;
 	}
     }
 
-    // @Override
+    @Override
+    public boolean executeSet(Integer value) {
+	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
+		"setStatus",
+		new String[] { "The service called was 'set the status' "
+			+ value }, null);
+	try {
+	    zbDevice.getLevelControl().moveToLevel(value.shortValue(), 10);
+	    return true;
+	} catch (Exception e) {
+	    e.printStackTrace();
+	    return false;
+	}
+    }
+
     public void changedCurrentLevel(CurrentLevelEvent event) {
 	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
 		"changedCurrentLevel",
 		new String[] { "Changed-Event received" }, null);
-	LightSource ls = ontologyDevice;
-	ls.setBrightness(event.getEvent());
-	cp.publish(new ContextEvent(ls, LightSource.PROP_SOURCE_BRIGHTNESS));
+	LightActuator ls = ontologyDevice;
+	ls.setHasValue(event.getEvent());
+	cp.publish(new ContextEvent(ls, LightActuator.PROP_HAS_VALUE));
     }
 
 }

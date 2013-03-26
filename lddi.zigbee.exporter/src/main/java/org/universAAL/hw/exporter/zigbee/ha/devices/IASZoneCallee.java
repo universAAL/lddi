@@ -73,7 +73,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
     public IASZoneCallee(ModuleContext context, IAS_ZoneAAL serv) {
 	super(context, new ServiceProfile[]{});
 	LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
-		"PresenceDetectorCallee",
+		"IASZoneCallee",
 		new String[] { "Ready to subscribe" }, null);
 	zbDevice = serv;
 
@@ -99,16 +99,12 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 	// Activator.setProperties(prop);
 	// }
 
-	// uAAL Service & Context registration
-	// newProfiles = PIRSensorService.profiles;
-	// ProcessInput input = ProcessInput.toInput(ontologyDevice);
-	// newProfiles[0].addInput(input);
-	// this.addNewRegParams(newProfiles);
-
+	//Service reg
 	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
 		ontologyDevice);
 	this.addNewRegParams(newProfiles);
 
+	// Context reg
 	ContextProvider info = new ContextProvider(NAMESPACE
 		+ "zbIASZoneContextProvider");
 	info.setType(ContextProviderType.gauge);
@@ -125,10 +121,14 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 	cp = new DefaultContextPublisher(context, info);
 
 	// ZB device subscription
-	zbDevice.getIASZone().addZoneStatusChangeNotificationListener(this);
-	LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
-		"PresenceDetectorCallee", new String[] { "Subscribed" }, null);
-
+	if (zbDevice.getIASZone().addZoneStatusChangeNotificationListener(this)) {
+	    LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
+		    "IASZoneCallee", new String[] { "Subscribed" }, null);
+	} else {
+	    LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
+		    "IASZoneCallee", new String[] { "Failed to Subscribe!!!" },
+		    null);
+	}
     }
 
     @Override
