@@ -30,7 +30,6 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 import java.util.Properties;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
-import org.universAAL.hw.exporter.zigbee.ha.services.PresenceDetectorService;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
@@ -38,15 +37,13 @@ import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.middleware.service.CallStatus;
-import org.universAAL.middleware.service.ServiceCall;
-import org.universAAL.middleware.service.ServiceCallee;
 import org.universAAL.middleware.service.ServiceResponse;
-import org.universAAL.middleware.service.owls.process.ProcessInput;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
-import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.ontology.device.home.PresenceDetector;
+import org.universAAL.ontology.device.PresenceSensor;
+import org.universAAL.ontology.device.StatusValue;
 import org.universAAL.ontology.location.indoor.Room;
+import org.universAAL.ontology.phThing.DeviceService;
 
 /**
  * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
@@ -55,18 +52,15 @@ import org.universAAL.ontology.location.indoor.Room;
  * @author alfiva
  * 
  */
-public class PresenceDetectorCallee extends ServiceCallee implements
+public class PresenceDetectorCallee extends ExporterSensorCallee implements
 	OccupancyListener {
-    static final String DEVICE_URI_PREFIX = PresenceDetectorService.PRESENCE_SERVER_NAMESPACE
-	    + "zbPresenceDetector";
-    static final String INPUT_DEVICE_URI = PresenceDetectorService.PRESENCE_SERVER_NAMESPACE
-	    + "presenceDetectorURI";
+    static {
+	NAMESPACE = "http://ontology.igd.fhg.de/ZBPresenceServer.owl#";
+    }
 
     private OccupancySensor zbDevice;
+    PresenceSensor ontologyDevice;
     private DefaultContextPublisher cp;
-    PresenceDetector ontologyDevice;
-
-    private ServiceProfile[] newProfiles = PresenceDetectorService.profiles;
 
     /**
      * Constructor to be used in the exporter, which sets up all the exporting
@@ -84,11 +78,12 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 		PresenceDetectorCallee.class, "PresenceDetectorCallee",
 		new String[] { "Ready to subscribe" }, null);
 	zbDevice = serv;
-	// Commissioning
+	// Info Setup
 	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
 		.replace("\"", "");
-	String deviceURI = DEVICE_URI_PREFIX + deviceSuffix;
-	ontologyDevice = new PresenceDetector(deviceURI);
+	String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
+	ontologyDevice = new PresenceSensor(deviceURI);
+	// Commissioning
 	String locationSuffix = Activator.getProperties().getProperty(
 		deviceSuffix);
 	if (locationSuffix != null
@@ -103,69 +98,23 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 	    Activator.setProperties(prop);
 	}
 	// Serv reg
-	ServiceProfile[] newProfiles = PresenceDetectorService.profiles;
-	ProcessInput input = ProcessInput.toInput(ontologyDevice);
-	newProfiles[0].addInput(input);
+	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
+		ontologyDevice);
 	this.addNewRegParams(newProfiles);
-
-	ContextProvider info = new ContextProvider(
-		PresenceDetectorService.PRESENCE_SERVER_NAMESPACE
-			+ "zbPresenceDetectorContextProvider");
+	// Context reg
+	ContextProvider info = new ContextProvider(NAMESPACE
+		+ "zbPresenceDetectorContextProvider");
 	info.setType(ContextProviderType.gauge);
 	cp = new DefaultContextPublisher(context, info);
-
+	// ZB reg
 	zbDevice.getOccupacySensing().subscribe(this);
 	LogUtils.logDebug(Activator.moduleContext,
 		PresenceDetectorCallee.class, "PresenceDetectorCallee",
 		new String[] { "Subscribed" }, null);
-
     }
 
-    /**
-     * Disconnects this exported device from the middleware.
-     * 
-     */
-    public void unregister() {
-	this.removeMatchingRegParams(newProfiles);
-    }
-
-    public void communicationChannelBroken() {
-	unregister();
-    }
-
-    public ServiceResponse handleCall(ServiceCall call) {
-	LogUtils.logDebug(Activator.moduleContext,
-		PresenceDetectorCallee.class, "handleCall",
-		new String[] { "Received a call" }, null);
-	ServiceResponse response;
-	if (call == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Null Call!"));
-	    return response;
-	}
-
-	String operation = call.getProcessURI();
-	if (operation == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Null Operation!"));
-	    return response;
-	}
-
-	if (operation.startsWith(PresenceDetectorService.SERVICE_GET_PRESENCE)) {
-	    return getPresence();
-	} else {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Invlaid Operation!"));
-	    return response;
-	}
-    }
-
-    private ServiceResponse getPresence() {
+    @Override
+    protected ServiceResponse getValue() {
 	LogUtils.logDebug(Activator.moduleContext,
 		PresenceDetectorCallee.class, "getPresence",
 		new String[] { "The service called was 'get the status'" },
@@ -182,20 +131,32 @@ public class PresenceDetectorCallee extends ServiceCallee implements
 		    "getPresence",
 		    new String[] { "Error getting the value of the occupancy: {}" },
 		    e);
+	} catch (ClassCastException e) {
+	    LogUtils.logError(
+		    Activator.moduleContext,
+		    OccupancySensorCallee.class,
+		    "getPresence",
+		    new String[] { "Error getting the value of the occupancy: Unexpected value" },
+		    e);
+	    ServiceResponse response = new ServiceResponse(
+		    CallStatus.serviceSpecificFailure);
+	    response.addOutput(new ProcessOutput(
+		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+		    "Unexpected value!"));
+	    return response;
 	}
-	// TODO: check if it works
-	sr.addOutput(new ProcessOutput(PresenceDetectorService.OUTPUT_PRESENCE,
+	sr.addOutput(new ProcessOutput(OUT_GET_VALUE,
 		finalValue));
 	return sr;
     }
 
-    // @Override
     public void changedOccupancy(OccupancyEvent event) {
 	LogUtils.logDebug(Activator.moduleContext,
 		PresenceDetectorCallee.class, "changedOccupancy",
 		new String[] { "Changed-Event received" }, null);
-	PresenceDetector pd = ontologyDevice;
-	pd.setMeasuredValue(event.getEvent() > 0);
-	cp.publish(new ContextEvent(pd, PresenceDetector.PROP_MEASURED_VALUE));
+	PresenceSensor pd = ontologyDevice;
+	pd.setValue((event.getEvent() > 0) ? StatusValue.Activated
+		: StatusValue.NotActivated);
+	cp.publish(new ContextEvent(pd, PresenceSensor.PROP_HAS_VALUE));
     }
 }

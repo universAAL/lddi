@@ -30,24 +30,20 @@ import it.cnr.isti.zigbee.ha.driver.core.ZigBeeHAException;
 import java.util.Properties;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
-import org.universAAL.hw.exporter.zigbee.ha.services.OnOffLightService;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
-import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceCall;
-import org.universAAL.middleware.service.ServiceCallee;
 import org.universAAL.middleware.service.ServiceResponse;
-import org.universAAL.middleware.service.owls.process.ProcessInput;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
-import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.ontology.lighting.LightSource;
+import org.universAAL.ontology.device.LightActuator;
 import org.universAAL.ontology.location.indoor.Room;
+import org.universAAL.ontology.phThing.DeviceService;
 
 /**
  * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
@@ -56,18 +52,16 @@ import org.universAAL.ontology.location.indoor.Room;
  * @author alfiva
  * 
  */
-public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
+public class OnOffLightCallee extends ExporterActuatorCallee implements
+	OnOffListener {
 
-    static final String DEVICE_URI_PREFIX = OnOffLightService.LIGHTING_SERVER_NAMESPACE
-	    + "zbLamp";
-    static final String INPUT_DEVICE_URI = OnOffLightService.LIGHTING_SERVER_NAMESPACE
-	    + "lampURI";
+    static {
+	NAMESPACE = "http://ontology.igd.fhg.de/ZBLightingServer.owl#";
+    }
 
     private OnOffLight zbDevice;
+    LightActuator ontologyDevice;
     private DefaultContextPublisher cp;
-    LightSource ontologyDevice;
-
-    private ServiceProfile[] newProfiles = OnOffLightService.profiles;
 
     /**
      * Constructor to be used in the exporter, which sets up all the exporting
@@ -84,11 +78,12 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
 		"OnOffLightCallee", new String[] { "Ready to subscribe" }, null);
 	zbDevice = serv;
-	// Commissioning
+	// Info
 	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
 		.replace("\"", "");
-	String deviceURI = DEVICE_URI_PREFIX + deviceSuffix;
-	ontologyDevice = new LightSource(deviceURI);
+	String deviceURI = NAMESPACE + "actuator" + deviceSuffix;
+	ontologyDevice = new LightActuator(deviceURI);
+	// Commissioning
 	String locationSuffix = Activator.getProperties().getProperty(
 		deviceSuffix);
 	if (locationSuffix != null
@@ -103,32 +98,15 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 	    Activator.setProperties(prop);
 	}
 	// Serv reg
-	ServiceProfile[] newProfiles = OnOffLightService.profiles;
-
-	ProcessInput input = new ProcessInput(OnOffLightService.INPUT_LAMP);
-	input.setParameterType(LightSource.MY_URI);
-	input.setCardinality(1, 0);
-
-	MergedRestriction r = MergedRestriction.getFixedValueRestriction(
-		OnOffLightService.PROP_CONTROLS, ontologyDevice);
-
-	newProfiles[0].addInput(input);
-	newProfiles[0].getTheService().addInstanceLevelRestriction(r,
-		new String[] { OnOffLightService.PROP_CONTROLS });
-	newProfiles[1].addInput(input);
-	newProfiles[1].getTheService().addInstanceLevelRestriction(r,
-		new String[] { OnOffLightService.PROP_CONTROLS });
-	newProfiles[2].addInput(input);
-	newProfiles[2].getTheService().addInstanceLevelRestriction(r,
-		new String[] { OnOffLightService.PROP_CONTROLS });
+	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
+		ontologyDevice);
 	this.addNewRegParams(newProfiles);
-
-	ContextProvider info = new ContextProvider(
-		OnOffLightService.LIGHTING_SERVER_NAMESPACE
-			+ "zbLightingContextProvider");
+	// Context reg
+	ContextProvider info = new ContextProvider(NAMESPACE
+		+ "zbLightingContextProvider");
 	info.setType(ContextProviderType.controller);
 	cp = new DefaultContextPublisher(context, info);
-
+	// ZB reg
 	if (zbDevice.getOnOff().subscribe(this)) {
 	    LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
 		    "OnOffLightCallee", new String[] { "Subscribed" }, null);
@@ -139,104 +117,111 @@ public class OnOffLightCallee extends ServiceCallee implements OnOffListener {
 	}
     }
 
-    public void changedOnOff(OnOffEvent event) {
-	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
-		"changedOnOff", new String[] { "Changed-Event received" }, null);
-	LightSource ls = ontologyDevice;
-	ls.setBrightness(event.getEvent() ? 100 : 0);
-	cp.publish(new ContextEvent(ls, LightSource.PROP_SOURCE_BRIGHTNESS));
-    }
-
-    /**
-     * Disconnects this exported device from the middleware.
-     * 
-     */
-    public void unregister() {
-	this.removeMatchingRegParams(newProfiles);
-    }
-
-    public void communicationChannelBroken() {
-	unregister();
-    }
-
+    // Overriden because OnOffLight in uAAL has integer value (kind-of-dimmer)
+    // No need to change profiles because no restriction is made on the output
+    @Override
     public ServiceResponse handleCall(ServiceCall call) {
-	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
-		"handleCall", new String[] { "Received a call" }, null);
 	ServiceResponse response;
 	if (call == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Null Call!"));
-	    return response;
+	    return null;
 	}
-
 	String operation = call.getProcessURI();
 	if (operation == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Null Operation!"));
-	    return response;
+	    return null;
+	}
+	if (operation.startsWith(NAMESPACE + SERVICE_GET_ON_OFF)) {
+	    Boolean result = executeGet();
+	    if (result != null) {
+		response = new ServiceResponse(CallStatus.succeeded);
+		response.addOutput(new ProcessOutput(
+			NAMESPACE + OUT_GET_ON_OFF,
+			result.booleanValue() ? Integer.valueOf(100) : Integer
+				.valueOf(0)));// Here is the change
+		return response;
+	    } else {
+		response = new ServiceResponse(
+			CallStatus.serviceSpecificFailure);
+		return response;
+	    }
 	}
 
-	if (operation.startsWith(OnOffLightService.SERVICE_GET_ON_OFF)) {
-	    return getOnOffStatus();
-	} else if (operation.startsWith(OnOffLightService.SERVICE_TURN_ON)) {
-	    return setOnStatus();
-	} else if (operation.startsWith(OnOffLightService.SERVICE_TURN_OFF)) {
-	    return setOffStatus();
-	} else {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Invlaid Operation!"));
-	    return response;
+	if (operation.startsWith(NAMESPACE + SERVICE_TURN_OFF)) {
+	    if (executeOff()) {
+		return new ServiceResponse(CallStatus.succeeded);
+	    } else {
+		response = new ServiceResponse(
+			CallStatus.serviceSpecificFailure);
+		return response;
+	    }
 	}
+
+	if (operation.startsWith(NAMESPACE + SERVICE_TURN_ON)) {
+	    if (executeOn()) {
+		return new ServiceResponse(CallStatus.succeeded);
+	    } else {
+		response = new ServiceResponse(
+			CallStatus.serviceSpecificFailure);
+		return response;
+	    }
+	}
+
+	response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+	response.addOutput(new ProcessOutput(
+		ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+		"The service requested has not been implemented in this simple editor callee"));
+	return response;
     }
 
-    private ServiceResponse setOffStatus() {
-	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
-		"setOffStatus",
-		new String[] { "The service called was 'set the status OFF'" },
-		null);
-	try {
-	    zbDevice.getOnOff().off();
-	    return new ServiceResponse(CallStatus.succeeded);
-	} catch (ZigBeeHAException e) {
-	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
-	}
-    }
-
-    private ServiceResponse setOnStatus() {
+    @Override
+    public boolean executeOn() {
 	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
 		"setOnStatus",
 		new String[] { "The service called was 'set the status ON'" },
 		null);
 	try {
 	    zbDevice.getOnOff().on();
-	    return new ServiceResponse(CallStatus.succeeded);
+	    return true;
 	} catch (ZigBeeHAException e) {
 	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
+	    return false;
 	}
     }
 
-    private ServiceResponse getOnOffStatus() {
+    @Override
+    public boolean executeOff() {
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"setOffStatus",
+		new String[] { "The service called was 'set the status OFF'" },
+		null);
+	try {
+	    zbDevice.getOnOff().off();
+	    return true;
+	} catch (ZigBeeHAException e) {
+	    e.printStackTrace();
+	    return false;
+	}
+    }
+
+    @Override
+    public Boolean executeGet() {
 	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
 		"getOnOffStatus",
 		new String[] { "The service called was 'get the status'" },
 		null);
 	try {
-	    ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
-	    sr.addOutput(new ProcessOutput(
-		    OnOffLightService.OUTPUT_LAMP_BRIGHTNESS, new Integer(
-			    zbDevice.getOnOff().getOnOff() ? 100 : 0)));
-	    return sr;
+	    return zbDevice.getOnOff().getOnOff();
 	} catch (ZigBeeHAException e) {
 	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
+	    return null;
 	}
+    }
+
+    public void changedOnOff(OnOffEvent event) {
+	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
+		"changedOnOff", new String[] { "Changed-Event received" }, null);
+	LightActuator ls = ontologyDevice;
+	ls.setHasValue(event.getEvent() ? 100 : 0);
+	cp.publish(new ContextEvent(ls, LightActuator.PROP_HAS_VALUE));
     }
 
 }

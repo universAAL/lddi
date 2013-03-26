@@ -63,23 +63,22 @@
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.phWorld</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.lighting</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.device.extra</artifactId>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
-			<artifactId>org.universAAL.ontology.device</artifactId>
-			<version>0.1.1-SNAPSHOT</version>
+			<artifactId>ont.device</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.weather</artifactId>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.aaloa.zb4osgi</groupId>
 			<artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>

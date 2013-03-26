@@ -29,11 +29,10 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee;
 import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
+import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
  * OSGi Service Listener that looks for a specific service published by the
@@ -43,8 +42,6 @@ import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
  * 
  */
 public class IASZoneListener extends ExporterListener {
-    private final static Logger log = LoggerFactory
-	    .getLogger(IASZoneListener.class);
 
     static {
 	filter = "(" + Constants.OBJECTCLASS + "=" + IAS_ZoneAAL.class.getName()
@@ -57,23 +54,29 @@ public class IASZoneListener extends ExporterListener {
     }
 
     @Override
-    protected void doRegisteruAALService(ServiceReference sr) {
-	log.debug("Creating a instance of device in uAAL");
+    protected void registeruAALService(ServiceReference sr) {
+	LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class,
+		"registeruAALService",
+		new String[] { "Creating a instance of device in uAAL" }, null);
 	IAS_ZoneAAL service = (IAS_ZoneAAL) context.getService(sr);
 	setOfDevices.put(sr, new IASZoneCallee(Activator.moduleContext,
 		service));
     }
 
     @Override
-    protected void douAALUnregistering(ServiceReference sr) {
-	log.debug("Removing a instance of device in uAAL");
+    protected void unregisteruAALService(ServiceReference sr) {
+	LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class,
+		"registeruAALService",
+		new String[] { "Removing a instance of device in uAAL" }, null);
 	((IASZoneCallee) setOfDevices.remove(sr)).unregister();
 	context.ungetService(sr);
     }
 
     @Override
-    public void douAALUnregistering() {
-	log.debug("Removing all instances of these devices in uAAL");
+    public void unregisteruAALService() {
+	LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class,
+		"registeruAALService",
+		new String[] { "Removing all instances of these devices in uAAL" }, null);
 	Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 	for (; iter.hasNext();) {
 	    ServiceReference sref = (ServiceReference) iter.next();

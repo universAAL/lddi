@@ -97,16 +97,12 @@ public class OccupancySensorCallee extends ExporterSensorCallee implements
 	// Activator.setProperties(prop);
 	// }
 
-	// uAAL Service & Context registration
-	// newProfiles = PIRSensorService.profiles;
-	// ProcessInput input = ProcessInput.toInput(ontologyDevice);
-	// newProfiles[0].addInput(input);
-	// this.addNewRegParams(newProfiles);
-
+	//Service reg
 	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
 		ontologyDevice);
 	this.addNewRegParams(newProfiles);
 
+	//Context reg
 	ContextProvider info = new ContextProvider(NAMESPACE
 		+ "zbOccupancySensorContextProvider");
 	info.setType(ContextProviderType.gauge);

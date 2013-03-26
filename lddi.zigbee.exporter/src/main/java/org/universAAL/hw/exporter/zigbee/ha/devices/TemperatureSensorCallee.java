@@ -30,7 +30,6 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 import java.util.Properties;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
-import org.universAAL.hw.exporter.zigbee.ha.services.TemperatureSensorService;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
@@ -38,15 +37,11 @@ import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.middleware.service.CallStatus;
-import org.universAAL.middleware.service.ServiceCall;
-import org.universAAL.middleware.service.ServiceCallee;
 import org.universAAL.middleware.service.ServiceResponse;
-import org.universAAL.middleware.service.owls.process.ProcessInput;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
-import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.location.indoor.Room;
-import org.universAAL.ontology.weather.TempSensor;
+import org.universAAL.ontology.phThing.DeviceService;
 
 /**
  * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
@@ -55,18 +50,24 @@ import org.universAAL.ontology.weather.TempSensor;
  * @author alfiva
  * 
  */
-public class TemperatureSensorCallee extends ServiceCallee implements
+public class TemperatureSensorCallee extends ExporterSensorCallee implements
 	MeasuredValueListener {
-    static final String DEVICE_URI_PREFIX = TemperatureSensorService.SERVER_NAMESPACE
-	    + "zbTemperatureSensor";
-    static final String INPUT_DEVICE_URI = TemperatureSensorService.SERVER_NAMESPACE
-	    + "temperatureSensorURI";
+    static {
+	NAMESPACE = "http://ontology.igd.fhg.de/ZBTemperatureServer.owl#";
+    }
+    
+    
+//    static final String DEVICE_URI_PREFIX = TemperatureSensorService.SERVER_NAMESPACE
+//	    + "zbTemperatureSensor";
+//    static final String INPUT_DEVICE_URI = TemperatureSensorService.SERVER_NAMESPACE
+//	    + "temperatureSensorURI";
 
     private TemperatureSensor zbDevice;
+    private org.universAAL.ontology.device.TemperatureSensor ontologyDevice;
     private DefaultContextPublisher cp;
-    TempSensor ontologyDevice;
+    
 
-    private ServiceProfile[] newProfiles = TemperatureSensorService.profiles;
+//    private ServiceProfile[] newProfiles = TemperatureSensorService.profiles;
 
     /**
      * Constructor to be used in the exporter, which sets up all the exporting
@@ -85,11 +86,13 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 		new String[] { "Ready to subscribe" }, null);
 	zbDevice = serv;
 
-	// Commissioning
+	// Info Setup
+	// TODO replace the deprecated
 	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
 		.replace("\"", "");
-	String deviceURI = DEVICE_URI_PREFIX + deviceSuffix;
-	ontologyDevice = new TempSensor(deviceURI);
+	String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
+	ontologyDevice = new org.universAAL.ontology.device.TemperatureSensor(deviceURI);
+	// Commissioning
 	String locationSuffix = Activator.getProperties().getProperty(
 		deviceSuffix);
 	if (locationSuffix != null
@@ -104,16 +107,17 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 	    Activator.setProperties(prop);
 	}
 	// Serv reg
-	ServiceProfile[] newProfiles = TemperatureSensorService.profiles;
-	ProcessInput input = ProcessInput.toInput(ontologyDevice);
-	newProfiles[0].addInput(input);
+	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
+		ontologyDevice);
 	this.addNewRegParams(newProfiles);
-
-	ContextProvider info = new ContextProvider(
-		TemperatureSensorService.SERVER_NAMESPACE
-			+ "zbTemperatureContextProvider");
+	
+	//Context reg
+	ContextProvider info = new ContextProvider(NAMESPACE
+		+ "zbTemperatureContextProvider");
 	info.setType(ContextProviderType.gauge);
 	cp = new DefaultContextPublisher(context, info);
+
+	//ZB reg
 	if (zbDevice.getTemperatureMeasurement().subscribe(this)) {
 	    LogUtils.logDebug(Activator.moduleContext,
 		    TemperatureSensorCallee.class, "TemperatureSensorCallee",
@@ -125,76 +129,54 @@ public class TemperatureSensorCallee extends ServiceCallee implements
 	}
     }
 
-    /**
-     * Disconnects this exported device from the middleware.
-     * 
-     */
-    public void unregister() {
-	this.removeMatchingRegParams(newProfiles);
-    }
-
-    public void communicationChannelBroken() {
-	unregister();
-    }
-
-    public ServiceResponse handleCall(ServiceCall call) {
+    @Override
+    protected ServiceResponse getValue() {
 	LogUtils.logDebug(Activator.moduleContext,
-		TemperatureSensorCallee.class, "handleCall",
-		new String[] { "Received a call" }, null);
-	ServiceResponse response;
-	if (call == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Null Call!"));
-	    return response;
-	}
-
-	String operation = call.getProcessURI();
-	if (operation == null) {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Null Operation!"));
-	    return response;
-	}
-
-	if (operation.startsWith(TemperatureSensorService.SERVICE_GET_VALUE)) {
-	    return getValue();
-	} else {
-	    response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Invlaid Operation!"));
-	    return response;
-	}
-    }
-
-    private ServiceResponse getValue() {
-	LogUtils.logDebug(Activator.moduleContext,
-		TemperatureSensorCallee.class, "getValue",
-		new String[] { "The service called was 'get the status'" },
-		null);
+    		TemperatureSensorCallee.class, "getValue",
+    		new String[] { "The service called was 'get the status'" },
+    		null);
+	ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	try {
-	    ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 	    sr.addOutput(new ProcessOutput(
-		    TemperatureSensorService.OUTPUT_VALUE, (Float) zbDevice
-			    .getTemperatureMeasurement().getMeasuredValue()
-			    .getValue()));
-	    return sr;
+    		    OUT_GET_VALUE, (Float) zbDevice
+    			    .getTemperatureMeasurement().getMeasuredValue()
+    			    .getValue()));
 	} catch (ZigBeeClusterException e) {
-	    e.printStackTrace();
-	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
+	    LogUtils.logError(
+		    Activator.moduleContext,
+		    IASZoneCallee.class,
+		    "getValue",
+		    new String[] { "Error getting the value: ZB error" },
+		    e);
+	    ServiceResponse response = new ServiceResponse(
+		    CallStatus.serviceSpecificFailure);
+	    response.addOutput(new ProcessOutput(
+		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "ZB error!"));
+	    return response;
+	} catch (ClassCastException e) {
+	    LogUtils.logError(
+		    Activator.moduleContext,
+		    IASZoneCallee.class,
+		    "getValue",
+		    new String[] { "Error getting the value: Unexpected value" },
+		    e);
+	    ServiceResponse response = new ServiceResponse(
+		    CallStatus.serviceSpecificFailure);
+	    response.addOutput(new ProcessOutput(
+		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+		    "Unexpected value!"));
+	    return response;
 	}
+	return sr;
     }
-
-    // @Override
+    
     public void changedMeasuredValue(MeasuredValueEvent event) {
 	LogUtils.logDebug(Activator.moduleContext,
 		TemperatureSensorCallee.class, "changedMeasuredValue",
 		new String[] { "Changed-Event received" }, null);
-	TempSensor sensor = ontologyDevice;
-	sensor.setMeasuredValue(event.getEvent());
-	cp.publish(new ContextEvent(sensor, TempSensor.PROP_MEASURED_VALUE));
+	org.universAAL.ontology.device.TemperatureSensor sensor = ontologyDevice;
+	sensor.setHasValue(event.getEvent());
+	cp.publish(new ContextEvent(sensor, org.universAAL.ontology.device.TemperatureSensor.PROP_HAS_VALUE));
     }
 
 }
