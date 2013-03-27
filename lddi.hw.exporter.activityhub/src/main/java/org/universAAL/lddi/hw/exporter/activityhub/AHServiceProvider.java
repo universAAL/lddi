@@ -42,9 +42,9 @@ public class AHServiceProvider extends ServiceCallee {
 	 * @param context
 	 * @param realizedServices
 	 */
-	public AHServiceProvider(ModuleContext mc, AHManager ahManager) {
+	public AHServiceProvider(AHManager ahManager) {
 		/** register my services on uAAL service bus */
-		super(mc, AHServiceOntology.profiles);
+		super(Activator.mc, AHServiceOntology.profiles);
 
 		this.ahManager = ahManager;
 		this.logger = ahManager.getLogger();

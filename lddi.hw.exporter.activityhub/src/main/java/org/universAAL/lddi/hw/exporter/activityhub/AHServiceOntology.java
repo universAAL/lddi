@@ -2,6 +2,7 @@ package org.universAAL.lddi.hw.exporter.activityhub;
 
 import java.util.Hashtable;
 
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.SimpleOntology;
@@ -52,8 +53,7 @@ public class AHServiceOntology extends ActivityHub {
 
     static final String OUTPUT_SENSOR_LOCATION = 
     	ACTIVITYHUB_SERVER_NAMESPACE + "location";
-    
-    
+
 	// declaration of uaal bus service profiles
     static final ServiceProfile[] profiles = new ServiceProfile[2];
 
@@ -65,7 +65,7 @@ public class AHServiceOntology extends ActivityHub {
 	 */
     static {
 		OntologyManagement.getInstance().register(
-				new SimpleOntology(MY_URI, ActivityHub.MY_URI,
+				Activator.mc, new SimpleOntology(MY_URI, ActivityHub.MY_URI,
 						new ResourceFactoryImpl() {
 					@Override
 					public Resource createInstance(String classURI,
