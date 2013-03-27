@@ -58,9 +58,9 @@ public class Activator implements BundleActivator {
 		}
 		public void run() {
 //			serviceProvider = 
-				new AHServiceProvider(mc, ahManager);
+				new AHServiceProvider(ahManager);
 //			contextProvider = 
-				new AHContextPublisher(mc, ahManager);
+				new AHContextPublisher(ahManager);
 		}
 	}
 }

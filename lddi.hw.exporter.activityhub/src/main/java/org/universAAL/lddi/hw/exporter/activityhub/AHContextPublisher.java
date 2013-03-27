@@ -32,7 +32,7 @@ public class AHContextPublisher {
 	//private static ActivityHubEventFactory eventFactory = new ActivityHubEventFactory();
 	
 
-	public AHContextPublisher(ModuleContext mc, AHManager busServer) {
+	public AHContextPublisher(AHManager busServer) {
 		this.theServer = busServer;
 		this.logger = busServer.getLogger();
 		
@@ -42,7 +42,7 @@ public class AHContextPublisher {
 				+ "AHContextPublisher");
 		info.setType(ContextProviderType.gauge);
 		info.setProvidedEvents(providedEvents());
-		cp = new DefaultContextPublisher(mc, info);
+		cp = new DefaultContextPublisher(Activator.mc, info);
 		
 		theServer.addListener(this);
 		
