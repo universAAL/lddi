@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>1.3.4-SNAPSHOT</version>
+    <version>1.3.5-SNAPSHOT</version>
     <relativePath>../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.knx.exporter</artifactId>
-  <version>1.3.4-SNAPSHOT</version>
+  <version>1.3.5-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Exporter of KNX devices</name>
   <description>Hardware exporter of KNX Home Automation components for the universAAL middleware</description>
@@ -42,7 +42,7 @@
     <url>${svn.base.url}${project.artifactId}</url>
   </scm>
   <dependencies>
-    <dependency>
+     <dependency>
       <groupId>org.universAAL.support</groupId>
       <artifactId>itests</artifactId>
     </dependency>
@@ -50,12 +50,12 @@
       <groupId>org.apache.felix</groupId>
       <artifactId>org.osgi.core</artifactId>
     </dependency>
-    <dependency>
+<!--     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>osgi_R4_compendium</artifactId>
       <version>1.0</version>
       <scope>compile</scope>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -95,7 +95,6 @@
 	<dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.device</artifactId>
-      <version>1.3.2-SNAPSHOT</version>
 	<!-- <version>1.3.1-SNAPSHOT</version> -->
     </dependency>
     
@@ -138,7 +137,26 @@
               </resources>
             </configuration>
           </execution>
-        </executions>
+          <execution>
+            <id>copy-resources-for-mw2.0</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>launcher-mw2.0</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>target</directory>
+                  <filtering>true</filtering>
+                  <includes>
+                    <include>**/*.composite</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+		</executions>
       </plugin>
       <plugin>
         <groupId>org.universAAL.support</groupId>
