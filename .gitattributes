@@ -986,6 +986,7 @@ lddi.knx.library/src/test/java/org/universAAL/lddi/knx/utils/KnxEncoderTest.java
 lddi.knx.networkdriver/MITX.txt -text
 lddi.knx.networkdriver/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.knx.networkdriver/conf/services/lddi.knx.networkdriver.properties -text
+lddi.knx.networkdriver/conf/services/org.ops4j.pax.logging.properties -text
 lddi.knx.networkdriver/pom.xml -text
 lddi.knx.networkdriver/readme.txt -text
 lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/Activator.java -text
