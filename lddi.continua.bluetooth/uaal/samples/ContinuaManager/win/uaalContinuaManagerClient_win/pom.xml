@@ -12,7 +12,7 @@
 <!-- updated version -->
 	<version>${parent.version}</version>
 	<packaging>bundle</packaging>
-	<name>uAAL Continua Manager Client (windows OS version)</name>
+	<name>universAAL LDDI Continua Manager Client (windows OS version)</name>
 	<description>Continua Health Alliance agent event publisher</description>
 	<organization>
 		<name>TSB Technologies for Health and Well-being</name>
