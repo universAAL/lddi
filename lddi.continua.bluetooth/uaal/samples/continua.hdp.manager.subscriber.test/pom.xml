@@ -10,7 +10,7 @@
 <!-- updated version -->
 	<version>${parent.version}</version>
 	<packaging>bundle</packaging>
-	<name>uAAL Continua Manager service subscriber test</name>
+	<name>universAAL LDDI Continua Manager service subscriber test</name>
 	<description>Subscriber test to receive Continua Health Alliance manager events</description>
 	<organization>
 		<name>TSB Technologies for Health and Well-being</name>
