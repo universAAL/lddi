@@ -23,11 +23,6 @@ lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.man
 lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/Publisher.java -text
 lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManager.java -text
 lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManagerListener.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/target/artifact-test.composite -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/target/artifact.composite -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/target/artifact.deps -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/target/lddi.continuahdpmanagerservice-1.2.2-SNAPSHOT.jar -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/target/lddi.continuahdpmanagerservice-1.3.1-SNAPSHOT.jar -text
 lddi.continua.bluetooth/uaal/doc/javadoc.rar -text
 lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.odt -text
 lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.pdf -text
