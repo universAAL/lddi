@@ -47,7 +47,7 @@ public abstract class ExporterActuatorCallee extends ServiceCallee{
     }
     
     public void unregister() {
-	this.removeMatchingRegParams(newProfiles);
+	this.removeMatchingProfiles(newProfiles);
     }
 
     public void communicationChannelBroken() {

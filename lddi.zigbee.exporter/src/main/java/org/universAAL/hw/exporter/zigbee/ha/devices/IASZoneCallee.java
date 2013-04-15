@@ -102,7 +102,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements
 	//Service reg
 	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
 		ontologyDevice);
-	this.addNewRegParams(newProfiles);
+	this.addNewServiceProfiles(newProfiles);
 
 	// Context reg
 	ContextProvider info = new ContextProvider(NAMESPACE
