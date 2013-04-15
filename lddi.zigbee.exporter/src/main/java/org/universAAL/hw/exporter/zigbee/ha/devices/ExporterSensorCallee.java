@@ -39,7 +39,7 @@ public abstract class ExporterSensorCallee extends ServiceCallee {
     }
 
     public void unregister() {
-	this.removeMatchingRegParams(newProfiles);
+	this.removeMatchingProfiles(newProfiles);
     }
 
     public void communicationChannelBroken() {

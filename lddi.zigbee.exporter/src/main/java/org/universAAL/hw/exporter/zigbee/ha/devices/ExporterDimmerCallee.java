@@ -48,7 +48,7 @@ public abstract class ExporterDimmerCallee extends ServiceCallee {
     }
 
     public void unregister() {
-	this.removeMatchingRegParams(newProfiles);
+	this.removeMatchingProfiles(newProfiles);
     }
 
     public void communicationChannelBroken() {
