@@ -1033,6 +1033,20 @@ lddi.knx.networkdriver-1.2.2-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/netw
 lddi.knx.networkdriver-1.2.2-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 lddi.knx.networkdriver-1.2.2-SNAPSHOT/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxCommandTest.java -text
 lddi.knx.networkdriver-1.2.2-SNAPSHOT/src/test/java/it/polito/elite/domotics/dog2/knxnetworkdriver/KnxNetworkdriverFunctionalTest.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/MITX.txt -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/conf/services/lddi.knx.networkdriver.properties -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/conf/services/org.ops4j.pax.logging.properties -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/pom.xml -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/readme.txt -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/Activator.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxCommunication.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxNetworkDriverImp.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxReader.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxWriter.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/util/KnxShellCommand.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
+lddi.knx.networkdriver-1.3.5-SNAPSHOT/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalTest.java -text
 lddi.pom-1.1.1-SNAPSHOT/pom.xml -text
 lddi.pom-1.2.2-SNAPSHOT/composite/pom.xml -text
 lddi.pom-1.2.2-SNAPSHOT/pom.xml -text
