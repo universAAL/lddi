@@ -1,0 +1,46 @@
+#log4j.rootLogger=ERROR, RL
+#log4j.rootLogger=INFO, RL
+log4j.rootLogger=DEBUG, RL
+log4j.appender.RL=org.apache.log4j.ConsoleAppender
+log4j.appender.RL.layout=org.apache.log4j.PatternLayout
+log4j.appender.RL.layout.ConversionPattern= %-10.10t [%d] %-5p - %m %n
+
+#uAAL logger
+#output to file and stdout
+#log4j.logger.org.universAAL = ERROR, org.universAAL,stdout
+
+#log4j.logger.org.universAAL = DEBUG, uAAL
+#log4j.logger.org.universAAL = ERROR, uAAL, RL
+log4j.logger.org.universAAL = DEBUG, uAAL, RL
+log4j.appender.uAAL=org.apache.log4j.FileAppender
+log4j.appender.uAAL.File=uAAL.log
+log4j.appender.uAAL.layout=org.apache.log4j.PatternLayout
+log4j.appender.uAAL.layout.ConversionPattern= %-10.10t [%d] %-5p - %m %n
+#false means new file on each run (overwite)
+log4j.appender.uAAL.Append=false
+
+#jGroups logger (Rolling File Appender will send all the log messages to the configured file, until the file reaches a certain size. Once the log file reaches a maximum size, the current file will be backed up and a new log file will be created )
+#log4j.logger.org.jgroups = ERROR, uAAL, RL
+log4j.logger.org.jgroups = DEBUG, uAAL, RL
+#log4j.logger.org.jgroups = ERROR, jGroups,stdout
+log4j.appender.jGroups=org.apache.log4j.RollingFileAppender
+log4j.appender.jGroups.layout=org.apache.log4j.PatternLayout
+log4j.appender.jGroups.layout.ConversionPattern = %d{ISO8601} | %-5.5p | %-16.16t | %-32.32c{1} |  
+log4j.appender.jGroups.file=${karaf.data}/log/jGroups.log
+log4j.appender.jGroups.append=true
+log4j.appender.jGroups.maxFileSize=1MB
+log4j.appender.jGroups.maxBackupIndex=10
+
+#SLP
+log4j.logger.ch.ethz.iks.slp = DEBUG, uAAL, RL
+#log4j.logger.ch.ethz.iks.slp = ERROR, org.universAAL,stdout
+
+
+# Root logger option, example:
+#log4j.rootLogger=INFO, stdout
+ 
+# Direct log messages to stdout
+#log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+#log4j.appender.stdout.Target=System.out
+#log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+#log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
