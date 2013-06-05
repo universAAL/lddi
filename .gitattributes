@@ -1086,7 +1086,6 @@ lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/commissioning
 lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java -text svneol=unset#text/plain
 lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java -text svneol=unset#text/plain
 lddi.zigbee.exporter/ASL2.0 -text
-lddi.zigbee.exporter/MITX -text
 lddi.zigbee.exporter/NOTICE -text
 lddi.zigbee.exporter/pom.xml -text
 lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/Activator.java -text
