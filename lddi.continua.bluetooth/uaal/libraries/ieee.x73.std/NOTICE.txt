@@ -11,8 +11,9 @@ Software developed by TSB Company within the universAAL project.
 II. Used Software
 
 This product uses software developed at
-BlueZ Project as official Linux bluetooth protocol stack (http://www.bluez.org/)
-Licensed under the GNU General Public License (GPL).
+(1)BlueZ Project as official Linux bluetooth protocol stack (http://www.bluez.org/)
+Licensed under the GNU General Public License (GPL) and (2) by Abdulla Abdurakhmanov (abdulla@latestbit.com)
+licensed under Apache License version 2.0 (Copyright 2006-2011)
 
 
 III. License Summary
