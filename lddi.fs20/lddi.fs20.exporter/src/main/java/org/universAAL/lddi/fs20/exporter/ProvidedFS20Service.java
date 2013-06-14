@@ -115,14 +115,14 @@ public class ProvidedFS20Service extends DeviceService {
     static {
 	
 	
-	PROP_CONTROLS_DISPLAYS= LightActuator.uAAL_DEVICE_NAMESPACE+"controlsDisplays"; //FS20Controller.PROP_CONTROLS_DISPLAY;
-	PROP_DISPLAY_ACTION = LightActuator.uAAL_DEVICE_NAMESPACE+"displayAction";
+	PROP_CONTROLS_DISPLAYS= FS20_SERVER_NAMESPACE+"controlsDisplays"; //FS20Controller.PROP_CONTROLS_DISPLAY;
+	PROP_DISPLAY_ACTION = FS20_SERVER_NAMESPACE+"displayAction";
 	
-    PROP_CONTROLS_GONGS = LoudSpeaker.uAAL_DEVICE_NAMESPACE+"controlsGongs";
-    PROP_GONG_ACTIVATED = LoudSpeaker.uAAL_DEVICE_NAMESPACE+"gongActivated";
+    PROP_CONTROLS_GONGS = FS20_SERVER_NAMESPACE+"controlsGongs";
+    PROP_GONG_ACTIVATED = FS20_SERVER_NAMESPACE+"gongActivated";
     
-    PROP_CONTROLS_FS20ST = SwitchActuator.uAAL_DEVICE_NAMESPACE+"controlsFS20ST";
-    PROP_FS20ST_ACTIVATED = SwitchActuator.uAAL_DEVICE_NAMESPACE+"FS20STActivated";
+    PROP_CONTROLS_FS20ST = FS20_SERVER_NAMESPACE+"controlsFS20ST";
+    PROP_FS20ST_ACTIVATED = FS20_SERVER_NAMESPACE+"FS20STActivated";
 	
 	OntologyManagement.getInstance().register(Activator.mc,
 			new SimpleOntology(MY_URI, DeviceService.MY_URI,
@@ -317,7 +317,7 @@ public class ProvidedFS20Service extends DeviceService {
 	
 	//get FS20ST
 	ProvidedFS20Service getFS20ST= new ProvidedFS20Service(SERVICE_GET_FS20ST);
-	getFS20ST.addOutput(OUTPUT_FS20ST, SwitchActuator.MY_URI, 0, 0, new String[] { SwitchActuator.uAAL_DEVICE_NAMESPACE+"controlsFS20ST" });// ppControls_FS20ST);
+	getFS20ST.addOutput(OUTPUT_FS20ST, SwitchActuator.MY_URI, 0, 0, new String[] { FS20_SERVER_NAMESPACE+"controlsFS20ST" });// ppControls_FS20ST);
 	profiles[15]=getFS20ST.myProfile;
 	
 	//turn FS20ST on
