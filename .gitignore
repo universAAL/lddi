@@ -25,6 +25,9 @@ lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.classpa
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.project
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.settings
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/target
+lddi.fs20/lddi.pom.fs20/.project
+lddi.fs20/lddi.pom.fs20/.settings
+lddi.fs20/lddi.pom.fs20/target
 lddi.hw.exporter.activityhub/.classpath
 lddi.hw.exporter.activityhub/.project
 lddi.hw.exporter.activityhub/.settings

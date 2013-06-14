@@ -795,6 +795,7 @@ lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/FS2
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/FS20Server.java -text
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/ProvidedFS20Service.java -text
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/util/LogTracker.java -text
+lddi.fs20/lddi.pom.fs20/pom.xml -text
 lddi.hw.exporter.activityhub/MITX.txt -text
 lddi.hw.exporter.activityhub/README.txt -text
 lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
