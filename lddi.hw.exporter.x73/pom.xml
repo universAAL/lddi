@@ -18,13 +18,6 @@
     <name>Austrian Institute of Technology (AIT)</name>
     <url>http://www.ait.ac.at/</url>
   </organization>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
   <developers>
     <developer>
       <id>foex</id>
@@ -53,31 +46,31 @@
             <Bundle-Activator>org.universAAL.lddi.hw.exporter.x73.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-				<Embed-Dependency></Embed-Dependency>
-				<Export-Package>
-					cx.ath.matthew.unix*,
-					cx.ath.matthew.utils*
-				</Export-Package>
-				<Include-Resource>
-					lib,
-					src/main/resources
-				</Include-Resource>
-				<Import-Package>*</Import-Package>
-				<Bundle-NativeCode>
-					libunix-java-32.so;
-					osname=Linux;
-					processor=x86; processor=x86_32
-				</Bundle-NativeCode>
-				<Bundle-NativeCode>
-					libunix-java-64.so;
-					osname=Linux;
-					processor=x86; processor=x86_64
-				</Bundle-NativeCode>
+            <Embed-Dependency></Embed-Dependency>
+            <Export-Package>
+          cx.ath.matthew.unix*,
+          cx.ath.matthew.utils*
+            </Export-Package>
+            <Include-Resource>
+          lib,
+          src/main/resources
+            </Include-Resource>
+            <Import-Package>*</Import-Package>
+            <Bundle-NativeCode>
+          libunix-java-32.so;
+          osname=Linux;
+          processor=x86; processor=x86_32
+            </Bundle-NativeCode>
+            <Bundle-NativeCode>
+          libunix-java-64.so;
+          osname=Linux;
+          processor=x86; processor=x86_64
+            </Bundle-NativeCode>
           </instructions>
         </configuration>
       </plugin>
-	  
-	  <plugin>
+
+      <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.5</version>
         <executions>
@@ -93,44 +86,44 @@
                 <resource>
                   <directory>target</directory>
                   <filtering>true</filtering>
-	          <includes>
-		    <include>**/*.composite</include>
-		  </includes>
+                  <includes>
+                    <include>**/*.composite</include>
+                  </includes>
                 </resource>
               </resources>              
             </configuration>            
           </execution>
         </executions>
       </plugin>
-  </plugins>
-</build>
-<profiles>
-  <profile>
-    <id>uAAL-Runtime</id>
-    <dependencies>
-      <dependency>
-        <groupId>org.universAAL.middleware</groupId>
-        <artifactId>mw.data.serialization.osgi</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>org.apache.felix.http.jetty</artifactId>
-        <version>2.2.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>org.apache.felix.webconsole</artifactId>
-        <version>3.1.8</version>
-      </dependency>
-      
-<!--      <dependency>-->
-<!--        <groupId>org.universAAL.ontology</groupId>-->
-<!--        <artifactId>ont.activityhub</artifactId>-->
-<!--      </dependency>-->
-      
-    </dependencies>
-  </profile>
-</profiles>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>uAAL-Runtime</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.universAAL.middleware</groupId>
+          <artifactId>mw.data.serialization.osgi</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.http.jetty</artifactId>
+          <version>2.2.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>org.apache.felix.webconsole</artifactId>
+          <version>3.1.8</version>
+        </dependency>
+
+        <!--      <dependency>-->
+        <!--        <groupId>org.universAAL.ontology</groupId>-->
+        <!--        <artifactId>ont.activityhub</artifactId>-->
+        <!--      </dependency>-->
+
+      </dependencies>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <groupId>org.universAAL.support</groupId>
@@ -176,21 +169,21 @@
       <artifactId>ont.phWorld</artifactId>
     </dependency>
     <dependency>
-    	<groupId>org.freedesktop.dbus</groupId>
-    	<artifactId>libdbus-java</artifactId>
-    	<version>2.7</version>
+      <groupId>org.freedesktop.dbus</groupId>
+      <artifactId>libdbus-java</artifactId>
+      <version>2.7</version>
     </dependency>
-	<dependency>
-		<groupId>cx.ath.matthew</groupId>
-		<artifactId>unix</artifactId>
-		<version>0.5</version>
-		<scope>provided</scope>
-	</dependency>
-		<dependency>
-		<groupId>cx.ath.matthew</groupId>
-		<artifactId>utils</artifactId>
-		<version>0.2</version>
-		<scope>provided</scope>
-	</dependency>
+    <dependency>
+      <groupId>cx.ath.matthew</groupId>
+      <artifactId>unix</artifactId>
+      <version>0.5</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>cx.ath.matthew</groupId>
+      <artifactId>utils</artifactId>
+      <version>0.2</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 </project>

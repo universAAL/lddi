@@ -18,13 +18,6 @@
     <name>Austrian Institute of Technology (AIT)</name>
     <url>http://www.ait.ac.at/</url>
   </organization>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
   <developers>
     <developer>
       <id>foex</id>
@@ -36,10 +29,6 @@
       <timezone>CEST/CET</timezone>
     </developer>
   </developers>
-  <properties>
-    <gforge.project.name>lddi</gforge.project.name>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.apache.felix</groupId>
@@ -70,10 +59,10 @@
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Export-Package>org.universAAL.lddi.knx.devicecategory,
-						org.universAAL.lddi.knx.devicemodel,
-						org.universAAL.lddi.knx.networkdriver,
-						org.universAAL.lddi.knx.interfaces,
-						org.universAAL.lddi.knx.utils</Export-Package>
+            org.universAAL.lddi.knx.devicemodel,
+            org.universAAL.lddi.knx.networkdriver,
+            org.universAAL.lddi.knx.interfaces,
+            org.universAAL.lddi.knx.utils</Export-Package>
           </instructions>
         </configuration>
       </plugin>
