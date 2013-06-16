@@ -16,7 +16,6 @@
   <inceptionYear>2010</inceptionYear>
   <modules>
     <module>../lddi.knx.library</module>
-    <module>../lddi.continua.bluetooth/uaal/libraries/ieee.x73.std</module>
     <module>../lddi.iso11073.library</module>
     <module>../lddi.knx.networkdriver</module>
     <module>../lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073</module>
