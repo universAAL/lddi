@@ -767,6 +767,8 @@ lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/Publisher.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/hdpManager.java -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/hdpManagerListener.java -text
+lddi.fs20/lddi.fs20.connector/ASL2.0.txt -text
+lddi.fs20/lddi.fs20.connector/NOTICE.txt -text
 lddi.fs20/lddi.fs20.connector/lib/JD2XX.dll -text
 lddi.fs20/lddi.fs20.connector/lib/RXTXcomm.jar -text
 lddi.fs20/lddi.fs20.connector/lib/jd2xx.jar -text
@@ -789,6 +791,8 @@ lddi.fs20/lddi.fs20.connector/src/main/java/org/universAAL/lddi/fs20/server/Acti
 lddi.fs20/lddi.fs20.connector/src/main/java/org/universAAL/lddi/fs20/server/DeviceReader.java -text
 lddi.fs20/lddi.fs20.connector/src/main/java/org/universAAL/lddi/fs20/util/LogTracker.java -text
 lddi.fs20/lddi.fs20.connector/src/test/resources/JD2XX.dll -text
+lddi.fs20/lddi.fs20.exporter/ASL2.0.txt -text
+lddi.fs20/lddi.fs20.exporter/NOTICE.txt -text
 lddi.fs20/lddi.fs20.exporter/pom.xml -text
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/Activator.java -text
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/FS20ContextPublisher.java -text
@@ -796,7 +800,8 @@ lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/FS2
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/ProvidedFS20Service.java -text
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/util/LogTracker.java -text
 lddi.fs20/lddi.pom.fs20/pom.xml -text
-lddi.hw.exporter.activityhub/MITX.txt -text
+lddi.hw.exporter.activityhub/ASL2.0.txt -text
+lddi.hw.exporter.activityhub/NOTICE.txt -text
 lddi.hw.exporter.activityhub/README.txt -text
 lddi.hw.exporter.activityhub/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub/conf/services/lddi.knx.devicemanager.properties -text
@@ -874,7 +879,8 @@ lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activity
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073UsageSensorDriver.java -text
 lddi.hw.exporter.activityhub/src/main/java/org/universAAL/lddi/iso11073/activityhub/driver/Iso11073UsageSensorInstance.java -text
 lddi.hw.exporter.activityhub/src/test/java/org/universAAL/lddi/hwexporter/activityhub/test/HwExporterActivityHubTest.java -text
-lddi.hw.exporter.x73/MITX.txt -text
+lddi.hw.exporter.x73/ASL2.0.txt -text
+lddi.hw.exporter.x73/NOTICE.txt -text
 lddi.hw.exporter.x73/launches/Run.bat -text
 lddi.hw.exporter.x73/launches/artifact-test.composite -text
 lddi.hw.exporter.x73/launches/artifact.composite -text
@@ -902,7 +908,8 @@ lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/ISO11073C
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/ISO11073DBusServer.java -text
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/MyAgent.java -text
 lddi.hw.exporter.x73/src/main/java/org/universAAL/lddi/hw/exporter/x73/util/LogTracker.java -text
-lddi.iso11073.library/MITX.txt -text
+lddi.iso11073.library/ASL2.0.txt -text
+lddi.iso11073.library/NOTICE.txt -text
 lddi.iso11073.library/pom.xml -text
 lddi.iso11073.library/readme.txt -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java -text
@@ -941,7 +948,8 @@ lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/dri
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/knxmapping/KnxMappingFactory.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/location/ActivityHubLocationUtil.java -text
 lddi.iso11073.library/src/main/java/org/universAAL/lddi/iso11073/activityhub/util/LogTracker.java -text
-lddi.knx.devicemanager/MITX.txt -text
+lddi.knx.devicemanager/ASL2.0.txt -text
+lddi.knx.devicemanager/NOTICE.txt -text
 lddi.knx.devicemanager/conf/services/lddi.knx.devicemanager.properties -text
 lddi.knx.devicemanager/data/OfficeProject2.knxproj -text
 lddi.knx.devicemanager/data/OfficeProject3.knxproj -text
@@ -973,6 +981,8 @@ lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/Activ
 lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxDeviceManager.java -text
 lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxImporter.java -text
 lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/util/LogTracker.java -text
+lddi.knx.exporter/ASL2.0.txt -text
+lddi.knx.exporter/NOTICE.txt -text
 lddi.knx.exporter/README.txt -text
 lddi.knx.exporter/launcher-mw2.0/Run.bat -text
 lddi.knx.exporter/launcher-mw2.0/artifact-test.composite -text
@@ -1032,7 +1042,8 @@ lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxManager.java
 lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxToDeviceOntologyMappingFactory.java -text
 lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/util/LogTracker.java -text
 lddi.knx.exporter/src/test/java/org/universAAL/lddi/knx/driver/KnxDpt9InstanceTest.java -text
-lddi.knx.library/MITX.txt -text
+lddi.knx.library/ASL2.0.txt -text
+lddi.knx.library/NOTICE.txt -text
 lddi.knx.library/pom.xml -text
 lddi.knx.library/readme.txt -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicecategory/KnxBaseDeviceCategory.java -text
@@ -1061,7 +1072,8 @@ lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.jav
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxPacketPriority.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
 lddi.knx.library/src/test/java/org/universAAL/lddi/knx/utils/KnxEncoderTest.java -text
-lddi.knx.networkdriver/MITX.txt -text
+lddi.knx.networkdriver/ASL2.0.txt -text
+lddi.knx.networkdriver/NOTICE.txt -text
 lddi.knx.networkdriver/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.knx.networkdriver/conf/services/lddi.knx.networkdriver.properties -text
 lddi.knx.networkdriver/conf/services/org.ops4j.pax.logging.properties -text
@@ -1075,7 +1087,8 @@ lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxWr
 lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/KnxShellCommand.java -text
 lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalTest.java -text
-lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/MITX.txt -text
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/ASL2.0.txt -text
+lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/NOTICE.txt -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/README.txt -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/launches/Run.bat -text
@@ -1098,8 +1111,12 @@ lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
+lddi.pom/composite/ASL2.0.txt -text
+lddi.pom/composite/NOTICE.txt -text
 lddi.pom/composite/pom.xml -text
 lddi.pom/pom.xml -text
+lddi.zigbee.commissioning/ASL2.0.txt -text
+lddi.zigbee.commissioning/NOTICE.txt -text
 lddi.zigbee.commissioning/configurationFile/lddi.zigbee.commissioning.configuration.properties -text svneol=unset#text/plain
 lddi.zigbee.commissioning/pom.xml -text svneol=unset#text/plain
 lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/commissioning/Activator.java -text svneol=unset#text/plain
