@@ -24,8 +24,8 @@
     <module>../lddi.knx.exporter</module>
     <module>../lddi.fs20/lddi.pom.fs20</module>
 <!--    <module>../lddi.zigbee.exporter</module>
-    <module>../lddi.zigbee.commissioning</module>-->
-    <module>../lddi.hw.exporter.x73</module>
+    <module>../lddi.zigbee.commissioning</module>
+    <module>../lddi.hw.exporter.x73</module>-->
     <module>composite</module>
   </modules>
   <scm>
