@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.fs20</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
     <relativePath>../lddi.pom.fs20</relativePath>
   </parent>
   <artifactId>lddi.fs20.exporter</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI FS20 Exporter</name>
   <description>Hardware exporter of FS20 Home Automation components for universAAL</description>
