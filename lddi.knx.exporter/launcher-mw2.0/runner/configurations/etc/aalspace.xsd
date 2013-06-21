@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://universaal.org/aalspace/v1.0.0" xmlns:aalChannel="http://universaal.org/aalspace-channel/v1.0.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://universaal.org/aalspace-channel/v1.0.0" schemaLocation="aalspace-channel.xsd"/>
+	<xs:element name="aalspace">
+		<xs:annotation>
+			<xs:documentation>This schema describes the meta-information of an
+				AALSpace</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="space-descriptor">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="profile" type="xs:string" />
+							<xs:element name="spaceId" type="xs:string" />
+							<xs:element name="spaceName" type="xs:string" />
+							<xs:element name="spaceDescription" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="peeringChannel">
+					<xs:complexType>
+						<xs:element name="channel-descriptor" type="aalChannel:channelDescriptor"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="communicationChannels">
+					<xs:complexType>
+						<xs:sequence minOccurs="1" maxOccurs="unbounded">
+							<xs:element name="channel-descriptor" type="aalChannel:channelDescriptor"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="owner" type="xs:string" />
+				<xs:element name="admin" type="xs:string" />
+				<xs:element name="security" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
