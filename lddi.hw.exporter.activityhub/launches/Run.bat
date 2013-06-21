@@ -1,0 +1,2 @@
+mvn pax:run
+PAUSE
