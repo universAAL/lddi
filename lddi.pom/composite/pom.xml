@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom</artifactId>
+    <version>2.0.0</version>
+    <relativePath>../</relativePath>
+  </parent>
+  <artifactId>lddi.composite</artifactId>
+  <version>2.0.0</version>
+  <name>universAAL LDDI Composite</name>
+  <description>Artifact responsible for generating composite file of universAAL lddi</description>
+  <url></url>
+  <scm>
+    <connection>${svn.base}/lddi.pom/composite</connection>
+    <developerConnection>${svn.base}/lddi.pom/composite</developerConnection>
+    <url>${svn.base.url}lddi.pom/composite</url>
+  </scm>
+  <properties>
+    <project.build.sourceEncoding>cp1252</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.hw.exporter.activityhub</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.exporter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.devicemanager</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.library</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.networkdriver</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.knx.dpt1refinementdriver.iso11073</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.iso11073.library</artifactId>
+    </dependency>
+  </dependencies>
+</project>
