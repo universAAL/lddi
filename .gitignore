@@ -67,6 +67,16 @@ lddi.knx.devicemanager-1.3.5-SNAPSHOT/launches/runner/felix/config.ini
 lddi.knx.devicemanager-1.3.5-SNAPSHOT/launches/runner/log
 lddi.knx.devicemanager-1.3.5-SNAPSHOT/launches/target
 lddi.knx.devicemanager-1.3.5-SNAPSHOT/target
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/.classpath
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/.project
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/.settings
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/launches/runner/bundles
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/launches/runner/cache
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/launches/runner/felix/cache
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/launches/runner/felix/config.ini
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/launches/runner/log
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/launches/target
+lddi.knx.devicemanager-1.3.6-SNAPSHOT/target
 lddi.knx.dpt1refinementdriver.iso11073-0.0.5-SNAPSHOT/.classpath
 lddi.knx.dpt1refinementdriver.iso11073-0.0.5-SNAPSHOT/.project
 lddi.knx.dpt1refinementdriver.iso11073-0.0.5-SNAPSHOT/.settings
