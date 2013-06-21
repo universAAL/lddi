@@ -1,0 +1,33 @@
+package org.universAAL.lddi.iso11073.activityhub.devicecategory;
+
+/**
+ * 
+ * @author Thomas Fuxreiter (foex@gmx.at)
+ */
+public interface ActivityHubBaseDeviceCategory {
+	
+	public static String MY_DEVICE_CATEGORY = null;
+	
+	/**
+	 * The specific drivers have to implement this method to receive messages from devices
+	 * @param event Integer representation of a specific ActivityHubSensorEvent.
+	 * example MotionSensor: motion-detected = 0; no-condition-detected = 3
+	 */
+	public void incomingSensorEvent( int event );
+	
+	
+	// from OSGi DAS Spec
+	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number
+	public static int MATCH_VERSION	= 8;	// matches the right class, make model and version
+	public static int MATCH_MODEL	= 6;	// matches the right class and make model
+	public static int MATCH_MAKE	= 4;	// matches the make
+	public static int MATCH_CLASS	= 2;	// only matches the class
+
+	// example properties
+	// from where should we get this data?
+	public static String CLASS 	= "-"; // class description
+	public static String MODEL 			= "-"; // definition of the model, e.g. audio, video, serial
+	public static String MANUFACTURER 	= "-";
+	public static String REVISION		= "-";
+	public static String SERIAL			= "-";
+}
