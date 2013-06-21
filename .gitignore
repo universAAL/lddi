@@ -45,6 +45,10 @@ lddi.iso11073.library-1.3.5-SNAPSHOT/.classpath
 lddi.iso11073.library-1.3.5-SNAPSHOT/.project
 lddi.iso11073.library-1.3.5-SNAPSHOT/.settings
 lddi.iso11073.library-1.3.5-SNAPSHOT/target
+lddi.iso11073.library-1.3.6-SNAPSHOT/.classpath
+lddi.iso11073.library-1.3.6-SNAPSHOT/.project
+lddi.iso11073.library-1.3.6-SNAPSHOT/.settings
+lddi.iso11073.library-1.3.6-SNAPSHOT/target
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/.classpath
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/.project
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/.settings
