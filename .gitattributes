@@ -1,4 +1,5 @@
 * text=auto !eol
+lddi.fs20/lddi.pom.fs20/pom.xml -text
 lddi.hw.exporter.activityhub/ASL2.0.txt -text
 lddi.hw.exporter.activityhub/NOTICE.txt -text
 lddi.hw.exporter.activityhub/README.txt -text
