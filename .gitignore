@@ -1,3 +1,7 @@
+lddi.knx.library/.classpath
+lddi.knx.library/.project
+lddi.knx.library/.settings
+lddi.knx.library/target
 lddi.pom/.project
 lddi.pom/.settings
 lddi.pom/composite/.classpath
