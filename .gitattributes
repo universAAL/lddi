@@ -69,6 +69,21 @@ lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxGroupAddress.jav
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxPacketPriority.java -text
 lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxTelegram.java -text
 lddi.knx.library/src/test/java/org/universAAL/lddi/knx/utils/KnxEncoderTest.java -text
+lddi.knx.networkdriver/ASL2.0.txt -text
+lddi.knx.networkdriver/NOTICE.txt -text
+lddi.knx.networkdriver/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
+lddi.knx.networkdriver/conf/services/lddi.knx.networkdriver.properties -text
+lddi.knx.networkdriver/conf/services/org.ops4j.pax.logging.properties -text
+lddi.knx.networkdriver/pom.xml -text
+lddi.knx.networkdriver/readme.txt -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/Activator.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxCommunication.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxNetworkDriverImp.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxReader.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/KnxWriter.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/KnxShellCommand.java -text
+lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
+lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalTest.java -text
 lddi.pom/composite/ASL2.0.txt -text
 lddi.pom/composite/NOTICE.txt -text
 lddi.pom/composite/pom.xml -text
