@@ -13,7 +13,6 @@ lddi.continua.bluetooth/uaal/doc/javadoc.rar -text
 lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.odt -text
 lddi.continua.bluetooth/uaal/doc/uAAL_developers_guide.pdf -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/ASL2.0.txt -text
-lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/MITX.txt -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/doc/allclasses-frame.html -text
 lddi.continua.bluetooth/uaal/libraries/ieee.x73.std/doc/allclasses-noframe.html -text
@@ -676,11 +675,9 @@ lddi.continua.bluetooth/uaal/libraries/libHDPnative.zip -text
 lddi.continua.bluetooth/uaal/native_libs/unix/universAAL_continua_HDP_manager.c -text
 lddi.continua.bluetooth/uaal/native_libs/unix/universAAL_continua_HDP_manager.h -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/ASL2.0.txt -text
-lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/MITX.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_32/libHDPnative_unix_32.so.zip -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/ASL2.0.txt -text
-lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/MITX.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/native_libs/unix/unix_64/libHDPnative_unix_64.so.zip -text
 lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.cpp -text
@@ -689,13 +686,11 @@ lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.vcxproj -text
 lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.vcxproj.filters -text
 lddi.continua.bluetooth/uaal/native_libs/windows/HDPNativeDll.vcxproj.user -text
 lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/ASL2.0.txt -text
-lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/MITX.txt -text
 lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/native_libs/windows/x86_32/hdpNativeLib_win_x86_32.dll -text
 lddi.continua.bluetooth/uaal/native_libs/windows/x86_64/README.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/META-INF/MANIFEST.MF -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/libHDPnative_unix_32.so -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/lib/libHDPnative_unix_64.so -text
@@ -711,7 +706,6 @@ lddi.continua.bluetooth/uaal/samples/ContinuaManager/ContinuaManager/src/main/re
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/Continua_manager_caller_test.launch -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/META-INF/MANIFEST.MF -text
-lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/lib/hdpNativeLib_win_x86_32.dll -text
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/pom.xml -text
@@ -726,7 +720,6 @@ lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClie
 lddi.continua.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/src/main/resources/ws.png -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/META-INF/MANIFEST.MF -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/pom.xml -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/src/main/java/org/universAAL/continua/caller/test/gui/GUI.java -text
@@ -737,7 +730,6 @@ lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/src/main/r
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.caller.test/src/main/resources/ws.png -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/ASL2.0.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/META-INF/MANIFEST.MF -text
-lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/pom.xml -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/java/org/universAAL/continua/subscriber/test/gui/GUI.java -text
@@ -746,7 +738,6 @@ lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/ma
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/resources/bp.png -text
 lddi.continua.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/resources/ws.png -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/ASL2.0.txt -text
-lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/MITX.txt -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/NOTICE.txt -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/pom.xml -text
 lddi.continua.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/src/main/java/org/universAAL/continua/weighingscale/publisher/Activator.java -text
