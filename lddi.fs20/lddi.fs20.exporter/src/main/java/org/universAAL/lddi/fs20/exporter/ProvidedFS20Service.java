@@ -1,3 +1,23 @@
+/*	
+	Copyright 2007-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
+	Fraunhofer-Gesellschaft - Institut f�r Graphische Datenverarbeitung
+	
+	See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ */
+
 package org.universAAL.lddi.fs20.exporter;
 
 import java.util.Hashtable;
@@ -40,6 +60,10 @@ public class ProvidedFS20Service extends DeviceService {
     public static final String PROP_GONG_ACTIVATED;
     
     public static final String PROP_CONTROLS_FS20ST;
+    
+    public static final String PROP_CONTROLS_PIRx;
+    
+    public static final String PROP_CONTROLS_FMS;
     
     public static final String PROP_FS20ST_ACTIVATED;
    
@@ -93,7 +117,7 @@ public class ProvidedFS20Service extends DeviceService {
     
     static final String OUTPUT_FS20DISPLAYS = FS20_SERVER_NAMESPACE + "outputFS20Displays";
     
-    static final String OUTPUT_FS20ST = FS20_SERVER_NAMESPACE + "outputFS20STs";
+    static final String OUTPUT_FS20ST = FS20_SERVER_NAMESPACE + "FS20Device#outputFS20STs";
     
     static final String OUTPUT_FS20FMS = FS20_SERVER_NAMESPACE + "outputFS20FMSs";
     
@@ -115,61 +139,28 @@ public class ProvidedFS20Service extends DeviceService {
     static {
 	
 	
-	PROP_CONTROLS_DISPLAYS= FS20_SERVER_NAMESPACE+"controlsDisplays"; //FS20Controller.PROP_CONTROLS_DISPLAY;
-	PROP_DISPLAY_ACTION = FS20_SERVER_NAMESPACE+"displayAction";
+	PROP_CONTROLS_DISPLAYS= LightActuator.uAAL_DEVICE_NAMESPACE +"FS20Device#controlsDisplays"; //FS20Controller.PROP_CONTROLS_DISPLAY;
+	PROP_DISPLAY_ACTION = LightActuator.uAAL_DEVICE_NAMESPACE + "FS20Device#displayAction";
 	
-    PROP_CONTROLS_GONGS = FS20_SERVER_NAMESPACE+"controlsGongs";
-    PROP_GONG_ACTIVATED = FS20_SERVER_NAMESPACE+"gongActivated";
+    PROP_CONTROLS_GONGS = LoudSpeaker.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsGongs";
+    PROP_GONG_ACTIVATED = LoudSpeaker.uAAL_DEVICE_NAMESPACE+"FS20Device#gongActivated";
     
-    PROP_CONTROLS_FS20ST = FS20_SERVER_NAMESPACE+"controlsFS20ST";
-    PROP_FS20ST_ACTIVATED = FS20_SERVER_NAMESPACE+"FS20STActivated";
-	
-	OntologyManagement.getInstance().register(Activator.mc,
-			new SimpleOntology(MY_URI, DeviceService.MY_URI,
-				new ResourceFactoryImpl() {
-				    public Resource createInstance(String classURI,
-					    String instanceURI, int factoryIndex) {
-					return new ProvidedFS20Service(instanceURI);
-				    }
-				}));
-	
-	OntologyManagement.getInstance().register(Activator.mc,
-			new SimpleOntology(MY_URI, DeviceService.MY_URI,
-				new ResourceFactoryImpl() {
-				    public Resource createInstance(String classURI,
-					    String instanceURI, int factoryIndex) {
-					return new ProvidedFS20Service(instanceURI);
-				    }
-				}));
-	
-	OntologyManagement.getInstance().register(Activator.mc,
-			new SimpleOntology(MY_URI, DeviceService.MY_URI,
-				new ResourceFactoryImpl() {
-				    public Resource createInstance(String classURI,
-					    String instanceURI, int factoryIndex) {
-					return new ProvidedFS20Service(instanceURI);
-				    }
-				}));
-	
-	OntologyManagement.getInstance().register(Activator.mc,
-			new SimpleOntology(MY_URI, DeviceService.MY_URI,
-				new ResourceFactoryImpl() {
-				    public Resource createInstance(String classURI,
-					    String instanceURI, int factoryIndex) {
-					return new ProvidedFS20Service(instanceURI);
-				    }
-				}));
-	
-	OntologyManagement.getInstance().register(Activator.mc,
-			new SimpleOntology(MY_URI, DeviceService.MY_URI,
-				new ResourceFactoryImpl() {
-				    public Resource createInstance(String classURI,
-					    String instanceURI, int factoryIndex) {
-					return new ProvidedFS20Service(instanceURI);
-				    }
-				}));
+    PROP_CONTROLS_FS20ST =SwitchActuator.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsFS20ST";
+    PROP_FS20ST_ACTIVATED = SwitchActuator.uAAL_DEVICE_NAMESPACE +"FS20Device#FS20STActivated";
     
-//	register(ProvidedFS20Service.class);
+    PROP_CONTROLS_PIRx =MotionSensor.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsFS20PIRx";
+    
+    PROP_CONTROLS_FMS =UsageSensor.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsFS20FMS";
+	
+	OntologyManagement.getInstance().register(Activator.mc,
+			new SimpleOntology(MY_URI, DeviceService.MY_URI,
+				new ResourceFactoryImpl() {
+				    public Resource createInstance(String classURI,
+					    String instanceURI, int factoryIndex) {
+					return new ProvidedFS20Service(instanceURI);
+				    }
+				}));
+
 	
 	String[] ppControls_DISPLAYS = new String[] {ProvidedFS20Service.PROP_CONTROLS_DISPLAYS};
 	
@@ -181,6 +172,10 @@ public class ProvidedFS20Service extends DeviceService {
 	
 	String[] ppControls_FS20ST = new String[] {ProvidedFS20Service.PROP_CONTROLS_FS20ST};
 	String[] switchFS20ST = new String[] { ProvidedFS20Service.PROP_CONTROLS_FS20ST,PROP_FS20ST_ACTIVATED };
+	
+	String[] ppControls_PIRx = new String[] {ProvidedFS20Service.PROP_CONTROLS_PIRx};
+	
+	String[] ppControls_FMS = new String[] {ProvidedFS20Service.PROP_CONTROLS_FMS};
 	
 //	String[] ppAbsLocation = new String[] {ProvidedFS20Service.PROP_CONTROLS_DISPLAYS, FS20Device.PROP_PHYSICAL_LOCATION };
 	
@@ -317,7 +312,7 @@ public class ProvidedFS20Service extends DeviceService {
 	
 	//get FS20ST
 	ProvidedFS20Service getFS20ST= new ProvidedFS20Service(SERVICE_GET_FS20ST);
-	getFS20ST.addOutput(OUTPUT_FS20ST, SwitchActuator.MY_URI, 0, 0, new String[] { FS20_SERVER_NAMESPACE+"controlsFS20ST" });// ppControls_FS20ST);
+	getFS20ST.addOutput(OUTPUT_FS20ST, SwitchActuator.MY_URI, 0, 0,ppControls_FS20ST );
 	profiles[15]=getFS20ST.myProfile;
 	
 	//turn FS20ST on
@@ -334,12 +329,12 @@ public class ProvidedFS20Service extends DeviceService {
 	
 	//get FS20FMS
 	ProvidedFS20Service getFS20FMS= new ProvidedFS20Service(SERVICE_GET_FS20FMS);
-	getFS20FMS.addOutput(OUTPUT_FS20FMS, UsageSensor.MY_URI, 0, 0, new String[0]);
+	getFS20FMS.addOutput(OUTPUT_FS20FMS, UsageSensor.MY_URI, 0, 0, ppControls_FMS);
 	profiles[18]=getFS20FMS.myProfile;
 	
 	//get FS20PIRx
 	ProvidedFS20Service getFS20PIRx= new ProvidedFS20Service(SERVICE_GET_FS20PIRX);
-	getFS20PIRx.addOutput(OUTPUT_FS20PIRX, MotionSensor.MY_URI, 0, 0, new String[0]);
+	getFS20PIRx.addOutput(OUTPUT_FS20PIRX, MotionSensor.MY_URI, 0, 0, ppControls_PIRx);
 	profiles[19]=getFS20PIRx.myProfile;
 
     }
