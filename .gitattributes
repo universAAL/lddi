@@ -1,11 +1,4 @@
 * text=auto !eol
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]ontology/ont.continuahealthmanager/pom.xml -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]ontology/ont.continuahealthmanager/src/main/java/org/universAAL/ontology/Activator.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]ontology/ont.continuahealthmanager/src/main/java/org/universAAL/ontology/ContinuaHealthManagerFactory.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]ontology/ont.continuahealthmanager/src/main/java/org/universAAL/ontology/ContinuaHealthManagerOntology.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]ontology/ont.continuahealthmanager/src/main/java/org/universAAL/ontology/continua/ContinuaHealthDevice.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]ontology/ont.continuahealthmanager/src/main/java/org/universAAL/ontology/continua/ContinuaHealthManager.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]ontology/ont.continuahealthmanager/target/ont.continuahealthmanager-1.2.2-SNAPSHOT.jar -text
 lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/lib/libHDPnative_unix_32.so -text
 lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/lib/libHDPnative_unix_64.so -text
