@@ -30,6 +30,7 @@ lddi.bluetooth/continua.hdp.manager/src/main/java/org/universAAL/continua/hdp/Pr
 lddi.bluetooth/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/Publisher.java -text
 lddi.bluetooth/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManager.java -text
 lddi.bluetooth/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManagerListener.java -text
+lddi.bluetooth/dll/unix/ASL2.0.txt -text
 lddi.bluetooth/dll/unix/universAAL_continua_HDP_manager.c -text
 lddi.bluetooth/dll/unix/universAAL_continua_HDP_manager.h -text
 lddi.bluetooth/dll/unix/unix_32/ASL2.0.txt -text
