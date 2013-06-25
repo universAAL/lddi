@@ -36,10 +36,10 @@ lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.c
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.project
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.settings
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target
-lddi.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.classpath
-lddi.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.project
-lddi.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/.settings
-lddi.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/target
+lddi.bluetooth/uaal/samples/weighingScalePublisher/.classpath
+lddi.bluetooth/uaal/samples/weighingScalePublisher/.project
+lddi.bluetooth/uaal/samples/weighingScalePublisher/.settings
+lddi.bluetooth/uaal/samples/weighingScalePublisher/target
 lddi.fs20/lddi.fs20.connector/.classpath
 lddi.fs20/lddi.fs20.connector/.project
 lddi.fs20/lddi.fs20.connector/.settings
