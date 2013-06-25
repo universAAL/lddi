@@ -9,6 +9,10 @@ lddi.bluetooth/continua.hdp.manager.subscriber/target
 lddi.bluetooth/continua.hdp.manager/.classpath
 lddi.bluetooth/continua.hdp.manager/.project
 lddi.bluetooth/continua.hdp.manager/.settings
+lddi.bluetooth/ieee.x73.std/.classpath
+lddi.bluetooth/ieee.x73.std/.project
+lddi.bluetooth/ieee.x73.std/.settings
+lddi.bluetooth/ieee.x73.std/target
 lddi.bluetooth/uaal/continua.hdp.manager.caller/.classpath
 lddi.bluetooth/uaal/continua.hdp.manager.caller/.project
 lddi.bluetooth/uaal/continua.hdp.manager.caller/.settings
