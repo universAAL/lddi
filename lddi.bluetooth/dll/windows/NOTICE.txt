@@ -1,0 +1,28 @@
+Continua Health Alliance devices integration
+
+Copyright Technologies for Health and Well-being, http://www.tsbtecnologias.es/
+
+
+I. Included Software
+
+Software developed by TSB Company within the universAAL project.
+
+
+II. Used Software
+
+This product uses the TOSHIBA Bluetooth stack (v7.10) for Windows SDK developed by Toshiba INC corporation. This is SDK is based on Microsoft Visual Studio C/C++ 6.0 or later and the Toshiba
+Bluetooth stack (v7.00.16). All rights to the SDK are owned by Toshiba Corp. According the License
+Agreement signed with Toshiba Corp. we MAY use the SDK solely for the purpose of development our own
+applications and drivers. we MAY NOT may copies, publish or distribute all or parts of the SDK.
+
+A. How to obtain the Toshiba Bluetooth stack SDK?
+
+http://aps2.toshiba-tro.de/kb0/HTD9602MK0000R02.htm
+
+B. How to obtain the Toshiba Bluetooth driver (required version: v7.00.16)?
+
+https://aps2.toshiba-tro.de/bluetooth/?page=download-toshiba
+
+III. License Summary
+- Copyright 2000-2009 Toshiba Corporation. All rights reserved.
+
