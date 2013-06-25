@@ -33,7 +33,7 @@ public class KnxContextPublisher {
 	// Default context publisher
 	private ContextPublisher cp;
 	// Context provider info (provider type)
-	ContextProvider cpInfo = new ContextProvider();
+	//ContextProvider cpInfo = new ContextProvider();
 
 	public static final String KNX_SERVER_NAMESPACE = Resource.uAAL_NAMESPACE_PREFIX
 			+ "KNXManager.owl#";
