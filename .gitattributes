@@ -40,6 +40,7 @@ lddi.bluetooth/dll/unix/unix_32/libHDPnative_unix_32.so.zip -text
 lddi.bluetooth/dll/unix/unix_64/ASL2.0.txt -text
 lddi.bluetooth/dll/unix/unix_64/NOTICE.txt -text
 lddi.bluetooth/dll/unix/unix_64/libHDPnative_unix_64.so.zip -text
+lddi.bluetooth/dll/windows/ASL2.0.txt -text
 lddi.bluetooth/dll/windows/HDPNativeDll.cpp -text
 lddi.bluetooth/dll/windows/HDPNativeDll.h -text
 lddi.bluetooth/dll/windows/HDPNativeDll.vcxproj -text
