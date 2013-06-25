@@ -45,6 +45,9 @@ lddi.bluetooth/dll/windows/x86_32/ASL2.0.txt -text
 lddi.bluetooth/dll/windows/x86_32/NOTICE.txt -text
 lddi.bluetooth/dll/windows/x86_32/hdpNativeLib_win_x86_32.dll -text
 lddi.bluetooth/dll/windows/x86_64/README.txt -text
+lddi.bluetooth/doc/javadoc.rar -text
+lddi.bluetooth/doc/uAAL_developers_guide.odt -text
+lddi.bluetooth/doc/uAAL_developers_guide.pdf -text
 lddi.bluetooth/uaal/continua.hdp.manager.caller/ASL2.0.txt -text
 lddi.bluetooth/uaal/continua.hdp.manager.caller/META-INF/MANIFEST.MF -text
 lddi.bluetooth/uaal/continua.hdp.manager.caller/NOTICE.txt -text
