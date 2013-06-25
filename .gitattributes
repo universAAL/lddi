@@ -1435,6 +1435,7 @@ lddi.bluetooth/uaal/samples/continuaManager/unix/src/main/java/org/universAAL/co
 lddi.bluetooth/uaal/samples/continuaManager/unix/src/main/resources/bp.png -text
 lddi.bluetooth/uaal/samples/continuaManager/unix/src/main/resources/uaal_logo_resized.jpg -text
 lddi.bluetooth/uaal/samples/continuaManager/unix/src/main/resources/ws.png -text
+lddi.bluetooth/uaal/samples/continuaManager/windows/lib/hdpNativeLib_win_x86_32.dll -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/uaalContinuaManagerClient_win/ASL2.0.txt -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/uaalContinuaManagerClient_win/Continua_manager_caller_test.launch -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/uaalContinuaManagerClient_win/META-INF/MANIFEST.MF -text
