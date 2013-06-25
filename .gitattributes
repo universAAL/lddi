@@ -46,6 +46,7 @@ lddi.bluetooth/dll/windows/HDPNativeDll.h -text
 lddi.bluetooth/dll/windows/HDPNativeDll.vcxproj -text
 lddi.bluetooth/dll/windows/HDPNativeDll.vcxproj.filters -text
 lddi.bluetooth/dll/windows/HDPNativeDll.vcxproj.user -text
+lddi.bluetooth/dll/windows/NOTICE.txt -text
 lddi.bluetooth/dll/windows/x86_32/ASL2.0.txt -text
 lddi.bluetooth/dll/windows/x86_32/NOTICE.txt -text
 lddi.bluetooth/dll/windows/x86_32/hdpNativeLib_win_x86_32.dll -text
