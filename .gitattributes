@@ -20,6 +20,7 @@ lddi.bluetooth/continua.hdp.manager.subscriber/src/main/resources/bp.png -text
 lddi.bluetooth/continua.hdp.manager.subscriber/src/main/resources/ws.png -text
 lddi.bluetooth/continua.hdp.manager/ASL2.0.txt -text
 lddi.bluetooth/continua.hdp.manager/META-INF/MANIFEST.MF -text
+lddi.bluetooth/continua.hdp.manager/NOTICE.txt -text
 lddi.bluetooth/continua.hdp.manager/lib/libHDPnative_unix_32.so -text
 lddi.bluetooth/continua.hdp.manager/lib/libHDPnative_unix_64.so -text
 lddi.bluetooth/continua.hdp.manager/pom.xml -text
