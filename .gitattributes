@@ -1440,6 +1440,7 @@ lddi.bluetooth/uaal/samples/continuaManager/windows/Continua_manager_caller_test
 lddi.bluetooth/uaal/samples/continuaManager/windows/META-INF/MANIFEST.MF -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/NOTICE.txt -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/lib/hdpNativeLib_win_x86_32.dll -text
+lddi.bluetooth/uaal/samples/continuaManager/windows/pom.xml -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/src/main/java/org/universAAL/continua/manager/gui/GUI.java -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/src/main/java/org/universAAL/continua/manager/publisher/Activator.java -text
 lddi.bluetooth/uaal/samples/continuaManager/windows/src/main/java/org/universAAL/continua/manager/publisher/Publisher.java -text

@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>lddi.pom</artifactId>
+		<groupId>org.universAAL.lddi</groupId>
+<!-- updated version due to dependency conflicts -->
+		<version>1.3.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.universAAL.lddi</groupId>
+	<artifactId>lddi.uaalContinuaManagerClient</artifactId>
+<!-- updated version -->
+	<version>${parent.version}</version>
+	<packaging>bundle</packaging>
+	<name>universAAL LDDI Continua Manager Client (windows OS version)</name>
+	<description>Continua Health Alliance agent event publisher</description>
+	<organization>
+		<name>TSB Technologies for Health and Well-being</name>
+		<url>www.tsbtecnologias.es</url>
+	</organization>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+<!-- this version is managed by the parent pom -->
+<!-- 				<version>2.3.7</version> -->
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Name>${project.name}</Bundle-Name>
+						<Bundle-Activator>org.universAAL.continua.manager.publisher.Activator</Bundle-Activator>
+						<Bundle-Description>${project.description}</Bundle-Description>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Include-Resource>
+							lib,
+							src/main/resources
+						</Include-Resource>	
+						<Import-Package>*</Import-Package>			
+						<Bundle-NativeCode><!--
+						From the BundleNative javadoc: f you have more than one library for the same environment then you 
+						should include all of the libraries for that environment in the same Bundle-NativeCode entry.-->
+							hdpNativeLib_win_x86_32.dll;
+							osname=Windows7;
+							processor=x86
+						</Bundle-NativeCode>
+						</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>uAAL-Runtime</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.universAAL.middleware</groupId>
+					<artifactId>mw.data.serialization.osgi</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>	
+	<dependencies>
+		<dependency>
+			<groupId>org.universAAL.continua</groupId>
+			<artifactId>ieee.x73.std</artifactId>
+			<version>1.3.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.core</artifactId>
+<!-- this version is managed by the parent pom -->
+<!-- 			<version>1.4.0</version> -->
+		</dependency>
+		<dependency>
+		<groupId>org.universAAL.middleware</groupId>
+		<artifactId>mw.container.osgi</artifactId>
+<!-- this version is managed by the parent pom -->
+<!-- 		<version>1.2.0</version> -->
+	</dependency>
+	<dependency>
+		<groupId>org.universAAL.ontology</groupId>
+		<artifactId>ont.personalhealthdevice</artifactId>
+		<version>1.3.1-SNAPSHOT</version>
+	</dependency>	
+	</dependencies>		
+</project>
