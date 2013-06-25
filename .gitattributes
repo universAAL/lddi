@@ -18,6 +18,7 @@ lddi.bluetooth/continua.hdp.manager.subscriber/src/main/java/org/universAAL/cont
 lddi.bluetooth/continua.hdp.manager.subscriber/src/main/java/org/universAAL/continua/subscriber/test/main/Activator.java -text
 lddi.bluetooth/continua.hdp.manager.subscriber/src/main/resources/bp.png -text
 lddi.bluetooth/continua.hdp.manager.subscriber/src/main/resources/ws.png -text
+lddi.bluetooth/continua.hdp.manager/ASL2.0.txt -text
 lddi.bluetooth/continua.hdp.manager/META-INF/MANIFEST.MF -text
 lddi.bluetooth/continua.hdp.manager/lib/libHDPnative_unix_32.so -text
 lddi.bluetooth/continua.hdp.manager/lib/libHDPnative_unix_64.so -text
