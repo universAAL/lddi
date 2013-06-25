@@ -36,10 +36,6 @@ lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.c
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.project
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/.settings
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/target
-lddi.bluetooth/uaal/samples/continua.hdp.manager.caller.test/.classpath
-lddi.bluetooth/uaal/samples/continua.hdp.manager.caller.test/.project
-lddi.bluetooth/uaal/samples/continua.hdp.manager.caller.test/.settings
-lddi.bluetooth/uaal/samples/continua.hdp.manager.caller.test/target
 lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/.classpath
 lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/.project
 lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/.settings
