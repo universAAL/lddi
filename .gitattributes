@@ -9,6 +9,15 @@ lddi.bluetooth/continua.hdp.manager.caller/src/main/java/org/universAAL/continua
 lddi.bluetooth/continua.hdp.manager.caller/src/main/resources/bp.png -text
 lddi.bluetooth/continua.hdp.manager.caller/src/main/resources/uaal_logo_resized.jpg -text
 lddi.bluetooth/continua.hdp.manager.caller/src/main/resources/ws.png -text
+lddi.bluetooth/continua.hdp.manager.subscriber/ASL2.0.txt -text
+lddi.bluetooth/continua.hdp.manager.subscriber/META-INF/MANIFEST.MF -text
+lddi.bluetooth/continua.hdp.manager.subscriber/NOTICE.txt -text
+lddi.bluetooth/continua.hdp.manager.subscriber/pom.xml -text
+lddi.bluetooth/continua.hdp.manager.subscriber/src/main/java/org/universAAL/continua/subscriber/test/gui/GUI.java -text
+lddi.bluetooth/continua.hdp.manager.subscriber/src/main/java/org/universAAL/continua/subscriber/test/gui/Subscriber.java -text
+lddi.bluetooth/continua.hdp.manager.subscriber/src/main/java/org/universAAL/continua/subscriber/test/main/Activator.java -text
+lddi.bluetooth/continua.hdp.manager.subscriber/src/main/resources/bp.png -text
+lddi.bluetooth/continua.hdp.manager.subscriber/src/main/resources/ws.png -text
 lddi.bluetooth/continua.hdp.manager/META-INF/MANIFEST.MF -text
 lddi.bluetooth/continua.hdp.manager/lib/libHDPnative_unix_32.so -text
 lddi.bluetooth/continua.hdp.manager/lib/libHDPnative_unix_64.so -text
