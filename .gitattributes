@@ -1450,15 +1450,6 @@ lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/sr
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/src/main/resources/bp.png -text
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/src/main/resources/uaal_logo_resized.jpg -text
 lddi.bluetooth/uaal/samples/ContinuaManager/win/uaalContinuaManagerClient_win/src/main/resources/ws.png -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/ASL2.0.txt -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/META-INF/MANIFEST.MF -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/NOTICE.txt -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/pom.xml -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/java/org/universAAL/continua/subscriber/test/gui/GUI.java -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/java/org/universAAL/continua/subscriber/test/gui/Subscriber.java -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/java/org/universAAL/continua/subscriber/test/main/Activator.java -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/resources/bp.png -text
-lddi.bluetooth/uaal/samples/continua.hdp.manager.subscriber.test/src/main/resources/ws.png -text
 lddi.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/ASL2.0.txt -text
 lddi.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/NOTICE.txt -text
 lddi.bluetooth/uaal/samples/weighingScalePublisher_x073_Sample/pom.xml -text
