@@ -1,14 +1,4 @@
 * text=auto !eol
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/META-INF/MANIFEST.MF -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/lib/libHDPnative_unix_32.so -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/lib/libHDPnative_unix_64.so -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/pom.xml -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/hdp/Activator.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/hdp/ContinuaHdpManagerProvider.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/hdp/ProvidedContinuaHdpManagerService.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/Publisher.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManager.java -text
-lddi.continua.bluetooth/uaal/Continua[!!-~]manager[!!-~]service/continua.hdp.manager/src/main/java/org/universAAL/continua/manager/publisher/hdpManagerListener.java -text
 lddi.continua.bluetooth/uaal/continua.hdp.manager/META-INF/MANIFEST.MF -text
 lddi.continua.bluetooth/uaal/continua.hdp.manager/lib/libHDPnative_unix_32.so -text
 lddi.continua.bluetooth/uaal/continua.hdp.manager/lib/libHDPnative_unix_64.so -text
