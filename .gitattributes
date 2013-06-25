@@ -713,6 +713,7 @@ lddi.bluetooth/ieee.x73.std/src/x73/p20601/fsm/StateMachine20601.java -text
 lddi.bluetooth/ieee.x73.std/src/x73/p20601/main.java -text
 lddi.bluetooth/ieee.x73.std/src/x73/p20601/mdnf/FloatType.java -text
 lddi.bluetooth/ieee.x73.std/src/x73/p20601/mdnf/SFloatType.java -text
+lddi.bluetooth/lddi.pom/pom.xml -text
 lddi.fs20/lddi.fs20.connector/ASL2.0.txt -text
 lddi.fs20/lddi.fs20.connector/NOTICE.txt -text
 lddi.fs20/lddi.fs20.connector/lib/JD2XX.dll -text
