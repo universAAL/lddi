@@ -28,10 +28,10 @@ lddi.bluetooth/uaal/ieee.x73.std/.classpath
 lddi.bluetooth/uaal/ieee.x73.std/.project
 lddi.bluetooth/uaal/ieee.x73.std/.settings
 lddi.bluetooth/uaal/ieee.x73.std/target
-lddi.bluetooth/uaal/samples/continuaManager/ContinuaManager/.classpath
-lddi.bluetooth/uaal/samples/continuaManager/ContinuaManager/.project
-lddi.bluetooth/uaal/samples/continuaManager/ContinuaManager/.settings
-lddi.bluetooth/uaal/samples/continuaManager/ContinuaManager/target
+lddi.bluetooth/uaal/samples/continuaManager/unix/.classpath
+lddi.bluetooth/uaal/samples/continuaManager/unix/.project
+lddi.bluetooth/uaal/samples/continuaManager/unix/.settings
+lddi.bluetooth/uaal/samples/continuaManager/unix/target
 lddi.bluetooth/uaal/samples/continuaManager/windows/uaalContinuaManagerClient_win/.classpath
 lddi.bluetooth/uaal/samples/continuaManager/windows/uaalContinuaManagerClient_win/.project
 lddi.bluetooth/uaal/samples/continuaManager/windows/uaalContinuaManagerClient_win/.settings
