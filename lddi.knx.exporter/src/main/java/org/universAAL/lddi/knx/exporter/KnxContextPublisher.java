@@ -28,12 +28,12 @@ import org.universAAL.ontology.device.ValueDevice;
 public class KnxContextPublisher {
 
 	ModuleContext mc;
-	private KnxManager knxManager;
+	//private KnxManager knxManager;
 
 	// Default context publisher
 	private ContextPublisher cp;
 	// Context provider info (provider type)
-	ContextProvider cpInfo = new ContextProvider();
+//	ContextProvider cpInfo = new ContextProvider();
 
 	public static final String KNX_SERVER_NAMESPACE = Resource.uAAL_NAMESPACE_PREFIX
 			+ "KNXManager.owl#";
@@ -52,7 +52,7 @@ public class KnxContextPublisher {
 //			e.printStackTrace();
 //		}
 		this.mc = mc;
-		this.knxManager = knxManager;
+//		this.knxManager = knxManager;
 
 		// prepare for context publishing
 		ContextProvider info = new ContextProvider(KNX_SERVER_NAMESPACE
@@ -65,7 +65,7 @@ public class KnxContextPublisher {
 		knxManager.addListener(this);
 
 		LogUtils.logDebug(mc, KnxContextPublisher.class, "Constructor",
-				new Object[] { "Activated ActivityHub ContextEvent Patterns" },
+				new Object[] { "Activated KNX ContextEvent Patterns" },
 				null);
 	}
 

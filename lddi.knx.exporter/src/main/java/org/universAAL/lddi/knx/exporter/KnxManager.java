@@ -75,7 +75,7 @@ public class KnxManager implements KnxDriverClient {
 	public void incomingSensorEventDpt9(String deviceGroupAddress, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, float value) {
 		
-		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + value);
+		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + value);
 		
 		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
 			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
@@ -101,6 +101,9 @@ public class KnxManager implements KnxDriverClient {
 		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
 			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
 					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
+		
+		if (listeners.isEmpty())
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for device " + deviceGroupAddress);
 
 	}
 

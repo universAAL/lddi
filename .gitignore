@@ -63,12 +63,6 @@ lddi.knx.devicemanager/target
 lddi.knx.exporter/.classpath
 lddi.knx.exporter/.project
 lddi.knx.exporter/.settings
-lddi.knx.exporter/launches/runner/bundles
-lddi.knx.exporter/launches/runner/cache
-lddi.knx.exporter/launches/runner/deploy-pom.xml
-lddi.knx.exporter/launches/runner/felix/cache
-lddi.knx.exporter/launches/runner/log
-lddi.knx.exporter/launches/target
 lddi.knx.exporter/target
 lddi.knx.library/.classpath
 lddi.knx.library/.project
