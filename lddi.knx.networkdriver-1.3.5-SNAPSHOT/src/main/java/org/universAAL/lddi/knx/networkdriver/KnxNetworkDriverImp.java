@@ -33,11 +33,13 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork {
 	BundleContext context;
 	LogService logger;
 
+	private boolean multicast;
 	private String multicastIp;
 	private int multicastUdpPort;
 	private String knxGatewayIp;
 	private int knxGatewayPort;
 	private String myIp;
+	private int myPort;
 
 	KnxCommunication network;
 	public ServiceRegistration regServiceKnx = null;
@@ -87,6 +89,7 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork {
 
 		try {
 			if (settings != null) {
+				this.setMulticast(Boolean.parseBoolean((String)settings.get("multicast")));
 				this.setMulticastIp((String) settings.get("multicastIp"));
 				this.setMulticastUdpPort(Integer.valueOf((String) settings
 						.get("multicastUdpPort")));
@@ -94,6 +97,8 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork {
 				this.setKnxGatewayPort(Integer.valueOf((String) settings
 						.get("knxGatewayPort")));
 				this.setMyIp((String) settings.get("myIp"));
+				this.setMyPort(Integer.valueOf((String) settings
+						.get("myPort")));
 				
 				if (this.network != null) {
 					this.unRegister();
@@ -204,6 +209,20 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork {
 
 	
 	/**
+	 * @return the multicast
+	 */
+	public boolean isMulticast() {
+		return multicast;
+	}
+
+	/**
+	 * @param multicast the multicast to set
+	 */
+	public void setMulticast(boolean multicast) {
+		this.multicast = multicast;
+	}
+	
+	/**
 	 * @param knxGatewayIp the knxGatewayIp to set
 	 */
 	public void setKnxGatewayIp(String knxGatewayIp) {
@@ -245,6 +264,20 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork {
 		return myIp;
 	}
 
+	/**
+	 * @return the myPort
+	 */
+	public int getMyPort() {
+		return myPort;
+	}
+
+	/**
+	 * @param myPort the myPort to set
+	 */
+	public void setMyPort(int myPort) {
+		this.myPort = myPort;
+	}
+	
 	public String getMulticastIp() {
 		return this.multicastIp;
 	}
