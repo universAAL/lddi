@@ -26,7 +26,7 @@ import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.SimpleOntology;
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.rdf.impl.ResourceFactoryImpl;
+import org.universAAL.middleware.rdf.ResourceFactory;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.activityhub.UsageSensor;
 import org.universAAL.ontology.av.device.LoudSpeaker;
@@ -139,22 +139,22 @@ public class ProvidedFS20Service extends DeviceService {
     static {
 	
 	
-	PROP_CONTROLS_DISPLAYS= LightActuator.uAAL_DEVICE_NAMESPACE +"FS20Device#controlsDisplays"; //FS20Controller.PROP_CONTROLS_DISPLAY;
-	PROP_DISPLAY_ACTION = LightActuator.uAAL_DEVICE_NAMESPACE + "FS20Device#displayAction";
+	PROP_CONTROLS_DISPLAYS= FS20_SERVER_NAMESPACE +"FS20Device#controlsDisplays"; //FS20Controller.PROP_CONTROLS_DISPLAY;
+	PROP_DISPLAY_ACTION = FS20_SERVER_NAMESPACE + "FS20Device#displayAction";
 	
-    PROP_CONTROLS_GONGS = LoudSpeaker.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsGongs";
-    PROP_GONG_ACTIVATED = LoudSpeaker.uAAL_DEVICE_NAMESPACE+"FS20Device#gongActivated";
+    PROP_CONTROLS_GONGS = FS20_SERVER_NAMESPACE+"FS20Device#controlsGongs";
+    PROP_GONG_ACTIVATED = FS20_SERVER_NAMESPACE+"FS20Device#gongActivated";
     
-    PROP_CONTROLS_FS20ST =SwitchActuator.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsFS20ST";
-    PROP_FS20ST_ACTIVATED = SwitchActuator.uAAL_DEVICE_NAMESPACE +"FS20Device#FS20STActivated";
+    PROP_CONTROLS_FS20ST =FS20_SERVER_NAMESPACE+"FS20Device#controlsFS20ST";
+    PROP_FS20ST_ACTIVATED = FS20_SERVER_NAMESPACE +"FS20Device#FS20STActivated";
     
-    PROP_CONTROLS_PIRx =MotionSensor.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsFS20PIRx";
+    PROP_CONTROLS_PIRx =FS20_SERVER_NAMESPACE+"FS20Device#controlsFS20PIRx";
     
-    PROP_CONTROLS_FMS =UsageSensor.uAAL_DEVICE_NAMESPACE+"FS20Device#controlsFS20FMS";
+    PROP_CONTROLS_FMS =FS20_SERVER_NAMESPACE+"FS20Device#controlsFS20FMS";
 	
 	OntologyManagement.getInstance().register(Activator.mc,
 			new SimpleOntology(MY_URI, DeviceService.MY_URI,
-				new ResourceFactoryImpl() {
+				new ResourceFactory() {
 				    public Resource createInstance(String classURI,
 					    String instanceURI, int factoryIndex) {
 					return new ProvidedFS20Service(instanceURI);
