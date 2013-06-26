@@ -23,6 +23,7 @@
     <module>../lddi.hw.exporter.activityhub</module>
     <module>../lddi.knx.exporter</module>
     <module>../lddi.fs20/lddi.pom.fs20</module>
+    <module>../lddi.bluetooth/lddi.pom.bluetooth</module>
 <!--    <module>../lddi.zigbee.exporter</module>
     <module>../lddi.zigbee.commissioning</module>
     <module>../lddi.hw.exporter.x73</module>-->
@@ -100,12 +101,7 @@
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
-        <artifactId>ieee.x73.std</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.ontology</groupId>
-        <artifactId>ont.X73</artifactId>
+        <artifactId>lddi.lib.ieeex73std</artifactId>
         <version>2.0.1-SNAPSHOT</version>
       </dependency>
     </dependencies>
