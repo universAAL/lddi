@@ -56,7 +56,7 @@ public class Publisher {
 	ModuleContext mc;
 	// URI prefix
 	public static final String PUBLISHER_URI_PREFIX = 
-		"http://http://ontology.universAAL.org/PersonalHealtDeviceSimulator.owl#";
+		"http://ontology.universAAL.org/PersonalHealtDeviceSimulator.owl#";
 
 	// Constructor
 	

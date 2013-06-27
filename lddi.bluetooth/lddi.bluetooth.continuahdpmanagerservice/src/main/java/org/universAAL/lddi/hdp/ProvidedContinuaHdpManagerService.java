@@ -88,6 +88,6 @@ public class ProvidedContinuaHdpManagerService extends ContinuaHealthManager {
 	
 	// Constructor
 	private ProvidedContinuaHdpManagerService(String instanceURI) {
-		super(instanceURI);	
+		super(instanceURI);
 	}
 }
