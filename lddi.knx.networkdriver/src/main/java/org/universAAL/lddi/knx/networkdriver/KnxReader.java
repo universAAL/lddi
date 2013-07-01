@@ -17,6 +17,7 @@ import tuwien.auto.calimero.KNXAddress;
 import tuwien.auto.calimero.cemi.CEMILData;
 import tuwien.auto.calimero.exception.KNXException;
 import tuwien.auto.calimero.exception.KNXRemoteException;
+import tuwien.auto.calimero.exception.KNXTimeoutException;
 import tuwien.auto.calimero.link.KNXLinkClosedException;
 import tuwien.auto.calimero.link.KNXNetworkLinkIP;
 import tuwien.auto.calimero.link.event.NetworkLinkListener;
@@ -285,6 +286,9 @@ public class KnxReader implements Runnable {
 				core.getLogger().log(LogService.LOG_ERROR,
 						"KNX NETWORK LINK was CLOSED! " + e.getMessage());
 			} catch (KNXRemoteException e) {
+				core.getLogger().log(LogService.LOG_ERROR,
+						"KNX NETWORK LINK problem: " + e.getMessage());
+			} catch (KNXTimeoutException e) {
 				core.getLogger().log(LogService.LOG_ERROR,
 						"KNX NETWORK LINK problem: " + e.getMessage());
 			} catch (KNXException e) {
