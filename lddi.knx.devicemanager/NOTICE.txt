@@ -1,10 +1,11 @@
 universAAL KNX Device Manager
 
-Copyright by Thomas Fuxreiter / Austrian Institute Of Technology (AIT), 2012
-
+Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
+http://www.ait.ac.at
 
 I. Included Software
 
+Software developed by AIT for the universAAL project.
 
 II. Used Software
 
@@ -13,13 +14,13 @@ The Apache Software Foundation (http://www.apache.org/).
 Licensed under the Apache License 2.0.
 
 This product uses software developed at
-The OPS4J (http://www.ops4j.org)
-Licensed under the Apache License 2.0.
-
-This product uses software developed at
 The OSGi Alliance (http://www.osgi.org/).
 Copyright 2006-2008 The OSGi Alliance.
 Licensed under the Apache License 2.0.
 
+This product includes software developed by the
+JDOM Project (http://www.jdom.org/).
+Copyright (C) 2000-2004 Jason Hunter & Brett McLaughlin.
+      
 III. License Summary
 - Apache License 2.0
