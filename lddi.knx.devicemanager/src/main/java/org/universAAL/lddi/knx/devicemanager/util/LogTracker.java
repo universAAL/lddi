@@ -75,7 +75,7 @@ public class LogTracker extends ServiceTracker implements LogService {
 		if (log != null) {
 			log.log(sr, level, message, exception);
 		} else {
-			System.out.println("stdout: [KNX.DEVICEMANAGER] LogService not found!");
+			System.out.println("[KNX.DEVICEMANAGER-LogTracker.java] Wanted to log a message but no LogService found!");
 		}
 	}
 

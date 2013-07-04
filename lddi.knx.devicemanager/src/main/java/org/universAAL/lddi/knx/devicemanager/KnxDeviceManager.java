@@ -80,8 +80,8 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 			ServiceTracker st=new ServiceTracker(context,this.context.createFilter(filterQuery), this);
 			st.open();
 		} catch (InvalidSyntaxException e) {
-			this.logger.log(LogService.LOG_ERROR, "exception",e);
-			e.printStackTrace();
+			this.logger.log(LogService.LOG_ERROR, "ServiceTracker Problem: " + e.getMessage());
+//			e.printStackTrace();
 		}
 	}
 	
@@ -152,11 +152,17 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	 * extract groupAddress information,
 	 * create virtual KNX devices,
 	 * and register them as device services in OSGi. 
+	 * 
+	 * What if updated again all devices are removed and then the new config is processed.
+	 * 
 	 */
 	@SuppressWarnings("unchecked")
 	public void updated(Dictionary properties) throws ConfigurationException {
 		this.logger.log(LogService.LOG_DEBUG, "KnxDeviceManager.updated: " + properties);
-
+		
+		// call stop for case of update at runtime
+		stop();
+		
 		if (properties != null){
 			this.knxConfigFile = (String) properties.get("knxConfigFile");
 
@@ -280,9 +286,20 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 				String deviceId = it.next();
 				KnxDevice dev = this.deviceList.get(deviceId);
 				this.network.removeDevice(deviceId, dev);
+				//this.deviceList.remove(deviceId);
+				
+				//unregister service from OSGI registry
+				this.deviceRegistrationList.get(deviceId).unregister();
+				this.deviceRegistrationList.remove(deviceId);
 			}
+			this.deviceList.clear();
+			this.deviceRegistrationList.clear();
 		}
-		this.logger.log(LogService.LOG_WARNING,"KnxDeviceManager stopped!");
+//		if (this.deviceList.size() != 0 || !this.deviceList.isEmpty())
+//			this.logger.log(LogService.LOG_WARNING, "deviceList is not empty after stopping DevMan! Still count "
+//					+ this.deviceList.size() + " devices");
+
 	}
 
+	
 }
