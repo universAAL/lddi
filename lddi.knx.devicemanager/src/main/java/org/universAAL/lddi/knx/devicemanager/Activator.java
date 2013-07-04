@@ -23,6 +23,7 @@ package org.universAAL.lddi.knx.devicemanager;
 import org.universAAL.lddi.knx.devicemanager.util.LogTracker;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.log.LogService;
 
 /***
  * 
@@ -48,6 +49,7 @@ public class Activator implements BundleActivator {
 		// registered by this bundle when it is deactivated 
 		// but references of devices in knx.networkdriver must be removed manually
 		knxDeviceManager.stop();
+		this.logTracker.log(LogService.LOG_WARNING,"KnxDeviceManager stopped!");
 	}
 
 }
