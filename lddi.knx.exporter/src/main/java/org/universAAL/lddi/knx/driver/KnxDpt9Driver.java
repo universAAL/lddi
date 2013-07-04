@@ -54,9 +54,9 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
  */
 public class KnxDpt9Driver implements Driver {
 
-	private KnxDriverClient client;
-	private BundleContext context;
-	private LogService logger;
+	public KnxDriverClient client;
+	public BundleContext context;
+	public LogService logger;
 	private ServiceRegistration regDriver;
 
 	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt9.0.0.1";
@@ -68,7 +68,7 @@ public class KnxDpt9Driver implements Driver {
 	 * Key is groupAddress of the KNX device
 	 * Value is the associated driver
 	 */
-	private final Map<String, KnxDpt9Instance> connectedDriverInstanceMap = 
+	public final Map<String, KnxDpt9Instance> connectedDriverInstanceMap = 
 		new ConcurrentHashMap<String, KnxDpt9Instance>();
 	
 	
@@ -111,7 +111,7 @@ public class KnxDpt9Driver implements Driver {
 		}
 		
 		// create "driving" instance
-		KnxDpt9Instance instance = new KnxDpt9Instance(this.context, this.client, this.logger);
+		KnxDpt9Instance instance = new KnxDpt9Instance(this);
 
 		// store instance
 		this.connectedDriverInstanceMap.put(knxDev.getGroupAddress(), instance);

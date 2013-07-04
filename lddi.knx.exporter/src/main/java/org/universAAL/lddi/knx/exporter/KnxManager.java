@@ -31,6 +31,7 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
 import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
 import org.universAAL.lddi.knx.driver.KnxDpt1Driver;
+import org.universAAL.lddi.knx.driver.KnxDpt3Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt9Driver;
 import org.universAAL.lddi.knx.exporter.util.LogTracker;
 
@@ -80,28 +81,9 @@ public class KnxManager implements KnxDriverClient {
 		// start all KNX drivers
 		new KnxDpt1Driver(this, this.context);
 		new KnxDpt9Driver(this, this.context);
+		new KnxDpt3Driver(this, this.context);
 	}
 
-	/**
-	 * Just passing the incoming sensor value to uAAL-MW related class (-> context provider).
-	 * No storage of event here!
-	 * 
-	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
-	 * @param datapointType (i.e. 9.001)
-	 * @param value (i.e. temperature value)
-	 * 
-	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
-	 */
-	public void incomingSensorEventDpt9(String deviceGroupAddress, int datapointTypeMainNubmer, 
-			int datapointTypeSubNubmer, float value) {
-		
-		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + value);
-		
-		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
-			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
-					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
-
-	}
 
 	/**
 	 * Just passing the incoming sensor value to uAAL-MW related class (-> context provider).
@@ -127,6 +109,48 @@ public class KnxManager implements KnxDriverClient {
 
 	}
 
+	/**
+	 * Just passing the incoming sensor code to uAAL-MW related class (-> context provider).
+	 * No storage of event here!
+	 * 
+	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
+	 * @param datapointType (i.e. 9.001)
+	 * @param code static string from KNX specification (e.g. decrease, increase, up, down, break)
+	 * 
+	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
+	 */
+	public void incomingSensorEventDpt3(String deviceGroupAddress, int datapointTypeMainNubmer, 
+			int datapointTypeSubNubmer, String code) {
+		
+		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + code);
+		
+		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
+			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
+					datapointTypeMainNubmer, datapointTypeSubNubmer, code);
+
+	}
+	
+	/**
+	 * Just passing the incoming sensor value to uAAL-MW related class (-> context provider).
+	 * No storage of event here!
+	 * 
+	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
+	 * @param datapointType (i.e. 9.001)
+	 * @param value (i.e. temperature value)
+	 * 
+	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
+	 */
+	public void incomingSensorEventDpt9(String deviceGroupAddress, int datapointTypeMainNubmer, 
+			int datapointTypeSubNubmer, float value) {
+		
+		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + value);
+		
+		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
+			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
+					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
+
+	}
+	
 	
 	/** {@inheritDoc} */
 	public void addDriver(String deviceId, KnxDeviceCategory knxDeviceCategory, KnxDriver knxDriver) {

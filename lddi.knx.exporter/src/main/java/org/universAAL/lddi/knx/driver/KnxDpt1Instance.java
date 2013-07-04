@@ -46,18 +46,21 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1 ,ServiceTracke
 
 	private BundleContext context;
 	private LogService logger;
-
+	private KnxDpt1Driver parent;
+	
 	/**
 	 * @param c OSGi BundleContext
 	 * @param sr Service reference of KNX device
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
-	public KnxDpt1Instance(BundleContext context, KnxDriverClient client,
-			LogService logger) {
-		super(client);
-		
-		this.context = context;
-		this.logger = logger;
+	public KnxDpt1Instance(KnxDpt1Driver parent_) {
+//			BundleContext context, KnxDriverClient client,
+//			LogService logger) {
+		super(parent_.client);
+
+		this.parent = parent_;
+		this.context = parent_.context;
+		this.logger = parent_.logger;
 	}
 
 	/**
@@ -104,7 +107,11 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1 ,ServiceTracke
 		// removed device service
 		this.context.ungetService(reference);
 		this.detachDriver();
-		this.removeDriver();		
+		this.removeDriver();
+		
+		KnxDpt1Device knxDev = (KnxDpt1Device) service;
+//		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
+		this.parent.connectedDriverInstanceMap.remove(knxDev.getGroupAddress());
 	}
 
 

@@ -36,6 +36,21 @@ public interface KnxDriverClient {
 	public void removeDriver(String deviceId, KnxDriver knxDriver);
 	public LogService getLogger();
 	
+
+	/**
+	 * get event message from underlying devices
+	 * with bool value
+	 */
+	public void incomingSensorEventDpt1(String deviceId, int datapointTypeMainNubmer, 
+			int datapointTypeSubNubmer, boolean value);
+
+	/**
+	 * get event message from underlying devices
+	 * with String (code)
+	 */
+	public void incomingSensorEventDpt3(String deviceId, int datapointTypeMainNubmer, 
+			int datapointTypeSubNubmer, String code);
+
 	/**
 	 * get event message from underlying devices
 	 * with float value
@@ -44,11 +59,4 @@ public interface KnxDriverClient {
 			int datapointTypeSubNubmer, float value);
 
 	
-	/**
-	 * get event message from underlying devices
-	 * with bool value
-	 */
-	public void incomingSensorEventDpt1(String deviceId, int datapointTypeMainNubmer, 
-			int datapointTypeSubNubmer, boolean value);
-
 }
