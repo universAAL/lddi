@@ -28,6 +28,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
 import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
+import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
 
 /**
@@ -45,20 +46,29 @@ public class KnxDpt9Instance extends KnxDriver implements KnxDpt9 ,ServiceTracke
 
 	private BundleContext context;
 	private LogService logger;
+	private KnxDpt9Driver parent;
 
 	/**
 	 * @param c OSGi BundleContext
 	 * @param sr Service reference of KNX device
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
-	public KnxDpt9Instance(BundleContext context, KnxDriverClient client,
-			LogService logger) {
-		super(client);
-		
-		this.context = context;
-		this.logger = logger;
+	public KnxDpt9Instance(KnxDpt9Driver parent_) {
+//		BundleContext context, KnxDriverClient client,
+//			LogService logger) {
+		super(parent_.client);
+
+		this.parent = parent_;
+		this.context = parent_.context;
+		this.logger = parent_.logger;
 	}
 
+	/**
+	 * Empty constructor for Unit Tests.
+	 */
+	public KnxDpt9Instance() {};
+	
+	
 	/**
 	 * track on my device
 	 * @param KnxDpt9 device service
@@ -104,6 +114,10 @@ public class KnxDpt9Instance extends KnxDriver implements KnxDpt9 ,ServiceTracke
 		this.context.ungetService(reference);
 		this.detachDriver();
 		this.removeDriver();		
+		
+//		KnxDpt9Device knxDev = (KnxDpt9Device) this.context.getService(reference);
+		KnxDpt9Device knxDev = (KnxDpt9Device) service;
+		this.parent.connectedDriverInstanceMap.remove(knxDev.getGroupAddress());
 	}
 
 

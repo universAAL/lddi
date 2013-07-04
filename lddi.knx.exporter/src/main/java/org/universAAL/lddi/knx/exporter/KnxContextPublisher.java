@@ -89,34 +89,6 @@ public class KnxContextPublisher {
 				null);
 	}
 
-	/**
-	 * A proper ontology class is chosen according to main and sub type. The
-	 * event is published on the uAAL context bus.
-	 * 
-	 * @param deviceId
-	 * @param datapointTypeMainNubmer
-	 * @param datapointTypeSubNubmer
-	 * @param value
-	 */
-	public void publishKnxEvent(String deviceId, int datapointTypeMainNubmer,
-			int datapointTypeSubNubmer, float value) {
-
-		LogUtils
-				.logDebug(mc, KnxContextPublisher.class, "publishKnxEvent",
-						new Object[] { "Event for device " + deviceId
-								+ " with datapoint main type "
-								+ datapointTypeMainNubmer + ". sub type "
-								+ datapointTypeSubNubmer + " - float value: "
-								+ value }, null);
-
-		// Hardcoded Test for Temperature events
-		TemperatureSensor ts = new TemperatureSensor(KNX_SERVER_NAMESPACE
-				+ "KNXTemperatureSensor" + deviceId);
-		ts.setProperty(TemperatureSensor.PROP_HAS_VALUE, value);
-		// ws.setLocation(new
-		// Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
-		cp.publish(new ContextEvent(ts, TemperatureSensor.PROP_HAS_VALUE));
-	}
 
 	/**
 	 * A proper ontology class is chosen according to main and sub type.
@@ -167,4 +139,62 @@ public class KnxContextPublisher {
 		
 	}
 
+	/**
+	 * A proper ontology class is chosen according to main and sub type. The
+	 * event is published on the uAAL context bus.
+	 * 
+	 * @param deviceId
+	 * @param datapointTypeMainNubmer
+	 * @param datapointTypeSubNubmer
+	 * @param code
+	 */
+	public void publishKnxEvent(String deviceId, int datapointTypeMainNubmer,
+			int datapointTypeSubNubmer, String code) {
+
+		LogUtils
+				.logDebug(mc, KnxContextPublisher.class, "publishKnxEvent",
+						new Object[] { "Event for device " + deviceId
+								+ " with datapoint main type "
+								+ datapointTypeMainNubmer + ". sub type "
+								+ datapointTypeSubNubmer + " - code: "
+								+ code }, null);
+
+		// no ontology concept for DimmingSensor with step and break events in place yet
+		// no ontology concept for BlindSensor with step and break events in place yet
+
+		LogUtils
+				.logWarn(mc, KnxContextPublisher.class, "publishKnxEvent",
+						new Object[] {"No ontology concept for DimmingSensor or BlindSensor " +
+								"with step and break events in place yet!"
+					+ " Discarding sensor code >" + code + "< for device " + deviceId}, null);
+		}
+
+	/**
+	 * A proper ontology class is chosen according to main and sub type. The
+	 * event is published on the uAAL context bus.
+	 * 
+	 * @param deviceId
+	 * @param datapointTypeMainNubmer
+	 * @param datapointTypeSubNubmer
+	 * @param value
+	 */
+	public void publishKnxEvent(String deviceId, int datapointTypeMainNubmer,
+			int datapointTypeSubNubmer, float value) {
+
+		LogUtils
+				.logDebug(mc, KnxContextPublisher.class, "publishKnxEvent",
+						new Object[] { "Event for device " + deviceId
+								+ " with datapoint main type "
+								+ datapointTypeMainNubmer + ". sub type "
+								+ datapointTypeSubNubmer + " - float value: "
+								+ value }, null);
+
+		// Hardcoded Test for Temperature events
+		TemperatureSensor ts = new TemperatureSensor(KNX_SERVER_NAMESPACE
+				+ "KNXTemperatureSensor" + deviceId);
+		ts.setProperty(TemperatureSensor.PROP_HAS_VALUE, value);
+		// ws.setLocation(new
+		// Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
+		cp.publish(new ContextEvent(ts, TemperatureSensor.PROP_HAS_VALUE));
+	}
 }

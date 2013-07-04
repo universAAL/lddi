@@ -71,31 +71,35 @@ public interface KnxDpt3 extends KnxBaseDeviceCategory {
 
     
     // default constants for all dpt3 devices
-    public static byte STEPCODE_BREAK = (byte) 0;
+    public static String STEPCODE_BREAK = "break";
     
     
     // constants for specific dpt3 devices
     /**
      * 3.007 - DPT_Control_Dimming
      */
-    public static byte DECREASE_3_007 = (byte) 0;
-    public static byte INCREASE_3_007 = (byte) 1;
+    public static String INCREASE_3_007 = "increase";
+    public static String DECREASE_3_007 = "decrease";
 
     /**
      * 3.008 - DPT_Control_Blinds
      * This DPT can be used both for the relative positioning of the vertical blinds 
      * positions as well as for the relative positioning of the angle of the slats.
      */
-    public static byte UP_3_008 = (byte) 0;
-    public static byte DOWN_3_008 = (byte) 1;
+    public static String UP_3_008 = "up";
+    public static String DOWN_3_008 = "down";
  
     
-    // methods that should be implemented in driver
+    // methods that should be implemented by the driver
+    /**
+     * Obtain the step code. One of the static bytes defined above!
+     */
+    public String calculateStepCode(byte payload);
+
     /**
      * Calculate Step number of interval from stepcode.
-     * stepcode is bits 1-3
-     * Step Number of intervals = 2^(stepcode-1)
+     * stepcode are bits 1-3
+     * Step Number of intervals = 2^(stepcode-1); max. 64
      */
-    public int calculateStepNumberOfInterval(byte stepcode);
-
+    public int calculateStepNumberOfInterval(byte payload);
 }
