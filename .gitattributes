@@ -1014,26 +1014,6 @@ lddi.pom/composite/ASL2.0.txt -text
 lddi.pom/composite/NOTICE.txt -text
 lddi.pom/composite/pom.xml -text
 lddi.pom/pom.xml -text
-lddi.zigbee.exporter/ASL2.0 -text
-lddi.zigbee.exporter/NOTICE -text
-lddi.zigbee.exporter/pom.xml -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/Activator.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterActuatorCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterDimmerCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterSensorCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/IASZoneCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OccupancySensorCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/PresenceDetectorCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/TemperatureSensorCallee.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/DimmerLightListener.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/ExporterListener.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/IASZoneListener.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OccupancySensorListener.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OnOffLightListener.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/PresenceDetectorListener.java -text
-lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java -text
 lddi.zigbee/lddi.zigbee.commissioning/ASL2.0.txt -text
 lddi.zigbee/lddi.zigbee.commissioning/NOTICE.txt -text
 lddi.zigbee/lddi.zigbee.commissioning/configurationFile/lddi.zigbee.commissioning.configuration.properties -text svneol=unset#text/plain
@@ -1050,3 +1030,23 @@ lddi.zigbee/lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/c
 lddi.zigbee/lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL.java -text svneol=unset#text/plain
 lddi.zigbee/lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java -text svneol=unset#text/plain
 lddi.zigbee/lddi.zigbee.commissioning/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java -text svneol=unset#text/plain
+lddi.zigbee/lddi.zigbee.exporter/ASL2.0 -text
+lddi.zigbee/lddi.zigbee.exporter/NOTICE -text
+lddi.zigbee/lddi.zigbee.exporter/pom.xml -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/Activator.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterActuatorCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterDimmerCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterSensorCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/IASZoneCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OccupancySensorCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/PresenceDetectorCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/TemperatureSensorCallee.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/DimmerLightListener.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/ExporterListener.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/IASZoneListener.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OccupancySensorListener.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OnOffLightListener.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/PresenceDetectorListener.java -text
+lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java -text
