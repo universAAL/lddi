@@ -932,6 +932,8 @@ lddi.knx.exporter/README.txt -text
 lddi.knx.exporter/pom.xml -text
 lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt1Driver.java -text
 lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt1Instance.java -text
+lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt3Driver.java -text
+lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt3Instance.java -text
 lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt9Driver.java -text
 lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt9Instance.java -text
 lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/Activator.java -text
