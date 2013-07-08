@@ -51,10 +51,6 @@ lddi.iso11073.library/.classpath
 lddi.iso11073.library/.project
 lddi.iso11073.library/.settings
 lddi.iso11073.library/target
-lddi.knx.library/.classpath
-lddi.knx.library/.project
-lddi.knx.library/.settings
-lddi.knx.library/target
 lddi.knx.networkdriver/.classpath
 lddi.knx.networkdriver/.project
 lddi.knx.networkdriver/.settings
@@ -77,6 +73,10 @@ lddi.knx/lddi.knx.exporter/.classpath
 lddi.knx/lddi.knx.exporter/.project
 lddi.knx/lddi.knx.exporter/.settings
 lddi.knx/lddi.knx.exporter/target
+lddi.knx/lddi.knx.library/.classpath
+lddi.knx/lddi.knx.library/.project
+lddi.knx/lddi.knx.library/.settings
+lddi.knx/lddi.knx.library/target
 lddi.pom/.project
 lddi.pom/.settings
 lddi.pom/composite/.classpath
