@@ -3,13 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>lddi.pom</artifactId>
     <groupId>org.universAAL.lddi</groupId>
-    <version>1.3.6-SNAPSHOT</version>
-    <relativePath>../lddi.pom</relativePath>
+    <artifactId>lddi.pom.common</artifactId>
+    <version>2.0.2-SNAPSHOT</version>
+    <relativePath>../lddi.pom.common</relativePath>
   </parent>
-  <artifactId>lddi.hw.exporter.x73</artifactId>
-  <version>1.3.1-SNAPSHOT</version>
+  <artifactId>lddi.exporter.x73</artifactId>
+  <version>2.0.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Exporter of ISO11073 devices (blood pressure, scale) for uAAL</name>
   <description>Hardware exporter of devices based on ISO 11073 devices/model (health device communication) for the universAAL middleware</description>
@@ -43,7 +43,7 @@
         <configuration>
           <instructions>
             <Bundle-Name>${project.name}</Bundle-Name>
-            <Bundle-Activator>org.universAAL.lddi.hw.exporter.x73.Activator</Bundle-Activator>
+            <Bundle-Activator>org.universAAL.lddi.exporter.x73.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Embed-Dependency></Embed-Dependency>
@@ -69,55 +69,8 @@
           </instructions>
         </configuration>
       </plugin>
-
-      <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.5</version>
-        <executions>
-          <execution>
-            <id>copy-resources</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>launches</outputDirectory>
-              <resources>          
-                <resource>
-                  <directory>target</directory>
-                  <filtering>true</filtering>
-                  <includes>
-                    <include>**/*.composite</include>
-                  </includes>
-                </resource>
-              </resources>              
-            </configuration>            
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
-  <profiles>
-    <profile>
-      <id>uAAL-Runtime</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.universAAL.middleware</groupId>
-          <artifactId>mw.data.serialization.osgi</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>org.apache.felix.http.jetty</artifactId>
-          <version>2.2.0</version>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>org.apache.felix.webconsole</artifactId>
-          <version>3.1.8</version>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
   <dependencies>
     <dependency>
       <groupId>org.universAAL.support</groupId>
