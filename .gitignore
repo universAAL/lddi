@@ -71,6 +71,7 @@ lddi.pom/composite/.project
 lddi.pom/composite/.settings
 lddi.pom/composite/target
 lddi.pom/target
+lddi.zigbee/lddi.pom.zigbee/target
 lddi.zigbee/lddi.zigbee.commissioning/.classpath
 lddi.zigbee/lddi.zigbee.commissioning/.project
 lddi.zigbee/lddi.zigbee.commissioning/.settings
