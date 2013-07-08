@@ -839,8 +839,6 @@ lddi.hw.exporter.x73/launches/run.sh -text
 lddi.hw.exporter.x73/launches/runner/configurations/mw.bus.model.osgi/sodapop.key -text
 lddi.hw.exporter.x73/launches/runner/configurations/services/org.apache.felix.webconsole.internal.servlet.OsgiManager.properties -text
 lddi.hw.exporter.x73/launches/runner/configurations/services/org.ops4j.pax.logging.properties -text
-lddi.hw.exporter.x73/launches/runner/deploy-pom.xml -text
-lddi.hw.exporter.x73/launches/runner/felix/config.ini -text
 lddi.hw.exporter.x73/launches/runner/felix/system.properties -text
 lddi.hw.exporter.x73/launches/runner/remoteDebug.bat -text
 lddi.hw.exporter.x73/launches/runner/run.bat -text

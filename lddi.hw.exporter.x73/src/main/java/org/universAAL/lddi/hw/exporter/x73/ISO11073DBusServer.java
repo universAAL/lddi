@@ -6,10 +6,10 @@ import org.freedesktop.dbus.exceptions.DBusException;
 import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
 import org.freedesktop.dbus.DBusConnection;
-import org.freedesktop.dbus.DBusInterface;
-import org.freedesktop.dbus.DBusInterfaceName;
+//import org.freedesktop.dbus.DBusInterface;
+//import org.freedesktop.dbus.DBusInterfaceName;
 import com.signove.health.*;
-import cx.ath.matthew.unix.*;
+//import cx.ath.matthew.unix.*;
 
 /**
  * Connects to the D-Bus
