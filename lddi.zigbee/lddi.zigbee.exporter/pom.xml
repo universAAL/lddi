@@ -106,28 +106,4 @@
       </plugin>
     </plugins>
   </build>
-  <!-- ______________________________________________________ -->
-  <scm>
-    <connection>${svn.base}/${artifactId}</connection>
-    <developerConnection>${svn.base}/${artifactId}</developerConnection>
-    <url>${svn.base.url}${artifactId}</url>
-  </scm>
-  <repositories>
-    <repository>
-      <id>aaloa</id>
-      <name>aaloa Repositories</name>
-      <url>http://nexus.aaloa.org/content/repositories/releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>aaloa-snapshots</id>
-      <name>aaloa Snapshot Repositories</name>
-      <url>http://nexus.aaloa.org/content/repositories/snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-  </repositories>
 </project>
