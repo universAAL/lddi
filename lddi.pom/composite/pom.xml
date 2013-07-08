@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.0.2-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
   <artifactId>lddi.composite</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>2.0.2-SNAPSHOT</version>
   <name>universAAL LDDI Composite</name>
   <description>Artifact responsible for generating composite file of universAAL lddi</description>
   <url></url>
@@ -24,31 +24,38 @@
   <dependencies>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.hw.exporter.activityhub</artifactId>
+      <artifactId>lddi.lib.activityhub</artifactId>
+	  <version>2.0.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.exporter.activityhub</artifactId>
+	  <version>2.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.exporter</artifactId>
+	  <version>2.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.devicemanager</artifactId>
+	  <version>2.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.library</artifactId>
+	  <version>2.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.networkdriver</artifactId>
+	  <version>2.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.dpt1refinementdriver.iso11073</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.iso11073.library</artifactId>
+      <artifactId>lddi.knx.refinementdriver.dpt1.activityhub</artifactId>
+	  <version>2.0.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
