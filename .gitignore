@@ -51,10 +51,6 @@ lddi.iso11073.library/.classpath
 lddi.iso11073.library/.project
 lddi.iso11073.library/.settings
 lddi.iso11073.library/target
-lddi.knx.networkdriver/.classpath
-lddi.knx.networkdriver/.project
-lddi.knx.networkdriver/.settings
-lddi.knx.networkdriver/target
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.classpath
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.project
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.settings
@@ -77,6 +73,10 @@ lddi.knx/lddi.knx.library/.classpath
 lddi.knx/lddi.knx.library/.project
 lddi.knx/lddi.knx.library/.settings
 lddi.knx/lddi.knx.library/target
+lddi.knx/lddi.knx.networkdriver/.classpath
+lddi.knx/lddi.knx.networkdriver/.project
+lddi.knx/lddi.knx.networkdriver/.settings
+lddi.knx/lddi.knx.networkdriver/target
 lddi.pom/.project
 lddi.pom/.settings
 lddi.pom/composite/.classpath
