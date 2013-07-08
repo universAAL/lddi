@@ -36,6 +36,10 @@ lddi.common/lddi.hw.exporter.x73/launches/runner/cache
 lddi.common/lddi.hw.exporter.x73/launches/runner/felix/cache
 lddi.common/lddi.hw.exporter.x73/launches/runner/log
 lddi.common/lddi.hw.exporter.x73/target
+lddi.common/lddi.iso11073.library/.classpath
+lddi.common/lddi.iso11073.library/.project
+lddi.common/lddi.iso11073.library/.settings
+lddi.common/lddi.iso11073.library/target
 lddi.fs20/lddi.fs20.connector/.classpath
 lddi.fs20/lddi.fs20.connector/.project
 lddi.fs20/lddi.fs20.connector/.settings
@@ -47,10 +51,6 @@ lddi.fs20/lddi.fs20.exporter/target
 lddi.fs20/lddi.pom.fs20/.project
 lddi.fs20/lddi.pom.fs20/.settings
 lddi.fs20/lddi.pom.fs20/target
-lddi.iso11073.library/.classpath
-lddi.iso11073.library/.project
-lddi.iso11073.library/.settings
-lddi.iso11073.library/target
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.classpath
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.project
 lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.settings
