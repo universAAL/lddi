@@ -11,22 +11,6 @@
   <version>0.3.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI ZB40 commissioning bundle</name>
-  <repositories>
-    <repository>
-      <id>nexus.aaloa.org</id>
-      <url>http://nexus.aaloa.org/content/repositories/releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>nexus.aaloa.org-snapshot</id>
-      <url>http://nexus.aaloa.org/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
   <pluginRepositories>
     <pluginRepository>
       <releases>
