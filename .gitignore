@@ -73,10 +73,10 @@ lddi.pom/composite/.settings
 lddi.pom/composite/target
 lddi.pom/target
 lddi.zigbee/lddi.pom.zigbee/target
-lddi.zigbee/lddi.zigbee.commissioning/.classpath
-lddi.zigbee/lddi.zigbee.commissioning/.project
-lddi.zigbee/lddi.zigbee.commissioning/.settings
-lddi.zigbee/lddi.zigbee.commissioning/target
+lddi.zigbee/lddi.zigbee.commissioning.adapter/.classpath
+lddi.zigbee/lddi.zigbee.commissioning.adapter/.project
+lddi.zigbee/lddi.zigbee.commissioning.adapter/.settings
+lddi.zigbee/lddi.zigbee.commissioning.adapter/target
 lddi.zigbee/lddi.zigbee.exporter/.classpath
 lddi.zigbee/lddi.zigbee.exporter/.project
 lddi.zigbee/lddi.zigbee.exporter/.settings
