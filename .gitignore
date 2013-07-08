@@ -51,10 +51,6 @@ lddi.fs20/lddi.fs20.exporter/target
 lddi.fs20/lddi.pom.fs20/.project
 lddi.fs20/lddi.pom.fs20/.settings
 lddi.fs20/lddi.pom.fs20/target
-lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.classpath
-lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.project
-lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.settings
-lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/target
 lddi.knx/lddi.knx.devicemanager/.classpath
 lddi.knx/lddi.knx.devicemanager/.project
 lddi.knx/lddi.knx.devicemanager/.settings
@@ -77,6 +73,10 @@ lddi.knx/lddi.knx.networkdriver/.classpath
 lddi.knx/lddi.knx.networkdriver/.project
 lddi.knx/lddi.knx.networkdriver/.settings
 lddi.knx/lddi.knx.networkdriver/target
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.classpath
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.project
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/.settings
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.dpt1refinementdriver.iso11073/target
 lddi.pom/.project
 lddi.pom/.settings
 lddi.pom/composite/.classpath
