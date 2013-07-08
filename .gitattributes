@@ -896,11 +896,6 @@ lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/N
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/pom.xml -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/readme.txt -text
-lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/Activator.java -text
-lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1Instance.java -text
-lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/KnxDpt1RefinementDriver.java -text
-lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/KnxDeviceConfig.java -text
-lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/dpt1refinementdriver/iso11073/util/LogTracker.java -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/Activator.java -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1Instance.java -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1RefinementDriver.java -text
