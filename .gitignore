@@ -9,10 +9,6 @@ lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.classpath
 lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.project
 lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.settings
 lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/target
-lddi.bluetooth/lddi.lib.ieeex73std/.classpath
-lddi.bluetooth/lddi.lib.ieeex73std/.project
-lddi.bluetooth/lddi.lib.ieeex73std/.settings
-lddi.bluetooth/lddi.lib.ieeex73std/target
 lddi.bluetooth/lddi.pom.bluetooth/target
 lddi.common/lddi.exporter.activityhub/.classpath
 lddi.common/lddi.exporter.activityhub/.project
@@ -27,6 +23,10 @@ lddi.common/lddi.lib.activityhub/.classpath
 lddi.common/lddi.lib.activityhub/.project
 lddi.common/lddi.lib.activityhub/.settings
 lddi.common/lddi.lib.activityhub/target
+lddi.common/lddi.lib.ieeex73std/.classpath
+lddi.common/lddi.lib.ieeex73std/.project
+lddi.common/lddi.lib.ieeex73std/.settings
+lddi.common/lddi.lib.ieeex73std/target
 lddi.common/lddi.pom.common/.project
 lddi.common/lddi.pom.common/.settings
 lddi.common/lddi.pom.common/target
