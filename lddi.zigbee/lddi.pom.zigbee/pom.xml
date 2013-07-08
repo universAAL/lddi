@@ -19,12 +19,12 @@
     <!-- <module>../zb4osgi/zb4osgi</module> -->
   </modules>
   <scm>
-    <connection>${svn.base}/lddi.common/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/lddi.common/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}lddi.common/${project.artifactId}</url>
+    <connection>${svn.base}/lddi.zigbee/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/lddi.zigbee/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}lddi.zigbee/${project.artifactId}</url>
   </scm>
   <properties>
-    <nameMatchString>^universAAL LDDI Common .*</nameMatchString>
+    <nameMatchString>^universAAL LDDI .*</nameMatchString>
   </properties>
   <dependencyManagement>
     <dependencies>

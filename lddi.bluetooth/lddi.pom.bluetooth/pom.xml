@@ -25,6 +25,25 @@
     <url>${svn.base.url}lddi.bluetooth/${project.artifactId}</url>
   </scm>
   <properties>
-    <nameMatchString>^universAAL LDDI Bluetooth .*</nameMatchString>
+    <nameMatchString>^universAAL LDDI .*</nameMatchString>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.bluetooth.continuahdpmanagerservice</artifactId>
+        <version>2.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.continuahdpmanager.caller.test</artifactId>
+        <version>2.0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.continuahdpmanager.subscriber.test</artifactId>
+        <version>2.0.1-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

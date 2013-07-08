@@ -25,7 +25,7 @@
     <url>${svn.base.url}lddi.common/${project.artifactId}</url>
   </scm>
   <properties>
-    <nameMatchString>^universAAL LDDI Common .*</nameMatchString>
+    <nameMatchString>^universAAL LDDI .*</nameMatchString>
   </properties>
   <dependencyManagement>
     <dependencies>

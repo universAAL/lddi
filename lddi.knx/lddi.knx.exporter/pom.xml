@@ -11,7 +11,7 @@
   <artifactId>lddi.knx.exporter</artifactId>
   <version>2.0.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>universAAL LDDI Exporter of KNX devices</name>
+  <name>universAAL LDDI KNX Exporter</name>
   <description>Hardware exporter of KNX Home Automation components for the universAAL middleware</description>
   <inceptionYear>2012</inceptionYear>
   <organization>
@@ -29,11 +29,6 @@
       <timezone>CEST/CET</timezone>
     </developer>
   </developers>
-  <scm>
-    <connection>${svn.base}/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}${project.artifactId}</url>
-  </scm>
   <dependencies>
     <dependency>
       <groupId>org.universAAL.support</groupId>
