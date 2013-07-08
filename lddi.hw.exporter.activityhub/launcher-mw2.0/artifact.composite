@@ -41,6 +41,7 @@ scan-bundle:mvn:org.universAAL.middleware/mw.data.serialization.osgi/2.0.1-SNAPS
 scan-bundle:mvn:org.apache.felix/org.apache.felix.dependencymanager.lddi/3.0.0
 scan-bundle:mvn:org.apache.felix/org.apache.felix.devicemanager/0.9.0-SNAPSHOT
 scan-bundle:mvn:org.universAAL.lddi/lddi.knx.library/2.0.1-SNAPSHOT
+scan-bundle:wrap:mvn:at.ac.tuwien.auto/calimero/2.0a4
 scan-bundle:mvn:org.apache.felix/org.apache.felix.gogo.runtime/0.10.0
 scan-bundle:mvn:org.universAAL.lddi/lddi.knx.networkdriver/2.0.1-SNAPSHOT
 scan-bundle:mvn:org.universAAL.lddi/lddi.knx.dpt1refinementdriver.iso11073/2.0.1-SNAPSHOT
