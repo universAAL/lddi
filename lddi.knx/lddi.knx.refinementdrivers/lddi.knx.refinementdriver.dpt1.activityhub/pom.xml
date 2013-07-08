@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.universAAL.lddi</groupId>
-    <artifactId>lddi.pom</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
-    <relativePath>../../lddi.pom</relativePath>
+    <artifactId>lddi.pom.knx</artifactId>
+    <version>2.0.2-SNAPSHOT</version>
+    <relativePath>../../lddi.pom.knx</relativePath>
   </parent>
-  <artifactId>lddi.knx.dpt1refinementdriver.iso11073</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <artifactId>lddi.knx.refinementdriver.dpt1.activityhub</artifactId>
+  <version>2.0.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX Refinement driver for Datapoint Type 1.* to ISO 11073-10471 device</name>
   <description>Encoding and decoding of KNX Datapoint Types 1.* with Format B1. Is registered as OSGI driver service in the framework registry. This refinement driver maps and creates a suitable device from ISO 11073-10471 specification and registers it in the OSGi registry.</description>
@@ -55,22 +55,13 @@
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
         <extensions>true</extensions>
-        <executions>
-          <execution>
-            <id>bundle-manifest</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>manifest</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <instructions>
             <Bundle-Name>${project.name}</Bundle-Name>
-            <Bundle-Activator>org.universAAL.lddi.knx.dpt1refinementdriver.iso11073.Activator</Bundle-Activator>
+            <Bundle-Activator>org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Export-Package>org.universAAL.lddi.knx.dpt1refinementdriver.iso11073</Export-Package>
+            <Export-Package>org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub</Export-Package>
           </instructions>
         </configuration>
       </plugin>

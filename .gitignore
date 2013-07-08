@@ -54,12 +54,6 @@ lddi.fs20/lddi.pom.fs20/target
 lddi.knx/lddi.knx.devicemanager/.classpath
 lddi.knx/lddi.knx.devicemanager/.project
 lddi.knx/lddi.knx.devicemanager/.settings
-lddi.knx/lddi.knx.devicemanager/launches/runner/bundles
-lddi.knx/lddi.knx.devicemanager/launches/runner/cache
-lddi.knx/lddi.knx.devicemanager/launches/runner/felix/cache
-lddi.knx/lddi.knx.devicemanager/launches/runner/felix/config.ini
-lddi.knx/lddi.knx.devicemanager/launches/runner/log
-lddi.knx/lddi.knx.devicemanager/launches/target
 lddi.knx/lddi.knx.devicemanager/target
 lddi.knx/lddi.knx.exporter/.classpath
 lddi.knx/lddi.knx.exporter/.project
@@ -77,6 +71,9 @@ lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/.
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/.project
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/.settings
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/target
+lddi.knx/lddi.pom.knx/.project
+lddi.knx/lddi.pom.knx/.settings
+lddi.knx/lddi.pom.knx/target
 lddi.pom/.project
 lddi.pom/.settings
 lddi.pom/composite/.classpath
