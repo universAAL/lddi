@@ -175,7 +175,7 @@ public class TemperatureSensorCallee extends ExporterSensorCallee implements
 		TemperatureSensorCallee.class, "changedMeasuredValue",
 		new String[] { "Changed-Event received" }, null);
 	org.universAAL.ontology.device.TemperatureSensor sensor = ontologyDevice;
-	sensor.setHasValue(event.getEvent());
+	sensor.setValue(event.getEvent());
 	cp.publish(new ContextEvent(sensor, org.universAAL.ontology.device.TemperatureSensor.PROP_HAS_VALUE));
     }
 

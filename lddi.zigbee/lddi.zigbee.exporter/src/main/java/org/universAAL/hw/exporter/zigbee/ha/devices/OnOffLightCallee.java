@@ -220,7 +220,7 @@ public class OnOffLightCallee extends ExporterActuatorCallee implements
 	LogUtils.logDebug(Activator.moduleContext, OnOffLightCallee.class,
 		"changedOnOff", new String[] { "Changed-Event received" }, null);
 	LightActuator ls = ontologyDevice;
-	ls.setHasValue(event.getEvent() ? 100 : 0);
+	ls.setValue(event.getEvent() ? 100 : 0);
 	cp.publish(new ContextEvent(ls, LightActuator.PROP_HAS_VALUE));
     }
 
