@@ -33,7 +33,7 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
-import org.universAAL.lddi.knx.interfaces.KnxNetwork;
+import org.universAAL.lddi.knx.interfaces.IKnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxCommand;
 
 /**
@@ -47,7 +47,7 @@ import org.universAAL.lddi.knx.utils.KnxCommand;
  * @author Thomas Fuxreiter (foex@gmx.at)
  * 
  */
-public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork {
+public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 
 	/** OSGi Framework */
 	BundleContext context;
@@ -141,7 +141,7 @@ public final class KnxNetworkDriverImp implements ManagedService, KnxNetwork {
 	}
 
 	public void networkConnected() {
-		this.regServiceKnx = this.context.registerService(KnxNetwork.class
+		this.regServiceKnx = this.context.registerService(IKnxNetwork.class
 				.getName(), this, null);
 	}
 

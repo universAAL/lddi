@@ -36,14 +36,9 @@ public class KnxDpt4Device extends KnxDevice implements KnxDpt4 {
     	super(MY_DEVICE_CATEGORY);
     }
 
-    @Deprecated
-    public void newMessageFromKnxBus(byte[] event) {
-	// not used in device; this method is called in driver!
-    }
 
-    @Deprecated
-    public String convertHexToString(CharacterSet characterSet) {
-	// not used in device; this method is called in driver!
-	return null;
+    public static String convertHexToString(CharacterSet characterSet) {
+    	// http://www.mkyong.com/java/how-to-convert-hex-to-ascii-in-java/
+    	return null;
     }
 }

@@ -27,8 +27,9 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
+import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
-import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
+import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 
 /**
@@ -42,7 +43,8 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt1Instance extends KnxDriver implements KnxDpt1 ,ServiceTrackerCustomizer, Constants {
+public class KnxDpt1Instance extends KnxDriver implements KnxDpt1, IKnxReceiveMessage,
+ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
 	private LogService logger;
@@ -54,7 +56,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1 ,ServiceTracke
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
 	public KnxDpt1Instance(KnxDpt1Driver parent_) {
-//			BundleContext context, KnxDriverClient client,
+//			BundleContext context, IKnxDriverClient client,
 //			LogService logger) {
 		super(parent_.client);
 
@@ -119,7 +121,7 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1 ,ServiceTracke
 	 * Calculate readable measurement value from given byte array according to KNX DPT 9.
 	 * Call client.
 	 * 
-	 * @see org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory#newMessageFromKnxBus(byte[])
+	 * @see org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage#newMessageFromKnxBus(byte[])
 	 */
 	public void newMessageFromKnxBus(byte[] event) {
 
@@ -131,11 +133,11 @@ public class KnxDpt1Instance extends KnxDriver implements KnxDpt1 ,ServiceTracke
 		 * KNX datapoint type 1.*** is a 1-bit signal; therefore only on/off is forwarded to ISO devices!  
 		 */
 		if ( event[0] == DEFAULT_VALUE_OFF ) {
-			this.client.incomingSensorEventDpt1( this.device.getGroupAddress(), 
+			this.client.incomingSensorEvent( this.device.getGroupAddress(), 
 					this.device.getDatapointTypeMainNumber(), this.device.getDatapointTypeSubNumber(),
 					false);
 		} else if ( event[0] == DEFAULT_VALUE_ON ) {
-			this.client.incomingSensorEventDpt1( this.device.getGroupAddress(), 
+			this.client.incomingSensorEvent( this.device.getGroupAddress(), 
 					this.device.getDatapointTypeMainNumber(), this.device.getDatapointTypeSubNumber(),
 					true);
 		} else {

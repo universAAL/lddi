@@ -36,7 +36,7 @@ import org.osgi.util.tracker.ServiceTracker;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
+import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
 
 /**
@@ -54,7 +54,7 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
  */
 public class KnxDpt9Driver implements Driver {
 
-	public KnxDriverClient client;
+	public IKnxDriverClient client;
 	public BundleContext context;
 	public LogService logger;
 	private ServiceRegistration regDriver;
@@ -76,7 +76,7 @@ public class KnxDpt9Driver implements Driver {
 	 * @param knxManager
 	 * @param context
 	 */
-	public KnxDpt9Driver(KnxDriverClient client, BundleContext context) {
+	public KnxDpt9Driver(IKnxDriverClient client, BundleContext context) {
 		this.client=client;
 		this.context=context;
 		this.logger=client.getLogger();

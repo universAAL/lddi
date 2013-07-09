@@ -18,22 +18,17 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicemodel;
-
-import org.universAAL.lddi.knx.devicecategory.KnxDpt2;
+package org.universAAL.lddi.knx.interfaces;
 
 /**
- * Concrete implementation of KNX devices for KNX data type 2.***.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt2Device extends KnxDevice implements KnxDpt2 {
-
-    /**
-     * empty constructor for factory
-     */
-    public KnxDpt2Device() {
-    	super(MY_DEVICE_CATEGORY);
-    }
+public interface IKnxReceiveMessage {
+	/***
+	 * The specific drivers have to implement this method to receive low level messages from the knx bus
+	 * @param message the status/event byte of the knx telegram
+	 */
+	public void newMessageFromKnxBus( byte[] event );
 
 }

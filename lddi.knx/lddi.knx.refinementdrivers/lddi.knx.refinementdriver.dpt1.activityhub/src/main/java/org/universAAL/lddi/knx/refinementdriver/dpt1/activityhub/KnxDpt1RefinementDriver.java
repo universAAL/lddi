@@ -68,8 +68,8 @@ public class KnxDpt1RefinementDriver implements Driver
 
 //	private static final String KNX_DRIVER_CONFIG_NAME = "knx.dpt1refinementdriver.iso11073";
 
-//	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
-//	private KnxNetwork network;
+//	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,IKnxNetwork.class.getName());
+//	private IKnxNetwork network;
 	
 	/** Set of all DPT1 drivers registered here */
 //	private Set<KnxDpt1Instance> connectedDriver;

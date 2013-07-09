@@ -29,9 +29,10 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
-import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
+import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 import org.universAAL.lddi.knx.driver.KnxDpt1Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt3Driver;
+import org.universAAL.lddi.knx.driver.KnxDpt5Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt9Driver;
 import org.universAAL.lddi.knx.exporter.util.LogTracker;
 
@@ -41,7 +42,7 @@ import org.universAAL.lddi.knx.exporter.util.LogTracker;
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxManager implements KnxDriverClient {
+public class KnxManager implements IKnxDriverClient {
 
 	private BundleContext context;
 	private LogService logger;
@@ -80,8 +81,9 @@ public class KnxManager implements KnxDriverClient {
 		
 		// start all KNX drivers
 		new KnxDpt1Driver(this, this.context);
-		new KnxDpt9Driver(this, this.context);
 		new KnxDpt3Driver(this, this.context);
+		new KnxDpt5Driver(this, this.context);
+		new KnxDpt9Driver(this, this.context);
 	}
 
 
@@ -93,9 +95,9 @@ public class KnxManager implements KnxDriverClient {
 	 * @param datapointType (i.e. 1.001)
 	 * @param value (on/off)
 	 * 
-	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
+	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
-	public void incomingSensorEventDpt1(String deviceGroupAddress, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String deviceGroupAddress, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, boolean value) {
 		
 		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + value);
@@ -117,9 +119,9 @@ public class KnxManager implements KnxDriverClient {
 	 * @param datapointType (i.e. 9.001)
 	 * @param code static string from KNX specification (e.g. decrease, increase, up, down, break)
 	 * 
-	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
+	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
-	public void incomingSensorEventDpt3(String deviceGroupAddress, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String deviceGroupAddress, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, String code) {
 		
 		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + code);
@@ -128,6 +130,9 @@ public class KnxManager implements KnxDriverClient {
 			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
 					datapointTypeMainNubmer, datapointTypeSubNubmer, code);
 
+		if (listeners.isEmpty())
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for device " + deviceGroupAddress);
+
 	}
 	
 	/**
@@ -135,12 +140,12 @@ public class KnxManager implements KnxDriverClient {
 	 * No storage of event here!
 	 * 
 	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
-	 * @param datapointType (i.e. 9.001)
-	 * @param value (i.e. temperature value)
+	 * @param datapointType (i.e. 9.001; 5.001)
+	 * @param value (i.e. temperature value; dimming percentage)
 	 * 
-	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient
+	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
-	public void incomingSensorEventDpt9(String deviceGroupAddress, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String deviceGroupAddress, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, float value) {
 		
 		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + value);
@@ -148,6 +153,9 @@ public class KnxManager implements KnxDriverClient {
 		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
 			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
 					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
+
+		if (listeners.isEmpty())
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for device " + deviceGroupAddress);
 
 	}
 	

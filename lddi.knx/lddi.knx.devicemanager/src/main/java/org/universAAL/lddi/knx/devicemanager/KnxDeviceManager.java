@@ -43,11 +43,11 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 import org.universAAL.lddi.knx.devicemodel.KnxDeviceFactory;
-import org.universAAL.lddi.knx.interfaces.KnxNetwork;
+import org.universAAL.lddi.knx.interfaces.IKnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
 /**
- * This bundle tracks on KnxNetwork service.
+ * This bundle tracks on IKnxNetwork service.
  * When this service appears, this bundle is initialized.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
@@ -68,14 +68,14 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 
 	private Map<String,KnxDevice> deviceList;
 
-	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,KnxNetwork.class.getName());
-	private KnxNetwork network;
+	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,IKnxNetwork.class.getName());
+	private IKnxNetwork network;
 	
 	public KnxDeviceManager(BundleContext context, LogService log) {
 		this.context=context;
 		this.logger=log;
 
-		// track on KnxNetwork service
+		// track on IKnxNetwork service
 		try {
 			ServiceTracker st=new ServiceTracker(context,this.context.createFilter(filterQuery), this);
 			st.open();
@@ -86,11 +86,11 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	}
 	
 	/**
-	 * KnxNetwork service appeared, initialization of this bundle;
+	 * IKnxNetwork service appeared, initialization of this bundle;
 	 * ManagedService registration in OSGi.
 	 */
 	public Object addingService(ServiceReference reference) {
-		this.network=(KnxNetwork)this.context.getService(reference);
+		this.network=(IKnxNetwork)this.context.getService(reference);
 
 		// create my lists
 		this.deviceRegistrationList = new HashMap<String,ServiceRegistration>();
@@ -114,16 +114,16 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	}
 	
 	/**
-	 * KnxNetwork service has been modified: removing my managed service and adding again.
+	 * IKnxNetwork service has been modified: removing my managed service and adding again.
 	 */
 	public void modifiedService(ServiceReference reference, Object service) {
 		removedService(reference, service);
 		addingService(reference);
-		this.logger.log(LogService.LOG_INFO,"KnxDeviceManager restarted because KnxNetwork service was modified!");
+		this.logger.log(LogService.LOG_INFO,"KnxDeviceManager restarted because IKnxNetwork service was modified!");
 	}
 
 	/**
-	 * KnxNetwork service has been removed: removing my managed service,
+	 * IKnxNetwork service has been removed: removing my managed service,
 	 * clear storage objects -> set this bundle to "idle" mode.
 	 */
 	public void removedService(ServiceReference reference, Object service) {
@@ -139,7 +139,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 		
 		this.context.ungetService(reference);
 //		this.unregisterManagedService();
-		this.logger.log(LogService.LOG_WARNING,"KnxDeviceManager stopped because KnxNetwork service was removed!");
+		this.logger.log(LogService.LOG_WARNING,"KnxDeviceManager stopped because IKnxNetwork service was removed!");
 	}
 
 //	private void unregisterManagedService() {

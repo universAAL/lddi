@@ -38,7 +38,9 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt2 extends KnxBaseDeviceCategory {
+public interface KnxDpt2
+//extends KnxBaseDeviceCategory 
+{
 
 	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_2; 
 //	public static String MY_DEVICE_CATEGORY = "KnxDpt2";

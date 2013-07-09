@@ -34,13 +34,13 @@ import org.osgi.service.device.Driver;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt3;
+import org.universAAL.lddi.knx.devicecategory.KnxDpt5;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt3Device;
+import org.universAAL.lddi.knx.devicemodel.KnxDpt5Device;
 import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 
 /**
- * This Driver class manages driver instances for KNX DPT3 devices. It is called
+ * This Driver class manages driver instances for KNX DPT5 devices. It is called
  * on new device references coming from OSGi DeviceManager; matching on device
  * category. It instantiates drivers for every matching KNX device. Attaches
  * exactly one driver instance per deviceId. Subsequent devices with the same
@@ -52,27 +52,27 @@ import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt3Driver implements Driver {
+public class KnxDpt5Driver implements Driver {
 
 	public IKnxDriverClient client;
 	public BundleContext context;
 	public LogService logger;
 	private ServiceRegistration regDriver;
 
-	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt3.0.0.x";
-	private static final KnxDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_3;
+	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt5.0.0.x";
+	private static final KnxDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_5;
 
 	/**
 	 * Management Map of instantiated driver instances. Key is groupAddress of
 	 * the KNX device Value is the associated driver
 	 */
-	public final Map<String, KnxDpt3Instance> connectedDriverInstanceMap = new ConcurrentHashMap<String, KnxDpt3Instance>();
+	public final Map<String, KnxDpt5Instance> connectedDriverInstanceMap = new ConcurrentHashMap<String, KnxDpt5Instance>();
 
 	/**
 	 * @param knxManager
 	 * @param context
 	 */
-	public KnxDpt3Driver(IKnxDriverClient client, BundleContext context) {
+	public KnxDpt5Driver(IKnxDriverClient client, BundleContext context) {
 		this.client = client;
 		this.context = context;
 		this.logger = client.getLogger();
@@ -89,7 +89,7 @@ public class KnxDpt3Driver implements Driver {
 
 		if (this.regDriver != null)
 			this.logger.log(LogService.LOG_INFO,
-					"Driver for KNX-DPT 3.007 and 3.008 registered!");
+					"Driver for KNX-DPT 5.* registered!");
 	}
 
 	/*
@@ -119,7 +119,7 @@ public class KnxDpt3Driver implements Driver {
 		// match check
 		// more possible properties to match: description, serial, id
 		if (deviceCategory == MY_KNX_DEVICE_CATEGORY) {
-			matchValue = KnxDpt3.MATCH_CLASS;
+			matchValue = KnxDpt5.MATCH_CLASS;
 		} else {
 			this.logger.log(LogService.LOG_DEBUG, "Requesting device service "
 					+ deviceCategory + " doesn't match with driver. No match!");
@@ -137,7 +137,7 @@ public class KnxDpt3Driver implements Driver {
 	 */
 	public String attach(ServiceReference reference) throws Exception {
 		// get groupAddress
-		KnxDpt3Device knxDev = (KnxDpt3Device) this.context.getService(reference);
+		KnxDpt5Device knxDev = (KnxDpt5Device) this.context.getService(reference);
 
 		if  ( this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress()) ) {
 			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for " +
@@ -146,7 +146,7 @@ public class KnxDpt3Driver implements Driver {
 		}
 		
 		// create "driving" instance
-		KnxDpt3Instance instance = new KnxDpt3Instance(this);
+		KnxDpt5Instance instance = new KnxDpt5Instance(this);
 
 		// store instance
 		this.connectedDriverInstanceMap.put(knxDev.getGroupAddress(), instance);
@@ -166,7 +166,7 @@ public class KnxDpt3Driver implements Driver {
 	public void stop() {
 		
 		// delete instance references !!
-		for ( Iterator<KnxDpt3Instance> it = this.connectedDriverInstanceMap.values().iterator(); it.hasNext(); ) {
+		for ( Iterator<KnxDpt5Instance> it = this.connectedDriverInstanceMap.values().iterator(); it.hasNext(); ) {
 			it.next().detachDriver();
 		}
 

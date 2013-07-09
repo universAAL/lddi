@@ -36,8 +36,4 @@ public class KnxDpt1Device extends KnxDevice implements KnxDpt1 {
     	super(MY_DEVICE_CATEGORY);
     }
 
-    @Deprecated
-    public void newMessageFromKnxBus(byte[] event) {
-	// not used in device; this method is called in driver!
-    }
 }

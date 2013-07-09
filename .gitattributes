@@ -839,6 +839,8 @@ lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt1D
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt1Instance.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt3Driver.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt3Instance.java -text
+lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt5Driver.java -text
+lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt5Instance.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt9Driver.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/driver/KnxDpt9Instance.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/Activator.java -text
@@ -868,9 +870,10 @@ lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxD
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt4Device.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt5Device.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/devicemodel/KnxDpt9Device.java -text
+lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/IKnxDriverClient.java -text
+lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/IKnxNetwork.java -text
+lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/IKnxReceiveMessage.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/KnxDriver.java -text
-lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/KnxDriverClient.java -text
-lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/KnxNetwork.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/library/utils/LogTracker.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxCommand.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxEncoder.java -text
@@ -893,7 +896,6 @@ lddi.knx/lddi.knx.networkdriver/src/main/resources/lddi.knx.networkdriver.cfg -t
 lddi.knx/lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalTest.java -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/ASL2.0.txt -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/NOTICE.txt -text
-lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/pom.xml -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/readme.txt -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/Activator.java -text

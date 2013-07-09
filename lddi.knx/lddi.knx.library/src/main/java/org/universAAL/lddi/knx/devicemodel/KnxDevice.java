@@ -22,9 +22,9 @@ package org.universAAL.lddi.knx.devicemodel;
 
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
-import org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory;
 import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.interfaces.KnxNetwork;
+import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
+import org.universAAL.lddi.knx.interfaces.IKnxNetwork;
 import org.universAAL.lddi.knx.utils.*;
 
 /**
@@ -52,10 +52,10 @@ public abstract class KnxDevice implements Device{
 //	private static String KNX_DEVICE_CATEGORY_PREFIX = "KnxDpt";
 	
 	protected LogService logger;
-	protected KnxNetwork network;
+	protected IKnxNetwork network;
 	
 	/** reference to my driver instance; can be just one! */
-	protected KnxBaseDeviceCategory driver;
+	protected IKnxReceiveMessage driver;
 	
 
 	/**
@@ -72,7 +72,7 @@ public abstract class KnxDevice implements Device{
 	 * @param network 
 	 * @param logger2
 	 */
-	public void setParams(KnxGroupAddress knxGroupAddress, KnxNetwork network, LogService logger) {
+	public void setParams(KnxGroupAddress knxGroupAddress, IKnxNetwork network, LogService logger) {
 		this.knxDeviceProperties = knxGroupAddress;
 		this.network = network;
 		this.logger = logger; 
@@ -92,7 +92,7 @@ public abstract class KnxDevice implements Device{
 	}
 
 	/** store a driver reference for this device */
-	public void addDriver(KnxBaseDeviceCategory driverInstance) {
+	public void addDriver(IKnxReceiveMessage driverInstance) {
 		this.driver = driverInstance;
 	}
 	

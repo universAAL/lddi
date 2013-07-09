@@ -26,9 +26,11 @@ import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
+import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
-import org.universAAL.lddi.knx.interfaces.KnxDriverClient;
+import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
+import org.universAAL.lddi.knx.devicemodel.KnxDpt3Device;
 import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
 
 /**
@@ -42,7 +44,8 @@ import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt9Instance extends KnxDriver implements KnxDpt9 ,ServiceTrackerCustomizer, Constants {
+public class KnxDpt9Instance extends KnxDriver implements KnxDpt9, IKnxReceiveMessage,
+ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
 	private LogService logger;
@@ -54,7 +57,7 @@ public class KnxDpt9Instance extends KnxDriver implements KnxDpt9 ,ServiceTracke
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
 	public KnxDpt9Instance(KnxDpt9Driver parent_) {
-//		BundleContext context, KnxDriverClient client,
+//		BundleContext context, IKnxDriverClient client,
 //			LogService logger) {
 		super(parent_.client);
 
@@ -66,7 +69,7 @@ public class KnxDpt9Instance extends KnxDriver implements KnxDpt9 ,ServiceTracke
 	/**
 	 * Empty constructor for Unit Tests.
 	 */
-	public KnxDpt9Instance() {};
+	//public KnxDpt9Instance() {};
 	
 	
 	/**
@@ -120,52 +123,22 @@ public class KnxDpt9Instance extends KnxDriver implements KnxDpt9 ,ServiceTracke
 		this.parent.connectedDriverInstanceMap.remove(knxDev.getGroupAddress());
 	}
 
-
-	/**
-	 * Calculate float value from knx message payload.
-     * 				MSB			LSB
-     * float value |-------- --------|
-     * encoding 	MEEEEMMM MMMMMMMM
-     * FloatValue = (0,01*M)*2(E)
-     * E = [0 … 15]
-     * M = [-2 048 … 2 047], two’s complement notation
-	 */
-	public float calculateFloatValue(byte[] payload) {
-		// there are 3 bytes payload for a temperature event where the last 2 are important
-		// the first seems always to be 80!?
-		byte MSB = payload[0]; 
-		byte LSB = payload[1];
-		
-		byte M_MSB = (byte) (MSB & 0x87);
-		byte M_LSB = (byte) (LSB & 0xFF);
-		
-		byte E = (byte) ((MSB & 0x78) >> 3);
-
-		int e = Integer.parseInt( Byte.toString(E) );
-		
-		short m = (short) (M_MSB << 8 | (M_LSB & 0xFF));
-		
-		float result = (float) ((0.01*m)*(Math.pow(2, e)));
-		//System.out.println("*****************************float result: " + result);
-		return result;
-	}
-
-
 	/**
 	 * Calculate readable measurement value from given byte array according to KNX DPT 9.
 	 * Call client.
 	 * 
-	 * @see org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory#newMessageFromKnxBus(byte[])
+	 * @see org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage#newMessageFromKnxBus(byte[])
 	 */
 	public void newMessageFromKnxBus(byte[] event) {
 
-		float value = calculateFloatValue(event);
+		//float value = calculateFloatValue(event);
+		float value = KnxDpt9Device.calculateFloatValue(event);
 
 		this.logger.log(LogService.LOG_INFO, "Driver " + KnxDpt9.MY_DEVICE_CATEGORY + " for device " + 
 				this.device.getGroupAddress() + " with knx datapoint type " + this.device.getDatapointType() +
 				" received new knx message " + value );
 
-		this.client.incomingSensorEventDpt9( this.device.getGroupAddress(), 
+		this.client.incomingSensorEvent( this.device.getGroupAddress(), 
 				this.device.getDatapointTypeMainNumber(), this.device.getDatapointTypeSubNumber(),
 				value);
 	}
