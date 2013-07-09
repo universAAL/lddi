@@ -148,7 +148,7 @@ public class DimmerLightCallee extends ExporterDimmerCallee implements
 		"changedCurrentLevel",
 		new String[] { "Changed-Event received" }, null);
 	LightActuator ls = ontologyDevice;
-	ls.setHasValue(event.getEvent());
+	ls.setValue(event.getEvent());
 	cp.publish(new ContextEvent(ls, LightActuator.PROP_HAS_VALUE));
     }
 
