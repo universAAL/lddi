@@ -41,7 +41,9 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt4 extends KnxBaseDeviceCategory {
+public interface KnxDpt4
+//extends KnxBaseDeviceCategory 
+{
 
 	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_4; 
 //    public static String MY_DEVICE_CATEGORY = "KnxDpt4";
@@ -83,9 +85,6 @@ public interface KnxDpt4 extends KnxBaseDeviceCategory {
      */
     public static boolean CHARACTER_SET_8859_1 = false;
 
-    // methods that should be implemented in driver
-    public String convertHexToString(CharacterSet characterSet);
-//    http://www.mkyong.com/java/how-to-convert-hex-to-ascii-in-java/
 
     public enum CharacterSet {
 	CHARACTER_SET_ASCII(1), CHARACTER_SET_8859_1(2);

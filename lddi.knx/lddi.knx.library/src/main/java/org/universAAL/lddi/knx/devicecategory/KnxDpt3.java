@@ -46,7 +46,9 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt3 extends KnxBaseDeviceCategory {
+public interface KnxDpt3
+//extends KnxBaseDeviceCategory 
+{
 
 	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_3; 
 //    public static String MY_DEVICE_CATEGORY = "KnxDpt3";
@@ -89,17 +91,4 @@ public interface KnxDpt3 extends KnxBaseDeviceCategory {
     public static String UP_3_008 = "up";
     public static String DOWN_3_008 = "down";
  
-    
-    // methods that should be implemented by the driver
-    /**
-     * Obtain the step code. One of the static bytes defined above!
-     */
-    public String calculateStepCode(byte payload);
-
-    /**
-     * Calculate Step number of interval from stepcode.
-     * stepcode are bits 1-3
-     * Step Number of intervals = 2^(stepcode-1); max. 64
-     */
-    public int calculateStepNumberOfInterval(byte payload);
 }

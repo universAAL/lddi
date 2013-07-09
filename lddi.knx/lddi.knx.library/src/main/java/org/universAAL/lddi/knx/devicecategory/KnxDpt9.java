@@ -50,7 +50,9 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt9 extends KnxBaseDeviceCategory {
+public interface KnxDpt9
+//extends KnxBaseDeviceCategory 
+{
 	
 	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_9; 
 		//"KnxDpt9";
@@ -84,19 +86,4 @@ public interface KnxDpt9 extends KnxBaseDeviceCategory {
 	 */
 	public static short RESOLUTION_9_001 =  1/100;
 	
-	
-    // methods that should be implemented in driver
-    /**
-     * Calculate float value from knx message payload.
-     * 				MSB			LSB
-     * float value |-------- --------|
-     * encoding 	MEEEEMMM MMMMMMMM
-     * FloatValue = (0,01*M)*2(E)
-     * E = [0 … 15]
-     * M = [-2 048 … 2 047], two’s complement notation
-     */
-    public float calculateFloatValue(byte[] payload);
-
-
-
 }

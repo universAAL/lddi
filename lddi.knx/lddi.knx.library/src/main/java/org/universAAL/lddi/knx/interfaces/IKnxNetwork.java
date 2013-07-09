@@ -23,7 +23,7 @@ package org.universAAL.lddi.knx.interfaces;
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 import org.universAAL.lddi.knx.utils.KnxCommand;
 
-public interface KnxNetwork {
+public interface IKnxNetwork {
 	public static String MANUFACTURER = "KONNEX";
 	public static String GROUP_ADDRESS = "groupAddress";
 //	public static String NOTIFICATION_ADDRESS = "notificationAddress";

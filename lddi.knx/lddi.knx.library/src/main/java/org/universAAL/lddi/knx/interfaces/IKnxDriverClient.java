@@ -28,7 +28,7 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDriverClient {
+public interface IKnxDriverClient {
 	
 	/** couple KNX driver to upper layer */
 	public void addDriver(String deviceId, KnxDeviceCategory deviceCategory,
@@ -41,21 +41,21 @@ public interface KnxDriverClient {
 	 * get event message from underlying devices
 	 * with bool value
 	 */
-	public void incomingSensorEventDpt1(String deviceId, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String deviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, boolean value);
 
 	/**
 	 * get event message from underlying devices
 	 * with String (code)
 	 */
-	public void incomingSensorEventDpt3(String deviceId, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String deviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, String code);
 
 	/**
 	 * get event message from underlying devices
 	 * with float value
 	 */
-	public void incomingSensorEventDpt9(String deviceId, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String deviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, float value);
 
 	

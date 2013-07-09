@@ -20,7 +20,6 @@
 
 package org.universAAL.lddi.knx.interfaces;
 
-import org.universAAL.lddi.knx.devicecategory.KnxBaseDeviceCategory;
 import org.universAAL.lddi.knx.devicemodel.KnxDevice;
 
 /**
@@ -36,12 +35,12 @@ public abstract class KnxDriver {
 	protected KnxDevice device;
 
 	/** upper layer instance */
-	protected KnxDriverClient client; //->uAAL bus/exporter 
+	protected IKnxDriverClient client; //->uAAL bus/exporter 
 
 	public KnxDriver() {
 	}
 	
-	public KnxDriver(KnxDriverClient client) {
+	public KnxDriver(IKnxDriverClient client) {
 		this.client = client;
 	}
 	
@@ -74,7 +73,7 @@ public abstract class KnxDriver {
 	 */
 	protected boolean attachDriver() {
 		if (this.device != null) {
-			this.device.addDriver( (KnxBaseDeviceCategory) this);
+			this.device.addDriver( (IKnxReceiveMessage) this);
 			return true;
 		} else {
 			return false;

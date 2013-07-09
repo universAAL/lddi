@@ -25,31 +25,29 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt3;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt3Device;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
+import org.universAAL.lddi.knx.devicecategory.KnxDpt5;
+import org.universAAL.lddi.knx.devicemodel.KnxDpt5Device;
 import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
 
 /**
- * Working instance of the KnxDpt3 driver. Registers a service/device in OSGi
+ * Working instance of the KnxDpt5 driver. Registers a service/device in OSGi
  * registry. Tracks on the KNX device service passed in the attach method in
- * KnxDpt3Driver class. This instance is passed to the consuming client (e.g.
+ * KnxDpt5Driver class. This instance is passed to the consuming client (e.g.
  * uAAL exporter bundle). When the KNX device service disappears, this driver is
  * removed from the consuming client and detached from the device.
  * 
- * This driver handles knx 4-bit unsigned int events (knx datapoint 3), which is
+ * This driver handles knx 4-bit unsigned int events (knx datapoint 5), which is
  * dimming step and blind step.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt3Instance extends KnxDriver implements KnxDpt3, IKnxReceiveMessage,
+public class KnxDpt5Instance extends KnxDriver implements KnxDpt5, IKnxReceiveMessage,
 		ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
 	private LogService logger;
-	private KnxDpt3Driver parent;
+	private KnxDpt5Driver parent;
 
 	/**
 	 * @param c
@@ -59,7 +57,7 @@ public class KnxDpt3Instance extends KnxDriver implements KnxDpt3, IKnxReceiveMe
 	 * @param client
 	 *            Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
-	public KnxDpt3Instance(KnxDpt3Driver parent_) {
+	public KnxDpt5Instance(KnxDpt5Driver parent_) {
 		// BundleContext context, IKnxDriverClient client,
 		// LogService logger) {
 		super(parent_.client);
@@ -72,19 +70,19 @@ public class KnxDpt3Instance extends KnxDriver implements KnxDpt3, IKnxReceiveMe
 	/**
 	 * Empty constructor for Unit Tests.
 	 */
-	public KnxDpt3Instance() {
+	public KnxDpt5Instance() {
 	};
 
 	/**
 	 * track on my device
 	 * 
-	 * @param KnxDpt3
+	 * @param KnxDpt5
 	 *            device service
 	 * @return The service object to be tracked for the ServiceReference object
 	 *         or null if the ServiceReference object should not be tracked.
 	 */
 	public Object addingService(ServiceReference reference) {
-		KnxDpt3Device knxDev = (KnxDpt3Device) this.context
+		KnxDpt5Device knxDev = (KnxDpt5Device) this.context
 				.getService(reference);
 
 		if (knxDev == null)
@@ -94,13 +92,13 @@ public class KnxDpt3Instance extends KnxDriver implements KnxDpt3, IKnxReceiveMe
 		/** now couple my driver to the device */
 		if (this.setDevice(knxDev))
 			this.logger.log(LogService.LOG_INFO, "Successfully coupled "
-					+ KnxDpt3.MY_DEVICE_CATEGORY + " driver to device "
+					+ KnxDpt5.MY_DEVICE_CATEGORY + " driver to device "
 					+ this.device.getDeviceId());
 		else {
 			this.logger.log(LogService.LOG_ERROR, "Error coupling "
-					+ KnxDpt3.MY_DEVICE_CATEGORY + " driver to device "
+					+ KnxDpt5.MY_DEVICE_CATEGORY + " driver to device "
 					+ this.device.getDeviceId() + ". No appropriate "
-					+ "ISO device created!");
+					+ "device created!");
 			return null;
 		}
 
@@ -120,7 +118,7 @@ public class KnxDpt3Instance extends KnxDriver implements KnxDpt3, IKnxReceiveMe
 	public void modifiedService(ServiceReference reference, Object service) {
 		this.logger.log(LogService.LOG_INFO,
 				"Tracked knx device service was modified. "
-						+ "Going to update the KnxDpt3Instance");
+						+ "Going to update the KnxDpt5Instance");
 		removedService(reference, service);
 		addingService(reference);
 	}
@@ -138,8 +136,7 @@ public class KnxDpt3Instance extends KnxDriver implements KnxDpt3, IKnxReceiveMe
 		this.detachDriver();
 		this.removeDriver();		
 		
-//		KnxDpt3Device knxDev = (KnxDpt3Device) this.context.getService(reference);
-		KnxDpt3Device knxDev = (KnxDpt3Device) service;
+		KnxDpt5Device knxDev = (KnxDpt5Device) service;
 		this.parent.connectedDriverInstanceMap.remove(knxDev.getGroupAddress());
 	}
 	
@@ -152,23 +149,27 @@ public class KnxDpt3Instance extends KnxDriver implements KnxDpt3, IKnxReceiveMe
 	 */
 	public void newMessageFromKnxBus(byte[] event) {
 
-		//String code = calculateStepCode(event[0]);
-		String code = KnxDpt3Device.calculateStepCode(event[0], this.device.getDatapointTypeSubNumber());
+		float percentage = KnxDpt5Device.calculatePercentage(event, this.device.getDatapointTypeSubNumber());
 				
-		if (code.isEmpty()) {
-			this.logger.log(LogService.LOG_WARNING, "Driver " + KnxDpt3.MY_DEVICE_CATEGORY + " for device " + 
+		if (percentage == 0) {
+			this.logger.log(LogService.LOG_WARNING, "Driver " + KnxDpt5.MY_DEVICE_CATEGORY + " for device " + 
 					this.device.getGroupAddress() + " says: knx datapoint type " + this.device.getDatapointType() +
 					" is not implemented!");
 			return;
+		} else if (percentage == -1) {
+			this.logger.log(LogService.LOG_WARNING, "Driver " + KnxDpt5.MY_DEVICE_CATEGORY + " for device " + 
+					this.device.getGroupAddress() + " says: no detailed specification of knx datapoint type " + this.device.getDatapointType() +
+					" in the KNX standard!");
+			return;
 		}
 			
-		this.logger.log(LogService.LOG_INFO, "Driver " + KnxDpt3.MY_DEVICE_CATEGORY + " for device " + 
+		this.logger.log(LogService.LOG_INFO, "Driver " + KnxDpt5.MY_DEVICE_CATEGORY + " for device " + 
 				this.device.getGroupAddress() + " with knx datapoint type " + this.device.getDatapointType() +
-				" received new step code " + code );
+				" received new percentage value " + percentage );
 		
 		this.client.incomingSensorEvent( this.device.getGroupAddress(), 
 				this.device.getDatapointTypeMainNumber(), this.device.getDatapointTypeSubNumber(),
-				code);
+				percentage);
 	}
 
 }

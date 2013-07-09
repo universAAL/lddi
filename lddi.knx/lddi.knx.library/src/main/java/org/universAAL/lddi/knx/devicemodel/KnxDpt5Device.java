@@ -36,8 +36,33 @@ public class KnxDpt5Device extends KnxDevice implements KnxDpt5 {
     	super(MY_DEVICE_CATEGORY);
     }
 
-    @Deprecated
-    public void newMessageFromKnxBus(byte[] event) {
-	// not used in device; this method is called in driver!
-    }
+    /**
+     * calculate percentage according to datapoint sub-type
+     * 8-bit extra data byte; e.g. 80:b3; 80:33
+     * 
+     * @return -1 if there is no detailed specification of the given datapointTypeSubNumber in the KNX standard.
+     * @return 0 if the given datapointTypeSubNumber is not defined in the KNX standard.
+     */
+	public static float calculatePercentage(byte[] payload, int datapointTypeSubNumber) {
+		int i_value = payload[0] & 0xFF; // get unsigned byte
+		
+		switch (datapointTypeSubNumber) {
+		case 1:
+			return (float)i_value * RESOLUTION_5_001; 
+		case 3:
+			return (float)i_value * RESOLUTION_5_003;
+		case 4:
+			return (float)i_value * RESOLUTION_5_004;
+		case 5:
+			return -1f;
+		case 6:
+			return -1f;
+		case 10:
+			return (float)i_value * RESOLUTION_5_010;
+		default:
+			return 0f;
+		}
+		
+	}
+
 }
