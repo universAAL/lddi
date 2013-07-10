@@ -25,25 +25,23 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt9;
+import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt1;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt1GroupDevice;
 import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
-import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
 
 /**
- * Working instance of the KnxDpt1 driver. Registers a service/device in OSGi registry.
- * Tracks on the KNX device service passed in the attach method in KnxDpt1Driver class. 
+ * Working instance of the IKnxDpt1 driver. Registers a service/device in OSGi registry.
+ * Tracks on the KNX groupDevice service passed in the attach method in KnxDpt1Driver class. 
  * This instance is passed to the consuming client (e.g. uAAL exporter bundle).
- * When the KNX device service disappears, this driver is removed from the consuming 
- * client and from the device.
+ * When the KNX groupDevice service disappears, this driver is removed from the consuming 
+ * client and from the groupDevice.
  *  
  * This driver handles knx 1-bit events (knx datapoint 1), which is on/off.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt1Instance extends KnxDriver implements KnxDpt1, IKnxReceiveMessage,
+public class KnxDpt1Instance extends KnxDriver implements IKnxDpt1, IKnxReceiveMessage,
 ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
@@ -52,7 +50,7 @@ ServiceTrackerCustomizer, Constants {
 	
 	/**
 	 * @param c OSGi BundleContext
-	 * @param sr Service reference of KNX device
+	 * @param sr Service reference of KNX groupDevice
 	 * @param client Link to consumer of this driver (e.g. uAAL exporter bundle)
 	 */
 	public KnxDpt1Instance(KnxDpt1Driver parent_) {
@@ -66,25 +64,24 @@ ServiceTrackerCustomizer, Constants {
 	}
 
 	/**
-	 * track on my device
-	 * @param KnxDpt1 device service
+	 * track on my groupDevice
+	 * @param IKnxDpt1 groupDevice service
 	 * @return The service object to be tracked for the ServiceReference object or null if the ServiceReference object should not be tracked.
 	 */
 	public Object addingService(ServiceReference reference) {
 
-		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
+		KnxDpt1GroupDevice knxDev = (KnxDpt1GroupDevice) this.context.getService(reference);
 
 		if ( knxDev == null)
 			this.logger.log(LogService.LOG_ERROR, "knxDev is null for some reason!");
 		
-		/** now couple my driver to the device */
-		if ( this.setDevice(knxDev) )
-			this.logger.log(LogService.LOG_INFO, "Successfully coupled " + KnxDpt1.MY_DEVICE_CATEGORY 
-					+ " driver to device " + this.device.getDeviceId());
+		/** now couple my driver to the groupDevice */
+		if ( this.setgroupDevice(knxDev) )
+			this.logger.log(LogService.LOG_INFO, "Successfully coupled " + IKnxDpt1.MY_DEVICE_CATEGORY 
+					+ " driver to groupDevice " + this.groupDevice.getGroupDeviceId());
 		else {
-			this.logger.log(LogService.LOG_ERROR, "Error coupling " + KnxDpt1.MY_DEVICE_CATEGORY
-					+ " driver to device " + this.device.getDeviceId() + ". No appropriate " +
-					"ISO device created!");
+			this.logger.log(LogService.LOG_ERROR, "Error coupling " + IKnxDpt1.MY_DEVICE_CATEGORY
+					+ " driver to groupDevice " + this.groupDevice.getGroupDeviceId());
 			return null;
 		}
 		
@@ -96,7 +93,7 @@ ServiceTrackerCustomizer, Constants {
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#modifiedService(org.osgi.framework.ServiceReference, java.lang.Object)
 	 */
 	public void modifiedService(ServiceReference reference, Object service) {
-		this.logger.log(LogService.LOG_INFO, "Tracked knx device service was modified. " +
+		this.logger.log(LogService.LOG_INFO, "Tracked knx groupDevice service was modified. " +
 				"Going to update the KnxDpt1Instance");
 		removedService(reference, service);
 		addingService(reference);		
@@ -106,13 +103,13 @@ ServiceTrackerCustomizer, Constants {
 	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#removedService(org.osgi.framework.ServiceReference, java.lang.Object)
 	 */
 	public void removedService(ServiceReference reference, Object service) {
-		// removed device service
+		// removed groupDevice service
 		this.context.ungetService(reference);
 		this.detachDriver();
 		this.removeDriver();
 		
-		KnxDpt1Device knxDev = (KnxDpt1Device) service;
-//		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
+		KnxDpt1GroupDevice knxDev = (KnxDpt1GroupDevice) service;
+//		KnxDpt1GroupDevice knxDev = (KnxDpt1GroupDevice) this.context.getService(reference);
 		this.parent.connectedDriverInstanceMap.remove(knxDev.getGroupAddress());
 	}
 
@@ -125,24 +122,24 @@ ServiceTrackerCustomizer, Constants {
 	 */
 	public void newMessageFromKnxBus(byte[] event) {
 
-		this.logger.log(LogService.LOG_INFO, "Driver " + KnxDpt1.MY_DEVICE_CATEGORY + " for device " + 
-				this.device.getGroupAddress() + " with knx datapoint type " + this.device.getDatapointType() +
+		this.logger.log(LogService.LOG_INFO, "Driver " + IKnxDpt1.MY_DEVICE_CATEGORY + " for groupDevice " + 
+				this.groupDevice.getGroupAddress() + " with knx datapoint type " + this.groupDevice.getDatapointType() +
 				" received new knx message " + Integer.toHexString(event[0]) );
 
 		/**
 		 * KNX datapoint type 1.*** is a 1-bit signal; therefore only on/off is forwarded to ISO devices!  
 		 */
 		if ( event[0] == DEFAULT_VALUE_OFF ) {
-			this.client.incomingSensorEvent( this.device.getGroupAddress(), 
-					this.device.getDatapointTypeMainNumber(), this.device.getDatapointTypeSubNumber(),
+			this.client.incomingSensorEvent( this.groupDevice.getGroupAddress(), 
+					this.groupDevice.getDatapointTypeMainNumber(), this.groupDevice.getDatapointTypeSubNumber(),
 					false);
 		} else if ( event[0] == DEFAULT_VALUE_ON ) {
-			this.client.incomingSensorEvent( this.device.getGroupAddress(), 
-					this.device.getDatapointTypeMainNumber(), this.device.getDatapointTypeSubNumber(),
+			this.client.incomingSensorEvent( this.groupDevice.getGroupAddress(), 
+					this.groupDevice.getDatapointTypeMainNumber(), this.groupDevice.getDatapointTypeSubNumber(),
 					true);
 		} else {
 			this.logger.log(LogService.LOG_ERROR, "No matches on incoming Event " + Integer.toHexString(event[0]) +
-					" from device " + this.device.getGroupAddress());
+					" from groupDevice " + this.groupDevice.getGroupAddress());
 			return;
 		}
 		

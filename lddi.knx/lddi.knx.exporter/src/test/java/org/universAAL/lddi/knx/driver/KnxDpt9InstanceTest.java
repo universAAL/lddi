@@ -23,7 +23,7 @@ package org.universAAL.lddi.knx.driver;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt9Device;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice;
 
 
 /**
@@ -35,8 +35,8 @@ public class KnxDpt9InstanceTest {
 	@Test
 	public void calculateFloatValueTest() {
 		//KnxDpt9Instance d = new KnxDpt9Instance();
-		float fl = KnxDpt9Device.calculateFloatValue( new byte[] {(byte) 0x0C,(byte) 0xA6} );
-		assertTrue("KnxDpt9Device.calculateFloatValue( new byte[] {(byte) 0x0C,(byte) 0xA6} ) " +
+		float fl = KnxDpt9GroupDevice.calculateFloatValue( new byte[] {(byte) 0x0C,(byte) 0xA6} );
+		assertTrue("KnxDpt9GroupDevice.calculateFloatValue( new byte[] {(byte) 0x0C,(byte) 0xA6} ) " +
 				"returns " + fl + " but should return 23.8", 
 				Float.toString(fl).equalsIgnoreCase("23.8"));
 	}

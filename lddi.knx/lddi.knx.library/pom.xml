@@ -57,9 +57,8 @@
             <Bundle-Name>${project.name}</Bundle-Name>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Export-Package>org.universAAL.lddi.knx.devicecategory,
-            org.universAAL.lddi.knx.devicemodel,
-            org.universAAL.lddi.knx.networkdriver,
+            <Export-Package>org.universAAL.lddi.knx.groupdevicecategory,
+            org.universAAL.lddi.knx.groupdevicemodel,
             org.universAAL.lddi.knx.interfaces,
             org.universAAL.lddi.knx.utils</Export-Package>
           </instructions>

@@ -30,9 +30,12 @@ public class KnxGroupAddress {
     
     private String description;
     private String comment;
-    private String bpType; //BuildingPart Type
-    private String bpName; //BuildingPart Name
-    private String bpDescription;
+    
+    // building part information belongs to one physical KNX device
+    // not to a group device (KNX group address)
+//    private String bpType; //BuildingPart Type
+//    private String bpName; //BuildingPart Name
+//    private String bpDescription;
     //location (room)
     
     public KnxGroupAddress(String dpt, String groupAddress, String name) {
@@ -60,41 +63,41 @@ public class KnxGroupAddress {
 		this.dpt = dpt;
 		this.description = description;
 		this.comment = comment;
-		this.bpType = bpType;
-		this.bpName = bpName;
-		this.bpDescription = bpDescription;
+//		this.bpType = bpType;
+//		this.bpName = bpName;
+//		this.bpDescription = bpDescription;
 	}
 
 	/**
-	 * @return description of KNX device
+	 * @return description of KNX groupDevice
 	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @return type of the BuildingPart where the KNX device is located
-	 */
-	public String getBpType() {
-		return bpType;
-	}
+//	/**
+//	 * @return type of the BuildingPart where the KNX device is located
+//	 */
+//	public String getBpType() {
+//		return bpType;
+//	}
+//
+//	/**
+//	 * @return Name of the BuildingPart where the KNX device is located
+//	 */
+//	public String getBpName() {
+//		return bpName;
+//	}
+//
+//	/**
+//	 * @return description of the BuildingPart where the KNX device is located
+//	 */
+//	public String getBpDescription() {
+//		return bpDescription;
+//	}
 
 	/**
-	 * @return Name of the BuildingPart where the KNX device is located
-	 */
-	public String getBpName() {
-		return bpName;
-	}
-
-	/**
-	 * @return description of the BuildingPart where the KNX device is located
-	 */
-	public String getBpDescription() {
-		return bpDescription;
-	}
-
-	/**
-	 * @return name of the KNX device
+	 * @return name of the KNX groupDevice
 	 */
 	public String getName() {
         return name;
@@ -108,35 +111,36 @@ public class KnxGroupAddress {
     }
 
     /**
-     * @return datapoint type of the KNX device
+     * @return datapoint type of the KNX groupDevice
      */
     public String getDpt() {
         return dpt;
     }
 
     /**
-     * @return name, group address, datapoint type and  of the KNX device
+     * @return name, group address, datapoint type and  of the KNX groupDevice
      */
     public String toString() {
     	return getName() + "; " +
     		getGroupAddress() + "; " +
     		getDpt() + "; " +
     		getDescription() + "; " +
-    		getComment() + "; " +
-    		getBpType() + "; " +
-    		getBpName() + "; " +
-    		getBpDescription();
+    		getComment();
+//    	+ "; " +
+//    		getBpType() + "; " +
+//    		getBpName() + "; " +
+//    		getBpDescription();
     }
     
     /**
-	 * @return comment on KNX device
+	 * @return comment on KNX groupDevice
 	 */
 	private String getComment() {
 		return this.comment;
 	}
 
 	/**
-     * @return main datapoint type number of the KNX device 
+     * @return main datapoint type number of the KNX groupDevice 
      */
     public String getDptMain() {
 		String temp = this.getDpt().trim();
@@ -144,7 +148,7 @@ public class KnxGroupAddress {
     }
 
     /**
-     * @return sub datapoint type number of the KNX device 
+     * @return sub datapoint type number of the KNX groupDevice 
      */
     public String getDptSub() {
 		String temp = this.getDpt().trim();

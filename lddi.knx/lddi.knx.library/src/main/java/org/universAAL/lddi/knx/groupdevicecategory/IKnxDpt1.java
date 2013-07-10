@@ -18,19 +18,17 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicecategory;
+package org.universAAL.lddi.knx.groupdevicecategory;
 
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
+
 
 /**
- * Base DeviceCategory for KNX datapoint types B2 (2 bit).
+ * Base GroupDeviceCategory for KNX datapoint types B1 (1 bit).
  * 
- * c = control bit
- * v = value bit (according to DPT 1.xxx)
- * 
- * In general DeviceCategories specify:
- * - rules and interfaces needed for the communication between device service
- * and driver service. Both of them implement this IF.
+ * In general GroupDeviceCategories specify:
+ * - rules and interfaces needed for the communication between OSGi groupDevice service
+ * and driver service. Both of them (groupDevice and driver) implement this IF.
  * 
  * - a set of service registration properties, their data types and semantics (mandatory or optional)
  * 
@@ -38,12 +36,11 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt2
-//extends KnxBaseDeviceCategory 
+public interface IKnxDpt1
 {
-
-	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_2; 
-//	public static String MY_DEVICE_CATEGORY = "KnxDpt2";
+	
+	public static KnxGroupDeviceCategory MY_DEVICE_CATEGORY = KnxGroupDeviceCategory.KNX_DPT_1; 
+		// "IKnxDpt1";
 	
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number
@@ -60,33 +57,30 @@ public interface KnxDpt2
 	public static String MANUFACTURER 	= "-";
 	public static String REVISION		= "-";
 	public static String SERIAL			= "-";
-
-	// 2-bit encoding
-	// c v
-	// 0 0 No control
-	// 0 1 No control
-	// 1 0 Control. Function value 0
-	// 1 1 Control. Function value 1
-	//
-	// datapoint sub types (similar to Dpt1):
-	//	2.001 DPT_Switch_Control G
-	//	2.002 DPT_Bool_Control G
-	//	2.003 DPT_Enable_Control FB
-	//	2.004 DPT_Ramp_Control FB
-	//	2.005 DPT_Alarm_Control FB
-	//	2.006 DPT_BinaryValue_Control FB
-	//	2.007 DPT_Step_Control FB
-	//	2.008 DPT_Direction1_Control FB
-	//	2.009 DPT_Direction2_Control FB
-	//	2.010 DPT_Start_Control FB
-	//	2.011 DPT_State_Control FB
-	//	2.012 DPT_Invert_Control FB
-
-
-	// default on/off constants for all dpt2 devices
-	public static byte DEFAULT_VALUE_OFF_CONTROL_OFF =(byte) 0x80;
-	public static byte DEFAULT_VALUE_ON_CONTROL_OFF = (byte) 0x81;
-	public static byte DEFAULT_VALUE_OFF_CONTROL_ON = (byte) 0x82;
-	public static byte DEFAULT_VALUE_ON_CONTROL_ON =  (byte) 0x83;
 	
+
+	// default on/off constants for all dpt1 devices
+	public static byte DEFAULT_VALUE_ON =  (byte) 1;
+	public static byte DEFAULT_VALUE_OFF = (byte) 0;
+
+//	// constants for specific dpt1 devices
+
+//	/** 1.001 - DPT_Switch */
+//	/** 1 = on */
+//	public static byte DEFAULT_VALUE_ON_1_001 =  DEFAULT_VALUE_ON;
+//	/** 0 = off */
+//	public static byte DEFAULT_VALUE_OFF_1_001 = DEFAULT_VALUE_OFF;
+//	
+//	/** 1.005 - DPT_Alarm */
+//	/** 1 = alarm */
+//	public static byte DEFAULT_VALUE_ON_1_005 =  DEFAULT_VALUE_ON;
+//	/** 0 = no alarm */
+//	public static byte DEFAULT_VALUE_OFF_1_005 = DEFAULT_VALUE_OFF;
+//
+//	/** 1.009 - DPT_OpenClose */
+//	/** 1 = close */
+//	public static byte DEFAULT_VALUE_ON_1_009 =  DEFAULT_VALUE_ON;
+//	/** 0 = open */
+//	public static byte DEFAULT_VALUE_OFF_1_009 = DEFAULT_VALUE_OFF;
+
 }

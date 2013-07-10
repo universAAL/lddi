@@ -27,7 +27,7 @@ import java.util.TreeMap;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
 import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 import org.universAAL.lddi.knx.driver.KnxDpt1Driver;
@@ -60,7 +60,7 @@ public class KnxManager implements IKnxDriverClient {
 //	not needed yet!
 //	/**
 //	 * stores knxInstances for deviceCategories. 
-//	 * I.e. there may be many driver instance for type KnxDpt1. 
+//	 * I.e. there may be many driver instance for type IKnxDpt1. 
 //	 * 
 //	 * key = KNX datapoint type (i.e. 9.001)
 //	 * value = ActivityHubDriver
@@ -107,7 +107,7 @@ public class KnxManager implements IKnxDriverClient {
 					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
 		
 		if (listeners.isEmpty())
-			this.logger.log(LogService.LOG_WARNING, "No context providers available for device " + deviceGroupAddress);
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + deviceGroupAddress);
 
 	}
 
@@ -131,7 +131,7 @@ public class KnxManager implements IKnxDriverClient {
 					datapointTypeMainNubmer, datapointTypeSubNubmer, code);
 
 		if (listeners.isEmpty())
-			this.logger.log(LogService.LOG_WARNING, "No context providers available for device " + deviceGroupAddress);
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + deviceGroupAddress);
 
 	}
 	
@@ -155,35 +155,35 @@ public class KnxManager implements IKnxDriverClient {
 					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
 
 		if (listeners.isEmpty())
-			this.logger.log(LogService.LOG_WARNING, "No context providers available for device " + deviceGroupAddress);
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + deviceGroupAddress);
 
 	}
 	
 	
 	/** {@inheritDoc} */
-	public void addDriver(String deviceId, KnxDeviceCategory knxDeviceCategory, KnxDriver knxDriver) {
+	public void addDriver(String groupDeviceId, KnxGroupDeviceCategory knxGroupDeviceCategory, KnxDriver knxDriver) {
 
 		KnxDriver oldDriver = null;
 		synchronized(this.driverList)
 		{
-			oldDriver = this.driverList.put(deviceId, knxDriver);
+			oldDriver = this.driverList.put(groupDeviceId, knxDriver);
 //			knxDriver.getDevice().getDeviceCategory().getTypeCode();
 		}
 		if ( oldDriver != null ){
 			this.logger.log(LogService.LOG_WARNING, "An existing KNX driver " +
-					"is now replaced by a new one for device " + deviceId
-					+ " and category: " + knxDeviceCategory);
+					"is now replaced by a new one for groupDevice " + groupDeviceId
+					+ " and category: " + knxGroupDeviceCategory);
 		}
 		
-		this.logger.log(LogService.LOG_INFO, "new KNX driver added for device " + deviceId
-				+ " and category: " + knxDeviceCategory);
+		this.logger.log(LogService.LOG_INFO, "new KNX driver added for groupDevice " + groupDeviceId
+				+ " and category: " + knxGroupDeviceCategory);
 	}
 	
 	/** {@inheritDoc} */
-	public void removeDriver(String deviceId, KnxDriver knxDriver) {
-		this.driverList.remove(deviceId);
+	public void removeDriver(String groupDeviceId, KnxDriver knxDriver) {
+		this.driverList.remove(groupDeviceId);
 		this.logger.log(LogService.LOG_INFO, "removed KNX driver for " +
-				"device " + deviceId);
+				"groupDevice " + groupDeviceId);
 	}
 
 	/**

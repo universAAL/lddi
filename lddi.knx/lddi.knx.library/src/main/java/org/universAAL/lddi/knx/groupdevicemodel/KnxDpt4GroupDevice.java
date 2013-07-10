@@ -18,17 +18,27 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicecategory;
+package org.universAAL.lddi.knx.groupdevicemodel;
+
+import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt4;
 
 /**
+ * Concrete implementation of KNX group devices for KNX data type 4.***.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxBaseDeviceCategory {
-	/***
-	 * The specific drivers have to implement this method to receive low level messages from the knx bus
-	 * @param message the status/event byte of the knx telegram
-	 */
-	public void newMessageFromKnxBus( byte[] event );
+public class KnxDpt4GroupDevice extends KnxGroupDevice implements IKnxDpt4 {
 
+    /**
+     * empty constructor for factory
+     */
+    public KnxDpt4GroupDevice() {
+    	super(MY_DEVICE_CATEGORY);
+    }
+
+
+    public static String convertHexToString(CharacterSet characterSet) {
+    	// http://www.mkyong.com/java/how-to-convert-hex-to-ascii-in-java/
+    	return null;
+    }
 }

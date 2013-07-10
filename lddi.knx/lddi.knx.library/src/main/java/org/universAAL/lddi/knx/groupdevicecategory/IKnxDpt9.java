@@ -18,16 +18,32 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicecategory;
+package org.universAAL.lddi.knx.groupdevicecategory;
 
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
+
 
 /**
- * Base DeviceCategory for KNX datapoint types B1 (1 bit).
+ * Base GroupDeviceCategory for KNX datapoint type “2-Octet Float Value”.
  * 
- * In general DeviceCategories specify:
- * - rules and interfaces needed for the communication between device service
- * and driver service. Both of them implement this IF.
+ * Specification from KNX Datapoint Types v1.07.00 AS :
+ * 
+ * Format: 2 octets: F16
+ * 				MSB			LSB
+ * float value |-------- --------|
+ * encoding 	MEEEEMMM MMMMMMMM
+ * FloatValue = (0,01*M)*2(E)
+ * E = [0 … 15]
+ * M = [-2 048 … 2 047], two’s complement notation
+ * For all Datapoint Types 9.xxx, the encoded value 7FFFh shall always be used to denote invalid data.
+ * Possible values are from 0 - 255.
+ * Range: [-671 088,64 … 670 760,96]
+ * PDT: PDT_KNX_FLOAT
+ * 
+ * 
+ * In general GroupDeviceCategories specify:
+ * - rules and interfaces needed for the communication between OSGi groupDevice service
+ * and driver service. Both of them (groupDevice and driver) implement this IF.
  * 
  * - a set of service registration properties, their data types and semantics (mandatory or optional)
  * 
@@ -35,12 +51,11 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt1
-//extends KnxBaseDeviceCategory 
+public interface IKnxDpt9
 {
 	
-	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_1; 
-		// "KnxDpt1";
+	public static KnxGroupDeviceCategory MY_DEVICE_CATEGORY = KnxGroupDeviceCategory.KNX_DPT_9; 
+		//"IKnxDpt9";
 	
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL	= 10;	// an exact match including the serial number
@@ -59,28 +74,16 @@ public interface KnxDpt1
 	public static String SERIAL			= "-";
 	
 
-	// default on/off constants for all dpt1 devices
-	public static byte DEFAULT_VALUE_ON =  (byte) 1;
-	public static byte DEFAULT_VALUE_OFF = (byte) 0;
+	// default max/min constants for all dpt9 devices
+	public static byte[] DEFAULT_MAX_VALUE = {(byte) 0x07, (byte) 0xFF}; // 2047 two’s complement notation!
+	public static byte[] DEFAULT_MIN_VALUE = {(byte) 0x80, (byte) 0x00}; // -2048 two’s complement notation!
+	public static byte[] DEFAULT_INVALID_VALUE = {(byte) 0x7F, (byte) 0xFF}; // all bits 1 except MSb
 
-//	// constants for specific dpt1 devices
-
-//	/** 1.001 - DPT_Switch */
-//	/** 1 = on */
-//	public static byte DEFAULT_VALUE_ON_1_001 =  DEFAULT_VALUE_ON;
-//	/** 0 = off */
-//	public static byte DEFAULT_VALUE_OFF_1_001 = DEFAULT_VALUE_OFF;
-//	
-//	/** 1.005 - DPT_Alarm */
-//	/** 1 = alarm */
-//	public static byte DEFAULT_VALUE_ON_1_005 =  DEFAULT_VALUE_ON;
-//	/** 0 = no alarm */
-//	public static byte DEFAULT_VALUE_OFF_1_005 = DEFAULT_VALUE_OFF;
-//
-//	/** 1.009 - DPT_OpenClose */
-//	/** 1 = close */
-//	public static byte DEFAULT_VALUE_ON_1_009 =  DEFAULT_VALUE_ON;
-//	/** 0 = open */
-//	public static byte DEFAULT_VALUE_OFF_1_009 = DEFAULT_VALUE_OFF;
-
+	
+	// constants for specific dpt9 devices
+	/** 9.001 - DPT_Value_Temp
+	 * From -273°C - 670760°C - Resolution: 0,01°C
+	 */
+	public static short RESOLUTION_9_001 =  1/100;
+	
 }

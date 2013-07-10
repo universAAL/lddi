@@ -39,7 +39,7 @@ public class KnxEncoder {
 	 * @param repeatBit
 	 *            ; has this telegram been sent already?
 	 * @param targetAddress
-	 *            address of the device; could be device or group address
+	 *            knx address - could be device or group address
 	 * @param value
 	 *            knx status
 	 * @param messageType

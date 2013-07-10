@@ -20,7 +20,7 @@
 
 package org.universAAL.lddi.knx.interfaces;
 
-import org.universAAL.lddi.knx.devicemodel.KnxDevice;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice;
 import org.universAAL.lddi.knx.utils.KnxCommand;
 
 public interface IKnxNetwork {
@@ -34,11 +34,11 @@ public interface IKnxNetwork {
 	public static char DAFAULT_READ_CHAR = '4';
 	public static char DAFAULT_STATUS_CHAR = '8';
 //	public static Object NOTIFICATION_NAME = "notificationName";
-	public void requestState(String deviceId);
-	public void sendCommand(String deviceId,boolean command);
-	public void sendCommand(String deviceId,boolean command, KnxCommand commandType);
-	public void addDevice(String deviceId,KnxDevice device);
-	public void removeDevice(String deviceId,KnxDevice device);
+	public void requestState(String groupDeviceId);
+	public void sendCommand(String groupDeviceId,boolean command);
+	public void sendCommand(String groupDeviceId,boolean command, KnxCommand commandType);
+	public void addGroupDevice(String groupDeviceId,KnxGroupDevice groupDevice);
+	public void removeGroupDevice(String groupDeviceId,KnxGroupDevice groupDevice);
 	//public KnxConfiguration parseConfiguration(Properties configuration);
 	
 }

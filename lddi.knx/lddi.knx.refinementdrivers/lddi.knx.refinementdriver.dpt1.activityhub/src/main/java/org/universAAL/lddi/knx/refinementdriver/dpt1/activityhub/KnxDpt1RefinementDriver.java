@@ -34,19 +34,19 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
 import org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.ActivityHubDeviceCategory;
 import org.universAAL.lddi.lib.activityhub.knxmapping.KnxMappingFactory;
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt1Device;
+import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt1;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt1GroupDevice;
 
 /**
- * checks device references coming from OSGi DeviceManager; matching device category
- * attaches exactly one driver instance per deviceId (first device)
+ * checks device references coming from OSGi DeviceManager; matching KNX groupDevice category
+ * attaches exactly one driver instance per deviceId (first groupDevice)
  * subsequent devices with the same deviceId are rejected!
  * 
- * when an attached device service is unregistered:
- * drivers must take the appropriate action to release this device service
- * and peform any necessary cleanup, as described in their device category spec
+ * when an attached groupDevice service is unregistered:
+ * drivers must take the appropriate action to release this groupDevice service
+ * and peform any necessary cleanup, as described in their groupDevice category spec
  *  
  * Initially a manual mapping config from KNX to ISO sensors were implemented. But
  * in universAAL this configuration should be done by AAL Space configurator. Therefore
@@ -63,8 +63,8 @@ public class KnxDpt1RefinementDriver implements Driver
 	private BundleContext context;
 	private LogService logger;
 	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt1.0.0.1"; //"Knx_DoorWindowActuator"
-//	private static final String MY_KNX_DEVICE_CATEGORY = "KnxDpt1";
-	private static final KnxDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_1; 
+//	private static final String MY_KNX_DEVICE_CATEGORY = "IKnxDpt1";
+	private static final KnxGroupDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxGroupDeviceCategory.KNX_DPT_1; 
 
 //	private static final String KNX_DRIVER_CONFIG_NAME = "knx.dpt1refinementdriver.iso11073";
 
@@ -89,7 +89,7 @@ public class KnxDpt1RefinementDriver implements Driver
 
 
 	/**
-	 * Key is groupAddress of the KNX device
+	 * Key is groupAddress of the KNX groupDevice
 	 * Value is the associated driver
 	 */
 	private final Map<String, KnxDpt1Instance> connectedDriverInstanceMap = 
@@ -146,7 +146,7 @@ public class KnxDpt1RefinementDriver implements Driver
 //	public void updated(String pid, Dictionary properties)
 //			throws ConfigurationException {
 //		this.logger.log(LogService.LOG_INFO, "KnxDpt1Driver updated for driver instance " + pid +
-//				". Mapping properties from KNX device to ISO 11073 device: " + properties);
+//				". Mapping properties from KNX groupDevice to ISO 11073 groupDevice: " + properties);
 //
 //		if (properties != null) {
 //			//			properties.get("isoDeviceType");
@@ -158,7 +158,7 @@ public class KnxDpt1RefinementDriver implements Driver
 //			// update knxGroupAddress value
 //			//properties.put("knxGroupAddress", newKnxAddress);
 //
-//			// create new knx device config
+//			// create new knx groupDevice config
 //			KnxDeviceConfig knxDevConf = new KnxDeviceConfig(knxAddress, properties, pid);
 //
 //			// update configuration map
@@ -173,7 +173,7 @@ public class KnxDpt1RefinementDriver implements Driver
 //					this.logger.log(LogService.LOG_ERROR, "Error on updating configuration of driver instance " + pid);
 //				}
 //			} else {
-//				// new instances are created after a device reference appears; in attach method
+//				// new instances are created after a groupDevice reference appears; in attach method
 //			}
 //		} else {
 //			// if there are no properties for a specific pid it should be deleted !?
@@ -197,13 +197,13 @@ public class KnxDpt1RefinementDriver implements Driver
 	 * @see org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
 	 */ 
 	public int match(ServiceReference reference) throws Exception {
-		// reference = device service
+		// reference = groupDevice service
 		int matchValue = Device.MATCH_NONE;
-//		String deviceCategory = null;
-		KnxDeviceCategory deviceCategory = null;
+//		String groupDeviceCategory = null;
+		KnxGroupDeviceCategory groupDeviceCategory = null;
 
 		try {
-			deviceCategory = KnxDeviceCategoryUtil.toKnxDevice(
+			groupDeviceCategory = KnxGroupDeviceCategoryUtil.toKnxGroupDevice(
 					(String)reference.getProperty(Constants.DEVICE_CATEGORY)	);
 		} catch (ClassCastException e) {
 			this.logger.log(LogService.LOG_DEBUG, "Could not cast DEVICE_CATEGORY of requesting" +
@@ -213,10 +213,10 @@ public class KnxDpt1RefinementDriver implements Driver
 		
 		// match check
 		// more possible properties to match: description, serial, id
-		if ( deviceCategory == MY_KNX_DEVICE_CATEGORY ) {
-			matchValue = KnxDpt1.MATCH_CLASS;
+		if ( groupDeviceCategory == MY_KNX_DEVICE_CATEGORY ) {
+			matchValue = IKnxDpt1.MATCH_CLASS;
 		} else {
-			this.logger.log(LogService.LOG_DEBUG, "Requesting device service " + deviceCategory +
+			this.logger.log(LogService.LOG_DEBUG, "Requesting device service " + groupDeviceCategory +
 					" doesn't match with driver. No match!");
 		}
 		
@@ -231,12 +231,12 @@ public class KnxDpt1RefinementDriver implements Driver
 	public String attach(ServiceReference reference) throws Exception {
 
 		// get groupAddress
-		KnxDpt1Device knxDev = (KnxDpt1Device) this.context.getService(reference);
+		KnxDpt1GroupDevice knxDev = (KnxDpt1GroupDevice) this.context.getService(reference);
 
 		if  ( this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress()) ) {
 			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for " +
-					" the device " + knxDev.getGroupAddress());
-			return "driver already exists for this device!";
+					" the groupDevice " + knxDev.getGroupAddress());
+			return "driver already exists for this groupDevice!";
 		}
 		
 		// mapping from knx dpt to iso sensor type should be done automatically without configuration
@@ -253,10 +253,10 @@ public class KnxDpt1RefinementDriver implements Driver
 		ActivityHubDeviceCategory ahDevCat = KnxMappingFactory.getAHDevCatForKnxDpt(knxDev.getDatapointTypeMainNumber(),
 				knxDev.getDatapointTypeSubNumber() );
 		if (ahDevCat == null) {
-			this.logger.log(LogService.LOG_WARNING, "There is no mapping KnxDeviceCategory found " +
-					"for the KNX device " + knxDev.getGroupAddress() + " with datapoint type " +
+			this.logger.log(LogService.LOG_WARNING, "There is no mapping KnxGroupDeviceCategory found " +
+					"for the KNX groupDevice " + knxDev.getGroupAddress() + " with datapoint type " +
 					knxDev.getDatapointType() );
-			return "no mapping KnxDeviceCategory found!";
+			return "no mapping KnxGroupDeviceCategory found!";
 		}
 		
 		
@@ -345,7 +345,7 @@ public class KnxDpt1RefinementDriver implements Driver
 //	 */
 //	public void updated(Dictionary properties) throws ConfigurationException {
 //		this.logger.log(LogService.LOG_INFO, "KnxDpt1Driver updated. " +
-//				"Mapping from KNX device to ISO 11073 device. " + properties);
+//				"Mapping from KNX groupDevice to ISO 11073 groupDevice. " + properties);
 //
 //		if (properties != null) {
 //			this.knxIsoMappingProperties = new Properties();
@@ -362,7 +362,7 @@ public class KnxDpt1RefinementDriver implements Driver
 //			}
 //			this.logger.log(LogService.LOG_INFO, "KNX-ISO mapping config: " + this.knxIsoMappingProperties);
 //		} else {
-//			this.logger.log(LogService.LOG_ERROR, "No configuration found for Knx to ISO device mapping!");
+//			this.logger.log(LogService.LOG_ERROR, "No configuration found for Knx to ISO groupDevice mapping!");
 //			return;
 //		}
 //	}

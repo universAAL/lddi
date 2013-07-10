@@ -27,7 +27,7 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 /**
- * This bundle provides drivers for KNX device services in OSGi registry. 
+ * This bundle provides drivers for KNX groupDevice services in OSGi registry. 
  * It provides access to KNX devices by offering/registering services on the uAAL service bus.
  * It also sends context events to the uAAL context bus for incoming messages from KNX sensors.
  * 

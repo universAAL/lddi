@@ -30,14 +30,10 @@ import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.ontology.device.ContactSensor;
 import org.universAAL.ontology.device.DimmerSensor;
 import org.universAAL.ontology.device.MotionSensor;
 import org.universAAL.ontology.device.MotionValue;
 import org.universAAL.ontology.device.StatusValue;
-import org.universAAL.ontology.device.SwitchActuator;
-import org.universAAL.ontology.device.SwitchController;
-import org.universAAL.ontology.device.SwitchSensor;
 import org.universAAL.ontology.device.TemperatureSensor;
 import org.universAAL.ontology.device.ValueDevice;
 
@@ -94,17 +90,17 @@ public class KnxContextPublisher {
 	 * value is mapped to status ACTIVATED or NOTACTIVATED. The event is
 	 * published on the uAAL context bus.
 	 * 
-	 * @param deviceId
+	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
 	 * @param datapointTypeSubNubmer
 	 * @param value
 	 */
-	public void publishKnxEvent(String deviceId, int datapointTypeMainNubmer,
+	public void publishKnxEvent(String groupDeviceId, int datapointTypeMainNubmer,
 			int datapointTypeSubNubmer, boolean value) {
 
 		LogUtils
 				.logDebug(mc, KnxContextPublisher.class, "publishKnxEvent",
-						new Object[] { "Event for device " + deviceId
+						new Object[] { "Event for KNX groupDevice " + groupDeviceId
 								+ " with datapoint main type "
 								+ datapointTypeMainNubmer + ". sub type "
 								+ datapointTypeSubNubmer + " - boolean value: "
@@ -112,7 +108,7 @@ public class KnxContextPublisher {
 
 		ValueDevice device = KnxToDeviceOntologyMappingFactory
 				.getDeviceOntologyInstanceForKnxDpt(datapointTypeMainNubmer,
-						datapointTypeSubNubmer, deviceId,
+						datapointTypeSubNubmer, groupDeviceId,
 						DeviceOntologyType.Controller);
 
 		// map boolean status to StatusValue or other ...Value from Device
@@ -146,16 +142,16 @@ public class KnxContextPublisher {
 	 * A proper ontology class is chosen according to main and sub type. The
 	 * event is published on the uAAL context bus.
 	 * 
-	 * @param deviceId
+	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
 	 * @param datapointTypeSubNubmer
 	 * @param code
 	 */
-	public void publishKnxEvent(String deviceId, int datapointTypeMainNubmer,
+	public void publishKnxEvent(String groupDeviceId, int datapointTypeMainNubmer,
 			int datapointTypeSubNubmer, String code) {
 
 		LogUtils.logDebug(mc, KnxContextPublisher.class, "publishKnxEvent",
-				new Object[] { "Event for device " + deviceId
+				new Object[] { "Event for KNX groupDevice " + groupDeviceId
 						+ " with datapoint main type "
 						+ datapointTypeMainNubmer + ". sub type "
 						+ datapointTypeSubNubmer + " - code: " + code }, null);
@@ -174,24 +170,24 @@ public class KnxContextPublisher {
 								+ "with step and break events in place yet!"
 								+ " Discarding sensor code >"
 								+ code
-								+ "< for device " + deviceId }, null);
+								+ "< for groupDevice " + groupDeviceId }, null);
 	}
 
 	/**
 	 * A proper ontology class is chosen according to main and sub type. The
 	 * event is published on the uAAL context bus.
 	 * 
-	 * @param deviceId
+	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
 	 * @param datapointTypeSubNubmer
 	 * @param value
 	 */
-	public void publishKnxEvent(String deviceId, int datapointTypeMainNumber,
+	public void publishKnxEvent(String groupDeviceId, int datapointTypeMainNumber,
 			int datapointTypeSubNubmer, float value) {
 
 		LogUtils
 				.logDebug(mc, KnxContextPublisher.class, "publishKnxEvent",
-						new Object[] { "Event for device " + deviceId
+						new Object[] { "Event for KNX groupDevice " + groupDeviceId
 								+ " with datapoint main type "
 								+ datapointTypeMainNumber + ". sub type "
 								+ datapointTypeSubNubmer + " - float value: "
@@ -199,14 +195,14 @@ public class KnxContextPublisher {
 
 		if (datapointTypeMainNumber == 9) {
 			TemperatureSensor ts = new TemperatureSensor(KNX_SERVER_NAMESPACE
-					+ "KNXTemperatureSensor" + deviceId);
+					+ "KNXTemperatureSensor" + groupDeviceId);
 			ts.setProperty(TemperatureSensor.PROP_HAS_VALUE, value);
 			// ws.setLocation(new
 			// Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
 			cp.publish(new ContextEvent(ts, TemperatureSensor.PROP_HAS_VALUE));
 		} else if (datapointTypeMainNumber == 5) {
 			DimmerSensor ds = new DimmerSensor(KNX_SERVER_NAMESPACE
-					+ "KNXDimmerSensor" + deviceId);
+					+ "KNXDimmerSensor" + groupDeviceId);
 			ds.setProperty(TemperatureSensor.PROP_HAS_VALUE, Math.round(value));
 			// ws.setLocation(new
 			// Location("http://www.tsbtecnologias.es/location.owl#TSBlocation","TSB"));
