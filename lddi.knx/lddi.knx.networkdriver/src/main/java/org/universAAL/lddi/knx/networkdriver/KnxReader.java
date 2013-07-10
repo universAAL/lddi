@@ -313,7 +313,10 @@ public class KnxReader implements Runnable {
 						"KNX NETWORK LINK problem: " + e.getMessage());
 			} catch (KNXException e) {
 				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			
 		}
 	}
 }
