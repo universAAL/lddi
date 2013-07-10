@@ -138,7 +138,7 @@ public class KnxWriter {
 	 * to this group address answer with their status. So, multiple answer
 	 * telegrams are possible.
 	 * 
-	 * @param knx address; either group address (1/2/3) or device address (1.2.3)
+	 * @param knx address; either group address (1/2/3) or groupDevice address (1.2.3)
 	 */
 	public void requestDeviceStatus(String deviceId) {
 		try {
@@ -162,7 +162,7 @@ public class KnxWriter {
 
 			// Sending the packet
 			core.getLogger().log(LogService.LOG_INFO,
-					"Requesting status from KNX device " + deviceId);
+					"Requesting status from KNX (group-)device " + deviceId);
 			sender.send(packet);
 			core.getLogger().log(
 					LogService.LOG_DEBUG,

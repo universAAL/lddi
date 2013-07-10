@@ -32,7 +32,7 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.osgi.service.log.LogService;
-import org.universAAL.lddi.knx.devicemodel.KnxDevice;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice;
 import org.universAAL.lddi.knx.interfaces.IKnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxCommand;
 
@@ -41,7 +41,7 @@ import org.universAAL.lddi.knx.utils.KnxCommand;
  * service in the OSGi framework with the name
  * org.universAAL.lddi.knx.networkdriver.test.KnxNetwork. It manages a list of KNX
  * devices (injected by knx.devicemanager) where the KNX group address is used
- * as key. Incoming sensor events are passed on to the appropriate KNX device
+ * as key. Incoming sensor events are passed on to the appropriate KNX groupDevice
  * (identified by KNX group address).
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
@@ -68,7 +68,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	 * List of devices per groupAddress key = groupAddress value = Set of
 	 * devices
 	 */
-	private Hashtable<String, Set<KnxDevice>> deviceList;
+	private Hashtable<String, Set<KnxGroupDevice>> groupDeviceList;
 
 	/**
 	 * Class constructor
@@ -82,7 +82,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 		this.logger = log;
 		this.network = null;
 
-		this.deviceList = new Hashtable<String, Set<KnxDevice>>();
+		this.groupDeviceList = new Hashtable<String, Set<KnxGroupDevice>>();
 
 		this.registerManagedService();
 		this.logger.log(LogService.LOG_DEBUG, "KnxNetworkDriverImp started!");
@@ -155,7 +155,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 
 
 	/**
-	 * Forward the message from the house to the device; mapping on groupAddress
+	 * Forward the message from the house to the groupDevice; mapping on groupAddress
 	 * 
 	 * @param groupAddress
 	 *            the knx groupAddress
@@ -163,14 +163,14 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	 *            knx command/status bytes (representing e.g. on, off)
 	 */
 	public void newMessageFromHouse(String groupAddress, byte[] event) {
-		if (this.deviceList.containsKey(groupAddress)) {
-			synchronized (this.deviceList) {
-				for (KnxDevice device : this.deviceList.get(groupAddress)) {
+		if (this.groupDeviceList.containsKey(groupAddress)) {
+			synchronized (this.groupDeviceList) {
+				for (KnxGroupDevice device : this.groupDeviceList.get(groupAddress)) {
 					device.newMessageFromHouse(groupAddress, event);
 				}
 			}
 		} else {
-			this.logger.log(LogService.LOG_WARNING, "No device available for incoming message to " + groupAddress);
+			this.logger.log(LogService.LOG_WARNING, "No groupDevice available for incoming message to " + groupAddress);
 		}
 	}
 
@@ -188,28 +188,28 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	/**
 	 * Devices can register here to get events from the knx bus
 	 */
-	public void addDevice(String deviceId, KnxDevice device) {
+	public void addGroupDevice(String deviceId, KnxGroupDevice device) {
 
-		Set<KnxDevice> devices = this.deviceList.get(deviceId);
+		Set<KnxGroupDevice> devices = this.groupDeviceList.get(deviceId);
 		if (devices == null) {
-			devices = new HashSet<KnxDevice>();
+			devices = new HashSet<KnxGroupDevice>();
 
-			synchronized (this.deviceList) {
-				this.deviceList.put(deviceId, devices);
+			synchronized (this.groupDeviceList) {
+				this.groupDeviceList.put(deviceId, devices);
 			}
 		}
 		devices.add(device);
 		this.logger.log(LogService.LOG_DEBUG,
-				"New device added for groupAddress " + deviceId);
+				"New groupDevice added for groupAddress " + deviceId);
 	}
 
 	/**
 	 * Devices can unregister here to stop getting events from the knx bus
 	 */
-	public void removeDevice(String deviceId, KnxDevice device) {
-		Set<KnxDevice> devices = this.deviceList.get(deviceId);
+	public void removeGroupDevice(String deviceId, KnxGroupDevice device) {
+		Set<KnxGroupDevice> devices = this.groupDeviceList.get(deviceId);
 		devices.remove(device);
-		this.logger.log(LogService.LOG_INFO, "Removed device for groupAddress "
+		this.logger.log(LogService.LOG_INFO, "Removed groupDevice for groupAddress "
 				+ deviceId);
 	}
 

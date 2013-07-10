@@ -33,22 +33,22 @@ import org.osgi.service.device.Device;
 import org.osgi.service.device.Driver;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil;
-import org.universAAL.lddi.knx.devicecategory.KnxDpt3;
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
-import org.universAAL.lddi.knx.devicemodel.KnxDpt3Device;
+import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt3;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt3GroupDevice;
 import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 
 /**
  * This Driver class manages driver instances for KNX DPT3 devices. It is called
  * on new device references coming from OSGi DeviceManager; matching on device
- * category. It instantiates drivers for every matching KNX device. Attaches
+ * category. It instantiates drivers for every matching KNX groupDevice. Attaches
  * exactly one driver instance per deviceId. Subsequent devices with the same
  * deviceId are rejected!
  * 
  * When an attached device service is unregistered: drivers must take the
  * appropriate action to release this device service and perform any necessary
- * cleanup, as described in their device category spec.
+ * cleanup, as described in their groupDevice category spec.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -60,11 +60,11 @@ public class KnxDpt3Driver implements Driver {
 	private ServiceRegistration regDriver;
 
 	private static final String MY_DRIVER_ID = "org.universAAL.knx.dpt3.0.0.x";
-	private static final KnxDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_3;
+	private static final KnxGroupDeviceCategory MY_KNX_DEVICE_CATEGORY = KnxGroupDeviceCategory.KNX_DPT_3;
 
 	/**
 	 * Management Map of instantiated driver instances. Key is groupAddress of
-	 * the KNX device Value is the associated driver
+	 * the KNX groupDevice Value is the associated driver
 	 */
 	public final Map<String, KnxDpt3Instance> connectedDriverInstanceMap = new ConcurrentHashMap<String, KnxDpt3Instance>();
 
@@ -99,13 +99,13 @@ public class KnxDpt3Driver implements Driver {
 	 * org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
 	 */
 	public int match(ServiceReference reference) throws Exception {
-		// reference = device service
+		// reference = groupDevice service
 		int matchValue = Device.MATCH_NONE;
-		KnxDeviceCategory deviceCategory = null;
+		KnxGroupDeviceCategory groupDeviceCategory = null;
 
 		try {
-			deviceCategory = KnxDeviceCategoryUtil
-					.toKnxDevice((String) reference
+			groupDeviceCategory = KnxGroupDeviceCategoryUtil
+					.toKnxGroupDevice((String) reference
 							.getProperty(Constants.DEVICE_CATEGORY));
 		} catch (ClassCastException e) {
 			this.logger.log(LogService.LOG_DEBUG,
@@ -118,11 +118,11 @@ public class KnxDpt3Driver implements Driver {
 
 		// match check
 		// more possible properties to match: description, serial, id
-		if (deviceCategory == MY_KNX_DEVICE_CATEGORY) {
-			matchValue = KnxDpt3.MATCH_CLASS;
+		if (groupDeviceCategory == MY_KNX_DEVICE_CATEGORY) {
+			matchValue = IKnxDpt3.MATCH_CLASS;
 		} else {
 			this.logger.log(LogService.LOG_DEBUG, "Requesting device service "
-					+ deviceCategory + " doesn't match with driver. No match!");
+					+ groupDeviceCategory + " doesn't match with driver. No match!");
 		}
 
 		return matchValue; // must be > 0 to match }
@@ -137,12 +137,12 @@ public class KnxDpt3Driver implements Driver {
 	 */
 	public String attach(ServiceReference reference) throws Exception {
 		// get groupAddress
-		KnxDpt3Device knxDev = (KnxDpt3Device) this.context.getService(reference);
+		KnxDpt3GroupDevice knxDev = (KnxDpt3GroupDevice) this.context.getService(reference);
 
 		if  ( this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress()) ) {
 			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for " +
-					" the device " + knxDev.getGroupAddress());
-			return "driver already exists for this device!";
+					" the groupDevice " + knxDev.getGroupAddress());
+			return "driver already exists for this groupDevice!";
 		}
 		
 		// create "driving" instance
@@ -151,7 +151,7 @@ public class KnxDpt3Driver implements Driver {
 		// store instance
 		this.connectedDriverInstanceMap.put(knxDev.getGroupAddress(), instance);
 
-		// init service tracker; the driver instance itself tracks on the device reference!
+		// init service tracker; the driver instance itself tracks on the groupDevice reference!
 		ServiceTracker tracker = new ServiceTracker(this.context, reference, instance);
 		tracker.open();
 

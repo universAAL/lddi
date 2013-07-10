@@ -18,36 +18,36 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicemodel;
+package org.universAAL.lddi.knx.groupdevicemodel;
 
 import org.osgi.service.device.Device;
 import org.osgi.service.log.LogService;
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
 import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
 import org.universAAL.lddi.knx.interfaces.IKnxNetwork;
 import org.universAAL.lddi.knx.utils.*;
 
 /**
- * One KNX device represents one groupAddress (with additional properties) from ETS4 XML export.
- * This device is registered in OSGi framework. 
+ * One KNX group groupDevice represents one groupAddress (with additional properties) from ETS4 XML export.
+ * This groupDevice is registered in OSGi framework. 
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
-public abstract class KnxDevice implements Device{
+public abstract class KnxGroupDevice implements Device{
 
 	/** OSGi DAS properties */
-	public KnxDeviceCategory deviceCategory;
+	public KnxGroupDeviceCategory groupDeviceCategory;
 	/** intended for end users */
 //	public String deviceDescription;
-	/** unique serial number for this device */
+	/** unique serial number for this groupDevice */
 //	private String deviceSerial;
 	/** should be set; every time the same hardware is plugged in, the same PIDs are used */
 //	private String servicePid;
 
-	private String deviceId = "-";
+	private String groupDeviceId = "-";
 	/** including groupAddress and dpt */ 
-	private KnxGroupAddress knxDeviceProperties;
+	private KnxGroupAddress knxGroupDeviceProperties;
 	
 //	private static String KNX_DEVICE_CATEGORY_PREFIX = "KnxDpt";
 	
@@ -61,19 +61,19 @@ public abstract class KnxDevice implements Device{
 	/**
 	 * empty constructor for factory
 	 */
-	public KnxDevice(KnxDeviceCategory knxDeviceCategory) {
-		this.deviceCategory = knxDeviceCategory;
+	public KnxGroupDevice(KnxGroupDeviceCategory knxGroupDeviceCategory) {
+		this.groupDeviceCategory = knxGroupDeviceCategory;
 	}
 	
 	/**
-	 * Fill empty device with parameters and set it alive
+	 * Fill empty groupDevice with parameters and set it alive
 	 * 
 	 * @param knxGroupAddress
 	 * @param network 
 	 * @param logger2
 	 */
 	public void setParams(KnxGroupAddress knxGroupAddress, IKnxNetwork network, LogService logger) {
-		this.knxDeviceProperties = knxGroupAddress;
+		this.knxGroupDeviceProperties = knxGroupAddress;
 		this.network = network;
 		this.logger = logger; 
 
@@ -83,21 +83,21 @@ public abstract class KnxDevice implements Device{
 //		this.deviceSerial;
 //		this.servicePid;
 		
-		this.deviceId = this.knxDeviceProperties.getGroupAddress();
+		this.groupDeviceId = this.knxGroupDeviceProperties.getGroupAddress();
 		
-		// add device to deviceList in knx.networkdriver
-		this.network.addDevice(this.deviceId, this);
+		// add groupDevice to deviceList in knx.networkdriver
+		this.network.addGroupDevice(this.groupDeviceId, this);
 		
-		this.logger.log(LogService.LOG_DEBUG, "Registered device " + deviceId + " in knx.networkdriver.");
+		this.logger.log(LogService.LOG_DEBUG, "Registered groupDevice " + groupDeviceId + " in knx.networkdriver.");
 	}
 
-	/** store a driver reference for this device */
+	/** store a driver reference for this groupDevice */
 	public void addDriver(IKnxReceiveMessage driverInstance) {
 		this.driver = driverInstance;
 	}
 	
 
-	/** remove the driver reference of this device */
+	/** remove the driver reference of this groupDevice */
 	public void removeDriver() {
 		this.driver = null;
 	}
@@ -105,40 +105,40 @@ public abstract class KnxDevice implements Device{
 	
 	/**
 	 * The specific devices have to implement this method to receive low level messages from the network.
-	 * @param deviceAddress  address of the device or the group that fire the message
+	 * @param deviceAddress  address of the groupDevice or the group that fire the message
 	 * @param message array of byte containing the information of the status or command
 	 */
 //	public abstract void newMessageFromHouse(String deviceAddress, byte event);
 	public void newMessageFromHouse(String deviceAddress, byte[] event) {
 
-	this.logger.log(LogService.LOG_INFO, "Device " + this.getDeviceId() + " got value: " + 
+	this.logger.log(LogService.LOG_INFO, "Device " + this.getGroupDeviceId() + " got value: " + 
 			KnxEncoder.convertToReadableHex(event));
 			//			String.format("%02X", Arrays.toString(value)));
 
 	if ( this.driver !=null )
 		this.driver.newMessageFromKnxBus(event);
 	else
-		this.logger.log(LogService.LOG_WARNING, "No driver for device " + this.getDeviceId() + 
+		this.logger.log(LogService.LOG_WARNING, "No driver for groupDevice " + this.getGroupDeviceId() + 
 				" coupled! Cannot forward knx message!");
 	}
 	
 	public void noDriverFound() {
-		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for KNX device: " +
-				knxDeviceProperties.getGroupAddress() );
+		this.logger.log(LogService.LOG_WARNING, "No suitable drivers were found for KNX groupDevice: " +
+				knxGroupDeviceProperties.getGroupAddress() );
 	}
 	
 	/**
 	 * @return knxGroupAddress as String "M/S/D"
 	 */
 	public String getGroupAddress() {
-		return this.knxDeviceProperties.getGroupAddress();
+		return this.knxGroupDeviceProperties.getGroupAddress();
 	}
 	
 	/**
 	 * @return knx datapoint type as String "M.mmm"
 	 */
 	public String getDatapointType() {
-		return this.knxDeviceProperties.getDpt();
+		return this.knxGroupDeviceProperties.getDpt();
 	}
 	
 	/**
@@ -148,10 +148,10 @@ public abstract class KnxDevice implements Device{
 	 */
 	public int getDatapointTypeMainNumber() {
 		try {
-			return Integer.parseInt(this.knxDeviceProperties.getDptMain());
+			return Integer.parseInt(this.knxGroupDeviceProperties.getDptMain());
 		} catch (NumberFormatException e) {
-			this.logger.log(LogService.LOG_ERROR, "Error on converting main datatype number of knx device " +
-					this.deviceId);
+			this.logger.log(LogService.LOG_ERROR, "Error on converting main datatype number of knx groupDevice " +
+					this.groupDeviceId);
 			e.printStackTrace();
 		}
 		return 0;
@@ -164,48 +164,48 @@ public abstract class KnxDevice implements Device{
 	 */
 	public int getDatapointTypeSubNumber() {
 		try {
-			return Integer.parseInt(this.knxDeviceProperties.getDptSub());
+			return Integer.parseInt(this.knxGroupDeviceProperties.getDptSub());
 		} catch (NumberFormatException e) {
-			this.logger.log(LogService.LOG_ERROR, "Error on converting minor datatype number of knx device " +
-					this.deviceId + " with dpt " + this.getDatapointType());
+			this.logger.log(LogService.LOG_ERROR, "Error on converting minor datatype number of knx groupDevice " +
+					this.groupDeviceId + " with dpt " + this.getDatapointType());
 			e.printStackTrace();
 		}
 		return 0;
 	}
 	
-	/**
-	 * @return name of the location, e.g. Main room, Living room
-	 */
-	public String getDeviceLocation() {
-		return this.knxDeviceProperties.getBpName();
-	}
-
-	/**
-	 * @return type of the location, e.g. Floor, Room, Corridor, Cabinet, Stairway or Building Part
-	 */
-	public String getDeviceLocationType() {
-		return this.knxDeviceProperties.getBpType();
-	}
-
-	/**
-	 * @return description of the location, e.g. Room, Corridor
-	 */
-	public String getDeviceLocationDescription() {
-		return this.knxDeviceProperties.getBpDescription();
-	}
+//	/**
+//	 * @return name of the location, e.g. Main room, Living room
+//	 */
+//	public String getDeviceLocation() {
+//		return this.knxGroupDeviceProperties.getBpName();
+//	}
+//
+//	/**
+//	 * @return type of the location, e.g. Floor, Room, Corridor, Cabinet, Stairway or Building Part
+//	 */
+//	public String getDeviceLocationType() {
+//		return this.knxGroupDeviceProperties.getBpType();
+//	}
+//
+//	/**
+//	 * @return description of the location, e.g. Room, Corridor
+//	 */
+//	public String getDeviceLocationDescription() {
+//		return this.knxGroupDeviceProperties.getBpDescription();
+//	}
 	
 	/**
-	 * @return deviceCategory from KnxDeviceCategory Enum (i.e. KNX_DPT_1) 
+	 * @return groupDeviceCategory from KnxGroupDeviceCategory Enum (i.e. KNX_DPT_1) 
 	 */
-	public KnxDeviceCategory getDeviceCategory() {
-		return deviceCategory;
+	public KnxGroupDeviceCategory getGroupDeviceCategory() {
+		return groupDeviceCategory;
 	}
 
 	/**
-	 * @return the deviceId
+	 * @return the groupDeviceId
 	 */
-	public String getDeviceId() {
-		return deviceId;
+	public String getGroupDeviceId() {
+		return groupDeviceId;
 	}
 
 //	/**

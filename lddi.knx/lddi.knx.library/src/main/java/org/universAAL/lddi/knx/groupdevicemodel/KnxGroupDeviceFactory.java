@@ -18,32 +18,33 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicemodel;
+package org.universAAL.lddi.knx.groupdevicemodel;
+
 
 /**
- * Factory for KNX devices for each data point type.
+ * Factory for KNX group devices for each data point type.
  * According to spec: "KXN Datapoint Types v1.7.00 AS"
  * 
  * @author Thomas Fuxreiter
  */
-public abstract class KnxDeviceFactory {
+public abstract class KnxGroupDeviceFactory {
 
 	/**
 	 * @param dptMainNumber e.g.: 1
-	 * @return KnxDevice object or null if no implementation for the given datapoint number exists
+	 * @return KnxGroupDevice object or null if no implementation for the given datapoint number exists
 	 */
-	public static KnxDevice getKnxDevice(int dptMainNumber) {
+	public static KnxGroupDevice getKnxGroupDevice(int dptMainNumber) {
 	
     	switch (dptMainNumber) {
-			case 1: return new KnxDpt1Device();
-			case 2: return new KnxDpt2Device();
-			case 3: return new KnxDpt3Device();
-			case 4: return new KnxDpt4Device();
-			case 5: return new KnxDpt5Device();
+			case 1: return new KnxDpt1GroupDevice();
+			case 2: return new KnxDpt2GroupDevice();
+			case 3: return new KnxDpt3GroupDevice();
+			case 4: return new KnxDpt4GroupDevice();
+			case 5: return new KnxDpt5GroupDevice();
 //			case 6: return new KnxDpt6Device();
 //			case 7: return new KnxDpt7Device();
 //			case 8: return new KnxDpt8Device();
-			case 9: return new KnxDpt9Device();
+			case 9: return new KnxDpt9GroupDevice();
 //			case 10: return new KnxDpt10Device();
 //			case 11: return new KnxDpt11Device();
 //			case 12: return new KnxDpt12Device();

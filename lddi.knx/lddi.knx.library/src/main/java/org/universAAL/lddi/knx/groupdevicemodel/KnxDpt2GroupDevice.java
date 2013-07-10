@@ -18,21 +18,21 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicemodel;
+package org.universAAL.lddi.knx.groupdevicemodel;
 
-import org.universAAL.lddi.knx.devicecategory.KnxDpt1;
+import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt2;
 
 /**
- * Concrete implementation of KNX devices for KNX data type 1.***.
+ * Concrete implementation of KNX group devices for KNX data type 2.***.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt1Device extends KnxDevice implements KnxDpt1 {
+public class KnxDpt2GroupDevice extends KnxGroupDevice implements IKnxDpt2 {
 
     /**
      * empty constructor for factory
      */
-    public KnxDpt1Device() {
+    public KnxDpt2GroupDevice() {
     	super(MY_DEVICE_CATEGORY);
     }
 

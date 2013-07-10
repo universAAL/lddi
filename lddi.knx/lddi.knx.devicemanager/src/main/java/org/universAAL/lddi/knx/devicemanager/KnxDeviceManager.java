@@ -41,8 +41,8 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
-import org.universAAL.lddi.knx.devicemodel.KnxDevice;
-import org.universAAL.lddi.knx.devicemodel.KnxDeviceFactory;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDeviceFactory;
 import org.universAAL.lddi.knx.interfaces.IKnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
@@ -64,9 +64,9 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	 * key = groupAddress
 	 * value = org.osgi.framework.ServiceRegistration
 	 */
-	private Map<String,ServiceRegistration> deviceRegistrationList;
+	private Map<String,ServiceRegistration> groupDeviceRegistrationList;
 
-	private Map<String,KnxDevice> deviceList;
+	private Map<String,KnxGroupDevice> groupDeviceList;
 
 	String filterQuery=String.format("(%s=%s)", org.osgi.framework.Constants.OBJECTCLASS,IKnxNetwork.class.getName());
 	private IKnxNetwork network;
@@ -93,8 +93,8 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 		this.network=(IKnxNetwork)this.context.getService(reference);
 
 		// create my lists
-		this.deviceRegistrationList = new HashMap<String,ServiceRegistration>();
-		this.deviceList = new HashMap<String, KnxDevice>();
+		this.groupDeviceRegistrationList = new HashMap<String,ServiceRegistration>();
+		this.groupDeviceList = new HashMap<String, KnxGroupDevice>();
 
 		this.registerManagedService();
 		
@@ -128,14 +128,14 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	 */
 	public void removedService(ServiceReference reference, Object service) {
 		// When knx.networkservice disappears: unregister all my devices
-		if ( this.deviceRegistrationList != null ) {
-			for (ServiceRegistration servReg : this.deviceRegistrationList.values()) {
+		if ( this.groupDeviceRegistrationList != null ) {
+			for (ServiceRegistration servReg : this.groupDeviceRegistrationList.values()) {
 				servReg.unregister();
 			}
 		}
 		//clear lists
-		this.deviceRegistrationList = null;
-		this.deviceList = null;
+		this.groupDeviceRegistrationList = null;
+		this.groupDeviceList = null;
 		
 		this.context.ungetService(reference);
 //		this.unregisterManagedService();
@@ -181,59 +181,61 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 												.toString());
 					}
 					
-					//Step through device list
+					//Step through groupDevice list
 					for ( KnxGroupAddress knxGroupAddress : knxImportedGroupAddresses ) {
 						
 						if ( checkKnxGroupAddress(knxGroupAddress) ) {
 							
-							ServiceRegistration knxGA = this.deviceRegistrationList.get(knxGroupAddress.getGroupAddress());
+							ServiceRegistration knxGA = this.groupDeviceRegistrationList.get(knxGroupAddress.getGroupAddress());
 							if ( knxGA != null ) {
-								// device service is already registered
+								// groupDevice service is already registered
 								// unregister
 								knxGA.unregister();
 								// and delete from list
-								this.deviceRegistrationList.remove(knxGroupAddress.getGroupAddress());
+								this.groupDeviceRegistrationList.remove(knxGroupAddress.getGroupAddress());
 							}
 							
 							int dptMainNumber = Integer.parseInt(knxGroupAddress.getDptMain());
 
-							// create appropriate device from dpt main number
-							KnxDevice knxDevice = KnxDeviceFactory.getKnxDevice(dptMainNumber);
+							// create appropriate groupDevice from dpt main number
+							KnxGroupDevice knxGroupDevice = KnxGroupDeviceFactory.getKnxGroupDevice(dptMainNumber);
 							
-							// startover with next device if no appropriate KnxDevice implementation found!
-							if (knxDevice==null) {
+							// startover with next groupDevice if no appropriate KnxGroupDevice implementation found!
+							if (knxGroupDevice==null) {
 								this.logger.log(LogService.LOG_WARNING, "KNX data type " +
 										knxGroupAddress.getDpt() + " is not supported yet!" +
-										" Skipping device " + knxGroupAddress.getGroupAddress() + "!");
+										" Skipping groupDevice " + knxGroupAddress.getGroupAddress() + "!");
 								continue;
 							}
 							
 							// set instance alive
-							knxDevice.setParams(knxGroupAddress, this.network, this.logger);
+							knxGroupDevice.setParams(knxGroupAddress, this.network, this.logger);
 							
-							// register device in OSGi registry
+							// register groupDevice in OSGi registry
 							Properties propDeviceService=new Properties();
 
 							propDeviceService.put(
 									org.osgi.service.device.Constants.DEVICE_CATEGORY, 
-									knxDevice.getDeviceCategory().toString());
+									knxGroupDevice.getGroupDeviceCategory().toString());
 							// more possible properties: description, serial, id
 							
 							ServiceRegistration deviceServiceReg = this.context.registerService(
-									org.osgi.service.device.Device.class.getName(), knxDevice, 
+									org.osgi.service.device.Device.class.getName(), knxGroupDevice, 
 									propDeviceService);
 							
-							this.logger.log(LogService.LOG_INFO, "Registered KNX device " +
-									knxDevice.getDeviceId() + " (" + knxDevice.getDeviceLocationType() +
-									": " + knxDevice.getDeviceLocation() + ") in OSGi registry under " +
-									"device category: " + knxDevice.getDeviceCategory());
+							this.logger.log(LogService.LOG_INFO, "Registered KNX groupDevice " +
+									knxGroupDevice.getGroupDeviceId() + 
+//									" (" + knxGroupDevice.getDeviceLocationType() +
+//									": " + knxGroupDevice.getDeviceLocation() + ") " +
+									" in OSGi registry under groupDevice category: " + 
+									knxGroupDevice.getGroupDeviceCategory());
 							
-							// save this device registration to my list
-							this.deviceRegistrationList.put(knxGroupAddress.getGroupAddress(),deviceServiceReg);
-							this.deviceList.put(knxGroupAddress.getGroupAddress(), knxDevice);
+							// save this groupDevice registration to my list
+							this.groupDeviceRegistrationList.put(knxGroupAddress.getGroupAddress(),deviceServiceReg);
+							this.groupDeviceList.put(knxGroupAddress.getGroupAddress(), knxGroupDevice);
 							
 						} else {
-							this.logger.log(LogService.LOG_ERROR, "KNX device with group address " +
+							this.logger.log(LogService.LOG_ERROR, "KNX groupDevice with group address " +
 									knxGroupAddress.getGroupAddress() + " has incorrect DPT property.");
 						}
 					}
@@ -274,29 +276,29 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	}
 
 	/**
-	 * remove all device references in network driver
+	 * remove all groupDevice references in network driver
 	 */
 	public void stop() {
 		
 		//this.unregisterManagedService();	is done automatically during bundle stop
 
-		if ( this.deviceList != null ) {
-			Iterator<String> it = this.deviceList.keySet().iterator();
+		if ( this.groupDeviceList != null ) {
+			Iterator<String> it = this.groupDeviceList.keySet().iterator();
 			while ( it.hasNext() ) {
-				String deviceId = it.next();
-				KnxDevice dev = this.deviceList.get(deviceId);
-				this.network.removeDevice(deviceId, dev);
+				String groupDeviceId = it.next();
+				KnxGroupDevice dev = this.groupDeviceList.get(groupDeviceId);
+				this.network.removeGroupDevice(groupDeviceId, dev);
 				//this.deviceList.remove(deviceId);
 				
 				//unregister service from OSGI registry
-				this.deviceRegistrationList.get(deviceId).unregister();
-				this.deviceRegistrationList.remove(deviceId);
+				this.groupDeviceRegistrationList.get(groupDeviceId).unregister();
+				this.groupDeviceRegistrationList.remove(groupDeviceId);
 			}
-			this.deviceList.clear();
-			this.deviceRegistrationList.clear();
+			this.groupDeviceList.clear();
+			this.groupDeviceRegistrationList.clear();
 		}
 //		if (this.deviceList.size() != 0 || !this.deviceList.isEmpty())
-//			this.logger.log(LogService.LOG_WARNING, "deviceList is not empty after stopping DevMan! Still count "
+//			this.logger.log(LogService.LOG_WARNING, "groupDeviceList is not empty after stopping DevMan! Still count "
 //					+ this.deviceList.size() + " devices");
 
 	}

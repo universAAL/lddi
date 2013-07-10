@@ -21,7 +21,7 @@
 package org.universAAL.lddi.knx.interfaces;
 
 import org.osgi.service.log.LogService;
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
 
 /**
  * Applications using KNXDriver should implement this IF to get event messages.
@@ -31,9 +31,9 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
 public interface IKnxDriverClient {
 	
 	/** couple KNX driver to upper layer */
-	public void addDriver(String deviceId, KnxDeviceCategory deviceCategory,
+	public void addDriver(String deviceId, KnxGroupDeviceCategory groupDeviceCategory,
 			KnxDriver knxDriver);
-	public void removeDriver(String deviceId, KnxDriver knxDriver);
+	public void removeDriver(String groupDeviceId, KnxDriver knxDriver);
 	public LogService getLogger();
 	
 
@@ -41,21 +41,21 @@ public interface IKnxDriverClient {
 	 * get event message from underlying devices
 	 * with bool value
 	 */
-	public void incomingSensorEvent(String deviceId, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, boolean value);
 
 	/**
 	 * get event message from underlying devices
 	 * with String (code)
 	 */
-	public void incomingSensorEvent(String deviceId, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, String code);
 
 	/**
 	 * get event message from underlying devices
 	 * with float value
 	 */
-	public void incomingSensorEvent(String deviceId, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, float value);
 
 	

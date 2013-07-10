@@ -18,17 +18,17 @@
      limitations under the License.
  */
 
-package org.universAAL.lddi.knx.devicecategory;
+package org.universAAL.lddi.knx.groupdevicecategory;
 
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
 
 /**
- * Base DeviceCategory for KNX datapoint type U8 (8-Bit Unsigned Value).
+ * Base GroupDeviceCategory for KNX datapoint type U8 (8-Bit Unsigned Value).
  * Possible values are from 0 - 255.
  * 
- * In general DeviceCategories specify: - rules and interfaces needed for the
- * communication between device service and driver service. Both of them
- * implement this IF.
+ * In general GroupDeviceCategories specify: - rules and interfaces needed for
+ * the communication between OSGi groupDevice service and driver service. Both of
+ * them (groupDevice and driver) implement this IF.
  * 
  * - a set of service registration properties, their data types and semantics
  * (mandatory or optional)
@@ -37,18 +37,16 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt5
-// extends KnxBaseDeviceCategory
-{
+public interface IKnxDpt5 {
 
-	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_5;
-	// public static String MY_DEVICE_CATEGORY = "KnxDpt5";
+	public static KnxGroupDeviceCategory MY_DEVICE_CATEGORY = KnxGroupDeviceCategory.KNX_DPT_5;
+	// public static String MY_DEVICE_CATEGORY = "IKnxDpt5";
 
 	// from OSGi DAS Spec
 	public static int MATCH_SERIAL = 10; // an exact match including the serial
-											// number
+	// number
 	public static int MATCH_VERSION = 8; // matches the right class, make model
-											// and version
+	// and version
 	public static int MATCH_MODEL = 6; // matches the right class and make model
 	public static int MATCH_MAKE = 4; // matches the make
 	public static int MATCH_CLASS = 2; // only matches the class
@@ -57,7 +55,7 @@ public interface KnxDpt5
 	// this data may not be available from ETS4 import!
 	public static String CLASS = "-"; // class description
 	public static String MODEL = "-"; // definition of the model, e.g. audio,
-										// video, serial
+	// video, serial
 	public static String MANUFACTURER = "-";
 	public static String REVISION = "-";
 	public static String SERIAL = "-";
@@ -71,13 +69,13 @@ public interface KnxDpt5
 	 * 5.001 - DPT_Scaling From 0 - 100% - This gives a resolution of about 0,4%
 	 * (100 / 256 = 0,390625) 80h = 50%; FFh = 100%
 	 */
-	public static float RESOLUTION_5_001 = (float)100 / 256;
+	public static float RESOLUTION_5_001 = (float) 100 / 256;
 
 	/**
 	 * 5.003 - DPT_Angle From 0 - 360°- This gives a resolution of about 1,4°
 	 * (360 / 256 = 1,40625)
 	 */
-	public static float RESOLUTION_5_003 = (float)360 / 256;
+	public static float RESOLUTION_5_003 = (float) 360 / 256;
 
 	/**
 	 * 5.004 - DPT_Percent_U8 From 0 - 255% !! - Resolution is 1 32h = 50%; 64h

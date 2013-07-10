@@ -18,19 +18,19 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicecategory;
+package org.universAAL.lddi.knx.groupdevicecategory;
 
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
  
  /**
-  * Definition of main device categories in KNX.
+  * Definition of main groupDevice categories in KNX.
   * According to spec: "KXN Datapoint Types v1.7.00 AS"
   * 
   * @author Thomas Fuxreiter (foex@gmx.at)
   */
-public abstract class KnxDeviceCategoryUtil {
+public abstract class KnxGroupDeviceCategoryUtil {
 
 	/**
 	 * convert String to enum item
@@ -38,10 +38,10 @@ public abstract class KnxDeviceCategoryUtil {
 	 * @param str
 	 * @return enum item
 	 */
-    public static KnxDeviceCategory toKnxDevice(String str)
+    public static KnxGroupDeviceCategory toKnxGroupDevice(String str)
     {
         try {
-            return KnxDeviceCategory.valueOf(str);
+            return KnxGroupDeviceCategory.valueOf(str);
         } 
         catch (Exception ex) {
             return null;
@@ -49,9 +49,9 @@ public abstract class KnxDeviceCategoryUtil {
     }
     
     /**
-     * device category format according to KNX spec.
+     * groupDevice category format according to KNX spec.
      */
-    public enum KnxDeviceCategory {
+    public enum KnxGroupDeviceCategory {
     	KNX_DPT_1(1),
     	KNX_DPT_2(2),
     	KNX_DPT_3(3),
@@ -124,15 +124,15 @@ public abstract class KnxDeviceCategoryUtil {
 
     	private int typecode;
     	
-    	private static final Map<Integer,KnxDeviceCategory> lookup = 
-    		new HashMap<Integer,KnxDeviceCategory>();
+    	private static final Map<Integer,KnxGroupDeviceCategory> lookup = 
+    		new HashMap<Integer,KnxGroupDeviceCategory>();
         
     	static {
-            for(KnxDeviceCategory s : EnumSet.allOf(KnxDeviceCategory.class))
+            for(KnxGroupDeviceCategory s : EnumSet.allOf(KnxGroupDeviceCategory.class))
                  lookup.put(s.getTypeCode(), s);
         }
         
-    	private KnxDeviceCategory(int typecode) {
+    	private KnxGroupDeviceCategory(int typecode) {
     		this.typecode = typecode;
     	}
     	
@@ -140,7 +140,7 @@ public abstract class KnxDeviceCategoryUtil {
     		return typecode;
     	}
     	
-        public static KnxDeviceCategory get(int code) { 
+        public static KnxGroupDeviceCategory get(int code) { 
             return lookup.get(code); 
         }
     }

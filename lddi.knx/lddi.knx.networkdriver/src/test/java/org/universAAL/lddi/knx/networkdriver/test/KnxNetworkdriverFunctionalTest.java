@@ -149,7 +149,7 @@
 //		Activator.networkDriver.requestState("0/0/2");
 //		wait1s();
 //
-//		//requests to knx device address directly gives no response!!
+//		//requests to knx groupDevice address directly gives no response!!
 //		//Activator.networkDriver.requestState("1.1.5");
 //	}
 //	

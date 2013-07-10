@@ -18,12 +18,13 @@
      limitations under the License.
 */
 
-package org.universAAL.lddi.knx.devicecategory;
+package org.universAAL.lddi.knx.groupdevicecategory;
 
-import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCategory;
+import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.KnxGroupDeviceCategory;
+
 
 /**
- * Base DeviceCategory for KNX datapoint type B1U3 (4-Bit). Possible values are
+ * Base GroupDeviceCategory for KNX datapoint type B1U3 (4-Bit). Possible values are
  * Bit 4: c = {0,1} (Decrease, Increase).
  * 
  * Bit 1-3: StepCode = {000b ... 111b} (The amount of intervals into which the
@@ -35,8 +36,8 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
 
  * 000b:  Break 
  * 
- * In general DeviceCategories specify: - rules and interfaces needed for the
- * communication between device service and driver service. Both of them
+ * In general GroupDeviceCategories specify: 
+ * - rules and interfaces needed for the communication between OSGi groupDevice service and driver service. Both of them (groupDevice and driver) 
  * implement this IF.
  * 
  * - a set of service registration properties, their data types and semantics
@@ -46,12 +47,11 @@ import org.universAAL.lddi.knx.devicecategory.KnxDeviceCategoryUtil.KnxDeviceCat
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface KnxDpt3
-//extends KnxBaseDeviceCategory 
+public interface IKnxDpt3
 {
 
-	public static KnxDeviceCategory MY_DEVICE_CATEGORY = KnxDeviceCategory.KNX_DPT_3; 
-//    public static String MY_DEVICE_CATEGORY = "KnxDpt3";
+	public static KnxGroupDeviceCategory MY_DEVICE_CATEGORY = KnxGroupDeviceCategory.KNX_DPT_3; 
+//    public static String MY_DEVICE_CATEGORY = "IKnxDpt3";
 
     // from OSGi DAS Spec
     public static int MATCH_SERIAL = 10; // an exact match including the serial

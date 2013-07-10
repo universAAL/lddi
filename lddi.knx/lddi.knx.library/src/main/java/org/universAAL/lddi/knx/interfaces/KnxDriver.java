@@ -20,19 +20,19 @@
 
 package org.universAAL.lddi.knx.interfaces;
 
-import org.universAAL.lddi.knx.devicemodel.KnxDevice;
+import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice;
 
 /**
  * This abstract class is designed to help developing a knx driver.
- * It stores information about the coupled device.
- * It provides an service tracker for the attached device service.
+ * It stores information about the coupled groupDevice.
+ * It provides an service tracker for the attached groupDevice service.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public abstract class KnxDriver {
 	
-	// the device I am driving
-	protected KnxDevice device;
+	// the groupDevice I am driving
+	protected KnxGroupDevice groupDevice;
 
 	/** upper layer instance */
 	protected IKnxDriverClient client; //->uAAL bus/exporter 
@@ -45,35 +45,35 @@ public abstract class KnxDriver {
 	}
 	
 	/**
-	 * store the device
-	 * link this driver to the device
-	 * @param the device to set
+	 * store the groupDevice
+	 * link this driver to the groupDevice
+	 * @param the groupDevice to set
 	 */
-	public final boolean setDevice(KnxDevice device) {
-		this.device = device;
+	public final boolean setgroupDevice(KnxGroupDevice groupDevice) {
+		this.groupDevice = groupDevice;
 
 		// add connected driver to driverList in client, if available
 		if ( this.client != null )
-			this.client.addDriver(this.device.getDeviceId(), this.device.getDeviceCategory(), this);
+			this.client.addDriver(this.groupDevice.getGroupDeviceId(), this.groupDevice.getGroupDeviceCategory(), this);
 		
 		return attachDriver();
 	}
 	
 	/**
- 	 * coupling this driver to device reference
- 	 * method is abstract because of cast to device category IF
+ 	 * coupling this driver to groupDevice reference
+ 	 * method is abstract because of cast to groupDevice category IF
 	 * @param id
 	 */
 	//protected abstract boolean attachDriver();
 	
 	
 	/**
- 	 * coupling this driver to device reference
+ 	 * coupling this driver to groupDevice reference
 	 * @param id
 	 */
 	protected boolean attachDriver() {
-		if (this.device != null) {
-			this.device.addDriver( (IKnxReceiveMessage) this);
+		if (this.groupDevice != null) {
+			this.groupDevice.addDriver( (IKnxReceiveMessage) this);
 			return true;
 		} else {
 			return false;
@@ -81,21 +81,21 @@ public abstract class KnxDriver {
 	}
 	
 	/**
-	 * decoupling this driver from device reference
+	 * decoupling this driver from groupDevice reference
 	 */
 	public final void detachDriver() {
-		if (this.device != null)
-			this.device.removeDriver();
+		if (this.groupDevice != null)
+			this.groupDevice.removeDriver();
 	}
 	
 	/**
 	 * Remove this driver from the driver list in knx network driver
 	 * 
-	 * @param device the device to remove
+	 * @param groupDevice the groupDevice to remove
 	 */
 	public final void removeDriver() {
 		// remove driver from driverList in my consuming client
-		this.client.removeDriver(this.device.getDeviceId(), this);
+		this.client.removeDriver(this.groupDevice.getGroupDeviceId(), this);
 	}
 	
     /**
