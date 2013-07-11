@@ -203,7 +203,7 @@ public class KnxDpt1RefinementDriver implements Driver
 		KnxGroupDeviceCategory groupDeviceCategory = null;
 
 		try {
-			groupDeviceCategory = KnxGroupDeviceCategoryUtil.toKnxGroupDevice(
+			groupDeviceCategory = KnxGroupDeviceCategoryUtil.getCategory(
 					(String)reference.getProperty(Constants.DEVICE_CATEGORY)	);
 		} catch (ClassCastException e) {
 			this.logger.log(LogService.LOG_DEBUG, "Could not cast DEVICE_CATEGORY of requesting" +

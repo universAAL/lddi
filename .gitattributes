@@ -847,6 +847,7 @@ lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/Activa
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/DeviceOntologyTypeUtil.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxContextPublisher.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxManager.java -text
+lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxServiceProvider.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxToDeviceOntologyMappingFactory.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/util/LogTracker.java -text
 lddi.knx/lddi.knx.exporter/src/test/java/org/universAAL/lddi/knx/driver/KnxDpt9InstanceTest.java -text
@@ -872,6 +873,7 @@ lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/groupdevicemodel
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/IKnxDriverClient.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/IKnxNetwork.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/IKnxReceiveMessage.java -text
+lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/IKnxSendMessage.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/interfaces/KnxDriver.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/library/utils/LogTracker.java -text
 lddi.knx/lddi.knx.library/src/main/java/org/universAAL/lddi/knx/utils/KnxCommand.java -text

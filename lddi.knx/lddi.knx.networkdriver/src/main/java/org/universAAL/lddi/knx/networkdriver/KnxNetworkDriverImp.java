@@ -35,6 +35,7 @@ import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice;
 import org.universAAL.lddi.knx.interfaces.IKnxNetwork;
 import org.universAAL.lddi.knx.utils.KnxCommand;
+import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
  * KnxNetworkDriverImp is the main class of this bundle. It registers as a
@@ -166,7 +167,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 		if (this.groupDeviceList.containsKey(groupAddress)) {
 			synchronized (this.groupDeviceList) {
 				for (KnxGroupDevice device : this.groupDeviceList.get(groupAddress)) {
-					device.newMessageFromHouse(groupAddress, event);
+					device.newMessageFromKnxBus(event);
 				}
 			}
 		} else {
@@ -322,6 +323,27 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	 */
 	public void setMulticastUdpPort(int multicastUdpPort) {
 		this.multicastUdpPort = multicastUdpPort;
+	}
+
+	/** {@inheritDoc} */
+	public void sendMessageToKnxBus(String groupDeviceId, byte[] event) {
+		this.logger.log(LogService.LOG_INFO,
+				"Got new payload " + KnxEncoder.convertToReadableHex(event) + 
+				" for groupDevice " + groupDeviceId + ". Send it to KNX Bus.");
+
+		// TODO: send message to knx bus
+		// for now use boolean (dpt1) method
+		// extend send methods to use byte[] !!
+		
+		if ( event[0] == 0x0 ) {
+			this.sendCommand(groupDeviceId, false, KnxCommand.VALUE_WRITE);
+		} else if ( event[0] == 0x1 ) {
+			this.sendCommand(groupDeviceId, true, KnxCommand.VALUE_WRITE);
+		} else {
+			this.logger.log(LogService.LOG_ERROR, "Event is wheter 0 nor 1. Not sending to KNX bus! " + 
+					groupDeviceId);
+		}
+		
 	}
 
 }

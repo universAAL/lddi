@@ -21,14 +21,13 @@
 package org.universAAL.lddi.knx.interfaces;
 
 /**
- * Define receive methods for messages from knx bus.
+ * Define send methods for messages to knx bus.
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface IKnxReceiveMessage {
-	/***
-	 * Receive low level messages from the knx bus
+public interface IKnxSendMessage {
+	/**
+	 * Send message to the knx bus
 	 * @param event the status/event byte of the knx telegram
 	 */
-	public void newMessageFromKnxBus( byte[] event );
-
+	public void sendMessageToKnxBus( byte[] event );
 }

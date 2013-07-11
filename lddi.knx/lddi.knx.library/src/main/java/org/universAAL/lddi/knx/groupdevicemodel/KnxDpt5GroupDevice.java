@@ -62,7 +62,11 @@ public class KnxDpt5GroupDevice extends KnxGroupDevice implements IKnxDpt5 {
 		default:
 			return 0f;
 		}
-		
 	}
 
+	
+	public static byte[] createPayloadFromFloatValue(float value) {
+		
+		return null;
+	}
 }

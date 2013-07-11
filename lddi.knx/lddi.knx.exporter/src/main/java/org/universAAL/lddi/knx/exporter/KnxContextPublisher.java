@@ -79,7 +79,7 @@ public class KnxContextPublisher {
 				.setProvidedEvents(new ContextEventPattern[] { new ContextEventPattern() });
 		cp = new DefaultContextPublisher(mc, info);
 
-		knxManager.addListener(this);
+		knxManager.addContextListener(this);
 
 		LogUtils.logDebug(mc, KnxContextPublisher.class, "Constructor",
 				new Object[] { "Activated KNX ContextEvent Patterns" }, null);

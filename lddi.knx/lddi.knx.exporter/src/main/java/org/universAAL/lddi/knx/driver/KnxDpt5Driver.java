@@ -105,7 +105,7 @@ public class KnxDpt5Driver implements Driver {
 
 		try {
 			groupDeviceCategory = KnxGroupDeviceCategoryUtil
-					.toKnxGroupDevice((String) reference
+					.getCategory((String) reference
 							.getProperty(Constants.DEVICE_CATEGORY));
 		} catch (ClassCastException e) {
 			this.logger.log(LogService.LOG_DEBUG,

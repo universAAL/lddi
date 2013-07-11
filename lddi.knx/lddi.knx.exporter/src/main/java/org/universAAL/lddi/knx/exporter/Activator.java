@@ -38,6 +38,7 @@ public class Activator implements BundleActivator {
 	public static BundleContext context = null;
     public static ModuleContext mc = null;
     private KnxManager knxManager;
+	private KnxServiceProvider serviceProvider;
     private LogTracker logTracker;
 	private Thread thread;
 	
@@ -60,6 +61,7 @@ public class Activator implements BundleActivator {
 	}
 
 	public void stop(BundleContext arg0) throws Exception {
+		serviceProvider.stop();
 		thread.interrupt();
 	}
 	
@@ -72,7 +74,7 @@ public class Activator implements BundleActivator {
 		public MyThread() {
 		}
 		public void run() {
-//				new KnxServiceProvider(mc, knxManager);
+				serviceProvider = new KnxServiceProvider(mc, knxManager);
 				new KnxContextPublisher(mc, knxManager);
 		}
 	}
