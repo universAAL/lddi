@@ -66,4 +66,9 @@ public class KnxDpt9GroupDevice extends KnxGroupDevice implements IKnxDpt9 {
 		return result;
 	}
 	
+	
+	public static byte[] createPayloadFromFloatValue(float value) {
+		
+		return null;
+	}
 }

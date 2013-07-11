@@ -38,7 +38,7 @@ public abstract class KnxGroupDeviceCategoryUtil {
 	 * @param str
 	 * @return enum item
 	 */
-    public static KnxGroupDeviceCategory toKnxGroupDevice(String str)
+    public static KnxGroupDeviceCategory getCategory(String str)
     {
         try {
             return KnxGroupDeviceCategory.valueOf(str);

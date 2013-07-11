@@ -31,6 +31,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
 import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 import org.universAAL.lddi.knx.driver.KnxDpt1Driver;
+import org.universAAL.lddi.knx.driver.KnxDpt1Instance;
 import org.universAAL.lddi.knx.driver.KnxDpt3Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt5Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt9Driver;
@@ -39,6 +40,9 @@ import org.universAAL.lddi.knx.exporter.util.LogTracker;
 /**
  * Instantiates KNX drivers from KNX library.
  * The drivers call back and register themselves in the driverList.
+ * Just passing the incoming sensor value to uAAL-MW related class (-> context publisher)
+ * and vice versa, from uAAL service provider to KNX driver.
+ * No storage of events in this class!
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -47,13 +51,14 @@ public class KnxManager implements IKnxDriverClient {
 	private BundleContext context;
 	private LogService logger;
 	
-    private ArrayList<KnxContextPublisher> listeners = new ArrayList<KnxContextPublisher>();
+    private ArrayList<KnxContextPublisher> contextListeners = new ArrayList<KnxContextPublisher>();
+    private ArrayList<KnxServiceProvider> serviceListeners = new ArrayList<KnxServiceProvider>();
 
 	/**
-	 * stores the activityHubInstance (there should be just one!) for each deviceId.
+	 * stores the knxInstance (there should be just one!) for each groupDeviceId.
 	 * 
-	 * key = deviceId
-	 * value = ActivityHubDriver
+	 * key = groupDeviceId
+	 * value = KnxDriver
 	 */
 	private Map<String, KnxDriver> driverList;
 	
@@ -87,77 +92,112 @@ public class KnxManager implements IKnxDriverClient {
 	}
 
 
+	
 	/**
-	 * Just passing the incoming sensor value to uAAL-MW related class (-> context provider).
-	 * No storage of event here!
-	 * 
-	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
-	 * @param datapointType (i.e. 1.001)
-	 * @param value (on/off)
-	 * 
+	 * {@inheritDoc}
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
-	public void incomingSensorEvent(String deviceGroupAddress, int datapointTypeMainNubmer, 
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, boolean value) {
 		
 		this.logger.log(LogService.LOG_INFO, "Client received sensor event: " + value);
 		
-		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
-			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
+		for (Iterator<KnxContextPublisher> i = contextListeners.iterator(); i.hasNext();)
+			((KnxContextPublisher) i.next()).publishKnxEvent(groupDeviceId, 
 					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
 		
-		if (listeners.isEmpty())
-			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + deviceGroupAddress);
+		if (contextListeners.isEmpty())
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + groupDeviceId);
 
 	}
-
 	/**
-	 * Just passing the incoming sensor code to uAAL-MW related class (-> context provider).
-	 * No storage of event here!
-	 * 
-	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
-	 * @param datapointType (i.e. 9.001)
-	 * @param code static string from KNX specification (e.g. decrease, increase, up, down, break)
-	 * 
+	 * {@inheritDoc} 
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
-	public void incomingSensorEvent(String deviceGroupAddress, int datapointTypeMainNubmer, 
+	public void sendSensorEvent(String groupDeviceId, boolean value) {
+	
+		KnxDriver knxdriver = null;
+		synchronized(this.driverList)
+		{
+			knxdriver = this.driverList.get(groupDeviceId);
+		}
+		if ( knxdriver == null ){
+			this.logger.log(LogService.LOG_WARNING, "No KnxDriver available for " +
+					groupDeviceId + ". Cannot forward event " + value + " to KNX bus!");
+		} else {
+			// call sendMessage on driver
+			KnxDpt1Instance driverInstance;
+			try {
+				driverInstance = (KnxDpt1Instance) knxdriver;
+			} catch (ClassCastException e) {
+				this.logger.log(LogService.LOG_ERROR, "Datatype DPT1 (boolean) doesn't suit for groupDevice " +
+						groupDeviceId + "! Cannot forward event " + value + " to KNX bus!");
+				return;
+			}
+			
+			// forward message to driver
+			if (driverInstance != null)
+				driverInstance.sendMessageToKnxBus(value);
+		}
+	}
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
+	 */
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, String code) {
 		
 		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + code);
 		
-		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
-			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
+		for (Iterator<KnxContextPublisher> i = contextListeners.iterator(); i.hasNext();)
+			((KnxContextPublisher) i.next()).publishKnxEvent(groupDeviceId, 
 					datapointTypeMainNubmer, datapointTypeSubNubmer, code);
 
-		if (listeners.isEmpty())
-			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + deviceGroupAddress);
+		if (contextListeners.isEmpty())
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + groupDeviceId);
 
 	}
-	
 	/**
-	 * Just passing the incoming sensor value to uAAL-MW related class (-> context provider).
-	 * No storage of event here!
-	 * 
-	 * @param deviceGroupAddress (e.g. knx group address 1/2/3)
-	 * @param datapointType (i.e. 9.001; 5.001)
-	 * @param value (i.e. temperature value; dimming percentage)
-	 * 
+	 * {@inheritDoc} 
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
-	public void incomingSensorEvent(String deviceGroupAddress, int datapointTypeMainNubmer, 
+	public void sendSensorEvent(String groupDeviceId, String code) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	/**
+	 * {@inheritDoc}
+	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
+	 */
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, 
 			int datapointTypeSubNubmer, float value) {
 		
 		this.logger.log(LogService.LOG_DEBUG, "Client received sensor event: " + value);
 		
-		for (Iterator<KnxContextPublisher> i = listeners.iterator(); i.hasNext();)
-			((KnxContextPublisher) i.next()).publishKnxEvent(deviceGroupAddress, 
+		for (Iterator<KnxContextPublisher> i = contextListeners.iterator(); i.hasNext();)
+			((KnxContextPublisher) i.next()).publishKnxEvent(groupDeviceId, 
 					datapointTypeMainNubmer, datapointTypeSubNubmer, value);
 
-		if (listeners.isEmpty())
-			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + deviceGroupAddress);
+		if (contextListeners.isEmpty())
+			this.logger.log(LogService.LOG_WARNING, "No context providers available for KNX groupDevice " + groupDeviceId);
 
 	}
+	/**
+	 * {@inheritDoc} 
+	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
+	 */
+	public void sendSensorEvent(String groupDeviceId, float value) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	
 	
 	/** {@inheritDoc} */
@@ -190,23 +230,40 @@ public class KnxManager implements IKnxDriverClient {
 	 * store listener for context bus connection.
 	 * @param knxContextPublisher
 	 */
-	public void addListener(KnxContextPublisher knxContextPublisher) {
-		listeners.add(knxContextPublisher);
+	public void addContextListener(KnxContextPublisher knxContextPublisher) {
+		contextListeners.add(knxContextPublisher);
 	}
 
 	/**
 	 * remove listener for context bus connection.
 	 * @param knxContextPublisher
 	 */
-	public void removeListener(KnxContextPublisher knxContextPublisher) {
-		listeners.remove(knxContextPublisher);
+	public void removeContextListener(KnxContextPublisher knxContextPublisher) {
+		contextListeners.remove(knxContextPublisher);
 	}
 	
+	
+	/**
+	 * store listener for service bus connection.
+	 * @param knxServiceProvider
+	 */
+	public void addServiceProvider(KnxServiceProvider knxServiceProvider) {
+		serviceListeners.add(knxServiceProvider);
+	}
+
+	/**
+	 * remove listener for service bus connection.
+	 * @param knxServiceProvider
+	 */
+	public void removeServiceProvider(KnxServiceProvider knxServiceProvider) {
+		serviceListeners.remove(knxServiceProvider);
+	}
+	
+
 	/* (non-Javadoc)
 	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient#getLogger()
 	 */
 	public LogService getLogger() {
 		return this.logger;
 	}
-
 }

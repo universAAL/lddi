@@ -28,6 +28,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt1;
 import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt1GroupDevice;
 import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
+import org.universAAL.lddi.knx.interfaces.IKnxSendMessage;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
 
 /**
@@ -41,7 +42,7 @@ import org.universAAL.lddi.knx.interfaces.KnxDriver;
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt1Instance extends KnxDriver implements IKnxDpt1, IKnxReceiveMessage,
+public class KnxDpt1Instance extends KnxDriver implements IKnxDpt1, IKnxReceiveMessage, 
 ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
@@ -115,7 +116,7 @@ ServiceTrackerCustomizer, Constants {
 
 
 	/**
-	 * Calculate readable measurement value from given byte array according to KNX DPT 9.
+	 * Calculate readable measurement value (boolean) from given byte array according to KNX DPT 1.
 	 * Call client.
 	 * 
 	 * @see org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage#newMessageFromKnxBus(byte[])
@@ -127,7 +128,7 @@ ServiceTrackerCustomizer, Constants {
 				" received new knx message " + Integer.toHexString(event[0]) );
 
 		/**
-		 * KNX datapoint type 1.*** is a 1-bit signal; therefore only on/off is forwarded to ISO devices!  
+		 * KNX datapoint type 1.*** is a 1-bit signal; therefore only on/off is forwarded
 		 */
 		if ( event[0] == DEFAULT_VALUE_OFF ) {
 			this.client.incomingSensorEvent( this.groupDevice.getGroupAddress(), 
@@ -142,6 +143,23 @@ ServiceTrackerCustomizer, Constants {
 					" from groupDevice " + this.groupDevice.getGroupAddress());
 			return;
 		}
+		
+	}
+
+	/**
+	 * Transfer boolean event to KNX byte array (payload).
+	 * Call driver.
+	 */
+	public void sendMessageToKnxBus(boolean event) {
+		
+		byte value = (byte) (event ? 1 : 0);
+		
+		this.logger.log(LogService.LOG_INFO, "Driver " + IKnxDpt1.MY_DEVICE_CATEGORY + 
+				" sends new knx message " + value + " to groupDevice " + 
+				this.groupDevice.getGroupAddress() + " (with knx datapoint type " + 
+				this.groupDevice.getDatapointType() + ")");
+		
+		this.groupDevice.sendMessageToKnxBus( new byte[] {value} );
 		
 	}
 
