@@ -19,10 +19,9 @@ public class KnxServiceProvider {
 
 		this.knxManager = knxManager;
 
-		// start uAAL service provider
+		// start simulator
 		this.myThread = new MyThread();
-//		thread = new Thread(runnable);
-		myThread.start();
+//		myThread.start();
 	}
 
 	/**
