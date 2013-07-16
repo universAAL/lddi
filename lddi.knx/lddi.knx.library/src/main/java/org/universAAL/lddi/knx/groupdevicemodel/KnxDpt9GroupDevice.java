@@ -45,12 +45,12 @@ public class KnxDpt9GroupDevice extends KnxGroupDevice implements IKnxDpt9 {
      * FloatValue = (0,01*M)*2(E)
      * E = [0 … 15]
      * M = [-2 048 … 2 047], two’s complement notation
+     * 
 	 */
 	public static float calculateFloatValue(byte[] payload) {
 		// there are 3 bytes payload for a temperature event where the last 2 are important
-		// the first seems always to be 80!?
-		byte MSB = payload[0]; 
-		byte LSB = payload[1];
+		byte MSB = payload[1]; 
+		byte LSB = payload[2];
 		
 		byte M_MSB = (byte) (MSB & 0x87);
 		byte M_LSB = (byte) (LSB & 0xFF);

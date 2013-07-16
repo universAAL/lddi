@@ -82,8 +82,8 @@ public interface IKnxDpt9
 	
 	// constants for specific dpt9 devices
 	/** 9.001 - DPT_Value_Temp
-	 * From -273°C - 670760°C - Resolution: 0,01°C
+	 * From -273°C to +670760°C - Resolution: 0,01°C
 	 */
-	public static short RESOLUTION_9_001 =  1/100;
+	public static float RESOLUTION_9_001 =  (float) 1/100;
 	
 }

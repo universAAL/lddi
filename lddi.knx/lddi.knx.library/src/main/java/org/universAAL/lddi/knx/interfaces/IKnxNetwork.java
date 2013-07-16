@@ -42,7 +42,7 @@ public interface IKnxNetwork {
 	/**
 	 * Sending KNX message to KNX bus.
 	 * @param groupDeviceId KNX group address (e.g. 1/2/3)
-	 * @param event payload
+	 * @param event payload starting with apci/data byte!
 	 */
 	public void sendMessageToKnxBus(String groupDeviceId, byte[] event);
 	public void requestState(String groupDeviceId);

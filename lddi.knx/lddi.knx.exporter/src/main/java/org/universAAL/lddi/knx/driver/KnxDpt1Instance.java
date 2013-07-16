@@ -152,7 +152,9 @@ ServiceTrackerCustomizer, Constants {
 	 */
 	public void sendMessageToKnxBus(boolean event) {
 		
-		byte value = (byte) (event ? 1 : 0);
+		byte value;// = (byte) (event ? 1 : 0);
+		if (event) value = DEFAULT_VALUE_ON;
+		else value = DEFAULT_VALUE_OFF;
 		
 		this.logger.log(LogService.LOG_INFO, "Driver " + IKnxDpt1.MY_DEVICE_CATEGORY + 
 				" sends new knx message " + value + " to groupDevice " + 

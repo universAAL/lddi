@@ -97,7 +97,7 @@ public interface IKnxDpt5 {
 	 * 5.006 - DPT_Tariff This DPT shall be used for reading and setting tariff
 	 * information. A large number of different tariffs are defined and these
 	 * are specific to the country and even to the supplier. Therefore, the
-	 * mapping between a tariff and this DPT is not standardised. For usability
+	 * mapping between a tariff and this DPT is not standardized. For usability
 	 * and interpretability of the tariff information by the end user, the
 	 * product description should give clear information about this mapping
 	 */

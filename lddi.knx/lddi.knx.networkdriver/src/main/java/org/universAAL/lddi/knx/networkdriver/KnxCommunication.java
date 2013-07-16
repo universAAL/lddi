@@ -141,17 +141,23 @@ public class KnxCommunication
 		this.reader.stopReader();
 	}
 
-	public void sendCommand(String device, boolean command) {
-		this.writer.write(device, command);
-		
-	}
 
 	public void readState(String deviceId) {
 		this.writer.requestDeviceStatus(deviceId);
 		
 	}
 
-	public void sendCommand(String device, boolean command, KnxCommand commandType) {
+//	public void sendCommand(String device, boolean command) {
+//		this.writer.write(device, command);
+//		
+//	}
+//	
+//	public void sendCommand(String device, boolean command, KnxCommand commandType) {
+//		this.writer.write(device, command, commandType);
+//		
+//	}
+	
+	public void sendCommand(String device, byte[] command, KnxCommand commandType) {
 		this.writer.write(device, command, commandType);
 		
 	}
