@@ -34,7 +34,9 @@ import org.universAAL.lddi.knx.driver.KnxDpt1Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt1Instance;
 import org.universAAL.lddi.knx.driver.KnxDpt3Driver;
 import org.universAAL.lddi.knx.driver.KnxDpt5Driver;
+import org.universAAL.lddi.knx.driver.KnxDpt5Instance;
 import org.universAAL.lddi.knx.driver.KnxDpt9Driver;
+import org.universAAL.lddi.knx.driver.KnxDpt9Instance;
 import org.universAAL.lddi.knx.exporter.util.LogTracker;
 
 /**
@@ -192,9 +194,48 @@ public class KnxManager implements IKnxDriverClient {
 	 * {@inheritDoc} 
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
-	public void sendSensorEvent(String groupDeviceId, float value) {
-		// TODO Auto-generated method stub
+	public void sendSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, 
+			int datapointTypeSubNubmer, float value) {
 		
+		KnxDriver knxdriver = null;
+		synchronized(this.driverList)
+		{
+			knxdriver = this.driverList.get(groupDeviceId);
+		}
+		if ( knxdriver == null ){
+			this.logger.log(LogService.LOG_WARNING, "No KnxDriver available for " +
+					groupDeviceId + ". Cannot forward event " + value + " to KNX bus!");
+		} else {
+			// switch on main datapoint type
+			switch (knxdriver.groupDevice.getDatapointTypeMainNumber()) {
+			case 5:
+				try {
+					// forward message to driver
+					((KnxDpt5Instance) knxdriver).sendMessageToKnxBus(value);
+				
+				} catch (ClassCastException e) {
+					this.logger.log(LogService.LOG_ERROR, "Datatype DPT5 (8-bit unsigned int) " +
+							"doesn't suit for groupDevice " +
+							groupDeviceId + "! Cannot forward event " + value + " to KNX bus!");
+				}
+				return;
+			case 9:
+				try {
+					// forward message to driver
+					((KnxDpt9Instance) knxdriver).sendMessageToKnxBus(value);
+				} catch (ClassCastException e) {
+					this.logger.log(LogService.LOG_ERROR, "Datatype DPT9 (2-byte float value) " +
+							"doesn't suit for groupDevice " +
+							groupDeviceId + "! Cannot forward event " + value + " to KNX bus!");
+				}
+				return;
+			default:
+				this.logger.log(LogService.LOG_ERROR, "Neither datapoint type 5 (8-bit unsigned int) " +
+						"nor dpt 9 (2-byte float value) found for groupDevice " +
+						groupDeviceId + "! Cannot forward event " + value + " to KNX bus!");
+				return;
+			}
+		}
 	}
 	
 	

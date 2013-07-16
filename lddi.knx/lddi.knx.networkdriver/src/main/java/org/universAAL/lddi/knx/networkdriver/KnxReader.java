@@ -25,6 +25,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 
 import org.osgi.service.log.LogService;
@@ -62,42 +63,40 @@ public class KnxReader implements Runnable {
 
 	private MulticastSocket mcReceiver;
 
+    static InetAddress GROUP_ADDRESS;
+    static int GROUP_PORT;
+    
 	private KNXNetworkLinkIP tunnel;
 	private ProcessCommunicator pc;
 
 	public KnxReader(KnxNetworkDriverImp core) {
 		this.core = core;
-	}
-
-	public void stopReader() {
-		if (this.mcReceiver != null)
-			this.mcReceiver.close();
-		if (this.tunnel != null)
-			tunnel.close();
+		try {
+			GROUP_ADDRESS = InetAddress.getByName(core.getMulticastIp());
+	        GROUP_PORT = core.getMulticastUdpPort();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void run() {
 
 		if (core.isMulticast()) {
 			// USING UDP MULTICAST!
-			core
-					.getLogger()
-					.log(LogService.LOG_INFO,
-							"KNX network driver listens on UDP MULTICAST CHANNEL for KNX telegrams!");
+			core.getLogger().log(LogService.LOG_INFO,
+				"KNX network driver listens on UDP MULTICAST CHANNEL for KNX telegrams!");
 			try {
-				this.mcReceiver = new MulticastSocket(core
-						.getMulticastUdpPort());
-				InetAddress group = InetAddress
-						.getByName(core.getMulticastIp());
+				// create socket on KNX port
+				this.mcReceiver = new MulticastSocket(core.getMulticastUdpPort());
+				InetAddress group = InetAddress.getByName(core.getMulticastIp());
 				this.mcReceiver.joinGroup(group);
-
 				this.mcReceiver.setSoTimeout(socketTimeout);
 
-				core.getLogger().log(
-						LogService.LOG_INFO,
-						"Server KNX listening on port "
-								+ core.getMulticastUdpPort() + " (joined "
-								+ core.getMulticastIp() + ")");
+				core.getLogger().log(LogService.LOG_INFO,
+						"Server KNX listening on port " +
+						core.getMulticastUdpPort() + " (joined " +
+						core.getMulticastIp() + ")");
 
 				while (!Thread.currentThread().isInterrupted()) {
 
@@ -107,59 +106,33 @@ public class KnxReader implements Runnable {
 
 					// blocking here...
 					this.mcReceiver.receive(udpPacket);
-					// The datagram packet contains also the sender's IP
-					// address,
-					// and the port number
-					// on the sender's machine. This method blocks until a
-					// datagram
-					// is received.
+					// The datagram packet contains also the senderSocket's IP
+					// address, and the port number on the senderSocket's machine.
+					// This method blocks until a datagram is received.
 
 					byte[] temp = udpPacket.getData();
 
-					// Outsourced to KnxEncoder !
-					// //remove trailing 0 (buffer is 8192 bytes long!)
-					// int i = temp.length - 1;
-					// while(temp[i] == 0)
-					// --i;
-					// // now temp[i] is the last non-zero byte
-					// byte[] dataPacket = new byte[i+1];
-					// System.arraycopy(temp, 0, dataPacket, 0, i+1);
-
 					byte[] dataPacket = KnxEncoder.removeTrailingZeros(temp);
 
-					core.getLogger().log(
-							LogService.LOG_DEBUG,
-							"Incoming command from KNX: "
-									+ udpPacket.getAddress().toString()
-									+ " "
-									+ KnxEncoder
-											.convertToReadableHex(dataPacket));
+					core.getLogger().log(LogService.LOG_DEBUG,
+							"Incoming command from KNX: " +
+							udpPacket.getAddress().toString() + " " +
+							KnxEncoder.convertToReadableHex(dataPacket));
 
 					// if this packet was just sent by KnxWriter discard it
-					if (Arrays.equals(dataPacket, core.network
-							.getLastSentPacket())) {
-						core
-								.getLogger()
-								.log(
-										LogService.LOG_DEBUG,
-										"Discard incoming UDP Multicast Packet "
-												+ "which was just sent by KnxWriter "
-												+ KnxEncoder
-														.convertToReadableHex(dataPacket));
+					if (Arrays.equals(dataPacket, core.network.getLastSentPacket())) {
+						core.getLogger().log(LogService.LOG_DEBUG,
+							"Discard incoming UDP Multicast Packet " +
+							"which was just sent by KnxWriter " +
+							KnxEncoder.convertToReadableHex(dataPacket));
 						continue;
 					}
-					// core.getLogger().log(LogService.LOG_DEBUG,"incoming byte[] "
-					// + new String(dataPacket));
 
 					byte[] lastPacket = core.network.getLastSentPacket();
 					if (lastPacket != null) {
-						core
-								.getLogger()
-								.log(
-										LogService.LOG_DEBUG,
-										"last sent command: "
-												+ KnxEncoder
-														.convertToReadableHex(lastPacket));
+						core.getLogger().log(LogService.LOG_DEBUG,
+							"last sent command: " +
+							KnxEncoder.convertToReadableHex(lastPacket));
 					}
 
 					// 17 data bytes minimum!
@@ -170,17 +143,11 @@ public class KnxReader implements Runnable {
 
 					KnxTelegram telegram = KnxEncoder.decode(knxPacket);
 					if (telegram == null) {
-						core
-								.getLogger()
-								.log(
-										LogService.LOG_WARNING,
-										"Incoming command from KNX bus is not valid "
-												+ "and will not be processed! --- "
-												+ udpPacket.getAddress()
-														.toString()
-												+ " BYTEs "
-												+ KnxEncoder
-														.convertToReadableHex(dataPacket));
+						core.getLogger().log(LogService.LOG_WARNING,
+							"Incoming command from KNX bus is not valid " +
+							"and will not be processed! --- " + 
+							udpPacket.getAddress().toString() + " BYTEs " +
+							KnxEncoder.convertToReadableHex(dataPacket));
 						continue;
 					}
 
@@ -188,27 +155,22 @@ public class KnxReader implements Runnable {
 							.convertGroupAddressToReadable(telegram
 									.getDestByte());
 
-					core.getLogger().log(
-							LogService.LOG_INFO,
+					core.getLogger().log(LogService.LOG_INFO,
 							"KNX telegram received (" + knxPacket.length
 									+ " bytes - data length:"
 									+ telegram.getDataLength() + "): "
 									+ telegram.toString());
-					core.getLogger().log(
-							LogService.LOG_DEBUG,
-							"Source: "
-									+ groupAddress
-									+ "; TELEGRAM: "
-									+ KnxEncoder
-											.convertToReadableHex(knxPacket));
+					core.getLogger().log(LogService.LOG_DEBUG,
+							"Source: " + groupAddress + "; TELEGRAM: " +
+									KnxEncoder.convertToReadableHex(knxPacket));
 
-					if (telegram.isTelegramIsDatapointType1()) {
-						this.core.newMessageFromHouse(groupAddress,
-								new byte[] { telegram.getDpt1DataByte() });
-					} else {
+//					if (telegram.isTelegramIsDatapointType1()) {
+//						this.core.newMessageFromHouse(groupAddress,
+//								new byte[] { telegram.getDpt1DataByte() });
+//					} else {
 						this.core.newMessageFromHouse(groupAddress, telegram
 								.getDataByte());
-					}
+//					}
 
 				}
 			} catch (SocketException se) {
@@ -248,7 +210,8 @@ public class KnxReader implements Runnable {
 
 					public void indication(final FrameEvent frameEvent) {
 						core.getLogger().log(LogService.LOG_DEBUG,
-								"Indication " + frameEvent);
+								"Indication " + KnxEncoder
+								.convertToReadableHex(frameEvent.getFrame().toByteArray()));
 
 //						byte[] frameBytes = frameEvent.getFrameBytes(); // is always null!!
 //						if (frameBytes != null) {
@@ -319,4 +282,13 @@ public class KnxReader implements Runnable {
 			
 		}
 	}
+	
+
+	public void stopReader() {
+		if (this.mcReceiver != null)
+			this.mcReceiver.close();
+		if (this.tunnel != null)
+			tunnel.close();
+	}
+
 }

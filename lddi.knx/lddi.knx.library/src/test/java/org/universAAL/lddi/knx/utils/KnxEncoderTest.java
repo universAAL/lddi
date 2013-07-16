@@ -75,19 +75,19 @@ public class KnxEncoderTest {
 						KnxEncoder.decode(message).knxCommand == KnxCommand.VALUE_WRITE);
 	}
 
-	@Test
-	public void dpt1Test() {
-		byte[] message = new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 1, 0, (byte) 0x81};
-		assertTrue(
-				"KnxEncoder.decode(new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 1, 0, (byte) 0x81}).telegramIsDatapointType1 is "
-						+ KnxEncoder.decode(message).telegramIsDatapointType1 + "; but should be true",
-						KnxEncoder.decode(message).telegramIsDatapointType1 == true);
-		byte[] message2 = new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 2, 0, (byte) 0x80, (byte) 0x13};
-		assertFalse(
-				"KnxEncoder.decode(new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 2, 0, (byte) 0x80, (byte) 0x13}).telegramIsDatapointType1 is "
-						+ KnxEncoder.decode(message2).telegramIsDatapointType1 + "; but should be true",
-						KnxEncoder.decode(message2).telegramIsDatapointType1 == true);
-	}
+//	@Test
+//	public void dpt1Test() {
+//		byte[] message = new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 1, 0, (byte) 0x81};
+//		assertTrue(
+//				"KnxEncoder.decode(new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 1, 0, (byte) 0x81}).telegramIsDatapointType1 is "
+//						+ KnxEncoder.decode(message).telegramIsDatapointType1 + "; but should be true",
+//						KnxEncoder.decode(message).telegramIsDatapointType1 == true);
+//		byte[] message2 = new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 2, 0, (byte) 0x80, (byte) 0x13};
+//		assertFalse(
+//				"KnxEncoder.decode(new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 2, 0, (byte) 0x80, (byte) 0x13}).telegramIsDatapointType1 is "
+//						+ KnxEncoder.decode(message2).telegramIsDatapointType1 + "; but should be true",
+//						KnxEncoder.decode(message2).telegramIsDatapointType1 == true);
+//	}
 
 	@Test
 	public void dataLengthTest() {
@@ -111,22 +111,22 @@ public class KnxEncoderTest {
 	@Test
 	public void dataBytesTest() {
 		byte[] message = new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 3, 0, (byte) 0x80, (byte) 0x12, (byte) 0x13 };
-		byte[] data = new byte[] {(byte) 0x12, (byte) 0x13};
+		byte[] data = new byte[] {0, (byte) 0x12, (byte) 0x13};
 		assertTrue(
 				"KnxEncoder.decode(new byte[] {(byte) 0xbc, 0x0d, 0, 0, 9, 1, 3, 0, (byte) 0x80, (byte) 0x12, (byte) 0x13 }).getDataByte is "
 						+ KnxEncoder.convertToReadableHex( KnxEncoder.decode(message).getDataByte() ) +
-						"; but should be true 12:13",
+						"; but should be 00:12:13",
 						Arrays.equals(data,KnxEncoder.decode(message).getDataByte()) );
 	}
 	
 	@Test
 	public void encodeTest() {
-		String hexString = "0610053000112900bcd0ffff0901010081";
+		String hexString = "0610053000112900bcd000000901010081";
 		
 		assertTrue("KnxEncoder.encode(false, '1/1/1', true, KnxCommand.VALUE_WRITE) returns " + 
-				KnxEncoder.convertToReadableHex(KnxEncoder.encode(false, "1/1/1", true, KnxCommand.VALUE_WRITE)) +
+				KnxEncoder.convertToReadableHex(KnxEncoder.encode(false, new byte[] {0,0}, "1/1/1", new byte[] {0x1}, KnxCommand.VALUE_WRITE)) +
 				"; but should return " + hexString,//KnxEncoder.getHexString(message), 
-				Arrays.equals(KnxEncoder.encode(false, "1/1/1", true, KnxCommand.VALUE_WRITE), KnxEncoder.convertToByteArray(hexString))
+				Arrays.equals(KnxEncoder.encode(false, new byte[] {0,0}, "1/1/1", new byte[] {0x1}, KnxCommand.VALUE_WRITE), KnxEncoder.convertToByteArray(hexString))
 						);
 	}
 	

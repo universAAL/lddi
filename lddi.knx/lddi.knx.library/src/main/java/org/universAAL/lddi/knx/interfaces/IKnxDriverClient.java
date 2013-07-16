@@ -96,6 +96,7 @@ public interface IKnxDriverClient {
 	 * @param groupDeviceId (e.g. knx group address 1/2/3)
 	 * @param value (e.g. temperature value 25.2 or dimming percentage 70.5)
 	 */
-	public void sendSensorEvent(String groupDeviceId, float value);
+	public void sendSensorEvent(String groupDeviceId, 
+			int datapointTypeMainNubmer, int datapointTypeSubNubmer, float value);
 
 }

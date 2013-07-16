@@ -32,7 +32,7 @@ import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice;
 public abstract class KnxDriver {
 	
 	// the groupDevice I am driving
-	protected KnxGroupDevice groupDevice;
+	public KnxGroupDevice groupDevice;
 
 	/** upper layer instance */
 	protected IKnxDriverClient client; //->uAAL bus/exporter 

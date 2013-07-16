@@ -139,4 +139,12 @@ ServiceTrackerCustomizer, Constants {
 				value);
 	}
 
+	/**
+	 * @param value
+	 */
+	public void sendMessageToKnxBus(float value) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

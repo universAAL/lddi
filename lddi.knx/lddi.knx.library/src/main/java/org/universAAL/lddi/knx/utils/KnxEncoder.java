@@ -33,23 +33,37 @@ public class KnxEncoder {
 		READ, WRITE, SCENARIO
 	};
 
+	
+	// UDP Multicast Header !!!
+	private static String headerFront = "06100530001";
+	/** 
+	 * this nibble defines the number of data bytes in the telegram.
+	 * at least 1 (e.g. for DPT1)
+	 * max 15 (0xF)
+	 */
+	private static String headerDataLength = "1";
+	private static String headerRear = "2900";
+	
 	/**
-	 * Encode a knx telegram for sending to a knx bus. Only for DPT1 (on/off)!
+	 * Encode a knx telegram for sending to a knx bus. For all datapoint types!
 	 * 
 	 * @param repeatBit
-	 *            ; has this telegram been sent already?
+	 *            has this telegram been sent already?
+	 * @param sourceByte
+	 * 				sending KNX address 
 	 * @param targetAddress
 	 *            knx address - could be device or group address
-	 * @param value
-	 *            knx status
+	 * @param dataByte
+	 *            knx command
 	 * @param messageType
 	 *            (read, write, scenario)
 	 * @return knx telegram for sending to knx bus
 	 */
-	public static byte[] encode(boolean repeatBit, String targetAddress,
-			boolean value, KnxCommand commandType) {
+	public static byte[] encode(boolean repeatBit, byte[] sourceByte, String targetAddress,
+			byte[] dataByte, KnxCommand commandType) {
 
-		String header = "0610053000112900";
+//		String header = "0610053000122900";
+		//String header = "061004200016044406001100"; // header copied from ETS wireshark sniff
 
 		KnxTelegram telegram = new KnxTelegram();
 
@@ -57,8 +71,7 @@ public class KnxEncoder {
 		
 		if (repeatBit) telegram.setRepeatBit();
 		
-		// Sending commands from ETS sets source address to 15/15/255. So do we.
-		telegram.setSourceByte(new byte[] { (byte) 0xFF, (byte) 0xFF });
+		telegram.setSourceByte(sourceByte);
 
 		if (targetAddress.contains("/")) {
 			// group address
@@ -70,35 +83,88 @@ public class KnxEncoder {
 					.convertDeviceAddressToHex(targetAddress)));
 		}
 
-		telegram.setDataLength(1);
+		telegram.setDataBytes(dataByte);
 		
-		telegram.setDpt1Data(value);
+		headerDataLength = Integer.toHexString(dataByte.length);
 		
 		telegram.setKnxCommandType(commandType);
 
-
-//		String stringTelegram = header + controlbyte + sourceAddress
-//				+ destAddress + drl + pci + data;
-//		KnxEncoder.convertToByteArray(stringTelegram);
-//		
-		byte B_header[] = KnxEncoder.convertToByteArray(header);
+		byte B_header[] = KnxEncoder.convertToByteArray(headerFront + headerDataLength + headerRear);
 		byte B_telegram[] = telegram.getByteArray();
 		byte message[] = new byte[B_header.length + B_telegram.length];
 		System.arraycopy(B_header, 0, message, 0, B_header.length);
 		System.arraycopy(B_telegram, 0, message, B_header.length, B_telegram.length);
 		return message;
 	}
+	
+//	/**
+//	 * Wrapper for other encode method. Just adding false as repeatBit.
+//	 * 
+//	 * @see public static byte[] encode(boolean repeatBit, String knxAddress,
+//	 *      String command, KnxMessageType messageType)
+//	 */
+//	public static byte[] encode(String deviceAddress, boolean command,
+//			KnxCommand commandType) {
+//		return encode(false, deviceAddress, command, commandType);
+//	}
 
-	/**
-	 * Wrapper for other encode method. Just adding false as repeatBit.
-	 * 
-	 * @see public static byte[] encode(boolean repeatBit, String knxAddress,
-	 *      String command, KnxMessageType messageType)
-	 */
-	public static byte[] encode(String deviceAddress, boolean command,
-			KnxCommand commandType) {
-		return encode(false, deviceAddress, command, commandType);
-	}
+
+//	/**
+//	 * Encode a knx telegram for sending to a knx bus. Only for DPT1 (on/off)!
+//	 * 
+//	 * @param repeatBit
+//	 *            ; has this telegram been sent already?
+//	 * @param targetAddress
+//	 *            knx address - could be device or group address
+//	 * @param value
+//	 *            knx status
+//	 * @param messageType
+//	 *            (read, write, scenario)
+//	 * @return knx telegram for sending to knx bus
+//	 */
+//	public static byte[] encode(boolean repeatBit, String targetAddress,
+//			boolean value, KnxCommand commandType) {
+//
+//		String header = "0610053000112900";
+//
+//		KnxTelegram telegram = new KnxTelegram();
+//
+//		telegram.createDefaultControlByte();
+//		
+//		if (repeatBit) telegram.setRepeatBit();
+//		
+//		// Sending commands from ETS sets source address to 15/15/1. So do we.
+//		telegram.setSourceByte(new byte[] { (byte) 0xFF, (byte) 0x01 });
+//
+//		if (targetAddress.contains("/")) {
+//			// group address
+//			telegram.setDestByte(KnxEncoder.convertToByteArray(KnxEncoder
+//					.convertGroupAddressToHex(targetAddress)));
+//		} else if (targetAddress.contains(".")) {
+//			// physical address
+//			telegram.setDestByte(KnxEncoder.convertToByteArray(KnxEncoder
+//					.convertDeviceAddressToHex(targetAddress)));
+//		}
+//
+//		telegram.setDataLength(1);
+//		
+//		telegram.setDpt1Data(value);
+//		
+//		telegram.setKnxCommandType(commandType);
+//
+//
+////		String stringTelegram = header + controlbyte + sourceAddress
+////				+ destAddress + drl + pci + data;
+////		KnxEncoder.convertToByteArray(stringTelegram);
+////		
+//		byte B_header[] = KnxEncoder.convertToByteArray(header);
+//		byte B_telegram[] = telegram.getByteArray();
+//		byte message[] = new byte[B_header.length + B_telegram.length];
+//		System.arraycopy(B_header, 0, message, 0, B_header.length);
+//		System.arraycopy(B_telegram, 0, message, B_header.length, B_telegram.length);
+//		return message;
+//	}
+
 
 	/**
 	 * Decode knx byte array and create KnxTelegram object.
@@ -283,6 +349,22 @@ public class KnxEncoder {
 		return sb.toString();
 	}
 
+	/**
+	 * Convert byte array to hex encoded string without delimiters.
+	 */
+	public static String convertToHex(byte[] b) {
+		StringBuilder byteString = new StringBuilder();
+
+		for (int i = 0; i < b.length; i++) {
+
+			String hexNumber = "0" + Integer.toHexString(0xff & b[i]);
+
+			byteString.append(hexNumber);
+
+		}
+		return byteString.toString();
+	}
+	
 	/**
 	 * Extract bits representing knx message data length (payload).
 	 * 

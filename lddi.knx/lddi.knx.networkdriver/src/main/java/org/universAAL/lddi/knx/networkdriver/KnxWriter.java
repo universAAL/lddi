@@ -16,19 +16,22 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
-*/
+ */
 
 package org.universAAL.lddi.knx.networkdriver;
 
+import java.io.IOException;
 import java.net.*;
+import java.util.Arrays;
 
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxCommand;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
- * Envelopes KNX commands to UDP Packets and sends them on a UDP Multicast Channel.
- * Uses KNXEncoder to operate translation from high-level commands to low-level KNX commands.
+ * Envelopes KNX commands to UDP Packets and sends them on a UDP Multicast
+ * Channel. Uses KNXEncoder to operate translation from high-level commands to
+ * low-level KNX commands.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -36,115 +39,177 @@ public class KnxWriter {
 
 	protected KnxNetworkDriverImp core;
 	private String lastDeviceAddress;
-	private boolean lastDeviceStatus;
+	// private boolean lastDeviceStatus;
+	private byte[] lastDataByte;
+
 	private KnxCommand lastCommandType;
 	private boolean repeatBit = false;
 	private volatile byte[] lastPacketSent;
 
+	MulticastSocket senderSocket;
+
+	static InetAddress GROUP_ADDRESS;
+	static int GROUP_PORT;
+	static private int socketTimeout = 3000; // 3s for sending
+//	static private int socketTTL = 5;
+	
+	// Sending with source address 0/0/0
+	private static byte[] sourceByte = new byte[] { 0, 0 };
+
+	
 	public KnxWriter(KnxNetworkDriverImp core) {
 		this.core = core;
-	}
-
-	/**
-	 * @return the lastPacketSent
-	 */
-	public byte[] getLastPacketSent() {
-		return lastPacketSent;
-	}
-
-	/**
-	 * Convert byte array to hex encoded string without delimiters.
-	 */
-	public String convertToHex(byte[] b) {
-		StringBuilder byteString = new StringBuilder();
-
-		for (int i = 0; i < b.length; i++) {
-
-			String hexNumber = "0" + Integer.toHexString(0xff & b[i]);
-
-			byteString.append(hexNumber);
-
+		try {
+			GROUP_ADDRESS = InetAddress.getByName(core.getMulticastIp());
+			GROUP_PORT = core.getMulticastUdpPort();
+			
+			senderSocket = new MulticastSocket();
+			senderSocket.joinGroup(GROUP_ADDRESS);
+			senderSocket.setSoTimeout(socketTimeout);
+//			senderSocket.setTimeToLive(socketTTL);
+		} catch (UnknownHostException e) {
+			core.getLogger().log(LogService.LOG_ERROR,
+				"UnknownHostException - configuration of multicastIp in config file seems wrong! "
+					 + e.getMessage());
+		} catch (IOException e1) {
+			core.getLogger().log(LogService.LOG_ERROR,
+					"Error creating the multicast senderSocket! " + e1.getMessage());
+			e1.printStackTrace();
 		}
-		return byteString.toString();
 	}
 
 	/**
-	 * Wrapper for write method. Without command type.
-	 */
-	public void write(String deviceAddress, boolean deviceStatus) {
-		write(deviceAddress, deviceStatus, KnxCommand.VALUE_WRITE);
-	}
-
-	/**
-	 * Send KNX command to UPD multichannel. Store current sent telegram.
+	 * Send KNX command to UPD multicastchannel. Store current sent telegram.
 	 * 
 	 * @param deviceAddress
 	 *            knx group address (1/2/3)
-	 * @param deviceStatus
+	 * @param dataByte
 	 *            knx command
 	 * @param commandType
 	 */
-	public void write(String deviceAddress, boolean deviceStatus,
+	public void write(String deviceAddress, byte[] dataByte,
 			KnxCommand commandType) {
-		if (this.lastDeviceAddress != null 
+		if (this.lastDeviceAddress != null
 				&& this.lastDeviceAddress.equals(deviceAddress)
-				&& this.lastDeviceStatus == deviceStatus
+				&& Arrays.equals(this.lastDataByte, dataByte)
 				&& this.lastCommandType == commandType) {
 			// same command as last time; set Repeat-Bit
-			this.repeatBit = false;
+			this.repeatBit = true;
 		}
 
 		try {
-			// Connection
-			DatagramSocket sender = new DatagramSocket();
-
-			// FOCUS: command to host
-			// InetAddress addr = InetAddress.getByName(core.getHouseIp());
-
-			// FOCUS: command to multicast
-			InetAddress addr = InetAddress.getByName(core.getMulticastIp());
-
-			// Translating commands from String to byte[]
-			byte[] telegram = KnxEncoder.encode(repeatBit, deviceAddress,
-					deviceStatus, commandType);
+			byte[] telegram = KnxEncoder.encode(repeatBit, sourceByte,
+					deviceAddress, dataByte, commandType);
 
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,
-					telegram.length, addr, core.getMulticastUdpPort());
+					telegram.length, GROUP_ADDRESS, GROUP_PORT);
 
 			// Sending the packet
 			core.getLogger().log(
 					LogService.LOG_INFO,
 					"Sending command to KNX: "
 							+ KnxEncoder.convertToReadableHex(telegram));
-			sender.send(packet);
+
+			senderSocket.send(packet);
 			// store last sent command
 			this.lastPacketSent = KnxEncoder.removeTrailingZeros(telegram);
-			sender.close();
+			// senderSocket.close();
+			// core.getLogger().log(
+			// LogService.LOG_INFO,
+			// "Sending command to KNX finished!");
 			this.lastDeviceAddress = deviceAddress;
-			this.lastDeviceStatus = deviceStatus;
+			this.lastDataByte = dataByte;
 			this.lastCommandType = commandType;
 
-		} catch (Exception e) {
+		} catch (IOException e) {
 			core.getLogger().log(LogService.LOG_ERROR,
-					"Unable to write to the server KNX... " + e);
+					"Unable to write to KNX bus! " + e.getMessage());
+			e.printStackTrace();
 		} finally {
 			this.repeatBit = false;
 		}
-
 	}
+
+	// /**
+	// * Wrapper for write method. Without command type.
+	// */
+	// public void write(String deviceAddress, boolean deviceStatus) {
+	// write(deviceAddress, deviceStatus, KnxCommand.VALUE_WRITE);
+	// }
+
+	// /**
+	// * Send KNX command to UPD multichannel. Store current sent telegram.
+	// *
+	// * @param deviceAddress
+	// * knx group address (1/2/3)
+	// * @param deviceStatus
+	// * knx command
+	// * @param commandType
+	// */
+	// public void write(String deviceAddress, boolean deviceStatus,
+	// KnxCommand commandType) {
+	// if (this.lastDeviceAddress != null
+	// && this.lastDeviceAddress.equals(deviceAddress)
+	// && this.lastDeviceStatus == deviceStatus
+	// && this.lastCommandType == commandType) {
+	// // same command as last time; set Repeat-Bit
+	// this.repeatBit = true;
+	// }
+	//
+	// try {
+	// // Connection
+	// // DatagramSocket senderSocket = new DatagramSocket(3671);
+	//
+	// // FOCUS: command to host
+	// // InetAddress addr = InetAddress.getByName(core.getHouseIp());
+	//
+	// // FOCUS: command to multicast
+	// // InetAddress addr = InetAddress.getByName(core.getMulticastIp());
+	//
+	// // Translating commands from String to byte[]
+	// byte[] telegram = KnxEncoder.encode(repeatBit, deviceAddress,
+	// deviceStatus, commandType);
+	//
+	// // Generating UDP packet
+	// DatagramPacket packet = new DatagramPacket(telegram,
+	// telegram.length, GROUP_ADDRESS, GROUP_PORT);
+	//
+	// // Sending the packet
+	// core.getLogger().log(
+	// LogService.LOG_INFO,
+	// "Sending command to KNX: "
+	// + KnxEncoder.convertToReadableHex(telegram));
+	// senderSocket.send(packet);
+	// // store last sent command
+	// this.lastPacketSent = KnxEncoder.removeTrailingZeros(telegram);
+	// // senderSocket.close();
+	// this.lastDeviceAddress = deviceAddress;
+	// this.lastDeviceStatus = deviceStatus;
+	// this.lastCommandType = commandType;
+	//
+	// } catch (Exception e) {
+	// core.getLogger().log(LogService.LOG_ERROR,
+	// "Unable to write to KNX bus! " + e.getMessage());
+	// } finally {
+	// this.repeatBit = false;
+	// }
+	//
+	// }
 
 	/**
 	 * Send KNX command 00 to group Address. Is seems that all devices belonging
 	 * to this group address answer with their status. So, multiple answer
 	 * telegrams are possible.
 	 * 
-	 * @param knx address; either group address (1/2/3) or groupDevice address (1.2.3)
+	 * @param knx
+	 *            address; either group address (1/2/3) or groupDevice address
+	 *            (1.2.3)
 	 */
 	public void requestDeviceStatus(String deviceId) {
 		try {
 			// Connection
-			DatagramSocket sender = new DatagramSocket();
+			// DatagramSocket senderSocket = new DatagramSocket();
 
 			// FOCUS: command to host
 			// InetAddress addr = InetAddress.getByName(core.getHouseIp());
@@ -154,8 +219,8 @@ public class KnxWriter {
 
 			// Translating commands from String to byte[]
 			// adding 00 for status and READ as message type
-			byte[] telegram = KnxEncoder.encode(deviceId, false,
-					KnxCommand.VALUE_READ);
+			byte[] telegram = KnxEncoder.encode(false, sourceByte, deviceId,
+					new byte[] { 0 }, KnxCommand.VALUE_READ);
 
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,
@@ -164,7 +229,7 @@ public class KnxWriter {
 			// Sending the packet
 			core.getLogger().log(LogService.LOG_INFO,
 					"Requesting status from KNX (group-)device " + deviceId);
-			sender.send(packet);
+			senderSocket.send(packet);
 			core.getLogger().log(
 					LogService.LOG_DEBUG,
 					"Sending KNX command "
@@ -177,11 +242,19 @@ public class KnxWriter {
 			// packet = new DatagramPacket(telegram, telegram.length, addr,
 			// 51000);
 
-			sender.close();
+			// senderSocket.close();
 
 		} catch (Exception e) {
 			core.getLogger().log(LogService.LOG_ERROR,
 					"Unable to write to KNX bus " + e);
 		}
 	}
+
+	/**
+	 * @return the lastPacketSent
+	 */
+	public byte[] getLastPacketSent() {
+		return lastPacketSent;
+	}
+
 }

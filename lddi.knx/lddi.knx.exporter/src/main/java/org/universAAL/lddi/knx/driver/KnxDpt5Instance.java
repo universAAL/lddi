@@ -25,10 +25,12 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.device.Constants;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
+import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt1;
 import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt5;
 import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt5GroupDevice;
 import org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
+import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
  * Working instance of the IKnxDpt5 driver. Registers a service/device in OSGi
@@ -171,4 +173,26 @@ public class KnxDpt5Instance extends KnxDriver implements IKnxDpt5, IKnxReceiveM
 				percentage);
 	}
 
+	/**
+	 * Transfer float value to KNX data byte array (payload).
+	 * Call driver.
+	 */
+	public void sendMessageToKnxBus(float value) {
+		byte[] payload = KnxDpt5GroupDevice.createPayloadFromFloatValue(value, this.groupDevice.getDatapointTypeSubNumber());
+		
+		if (payload == null) {
+			this.logger.log(LogService.LOG_WARNING, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + 
+					this.groupDevice.getGroupAddress() + " says: knx datapoint type " + this.groupDevice.getDatapointType() +
+					" is not implemented or not specified in the KNX standard!");
+			return;
+		}
+		
+		this.logger.log(LogService.LOG_INFO, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + 
+				" sends new knx message " + KnxEncoder.convertToReadableHex(payload) + " to groupDevice " + 
+				this.groupDevice.getGroupAddress() + " (with knx datapoint type " + 
+				this.groupDevice.getDatapointType() + ")");
+		
+		this.groupDevice.sendMessageToKnxBus( payload );
+	}
+	
 }

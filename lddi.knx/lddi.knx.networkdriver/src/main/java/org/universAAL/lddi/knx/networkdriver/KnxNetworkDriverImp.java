@@ -155,26 +155,6 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	}
 
 
-	/**
-	 * Forward the message from the house to the groupDevice; mapping on groupAddress
-	 * 
-	 * @param groupAddress
-	 *            the knx groupAddress
-	 * @param b
-	 *            knx command/status bytes (representing e.g. on, off)
-	 */
-	public void newMessageFromHouse(String groupAddress, byte[] event) {
-		if (this.groupDeviceList.containsKey(groupAddress)) {
-			synchronized (this.groupDeviceList) {
-				for (KnxGroupDevice device : this.groupDeviceList.get(groupAddress)) {
-					device.newMessageFromKnxBus(event);
-				}
-			}
-		} else {
-			this.logger.log(LogService.LOG_WARNING, "No groupDevice available for incoming message to " + groupAddress);
-		}
-	}
-
 	public void unRegister() {
 		// stop reader thread
 		this.network.stopCommunication();
@@ -214,22 +194,91 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 				+ deviceId);
 	}
 
+
+	
+	
+	
+
+
+	/**
+	 * Forward the message from the house to the groupDevice; mapping on groupAddress
+	 * 
+	 * @param groupAddress
+	 *            the knx groupAddress
+	 * @param b
+	 *            knx command/status bytes (representing e.g. on, off)
+	 */
+	public void newMessageFromHouse(String groupAddress, byte[] event) {
+		if (this.groupDeviceList.containsKey(groupAddress)) {
+			synchronized (this.groupDeviceList) {
+				for (KnxGroupDevice device : this.groupDeviceList.get(groupAddress)) {
+					device.newMessageFromKnxBus(event);
+				}
+			}
+		} else {
+			this.logger.log(LogService.LOG_WARNING, "No groupDevice available for incoming message to " + groupAddress);
+		}
+	}
+
+	
+	/** {@inheritDoc} */
+	public void sendMessageToKnxBus(String groupDeviceId, byte[] event) {
+		this.logger.log(LogService.LOG_INFO,
+				"Got new payload " + KnxEncoder.convertToReadableHex(event) + 
+				" for groupDevice " + groupDeviceId + ". Send it to KNX Bus.");
+
+		// TODO: send message to knx bus
+		// for now use boolean (dpt1) method
+		// extend send methods to use byte[] !!
+		
+//		if (event.length == 1) {
+//			// DPT = 1
+//			if (event[0] == 0x0) {
+//				this.sendCommand(groupDeviceId, false);
+//			} else if (event[0] == 0x1) {
+//				this.sendCommand(groupDeviceId, true);
+//			} else {
+//				this.logger.log(LogService.LOG_ERROR, "Event is wheter 0 nor 1 but has databyte length 1 (DPT1)." +
+//						" Not sending to KNX bus! Group Address: " + groupDeviceId);
+//				return;
+//			}
+//		} else {
+			// forward command
+			this.network.sendCommand(groupDeviceId, event, KnxCommand.VALUE_WRITE);
+//		}
+	}
+	
+	// for manual command on OSGi shell
 	public void sendCommand(String deviceId, boolean command) {
 		this.sendCommand(deviceId, command, KnxCommand.VALUE_WRITE);
-
+	}
+	// for manual command on OSGi shell
+	public void sendCommand(String device, boolean command, KnxCommand commandType) {
+		byte status = 0x0;
+		if (command)
+			status = 0x1;
+		this.network.sendCommand(device, new byte[] {status}, commandType);
 	}
 
-	public void sendCommand(String device, boolean command,
-			KnxCommand commandType) {
-		this.network.sendCommand(device, command, commandType);
-
-	}
-
+//	public void sendCommand(String deviceId, byte[] command) {
+//		this.sendCommand(deviceId, command, KnxCommand.VALUE_WRITE);
+//	}
+//	public void sendCommand(String device, byte[] command, KnxCommand commandType) {
+//		this.network.sendCommand(device, command, commandType);
+//	}
+	
+	
 	public void requestState(String deviceId) {
 		this.network.readState(deviceId);
 
 	}
 
+	
+	
+	
+	
+	
+	
 	/**
 	 * @return the multicast
 	 */
@@ -323,27 +372,6 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	 */
 	public void setMulticastUdpPort(int multicastUdpPort) {
 		this.multicastUdpPort = multicastUdpPort;
-	}
-
-	/** {@inheritDoc} */
-	public void sendMessageToKnxBus(String groupDeviceId, byte[] event) {
-		this.logger.log(LogService.LOG_INFO,
-				"Got new payload " + KnxEncoder.convertToReadableHex(event) + 
-				" for groupDevice " + groupDeviceId + ". Send it to KNX Bus.");
-
-		// TODO: send message to knx bus
-		// for now use boolean (dpt1) method
-		// extend send methods to use byte[] !!
-		
-		if ( event[0] == 0x0 ) {
-			this.sendCommand(groupDeviceId, false, KnxCommand.VALUE_WRITE);
-		} else if ( event[0] == 0x1 ) {
-			this.sendCommand(groupDeviceId, true, KnxCommand.VALUE_WRITE);
-		} else {
-			this.logger.log(LogService.LOG_ERROR, "Event is wheter 0 nor 1. Not sending to KNX bus! " + 
-					groupDeviceId);
-		}
-		
 	}
 
 }
