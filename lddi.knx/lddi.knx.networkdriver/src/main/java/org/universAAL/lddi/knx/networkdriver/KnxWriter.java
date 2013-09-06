@@ -46,35 +46,61 @@ public class KnxWriter {
 	private boolean repeatBit = false;
 	private volatile byte[] lastPacketSent;
 
-	MulticastSocket senderSocket;
+	// Multicast fields
+	private MulticastSocket mcSocket;
+	private static InetAddress GROUP_ADDRESS;
+	private static int GROUP_PORT;
+	private static int socketTimeout = 3000; // 3s for sending
+	// static private int socketTTL = 5;
 
-	static InetAddress GROUP_ADDRESS;
-	static int GROUP_PORT;
-	static private int socketTimeout = 3000; // 3s for sending
-//	static private int socketTTL = 5;
-	
+	// Tunneling fields
+	private InetSocketAddress remoteEndPoint;
+	// private InetSocketAddress localEndPoint;
+	// private KNXNetworkLinkIP tunnel;
+	// private ProcessCommunicator pc;
+	private DatagramSocket dgSocket;
+
 	// Sending with source address 0/0/0
 	private static byte[] sourceByte = new byte[] { 0, 0 };
 
-	
 	public KnxWriter(KnxNetworkDriverImp core) {
 		this.core = core;
-		try {
-			GROUP_ADDRESS = InetAddress.getByName(core.getMulticastIp());
-			GROUP_PORT = core.getMulticastUdpPort();
-			
-			senderSocket = new MulticastSocket();
-			senderSocket.joinGroup(GROUP_ADDRESS);
-			senderSocket.setSoTimeout(socketTimeout);
-//			senderSocket.setTimeToLive(socketTTL);
-		} catch (UnknownHostException e) {
-			core.getLogger().log(LogService.LOG_ERROR,
-				"UnknownHostException - configuration of multicastIp in config file seems wrong! "
-					 + e.getMessage());
-		} catch (IOException e1) {
-			core.getLogger().log(LogService.LOG_ERROR,
-					"Error creating the multicast senderSocket! " + e1.getMessage());
-			e1.printStackTrace();
+		if (core.isMulticast()) {
+			// Using UDP Multicast
+			try {
+				GROUP_ADDRESS = InetAddress.getByName(core.getMulticastIp());
+				GROUP_PORT = core.getMulticastUdpPort();
+				mcSocket = new MulticastSocket();
+				mcSocket.joinGroup(GROUP_ADDRESS);
+				mcSocket.setSoTimeout(socketTimeout);
+				// mcSocket.setTimeToLive(socketTTL);
+			} catch (UnknownHostException e) {
+				core.getLogger().log(LogService.LOG_ERROR,
+								"UnknownHostException - configuration of multicastIp in config file seems wrong! "
+										+ e.getMessage());
+			} catch (IOException e) {
+				core.getLogger().log(
+						LogService.LOG_ERROR,
+						"Error creating the multicast socket! "
+								+ e.getMessage());
+				e.printStackTrace();
+			}
+		} else {
+			// Using direct UDP connection (Tunneling)
+			try {
+				remoteEndPoint = new InetSocketAddress(core.getKnxGatewayIp(),
+						core.getKnxGatewayPort());
+				// localEndPoint = new InetSocketAddress(core.getMyIp(), core
+				// .getMyPort());
+
+				dgSocket = new DatagramSocket();
+				dgSocket.connect(remoteEndPoint);
+
+			} catch (SocketException e) {
+				core.getLogger().log(LogService.LOG_ERROR,
+						"Error creating the UDP socket! " + e.getMessage());
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -97,27 +123,35 @@ public class KnxWriter {
 			this.repeatBit = true;
 		}
 
-		try {
-			byte[] telegram = KnxEncoder.encode(repeatBit, sourceByte,
-					deviceAddress, dataByte, commandType);
+		byte[] telegram = KnxEncoder.encode(repeatBit, sourceByte,
+				deviceAddress, dataByte, commandType, core.isMulticast());
 
+		try {
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,
 					telegram.length, GROUP_ADDRESS, GROUP_PORT);
 
-			// Sending the packet
 			core.getLogger().log(
 					LogService.LOG_INFO,
 					"Sending command to KNX: "
 							+ KnxEncoder.convertToReadableHex(telegram));
 
-			senderSocket.send(packet);
+			// Sending the packet
+			if (core.isMulticast() && mcSocket.isBound()) {
+				// using multicast socket
+				core.getLogger().log(LogService.LOG_INFO,"Sending on multicast channel!");
+				mcSocket.send(packet);
+			} else if (dgSocket.isBound()) {
+				core.getLogger().log(LogService.LOG_INFO,"Sending on direct UDP channel!");
+				dgSocket.send(packet);
+			} else {
+				core.getLogger().log(LogService.LOG_WARNING,"Not sent on any channel!");
+				throw new Exception(
+						"Unable to write to KNX bus! Socket not bound to destination address!");
+			}
+
 			// store last sent command
 			this.lastPacketSent = KnxEncoder.removeTrailingZeros(telegram);
-			// senderSocket.close();
-			// core.getLogger().log(
-			// LogService.LOG_INFO,
-			// "Sending command to KNX finished!");
 			this.lastDeviceAddress = deviceAddress;
 			this.lastDataByte = dataByte;
 			this.lastCommandType = commandType;
@@ -125,6 +159,9 @@ public class KnxWriter {
 		} catch (IOException e) {
 			core.getLogger().log(LogService.LOG_ERROR,
 					"Unable to write to KNX bus! " + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			core.getLogger().log(LogService.LOG_ERROR, e.getMessage());
 			e.printStackTrace();
 		} finally {
 			this.repeatBit = false;
@@ -159,7 +196,7 @@ public class KnxWriter {
 	//
 	// try {
 	// // Connection
-	// // DatagramSocket senderSocket = new DatagramSocket(3671);
+	// // DatagramSocket mcSocket = new DatagramSocket(3671);
 	//
 	// // FOCUS: command to host
 	// // InetAddress addr = InetAddress.getByName(core.getHouseIp());
@@ -180,10 +217,10 @@ public class KnxWriter {
 	// LogService.LOG_INFO,
 	// "Sending command to KNX: "
 	// + KnxEncoder.convertToReadableHex(telegram));
-	// senderSocket.send(packet);
+	// mcSocket.send(packet);
 	// // store last sent command
 	// this.lastPacketSent = KnxEncoder.removeTrailingZeros(telegram);
-	// // senderSocket.close();
+	// // mcSocket.close();
 	// this.lastDeviceAddress = deviceAddress;
 	// this.lastDeviceStatus = deviceStatus;
 	// this.lastCommandType = commandType;
@@ -209,7 +246,7 @@ public class KnxWriter {
 	public void requestDeviceStatus(String deviceId) {
 		try {
 			// Connection
-			// DatagramSocket senderSocket = new DatagramSocket();
+			// DatagramSocket mcSocket = new DatagramSocket();
 
 			// FOCUS: command to host
 			// InetAddress addr = InetAddress.getByName(core.getHouseIp());
@@ -220,7 +257,7 @@ public class KnxWriter {
 			// Translating commands from String to byte[]
 			// adding 00 for status and READ as message type
 			byte[] telegram = KnxEncoder.encode(false, sourceByte, deviceId,
-					new byte[] { 0 }, KnxCommand.VALUE_READ);
+					new byte[] { 0 }, KnxCommand.VALUE_READ, true);
 
 			// Generating UDP packet
 			DatagramPacket packet = new DatagramPacket(telegram,
@@ -229,7 +266,7 @@ public class KnxWriter {
 			// Sending the packet
 			core.getLogger().log(LogService.LOG_INFO,
 					"Requesting status from KNX (group-)device " + deviceId);
-			senderSocket.send(packet);
+			mcSocket.send(packet);
 			core.getLogger().log(
 					LogService.LOG_DEBUG,
 					"Sending KNX command "
@@ -242,7 +279,7 @@ public class KnxWriter {
 			// packet = new DatagramPacket(telegram, telegram.length, addr,
 			// 51000);
 
-			// senderSocket.close();
+			// mcSocket.close();
 
 		} catch (Exception e) {
 			core.getLogger().log(LogService.LOG_ERROR,

@@ -57,6 +57,8 @@ import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
  */
 public class KnxReader implements Runnable {
 
+	private boolean shutdown = false;
+	
 	protected KnxNetworkDriverImp core;
 
 	static private int socketTimeout = 0; // infinite timeout on receive()
@@ -81,7 +83,7 @@ public class KnxReader implements Runnable {
 	}
 
 	public void run() {
-
+	    while (!shutdown) {
 		if (core.isMulticast()) {
 			// USING UDP MULTICAST!
 			core.getLogger().log(LogService.LOG_INFO,
@@ -106,8 +108,8 @@ public class KnxReader implements Runnable {
 
 					// blocking here...
 					this.mcReceiver.receive(udpPacket);
-					// The datagram packet contains also the senderSocket's IP
-					// address, and the port number on the senderSocket's machine.
+					// The datagram packet contains also the mcSocket's IP
+					// address, and the port number on the mcSocket's machine.
 					// This method blocks until a datagram is received.
 
 					byte[] temp = udpPacket.getData();
@@ -179,6 +181,8 @@ public class KnxReader implements Runnable {
 			} catch (Exception e) {
 				core.getLogger().log(LogService.LOG_ERROR, e.getMessage());
 				e.printStackTrace();
+			} finally {
+				shutdown = true;
 			}
 
 		} else {
@@ -267,20 +271,22 @@ public class KnxReader implements Runnable {
 
 			} catch (KNXLinkClosedException e) {
 				core.getLogger().log(LogService.LOG_ERROR,
-						"KNX NETWORK LINK was CLOSED! " + e.getMessage());
+						"KnxReader: KNX NETWORK LINK was CLOSED! " + e.getMessage());
 			} catch (KNXRemoteException e) {
 				core.getLogger().log(LogService.LOG_ERROR,
-						"KNX NETWORK LINK problem: " + e.getMessage());
+						"KnxReader: KNX NETWORK LINK problem: " + e.getMessage());
 			} catch (KNXTimeoutException e) {
 				core.getLogger().log(LogService.LOG_ERROR,
-						"KNX NETWORK LINK problem: " + e.getMessage());
+						"KnxReader: KNX NETWORK LINK problem: " + e.getMessage());
 			} catch (KNXException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				shutdown = true;
 			}
-			
 		}
+	    }
 	}
 	
 

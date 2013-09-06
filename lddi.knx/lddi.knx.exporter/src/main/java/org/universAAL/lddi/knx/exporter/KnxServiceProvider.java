@@ -21,7 +21,7 @@ public class KnxServiceProvider {
 
 		// start simulator
 		this.myThread = new MyThread();
-//		myThread.start();
+		myThread.start();
 	}
 
 	/**

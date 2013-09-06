@@ -35,7 +35,7 @@ public class KnxDpt9InstanceTest {
 	@Test
 	public void calculateFloatValueTest() {
 		//KnxDpt9Instance d = new KnxDpt9Instance();
-		float fl = KnxDpt9GroupDevice.calculateFloatValue( new byte[] {(byte) 0x0C,(byte) 0xA6} );
+		float fl = KnxDpt9GroupDevice.calculateFloatValue( new byte[] {0, (byte) 0x0C,(byte) 0xA6} );
 		assertTrue("KnxDpt9GroupDevice.calculateFloatValue( new byte[] {(byte) 0x0C,(byte) 0xA6} ) " +
 				"returns " + fl + " but should return 23.8", 
 				Float.toString(fl).equalsIgnoreCase("23.8"));

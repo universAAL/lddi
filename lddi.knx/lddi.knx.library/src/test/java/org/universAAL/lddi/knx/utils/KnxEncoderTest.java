@@ -124,9 +124,9 @@ public class KnxEncoderTest {
 		String hexString = "0610053000112900bcd000000901010081";
 		
 		assertTrue("KnxEncoder.encode(false, '1/1/1', true, KnxCommand.VALUE_WRITE) returns " + 
-				KnxEncoder.convertToReadableHex(KnxEncoder.encode(false, new byte[] {0,0}, "1/1/1", new byte[] {0x1}, KnxCommand.VALUE_WRITE)) +
+				KnxEncoder.convertToReadableHex(KnxEncoder.encode(false, new byte[] {0,0}, "1/1/1", new byte[] {0x1}, KnxCommand.VALUE_WRITE, true)) +
 				"; but should return " + hexString,//KnxEncoder.getHexString(message), 
-				Arrays.equals(KnxEncoder.encode(false, new byte[] {0,0}, "1/1/1", new byte[] {0x1}, KnxCommand.VALUE_WRITE), KnxEncoder.convertToByteArray(hexString))
+				Arrays.equals(KnxEncoder.encode(false, new byte[] {0,0}, "1/1/1", new byte[] {0x1}, KnxCommand.VALUE_WRITE, true), KnxEncoder.convertToByteArray(hexString))
 						);
 	}
 	
