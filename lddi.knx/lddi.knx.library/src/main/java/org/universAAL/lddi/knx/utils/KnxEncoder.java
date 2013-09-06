@@ -33,16 +33,25 @@ public class KnxEncoder {
 		READ, WRITE, SCENARIO
 	};
 
-	
-	// UDP Multicast Header !!!
-	private static String headerFront = "06100530001";
 	/** 
 	 * this nibble defines the number of data bytes in the telegram.
 	 * at least 1 (e.g. for DPT1)
 	 * max 15 (0xF)
 	 */
 	private static String headerDataLength = "1";
-	private static String headerRear = "2900";
+	
+	// UDP Multicast Header !!!
+	private static String udpMcHeaderFront = "06100530001";
+	private static String udpMcHeaderRear = "2900";
+
+	// UDP Header
+	/**
+	 * next 3 bits after 44 are counter
+	 */
+	private static String udpHeader = "061004200016044101001100";
+//	private static String udpHeaderRear = "2900";
+	
+	
 	
 	/**
 	 * Encode a knx telegram for sending to a knx bus. For all datapoint types!
@@ -60,7 +69,7 @@ public class KnxEncoder {
 	 * @return knx telegram for sending to knx bus
 	 */
 	public static byte[] encode(boolean repeatBit, byte[] sourceByte, String targetAddress,
-			byte[] dataByte, KnxCommand commandType) {
+			byte[] dataByte, KnxCommand commandType, boolean multicast) {
 
 //		String header = "0610053000122900";
 		//String header = "061004200016044406001100"; // header copied from ETS wireshark sniff
@@ -89,7 +98,12 @@ public class KnxEncoder {
 		
 		telegram.setKnxCommandType(commandType);
 
-		byte B_header[] = KnxEncoder.convertToByteArray(headerFront + headerDataLength + headerRear);
+		byte B_header[];
+		if (multicast)
+			B_header = KnxEncoder.convertToByteArray(udpMcHeaderFront + headerDataLength + udpMcHeaderRear);
+		else 
+			B_header = KnxEncoder.convertToByteArray(udpHeader);
+		
 		byte B_telegram[] = telegram.getByteArray();
 		byte message[] = new byte[B_header.length + B_telegram.length];
 		System.arraycopy(B_header, 0, message, 0, B_header.length);
