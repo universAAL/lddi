@@ -9,16 +9,17 @@
   </parent>
   <groupId>org.universAAL.lddi</groupId>
   <artifactId>lddi.pom</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>2.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Suite</name>
-  <description>The set of artefacts realizing the universAAL Local Discovery and Integration</description>
+  <description>The set of artefacts realizing the universAAL Local Device Discovery and Integration</description>
   <inceptionYear>2010</inceptionYear>
   <modules>
     <module>../lddi.bluetooth/lddi.pom.bluetooth</module>
     <module>../lddi.common/lddi.pom.common</module>
     <module>../lddi.fs20/lddi.pom.fs20</module>
     <module>../lddi.knx/lddi.pom.knx</module>
+	<module>../lddi.config/lddi.pom.config</module>
     <module>../lddi.zigbee/lddi.pom.zigbee</module>
     <module>composite</module>
   </modules>
@@ -37,7 +38,7 @@
     <artifactIdMatchString>^lddi\..*</artifactIdMatchString>
   </properties>
   <dependencyManagement>
-    <dependencies>
+    <!-- <dependencies>
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom</artifactId>
@@ -67,7 +68,7 @@
         <artifactId>lddi.composite</artifactId>
         <version>2.0.2-SNAPSHOT</version>
       </dependency>
-    </dependencies>
+    </dependencies> -->
   </dependencyManagement>
   <repositories>
     <repository>
