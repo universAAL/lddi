@@ -788,6 +788,16 @@ lddi.common/lddi.lib.ieeex73std/src/x73/p20601/main.java -text
 lddi.common/lddi.lib.ieeex73std/src/x73/p20601/mdnf/FloatType.java -text
 lddi.common/lddi.lib.ieeex73std/src/x73/p20601/mdnf/SFloatType.java -text
 lddi.common/lddi.pom.common/pom.xml -text
+lddi.config/lddi.knx.devicemanager.config/pom.xml -text
+lddi.config/lddi.knx.devicemanager.config/src/main/resources/KNX_Demowand-uAAL-MW20-Test-3.knxproj -text
+lddi.config/lddi.knx.devicemanager.config/src/main/resources/lddi.knx.devicemanager.cfg -text
+lddi.config/lddi.knx.networkdriver.config/ASL2.0.txt -text
+lddi.config/lddi.knx.networkdriver.config/NOTICE.txt -text
+lddi.config/lddi.knx.networkdriver.config/pom.xml -text
+lddi.config/lddi.knx.networkdriver.config/src/main/resources/lddi.knx.networkdriver.cfg -text
+lddi.config/lddi.pom.config/ASL2.0.txt -text
+lddi.config/lddi.pom.config/NOTICE.txt -text
+lddi.config/lddi.pom.config/pom.xml -text
 lddi.fs20/lddi.fs20.connector/ASL2.0.txt -text
 lddi.fs20/lddi.fs20.connector/NOTICE.txt -text
 lddi.fs20/lddi.fs20.connector/lib/JD2XX.dll -text
