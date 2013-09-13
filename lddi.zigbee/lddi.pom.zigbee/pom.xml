@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.3-SNAPSHOT</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.zigbee</artifactId>
@@ -14,9 +14,9 @@
   <name>universAAL LDDI ZigBee Suite</name>
   <description>Integration of ZigBee components</description>
   <modules>
-    <!-- <module>../lddi.zigbee.commissioning.adapter</module> -->
-    <!-- <module>../lddi.zigbee.exporter</module> -->
-    <!-- <module>../zb4osgi/zb4osgi</module> -->
+    <module>../lddi.zigbee.commissioning.adapter</module>
+    <module>../lddi.zigbee.exporter</module>
+    <module>../zb4osgi/zb4osgi</module>
   </modules>
   <scm>
     <connection>${svn.base}/lddi.zigbee/${project.artifactId}</connection>
