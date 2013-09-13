@@ -33,11 +33,9 @@
     <dependency>
       <groupId>org.universAAL.support</groupId>
       <artifactId>itests</artifactId>
+	  <!--<version>2.0.1-SNAPSHOT</version>-->
     </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.osgi.core</artifactId>
-    </dependency>
+
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>osgi_R4_compendium</artifactId>

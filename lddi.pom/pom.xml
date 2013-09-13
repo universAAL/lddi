@@ -38,7 +38,7 @@
     <artifactIdMatchString>^lddi\..*</artifactIdMatchString>
   </properties>
   <dependencyManagement>
-    <!-- <dependencies>
+    <dependencies>
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom</artifactId>
@@ -53,7 +53,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
+      <!-- <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.lib.ieeex73std</artifactId>
         <version>2.0.2-SNAPSHOT</version>
@@ -62,13 +62,13 @@
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.lib.activityhub</artifactId>
         <version>2.0.2-SNAPSHOT</version>
-      </dependency>
-      <dependency>
+      </dependency>       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.composite</artifactId>
         <version>2.0.2-SNAPSHOT</version>
-      </dependency>
-    </dependencies> -->
+      </dependency>-->
+
+    </dependencies>
   </dependencyManagement>
   <repositories>
     <repository>
