@@ -63,7 +63,6 @@
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.lib.ieeex73std</artifactId>
-      <version>2.0.2-SNAPSHOT</version>
 	</dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
@@ -72,6 +71,14 @@
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.bus.context.osgi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.bus.service.osgi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
