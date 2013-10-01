@@ -16,7 +16,8 @@
   <modules>
     <module>../lddi.zigbee.commissioning.adapter</module>
     <module>../lddi.zigbee.exporter</module>
-    <module>../zb4osgi/zb4osgi</module>
+    <!-- hudson has problems with this module, probably because it is imported from another svn
+	<module>../zb4osgi/zb4osgi</module>-->
   </modules>
   <scm>
     <connection>${svn.base}/lddi.zigbee/${project.artifactId}</connection>
