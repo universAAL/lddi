@@ -10,6 +10,8 @@ lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.classpath
 lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.project
 lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.settings
 lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/target
+lddi.bluetooth/lddi.pom.bluetooth/.project
+lddi.bluetooth/lddi.pom.bluetooth/.settings
 lddi.bluetooth/lddi.pom.bluetooth/target
 lddi.common/lddi.exporter.activityhub/.classpath
 lddi.common/lddi.exporter.activityhub/.project
