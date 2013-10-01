@@ -10,7 +10,7 @@
   <artifactId>lddi.zigbee.commissioning.adapter</artifactId>
   <version>0.3.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>universAAL LDDI ZB40 commissioning bundle</name>
+  <name>universAAL LDDI ZigBee commissioning bundle</name>
   <pluginRepositories>
     <pluginRepository>
       <releases>
