@@ -278,3 +278,7 @@ lddi.pom.knx-2.0.2-SNAPSHOT/.project
 lddi.pom.knx-2.0.2-SNAPSHOT/.settings
 lddi.pom.knx-2.0.2-SNAPSHOT/target
 lddi.pom.zigbee-2.0.2-SNAPSHOT/target
+lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/.classpath
+lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/.project
+lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/.settings
+lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/target
