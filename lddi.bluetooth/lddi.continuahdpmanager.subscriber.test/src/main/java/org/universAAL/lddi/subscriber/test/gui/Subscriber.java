@@ -92,9 +92,9 @@ public class Subscriber extends ContextSubscriber {
 			System.out.println("Received Blood pressure monitor event");
 			BloodPressureMeasurement bpme = (BloodPressureMeasurement) event.getRDFObject();
 			showReceivedEventInfo(event);	
-			sysMeasuredValue = bpme.getMeasuredBPSys().getValue();
-			diaMeasuredValue = bpme.getMeasuredBPDia().getValue();
-			hrMeasuredValue = bpme.getMeasuredHeartRate().getValue();
+			sysMeasuredValue = bpme.getMeasuredBPSys().getValue().toString();
+			diaMeasuredValue = bpme.getMeasuredBPDia().getValue().toString();
+			hrMeasuredValue = bpme.getMeasuredHeartRate().getValue().toString();
 			remoteDevice = "bloodPressure";
 		// Weighing scale event	
 		} else if (event.getRDFSubject() instanceof WeighingScale) {
@@ -102,11 +102,11 @@ public class Subscriber extends ContextSubscriber {
 			System.out.println("Received Weighing scale event");
 			WeighingScale ws = (WeighingScale) event.getRDFSubject();
 			showReceivedEventInfo(event);
-			temp = Double.parseDouble(ws.getMeasuredWeight().getValue());
+			temp = Double.parseDouble(ws.getMeasuredWeight().getValue().toString());
 			if(temp >= 1000)
 				weightMeasuredValue = ""+ (temp/1000);
 			else
-				weightMeasuredValue = ws.getMeasuredWeight().getValue();
+				weightMeasuredValue = ws.getMeasuredWeight().getValue().toString();
 			remoteDevice = "weightingScale";
 		}
 		// Create and show main GUI frame
