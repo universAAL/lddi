@@ -193,6 +193,13 @@ lddi.pom-1.3.6-SNAPSHOT/composite/.project
 lddi.pom-1.3.6-SNAPSHOT/composite/.settings
 lddi.pom-1.3.6-SNAPSHOT/composite/target
 lddi.pom-1.3.6-SNAPSHOT/target
+lddi.pom-2.0.3-SNAPSHOT/.project
+lddi.pom-2.0.3-SNAPSHOT/.settings
+lddi.pom-2.0.3-SNAPSHOT/composite/.classpath
+lddi.pom-2.0.3-SNAPSHOT/composite/.project
+lddi.pom-2.0.3-SNAPSHOT/composite/.settings
+lddi.pom-2.0.3-SNAPSHOT/composite/target
+lddi.pom-2.0.3-SNAPSHOT/target
 lddi.pom.fs20-1.3.3-SNAPSHOT/.project
 lddi.pom.fs20-1.3.3-SNAPSHOT/.settings
 lddi.pom.fs20-1.3.3-SNAPSHOT/target
