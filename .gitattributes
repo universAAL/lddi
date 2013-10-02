@@ -2471,3 +2471,23 @@ lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/src/main/java/org/universAAL/ld
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL.java -text svneol=unset#text/plain
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java -text svneol=unset#text/plain
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java -text svneol=unset#text/plain
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/ASL2.0 -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/NOTICE -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/pom.xml -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/Activator.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterActuatorCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterDimmerCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/ExporterSensorCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/IASZoneCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OccupancySensorCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/PresenceDetectorCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/TemperatureSensorCallee.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/DimmerLightListener.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/ExporterListener.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/IASZoneListener.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OccupancySensorListener.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OnOffLightListener.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/PresenceDetectorListener.java -text
+lddi.zigbee.exporter-2.0.2-SNAPSHOT/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java -text
