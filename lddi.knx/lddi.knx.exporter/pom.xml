@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.knx</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.4-SNAPSHOT</version>
     <relativePath>../lddi.pom.knx</relativePath>
   </parent>
   <artifactId>lddi.knx.exporter</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>2.0.3-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX Exporter</name>
   <description>Hardware exporter of KNX Home Automation components for the universAAL middleware</description>
@@ -30,10 +30,6 @@
     </developer>
   </developers>
   <dependencies>
-<!--    <dependency>-->
-<!--      <groupId>org.universAAL.support</groupId>-->
-<!--      <artifactId>itests</artifactId>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.osgi.core</artifactId>

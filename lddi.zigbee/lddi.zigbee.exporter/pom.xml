@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.zigbee</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.4-SNAPSHOT</version>
     <relativePath>../lddi.pom.zigbee</relativePath>
   </parent>
   <artifactId>lddi.zigbee.exporter</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>2.0.3-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <!-- ______________________________________________________ -->
   <name>universAAL LDDI ZigBee exporter for uAAL - Home Automation</name>
   <description>Hardware exporter for universAAL: ZigBee technology devices</description>
   <inceptionYear>2008</inceptionYear>
   <organization>
-    <name><![CDATA[
-    Instituto Tecnologico de Aplicaciones de Comunicacion Avanzadas - Grupo Tecnologias para la Salud y el Bienestar (TSB)
-    ]]></name>
-    <url><![CDATA[
-    http://www.itaca.upv.es/
-    ]]></url>
+    <name>Instituto Tecnologico de Aplicaciones de Comunicacion Avanzadas - Grupo Tecnologias para la Salud y el Bienestar (TSB)</name>
+    <url>http://www.itaca.upv.es/</url>
   </organization>
-  <developers />
-  <contributors />
-  <!-- ______________________________________________________ -->
   <dependencies>
     <dependency>
       <groupId>org.apache.felix</groupId>
@@ -51,22 +43,10 @@
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.phWorld</artifactId>
     </dependency>
-    <!-- <dependency>
-      <groupId>org.universAAL.ontology</groupId>
-      <artifactId>ont.lighting</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.ontology</groupId>
-      <artifactId>ont.device.extra</artifactId>
-    </dependency>-->
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.device</artifactId>
     </dependency>
-    <!-- <dependency>
-      <groupId>org.universAAL.ontology</groupId>
-      <artifactId>ont.weather</artifactId>
-    </dependency>-->
     <dependency>
       <groupId>org.aaloa.zb4osgi</groupId>
       <artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>
@@ -87,7 +67,6 @@
       <artifactId>lddi.zigbee.commissioning.adapter</artifactId>
     </dependency>
   </dependencies>
-  <!-- ______________________________________________________ -->
   <build>
     <plugins>
       <plugin>
