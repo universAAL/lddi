@@ -1,37 +1,34 @@
 <?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.universAAL.lddi</groupId>
-		<artifactId>lddi.pom.config</artifactId>
-		<version>2.0.3-SNAPSHOT</version>
-		<relativePath>../lddi.pom.config</relativePath>
-	</parent>
-	<artifactId>lddi.knx.devicemanager.config</artifactId>
-	<version>2.0.3-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>universAAL LDDI KNX device manager (config)</name>
-
-	<inceptionYear>2013</inceptionYear>
-	<organization>
-		<name>Austrian Institute of Technology (AIT)</name>
-		<url>http://www.ait.ac.at/</url>
-	</organization>
-	<developers>
-		<developer>
-			<id>foex</id>
-			<name>Thomas Fuxreiter</name>
-			<email>thomas.fuxreiter@ait.ac.at</email>
-			<roles>
-				<role>developer</role>
-			</roles>
-			<timezone>CEST/CET</timezone>
-		</developer>
-	</developers>
-
-	<build>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom.config</artifactId>
+    <version>2.0.4-SNAPSHOT</version>
+    <relativePath>../lddi.pom.config</relativePath>
+  </parent>
+  <artifactId>lddi.knx.devicemanager.config</artifactId>
+  <version>2.0.4-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>universAAL LDDI KNX device manager (config)</name>
+  <inceptionYear>2013</inceptionYear>
+  <organization>
+    <name>Austrian Institute of Technology (AIT)</name>
+    <url>http://www.ait.ac.at/</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>foex</id>
+      <name>Thomas Fuxreiter</name>
+      <email>thomas.fuxreiter@ait.ac.at</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
+  </developers>
+  <build>
     <resources>
       <resource>
         <filtering>true</filtering>
@@ -41,11 +38,6 @@
     <plugins>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <nonFilteredFileExtensions>
-            <nonFilteredFileExtension>knxproj</nonFilteredFileExtension>
-          </nonFilteredFileExtensions>
-        </configuration>
         <executions>
           <execution>
             <id>filter</id>
@@ -55,6 +47,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>knxproj</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -82,5 +79,5 @@
         </executions>
       </plugin>
     </plugins>
-	</build>
+  </build>
 </project>

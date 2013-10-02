@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.universAAL.lddi</groupId>
   <artifactId>lddi.pom</artifactId>
-  <version>2.0.3-SNAPSHOT</version>
+  <version>2.0.4-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Suite</name>
   <description>The set of artefacts realizing the universAAL Local Device Discovery and Integration</description>
@@ -19,7 +19,7 @@
     <module>../lddi.common/lddi.pom.common</module>
     <module>../lddi.fs20/lddi.pom.fs20</module>
     <module>../lddi.knx/lddi.pom.knx</module>
-	<module>../lddi.config/lddi.pom.config</module>
+    <module>../lddi.config/lddi.pom.config</module>
     <module>../lddi.zigbee/lddi.pom.zigbee</module>
     <module>composite</module>
   </modules>
@@ -42,31 +42,17 @@
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
+        <version>2.0.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.ontology</groupId>
         <artifactId>ont.pom</artifactId>
-        <version>2.0.1-SNAPSHOT</version>
+        <version>2.0.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <!-- <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.lib.ieeex73std</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.lib.activityhub</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
-      </dependency>       <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.composite</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
-      </dependency>-->
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.exporter.activityhub</artifactId>
@@ -86,6 +72,11 @@
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.lib.ieeex73std</artifactId>
         <version>2.0.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.composite</artifactId>
+        <version>2.0.3-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

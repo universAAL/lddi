@@ -1,14 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.bluetooth</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.4-SNAPSHOT</version>
     <relativePath>../lddi.pom.bluetooth</relativePath>
   </parent>
   <artifactId>lddi.bluetooth.continuahdpmanagerservice</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>2.0.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Bluetooth Continua Manager service</name>
   <description>Continua Health Alliance gateway</description>
@@ -16,54 +17,11 @@
     <name>TSB Technologies for Health and Well-being</name>
     <url>www.tsbtecnologias.es</url>
   </organization>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Bundle-Name>${project.name}</Bundle-Name>
-            <Bundle-Activator>org.universAAL.continua.hdp.Activator</Bundle-Activator>
-            <Bundle-Description>${project.description}</Bundle-Description>
-            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Include-Resource>
-              lib,
-              src/main/resources
-            </Include-Resource>  
-            <Import-Package>*</Import-Package>      
-            <Bundle-NativeCode><!--
-            From the BundleNative javadoc: f you have more than one library for the same environment then you 
-            should include all of the libraries for that environment in the same Bundle-NativeCode entry.-->
-              libHDPnative_unix_32.so;
-              osname=Linux;
-              processor=x86; processor=x86_32
-              libHDPnative_unix_64.so;
-              osname=Linux;
-              processor=x86; processor=x86_64
-            </Bundle-NativeCode>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <profiles>
-    <profile>
-      <id>uAAL-Runtime</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.universAAL.middleware</groupId>
-          <artifactId>mw.data.serialization.osgi</artifactId>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>  
   <dependencies>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.lib.ieeex73std</artifactId>
-	</dependency>
+    </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.osgi.core</artifactId>
@@ -87,6 +45,43 @@
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.continuahealthmanager</artifactId>
-    </dependency>  
-  </dependencies>    
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Bundle-Activator>org.universAAL.continua.hdp.Activator</Bundle-Activator>
+            <Bundle-Description>${project.description}</Bundle-Description>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Include-Resource>lib,
+              src/main/resources</Include-Resource>
+            <Import-Package>*</Import-Package>
+            <Bundle-NativeCode>libHDPnative_unix_32.so;
+              osname=Linux;
+              processor=x86; processor=x86_32
+              libHDPnative_unix_64.so;
+              osname=Linux;
+              processor=x86; processor=x86_64</Bundle-NativeCode>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>uAAL-Runtime</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.universAAL.middleware</groupId>
+          <artifactId>mw.data.serialization.osgi</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 </project>
