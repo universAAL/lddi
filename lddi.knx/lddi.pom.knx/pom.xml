@@ -18,6 +18,7 @@
     <module>../lddi.knx.exporter</module>
     <module>../lddi.knx.library</module>
     <module>../lddi.knx.networkdriver</module>
+    <!-- <module>../lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub</module> -->
   </modules>
   <scm>
     <connection>${svn.base}/lddi.knx/${project.artifactId}</connection>
