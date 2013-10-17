@@ -82,6 +82,9 @@ lddi.pom/composite/.classpath
 lddi.pom/composite/.project
 lddi.pom/composite/.settings
 lddi.pom/composite/target
+lddi.pom/lddi.karaf.feature/.classpath
+lddi.pom/lddi.karaf.feature/.project
+lddi.pom/lddi.karaf.feature/.settings
 lddi.pom/target
 lddi.zigbee/lddi.pom.zigbee/target
 lddi.zigbee/lddi.zigbee.commissioning.adapter/.classpath
