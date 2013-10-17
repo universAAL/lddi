@@ -1,18 +1,25 @@
 /*
  * Copyright (C) 2009 Stefan Strömberg
- * 
- * File: FHZ1000PC.java
- * Project: HomeManager
- * 
- * This source is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * 
  * History:
  * 2008-12-07	Added removeEventListener when closing down serial port.
  * 2008-09-07	Added support for Linux
  * 2007-01-08	Corrected COMMAND_DIM_LOOP and COMMAND_TOGGLE
  * 2007 jan 5	Created 
+
+  	See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
  */
 
 package org.universAAL.lddi.fs20.connect;
