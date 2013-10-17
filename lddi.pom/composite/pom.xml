@@ -18,39 +18,24 @@
     <developerConnection>${svn.base}/lddi.pom/composite</developerConnection>
     <url>${svn.base.url}lddi.pom/composite</url>
   </scm>
-  <dependencies>
+  <dependencyManagement>
+   <dependencies>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.lib.activityhub</artifactId>
+      <artifactId>lddi.pom.common</artifactId>
+      <version>2.0.4-SNAPSHOT</version>
+      <type>pom</type>
+      <scope>import</scope>
     </dependency>
+    
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.exporter.activityhub</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.exporter</artifactId>
-      <version>2.0.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.devicemanager</artifactId>
-      <version>2.0.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.library</artifactId>
-      <version>2.0.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.networkdriver</artifactId>
-      <version>2.0.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.refinementdriver.dpt1.activityhub</artifactId>
-      <version>2.0.2-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
+      <artifactId>lddi.pom.knx</artifactId>
+      <version>2.0.4-SNAPSHOT</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>    
+    
+   </dependencies>
+  </dependencyManagement>
 </project>

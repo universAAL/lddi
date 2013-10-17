@@ -27,4 +27,29 @@
   <properties>
     <nameMatchString>^universAAL LDDI .*</nameMatchString>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.exporter.activityhub</artifactId>
+        <version>2.0.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.exporter.x73</artifactId>
+        <version>2.0.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.lib.activityhub</artifactId>
+        <version>2.0.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.lib.ieeex73std</artifactId>
+        <version>2.0.2-SNAPSHOT</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
 </project>

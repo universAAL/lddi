@@ -22,6 +22,7 @@
     <module>../lddi.config/lddi.pom.config</module>
     <module>../lddi.zigbee/lddi.pom.zigbee</module>
     <module>composite</module>
+    <module>lddi.karaf.feature</module>
   </modules>
   <scm>
     <connection>${svn.base}/${project.artifactId}</connection>
@@ -41,7 +42,7 @@
     <dependencies>
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
-        <artifactId>mw.pom</artifactId>
+        <artifactId>mw.pom.core</artifactId>
         <version>2.0.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
@@ -53,34 +54,24 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.exporter.activityhub</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.exporter.x73</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.lib.activityhub</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.lib.ieeex73std</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
-      </dependency>
+
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.composite</artifactId>
         <version>2.0.3-SNAPSHOT</version>
       </dependency>
+
+      <dependency>
+		<groupId>org.universAAL.lddi</groupId>
+		<artifactId>lddi.karaf.feature</artifactId>
+		<version>2.0.4-SNAPSHOT</version>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
-  <repositories>
+
+<!-- inherited from super pom
+ <repositories>
     <repository>
       <releases>
         <enabled>false</enabled>
@@ -97,7 +88,8 @@
       <name>universAAL Repositories</name>
       <url>http://depot.universaal.org/maven-repo/releases/</url>
     </repository>
-  </repositories>
+  </repositories>  -->
+
   <build>
     <plugins>
       <plugin>

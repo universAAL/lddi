@@ -30,6 +30,7 @@
     </developer>
   </developers>
   <dependencies>
+  
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.osgi.core</artifactId>
@@ -40,11 +41,13 @@
       <version>1.0</version>
       <scope>compile</scope>
     </dependency>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    
   </dependencies>
   <build>
     <plugins>

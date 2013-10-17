@@ -30,20 +30,24 @@
     </developer>
   </developers>
   <dependencies>
+  
     <dependency>
       <groupId>org.universAAL.support</groupId>
       <artifactId>itests</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.osgi.core</artifactId>
-    </dependency>
+    
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>osgi_R4_compendium</artifactId>
       <version>1.0</version>
       <scope>compile</scope>
     </dependency>
+    
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    
     <dependency>
       <groupId>at.ac.tuwien.auto</groupId>
       <artifactId>calimero</artifactId>
@@ -57,7 +61,7 @@
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.gogo.runtime</artifactId>
-      <version>0.10.0</version>
+	   <version>0.10.0</version>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
