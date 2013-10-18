@@ -70,7 +70,6 @@
     </dependencies>
   </dependencyManagement>
 
-<!-- inherited from super pom
  <repositories>
     <repository>
       <releases>
@@ -88,7 +87,7 @@
       <name>universAAL Repositories</name>
       <url>http://depot.universaal.org/maven-repo/releases/</url>
     </repository>
-  </repositories>  -->
+  </repositories>
 
   <build>
     <plugins>
