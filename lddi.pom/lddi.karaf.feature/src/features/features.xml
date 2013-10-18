@@ -2,7 +2,7 @@
 <features name="universAAL-LDDI" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 
 	<!-- Change version of repository accordingly -->
-	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/2.0.2-SNAPSHOT/xml/features</repository>
+	<repository>mvn:org.universAAL.lddi/lddi.karaf.feature/2.0.4-SNAPSHOT/xml/features</repository>
 
 	<feature name="uAAL-LDDI-KNX" description="The LDDI framework for KNX based on the uAAL-MW"
 		version="${pom.version}" resolver='(obr)' start-level="90" >
