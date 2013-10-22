@@ -33,9 +33,9 @@ package org.universAAL.lddi.exporter.activityhub.test;
 // * @author Thomas Fuxreiter (foex@gmx.at)
 // * 
 // */
-//public class HwExporterActivityHubTest extends IntegrationTest {
+//public class HwExporterActivityHubIT extends IntegrationTest {
 //
-//    public HwExporterActivityHubTest() {
+//    public HwExporterActivityHubIT() {
 //    	setBundleConfLocation("conf");
 //    }
 //

@@ -1,3 +1,4 @@
+package org.universAAL.lddi.knx.networkdriver.test;
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
@@ -54,11 +55,11 @@
 // */
 ////@RunWith(JUnit4TestRunner.class)
 ////@ExamReactorStrategy(PerSuite.class)
-//public class KnxNetworkdriverFunctionalTest extends IntegrationTest{
+//public class KnxNetworkdriverFunctionalIT extends IntegrationTest{
 //
 //    public static ModuleContext mc = null;
 //
-//	public KnxNetworkdriverFunctionalTest() {
+//	public KnxNetworkdriverFunctionalIT() {
 //    	setBundleConfLocation("conf");
 //    	setLogLevel(2);
 //
