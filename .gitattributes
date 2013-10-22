@@ -74,7 +74,7 @@ lddi.common/lddi.exporter.activityhub/src/main/java/org/universAAL/lddi/exporter
 lddi.common/lddi.exporter.activityhub/src/main/java/org/universAAL/lddi/exporter/activityhub/driver/Iso11073UsageSensorDriver.java -text
 lddi.common/lddi.exporter.activityhub/src/main/java/org/universAAL/lddi/exporter/activityhub/driver/Iso11073UsageSensorInstance.java -text
 lddi.common/lddi.exporter.activityhub/src/main/java/org/universAAL/lddi/exporter/activityhub/util/LogTracker.java -text
-lddi.common/lddi.exporter.activityhub/src/test/java/org/universAAL/lddi/exporter/activityhub/test/HwExporterActivityHubTest.java -text
+lddi.common/lddi.exporter.activityhub/src/test/java/org/universAAL/lddi/exporter/activityhub/test/HwExporterActivityHubIT.java -text
 lddi.common/lddi.exporter.x73/ASL2.0.txt -text
 lddi.common/lddi.exporter.x73/NOTICE.txt -text
 lddi.common/lddi.exporter.x73/lib/libunix-java-32.so -text
@@ -906,7 +906,7 @@ lddi.knx/lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdri
 lddi.knx/lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/KnxShellCommand.java -text
 lddi.knx/lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 lddi.knx/lddi.knx.networkdriver/src/main/resources/lddi.knx.networkdriver.cfg -text
-lddi.knx/lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalTest.java -text
+lddi.knx/lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalIT.java -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/ASL2.0.txt -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/NOTICE.txt -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/pom.xml -text
