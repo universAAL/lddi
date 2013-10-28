@@ -1,57 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="universAAL-LDDI" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 
-	<!-- Change version of repository accordingly -->
-	<repository>mvn:org.universAAL.lddi/lddi.karaf.feature/2.0.4-SNAPSHOT/xml/features</repository>
+	<!-- import Respositories -->
+	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/${mw.karaf.feature.version}/xml/features</repository>
+	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/${ont.karaf.feature.version}/xml/features</repository>
 
 	<feature name="uAAL-LDDI-KNX" description="The LDDI framework for KNX based on the uAAL-MW"
 		version="${pom.version}" resolver='(obr)' start-level="90" >
+		<!-- make sure you set start-levels per bundle,
+		 libraries go to level 50; onts stop at level 65.
+		 since there are no other dependencies it is safe to assume that 70 is a good start level for this feature,
+		 but make sure bundle dependencies are respected.
+		 EG if bundleB depends on bundleA then
+		 <bundle start-level=70>bundleA</bundle>
+		 <bundle start-level=71>bundleB</bundle> (or greater) -->
 		
 		<!-- needed features -->
-		<feature>uAAL-MW</feature>
-		<feature>uAAL-Ont.PhWorld</feature>
-		<feature>uAAL-Ont.Profile</feature>
-		<feature>uAAL-Ont.Device</feature>
+		<feature>uAAL-Ont.Device</feature> <!-- this imports ont.profile, ont.phWorld and mw features -->
 		
 
-		<!-- Apache OSGi DAS bundles -->
+		<!-- Apache OSGi DAS bundles --> <!-- there seems to be no reference in the dependency tree for these two -->
 		<bundle>mvn:org.apache.felix/org.apache.felix.dependencymanager/3.1.0</bundle>
 		<bundle>mvn:org.apache.felix/org.apache.felix.devicemanager/0.9.0-SNAPSHOT</bundle>
 
 		<!-- Calimero only for direct UDP connection needed; not for UDP multichast channel; should be avoided/replaced  -->
-		<bundle>wrap:mvn:at.ac.tuwien.auto/calimero/2.0a4</bundle>
-
-		<!-- webconsole for better debugging/testing -->
-		<bundle>wrap:mvn:javax.servlet/servlet-api/2.5</bundle>
-		<bundle>mvn:org.mortbay.jetty/jetty-util/6.1.24</bundle>
-		<bundle>mvn:org.mortbay.jetty/servlet-api/2.5-20081211</bundle>
-		<bundle>mvn:org.mortbay.jetty/jetty/6.1.24</bundle>
-		<bundle>mvn:org.mortbay.jetty/jetty-sslengine/6.1.24</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.http.api/2.2.0</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.http.base/2.2.0</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.http.jetty/2.2.0</bundle>
-		<bundle>mvn:org.apache.felix/org.apache.felix.webconsole/3.1.8</bundle>
+		<bundle>wrap:mvn:at.ac.tuwien.auto/calimero/${calimero.version}</bundle>
 
 		<!-- XML wrapper -->
-		<bundle>wrap:mvn:org.jdom/jdom/1.1.3</bundle>
-		<bundle>wrap:mvn:jaxen/jaxen/1.1.3</bundle>
-
-		<!-- more dependencies; really needed? -->
-		<bundle>mvn:org.apache.felix/org.osgi.core/1.4.0</bundle>
-		<bundle>wrap:mvn:org.osgi/osgi_R4_compendium/1.0</bundle>
-		<bundle>mvn:org.openrdf.sesame/sesame-runtime-osgi/2.6.0</bundle>
-		<bundle>mvn:commons-lang/commons-lang/2.6</bundle>
+		<bundle>wrap:mvn:org.jdom/jdom/${jdom.version}</bundle>
+<!-- 		is Jaxen really needed? there seems to be no reference in the dependency tree -->
+		<bundle>wrap:mvn:jaxen/jaxen/1.1.3</bundle> 
 
 		<!-- core KNX bundles -->
-		<bundle>mvn:org.universAAL.lddi/lddi.knx.library/2.0.2-SNAPSHOT</bundle>
-		<bundle>mvn:org.universAAL.lddi/lddi.knx.networkdriver/2.0.2-SNAPSHOT</bundle>
-		<bundle start-level='93'>mvn:org.universAAL.lddi/lddi.knx.devicemanager/2.0.2-SNAPSHOT</bundle>
-		<bundle start-level='92'>mvn:org.universAAL.lddi/lddi.knx.exporter/2.0.2-SNAPSHOT</bundle>
+		<bundle>mvn:org.universAAL.lddi/lddi.knx.library/${lddi.lib.activityhub.version}</bundle>
+		<bundle>mvn:org.universAAL.lddi/lddi.knx.networkdriver/${lddi.knx.networkdriver.version}</bundle>
+		<bundle start-level='93'>mvn:org.universAAL.lddi/lddi.knx.devicemanager/${lddi.knx.devicemanager.version}</bundle>
+		<bundle start-level='92'>mvn:org.universAAL.lddi/lddi.knx.exporter/${lddi.knx.exporter.version}</bundle>
 
 		<!-- KNX configuration files -->
-		<configfile finalname="/etc/lddi.knx.networkdriver.cfg">mvn:org.universAAL.lddi/lddi.knx.networkdriver.config/2.0.3-SNAPSHOT/cfg</configfile>
-		<configfile finalname="/etc/lddi.knx.devicemanager.cfg">mvn:org.universAAL.lddi/lddi.knx.devicemanager.config/2.0.3-SNAPSHOT/cfg</configfile>
-		<configfile finalname="/etc/KNX_Demowand-uAAL-MW20-Test-3.knxproj">mvn:org.universAAL.lddi/lddi.knx.devicemanager.config/2.0.3-SNAPSHOT/knxproj</configfile>
+		<configfile finalname="/etc/lddi.knx.networkdriver.cfg">
+			mvn:org.universAAL.lddi/lddi.knx.networkdriver.config/${lddi.knx.networkdriver.config.version}/cfg</configfile>
+		<configfile finalname="/etc/lddi.knx.devicemanager.cfg">
+			mvn:org.universAAL.lddi/lddi.knx.devicemanager.config/${lddi.knx.devicemanager.config.version}/cfg</configfile>
+		<configfile finalname="/etc/KNX_Demowand-uAAL-MW20-Test-3.knxproj">
+			mvn:org.universAAL.lddi/lddi.knx.devicemanager.config/${lddi.knx.devicemanager.config.version}/knxproj</configfile>
 				
 	</feature>
 
