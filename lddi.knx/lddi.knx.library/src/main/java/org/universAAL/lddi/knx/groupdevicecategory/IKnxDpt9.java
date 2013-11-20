@@ -24,7 +24,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
 
 
 /**
- * Base GroupDeviceCategory for KNX datapoint type “2-Octet Float Value”.
+ * Base GroupDeviceCategory for KNX datapoint type "2-Octet Float Value".
  * 
  * Specification from KNX Datapoint Types v1.07.00 AS :
  * 
@@ -33,11 +33,11 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
  * float value |-------- --------|
  * encoding 	MEEEEMMM MMMMMMMM
  * FloatValue = (0,01*M)*2(E)
- * E = [0 … 15]
- * M = [-2 048 … 2 047], two’s complement notation
+ * E = [0 : 15]
+ * M = [-2 048 : 2 047], two's complement notation
  * For all Datapoint Types 9.xxx, the encoded value 7FFFh shall always be used to denote invalid data.
  * Possible values are from 0 - 255.
- * Range: [-671 088,64 … 670 760,96]
+ * Range: [-671 088,64 : 670 760,96]
  * PDT: PDT_KNX_FLOAT
  * 
  * 
@@ -75,14 +75,14 @@ public interface IKnxDpt9
 	
 
 	// default max/min constants for all dpt9 devices
-	public static byte[] DEFAULT_MAX_VALUE = {(byte) 0x07, (byte) 0xFF}; // 2047 two’s complement notation!
-	public static byte[] DEFAULT_MIN_VALUE = {(byte) 0x80, (byte) 0x00}; // -2048 two’s complement notation!
+	public static byte[] DEFAULT_MAX_VALUE = {(byte) 0x07, (byte) 0xFF}; // 2047 two's complement notation!
+	public static byte[] DEFAULT_MIN_VALUE = {(byte) 0x80, (byte) 0x00}; // -2048 two's complement notation!
 	public static byte[] DEFAULT_INVALID_VALUE = {(byte) 0x7F, (byte) 0xFF}; // all bits 1 except MSb
 
 	
 	// constants for specific dpt9 devices
 	/** 9.001 - DPT_Value_Temp
-	 * From -273°C to +670760°C - Resolution: 0,01°C
+	 * From -273&deg;C to +670760&deg;C - Resolution: 0,01&deg;C
 	 */
 	public static float RESOLUTION_9_001 =  (float) 1/100;
 	

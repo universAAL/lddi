@@ -28,7 +28,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
  * Bit 4: c = {0,1} (Decrease, Increase).
  * 
  * Bit 1-3: StepCode = {000b ... 111b} (The amount of intervals into which the
- * range of 0 % … 100 % is subdivided, or the break indication) 
+ * range of 0 % - 100 % is subdivided, or the break indication) 
  * 
  * 001b ... 111b:
  * Step Number of intervals = 2^(stepcode-1)
