@@ -27,7 +27,7 @@ import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.SimpleOntology;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.rdf.impl.ResourceFactoryImpl;
+import org.universAAL.middleware.rdf.ResourceFactory;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.activityhub.ActivityHub;
 import org.universAAL.ontology.activityhub.ActivityHubSensor;
@@ -86,8 +86,7 @@ public class AHServiceOntology extends ActivityHub {
     static {
 		OntologyManagement.getInstance().register(
 				Activator.mc, new SimpleOntology(MY_URI, ActivityHub.MY_URI,
-						new ResourceFactoryImpl() {
-					@Override
+						new ResourceFactory() {
 					public Resource createInstance(String classURI,
 							String instanceURI, int factoryIndex) {
 						return new AHServiceOntology(instanceURI);
