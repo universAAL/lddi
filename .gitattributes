@@ -1912,6 +1912,10 @@ lddi.knx.networkdriver.config-2.0.3-SNAPSHOT/ASL2.0.txt -text
 lddi.knx.networkdriver.config-2.0.3-SNAPSHOT/NOTICE.txt -text
 lddi.knx.networkdriver.config-2.0.3-SNAPSHOT/pom.xml -text
 lddi.knx.networkdriver.config-2.0.3-SNAPSHOT/src/main/resources/lddi.knx.networkdriver.cfg -text
+lddi.knx.networkdriver.config-2.0.4-SNAPSHOT/ASL2.0.txt -text
+lddi.knx.networkdriver.config-2.0.4-SNAPSHOT/NOTICE.txt -text
+lddi.knx.networkdriver.config-2.0.4-SNAPSHOT/pom.xml -text
+lddi.knx.networkdriver.config-2.0.4-SNAPSHOT/src/main/resources/lddi.knx.networkdriver.cfg -text
 lddi.lib.activityhub-2.0.2-SNAPSHOT/ASL2.0.txt -text
 lddi.lib.activityhub-2.0.2-SNAPSHOT/NOTICE.txt -text
 lddi.lib.activityhub-2.0.2-SNAPSHOT/pom.xml -text
