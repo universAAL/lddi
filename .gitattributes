@@ -701,6 +701,16 @@ lddi.continuahdpmanager.caller.test-2.0.1-SNAPSHOT/src/main/java/org/universAAL/
 lddi.continuahdpmanager.caller.test-2.0.1-SNAPSHOT/src/main/resources/bp.png -text
 lddi.continuahdpmanager.caller.test-2.0.1-SNAPSHOT/src/main/resources/uaal_logo_resized.jpg -text
 lddi.continuahdpmanager.caller.test-2.0.1-SNAPSHOT/src/main/resources/ws.png -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/ASL2.0.txt -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/META-INF/MANIFEST.MF -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/NOTICE.txt -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/pom.xml -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/src/main/java/org/universAAL/lddi/caller/test/gui/GUI.java -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/src/main/java/org/universAAL/lddi/caller/test/gui/Publisher.java -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/src/main/java/org/universAAL/lddi/caller/test/main/Activator.java -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/src/main/resources/bp.png -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/src/main/resources/uaal_logo_resized.jpg -text
+lddi.continuahdpmanager.caller.test-2.0.2-SNAPSHOT/src/main/resources/ws.png -text
 lddi.continuahdpmanager.subscriber.test-2.0.1-SNAPSHOT/ASL2.0.txt -text
 lddi.continuahdpmanager.subscriber.test-2.0.1-SNAPSHOT/META-INF/MANIFEST.MF -text
 lddi.continuahdpmanager.subscriber.test-2.0.1-SNAPSHOT/NOTICE.txt -text
