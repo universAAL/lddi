@@ -254,6 +254,10 @@ lddi.knx.networkdriver-2.0.2-SNAPSHOT/.classpath
 lddi.knx.networkdriver-2.0.2-SNAPSHOT/.project
 lddi.knx.networkdriver-2.0.2-SNAPSHOT/.settings
 lddi.knx.networkdriver-2.0.2-SNAPSHOT/target
+lddi.knx.networkdriver-2.0.3-SNAPSHOT/.classpath
+lddi.knx.networkdriver-2.0.3-SNAPSHOT/.project
+lddi.knx.networkdriver-2.0.3-SNAPSHOT/.settings
+lddi.knx.networkdriver-2.0.3-SNAPSHOT/target
 lddi.knx.networkdriver.config-2.0.3-SNAPSHOT/.project
 lddi.knx.networkdriver.config-2.0.3-SNAPSHOT/.settings
 lddi.knx.networkdriver.config-2.0.3-SNAPSHOT/target
