@@ -108,7 +108,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	 * Register this class as Managed Service.
 	 */
 	private void registerManagedService() {
-		Properties propManagedService=new Properties();
+	    Dictionary propManagedService=new Properties();
 		propManagedService.put(Constants.SERVICE_PID, this.context.getBundle().getSymbolicName());
 		this.context.registerService(ManagedService.class.getName(), this, propManagedService);
 	}
@@ -212,7 +212,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 							knxGroupDevice.setParams(knxGroupAddress, this.network, this.logger);
 							
 							// register groupDevice in OSGi registry
-							Properties propDeviceService=new Properties();
+							Dictionary propDeviceService=new Properties();
 
 							propDeviceService.put(
 									org.osgi.service.device.Constants.DEVICE_CATEGORY, 

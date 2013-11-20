@@ -93,7 +93,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	 * Register this class as Managed Service
 	 */
 	private void registerManagedService() {
-		Properties propManagedService = new Properties();
+	    Dictionary propManagedService = new Properties();
 		propManagedService.put(Constants.SERVICE_PID, this.context.getBundle()
 				.getSymbolicName());
 		this.context.registerService(ManagedService.class.getName(), this,
