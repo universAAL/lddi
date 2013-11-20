@@ -2449,6 +2449,16 @@ lddi.pom-2.0.3-SNAPSHOT/composite/ASL2.0.txt -text
 lddi.pom-2.0.3-SNAPSHOT/composite/NOTICE.txt -text
 lddi.pom-2.0.3-SNAPSHOT/composite/pom.xml -text
 lddi.pom-2.0.3-SNAPSHOT/pom.xml -text
+lddi.pom-2.0.4-SNAPSHOT/composite/ASL2.0.txt -text
+lddi.pom-2.0.4-SNAPSHOT/composite/NOTICE.txt -text
+lddi.pom-2.0.4-SNAPSHOT/composite/pom.xml -text
+lddi.pom-2.0.4-SNAPSHOT/lddi.karaf.feature/ASL2.0.txt -text
+lddi.pom-2.0.4-SNAPSHOT/lddi.karaf.feature/NOTICE.txt -text
+lddi.pom-2.0.4-SNAPSHOT/lddi.karaf.feature/README.txt -text
+lddi.pom-2.0.4-SNAPSHOT/lddi.karaf.feature/pom.xml -text
+lddi.pom-2.0.4-SNAPSHOT/lddi.karaf.feature/src/features/features.xml -text
+lddi.pom-2.0.4-SNAPSHOT/lddi.karaf.feature/src/features/lddi.knx.xml -text
+lddi.pom-2.0.4-SNAPSHOT/pom.xml -text
 lddi.pom.bluetooth-2.0.2-SNAPSHOT/pom.xml -text
 lddi.pom.common-2.0.2-SNAPSHOT/pom.xml -text
 lddi.pom.config-2.0.3-SNAPSHOT/ASL2.0.txt -text
