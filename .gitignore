@@ -38,6 +38,10 @@ lddi.continuahdpmanager.subscriber.test-2.0.1-SNAPSHOT/.classpath
 lddi.continuahdpmanager.subscriber.test-2.0.1-SNAPSHOT/.project
 lddi.continuahdpmanager.subscriber.test-2.0.1-SNAPSHOT/.settings
 lddi.continuahdpmanager.subscriber.test-2.0.1-SNAPSHOT/target
+lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/.classpath
+lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/.project
+lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/.settings
+lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/target
 lddi.exporter.activityhub-2.0.2-SNAPSHOT/.classpath
 lddi.exporter.activityhub-2.0.2-SNAPSHOT/.project
 lddi.exporter.activityhub-2.0.2-SNAPSHOT/.settings
