@@ -230,6 +230,10 @@ lddi.knx.library-2.0.2-SNAPSHOT/.classpath
 lddi.knx.library-2.0.2-SNAPSHOT/.project
 lddi.knx.library-2.0.2-SNAPSHOT/.settings
 lddi.knx.library-2.0.2-SNAPSHOT/target
+lddi.knx.library-2.0.3-SNAPSHOT/.classpath
+lddi.knx.library-2.0.3-SNAPSHOT/.project
+lddi.knx.library-2.0.3-SNAPSHOT/.settings
+lddi.knx.library-2.0.3-SNAPSHOT/target
 lddi.knx.networkdriver-0.0.5-SNAPSHOT/.classpath
 lddi.knx.networkdriver-0.0.5-SNAPSHOT/.project
 lddi.knx.networkdriver-0.0.5-SNAPSHOT/.settings
