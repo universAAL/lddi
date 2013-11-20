@@ -2461,6 +2461,7 @@ lddi.pom-2.0.4-SNAPSHOT/lddi.karaf.feature/src/features/lddi.knx.xml -text
 lddi.pom-2.0.4-SNAPSHOT/pom.xml -text
 lddi.pom.bluetooth-2.0.2-SNAPSHOT/pom.xml -text
 lddi.pom.common-2.0.2-SNAPSHOT/pom.xml -text
+lddi.pom.common-2.0.4-SNAPSHOT/pom.xml -text
 lddi.pom.config-2.0.3-SNAPSHOT/ASL2.0.txt -text
 lddi.pom.config-2.0.3-SNAPSHOT/NOTICE.txt -text
 lddi.pom.config-2.0.3-SNAPSHOT/pom.xml -text
