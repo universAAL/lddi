@@ -1416,6 +1416,11 @@ lddi.knx.devicemanager-2.0.3-SNAPSHOT/src/main/resources/lddi.knx.networkdriver.
 lddi.knx.devicemanager.config-2.0.3-SNAPSHOT/pom.xml -text
 lddi.knx.devicemanager.config-2.0.3-SNAPSHOT/src/main/resources/KNX_Demowand-uAAL-MW20-Test-3.knxproj -text
 lddi.knx.devicemanager.config-2.0.3-SNAPSHOT/src/main/resources/lddi.knx.devicemanager.cfg -text
+lddi.knx.devicemanager.config-2.0.4-SNAPSHOT/ASL2.0.txt -text
+lddi.knx.devicemanager.config-2.0.4-SNAPSHOT/NOTICE.txt -text
+lddi.knx.devicemanager.config-2.0.4-SNAPSHOT/pom.xml -text
+lddi.knx.devicemanager.config-2.0.4-SNAPSHOT/src/main/resources/KNX_Demowand-uAAL-MW20-Test-3.knxproj -text
+lddi.knx.devicemanager.config-2.0.4-SNAPSHOT/src/main/resources/lddi.knx.devicemanager.cfg -text
 lddi.knx.dpt1refinementdriver.iso11073-0.0.5-SNAPSHOT/conf/factories/knx.dpt1refinementdriver.iso11073.properties -text
 lddi.knx.dpt1refinementdriver.iso11073-0.0.5-SNAPSHOT/launches/README.txt -text
 lddi.knx.dpt1refinementdriver.iso11073-0.0.5-SNAPSHOT/launches/Run.bat -text
