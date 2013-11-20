@@ -20,6 +20,7 @@
 
 package org.universAAL.lddi.exporter.activityhub.driver;
 
+import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -132,7 +133,7 @@ public class Iso11073UsageSensorDriver implements Driver {
 	 * register this driver in OSGi registry
 	 */
 	private void registerDriver() {
-		Properties propDriver=new Properties();
+	    Dictionary propDriver=new Properties();
 		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID );
 		this.regDriver=this.context.registerService(Driver.class.getName(), this, 
 				propDriver);
