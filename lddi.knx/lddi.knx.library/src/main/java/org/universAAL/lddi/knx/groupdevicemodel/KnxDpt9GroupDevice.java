@@ -43,8 +43,8 @@ public class KnxDpt9GroupDevice extends KnxGroupDevice implements IKnxDpt9 {
      * float value |-------- --------|
      * encoding 	MEEEEMMM MMMMMMMM
      * FloatValue = (0,01*M)*2(E)
-     * E = [0 … 15]
-     * M = [-2 048 … 2 047], two’s complement notation
+     * E = [0 : 15]
+     * M = [-2 048 : 2 047], two's complement notation
      * 
 	 */
 	public static float calculateFloatValue(byte[] payload) {

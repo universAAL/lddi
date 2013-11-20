@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 Stefan Strömberg
+ * Copyright (C) 2009 Stefan StrÃ¶mberg
  * History:
  * 2008-12-07	Added removeEventListener when closing down serial port.
  * 2008-09-07	Added support for Linux
@@ -75,7 +75,7 @@ import jd2xx.JD2XXEventListener;
  * http://fhz4linux.info/tiki-index.php?page=Driver+installation 
  * 
  * 
- * @author Stefan Strömberg
+ * @author Stefan StrÃ¶mberg
  *
  */
 public class FHZ1000PC {
@@ -83,7 +83,7 @@ public class FHZ1000PC {
 	/**
 	 * An interface to the "raw" FHZ1000 device where you can read and write data to it.
 	 *  
-	 * @author Stefan Strömberg
+	 * @author Stefan StrÃ¶mberg
 	 */
 	public interface FHZ1000Device {
 		public int write(byte data[]) throws IOException;
@@ -96,7 +96,7 @@ public class FHZ1000PC {
 	 * When running on Windows, we access the USB-device via FTDI-specific drivers to access
 	 * the device. This is done via this class.
 	 *  
-	 * @author Stefan Strömberg
+	 * @author Stefan StrÃ¶mberg
 	 */
 	public class JD2XXFHZ1000Device implements JD2XXEventListener, FHZ1000Device {
 		protected JD2XX m_Device;
@@ -153,7 +153,7 @@ public class FHZ1000PC {
 	 * When running on Linux, we access the USB-device via generic serial drivers for FTDI-chips.
 	 * This is done via this class.
 	 *  
-	 * @author Stefan Strömberg
+	 * @author Stefan StrÃ¶mberg
 	 */
 	public class FHZ1000SerialDevice implements FHZ1000Device, SerialPortEventListener {
 		protected final int MAX_WAIT_TIME_MS = 2000;

@@ -1,5 +1,5 @@
 /*
- 	Copyright (C) 2007 Stefan Strömberg
+ 	Copyright (C) 2007 Stefan StrÃ¶mberg
  	
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
