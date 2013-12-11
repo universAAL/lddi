@@ -21,6 +21,7 @@
     <module>../lddi.knx/lddi.pom.knx</module>
     <module>../lddi.config/lddi.pom.config</module>
     <module>../lddi.zigbee/lddi.pom.zigbee</module>
+    <module>../lddi.zwave/lddi.pom.zwave</module>
     <module>composite</module>
     <module>lddi.karaf.feature</module>
   </modules>
@@ -64,6 +65,7 @@
         <artifactId>lddi.karaf.feature</artifactId>
         <version>2.0.5-SNAPSHOT</version>
       </dependency>
+      <!-- These dependencies have to be reviewed, maybe they don't belong here -->
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.lib.activityhub</artifactId>
