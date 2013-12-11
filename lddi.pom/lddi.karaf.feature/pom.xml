@@ -34,6 +34,13 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.pom.zwave</artifactId>
+        <version>2.0.5-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -78,6 +85,10 @@
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.refinementdriver.dpt1.activityhub</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.zwave.exporter</artifactId>
     </dependency>
   </dependencies>
   <build>

@@ -47,7 +47,16 @@
 				
 	</feature>
 
+	<feature name="uAAL-LDDI-ZWAVE" description="The LDDI framework for ZWave based on the uAAL-MW"
+		version="${platform.version}" resolver='(obr)'>
+		
+		<bundle start-level="52">wrap:mvn:org.xsocket/xsocket/2.8.14</bundle>
 
+		<!-- Ontologies -->
+		<feature>uAAL-Ont.Activityhub</feature>
+		<feature>uAAL-Ont.Device</feature>
+		<bundle start-level='79' start='true'>mvn:org.universAAL.lddi/lddi.zwave.exporter/${lddi.zwave.exporter.version}</bundle>
+	</feature>
 
 	<!-- sample feature -->
 <!--
