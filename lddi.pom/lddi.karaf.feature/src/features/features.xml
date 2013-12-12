@@ -58,6 +58,13 @@
 		<bundle start-level='79' start='true'>mvn:org.universAAL.lddi/lddi.zwave.exporter/${lddi.zwave.exporter.version}</bundle>
 	</feature>
 
+	<feature name="uAAL-LDDI-BluetoothContinua" description="The Continua Bluetooth Heath Personal Device Manager. Remember to install the apropriate drivers for your system."
+		version="${pom.version}" resolver='(obr)'>
+		<bundle start-level='55'>wrap:mvn:org.universAAL.lddi/lddi.lib.ieeex73std/${lddi.lib.ieeex73std.version}</bundle>	
+		<feature>uAAL-Ont.ContinuaHealth</feature>
+		<bundle start-level='70'>mvn:org.universAAL.lddi/lddi.bluetooth.continuahdpmanagerservice/${lddi.bluetooth.continuahdpmanagerservice.version}</bundle>	
+	</feature>
+
 	<!-- sample feature -->
 <!--
 	<feature name="uAAL-Ont.PhWorld" description="The Physical World Ontolgy."
