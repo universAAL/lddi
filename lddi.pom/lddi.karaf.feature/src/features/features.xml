@@ -64,7 +64,13 @@
 		<feature>uAAL-Ont.ContinuaHealth</feature>
 		<bundle start-level='70'>mvn:org.universAAL.lddi/lddi.bluetooth.continuahdpmanagerservice/${lddi.bluetooth.continuahdpmanagerservice.version}</bundle>	
 	</feature>
-
+	
+	<feature name="uAAL-LDDI-BluetoothContinua.test" description="CHP Test suite. Some GUIs to check, simulate and test the CHP connection"
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-LDDI-BluetoothContinua</feature>
+		<bundle start-level='80'>mvn:org.universAAL.lddi/lddi.continuahdpmanager.caller.test/${lddi.continuahdpmanager.caller.test.version}</bundle>	
+		<bundle start-level='80'>mvn:org.universAAL.lddi/lddi.continuahdpmanager.subscriber.test/${lddi.continuahdpmanager.subscriber.test.version}</bundle>	
+	</feature>
 	<!-- sample feature -->
 <!--
 	<feature name="uAAL-Ont.PhWorld" description="The Physical World Ontolgy."

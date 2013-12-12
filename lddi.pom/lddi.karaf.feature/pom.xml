@@ -105,6 +105,14 @@
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.bluetooth.continuahdpmanagerservice</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.continuahdpmanager.caller.test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.lddi</groupId>
+      <artifactId>lddi.continuahdpmanager.subscriber.test</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <filters>
