@@ -49,10 +49,6 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.karaf.feature</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.karaf.feature</artifactId>
     </dependency>
@@ -67,10 +63,6 @@
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.exporter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.knx.library</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
@@ -156,6 +148,10 @@
                 </artifact>
               </artifacts>
             </configuration>
+          </execution>
+          <execution>
+            <id>attach-composite</id>
+            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
