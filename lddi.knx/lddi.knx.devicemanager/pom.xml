@@ -40,7 +40,9 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
+      <artifactId>osgi_R4_compendium</artifactId>
+      <version>1.0</version>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

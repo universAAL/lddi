@@ -23,6 +23,7 @@ package org.universAAL.lddi.knx.exporter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import org.osgi.framework.BundleContext;
@@ -54,7 +55,7 @@ public class KnxManager implements IKnxDriverClient {
 	private LogService logger;
 	
     private ArrayList<KnxContextPublisher> contextListeners = new ArrayList<KnxContextPublisher>();
-    private ArrayList<KnxServiceProvider> serviceListeners = new ArrayList<KnxServiceProvider>();
+    private ArrayList<KnxServiceCallee> serviceListeners = new ArrayList<KnxServiceCallee>();
 
 	/**
 	 * stores the knxInstance (there should be just one!) for each groupDeviceId.
@@ -63,6 +64,13 @@ public class KnxManager implements IKnxDriverClient {
 	 * value = KnxDriver
 	 */
 	private Map<String, KnxDriver> driverList;
+
+	/**
+	 * @return the driverList
+	 */
+	public Map<String, KnxDriver> getDriverList() {
+		return driverList;
+	}
 	
 //	not needed yet!
 //	/**
@@ -74,7 +82,8 @@ public class KnxManager implements IKnxDriverClient {
 //	 */
 //	private Hashtable<String, Set<KnxDriver>> driverListForCategory;
 
-	
+
+
 	/**
 	 * Constructor
 	 * @param context
@@ -94,7 +103,6 @@ public class KnxManager implements IKnxDriverClient {
 	}
 
 
-	
 	/**
 	 * {@inheritDoc}
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
@@ -286,18 +294,18 @@ public class KnxManager implements IKnxDriverClient {
 	
 	/**
 	 * store listener for service bus connection.
-	 * @param knxServiceProvider
+	 * @param knxServiceCallee
 	 */
-	public void addServiceProvider(KnxServiceProvider knxServiceProvider) {
-		serviceListeners.add(knxServiceProvider);
+	public void addServiceProvider(KnxServiceCallee knxServiceCallee) {
+		serviceListeners.add(knxServiceCallee);
 	}
 
 	/**
 	 * remove listener for service bus connection.
-	 * @param knxServiceProvider
+	 * @param knxServiceCallee
 	 */
-	public void removeServiceProvider(KnxServiceProvider knxServiceProvider) {
-		serviceListeners.remove(knxServiceProvider);
+	public void removeServiceProvider(KnxServiceCallee knxServiceCallee) {
+		serviceListeners.remove(knxServiceCallee);
 	}
 	
 
