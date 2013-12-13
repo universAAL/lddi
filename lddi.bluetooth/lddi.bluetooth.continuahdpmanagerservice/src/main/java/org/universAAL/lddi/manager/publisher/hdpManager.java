@@ -33,13 +33,14 @@
 package org.universAAL.lddi.manager.publisher;
 
 //Imports
-import manager.Manager;
-import manager.apdu.APDUGenerator;
-import manager.apdu.APDUProcessor;
-import measurements.Measurement;
-import x73.p20601.fsm.StateMachine20601;
-import events.EventIEEEManager;
+
 import org.osgi.framework.BundleContext;
+import org.universAAL.lddi.lib.ieeex73std.events.EventIEEEManager;
+import org.universAAL.lddi.lib.ieeex73std.manager.Manager;
+import org.universAAL.lddi.lib.ieeex73std.manager.apdu.APDUGenerator;
+import org.universAAL.lddi.lib.ieeex73std.manager.apdu.APDUProcessor;
+import org.universAAL.lddi.lib.ieeex73std.measurements.Measurement;
+import org.universAAL.lddi.lib.ieeex73std.x73.p20601.fsm.StateMachine20601;
 
 // Class
 public class hdpManager implements hdpManagerListener {
