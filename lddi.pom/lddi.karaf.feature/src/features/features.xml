@@ -5,7 +5,7 @@
 	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/${mw.karaf.feature.version}/xml/features</repository>
 	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/${ont.karaf.feature.version}/xml/features</repository>
 
-	<feature name="uAAL-LDDI-KNX" description="The LDDI framework for KNX based on the uAAL-MW"
+	<feature name="uAAL-LDDI" description="The LDDI framework for KNX based on the uAAL-MW"
 		version="${pom.version}" resolver='(obr)' start-level="90" >
 		<!-- make sure you set start-levels per bundle,
 		 libraries go to level 50; onts stop at level 65.
