@@ -105,7 +105,7 @@ public class KnxWriter {
 	}
 
 	/**
-	 * Send KNX command to UPD multicastchannel. Store current sent telegram.
+	 * Send KNX command to UPD multicast channel. Store current sent telegram.
 	 * 
 	 * @param deviceAddress
 	 *            knx group address (1/2/3)

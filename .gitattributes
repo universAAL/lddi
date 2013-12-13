@@ -549,7 +549,8 @@ lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/Activa
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/DeviceOntologyTypeUtil.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxContextPublisher.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxManager.java -text
-lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxServiceProvider.java -text
+lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxServiceCallee.java -text
+lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxServiceCalleeProvidedService.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/KnxToDeviceOntologyMappingFactory.java -text
 lddi.knx/lddi.knx.exporter/src/main/java/org/universAAL/lddi/knx/exporter/util/LogTracker.java -text
 lddi.knx/lddi.knx.exporter/src/test/java/org/universAAL/lddi/knx/driver/KnxDpt9InstanceTest.java -text
@@ -597,6 +598,7 @@ lddi.knx/lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdri
 lddi.knx/lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdriver/util/LogTracker.java -text
 lddi.knx/lddi.knx.networkdriver/src/main/resources/lddi.knx.networkdriver.cfg -text
 lddi.knx/lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalIT.java -text
+lddi.knx/lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxWriterTest.java -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/ASL2.0.txt -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/NOTICE.txt -text
 lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/pom.xml -text
