@@ -19,6 +19,30 @@
     <module>../lddi.lib.activityhub</module>
     <module>../lddi.lib.ieeex73std</module>
   </modules>
+  <dependencyManagement>
+  	<dependencies>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.lib.activityhub</artifactId>
+        <version>2.0.4-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.lib.ieeex73std</artifactId>
+        <version>2.0.4-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.exporter.activityhub</artifactId>
+        <version>2.0.4-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.exporter.x73</artifactId>
+        <version>2.0.4-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <scm>
     <connection>${svn.base}/lddi.common/${project.artifactId}</connection>
     <developerConnection>${svn.base}/lddi.common/${project.artifactId}</developerConnection>
