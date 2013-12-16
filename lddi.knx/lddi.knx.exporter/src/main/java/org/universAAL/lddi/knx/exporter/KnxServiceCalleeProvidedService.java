@@ -10,6 +10,8 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.rdf.ResourceFactory;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.device.LightController;
+import org.universAAL.ontology.device.StatusValue;
+import org.universAAL.ontology.device.SwitchController;
 import org.universAAL.ontology.phThing.Device;
 import org.universAAL.ontology.phThing.DeviceService;
 
@@ -28,11 +30,11 @@ public class KnxServiceCalleeProvidedService extends DeviceService {
 	static final String SERVICE_GET_CONTROLLED_DEVICES
 	= KNX_SERVER_NAMESPACE + "getControlledDevices";
 	// a service for switching a device off
-	static final String SERVICE_TURN_OFF
-	= KNX_SERVER_NAMESPACE + "turnOff";
+	static final String SERVICE_SWITCH_OFF
+	= KNX_SERVER_NAMESPACE + "switchOff";
 	// a service for switching a device on
-	static final String SERVICE_TURN_ON
-	= KNX_SERVER_NAMESPACE + "turnOn";
+	static final String SERVICE_SWITCH_ON
+	= KNX_SERVER_NAMESPACE + "switchOn";
 
 	static final String INPUT_DEVICE_URI = KNX_SERVER_NAMESPACE + "deviceURI";
 	static final String OUTPUT_CONTROLLED_DEVICES = KNX_SERVER_NAMESPACE + "controlledDevices";
@@ -53,16 +55,16 @@ public class KnxServiceCalleeProvidedService extends DeviceService {
 				}));
 		
 		String[] ppControls = new String[] { DeviceService.PROP_CONTROLS};
-		String[] ppBrightness = new String[] { DeviceService.PROP_CONTROLS, LightController.PROP_HAS_VALUE};
+		String[] ppStatus = new String[] { DeviceService.PROP_CONTROLS, SwitchController.PROP_HAS_VALUE};
 		
 		addRestriction(
 				MergedRestriction.getAllValuesRestrictionWithCardinality(
-				LightController.PROP_HAS_VALUE, // URI of the property
+				SwitchController.PROP_HAS_VALUE, // URI of the property
 				new Enumeration(new Integer[] { new Integer(0), new Integer(100) }), // Type
 				1, // min. cardinality
 				1 // max. cardinality
 				),
-				ppBrightness,
+				ppStatus,
 				serverLevelRestrictions
 				);				
 				
@@ -70,15 +72,15 @@ public class KnxServiceCalleeProvidedService extends DeviceService {
 		getControlledDevices.addOutput(OUTPUT_CONTROLLED_DEVICES, Device.MY_URI, 0, 0, ppControls);
 		profiles[0] = getControlledDevices.myProfile;
 		
-		KnxServiceCalleeProvidedService turnOffLight = new KnxServiceCalleeProvidedService(SERVICE_TURN_OFF);
-		turnOffLight.addFilteringInput(INPUT_DEVICE_URI, LightController.MY_URI, 1, 1, ppControls);
-		turnOffLight.myProfile.addChangeEffect(ppBrightness, new Integer(0));
-		profiles[1] = turnOffLight.myProfile;
+		KnxServiceCalleeProvidedService switchOff = new KnxServiceCalleeProvidedService(SERVICE_SWITCH_OFF);
+		switchOff.addFilteringInput(INPUT_DEVICE_URI, SwitchController.MY_URI, 1, 1, ppControls);
+		switchOff.myProfile.addChangeEffect(ppStatus, StatusValue.NOT_ACTIVATED);
+		profiles[1] = switchOff.myProfile;
 		
-		KnxServiceCalleeProvidedService turnOnLight = new KnxServiceCalleeProvidedService(SERVICE_TURN_ON);
-		turnOnLight.addFilteringInput(INPUT_DEVICE_URI, LightController.MY_URI, 1, 1, ppControls);
-		turnOnLight.myProfile.addChangeEffect(ppBrightness, new Integer(100));
-		profiles[2] = turnOnLight.myProfile;
+		KnxServiceCalleeProvidedService switchOn = new KnxServiceCalleeProvidedService(SERVICE_SWITCH_ON);
+		switchOn.addFilteringInput(INPUT_DEVICE_URI, SwitchController.MY_URI, 1, 1, ppControls);
+		switchOn.myProfile.addChangeEffect(ppStatus, StatusValue.ACTIVATED);
+		profiles[2] = switchOn.myProfile;
 		
 	}
 	
