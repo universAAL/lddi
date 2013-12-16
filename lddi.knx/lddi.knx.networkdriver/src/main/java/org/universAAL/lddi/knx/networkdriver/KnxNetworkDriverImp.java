@@ -157,7 +157,8 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 
 	public void unRegister() {
 		// stop reader thread
-		this.network.stopCommunication();
+		if (this.network != null)
+			this.network.stopCommunication();
 
 		// unregister network service
 		if (this.regServiceKnx != null) {
