@@ -20,11 +20,18 @@
 
 package org.universAAL.lddi.knx.exporter;
 
+import org.universAAL.ontology.device.BlindActuator;
+import org.universAAL.ontology.device.BlindController;
+import org.universAAL.ontology.device.BlindSensor;
 import org.universAAL.ontology.device.ContactSensor;
+import org.universAAL.ontology.device.DimmerActuator;
+import org.universAAL.ontology.device.DimmerController;
+import org.universAAL.ontology.device.DimmerSensor;
 import org.universAAL.ontology.device.MotionSensor;
 import org.universAAL.ontology.device.SwitchActuator;
 import org.universAAL.ontology.device.SwitchController;
 import org.universAAL.ontology.device.SwitchSensor;
+import org.universAAL.ontology.device.TemperatureSensor;
 import org.universAAL.ontology.device.ValueDevice;
 import org.universAAL.ontology.device.WindowActuator;
 import org.universAAL.ontology.device.WindowController;
@@ -109,10 +116,58 @@ public class KnxToDeviceOntologyMappingFactory {
 					return new WindowSensor("WindowSensor" + deviceId);
 				}
 			}
+			
+		// knx datapoint type main number 3 (4 bit)
+		case 3:
+			switch(knxDptSub){
+			case 7: // DPT_Control_Dimming
+				switch (devOntType) {
+				case Actuator:
+					return new DimmerActuator("DimmerActuator" + deviceId);
+				case Controller:
+					return new DimmerController("DimmerController" + deviceId);
+				case Sensor:
+					return new DimmerSensor("DimmerSensor" + deviceId);
+				}
+			case 8: // DPT_Control_Blinds
+				switch (devOntType) {
+				case Actuator:
+					return new BlindActuator("BlindActuator" + deviceId);
+				case Controller:
+					return new BlindController("BlindController" + deviceId);
+				case Sensor:
+					return new BlindSensor("BlindSensor" + deviceId);
+				}
+			}
+			break;
+			
+		// knx datapoint type main number 5 (8 Bit - Unsigned Value)
+		case 5:
+			switch(knxDptSub){
+			case 1: // DPT_Scaling (percentage 0 - 100%)
+				switch (devOntType) {
+				case Actuator:
+					return new DimmerActuator("DimmerActuator" + deviceId);
+				case Controller:
+					return new DimmerController("DimmerController" + deviceId);
+				case Sensor:
+					return new DimmerSensor("DimmerSensor" + deviceId);
+				}
+			}
+			break;
+			
+		// knx datapoint type main number 9 (2-Octet Float Value)
+		case 9:
+			switch(knxDptSub){
+			case 1: // DPT_Value_Temp
+				return new TemperatureSensor("TemperatureSensor" + deviceId);
+			}
+			break;
 
-		}
+		
+		
+		} //end outer switch statement
 		return null;
-
 	}
 
 	//	

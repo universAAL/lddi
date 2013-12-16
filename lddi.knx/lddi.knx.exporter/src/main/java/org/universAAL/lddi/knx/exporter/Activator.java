@@ -61,7 +61,7 @@ public class Activator implements BundleActivator {
 	}
 
 	public void stop(BundleContext arg0) throws Exception {
-		serviceProvider.stop();
+		if (serviceProvider != null) serviceProvider.stop();
 		thread.interrupt();
 	}
 	

@@ -72,20 +72,23 @@ public class KnxServiceCallee extends ServiceCallee {
 
 		this.knxManager = knxManager;
 
-		
-		// init controlledDevices
-		drivers = knxManager.getDriverList();
-		for (Entry<String, KnxDriver> e : drivers.entrySet()) {
-			String deviceName = e.getKey();
-			KnxDriver driver = e.getValue();
-			
-			ValueDevice vd = KnxToDeviceOntologyMappingFactory.getDeviceOntologyInstanceForKnxDpt(
-					driver.groupDevice.getDatapointTypeMainNumber(),
-					driver.groupDevice.getDatapointTypeSubNumber(),
-					deviceName, DeviceOntologyType.Controller);
-			
-			controlledDevices.add(vd);
-		}
+//		devices are not ready at constructor time! init later on service call!	
+//		// init controlledDevices
+//		drivers = knxManager.getDriverList();
+//		System.out.println("##############################driverlist.size: " + drivers.size());
+//		for (Entry<String, KnxDriver> e : drivers.entrySet()) {
+//			String deviceName = e.getKey();
+//			KnxDriver driver = e.getValue();
+//			
+//			ValueDevice vd = KnxToDeviceOntologyMappingFactory.getDeviceOntologyInstanceForKnxDpt(
+//					driver.groupDevice.getDatapointTypeMainNumber(),
+//					driver.groupDevice.getDatapointTypeSubNumber(),
+//					deviceName, DeviceOntologyType.Controller);
+//			System.out.println(deviceName + 
+//					driver.groupDevice.getDatapointTypeMainNumber() +
+//					driver.groupDevice.getDatapointTypeSubNumber() + vd.getClassURI());
+//			controlledDevices.add(vd);
+//		}
 				
 //		for (int i=0; i<4; i++) {
 //			LightSource light = new LightSource(LAMP_URI_PREFIX + i);
@@ -115,39 +118,63 @@ public class KnxServiceCallee extends ServiceCallee {
 	 */
 	@Override
 	public ServiceResponse handleCall(ServiceCall call) {
+		//System.out.println("handle Call");
 		String operation = call.getProcessURI();
-		if (operation.startsWith(KnxServiceCalleeProvidedService.SERVICE_GET_CONTROLLED_DEVICES))
+		if (operation.startsWith(KnxServiceCalleeProvidedService.SERVICE_GET_CONTROLLED_DEVICES)) {
+			//System.out.println("getControlled devices");
 			return getControlledDevices();
+		}
 		Object input = call.getInputValue(KnxServiceCalleeProvidedService.INPUT_DEVICE_URI);
-		if (operation.startsWith(KnxServiceCalleeProvidedService.SERVICE_TURN_OFF))
-			return setLightBrightness(input.toString(), 0);
-		if (operation.startsWith(KnxServiceCalleeProvidedService.SERVICE_TURN_ON))
-			return setLightBrightness(input.toString(), 100);
+		if (operation.startsWith(KnxServiceCalleeProvidedService.SERVICE_SWITCH_OFF))
+			return switchController(input.toString(), false);
+		if (operation.startsWith(KnxServiceCalleeProvidedService.SERVICE_SWITCH_ON))
+			return switchController(input.toString(), true);
 		return null;
 	}
 	
 	private ServiceResponse getControlledDevices() {
+		
+		// init controlledDevices
+		drivers = knxManager.getDriverList();
+		//System.out.println("##############################driverlist.size: " + drivers.size());
+		for (Entry<String, KnxDriver> e : drivers.entrySet()) {
+			String deviceName = e.getKey();
+			KnxDriver driver = e.getValue();
+//			System.out.println("######" + deviceName + 
+//					driver.groupDevice.getDatapointTypeMainNumber() +
+//					driver.groupDevice.getDatapointTypeSubNumber());
+			ValueDevice vd = KnxToDeviceOntologyMappingFactory.getDeviceOntologyInstanceForKnxDpt(
+					driver.groupDevice.getDatapointTypeMainNumber(),
+					driver.groupDevice.getDatapointTypeSubNumber(),
+					deviceName, DeviceOntologyType.Controller);
+			if (vd == null) {
+				//System.out.println("#########No mapping ontology class found");
+			} else {
+				//System.out.println("#####" + vd.getClassURI());
+				controlledDevices.add(vd);
+			}
+		}
+	
+		
+		
 		ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 		sr.addOutput(new ProcessOutput(KnxServiceCalleeProvidedService.OUTPUT_CONTROLLED_DEVICES,
 				controlledDevices.isEmpty() ? null : controlledDevices ));
+			//System.out.println("controlledDevices.size: " + controlledDevices.size());
 		return sr;
 	}
 	
-	private ServiceResponse setLightBrightness(String deviceURI, int value) {
+	private ServiceResponse switchController(String deviceURI, boolean value) {
 		try {
 			String deviceName = deviceURI.substring(DEVICE_URI_PREFIX.length());
 			
-			knxManager.sendSensorEvent(deviceName, value == 0 ? false : true);
+			knxManager.sendSensorEvent(deviceName, value);
 			
 			return new ServiceResponse(CallStatus.succeeded);
 		} catch (Exception e) {
 			return invalidInput;
 		}
 	}
-	
-	
-	
-	
 	
 	
 	
