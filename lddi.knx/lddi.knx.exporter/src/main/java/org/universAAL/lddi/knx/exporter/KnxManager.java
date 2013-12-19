@@ -255,7 +255,6 @@ public class KnxManager implements IKnxDriverClient {
 		KnxDriver oldDriver = null;
 		synchronized(this.driverList)
 		{
-			//System.out.println("###########add driver to driver list " + groupDeviceId);
 			oldDriver = this.driverList.put(groupDeviceId, knxDriver);
 //			knxDriver.getDevice().getDeviceCategory().getTypeCode();
 		}

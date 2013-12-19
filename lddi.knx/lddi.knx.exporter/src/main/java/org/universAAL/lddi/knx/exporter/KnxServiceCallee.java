@@ -25,6 +25,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.universAAL.lddi.knx.exporter.KnxToDeviceOntologyMappingFactory.DeviceOntologyType;
 import org.universAAL.lddi.knx.interfaces.KnxDriver;
@@ -72,31 +74,8 @@ public class KnxServiceCallee extends ServiceCallee {
 
 		this.knxManager = knxManager;
 
-//		devices are not ready at constructor time! init later on service call!	
-//		// init controlledDevices
-//		drivers = knxManager.getDriverList();
-//		System.out.println("##############################driverlist.size: " + drivers.size());
-//		for (Entry<String, KnxDriver> e : drivers.entrySet()) {
-//			String deviceName = e.getKey();
-//			KnxDriver driver = e.getValue();
-//			
-//			ValueDevice vd = KnxToDeviceOntologyMappingFactory.getDeviceOntologyInstanceForKnxDpt(
-//					driver.groupDevice.getDatapointTypeMainNumber(),
-//					driver.groupDevice.getDatapointTypeSubNumber(),
-//					deviceName, DeviceOntologyType.Controller);
-//			System.out.println(deviceName + 
-//					driver.groupDevice.getDatapointTypeMainNumber() +
-//					driver.groupDevice.getDatapointTypeSubNumber() + vd.getClassURI());
-//			controlledDevices.add(vd);
-//		}
-				
-//		for (int i=0; i<4; i++) {
-//			LightSource light = new LightSource(LAMP_URI_PREFIX + i);
-//			light.setBrightness(0);
-//			controlledLamps.add(light);
-//			}
-		
-		
+		// devices are not ready at constructor time! init later on service call!	
+
 		// start simulator
 		// this.testThread = new MyThread();
 		// testThread.start();
@@ -118,10 +97,8 @@ public class KnxServiceCallee extends ServiceCallee {
 	 */
 	@Override
 	public ServiceResponse handleCall(ServiceCall call) {
-		//System.out.println("handle Call");
 		String operation = call.getProcessURI();
 		if (operation.startsWith(KnxServiceCalleeProvidedService.SERVICE_GET_CONTROLLED_DEVICES)) {
-			//System.out.println("getControlled devices");
 			return getControlledDevices();
 		}
 		Object input = call.getInputValue(KnxServiceCalleeProvidedService.INPUT_DEVICE_URI);
@@ -136,42 +113,36 @@ public class KnxServiceCallee extends ServiceCallee {
 		
 		// init controlledDevices
 		drivers = knxManager.getDriverList();
-		//System.out.println("##############################driverlist.size: " + drivers.size());
 		for (Entry<String, KnxDriver> e : drivers.entrySet()) {
 			String deviceName = e.getKey();
 			KnxDriver driver = e.getValue();
-//			System.out.println("######" + deviceName + 
-//					driver.groupDevice.getDatapointTypeMainNumber() +
-//					driver.groupDevice.getDatapointTypeSubNumber());
 			ValueDevice vd = KnxToDeviceOntologyMappingFactory.getDeviceOntologyInstanceForKnxDpt(
 					driver.groupDevice.getDatapointTypeMainNumber(),
 					driver.groupDevice.getDatapointTypeSubNumber(),
 					deviceName, DeviceOntologyType.Controller);
-			if (vd == null) {
-				//System.out.println("#########No mapping ontology class found");
-			} else {
-				//System.out.println("#####" + vd.getClassURI());
+			if (vd != null) {
 				controlledDevices.add(vd);
 			}
 		}
 	
-		
-		
 		ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 		sr.addOutput(new ProcessOutput(KnxServiceCalleeProvidedService.OUTPUT_CONTROLLED_DEVICES,
 				controlledDevices.isEmpty() ? null : controlledDevices ));
-			//System.out.println("controlledDevices.size: " + controlledDevices.size());
 		return sr;
 	}
 	
 	private ServiceResponse switchController(String deviceURI, boolean value) {
 		try {
-			String deviceName = deviceURI.substring(DEVICE_URI_PREFIX.length());
+			Pattern p = Pattern.compile("\\d");
+			Matcher m = p.matcher(deviceURI);
+			m.find();
+			String deviceId = deviceURI.substring(m.start());
 			
-			knxManager.sendSensorEvent(deviceName, value);
+			knxManager.sendSensorEvent(deviceId, value);
 			
 			return new ServiceResponse(CallStatus.succeeded);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return invalidInput;
 		}
 	}
