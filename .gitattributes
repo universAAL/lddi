@@ -3859,6 +3859,7 @@ lddi.pom.fs20-2.0.4-SNAPSHOT/pom.xml -text
 lddi.pom.fs20-2.0.5-SNAPSHOT/pom.xml -text
 lddi.pom.knx-2.0.2-SNAPSHOT/pom.xml -text
 lddi.pom.knx-2.0.4-SNAPSHOT/pom.xml -text
+lddi.pom.knx-2.0.5-SNAPSHOT/pom.xml -text
 lddi.pom.zigbee-2.0.2-SNAPSHOT/pom.xml -text
 lddi.pom.zigbee-2.0.4-SNAPSHOT/pom.xml -text
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/ASL2.0.txt -text
