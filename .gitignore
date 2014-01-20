@@ -466,6 +466,10 @@ lddi.pom.zigbee-2.0.4-SNAPSHOT/target
 lddi.pom.zigbee-2.0.5-SNAPSHOT/.project
 lddi.pom.zigbee-2.0.5-SNAPSHOT/.settings
 lddi.pom.zigbee-2.0.5-SNAPSHOT/target
+lddi.pom.zwave-2.0.5-SNAPSHOT/.classpath
+lddi.pom.zwave-2.0.5-SNAPSHOT/.project
+lddi.pom.zwave-2.0.5-SNAPSHOT/.settings
+lddi.pom.zwave-2.0.5-SNAPSHOT/target
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/.classpath
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/.project
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/.settings
