@@ -1,4 +1,16 @@
 * text=auto !eol
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/ASL2.0.txt -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/META-INF/MANIFEST.MF -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/NOTICE.txt -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/lib/libHDPnative_unix_32.so -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/lib/libHDPnative_unix_64.so -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/pom.xml -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/src/main/java/org/universAAL/lddi/hdp/Activator.java -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/src/main/java/org/universAAL/lddi/hdp/ContinuaHdpManagerProvider.java -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/src/main/java/org/universAAL/lddi/hdp/ProvidedContinuaHdpManagerService.java -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/src/main/java/org/universAAL/lddi/manager/publisher/Publisher.java -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/src/main/java/org/universAAL/lddi/manager/publisher/hdpManager.java -text
+lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/src/main/java/org/universAAL/lddi/manager/publisher/hdpManagerListener.java -text
 lddi.bluetooth/lddi.pom.bluetooth/pom.xml -text
 lddi.common/lddi.lib.ieeex73std/ASL2.0.txt -text
 lddi.common/lddi.lib.ieeex73std/NOTICE.txt -text
