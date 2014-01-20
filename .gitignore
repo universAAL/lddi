@@ -44,6 +44,9 @@ lddi.fs20/lddi.fs20.exporter/target
 lddi.fs20/lddi.pom.fs20/.project
 lddi.fs20/lddi.pom.fs20/.settings
 lddi.fs20/lddi.pom.fs20/target
+lddi.knx/lddi.pom.knx/.project
+lddi.knx/lddi.pom.knx/.settings
+lddi.knx/lddi.pom.knx/target
 lddi.pom/.project
 lddi.pom/.settings
 lddi.pom/composite/.classpath
