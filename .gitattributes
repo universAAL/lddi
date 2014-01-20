@@ -754,6 +754,15 @@ lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/src/main/java/org/univers
 lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/src/main/java/org/universAAL/lddi/subscriber/test/main/Activator.java -text
 lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/src/main/resources/bp.png -text
 lddi.continuahdpmanager.subscriber.test-2.0.2-SNAPSHOT/src/main/resources/ws.png -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/ASL2.0.txt -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/META-INF/MANIFEST.MF -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/NOTICE.txt -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/pom.xml -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/src/main/java/org/universAAL/lddi/subscriber/test/gui/GUI.java -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/src/main/java/org/universAAL/lddi/subscriber/test/gui/Subscriber.java -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/src/main/java/org/universAAL/lddi/subscriber/test/main/Activator.java -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/src/main/resources/bp.png -text
+lddi.continuahdpmanager.subscriber.test-2.0.3-SNAPSHOT/src/main/resources/ws.png -text
 lddi.exporter.activityhub-2.0.2-SNAPSHOT/ASL2.0.txt -text
 lddi.exporter.activityhub-2.0.2-SNAPSHOT/NOTICE.txt -text
 lddi.exporter.activityhub-2.0.2-SNAPSHOT/README.txt -text
