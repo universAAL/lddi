@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL</groupId>
+    <artifactId>uAAL.pom</artifactId>
+    <version>2.0.2-SNAPSHOT</version>
+  </parent>
+  <groupId>org.universAAL.lddi</groupId>
+  <artifactId>lddi.pom</artifactId>
+  <version>2.0.5-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>universAAL LDDI Suite</name>
+  <description>The set of artefacts realizing the universAAL Local Device Discovery and Integration</description>
+  <inceptionYear>2010</inceptionYear>
+  <modules>
+    <module>../lddi.bluetooth/lddi.pom.bluetooth</module>
+    <module>../lddi.common/lddi.pom.common</module>
+    <module>../lddi.fs20/lddi.pom.fs20</module>
+    <module>../lddi.knx/lddi.pom.knx</module>
+    <module>../lddi.config/lddi.pom.config</module>
+    <module>../lddi.zigbee/lddi.pom.zigbee</module>
+    <module>../lddi.zwave/lddi.pom.zwave</module>
+    <module>composite</module>
+    <module>lddi.karaf.feature</module>
+  </modules>
+  <scm>
+    <connection>${svn.base}/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}${project.artifactId}</url>
+  </scm>
+  <properties>
+    <remoteOBR></remoteOBR>
+    <nameMatchString>^universAAL LDDI .*</nameMatchString>
+    <gforge.project.name>lddi</gforge.project.name>
+    <maven.compile.source>1.5</maven.compile.source>
+    <maven.compile.target>1.5</maven.compile.target>
+    <groupIdMatchString>^org\.universAAL\.lddi</groupIdMatchString>
+    <artifactIdMatchString>^lddi\..*</artifactIdMatchString>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.universAAL.middleware</groupId>
+        <artifactId>mw.pom.core</artifactId>
+        <version>2.0.4-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.ontology</groupId>
+        <artifactId>ont.pom</artifactId>
+        <version>2.0.4-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.composite</artifactId>
+        <version>2.0.4-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.karaf.feature</artifactId>
+        <version>2.0.5-SNAPSHOT</version>
+      </dependency>
+      <!-- These dependencies have to be reviewed, maybe they don't belong here -->
+<!--       <dependency> -->
+<!--         <groupId>org.universAAL.lddi</groupId> -->
+<!--         <artifactId>lddi.lib.activityhub</artifactId> -->
+<!--         <version>2.0.4-SNAPSHOT</version> -->
+<!--       </dependency> -->
+<!--       <dependency> -->
+<!--         <groupId>org.universAAL.lddi</groupId> -->
+<!--         <artifactId>lddi.lib.ieeex73std</artifactId> -->
+<!--         <version>2.0.4-SNAPSHOT</version> -->
+<!--       </dependency> -->
+<!--       <dependency> -->
+<!--         <groupId>org.universAAL.lddi</groupId> -->
+<!--         <artifactId>lddi.exporter.activityhub</artifactId> -->
+<!--         <version>2.0.4-SNAPSHOT</version> -->
+<!--       </dependency> -->
+<!--       <dependency> -->
+<!--         <groupId>org.universAAL.lddi</groupId> -->
+<!--         <artifactId>lddi.exporter.x73</artifactId> -->
+<!--         <version>2.0.4-SNAPSHOT</version> -->
+<!--       </dependency> -->
+    </dependencies>
+  </dependencyManagement>
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <id>uaal_snapshots</id>
+      <name>universAAL Repositories</name>
+      <url>http://depot.universaal.org/maven-repo/snapshots/</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>uaal</id>
+      <name>universAAL Repositories</name>
+      <url>http://depot.universaal.org/maven-repo/releases/</url>
+    </repository>
+  </repositories>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.universAAL.support</groupId>
+        <artifactId>uaal-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
