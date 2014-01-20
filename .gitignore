@@ -44,6 +44,10 @@ lddi.fs20/lddi.fs20.exporter/target
 lddi.fs20/lddi.pom.fs20/.project
 lddi.fs20/lddi.pom.fs20/.settings
 lddi.fs20/lddi.pom.fs20/target
+lddi.knx/lddi.knx.devicemanager/.classpath
+lddi.knx/lddi.knx.devicemanager/.project
+lddi.knx/lddi.knx.devicemanager/.settings
+lddi.knx/lddi.knx.devicemanager/target
 lddi.knx/lddi.knx.library/.classpath
 lddi.knx/lddi.knx.library/.project
 lddi.knx/lddi.knx.library/.settings

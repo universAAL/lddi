@@ -487,6 +487,16 @@ lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/FS2
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/ProvidedFS20Service.java -text
 lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/util/LogTracker.java -text
 lddi.fs20/lddi.pom.fs20/pom.xml -text
+lddi.knx/lddi.knx.devicemanager/ASL2.0.txt -text
+lddi.knx/lddi.knx.devicemanager/NOTICE.txt -text
+lddi.knx/lddi.knx.devicemanager/pom.xml -text
+lddi.knx/lddi.knx.devicemanager/readme.txt -text
+lddi.knx/lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/Activator.java -text
+lddi.knx/lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxDeviceManager.java -text
+lddi.knx/lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxImporter.java -text
+lddi.knx/lddi.knx.devicemanager/src/main/java/org/universAAL/lddi/knx/devicemanager/util/LogTracker.java -text
+lddi.knx/lddi.knx.devicemanager/src/main/resources/OfficeProject6.knxproj -text
+lddi.knx/lddi.knx.devicemanager/src/main/resources/lddi.knx.networkdriver.cfg -text
 lddi.knx/lddi.knx.library/ASL2.0.txt -text
 lddi.knx/lddi.knx.library/NOTICE.txt -text
 lddi.knx/lddi.knx.library/pom.xml -text
