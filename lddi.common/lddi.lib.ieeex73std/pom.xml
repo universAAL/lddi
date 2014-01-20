@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.common</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <relativePath>../lddi.pom.common</relativePath>
   </parent>
   <artifactId>lddi.lib.ieeex73std</artifactId>
-  <version>3.0.0</version>
+  <version>3.0.1-SNAPSHOT</version>
   <name>universAAL LDDI Library IEEE x073 standard implementation</name>
   <description>Java implementation of Continua Health Alliance standard (ISO/IEEE x073)</description>
   <organization>

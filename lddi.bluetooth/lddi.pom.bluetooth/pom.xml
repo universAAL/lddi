@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.bluetooth</artifactId>
-  <version>3.0.0</version>
+  <version>3.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Bluetooth Suite</name>
   <description>The set of artefacts realizing the universAAL Local Discovery and Integration for bluetooth technology</description>
@@ -32,24 +32,24 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.common</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.bluetooth.continuahdpmanagerservice</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.continuahdpmanager.caller.test</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.continuahdpmanager.subscriber.test</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

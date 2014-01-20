@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.knx</artifactId>
-  <version>3.0.0</version>
+  <version>3.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI KNX Suite</name>
   <description>Integration of KNX components</description>
@@ -32,22 +32,22 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.devicemanager</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.exporter</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.library</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.networkdriver</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
