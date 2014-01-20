@@ -478,6 +478,14 @@ lddi.fs20/lddi.fs20.connector/src/main/java/org/universAAL/lddi/fs20/server/Acti
 lddi.fs20/lddi.fs20.connector/src/main/java/org/universAAL/lddi/fs20/server/DeviceReader.java -text
 lddi.fs20/lddi.fs20.connector/src/main/java/org/universAAL/lddi/fs20/util/LogTracker.java -text
 lddi.fs20/lddi.fs20.connector/src/test/resources/JD2XX.dll -text
+lddi.fs20/lddi.fs20.exporter/ASL2.0.txt -text
+lddi.fs20/lddi.fs20.exporter/NOTICE.txt -text
+lddi.fs20/lddi.fs20.exporter/pom.xml -text
+lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/Activator.java -text
+lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/FS20ContextPublisher.java -text
+lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/FS20Server.java -text
+lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/ProvidedFS20Service.java -text
+lddi.fs20/lddi.fs20.exporter/src/main/java/org/universAAL/lddi/fs20/exporter/util/LogTracker.java -text
 lddi.fs20/lddi.pom.fs20/pom.xml -text
 lddi.pom/composite/ASL2.0.txt -text
 lddi.pom/composite/NOTICE.txt -text
