@@ -1,0 +1,32 @@
+FS20 Connector
+
+Copyright 2008-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
+Fraunhofer Gesellschaft - Institut fuer Graphische Datenverarbeitung
+
+I. Included Software
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+Junit (http://www.junit.org/).
+Licensed under Common Public License 1.0.
+
+This product uses software developed at
+FTDI D2XX Bindings (http://sourceforge.net/projects/d2xx/).
+Licensed under BSD License.
+
+This product uses software developed at
+RXTX
+Licensed under GNU Lesser General Public License.
+
+
+III. License Summary
+- Apache License 2.0
+- Common Public License 1.0
+- BSD License
+- GNU Lesser General Public License
