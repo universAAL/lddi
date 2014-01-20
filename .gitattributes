@@ -658,6 +658,8 @@ lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee
 lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java -text
 lddi.zwave/README.txt -text
 lddi.zwave/lddi.pom.zwave/pom.xml -text
+lddi.zwave/lddi.zwave.exporter/ASL2.0.txt -text
+lddi.zwave/lddi.zwave.exporter/NOTICE.txt -text
 lddi.zwave/lddi.zwave.exporter/lddi.zwave.exporter.properties -text
 lddi.zwave/lddi.zwave.exporter/pom.xml -text
 lddi.zwave/lddi.zwave.exporter/src/main/java/org/universAAL/lddi/zwave/exporter/Activator.java -text
