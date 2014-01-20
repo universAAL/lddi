@@ -623,3 +623,4 @@ lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee
 lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OnOffLightListener.java -text
 lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/PresenceDetectorListener.java -text
 lddi.zigbee/lddi.zigbee.exporter/src/main/java/org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java -text
+lddi.zwave/lddi.pom.zwave/pom.xml -text
