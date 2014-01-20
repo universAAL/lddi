@@ -586,3 +586,4 @@ lddi.pom/lddi.karaf.feature/pom.xml -text
 lddi.pom/lddi.karaf.feature/src/features/features.xml -text
 lddi.pom/lddi.karaf.feature/src/features/lddi.knx.xml -text
 lddi.pom/pom.xml -text
+lddi.zigbee/lddi.pom.zigbee/pom.xml -text

@@ -83,3 +83,6 @@ lddi.pom/lddi.karaf.feature/.project
 lddi.pom/lddi.karaf.feature/.settings
 lddi.pom/lddi.karaf.feature/target
 lddi.pom/target
+lddi.zigbee/lddi.pom.zigbee/.project
+lddi.zigbee/lddi.pom.zigbee/.settings
+lddi.zigbee/lddi.pom.zigbee/target
