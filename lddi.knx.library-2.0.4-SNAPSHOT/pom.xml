@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom.knx</artifactId>
+    <version>2.0.5-SNAPSHOT</version>
+    <relativePath>../lddi.pom.knx</relativePath>
+  </parent>
+  <artifactId>lddi.knx.library</artifactId>
+  <version>2.0.4-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  <name>universAAL LDDI KNX Datapoint Type Library</name>
+  <description>KNX Device Categories for OSGi DeviceManager are Interfaces for all KNX Datapoint Types specifying methods for communication with device services.</description>
+  <inceptionYear>2012</inceptionYear>
+  <organization>
+    <name>Austrian Institute of Technology (AIT)</name>
+    <url>http://www.ait.ac.at/</url>
+  </organization>
+  <developers>
+    <developer>
+      <id>foex</id>
+      <name>Thomas Fuxreiter</name>
+      <email>thomas.fuxreiter@ait.ac.at</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
+  </developers>
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Bundle-Description>${project.description}</Bundle-Description>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Export-Package>org.universAAL.lddi.knx.groupdevicecategory,
+            org.universAAL.lddi.knx.groupdevicemodel,
+            org.universAAL.lddi.knx.interfaces,
+            org.universAAL.lddi.knx.utils</Export-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
