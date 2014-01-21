@@ -1,11 +1,12 @@
-universAAL KNX Exporter
+ZWave Exporter for universAAL
 
-Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
-http://www.ait.ac.at
+Copyright 2008-2014 TSB Tecnologías, http://www.tsbtecnologias.es/
+TSB - Tecnologias para la Salud y el Bienestar
 
 I. Included Software
 
-Software developed by AIT for the universAAL project.
+Software developed by TSB for interaction with ZWave
+
 
 II. Used Software
 
@@ -14,14 +15,14 @@ The Apache Software Foundation (http://www.apache.org/).
 Licensed under the Apache License 2.0.
 
 This product uses software developed at
-www.junit.org
-Licensed under the Common Public License.
+The OPS4J (http://www.ops4j.org)
+Licensed under the Apache License 2.0.
 
 This product uses software developed at
-The OSGi Alliance (http://www.osgi.org/).
-Copyright 2006-2008 The OSGi Alliance.
-Licensed under the Apache License 2.0.
+xSocket (http://xsocket.org/)
+Licensed under GNU Lesser General Public License v2.1
+
 
 III. License Summary
 - Apache License 2.0
-- Common Public License
+- LGPL 2.1
