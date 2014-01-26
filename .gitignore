@@ -69,6 +69,10 @@ lddi.knx/lddi.knx.networkdriver/.classpath
 lddi.knx/lddi.knx.networkdriver/.project
 lddi.knx/lddi.knx.networkdriver/.settings
 lddi.knx/lddi.knx.networkdriver/target
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/.classpath
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/.project
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/.settings
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/target
 lddi.knx/lddi.pom.knx/.project
 lddi.knx/lddi.pom.knx/.settings
 lddi.knx/lddi.pom.knx/target
