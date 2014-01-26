@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.knx</artifactId>
-    <version>2.0.4-SNAPSHOT</version>
+    <version>3.0.0</version>
     <relativePath>../../lddi.pom.knx</relativePath>
   </parent>
   <artifactId>lddi.knx.refinementdriver.dpt1.activityhub</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>3.0.0</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX Refinement driver for Datapoint Type 1.* to ISO 11073-10471 device</name>
   <description>Encoding and decoding of KNX Datapoint Types 1.* with Format B1. Is registered as OSGI driver service in the framework registry. This refinement driver maps and creates a suitable device from ISO 11073-10471 specification and registers it in the OSGi registry.</description>
@@ -32,14 +32,12 @@
   <dependencies>
   
     <dependency>
-      <groupId>org.apache.felix</groupId>
+      <groupId>org.osgi</groupId>
       <artifactId>org.osgi.core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi_R4_compendium</artifactId>
-      <version>1.0</version>
-      <scope>compile</scope>
+      <artifactId>org.osgi.compendium</artifactId>
     </dependency>
     
     <dependency>
@@ -49,7 +47,6 @@
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.lib.activityhub</artifactId>
-      <!-- <version>2.0.2-SNAPSHOT</version> -->
     </dependency>
   </dependencies>
   <build>
