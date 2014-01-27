@@ -11,7 +11,7 @@
   <artifactId>lddi.pom.zwave</artifactId>
   <version>3.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>universAAL LDDI Zwave Suite</name>
+  <name>universAAL LDDI ZWave Suite</name>
   <description>Integration of KNX components</description>
   <modules>
     <module>../lddi.zwave.exporter</module>
