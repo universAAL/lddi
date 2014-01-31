@@ -61,7 +61,7 @@
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Include-Resource>lib,
               src/main/resources</Include-Resource>
-            <Import-Package>*</Import-Package>
+            <Import-Package>org.osgi.framework;version="[1,2)",*</Import-Package>
             <Bundle-NativeCode>libHDPnative_unix_32.so;
               osname=Linux;
               processor=x86; processor=x86_32
