@@ -48,7 +48,7 @@
 	</feature>
 
 	<feature name="uAAL-LDDI-ZWAVE" description="The LDDI framework for ZWave based on the uAAL-MW"
-		version="${platform.version}" resolver='(obr)'>
+		version="${pom.version}" resolver='(obr)'>
 		
 		<bundle start-level="52">wrap:mvn:org.xsocket/xsocket/2.8.14</bundle>
 
@@ -73,7 +73,7 @@
 	</feature>
 	<!-- sample feature -->
 <!--
-	<feature name="uAAL-Ont.PhWorld" description="The Physical World Ontolgy."
+	<feature name="uAAL-Ont.PhWorld" description="The Physical World Ontology."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-MW</feature>
 		<bundle start-level='50'>wrap:mvn:jp.go.ipa/jgcl/1.0</bundle>
