@@ -33,6 +33,10 @@ lddi.common/lddi.lib.ieeex73std/target
 lddi.common/lddi.pom.common/.project
 lddi.common/lddi.pom.common/.settings
 lddi.common/lddi.pom.common/target
+lddi.fs20/lddi.fs20.connector/.classpath
+lddi.fs20/lddi.fs20.connector/.project
+lddi.fs20/lddi.fs20.connector/.settings
+lddi.fs20/lddi.fs20.connector/target
 lddi.fs20/lddi.pom.fs20/.project
 lddi.fs20/lddi.pom.fs20/.settings
 lddi.fs20/lddi.pom.fs20/target
