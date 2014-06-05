@@ -98,3 +98,7 @@ lddi.zigbee/lddi.zigbee.exporter/.classpath
 lddi.zigbee/lddi.zigbee.exporter/.project
 lddi.zigbee/lddi.zigbee.exporter/.settings
 lddi.zigbee/lddi.zigbee.exporter/target
+lddi.zwave/lddi.pom.zwave/.classpath
+lddi.zwave/lddi.pom.zwave/.project
+lddi.zwave/lddi.pom.zwave/.settings
+lddi.zwave/lddi.pom.zwave/target
