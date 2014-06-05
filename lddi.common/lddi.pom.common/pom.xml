@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom</artifactId>
+    <version>3.1.0</version>
+    <relativePath>../../lddi.pom</relativePath>
+  </parent>
+  <artifactId>lddi.pom.common</artifactId>
+  <version>3.1.0</version>
+  <packaging>pom</packaging>
+  <name>universAAL LDDI Common Suite</name>
+  <description>LDDI Common components</description>
+  <modules>
+    <module>../lddi.exporter.activityhub</module>
+    <module>../lddi.exporter.x73</module>
+    <module>../lddi.lib.activityhub</module>
+    <module>../lddi.lib.ieeex73std</module>
+  </modules>
+  <scm>
+    <connection>${svn.base}/lddi.common/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/lddi.common/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}lddi.common/${project.artifactId}</url>
+  </scm>
+  <properties>
+    <nameMatchString>^universAAL LDDI .*</nameMatchString>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.lib.activityhub</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.lib.ieeex73std</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.exporter.activityhub</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.exporter.x73</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

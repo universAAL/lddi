@@ -1,4 +1,5 @@
 * text=auto !eol
+lddi.common/lddi.pom.common/pom.xml -text
 lddi.pom/composite/ASL2.0.txt -text
 lddi.pom/composite/NOTICE.txt -text
 lddi.pom/composite/pom.xml -text
