@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.1-SNAPSHOT</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.config</artifactId>
-  <version>3.1.0</version>
+  <version>3.1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Suite (Config)</name>
   <description>The set of artefacts realizing the universAAL Local Device Discovery and Integration (Configuration)</description>
@@ -22,13 +22,13 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.devicemanager.config</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.1-SNAPSHOT</version>
         <type>cfg</type>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.knx.networkdriver.config</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.1-SNAPSHOT</version>
         <type>cfg</type>
       </dependency>
     </dependencies>

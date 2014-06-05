@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.zigbee</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.1-SNAPSHOT</version>
     <relativePath>../lddi.pom.zigbee</relativePath>
   </parent>
   <artifactId>lddi.zigbee.exporter</artifactId>
-  <version>3.1.0</version>
+  <version>3.1.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI ZigBee exporter for uAAL - Home Automation</name>
   <description>Hardware exporter for universAAL: ZigBee technology devices</description>
