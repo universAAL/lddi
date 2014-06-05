@@ -387,6 +387,10 @@ lddi.knx.networkdriver.config-2.0.4-SNAPSHOT/target
 lddi.knx.networkdriver.config-2.0.5-SNAPSHOT/.project
 lddi.knx.networkdriver.config-2.0.5-SNAPSHOT/.settings
 lddi.knx.networkdriver.config-2.0.5-SNAPSHOT/target
+lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/.classpath
+lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/.project
+lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/.settings
+lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/target
 lddi.lib.activityhub-2.0.2-SNAPSHOT/.classpath
 lddi.lib.activityhub-2.0.2-SNAPSHOT/.project
 lddi.lib.activityhub-2.0.2-SNAPSHOT/.settings
