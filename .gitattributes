@@ -1633,6 +1633,16 @@ lddi.knx.devicemanager-2.0.4-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/devi
 lddi.knx.devicemanager-2.0.4-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/devicemanager/util/LogTracker.java -text
 lddi.knx.devicemanager-2.0.4-SNAPSHOT/src/main/resources/OfficeProject6.knxproj -text
 lddi.knx.devicemanager-2.0.4-SNAPSHOT/src/main/resources/lddi.knx.networkdriver.cfg -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/ASL2.0.txt -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/NOTICE.txt -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/pom.xml -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/readme.txt -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/devicemanager/Activator.java -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxDeviceManager.java -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/devicemanager/KnxImporter.java -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/devicemanager/util/LogTracker.java -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/src/main/resources/OfficeProject6.knxproj -text
+lddi.knx.devicemanager-3.0.1-SNAPSHOT/src/main/resources/lddi.knx.networkdriver.cfg -text
 lddi.knx.devicemanager.config-2.0.3-SNAPSHOT/pom.xml -text
 lddi.knx.devicemanager.config-2.0.3-SNAPSHOT/src/main/resources/KNX_Demowand-uAAL-MW20-Test-3.knxproj -text
 lddi.knx.devicemanager.config-2.0.3-SNAPSHOT/src/main/resources/lddi.knx.devicemanager.cfg -text
