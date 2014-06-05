@@ -1,0 +1,29 @@
+universAAL KNX Network Driver
+
+Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
+http://www.ait.ac.at
+
+I. Included Software
+
+Software developed by AIT for the universAAL project.
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+Automation Systems Group,
+Vienna University of Technology
+www.auto.tuwien.ac.at/a-lab
+Licensed under GPL with Classpath Exception
+
+This product uses software developed at
+The OSGi Alliance (http://www.osgi.org/).
+Copyright 2006-2008 The OSGi Alliance.
+Licensed under the Apache License 2.0.
+
+III. License Summary
+- Apache License 2.0
+- GPL with Classpath Exception
