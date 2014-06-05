@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom.common</artifactId>
+    <version>3.0.1-SNAPSHOT</version>
+    <relativePath>../lddi.pom.common</relativePath>
+  </parent>
+  <artifactId>lddi.lib.ieeex73std</artifactId>
+  <version>3.0.1-SNAPSHOT</version>
+  <name>universAAL LDDI Library IEEE x073 standard implementation</name>
+  <description>Java implementation of Continua Health Alliance standard (ISO/IEEE x073)</description>
+  <organization>
+    <name>TSB Technologies for Health and Well-being</name>
+    <url>www.tsbtecnologias.es</url>
+  </organization>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
