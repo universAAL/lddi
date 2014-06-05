@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom</artifactId>
+    <version>3.1.0</version>
+    <relativePath>../../lddi.pom</relativePath>
+  </parent>
+  <artifactId>lddi.pom.knx</artifactId>
+  <version>3.1.0</version>
+  <packaging>pom</packaging>
+  <name>universAAL LDDI KNX Suite</name>
+  <description>Integration of KNX components</description>
+  <modules>
+    <module>../lddi.knx.devicemanager</module>
+    <module>../lddi.knx.exporter</module>
+    <module>../lddi.knx.library</module>
+    <module>../lddi.knx.networkdriver</module>
+    <module>../lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub</module>
+  </modules>
+  <scm>
+    <connection>${svn.base}/lddi.knx/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/lddi.knx/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}lddi.knx/${project.artifactId}</url>
+  </scm>
+  <properties>
+    <nameMatchString>^universAAL LDDI KNX .*</nameMatchString>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.pom.common</artifactId>
+        <version>3.1.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.knx.devicemanager</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.knx.exporter</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.knx.library</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.knx.networkdriver</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.knx.refinementdriver.dpt1.activityhub</artifactId>
+        <version>3.1.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>
