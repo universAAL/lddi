@@ -6,6 +6,10 @@ lddi.bluetooth/lddi.continuahdpmanager.caller.test/.classpath
 lddi.bluetooth/lddi.continuahdpmanager.caller.test/.project
 lddi.bluetooth/lddi.continuahdpmanager.caller.test/.settings
 lddi.bluetooth/lddi.continuahdpmanager.caller.test/target
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.classpath
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.project
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/.settings
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/target
 lddi.bluetooth/lddi.pom.bluetooth/.project
 lddi.bluetooth/lddi.pom.bluetooth/.settings
 lddi.bluetooth/lddi.pom.bluetooth/target
