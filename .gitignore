@@ -48,6 +48,10 @@ lddi.knx/lddi.knx.library/.classpath
 lddi.knx/lddi.knx.library/.project
 lddi.knx/lddi.knx.library/.settings
 lddi.knx/lddi.knx.library/target
+lddi.knx/lddi.knx.networkdriver/.classpath
+lddi.knx/lddi.knx.networkdriver/.project
+lddi.knx/lddi.knx.networkdriver/.settings
+lddi.knx/lddi.knx.networkdriver/target
 lddi.knx/lddi.pom.knx/.project
 lddi.knx/lddi.pom.knx/.settings
 lddi.knx/lddi.pom.knx/target
