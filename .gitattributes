@@ -721,6 +721,9 @@ lddi.composite-2.0.3-SNAPSHOT/pom.xml -text
 lddi.composite-2.0.4-SNAPSHOT/ASL2.0.txt -text
 lddi.composite-2.0.4-SNAPSHOT/NOTICE.txt -text
 lddi.composite-2.0.4-SNAPSHOT/pom.xml -text
+lddi.composite-3.0.1-SNAPSHOT/ASL2.0.txt -text
+lddi.composite-3.0.1-SNAPSHOT/NOTICE.txt -text
+lddi.composite-3.0.1-SNAPSHOT/pom.xml -text
 lddi.continuahdpmanager.caller.test-2.0.1-SNAPSHOT/ASL2.0.txt -text
 lddi.continuahdpmanager.caller.test-2.0.1-SNAPSHOT/META-INF/MANIFEST.MF -text
 lddi.continuahdpmanager.caller.test-2.0.1-SNAPSHOT/NOTICE.txt -text
