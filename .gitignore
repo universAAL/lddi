@@ -102,3 +102,7 @@ lddi.zwave/lddi.pom.zwave/.classpath
 lddi.zwave/lddi.pom.zwave/.project
 lddi.zwave/lddi.pom.zwave/.settings
 lddi.zwave/lddi.pom.zwave/target
+lddi.zwave/lddi.zwave.exporter/.classpath
+lddi.zwave/lddi.zwave.exporter/.project
+lddi.zwave/lddi.zwave.exporter/.settings
+lddi.zwave/lddi.zwave.exporter/target
