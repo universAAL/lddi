@@ -90,3 +90,7 @@ lddi.pom/target
 lddi.zigbee/lddi.pom.zigbee/.project
 lddi.zigbee/lddi.pom.zigbee/.settings
 lddi.zigbee/lddi.pom.zigbee/target
+lddi.zigbee/lddi.zigbee.commissioning.adapter/.classpath
+lddi.zigbee/lddi.zigbee.commissioning.adapter/.project
+lddi.zigbee/lddi.zigbee.commissioning.adapter/.settings
+lddi.zigbee/lddi.zigbee.commissioning.adapter/target
