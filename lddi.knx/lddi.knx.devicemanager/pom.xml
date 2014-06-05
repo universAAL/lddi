@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.knx</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.1-SNAPSHOT</version>
     <relativePath>../lddi.pom.knx</relativePath>
   </parent>
   <artifactId>lddi.knx.devicemanager</artifactId>
-  <version>3.1.0</version>
+  <version>3.1.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX device manager</name>
   <description>This bundle reads KNX device configuration from XML files (exported by ETS4). A OSGI device service is registered in the framework for every KNX device.</description>
