@@ -13,6 +13,11 @@ lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/target
 lddi.bluetooth/lddi.pom.bluetooth/.project
 lddi.bluetooth/lddi.pom.bluetooth/.settings
 lddi.bluetooth/lddi.pom.bluetooth/target
+lddi.common/lddi.exporter.activityhub/.classpath
+lddi.common/lddi.exporter.activityhub/.project
+lddi.common/lddi.exporter.activityhub/.settings
+lddi.common/lddi.exporter.activityhub/log
+lddi.common/lddi.exporter.activityhub/target
 lddi.common/lddi.lib.activityhub/.classpath
 lddi.common/lddi.lib.activityhub/.project
 lddi.common/lddi.lib.activityhub/.settings
