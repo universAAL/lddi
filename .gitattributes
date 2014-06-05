@@ -1081,6 +1081,14 @@ lddi.fs20.exporter-2.0.3-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporte
 lddi.fs20.exporter-2.0.3-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/FS20Server.java -text
 lddi.fs20.exporter-2.0.3-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/ProvidedFS20Service.java -text
 lddi.fs20.exporter-2.0.3-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/util/LogTracker.java -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/ASL2.0.txt -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/NOTICE.txt -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/pom.xml -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/Activator.java -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/FS20ContextPublisher.java -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/FS20Server.java -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/ProvidedFS20Service.java -text
+lddi.fs20.exporter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/fs20/exporter/util/LogTracker.java -text
 lddi.hw.exporter.activityhub-0.0.5-SNAPSHOT/README.txt -text
 lddi.hw.exporter.activityhub-0.0.5-SNAPSHOT/conf/mw.bus.model.osgi/sodapop.key -text svneol=unset#application/octet-stream
 lddi.hw.exporter.activityhub-0.0.5-SNAPSHOT/conf/services/lddi.knx.devicemanager.properties -text
