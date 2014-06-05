@@ -563,6 +563,15 @@ lddi.knx/lddi.knx.networkdriver/src/main/java/org/universAAL/lddi/knx/networkdri
 lddi.knx/lddi.knx.networkdriver/src/main/resources/lddi.knx.networkdriver.cfg -text
 lddi.knx/lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxNetworkdriverFunctionalIT.java -text
 lddi.knx/lddi.knx.networkdriver/src/test/java/org/universAAL/lddi/knx/networkdriver/test/KnxWriterTest.java -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/ASL2.0.txt -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/NOTICE.txt -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/pom.xml -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/readme.txt -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/Activator.java -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1Instance.java -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1RefinementDriver.java -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/util/KnxDeviceConfig.java -text
+lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/util/LogTracker.java -text
 lddi.knx/lddi.pom.knx/pom.xml -text
 lddi.pom/composite/ASL2.0.txt -text
 lddi.pom/composite/NOTICE.txt -text
