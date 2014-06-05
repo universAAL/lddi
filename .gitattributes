@@ -4556,6 +4556,7 @@ lddi.pom.knx-3.0.1-SNAPSHOT/pom.xml -text
 lddi.pom.zigbee-2.0.2-SNAPSHOT/pom.xml -text
 lddi.pom.zigbee-2.0.4-SNAPSHOT/pom.xml -text
 lddi.pom.zigbee-2.0.5-SNAPSHOT/pom.xml -text
+lddi.pom.zigbee-3.0.1-SNAPSHOT/pom.xml -text
 lddi.pom.zwave-2.0.5-SNAPSHOT/pom.xml -text
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/ASL2.0.txt -text
 lddi.zigbee.commissioning.adapter-0.3.0-SNAPSHOT/NOTICE.txt -text
