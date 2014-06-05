@@ -5,21 +5,15 @@
   <parent>
     <groupId>org.universAAL</groupId>
     <artifactId>uAAL.pom</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.1.0</version>
   </parent>
   <groupId>org.universAAL.lddi</groupId>
   <artifactId>lddi.pom</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.1.0</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Suite</name>
   <description>The set of artefacts realizing the universAAL Local Device Discovery and Integration</description>
   <inceptionYear>2010</inceptionYear>
-	<distributionManagement>
-		<site>
-			<id>depot.universaal.org</id>
-			<url>${uaal.site.url}lddi/lddi.pom</url>
-		</site>
-	</distributionManagement>
   <modules>
     <module>../lddi.bluetooth/lddi.pom.bluetooth</module>
     <module>../lddi.common/lddi.pom.common</module>
@@ -36,6 +30,12 @@
     <developerConnection>${svn.base}/${project.artifactId}</developerConnection>
     <url>${svn.base.url}${project.artifactId}</url>
   </scm>
+  <distributionManagement>
+    <site>
+      <id>depot.universaal.org</id>
+      <url>${uaal.site.url}lddi/lddi.pom</url>
+    </site>
+  </distributionManagement>
   <properties>
     <remoteOBR></remoteOBR>
     <nameMatchString>^universAAL LDDI .*</nameMatchString>
@@ -50,26 +50,26 @@
       <dependency>
         <groupId>org.universAAL.middleware</groupId>
         <artifactId>mw.pom.core</artifactId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.1.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.ontology</groupId>
         <artifactId>ont.pom</artifactId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.1.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.composite</artifactId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.1.0</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.karaf.feature</artifactId>
-        <version>3.0.1-SNAPSHOT</version>
+        <version>3.1.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

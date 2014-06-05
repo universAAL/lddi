@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.bluetooth</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.1.0</version>
     <relativePath>../lddi.pom.bluetooth</relativePath>
   </parent>
   <artifactId>lddi.bluetooth.continuahdpmanagerservice</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.1.0</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Bluetooth Continua Manager service</name>
   <description>Continua Health Alliance gateway</description>
