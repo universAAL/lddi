@@ -94,3 +94,7 @@ lddi.zigbee/lddi.zigbee.commissioning.adapter/.classpath
 lddi.zigbee/lddi.zigbee.commissioning.adapter/.project
 lddi.zigbee/lddi.zigbee.commissioning.adapter/.settings
 lddi.zigbee/lddi.zigbee.commissioning.adapter/target
+lddi.zigbee/lddi.zigbee.exporter/.classpath
+lddi.zigbee/lddi.zigbee.exporter/.project
+lddi.zigbee/lddi.zigbee.exporter/.settings
+lddi.zigbee/lddi.zigbee.exporter/target
