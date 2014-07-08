@@ -50,17 +50,14 @@
     <dependency>
       <groupId>org.aaloa.zb4osgi</groupId>
       <artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>
-      <version>0.7.0</version>
     </dependency>
     <dependency>
       <groupId>org.aaloa.zb4osgi</groupId>
       <artifactId>org.aaloa.zb4osgi.zigbee.zcl.library</artifactId>
-      <version>0.8.0</version>
     </dependency>
     <dependency>
       <groupId>org.aaloa.zb4osgi</groupId>
       <artifactId>org.aaloa.zb4osgi.zigbee.basedriver.api</artifactId>
-      <version>0.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
