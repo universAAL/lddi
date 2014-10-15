@@ -21,6 +21,15 @@ lddi.bluetooth/lddi.continuahdpmanager.caller.test/src/main/java/org/universAAL/
 lddi.bluetooth/lddi.continuahdpmanager.caller.test/src/main/resources/bp.png -text
 lddi.bluetooth/lddi.continuahdpmanager.caller.test/src/main/resources/uaal_logo_resized.jpg -text
 lddi.bluetooth/lddi.continuahdpmanager.caller.test/src/main/resources/ws.png -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/ASL2.0.txt -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/META-INF/MANIFEST.MF -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/NOTICE.txt -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/pom.xml -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/src/main/java/org/universAAL/lddi/subscriber/test/gui/GUI.java -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/src/main/java/org/universAAL/lddi/subscriber/test/gui/Subscriber.java -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/src/main/java/org/universAAL/lddi/subscriber/test/main/Activator.java -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/src/main/resources/bp.png -text
+lddi.bluetooth/lddi.continuahdpmanager.subscriber.test/src/main/resources/ws.png -text
 lddi.bluetooth/lddi.pom.bluetooth/pom.xml -text
 lddi.common/lddi.lib.ieeex73std/ASL2.0.txt -text
 lddi.common/lddi.lib.ieeex73std/NOTICE.txt -text
