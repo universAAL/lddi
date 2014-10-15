@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.1.1-SNAPSHOT</version>
+    <version>3.2.0</version>
     <relativePath>../</relativePath>
   </parent>
   <artifactId>lddi.composite</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
+  <version>3.2.0</version>
   <name>universAAL LDDI Composite</name>
   <description>Artifact responsible for generating composite file of universAAL lddi</description>
   <url></url>
@@ -23,14 +23,14 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.common</artifactId>
-        <version>3.1.1-SNAPSHOT</version>
+        <version>3.2.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.knx</artifactId>
-        <version>3.1.1-SNAPSHOT</version>
+        <version>3.2.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>

@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.common</artifactId>
-    <version>3.1.1-SNAPSHOT</version>
+    <version>3.2.0</version>
     <relativePath>../lddi.pom.common</relativePath>
   </parent>
   <artifactId>lddi.exporter.x73</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
+  <version>3.2.0</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Exporter of ISO11073 devices (blood pressure, scale) for uAAL</name>
   <description>Hardware exporter of devices based on ISO 11073 devices/model (health device communication) for the universAAL middleware</description>
