@@ -358,6 +358,10 @@ lddi.knx.exporter-3.0.1-SNAPSHOT/.classpath
 lddi.knx.exporter-3.0.1-SNAPSHOT/.project
 lddi.knx.exporter-3.0.1-SNAPSHOT/.settings
 lddi.knx.exporter-3.0.1-SNAPSHOT/target
+lddi.knx.exporter-3.1.1-SNAPSHOT/.classpath
+lddi.knx.exporter-3.1.1-SNAPSHOT/.project
+lddi.knx.exporter-3.1.1-SNAPSHOT/.settings
+lddi.knx.exporter-3.1.1-SNAPSHOT/target
 lddi.knx.library-0.0.5-SNAPSHOT/.classpath
 lddi.knx.library-0.0.5-SNAPSHOT/.project
 lddi.knx.library-0.0.5-SNAPSHOT/.settings
