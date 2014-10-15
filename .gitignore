@@ -36,6 +36,9 @@ lddi.common/lddi.pom.common/target
 lddi.config/lddi.knx.devicemanager.config/.project
 lddi.config/lddi.knx.devicemanager.config/.settings
 lddi.config/lddi.knx.devicemanager.config/target
+lddi.config/lddi.knx.networkdriver.config/.project
+lddi.config/lddi.knx.networkdriver.config/.settings
+lddi.config/lddi.knx.networkdriver.config/target
 lddi.config/lddi.pom.config/.project
 lddi.config/lddi.pom.config/.settings
 lddi.config/lddi.pom.config/target
