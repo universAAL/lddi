@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="universAAL-LDDI" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+	<!-- import Respositories -->
+	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/${mw.karaf.feature.version}/xml/features</repository>
+	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/${ont.karaf.feature.version}/xml/features</repository>
+
+	<feature name="uAAL-LDDI" description="The LDDI framework for KNX based on the uAAL-MW"
+		version="${pom.version}" resolver='(obr)' start-level="90" >
+		<!-- make sure you set start-levels per bundle,
+		 libraries go to level 50; onts stop at level 65.
+		 since there are no other dependencies it is safe to assume that 70 is a good start level for this feature,
+		 but make sure bundle dependencies are respected.
+		 EG if bundleB depends on bundleA then
+		 <bundle start-level=70>bundleA</bundle>
+		 <bundle start-level=71>bundleB</bundle> (or greater) -->
+		
+		<!-- needed features -->
+		<feature>uAAL-Ont.Device</feature> <!-- this imports ont.profile, ont.phWorld and mw features -->
+		
+
+		<!-- Apache OSGi DAS bundles --> <!-- there seems to be no reference in the dependency tree for these two -->
+		<bundle>mvn:org.apache.felix/org.apache.felix.dependencymanager/3.1.0</bundle>
+		<bundle>mvn:org.apache.felix/org.apache.felix.devicemanager/0.9.0-SNAPSHOT</bundle>
+
+		<!-- Calimero only for direct UDP connection needed; not for UDP multichast channel; should be avoided/replaced  -->
+		<bundle>wrap:mvn:at.ac.tuwien.auto/calimero/${calimero.version}</bundle>
+
+		<!-- XML wrapper -->
+		<bundle>wrap:mvn:org.jdom/jdom/${jdom.version}</bundle>
+<!-- 		is Jaxen really needed? there seems to be no reference in the dependency tree -->
+		<bundle>wrap:mvn:jaxen/jaxen/1.1.3</bundle> 
+
+		<!-- core KNX bundles -->
+		<bundle>mvn:org.universAAL.lddi/lddi.knx.library/${lddi.lib.activityhub.version}</bundle>
+		<bundle>mvn:org.universAAL.lddi/lddi.knx.networkdriver/${lddi.knx.networkdriver.version}</bundle>
+		<bundle start-level='93'>mvn:org.universAAL.lddi/lddi.knx.devicemanager/${lddi.knx.devicemanager.version}</bundle>
+		<bundle start-level='92'>mvn:org.universAAL.lddi/lddi.knx.exporter/${lddi.knx.exporter.version}</bundle>
+
+		<!-- KNX configuration files -->
+		<configfile finalname="/etc/lddi.knx.networkdriver.cfg">
+			mvn:org.universAAL.lddi/lddi.knx.networkdriver.config/${lddi.knx.networkdriver.config.version}/cfg</configfile>
+		<configfile finalname="/etc/lddi.knx.devicemanager.cfg">
+			mvn:org.universAAL.lddi/lddi.knx.devicemanager.config/${lddi.knx.devicemanager.config.version}/cfg</configfile>
+		<configfile finalname="/etc/KNX_Demowand-uAAL-MW20-Test-3.knxproj">
+			mvn:org.universAAL.lddi/lddi.knx.devicemanager.config/${lddi.knx.devicemanager.config.version}/knxproj</configfile>
+				
+	</feature>
+
+	<feature name="uAAL-LDDI-ZWAVE" description="The LDDI framework for ZWave based on the uAAL-MW"
+		version="${platform.version}" resolver='(obr)'>
+		
+		<bundle start-level="52">wrap:mvn:org.xsocket/xsocket/2.8.14</bundle>
+
+		<!-- Ontologies -->
+		<feature>uAAL-Ont.Activityhub</feature>
+		<feature>uAAL-Ont.Device</feature>
+		<bundle start-level='79' start='true'>mvn:org.universAAL.lddi/lddi.zwave.exporter/${lddi.zwave.exporter.version}</bundle>
+	</feature>
+
+	<feature name="uAAL-LDDI-BluetoothContinua" description="The Continua Bluetooth Heath Personal Device Manager. Remember to install the apropriate drivers for your system."
+		version="${pom.version}" resolver='(obr)'>
+		<bundle start-level='55'>wrap:mvn:org.universAAL.lddi/lddi.lib.ieeex73std/${lddi.lib.ieeex73std.version}</bundle>	
+		<feature>uAAL-Ont.ContinuaHealth</feature>
+		<bundle start-level='70'>mvn:org.universAAL.lddi/lddi.bluetooth.continuahdpmanagerservice/${lddi.bluetooth.continuahdpmanagerservice.version}</bundle>	
+	</feature>
+	
+	<feature name="uAAL-LDDI-BluetoothContinua.test" description="CHP Test suite. Some GUIs to check, simulate and test the CHP connection"
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-LDDI-BluetoothContinua</feature>
+		<bundle start-level='80'>mvn:org.universAAL.lddi/lddi.continuahdpmanager.caller.test/${lddi.continuahdpmanager.caller.test.version}</bundle>	
+		<bundle start-level='80'>mvn:org.universAAL.lddi/lddi.continuahdpmanager.subscriber.test/${lddi.continuahdpmanager.subscriber.test.version}</bundle>	
+	</feature>
+	<!-- sample feature -->
+<!--
+	<feature name="uAAL-Ont.PhWorld" description="The Physical World Ontolgy."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-MW</feature>
+		<bundle start-level='50'>wrap:mvn:jp.go.ipa/jgcl/1.0</bundle>
+		<bundle start-level='60' start='true'>mvn:org.universAAL.ontology/ont.phWorld/2.0.2-SNAPSHOT</bundle>
+	</feature>
+-->
+		
+</features>
