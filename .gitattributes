@@ -1593,6 +1593,12 @@ lddi.karaf.feature-3.0.1-SNAPSHOT/README.txt -text
 lddi.karaf.feature-3.0.1-SNAPSHOT/pom.xml -text
 lddi.karaf.feature-3.0.1-SNAPSHOT/src/features/features.xml -text
 lddi.karaf.feature-3.0.1-SNAPSHOT/src/features/lddi.knx.xml -text
+lddi.karaf.feature-3.1.1-SNAPSHOT/ASL2.0.txt -text
+lddi.karaf.feature-3.1.1-SNAPSHOT/NOTICE.txt -text
+lddi.karaf.feature-3.1.1-SNAPSHOT/README.txt -text
+lddi.karaf.feature-3.1.1-SNAPSHOT/pom.xml -text
+lddi.karaf.feature-3.1.1-SNAPSHOT/src/features/features.xml -text
+lddi.karaf.feature-3.1.1-SNAPSHOT/src/features/lddi.knx.xml -text
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/conf/services/lddi.knx.devicemanager.properties -text
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/data/OfficeProject2.knxproj -text
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/data/OfficeProject3.knxproj -text

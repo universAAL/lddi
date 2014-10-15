@@ -250,6 +250,10 @@ lddi.karaf.feature-3.0.1-SNAPSHOT/.classpath
 lddi.karaf.feature-3.0.1-SNAPSHOT/.project
 lddi.karaf.feature-3.0.1-SNAPSHOT/.settings
 lddi.karaf.feature-3.0.1-SNAPSHOT/target
+lddi.karaf.feature-3.1.1-SNAPSHOT/.classpath
+lddi.karaf.feature-3.1.1-SNAPSHOT/.project
+lddi.karaf.feature-3.1.1-SNAPSHOT/.settings
+lddi.karaf.feature-3.1.1-SNAPSHOT/target
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/.classpath
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/.project
 lddi.knx.devicemanager-0.0.5-SNAPSHOT/.settings
