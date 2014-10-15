@@ -1,4 +1,5 @@
 * text=auto !eol
+lddi.bluetooth/lddi.pom.bluetooth/pom.xml -text
 lddi.common/lddi.lib.ieeex73std/ASL2.0.txt -text
 lddi.common/lddi.lib.ieeex73std/NOTICE.txt -text
 lddi.common/lddi.lib.ieeex73std/doc/allclasses-frame.html -text
