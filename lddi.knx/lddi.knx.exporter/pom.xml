@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.knx</artifactId>
-    <version>3.1.1-SNAPSHOT</version>
+    <version>3.2.0</version>
     <relativePath>../lddi.pom.knx</relativePath>
   </parent>
   <artifactId>lddi.knx.exporter</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
+  <version>3.2.0</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX Exporter</name>
   <description>Hardware exporter of KNX Home Automation components for the universAAL middleware using uAAL Device Ontology</description>

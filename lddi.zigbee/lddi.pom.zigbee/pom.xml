@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.1.1-SNAPSHOT</version>
+    <version>3.2.0</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.zigbee</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
+  <version>3.2.0</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI ZigBee Suite</name>
   <description>Integration of ZigBee components</description>
@@ -30,48 +30,48 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.zigbee.commissioning.adapter</artifactId>
-        <version>3.1.1-SNAPSHOT</version>
+        <version>3.2.0</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.zigbee.exporter</artifactId>
-        <version>3.1.1-SNAPSHOT</version>
+        <version>3.2.0</version>
       </dependency>
-    <dependency>
-      <groupId>org.aaloa.zb4osgi</groupId>
-      <artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>
-      <version>0.7.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.aaloa.zb4osgi</groupId>
-      <artifactId>org.aaloa.zb4osgi.zigbee.zcl.library</artifactId>
-      <version>0.8.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.aaloa.zb4osgi</groupId>
-      <artifactId>org.aaloa.zb4osgi.zigbee.basedriver.api</artifactId>
-      <version>0.6.0</version>
-    </dependency>      
-    <dependency>
-      <groupId>org.aaloa.zb4osgi</groupId>
-      <artifactId>org.aaloa.zb4osgi.zigbee.common</artifactId>
-      <version>0.5.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.aaloa.zb4osgi</groupId>
-      <artifactId>org.aaloa.zb4osgi.zigbee.dongle.api</artifactId>
-      <version>0.7.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.aaloa.zb4osgi</groupId>
-      <artifactId>org.aaloa.zb4osgi.zigbee.cc2480.datalink</artifactId>
-      <version>0.8.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.aaloa.zb4osgi</groupId>
-      <artifactId>org.aaloa.zb4osgi.zigbee.basedriver</artifactId>
-      <version>0.7.0</version>
-    </dependency>    
+      <dependency>
+        <groupId>org.aaloa.zb4osgi</groupId>
+        <artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>
+        <version>0.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aaloa.zb4osgi</groupId>
+        <artifactId>org.aaloa.zb4osgi.zigbee.zcl.library</artifactId>
+        <version>0.8.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aaloa.zb4osgi</groupId>
+        <artifactId>org.aaloa.zb4osgi.zigbee.basedriver.api</artifactId>
+        <version>0.6.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aaloa.zb4osgi</groupId>
+        <artifactId>org.aaloa.zb4osgi.zigbee.common</artifactId>
+        <version>0.5.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aaloa.zb4osgi</groupId>
+        <artifactId>org.aaloa.zb4osgi.zigbee.dongle.api</artifactId>
+        <version>0.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aaloa.zb4osgi</groupId>
+        <artifactId>org.aaloa.zb4osgi.zigbee.cc2480.datalink</artifactId>
+        <version>0.8.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aaloa.zb4osgi</groupId>
+        <artifactId>org.aaloa.zb4osgi.zigbee.basedriver</artifactId>
+        <version>0.7.0</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <repositories>
