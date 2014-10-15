@@ -48,6 +48,10 @@ lddi.knx/lddi.knx.devicemanager/.classpath
 lddi.knx/lddi.knx.devicemanager/.project
 lddi.knx/lddi.knx.devicemanager/.settings
 lddi.knx/lddi.knx.devicemanager/target
+lddi.knx/lddi.knx.exporter/.classpath
+lddi.knx/lddi.knx.exporter/.project
+lddi.knx/lddi.knx.exporter/.settings
+lddi.knx/lddi.knx.exporter/target
 lddi.knx/lddi.knx.library/.classpath
 lddi.knx/lddi.knx.library/.project
 lddi.knx/lddi.knx.library/.settings
