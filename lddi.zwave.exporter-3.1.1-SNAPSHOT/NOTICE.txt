@@ -1,0 +1,28 @@
+ZWave Exporter for universAAL
+
+Copyright 2008-2014 TSB Tecnologías, http://www.tsbtecnologias.es/
+TSB - Tecnologias para la Salud y el Bienestar
+
+I. Included Software
+
+Software developed by TSB for interaction with ZWave
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+The OPS4J (http://www.ops4j.org)
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+xSocket (http://xsocket.org/)
+Licensed under GNU Lesser General Public License v2.1
+
+
+III. License Summary
+- Apache License 2.0
+- LGPL 2.1
