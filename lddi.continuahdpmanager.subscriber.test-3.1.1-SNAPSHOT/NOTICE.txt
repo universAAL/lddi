@@ -1,0 +1,20 @@
+Continua Health Alliance devices integration
+
+Copyright Technologies for Health and Well-being, http://www.tsbtecnologias.es/
+
+
+I. Included Software
+
+Software developed by TSB Company within the universAAL project.
+
+
+II. Used Software
+
+This product uses software developed at
+BlueZ Project as official Linux bluetooth protocol stack (http://www.bluez.org/)
+Licensed under the GNU General Public License (GPL).
+
+
+III. License Summary
+- GNU General Public License (GPL).
+
