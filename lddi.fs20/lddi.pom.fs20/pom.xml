@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom</artifactId>
+    <version>3.2.0</version>
+    <relativePath>../../lddi.pom</relativePath>
+  </parent>
+  <artifactId>lddi.pom.fs20</artifactId>
+  <version>3.2.0</version>
+  <packaging>pom</packaging>
+  <name>universAAL LDDI FS20 Suite</name>
+  <description>Integration of FS20 components</description>
+  <modules>
+    <module>../lddi.fs20.connector</module>
+    <module>../lddi.fs20.exporter</module>
+  </modules>
+  <scm>
+    <connection>${svn.base}/lddi.fs20/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/lddi.fs20/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}lddi.fs20/${project.artifactId}</url>
+  </scm>
+  <properties>
+    <nameMatchString>^universAAL LDDI FS20 .*</nameMatchString>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.fs20.connector</artifactId>
+        <version>3.2.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.fs20.exporter</artifactId>
+        <version>3.2.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

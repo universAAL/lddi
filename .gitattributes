@@ -454,6 +454,7 @@ lddi.common/lddi.lib.ieeex73std/src/main/java/org/universAAL/lddi/lib/ieeex73std
 lddi.common/lddi.lib.ieeex73std/src/main/java/org/universAAL/lddi/lib/ieeex73std/x73/p20601/mdnf/FloatType.java -text
 lddi.common/lddi.lib.ieeex73std/src/main/java/org/universAAL/lddi/lib/ieeex73std/x73/p20601/mdnf/SFloatType.java -text
 lddi.common/lddi.pom.common/pom.xml -text
+lddi.fs20/lddi.pom.fs20/pom.xml -text
 lddi.pom/composite/ASL2.0.txt -text
 lddi.pom/composite/NOTICE.txt -text
 lddi.pom/composite/pom.xml -text
