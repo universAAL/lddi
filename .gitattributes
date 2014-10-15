@@ -5229,6 +5229,22 @@ lddi.zigbee.commissioning.adapter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ld
 lddi.zigbee.commissioning.adapter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL.java -text svneol=unset#text/plain
 lddi.zigbee.commissioning.adapter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java -text svneol=unset#text/plain
 lddi.zigbee.commissioning.adapter-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/ASL2.0.txt -text
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/NOTICE.txt -text
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/configurationFile/lddi.zigbee.commissioning.configuration.properties -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/pom.xml -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/Activator.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/clusters/api/IASZoneAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/clusters/api/OccupacySensingAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/clusters/impl/IASZoneAALImpl.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/clusters/impl/IASZoneClusterAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupacySensingAALImpl.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupacySensingClusterAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupancyBridgeListenersAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/api/IAS_ZoneAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java -text svneol=unset#text/plain
+lddi.zigbee.commissioning.adapter-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java -text svneol=unset#text/plain
 lddi.zigbee.exporter-2.0.2-SNAPSHOT/ASL2.0 -text
 lddi.zigbee.exporter-2.0.2-SNAPSHOT/NOTICE -text
 lddi.zigbee.exporter-2.0.2-SNAPSHOT/pom.xml -text
