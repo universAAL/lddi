@@ -2486,6 +2486,15 @@ lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/src/main/java/org/univ
 lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1RefinementDriver.java -text
 lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/util/KnxDeviceConfig.java -text
 lddi.knx.refinementdriver.dpt1.activityhub-3.0.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/util/LogTracker.java -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/ASL2.0.txt -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/NOTICE.txt -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/pom.xml -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/readme.txt -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/Activator.java -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1Instance.java -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1RefinementDriver.java -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/util/KnxDeviceConfig.java -text
+lddi.knx.refinementdriver.dpt1.activityhub-3.1.1-SNAPSHOT/src/main/java/org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/util/LogTracker.java -text
 lddi.lib.activityhub-2.0.2-SNAPSHOT/ASL2.0.txt -text
 lddi.lib.activityhub-2.0.2-SNAPSHOT/NOTICE.txt -text
 lddi.lib.activityhub-2.0.2-SNAPSHOT/pom.xml -text
