@@ -1,0 +1,29 @@
+LDDI Composite
+
+Copyright 2011-2014 AGH-UST, http://www.agh.edu.pl
+Faculty of Computer Science, Electronics and Telecommunications
+Department of Computer Science 
+
+Copyright 2008-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
+Fraunhofer Gesellschaft - Institut fuer Graphische Datenverarbeitung
+
+Copyright by Thomas Fuxreiter / Austrian Institute Of Technology (AIT), 2012
+
+
+I. Included Software
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+Junit (http://www.junit.org/).
+Licensed under Common Public License 1.0.
+
+
+III. License Summary
+- Apache License 2.0
+- Common Public License 1.0
