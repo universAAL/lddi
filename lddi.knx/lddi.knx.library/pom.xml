@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.knx</artifactId>
-    <version>3.2.0</version>
+    <version>3.2.1-SNAPSHOT</version>
     <relativePath>../lddi.pom.knx</relativePath>
   </parent>
   <artifactId>lddi.knx.library</artifactId>
-  <version>3.2.0</version>
+  <version>3.2.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX Datapoint Type Library</name>
   <description>KNX Device Categories for OSGi DeviceManager are Interfaces for all KNX Datapoint Types specifying methods for communication with device services.</description>
