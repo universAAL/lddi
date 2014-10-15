@@ -501,6 +501,17 @@ lddi.pom-3.0.1-SNAPSHOT/lddi.karaf.feature/.project
 lddi.pom-3.0.1-SNAPSHOT/lddi.karaf.feature/.settings
 lddi.pom-3.0.1-SNAPSHOT/lddi.karaf.feature/target
 lddi.pom-3.0.1-SNAPSHOT/target
+lddi.pom-3.1.1-SNAPSHOT/.project
+lddi.pom-3.1.1-SNAPSHOT/.settings
+lddi.pom-3.1.1-SNAPSHOT/composite/.classpath
+lddi.pom-3.1.1-SNAPSHOT/composite/.project
+lddi.pom-3.1.1-SNAPSHOT/composite/.settings
+lddi.pom-3.1.1-SNAPSHOT/composite/target
+lddi.pom-3.1.1-SNAPSHOT/lddi.karaf.feature/.classpath
+lddi.pom-3.1.1-SNAPSHOT/lddi.karaf.feature/.project
+lddi.pom-3.1.1-SNAPSHOT/lddi.karaf.feature/.settings
+lddi.pom-3.1.1-SNAPSHOT/lddi.karaf.feature/target
+lddi.pom-3.1.1-SNAPSHOT/target
 lddi.pom.bluetooth-2.0.2-SNAPSHOT/.project
 lddi.pom.bluetooth-2.0.2-SNAPSHOT/.settings
 lddi.pom.bluetooth-2.0.2-SNAPSHOT/target
