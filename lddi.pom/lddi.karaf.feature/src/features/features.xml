@@ -48,7 +48,7 @@
 	</feature>
 
 	<feature name="uAAL-LDDI-ZWAVE" description="The LDDI framework for ZWave based on the uAAL-MW"
-		version="${platform.version}" resolver='(obr)'>
+		version="${pom.version}" resolver='(obr)'>
 		
 		<bundle start-level="52">wrap:mvn:org.xsocket/xsocket/2.8.14</bundle>
 
@@ -72,7 +72,7 @@
 		<bundle start-level='80'>mvn:org.universAAL.lddi/lddi.continuahdpmanager.subscriber.test/${lddi.continuahdpmanager.subscriber.test.version}</bundle>	
 	</feature>
 
-	<feature name="ZB4O.Base" version="${platform.version}">
+	<feature name="ZB4O.Base" description="The minimal set of ZB4O Suite for handling ZigBee devices" version="${pom.version}">
 		<!-- ZB4O Deps -->
 		<bundle>wrap:mvn:net.sf.trove4j/trove4j/2.1.0</bundle>
 		<!-- ZB4O Suite -->
@@ -85,21 +85,24 @@
 		<bundle>mvn:org.aaloa.zb4osgi/org.aaloa.zb4osgi.zigbee.dongle.api/${org.aaloa.zb4osgi.zigbee.dongle.api.version}</bundle>
 	</feature>	
 
-	<feature name="ZB4O.Driver.CC2530" version="${platform.version}">
-		<feature version="${platform.version}">ZB4O.Base</feature>
+	<feature name="ZB4O.Driver.CC2530" description="The driver for ZB4O Suite for using TI Z-Stack for interacting with ZigBee dongle"  version="${pom.version}">
+		<feature>ZB4O.Base</feature>
 		<bundle>mvn:org.aaloa.zb4osgi.bundle/org.aaloa.zb4osgi.externals.rxtx/2.1.7-SNAPSHOT</bundle>
 		<bundle start='false'>mvn:org.aaloa.zb4osgi/org.aaloa.zb4osgi.zigbee.CC2530.driver/0.2.0</bundle>
 	</feature>	
 	
 	<feature name="uAAL-LDDI-ZigBee" description="The LDDI framework for ZigBee based on the uAAL-MW"
-		version="${platform.version}" resolver='(obr)'>
-		
+		version="${pom.version}" resolver='(obr)'>
 
 		<!-- Ontologies -->
 		<feature>uAAL-Ont.Activityhub</feature>
 		<feature>uAAL-Ont.Device</feature>
+		
+		<!-- ZB4O -->
 		<feature>ZB4O.Driver.CC2530</feature>
-		<bundle start-level='80' start='true'>mvn:org.universAAL.lddi/lddi.zigbee.exporter/${lddi.zigbee.exporter.version}</bundle> -->
+		
+		<!-- uAAL -->
+		<bundle start-level='80' start='true'>mvn:org.universAAL.lddi/lddi.zigbee.exporter/${lddi.zigbee.exporter.version}</bundle>
 	</feature> 
 	<!-- sample feature -->
 <!--
