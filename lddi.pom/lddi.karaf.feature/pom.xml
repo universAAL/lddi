@@ -50,8 +50,25 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.pom.zigbee</artifactId>
+        <version>3.2.1-SNAPSHOT</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+    <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>aaloa</id>
+      <name>aaloa Repositories</name>
+      <url>http://nexus.aaloa.org/content/repositories/releases/</url>
+    </repository>
+	</repositories>
   <dependencies>
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
@@ -107,6 +124,45 @@
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.continuahdpmanager.subscriber.test</artifactId>
     </dependency>
+	<!-- ZigBee Driver -->
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.zcl.library</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.basedriver.api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.basedriver</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.dongle.api</artifactId>
+		</dependency>		
+		<!-- 		
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.cc2480.datalink</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aaloa.zb4osgi</groupId>
+			<artifactId>org.aaloa.zb4osgi.zigbee.CC2530.driver</artifactId>
+		</dependency>
+		-->
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.zigbee.exporter</artifactId>
+      </dependency>		
   </dependencies>
   <build>
     <filters>
