@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.2.1-SNAPSHOT</version>
+    <version>3.3.0</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.common</artifactId>
-  <version>3.2.1-SNAPSHOT</version>
+  <version>3.3.0</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Common Suite</name>
   <description>LDDI Common components</description>
@@ -32,22 +32,22 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.lib.activityhub</artifactId>
-        <version>3.2.1-SNAPSHOT</version>
+        <version>3.3.0</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.lib.ieeex73std</artifactId>
-        <version>3.2.1-SNAPSHOT</version>
+        <version>3.3.0</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.exporter.activityhub</artifactId>
-        <version>3.2.1-SNAPSHOT</version>
+        <version>3.3.0</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.exporter.x73</artifactId>
-        <version>3.2.1-SNAPSHOT</version>
+        <version>3.3.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
