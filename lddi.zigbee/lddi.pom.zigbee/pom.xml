@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.3.0</version>
+    <version>3.3.1-SNAPSHOT</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.zigbee</artifactId>
-  <version>3.3.0</version>
+  <version>3.3.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI ZigBee Suite</name>
   <description>Integration of ZigBee components</description>
@@ -30,12 +30,12 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.zigbee.commissioning.adapter</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.zigbee.exporter</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.aaloa.zb4osgi</groupId>

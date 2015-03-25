@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.3.0</version>
+    <version>3.3.1-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
   <groupId>org.universAAL.lddi</groupId>
   <artifactId>lddi.karaf.feature</artifactId>
-  <version>3.3.0</version>
+  <version>3.3.1-SNAPSHOT</version>
   <name>universAAL LDDI Karaf Feature</name>
   <scm>
     <connection>${svn.base}/lddi.pom/${project.artifactId}</connection>
@@ -25,35 +25,35 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.knx</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.config</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.zwave</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.bluetooth</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.zigbee</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.1-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
