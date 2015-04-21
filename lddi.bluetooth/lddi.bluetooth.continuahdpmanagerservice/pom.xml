@@ -59,8 +59,7 @@
             <Bundle-Activator>org.universAAL.continua.hdp.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Include-Resource>lib,
-              src/main/resources</Include-Resource>
+            <Include-Resource>lib</Include-Resource>
             <Import-Package>org.osgi.framework;version="[1,2)",*</Import-Package>
             <Bundle-NativeCode>libHDPnative_unix_32.so;
               osname=Linux;
