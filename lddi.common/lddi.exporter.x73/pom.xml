@@ -99,8 +99,7 @@
             <Embed-Dependency></Embed-Dependency>
             <Export-Package>cx.ath.matthew.unix*,
           cx.ath.matthew.utils*</Export-Package>
-            <Include-Resource>lib,
-          src/main/resources</Include-Resource>
+            <Include-Resource>lib</Include-Resource>
             <Import-Package>*</Import-Package>
             <Bundle-NativeCode>libunix-java-32.so;
           osname=Linux;
