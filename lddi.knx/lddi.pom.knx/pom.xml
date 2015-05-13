@@ -20,11 +20,6 @@
     <module>../lddi.knx.networkdriver</module>
     <module>../lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub</module>
   </modules>
-  <scm>
-    <connection>${svn.base}/lddi.knx/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/lddi.knx/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}lddi.knx/${project.artifactId}</url>
-  </scm>
   <properties>
     <nameMatchString>^universAAL LDDI KNX .*</nameMatchString>
   </properties>

@@ -17,11 +17,6 @@
     <module>../lddi.fs20.connector</module>
     <module>../lddi.fs20.exporter</module>
   </modules>
-  <scm>
-    <connection>${svn.base}/lddi.fs20/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/lddi.fs20/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}lddi.fs20/${project.artifactId}</url>
-  </scm>
   <properties>
     <nameMatchString>^universAAL LDDI FS20 .*</nameMatchString>
   </properties>

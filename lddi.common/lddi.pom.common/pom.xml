@@ -19,11 +19,6 @@
     <module>../lddi.lib.activityhub</module>
     <module>../lddi.lib.ieeex73std</module>
   </modules>
-  <scm>
-    <connection>${svn.base}/lddi.common/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/lddi.common/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}lddi.common/${project.artifactId}</url>
-  </scm>
   <properties>
     <nameMatchString>^universAAL LDDI .*</nameMatchString>
   </properties>

@@ -16,11 +16,6 @@
   <modules>
     <module>../lddi.zwave.exporter</module>
   </modules>
-  <scm>
-    <connection>${svn.base}/lddi.zwave/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/lddi.zwave/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}lddi.zwave/${project.artifactId}</url>
-  </scm>
   <properties>
     <nameMatchString>^universAAL LDDI ZWave .*</nameMatchString>
   </properties>

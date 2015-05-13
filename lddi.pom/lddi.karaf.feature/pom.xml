@@ -12,11 +12,6 @@
   <artifactId>lddi.karaf.feature</artifactId>
   <version>3.3.1-SNAPSHOT</version>
   <name>universAAL LDDI Karaf Feature</name>
-  <scm>
-    <connection>${svn.base}/lddi.pom/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/lddi.pom/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}%2Flddi.pom%2F${project.artifactId}</url>
-  </scm>
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
   </properties>

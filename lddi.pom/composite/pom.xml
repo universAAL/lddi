@@ -13,11 +13,6 @@
   <name>universAAL LDDI Composite</name>
   <description>Artifact responsible for generating composite file of universAAL lddi</description>
   <url></url>
-  <scm>
-    <connection>${svn.base}/lddi.pom/composite</connection>
-    <developerConnection>${svn.base}/lddi.pom/composite</developerConnection>
-    <url>${svn.base.url}lddi.pom/composite</url>
-  </scm>
   <dependencyManagement>
     <dependencies>
       <dependency>

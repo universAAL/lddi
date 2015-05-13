@@ -17,11 +17,6 @@
     <module>../lddi.zigbee.commissioning.adapter</module>
     <module>../lddi.zigbee.exporter</module>
   </modules>
-  <scm>
-    <connection>${svn.base}/lddi.zigbee/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/lddi.zigbee/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}lddi.zigbee/${project.artifactId}</url>
-  </scm>
   <properties>
     <nameMatchString>^universAAL LDDI .*</nameMatchString>
   </properties>
