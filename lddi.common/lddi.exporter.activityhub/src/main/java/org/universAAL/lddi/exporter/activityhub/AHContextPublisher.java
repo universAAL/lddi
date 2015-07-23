@@ -90,7 +90,7 @@ public class AHContextPublisher {
     	// the event is always about the change of measured value
     	MergedRestriction predicateRestriction = MergedRestriction
     		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-    				ActivityHubSensor.PROP_MEASURED_VALUE);
+    				ActivityHubSensor.PROP_HAS_VALUE);
 
     	// the reported value will always be of type ActivityHubSensorEvent
 //    	MergedRestriction objectRestriction = MergedRestriction
@@ -149,7 +149,7 @@ public class AHContextPublisher {
     	
     	// finally create an context event and publish it with the ActivityHubSensor
     	// as subject and the property that changed as predicate
-    	cp.publish(new ContextEvent(ahs, ActivityHubSensor.PROP_MEASURED_VALUE));
+    	cp.publish(new ContextEvent(ahs, ActivityHubSensor.PROP_HAS_VALUE));
     	
     }
     

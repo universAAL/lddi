@@ -74,7 +74,7 @@ public class MotionContactSensorPublisher {
 					+ "ZWaveMotionDetectorLocation", veraResponse[2]));
 
 			System.out.print("Publishing motion\n");
-			cp.publish(new ContextEvent(ms, MotionSensor.PROP_MEASURED_VALUE));
+			cp.publish(new ContextEvent(ms, MotionSensor.PROP_HAS_VALUE));
 		} else if (veraResponse[0].compareTo("Contact") == 0) {
 			String msURL = NAMESPACE + veraResponse[1];
 			ContactClosureSensorEvent cce;
@@ -90,7 +90,7 @@ public class MotionContactSensorPublisher {
 			cc.setMeasuredValue(cce);
 			System.out.print("Publishing contact\n");
 			cp.publish(new ContextEvent(cc,
-					ContactClosureSensor.PROP_MEASURED_VALUE));
+					ContactClosureSensor.PROP_HAS_VALUE));
 		}
 	}
 }
