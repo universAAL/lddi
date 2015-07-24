@@ -39,9 +39,12 @@ import org.universAAL.middleware.context.ContextPublisher;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
+import org.universAAL.ontology.healthmeasurement.owl.BloodPressure;
+import org.universAAL.ontology.healthmeasurement.owl.HeartRate;
+import org.universAAL.ontology.healthmeasurement.owl.PersonWeight;
 import org.universAAL.ontology.measurement.Measurement;
-import org.universAAL.ontology.personalhealthdevice.BloodPressureMeasurement;
-import org.universAAL.ontology.personalhealthdevice.BloodPressureMonitor;
+import org.universAAL.ontology.personalhealthdevice.BloodPressureSensor;
+import org.universAAL.ontology.personalhealthdevice.HeartRateSensor;
 import org.universAAL.ontology.personalhealthdevice.WeighingScale;
 
 // Main class
@@ -56,7 +59,7 @@ public class Publisher {
 	ModuleContext mc;
 	// URI prefix
 	public static final String PUBLISHER_URI_PREFIX = 
-		"http://ontology.universAAL.org/PersonalHealtDeviceSimulator.owl#";
+		"http://ontology.universAAL.org/ContinuaBTPersonalHealtDevice.owl#";
 
 	// Constructor
 	
@@ -65,7 +68,7 @@ public class Publisher {
 	 * */
 	public Publisher(BundleContext context) {
 		// Instantiate the context provider info with a valid provider URI
-		cpInfo = new ContextProvider(PUBLISHER_URI_PREFIX + "PersonalHealthDeviceContextProvider");
+		cpInfo = new ContextProvider(PUBLISHER_URI_PREFIX + "personalHealthDeviceContextProvider");
 		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		// Set to type gauge (only publishes data information it senses)
 		cpInfo.setType(ContextProviderType.gauge);
@@ -79,27 +82,36 @@ public class Publisher {
 	
 	/** Publish weighting scale events to uAAL bus */	
 	public void publishWeightEvent(int weight) {		
-		WeighingScale ws = new WeighingScale(PUBLISHER_URI_PREFIX + "WeighingScale");		
-		Measurement m_ws = new Measurement(PUBLISHER_URI_PREFIX + "Measurement_Weight");
-		m_ws.setValue(String.valueOf(weight));
-		ws.setProperty(WeighingScale.PROP_HAS_MEASURED_WEIGHT,m_ws);		
-		cp.publish(new ContextEvent(ws,WeighingScale.PROP_HAS_MEASURED_WEIGHT));		
+		WeighingScale ws = new WeighingScale(PUBLISHER_URI_PREFIX + "continuaBTWeighingScale");		
+		PersonWeight m_ws = new PersonWeight();
+		m_ws.setProperty(Measurement.PROP_VALUE, Float.valueOf(weight));
+		ws.setProperty(WeighingScale.PROP_HAS_VALUE,m_ws);		
+		cp.publish(new ContextEvent(ws,WeighingScale.PROP_HAS_VALUE));		
 	}
 	
 	/** Publish blood pressure events to uAAL bus */
 	public void publishBloodPressureEvent(int sys,int dia,int hr) {		
-		BloodPressureMeasurement bpme = new BloodPressureMeasurement(PUBLISHER_URI_PREFIX + "BloodPressureMeasurement");
-		Measurement m_sys = new Measurement(PUBLISHER_URI_PREFIX + "Measurement_Systolic");
-		m_sys.setValue(String.valueOf(sys));
-		bpme.setProperty(BloodPressureMeasurement.PROP_HAS_MEASURED_BPSYS,m_sys);
-		Measurement m_dia = new Measurement( PUBLISHER_URI_PREFIX + "Measurement_Diastolic");
-		m_dia.setValue(String.valueOf(dia));
-		bpme.setProperty(BloodPressureMeasurement.PROP_HAS_MEASURED_BPDIA,m_dia);
-		Measurement m_hr = new Measurement( PUBLISHER_URI_PREFIX + "Measurement_Heartrate");
-		m_hr.setValue(String.valueOf(hr));
-		bpme.setProperty(BloodPressureMeasurement.PROP_HAS_MEASURED_HEARTRATE, m_hr); 
-		BloodPressureMonitor bpmo = new BloodPressureMonitor( PUBLISHER_URI_PREFIX + "BloodPressureMonitor" );
-		bpmo.setProperty(BloodPressureMonitor.PROP_HAS_MEASUREMENT, bpme);
-		cp.publish(new ContextEvent(bpmo,BloodPressureMonitor.PROP_HAS_MEASUREMENT));
+		BloodPressure value = new BloodPressure(PUBLISHER_URI_PREFIX + "BloodPressureMeasurement");
+		
+		Measurement systolic = new Measurement();
+		systolic.setValue(Float.valueOf(sys));
+		
+		Measurement diastolic = new Measurement();
+		diastolic.setValue(Float.valueOf(dia));
+		
+		value.setSyst(systolic);
+		value.setDias(diastolic);
+		
+		BloodPressureSensor sensor = new BloodPressureSensor( PUBLISHER_URI_PREFIX + "continuaBTBloodPressureSensor" );
+		sensor.setValue(value);
+		
+		cp.publish(new ContextEvent(sensor,BloodPressureSensor.PROP_HAS_VALUE));
+
+		HeartRate hrvalue = new HeartRate();
+		hrvalue.setProperty(Measurement.PROP_VALUE, Integer.valueOf(hr));
+		HeartRateSensor hrsensor = new HeartRateSensor( PUBLISHER_URI_PREFIX + "continuaBTHeartRateSensor" );
+		hrsensor.setValue(hrvalue);
+		
+		cp.publish(new ContextEvent(hrsensor,BloodPressureSensor.PROP_HAS_VALUE));
 	}
 }
