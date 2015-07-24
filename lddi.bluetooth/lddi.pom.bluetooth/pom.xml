@@ -16,8 +16,6 @@
   <inceptionYear>2013</inceptionYear>
   <modules>
     <module>../lddi.bluetooth.continuahdpmanagerservice</module>
-    <module>../lddi.continuahdpmanager.caller.test</module>
-    <module>../lddi.continuahdpmanager.subscriber.test</module>
   </modules>
   <properties>
     <nameMatchString>^universAAL LDDI .*</nameMatchString>
@@ -34,16 +32,6 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.bluetooth.continuahdpmanagerservice</artifactId>
-        <version>3.3.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.continuahdpmanager.caller.test</artifactId>
-        <version>3.3.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.lddi</groupId>
-        <artifactId>lddi.continuahdpmanager.subscriber.test</artifactId>
         <version>3.3.1-SNAPSHOT</version>
       </dependency>
     </dependencies>
