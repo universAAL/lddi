@@ -102,14 +102,6 @@
       <artifactId>lddi.bluetooth.continuahdpmanagerservice</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.continuahdpmanager.caller.test</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.lddi</groupId>
-      <artifactId>lddi.continuahdpmanager.subscriber.test</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.aaloa.zb4osgi</groupId>
       <artifactId>org.aaloa.zb4osgi.zigbee.ha.driver</artifactId>
     </dependency>
