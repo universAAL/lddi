@@ -24,6 +24,7 @@
     <module>../lddi.zwave/lddi.pom.zwave</module>
     <module>composite</module>
     <module>lddi.karaf.feature</module>
+    <module>../lddi.uaal/lddi.pom.uaal</module>
   </modules>
   <scm>
     <connection>scm:git:https://github.com/universAAL/lddi.git</connection>

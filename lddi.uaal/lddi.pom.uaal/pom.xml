@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom</artifactId>
+    <version>3.3.1-SNAPSHOT</version>
+    <relativePath>../../lddi.pom</relativePath>
+  </parent>
+  <artifactId>lddi.pom.uaal</artifactId>
+  <version>3.3.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>universAAL LDDI ont-based Suite</name>
+  <description>The set of artefacts realizing the universAAL Local Discovery and Integration using ontology-based abstraction</description>
+  <inceptionYear>2015</inceptionYear>
+  <modules>
+    <module>../lddi.uaal.abstraction</module>
+  </modules>
+  <properties>
+    <nameMatchString>^universAAL LDDI .*</nameMatchString>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+    </dependencies>
+  </dependencyManagement>
+</project>
