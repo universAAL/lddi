@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.lddi</groupId>
+    <artifactId>lddi.pom.common</artifactId>
+    <version>3.3.1-SNAPSHOT</version>
+    <relativePath>../lddi.pom.common</relativePath>
+  </parent>
+  <artifactId>lddi.abstraction</artifactId>
+  <packaging>bundle</packaging>
+  <name>universAAL LDDI ont-based abstraction</name>
+  <description>Defines the interfaces to be used in addition to ontologies for linking the access and integration layers of LDDI</description>
+  <inceptionYear>2015</inceptionYear>
+  <dependencies>
+    <dependency>
+      <groupId>org.universAAL.support</groupId>
+      <artifactId>itests</artifactId>
+    </dependency>
+  	<dependency>
+  		<groupId>org.universAAL.middleware</groupId>
+  		<artifactId>mw.container.xfaces.osgi</artifactId>
+  	</dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.name}</Bundle-Name>
+            <Bundle-Activator>org.universAAL.middleware.datarep.osgi.Activator</Bundle-Activator>
+            <Bundle-Description>${project.description}</Bundle-Description>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Export-Package>org.universAAL.lddi.abstraction</Export-Package>
+            <Import-Package>org.osgi.framework;version="[1,2)",*</Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

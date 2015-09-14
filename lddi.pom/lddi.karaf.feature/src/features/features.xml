@@ -5,6 +5,11 @@
 	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/${mw.karaf.feature.version}/xml/features</repository>
 	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/${ont.karaf.feature.version}/xml/features</repository>
 
+	<feature name="uAAL-LDDI-Abstraction" description="Defines the interfaces to be used in addition to ontologies for linking the access and integration layers of LDDI."
+		version="${pom.version}" resolver='(obr)'>
+		<bundle start-level='55'>mvn:org.universAAL.lddi/lddi.abstraction/${lddi.abstraction.version}</bundle>
+	</feature>
+
 	<feature name="uAAL-LDDI" description="The LDDI framework for KNX based on the uAAL-MW"
 		version="${pom.version}" resolver='(obr)' start-level="90" >
 		<!-- make sure you set start-levels per bundle,
