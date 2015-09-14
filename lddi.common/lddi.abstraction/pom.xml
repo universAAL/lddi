@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.common</artifactId>
-    <version>3.4.0</version>
+    <version>3.4.1-SNAPSHOT</version>
     <relativePath>../lddi.pom.common</relativePath>
   </parent>
   <artifactId>lddi.abstraction</artifactId>
-  <version>3.4.0</version>
+  <version>3.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Common ont-based abstraction</name>
   <description>Defines the interfaces to be used in addition to ontologies for linking the access and integration layers of LDDI</description>

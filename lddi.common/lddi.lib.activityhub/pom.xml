@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.common</artifactId>
-    <version>3.4.0</version>
+    <version>3.4.1-SNAPSHOT</version>
     <relativePath>../lddi.pom.common</relativePath>
   </parent>
   <artifactId>lddi.lib.activityhub</artifactId>
-  <version>3.4.0</version>
+  <version>3.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Library for ISO/IEEE 11073 standard - ActivityHub Specification</name>
   <description>ISO 11073 Device Categories for OSGi DeviceManager are Interfaces for all ISO 11073 sensor types, specifying methods for communication with device services.</description>
