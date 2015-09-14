@@ -10,7 +10,7 @@
   </parent>
   <artifactId>lddi.abstraction</artifactId>
   <packaging>bundle</packaging>
-  <name>universAAL LDDI ont-based abstraction</name>
+  <name>universAAL LDDI Common ont-based abstraction</name>
   <description>Defines the interfaces to be used in addition to ontologies for linking the access and integration layers of LDDI</description>
   <inceptionYear>2015</inceptionYear>
   <dependencies>
