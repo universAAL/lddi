@@ -103,7 +103,7 @@ public abstract class CommunicationGateway {
 	 * {@link ComponentIntegrator component integrators} can use this method to get the
 	 * value of a given property of a given external component by specifying the related
 	 * external datapoint. Note that this implies that the external components made
-	 * known by gateways to integrators must include the property mapping to datapoints.</p>
+	 * known by gateways to integrators must include the property mapping to datapoints.
 	 */
 	public abstract Object readValue(ExternalDatapoint datapoint);
 
@@ -112,7 +112,7 @@ public abstract class CommunicationGateway {
 	 * value of a given property of a given external component by specifying the related
 	 * external datapoint and the new value. Note that this implies that the external
 	 * components made known by gateways to integrators must include the property mapping
-	 * to datapoints.</p>
+	 * to datapoints.
 	 */
 	public abstract void writeValue(ExternalDatapoint datapoint, Object value);
 

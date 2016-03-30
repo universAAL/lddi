@@ -25,7 +25,7 @@
  * based on the assumption that all component type specific models will be provided in term of
  * ontologies on which the access and integration layers will rely:</p>
  * 
- * <p><img src="./doc-files/layers.png" width="600"></p>
+ * <p><img src="./doc-files/layers.png" width="600" alt="refinement of te LDDI abstraction layer"></p>
  * 
  * <p>As can be seen in the above figure, the main elements in this framework are {@link
  * org.universAAL.lddi.abstraction.CommunicationGateway communication gateways}, {@link

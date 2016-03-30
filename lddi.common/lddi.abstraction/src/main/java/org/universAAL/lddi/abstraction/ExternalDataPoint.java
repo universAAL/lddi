@@ -34,7 +34,7 @@ package org.universAAL.lddi.abstraction;
  * implement this interface. A way to do so, is to define the specific classes for implementing this
  * interface the following way:</p>
  * 
- * <p><img src="./doc-files/dpHierarchy.png" width="600" height="450"></p>
+ * <p><img src="./doc-files/dpHierarchy.png" width="600" height="450" alt="a possible hierarchy of classes implementing ExternalDatapoint"></p>
  * 
  * <p>Another important point is related to the info needed for realizing the read and write actions;
  * in the above text, this was most of the times reduced only to the addressing aspect, but often also
