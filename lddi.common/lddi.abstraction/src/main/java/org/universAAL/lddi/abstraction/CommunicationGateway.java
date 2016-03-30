@@ -22,7 +22,7 @@ package org.universAAL.lddi.abstraction;
 /**
  * A gateway providing a bridge to a network of external components making it for
  * {@link ComponentIntegrator component integrators} possible to gain access to
- * related {@link ExternalDataPoint external data points}.
+ * related {@link ExternalDatapoint external datapoints}.
  * 
  * For a better understanding, please refer to both the package documentation and the
  * documentation of the methods further below.
@@ -44,19 +44,19 @@ public abstract class CommunicationGateway {
 	/**
 	 * <p>Serves as means for subscribing for events related to the changes of the value
 	 * of a given property of a given external component by specifying the related
-	 * external data point. Note that this implies that the external components made
-	 * known by gateways to integrators must include the property mapping to data points.</p>
+	 * external datapoint. Note that this implies that the external components made
+	 * known by gateways to integrators must include the property mapping to datapoints.</p>
 	 * 
 	 * <p>To be used by {@link ComponentIntegrator component integrators} to inform this
 	 * gateway about the interest to be notified as soon as the value of the given
-	 * external data point changes. The implementation must (1) add the given integrator
+	 * external datapoint changes. The implementation must (1) add the given integrator
 	 * to the list of integrators interested in the same kind of events, and (2) call
-	 * {@link ComponentIntegrator#processEvent(ExternalDataPoint, Object) the related
+	 * {@link ComponentIntegrator#processEvent(ExternalDatapoint, Object) the related
 	 * notification method} of the integrator both with the current value at the time
 	 * of registration and at any time in future when the value changes.</p>
 	 * 
 	 * @param integrator the integrator registing for notification.
-	 * @param datapoint the data point whose changes of values must fire events.
+	 * @param datapoint the datapoint whose changes of values must fire events.
 	 * @param intervalSeconds needed when the external communication protocol doesn't
 	 * support "real-time" eventing and hence the gateway has to implement the eventing
 	 * mechanism by pulling the value every n seconds and check if it has changed or not.
@@ -64,15 +64,15 @@ public abstract class CommunicationGateway {
 	 * @return An ID for this subscription so that integrators can unsubscribe later if
 	 * need be.
 	 */
-	public abstract int startEventing(ComponentIntegrator integrator, ExternalDataPoint datapoint, byte intervalSeconds);
+	public abstract int startEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint, byte intervalSeconds);
 
 	/**
 	 * Serves as means for subscribing for events related to the changes of the value
 	 * of any property of the given external component. Compared to {@link
-	 * #startEventing(ComponentIntegrator, ExternalDataPoint, byte)}, it wildcards all
-	 * data points within the scope of the given external component.
+	 * #startEventing(ComponentIntegrator, ExternalDatapoint, byte)}, it wildcards all
+	 * datapoints within the scope of the given external component.
 	 * 
-	 * @see #startEventing(ComponentIntegrator, ExternalDataPoint, byte) 
+	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte) 
 	 */
 	public abstract int startEventing(ComponentIntegrator integrator, ExternalComponent component, byte intervalSeconds);
 
@@ -82,11 +82,11 @@ public abstract class CommunicationGateway {
 	 * any external component of the given type; otherwise, with propURI == null,
 	 * it can be used to subscribe for the changes of the value of any property
 	 * of any external component of the given type. Compared to {@link
-	 * #startEventing(ComponentIntegrator, ExternalDataPoint, byte)}, it wildcards
-	 * all data points within the scope of all external components of the given
+	 * #startEventing(ComponentIntegrator, ExternalDatapoint, byte)}, it wildcards
+	 * all datapoints within the scope of all external components of the given
 	 * type, either by selecting those that correspond to a given property or not.
 	 * 
-	 * @see #startEventing(ComponentIntegrator, ExternalDataPoint, byte) 
+	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte) 
 	 */
 	public abstract int startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI, byte intervalSeconds);
 
@@ -94,7 +94,7 @@ public abstract class CommunicationGateway {
 	 * {@link ComponentIntegrator component integrators} can use this method to unsubscribe
 	 * a subscription done previously.
 	 * @param eventingID the ID returned previously when calling {@link #startEventing(
-	 * ComponentIntegrator, ExternalDataPoint, byte)} or any of the wildcarding versions
+	 * ComponentIntegrator, ExternalDatapoint, byte)} or any of the wildcarding versions
 	 * of it.
 	 */
 	public abstract void stopEventing(int eventingID);
@@ -102,18 +102,18 @@ public abstract class CommunicationGateway {
 	/**
 	 * {@link ComponentIntegrator component integrators} can use this method to get the
 	 * value of a given property of a given external component by specifying the related
-	 * external data point. Note that this implies that the external components made
-	 * known by gateways to integrators must include the property mapping to data points.</p>
+	 * external datapoint. Note that this implies that the external components made
+	 * known by gateways to integrators must include the property mapping to datapoints.</p>
 	 */
-	public abstract Object readValue(ExternalDataPoint datapoint);
+	public abstract Object readValue(ExternalDatapoint datapoint);
 
 	/**
 	 * {@link ComponentIntegrator component integrators} can use this method to change the
 	 * value of a given property of a given external component by specifying the related
-	 * external data point and the new value. Note that this implies that the external
+	 * external datapoint and the new value. Note that this implies that the external
 	 * components made known by gateways to integrators must include the property mapping
-	 * to data points.</p>
+	 * to datapoints.</p>
 	 */
-	public abstract void writeValue(ExternalDataPoint datapoint, Object value);
+	public abstract void writeValue(ExternalDatapoint datapoint, Object value);
 
 }

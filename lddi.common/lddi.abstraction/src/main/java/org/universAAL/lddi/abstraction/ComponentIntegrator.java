@@ -33,6 +33,12 @@ package org.universAAL.lddi.abstraction;
 public interface ComponentIntegrator {
 
 	/**
+	 * A constant string that can be used by component integrators to map the ontological representation of
+	 * an external component to its corresponding original {@link ExternalComponent}.
+	 */
+	public static final String CONST_CORRESPONDING_COMPONENT = "uAAL:lddi.abstraction.ComponentIntegrator/correspondingComponent";
+
+	/**
 	 * Used by {@link CommunicationGateway communication gateways} to share
 	 * with this integrator the external components reachable through that
 	 * gateway after this integrator {@link CommunicationGateway#register(String,
@@ -40,7 +46,7 @@ public interface ComponentIntegrator {
 	 * certain types. Therefore, the array of components provided here as
 	 * parameter is expected to contain only external components already
 	 * subscribed for. Additionally, the components in the array must already
-	 * contain the mapping of ontological properties to external data points
+	 * contain the mapping of ontological properties to external datapoints
 	 * so that this integrator can make use of them when utilizing some of the
 	 * other methods of the gateway.
 	 */
@@ -48,19 +54,19 @@ public interface ComponentIntegrator {
 
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to notify
-	 * the integrator about the change of the value of a data point that is 
+	 * the integrator about the change of the value of a datapoint that is 
 	 * within the scope of a previous subscription of this integrator to the
 	 * notifying gateway, no matter if the subscription was done by calling
 	 * {@link CommunicationGateway#startEventing(ComponentIntegrator,
-	 * ExternalDataPoint, byte)} or any of the wildcarding versions of it.
+	 * ExternalDatapoint, byte)} or any of the wildcarding versions of it.
 	 * 
 	 * @param datapoint the datapoint whose value has changed; the integrator
-	 * can use {@link ExternalDataPoint#getComponent()} and {@link
-	 * ExternalDataPoint#getProperty()} for getting the ontological info
+	 * can use {@link ExternalDatapoint#getComponent()} and {@link
+	 * ExternalDatapoint#getProperty()} for getting the ontological info
 	 * needed for further processing the event (mostly for publishing a
 	 * context event onto the context bus).
-	 * @param value The new value of the given data point.
+	 * @param value The new value of the given datapoint.
 	 */
-	public void processEvent(ExternalDataPoint datapoint, Object value);
+	public void processEvent(ExternalDatapoint datapoint, Object value);
 
 }

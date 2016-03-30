@@ -31,8 +31,8 @@
  * org.universAAL.lddi.abstraction.CommunicationGateway communication gateways}, {@link
  * org.universAAL.lddi.abstraction.ComponentIntegrator component integrators}, {@link
  * org.universAAL.lddi.abstraction.ExternalComponent external components}, and component
- * type specific ontologies (there are also {@link org.universAAL.lddi.abstraction.ExternalDataPoint
- * external data points} as an additional concept that is not included in this package info).</p> 
+ * type specific ontologies (there are also {@link org.universAAL.lddi.abstraction.ExternalDatapoint
+ * external datapoints} as an additional concept that is not included in this package info).</p> 
  * 
  * <p>As indicated by the figure above, this package has a universAAL-specific view; in particular,
  * the abstraction layer of LDDI exists in this package virtually in terms of a set of relevant

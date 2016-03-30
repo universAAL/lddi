@@ -20,13 +20,13 @@
 package org.universAAL.lddi.abstraction;
 
 /**
- * <p>An ExternalDataPoint is a readable and / or writable data point outside the universAAL network.
+ * <p>An ExternalDatapoint is a readable and / or writable datapoint outside the universAAL network.
  * It is assumed that ontological properties of instances of {@link ExternalComponent} can be mapped
- * to such data points. {@link CommunicationGateway Communication gateways} may pack all the info
+ * to such datapoints. {@link CommunicationGateway Communication gateways} may pack all the info
  * (no matter if a simple address or a complex structure) needed for mapping ontological properties
  * of reachable external components in objects that implement this interface and store / fetch it
  * for their list of components using {@link ExternalComponent#addPropMapping(String,
- * ExternalDataPoint)} / {@link ExternalComponent#getDataPoint(String)}.</p>
+ * ExternalDatapoint)} / {@link ExternalComponent#getDatapoint(String)}.</p>
  * 
  * <p>It is important that gateways map each ontological property of a distinct external component to
  * a single instance of this class. Therefore, in cases that different addresses have to be used for
@@ -44,7 +44,7 @@ package org.universAAL.lddi.abstraction;
  * an address also the size of each read or write access in bits / bytes / words.</p>
  *
  */
-public interface ExternalDataPoint {
+public interface ExternalDatapoint {
 
 	/**
 	 * If this method returns true, it means that the status / value
@@ -56,7 +56,7 @@ public interface ExternalDataPoint {
 	 * status / value reachable at this address cannot be read but can
 	 * be changed. Otherwise, it is both read- and writable.
 	 * 
-	 * No implementation of ExternalDataPoint may return for both this
+	 * No implementation of ExternalDatapoint may return for both this
 	 * and the {@link #isWriteOnly()} method simultaneously true!
 	 */
 	public boolean isReadOnly();
@@ -71,18 +71,18 @@ public interface ExternalDataPoint {
 	 * status / value reachable at this address cannot be changed but
 	 * can be read. Otherwise, it is both read- and writable.
 	 * 
-	 * No implementation of ExternalDataPoint may return for both this
+	 * No implementation of ExternalDatapoint may return for both this
 	 * and the {@link #isReadOnly()} method simultaneously true!
 	 */
 	public boolean isWriteOnly();
 	
 	/**
-	 * Returns the {@link ExternalComponent external component} to which this data point belongs.
+	 * Returns the {@link ExternalComponent external component} to which this datapoint belongs.
 	 */
 	public ExternalComponent getComponent();
 	
 	/**
-	 * Returns the URI of the ontological property that maps to this data point.
+	 * Returns the URI of the ontological property that maps to this datapoint.
 	 */
 	public String getProperty();
 }
