@@ -49,8 +49,8 @@ public abstract class ExternalComponent {
 
 	/**
 	 * The constructor has been made 'protected' in order to force
-	 * communication gateways to create own subclasses in order to make sure 
-	 * that each communication gateway can create only instances defined by itself.
+	 * communication gateways to create own subclasses so that 
+	 * each communication gateway can create only instances defined by itself.
 	 */
 	protected ExternalComponent(CommunicationGateway gw, String componentURI, String typeURI) {
 		if (gw == null  ||  componentURI == null  ||  typeURI == null)

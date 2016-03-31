@@ -36,7 +36,7 @@ public interface ComponentIntegrator {
 	 * A constant string that can be used by component integrators to map the ontological representation of
 	 * an external component to its corresponding original {@link ExternalComponent}.
 	 */
-	public static final String CONST_CORRESPONDING_COMPONENT = "uAAL:lddi.abstraction.ComponentIntegrator/correspondingComponent";
+	public static final String PROP_CORRESPONDING_COMPONENT = "uAAL:lddi.abstraction/ComponentIntegrator#correspondingComponent";
 
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to share
