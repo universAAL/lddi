@@ -1,0 +1,97 @@
+package org.universAAL.lddi.smarthome.exporter.devices;
+
+import org.eclipse.smarthome.core.events.Event;
+import org.eclipse.smarthome.core.items.events.ItemStateEvent;
+import org.eclipse.smarthome.core.library.types.OpenClosedType;
+import org.eclipse.smarthome.core.types.State;
+import org.universAAL.lddi.smarthome.exporter.Activator;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.context.ContextEvent;
+import org.universAAL.middleware.context.ContextEventPattern;
+import org.universAAL.middleware.context.DefaultContextPublisher;
+import org.universAAL.middleware.context.owl.ContextProvider;
+import org.universAAL.middleware.context.owl.ContextProviderType;
+import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.service.owls.profile.ServiceProfile;
+import org.universAAL.ontology.device.PresenceSensor;
+import org.universAAL.ontology.device.StatusValue;
+
+public class PresenceSensorWrapper extends AbstractStatusValueCallee {
+    public static final int TYPE_ID=17;
+    
+    private DefaultContextPublisher cp;
+
+    public PresenceSensorWrapper(ModuleContext context, String itemName) {
+	super(context,
+		new ServiceProfile[]{getServiceProfileGET(Activator.NAMESPACE + itemName + "handler",
+			new PresenceSensor(Activator.NAMESPACE + itemName))},
+		Activator.NAMESPACE + itemName + "handler");
+
+	Activator.logD("PresenceSensorWrapper","Ready to subscribe" );
+	shDeviceName = itemName;
+
+	// URI must be the same declared in the super constructor
+	String deviceURI = Activator.NAMESPACE + itemName;
+	ontDevice = new PresenceSensor(deviceURI);
+
+	// Commissioning
+	// TODO Set location based on tags?
+
+	// Context reg
+	ContextProvider info = new ContextProvider(deviceURI + "Provider");
+	info.setType(ContextProviderType.gauge);
+	ContextEventPattern cep = new ContextEventPattern();
+	MergedRestriction subjectRestriction = MergedRestriction
+		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+			ontDevice);
+	MergedRestriction predicateRestriction = MergedRestriction
+		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
+			PresenceSensor.PROP_HAS_VALUE);
+	// TODO Object restr
+	cep.addRestriction(subjectRestriction);
+	cep.addRestriction(predicateRestriction);
+	info.setProvidedEvents(new ContextEventPattern[] { cep });
+	cp = new DefaultContextPublisher(context, info);
+    }
+
+    @Override
+    public StatusValue executeGet() {
+	OpenClosedType value = (OpenClosedType) Activator.getOpenhab().get(shDeviceName)
+		.getStateAs((Class<? extends State>) OpenClosedType.class);
+	Activator.logD( "getStatus", "The service called was 'get the status'" );
+	if (value == null)
+	    return null;
+	return (value.compareTo(OpenClosedType.CLOSED) == 0) ? StatusValue.Activated
+		: StatusValue.NotActivated;
+    }
+
+    @Override
+    public boolean executeSet(StatusValue value) {
+	return false;//Sensor, cannot set
+    }
+    
+    public void publish(Event event) {
+	Boolean theValue = null;
+	Activator.logD( "changedCurrentLevel", "Changed-Event received" );
+	if (event instanceof ItemStateEvent) {
+	    ItemStateEvent stateEvent = (ItemStateEvent) event;
+	    State s = stateEvent.getItemState();
+	    if (s instanceof OpenClosedType) {
+		theValue = Boolean
+			.valueOf(((OpenClosedType) s).compareTo(OpenClosedType.CLOSED) == 0);
+	    }
+	}
+	if (theValue != null) {
+	    PresenceSensor d = (PresenceSensor) ontDevice;
+	    d.setValue(theValue.booleanValue() ? StatusValue.Activated
+		    : StatusValue.NotActivated);
+	    cp.publish(new ContextEvent(d, PresenceSensor.PROP_HAS_VALUE));
+	} // else dont bother TODO log
+    }
+    
+    public void unregister(){
+	super.unregister();
+	cp.close();
+    }
+
+}
