@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.universAAL.lddi</groupId>
-    <artifactId>lddi.pom</artifactId>
+    <artifactId>lddi.pom.smarthome</artifactId>
     <version>3.4.1-SNAPSHOT</version>
   </parent>
-  <artifactId>lddi.karaf.smarthome.feature</artifactId>
+  <artifactId>lddi.smarthome.karaf.feature</artifactId>
   <version>3.4.1-SNAPSHOT</version>
-  <name>universAAL Karaf Feature OpenHAB</name>
+  <name>universAAL Karaf Feature Eclipse Smarthome - OpenHAB2</name>
   <properties>
     <mw.version>${project.version}</mw.version>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>

@@ -1,0 +1,31 @@
+Eclipse Smarthome (OpenHAB2) Exporter for universAAL
+
+Copyright 2016 ITACA-SABIEN, http://www.tsb.upv.es
+Instituto Tecnologico de Aplicaciones de Comunicacion 
+Avanzadas - Grupo Tecnologias para la Salud y el 
+Bienestar (SABIEN)
+
+I. Included Software
+
+Software developed by ITACA-SABIEN within the PERSONA project 
+and the universAAL project, licensed under the Apache License 2.0 
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+The OPS4J (http://www.ops4j.org)
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+The Eclipse Foundation, Smarthome project (https://www.eclipse.org/smarthome/),
+Licensed under the Eclipse Public License - v 1.0
+
+
+III. License Summary
+- Apache License 2.0
+- Eclipse Public License 1.0

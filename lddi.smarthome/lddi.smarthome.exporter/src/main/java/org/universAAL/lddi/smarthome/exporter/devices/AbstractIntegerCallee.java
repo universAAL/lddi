@@ -1,3 +1,24 @@
+/*
+	Copyright 2016 ITACA-SABIEN, http://www.tsb.upv.es
+	Instituto Tecnologico de Aplicaciones de Comunicacion 
+	Avanzadas - Grupo Tecnologias para la Salud y el 
+	Bienestar (SABIEN)
+	
+	See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ */
 package org.universAAL.lddi.smarthome.exporter.devices;
 
 import org.universAAL.middleware.container.ModuleContext;
@@ -14,7 +35,6 @@ import org.universAAL.ontology.phThing.Device;
 import org.universAAL.ontology.phThing.DeviceService;
 
 public abstract class AbstractIntegerCallee extends AbstractCallee {
-    //TODO: Add also setON/OFF? Integer or true?
     /**
      * Service suffix.
      */
@@ -42,7 +62,7 @@ public abstract class AbstractIntegerCallee extends AbstractCallee {
     protected AbstractIntegerCallee(ModuleContext context,
 	    ServiceProfile[] realizedServices, String namespace) {
 	super(context, realizedServices);
-	this.namespace=namespace;
+	this.namespace = namespace;
     }
 
     public void unregister() {
@@ -71,8 +91,8 @@ public abstract class AbstractIntegerCallee extends AbstractCallee {
 	    Integer result = executeGet();
 	    if (result != null) {
 		response = new ServiceResponse(CallStatus.succeeded);
-		response.addOutput(new ProcessOutput(namespace + OUT_GET_VALUE,
-			result));
+		response.addOutput(
+			new ProcessOutput(namespace + OUT_GET_VALUE, result));
 		return response;
 	    } else {
 		response = new ServiceResponse(
@@ -82,7 +102,8 @@ public abstract class AbstractIntegerCallee extends AbstractCallee {
 	}
 
 	if (operation.startsWith(namespace + SERVICE_SET_VALUE)) {
-	    Integer value = (Integer) call.getInputValue(namespace+IN_SET_VALUE);
+	    Integer value = (Integer) call
+		    .getInputValue(namespace + IN_SET_VALUE);
 	    if (executeSet(value)) {
 		return new ServiceResponse(CallStatus.succeeded);
 	    } else {
@@ -119,19 +140,26 @@ public abstract class AbstractIntegerCallee extends AbstractCallee {
      */
     public abstract boolean executeSet(Integer value);
 
-    /** Get the typical service profiles for a controller: GET/SET the has value prop.
-     * @param namespace Must be the same as the one set in the constructor
-     * @param instance The instance of the ontological representation of the device
+    /**
+     * Get the typical service profiles for a controller: GET/SET the has value
+     * prop.
+     * 
+     * @param namespace
+     *            Must be the same as the one set in the constructor
+     * @param instance
+     *            The instance of the ontological representation of the device
      * @return
      */
-    public static ServiceProfile[] getServiceProfiles(String namespace, Device instance) {
+    public static ServiceProfile[] getServiceProfiles(String namespace,
+	    Device instance) {
 	ServiceProfile[] profiles = new ServiceProfile[2];
-	profiles[0]=getServiceProfileGET(namespace,instance);
-	profiles[1]=getServiceProfileSET(namespace,instance);
+	profiles[0] = getServiceProfileGET(namespace, instance);
+	profiles[1] = getServiceProfileSET(namespace, instance);
 	return profiles;
     }
-    
-    public static ServiceProfile getServiceProfileGET(String namespace, Device instance){
+
+    public static ServiceProfile getServiceProfileGET(String namespace,
+	    Device instance) {
 	Service getValue = (Service) OntologyManagement.getInstance()
 		.getResource(DeviceService.MY_URI,
 			namespace + SERVICE_GET_VALUE);
@@ -139,12 +167,14 @@ public abstract class AbstractIntegerCallee extends AbstractCallee {
 		instance.getClassURI(), 0, 1,
 		new String[] { DeviceService.PROP_CONTROLS });
 	getValue.addOutput(namespace + OUT_GET_VALUE,
-		TypeMapper.getDatatypeURI(Integer.class), 1, 1, new String[] {
-			DeviceService.PROP_CONTROLS, ValueDevice.PROP_HAS_VALUE });
+		TypeMapper.getDatatypeURI(Integer.class), 1, 1,
+		new String[] { DeviceService.PROP_CONTROLS,
+			ValueDevice.PROP_HAS_VALUE });
 	return getValue.getProfile();
     }
 
-    public static ServiceProfile getServiceProfileSET(String namespace, Device instance){
+    public static ServiceProfile getServiceProfileSET(String namespace,
+	    Device instance) {
 	Service setValue = (Service) OntologyManagement.getInstance()
 		.getResource(DeviceService.MY_URI,
 			namespace + SERVICE_SET_VALUE);
@@ -152,8 +182,9 @@ public abstract class AbstractIntegerCallee extends AbstractCallee {
 		instance.getClassURI(), 0, 1,
 		new String[] { DeviceService.PROP_CONTROLS });
 	setValue.addInputWithChangeEffect(namespace + IN_SET_VALUE,
-		TypeMapper.getDatatypeURI(Integer.class), 1, 1, new String[] {
-			DeviceService.PROP_CONTROLS, ValueDevice.PROP_HAS_VALUE });
+		TypeMapper.getDatatypeURI(Integer.class), 1, 1,
+		new String[] { DeviceService.PROP_CONTROLS,
+			ValueDevice.PROP_HAS_VALUE });
 	return setValue.getProfile();
     }
 }

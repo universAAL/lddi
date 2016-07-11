@@ -1,3 +1,24 @@
+/*
+	Copyright 2016 ITACA-SABIEN, http://www.tsb.upv.es
+	Instituto Tecnologico de Aplicaciones de Comunicacion 
+	Avanzadas - Grupo Tecnologias para la Salud y el 
+	Bienestar (SABIEN)
+	
+	See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ */
 package org.universAAL.lddi.smarthome.exporter.devices;
 
 import org.eclipse.smarthome.core.events.Event;
@@ -17,17 +38,16 @@ import org.universAAL.ontology.device.StatusValue;
 import org.universAAL.ontology.device.WaterFlowSensor;
 
 public class WaterflowSensorWrapper extends AbstractStatusValueCallee {
-    public static final int TYPE_ID=22;
-    
     private DefaultContextPublisher cp;
 
     public WaterflowSensorWrapper(ModuleContext context, String itemName) {
 	super(context,
-		new ServiceProfile[]{getServiceProfileGET(Activator.NAMESPACE + itemName + "handler",
-			new WaterFlowSensor(Activator.NAMESPACE + itemName))},
+		new ServiceProfile[] { getServiceProfileGET(
+			Activator.NAMESPACE + itemName + "handler",
+			new WaterFlowSensor(Activator.NAMESPACE + itemName)) },
 		Activator.NAMESPACE + itemName + "handler");
 
-	Activator.logD("WaterFlowSensorWrapper","Ready to subscribe" );
+	Activator.logD("WaterflowSensorWrapper", "Ready to subscribe");
 	shDeviceName = itemName;
 
 	// URI must be the same declared in the super constructor
@@ -56,29 +76,30 @@ public class WaterflowSensorWrapper extends AbstractStatusValueCallee {
 
     @Override
     public StatusValue executeGet() {
-	OpenClosedType value = (OpenClosedType) Activator.getOpenhab().get(shDeviceName)
+	OpenClosedType value = (OpenClosedType) Activator.getOpenhab()
+		.get(shDeviceName)
 		.getStateAs((Class<? extends State>) OpenClosedType.class);
-	Activator.logD( "getStatus", "The service called was 'get the status'" );
+	Activator.logD("getStatus", "The service called was 'get the status'");
 	if (value == null)
 	    return null;
-	return (value.compareTo(OpenClosedType.CLOSED) == 0) ? StatusValue.Activated
-		: StatusValue.NotActivated;
+	return (value.compareTo(OpenClosedType.CLOSED) == 0)
+		? StatusValue.Activated : StatusValue.NotActivated;
     }
 
     @Override
     public boolean executeSet(StatusValue value) {
-	return false;//Sensor, cannot set
+	return false;// Sensor, cannot set
     }
-    
+
     public void publish(Event event) {
 	Boolean theValue = null;
-	Activator.logD( "changedCurrentLevel", "Changed-Event received" );
+	Activator.logD("changedCurrentLevel", "Changed-Event received");
 	if (event instanceof ItemStateEvent) {
 	    ItemStateEvent stateEvent = (ItemStateEvent) event;
 	    State s = stateEvent.getItemState();
 	    if (s instanceof OpenClosedType) {
-		theValue = Boolean
-			.valueOf(((OpenClosedType) s).compareTo(OpenClosedType.CLOSED) == 0);
+		theValue = Boolean.valueOf(((OpenClosedType) s)
+			.compareTo(OpenClosedType.CLOSED) == 0);
 	    }
 	}
 	if (theValue != null) {
@@ -88,8 +109,8 @@ public class WaterflowSensorWrapper extends AbstractStatusValueCallee {
 	    cp.publish(new ContextEvent(d, WaterFlowSensor.PROP_HAS_VALUE));
 	} // else dont bother TODO log
     }
-    
-    public void unregister(){
+
+    public void unregister() {
 	super.unregister();
 	cp.close();
     }

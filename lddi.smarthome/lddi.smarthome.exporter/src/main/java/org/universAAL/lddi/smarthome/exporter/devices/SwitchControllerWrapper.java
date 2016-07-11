@@ -1,3 +1,24 @@
+/*
+	Copyright 2016 ITACA-SABIEN, http://www.tsb.upv.es
+	Instituto Tecnologico de Aplicaciones de Comunicacion 
+	Avanzadas - Grupo Tecnologias para la Salud y el 
+	Bienestar (SABIEN)
+	
+	See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ */
 package org.universAAL.lddi.smarthome.exporter.devices;
 
 import org.eclipse.smarthome.core.events.Event;
@@ -8,7 +29,6 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.types.State;
 import org.universAAL.lddi.smarthome.exporter.Activator;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.DefaultContextPublisher;
@@ -19,8 +39,6 @@ import org.universAAL.ontology.device.StatusValue;
 import org.universAAL.ontology.device.SwitchController;
 
 public class SwitchControllerWrapper extends AbstractStatusValueCallee {
-    public static final int TYPE_ID=19;
-    
     private DefaultContextPublisher cp;
 
     public SwitchControllerWrapper(ModuleContext context, String itemName) {
@@ -29,9 +47,7 @@ public class SwitchControllerWrapper extends AbstractStatusValueCallee {
 			new SwitchController(Activator.NAMESPACE + itemName)),
 		Activator.NAMESPACE + itemName + "handler");
 
-	LogUtils.logDebug(Activator.getModuleContext(),
-		SwitchControllerWrapper.class, "SwitchControllerWrapper",
-		new String[] { "Ready to subscribe" }, null);
+	Activator.logD("SwitchControllerWrapper", "Ready to subscribe");
 	shDeviceName = itemName;
 
 	// URI must be the same declared in the super constructor
@@ -62,10 +78,7 @@ public class SwitchControllerWrapper extends AbstractStatusValueCallee {
     public StatusValue executeGet() {
 	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
 		.getStateAs((Class<? extends State>) OnOffType.class);
-	LogUtils.logDebug(Activator.getModuleContext(),
-		SwitchControllerWrapper.class, "getStatus",
-		new String[] { "The service called was 'get the status'" },
-		null);
+	Activator.logD("getStatus", "The service called was 'get the status'");
 	if (value == null)
 	    return null;
 	return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated
@@ -74,11 +87,8 @@ public class SwitchControllerWrapper extends AbstractStatusValueCallee {
 
     @Override
     public boolean executeSet(StatusValue value) {
-	LogUtils.logDebug(Activator.getModuleContext(),
-		SwitchControllerWrapper.class, "setStatus",
-		new String[] {
-			"The service called was 'set the status' " + value },
-		null);
+	Activator.logD("setStatus",
+		"The service called was 'set the status' " + value);
 
 	try {
 	    ItemCommandEvent itemCommandEvent = ItemEventFactory
@@ -94,9 +104,7 @@ public class SwitchControllerWrapper extends AbstractStatusValueCallee {
 
     public void publish(Event event) {
 	Boolean theValue = null;
-	LogUtils.logDebug(Activator.getModuleContext(),
-		SwitchControllerWrapper.class, "changedCurrentLevel",
-		new String[] { "Changed-Event received" }, null);
+	Activator.logD("changedCurrentLevel", "Changed-Event received");
 	if (event instanceof ItemStateEvent) {
 	    ItemStateEvent stateEvent = (ItemStateEvent) event;
 	    State s = stateEvent.getItemState();

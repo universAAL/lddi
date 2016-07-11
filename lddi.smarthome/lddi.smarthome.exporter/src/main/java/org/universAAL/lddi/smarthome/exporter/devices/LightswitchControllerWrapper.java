@@ -1,3 +1,24 @@
+/*
+	Copyright 2016 ITACA-SABIEN, http://www.tsb.upv.es
+	Instituto Tecnologico de Aplicaciones de Comunicacion 
+	Avanzadas - Grupo Tecnologias para la Salud y el 
+	Bienestar (SABIEN)
+	
+	See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ */
 package org.universAAL.lddi.smarthome.exporter.devices;
 
 import org.eclipse.smarthome.core.events.Event;
@@ -9,7 +30,6 @@ import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.types.State;
 import org.universAAL.lddi.smarthome.exporter.Activator;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.DefaultContextPublisher;
@@ -26,7 +46,6 @@ import org.universAAL.ontology.device.LightController;
  * 
  */
 public class LightswitchControllerWrapper extends AbstractIntegerCallee {
-    public static final int TYPE_ID=15;
     private DefaultContextPublisher cp;
 
     /**
@@ -39,15 +58,14 @@ public class LightswitchControllerWrapper extends AbstractIntegerCallee {
      *            The OSGi service backing the interaction with the device in
      *            the abstraction layer
      */
-    public LightswitchControllerWrapper(ModuleContext context, String itemName) {
+    public LightswitchControllerWrapper(ModuleContext context,
+	    String itemName) {
 	super(context,
 		getServiceProfiles(Activator.NAMESPACE + itemName + "handler",
 			new LightController(Activator.NAMESPACE + itemName)),
 		Activator.NAMESPACE + itemName + "handler");
-	
-	LogUtils.logDebug(Activator.getModuleContext(),
-		LightswitchControllerWrapper.class, "LightControllerWrapper",
-		new String[] { "Ready to subscribe" }, null);
+
+	Activator.logD("LightswitchControllerWrapper", "Ready to subscribe");
 	shDeviceName = itemName;
 
 	// URI must be the same declared in the super constructor
@@ -67,7 +85,7 @@ public class LightswitchControllerWrapper extends AbstractIntegerCallee {
 	MergedRestriction predicateRestriction = MergedRestriction
 		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
 			LightController.PROP_HAS_VALUE);
-	//TODO Object restr
+	// TODO Object restr
 	cep.addRestriction(subjectRestriction);
 	cep.addRestriction(predicateRestriction);
 	info.setProvidedEvents(new ContextEventPattern[] { cep });
@@ -76,13 +94,9 @@ public class LightswitchControllerWrapper extends AbstractIntegerCallee {
 
     @Override
     public Integer executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab()
-		.get(shDeviceName)
+	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
 		.getStateAs((Class<? extends State>) OnOffType.class);
-	LogUtils.logDebug(Activator.getModuleContext(), LightswitchActuatorWrapper.class,
-		"getStatus",
-		new String[] { "The service called was 'get the status'" },
-		null);
+	Activator.logD("getStatus", "The service called was 'get the status'");
 	if (value == null)
 	    return null;
 	return (value.compareTo(OnOffType.ON) == 0) ? Integer.valueOf(100)
@@ -91,17 +105,13 @@ public class LightswitchControllerWrapper extends AbstractIntegerCallee {
 
     @Override
     public boolean executeSet(Integer value) {
-	LogUtils.logDebug(Activator.getModuleContext(), LightswitchActuatorWrapper.class,
-		"setStatus",
-		new String[] {
-			"The service called was 'set the status' " + value },
-		null);
+	Activator.logD("setStatus",
+		"The service called was 'set the status' " + value);
 
 	try {
 	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName,
-			    value.intValue()==0 ? OnOffType.OFF
-				    : OnOffType.ON);
+		    .createCommandEvent(shDeviceName, value.intValue() == 0
+			    ? OnOffType.OFF : OnOffType.ON);
 	    Activator.getPub().post(itemCommandEvent);
 	} catch (Exception e) {
 	    return false;
@@ -111,9 +121,7 @@ public class LightswitchControllerWrapper extends AbstractIntegerCallee {
 
     public void publish(Event event) {
 	Integer theValue = null;
-	LogUtils.logDebug(Activator.getModuleContext(), LightswitchControllerWrapper.class,
-		"changedCurrentLevel",
-		new String[] { "Changed-Event received" }, null);
+	Activator.logD("changedCurrentLevel", "Changed-Event received");
 	if (event instanceof ItemStateEvent) {
 	    ItemStateEvent stateEvent = (ItemStateEvent) event;
 	    State s = stateEvent.getItemState();
@@ -133,8 +141,8 @@ public class LightswitchControllerWrapper extends AbstractIntegerCallee {
 	    cp.publish(new ContextEvent(d, LightController.PROP_HAS_VALUE));
 	} // else dont bother TODO log
     }
-    
-    public void unregister(){
+
+    public void unregister() {
 	super.unregister();
 	cp.close();
     }

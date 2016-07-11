@@ -1,3 +1,24 @@
+/*
+	Copyright 2016 ITACA-SABIEN, http://www.tsb.upv.es
+	Instituto Tecnologico de Aplicaciones de Comunicacion 
+	Avanzadas - Grupo Tecnologias para la Salud y el 
+	Bienestar (SABIEN)
+	
+	See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	  http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+ */
 package org.universAAL.lddi.smarthome.exporter.devices;
 
 import org.eclipse.smarthome.core.events.Event;
@@ -9,7 +30,6 @@ import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.types.State;
 import org.universAAL.lddi.smarthome.exporter.Activator;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.DefaultContextPublisher;
@@ -26,7 +46,6 @@ import org.universAAL.ontology.device.DimmerController;
  * 
  */
 public class DimmerControllerWrapper extends AbstractIntegerCallee {
-    public static final int TYPE_ID=9;
     private DefaultContextPublisher cp;
 
     /**
@@ -44,10 +63,8 @@ public class DimmerControllerWrapper extends AbstractIntegerCallee {
 		getServiceProfiles(Activator.NAMESPACE + itemName + "handler",
 			new DimmerController(Activator.NAMESPACE + itemName)),
 		Activator.NAMESPACE + itemName + "handler");
-	
-	LogUtils.logDebug(Activator.getModuleContext(),
-		DimmerControllerWrapper.class, "DimmerControllerWrapper",
-		new String[] { "Ready to subscribe" }, null);
+
+	Activator.logD("DimmerControllerWrapper", "Ready to subscribe");
 	shDeviceName = itemName;
 
 	// URI must be the same declared in the super constructor
@@ -67,7 +84,7 @@ public class DimmerControllerWrapper extends AbstractIntegerCallee {
 	MergedRestriction predicateRestriction = MergedRestriction
 		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
 			DimmerController.PROP_HAS_VALUE);
-	//TODO Object restr
+	// TODO Object restr
 	cep.addRestriction(subjectRestriction);
 	cep.addRestriction(predicateRestriction);
 	info.setProvidedEvents(new ContextEventPattern[] { cep });
@@ -79,10 +96,7 @@ public class DimmerControllerWrapper extends AbstractIntegerCallee {
 	PercentType value = (PercentType) Activator.getOpenhab()
 		.get(shDeviceName)
 		.getStateAs((Class<? extends State>) PercentType.class);
-	LogUtils.logDebug(Activator.getModuleContext(), DimmerControllerWrapper.class,
-		"getStatus",
-		new String[] { "The service called was 'get the status'" },
-		null);
+	Activator.logD("getStatus", "The service called was 'get the status'");
 	if (value == null)
 	    return null;
 	return Integer.valueOf(value.intValue());
@@ -90,11 +104,8 @@ public class DimmerControllerWrapper extends AbstractIntegerCallee {
 
     @Override
     public boolean executeSet(Integer value) {
-	LogUtils.logDebug(Activator.getModuleContext(), DimmerControllerWrapper.class,
-		"setStatus",
-		new String[] {
-			"The service called was 'set the status' " + value },
-		null);
+	Activator.logD("setStatus",
+		"The service called was 'set the status' " + value);
 
 	try {
 	    ItemCommandEvent itemCommandEvent = ItemEventFactory
@@ -109,9 +120,7 @@ public class DimmerControllerWrapper extends AbstractIntegerCallee {
 
     public void publish(Event event) {
 	Integer theValue = null;
-	LogUtils.logDebug(Activator.getModuleContext(), DimmerControllerWrapper.class,
-		"changedCurrentLevel",
-		new String[] { "Changed-Event received" }, null);
+	Activator.logD("changedCurrentLevel", "Changed-Event received");
 	if (event instanceof ItemStateEvent) {
 	    ItemStateEvent stateEvent = (ItemStateEvent) event;
 	    State s = stateEvent.getItemState();
@@ -131,8 +140,8 @@ public class DimmerControllerWrapper extends AbstractIntegerCallee {
 	    cp.publish(new ContextEvent(d, DimmerController.PROP_HAS_VALUE));
 	} // else dont bother TODO log
     }
-    
-    public void unregister(){
+
+    public void unregister() {
 	super.unregister();
 	cp.close();
     }

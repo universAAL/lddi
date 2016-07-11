@@ -22,6 +22,7 @@
     <module>../lddi.config/lddi.pom.config</module>
     <module>../lddi.zigbee/lddi.pom.zigbee</module>
     <module>../lddi.zwave/lddi.pom.zwave</module>
+    <module>../lddi.smarthome/lddi.pom.smarthome</module>
     <module>composite</module>
     <module>lddi.karaf.feature</module>
   </modules>
