@@ -1,0 +1,251 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	color: #333333;
+	text-decoration: none;
+	background-color: #E5E5E5;
+	margin:0px;
+	padding:0px;
+	text-align: center;
+}
+
+#negrita {
+	font-weight: bold;
+}
+
+
+.container {
+	width: 919px;
+	margin: 0px auto;
+	background-color: white;
+	overflow: hidden;
+	
+}
+
+
+h1 {
+display:none;}
+
+	 
+/*--------------------------- LINKS --------------------*/
+a {
+color: #CC0000;
+text-decoration: none;
+}
+
+a:hover {text-decoration: underline;}
+
+a:visited {color: #CC0000;}
+
+#links{
+width:50%;
+display:block;
+float:left;
+display:block;
+clear:right;
+margin-top:10px;
+
+}
+#links_title{
+background-color:#CC0000;
+height:23px;
+color:#FFFFFF;
+padding:5px 0 0 10px;
+margin-right:5px;}
+
+#links_content{
+padding:5px 0px 5px 10px;
+background-color:#eee;
+margin-right:5px;}
+
+#links_content ul{
+margin:0px;
+padding:0px;}
+
+#links_content li{
+list-style:none;
+font-size:0.8em;
+height:15px;}
+
+
+
+/***--------------------------------------------------------------------------------------  */
+
+.standardButton, .submitButton, .kickerButton{
+	background:#ccc;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-weight: bold;
+	padding: 5px 15px;
+	margin: 5px 10px;
+	color: #666;
+}
+
+.submitButton:hover , .standardButton:hover, .kickerButton:hover {
+	background: #3b8993;
+	border: 3px solid #fff;	/*#16525a;*/
+	margin: 3px 8px;
+	color:#fff;
+}
+
+#MainMenuButtonsGroup.RootGroup fieldset  input{
+	margin:0 5px;
+}
+
+.standardButton img{ vertical-align:middle; padding:0 2px 0 0; max-height:50px;} 
+
+.kickerButton{ width:100%;}
+
+
+#StandardGroup{
+	//border:1px solid #ff0000;
+	float:left;
+}
+
+#SubmitsGroup{
+	float:right;
+}
+
+#MainMenuButtonsGroup fieldset{
+    border: 1px solid #3B8993;
+    border-radius: 5px 5px 5px 5px;
+    clear: both;
+    color: #16525A;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0 0 0 10px;
+    padding: 4px 0;
+    text-align: left;
+    width: 99%;
+
+}
+
+#MainMenuButtonsGroup.RootGroup fieldset button.kickerButton{
+
+    background:#ccc;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-weight: bold;
+	padding: 2px 10px;
+	margin: 2px 5px;
+	color: #666;
+
+	width:auto;
+
+}
+
+#MainMenuButtonsGroup.RootGroup fieldset button.kickerButton:hover{
+	//margin:0;
+	background: #3b8993;
+	border: 2px solid #fff;	/*#16525a;*/
+	margin: 1px 7px;
+	color:#fff;
+
+}
+
+#IOControlsGroup fieldset{
+	border-top:1px solid #3b8993;
+	border-left:1px solid #3b8993;
+	border-bottom:0;
+	border-right:0;
+	border-top-left-radius: 10px 10px;
+	font-weight:bold;
+	color:#16525a;
+    margin: 5px 10px -15px 5px;
+    padding: 20px 20px 35px;
+	clear:both;
+	text-align:left;
+	
+}
+
+.itemForm{
+	
+	clear:both; 
+	
+}
+
+#IOControlsGroup fieldset>fieldset{
+	border:0;
+	padding:0;
+	margin:0;
+	color:#333;
+	font-size:0.9em;
+}
+
+#IOControlsGroup label{ 
+	
+	
+	
+	color: #000;    
+	font-size: 0.9em;
+    font-weight: bold;
+}
+
+#IOControlsGroup fieldset fieldset fieldset fieldset label, #IOControlsGroup fieldset fieldset fieldset label{
+	font-size: 1.1em;
+}
+
+
+
+.itemForm label{
+	
+	float:left;
+	width:25%;
+	margin:3px;
+	padding:3px;
+	text-align:right;
+}
+
+
+#IOControlsGroup.RootGroup fieldset fieldset fieldset legend{
+    font-size: 1.15em;
+    margin: 0 0 0 15%;
+    text-decoration: underline;
+}
+
+#IOControlsGroup textarea{
+	 font-family: Verdana;
+    font-size: 0.9em;
+}
+
+.itemForm input, .itemForm select, .itemForm textarea{
+	float:left;
+	margin: 3px;
+	padding: 3px;
+	border: 1px solid #999;
+	border-radius:5px;
+}
+
+#IOControlsGroup{
+	clear:both;
+}
+
+table.repeat{
+	border:0;
+}
+
+table.repeat td{
+	border-bottom:1px #ccc solid;	
+}
+
+table th.repeatLabel{
+	background:#3b8993;
+	color: #FFF;
+	font-size:1.3em;
+	font-weight:normal;
+}
+
+
+table th.repeatColLabel{
+	background:#3b8993;
+	color: #EEEEEE;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+
+button img{
+ max-height: 50px;
+    max-width: 50px;
+    vertical-align: middle;
+}

@@ -1,0 +1,18 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://ontology.universAAL.org/Gateway.owl#> .
+_:BN000000  :exportPolicy "Whitelist"^^xsd:string ;
+  :exportMatches [
+a <http://ontology.universAAL.org/Context.owl#ContextEventPattern>
+] ;
+  :importPolicy "Whitelist"^^xsd:string ;
+  :importMatches [
+a <http://ontology.universAAL.org/Context.owl#ContextEventPattern>
+] ;
+  :inboundPolicy "Whitelist"^^xsd:string ;
+  :inboundMatches [
+a <http://ontology.universAAL.org/Context.owl#ContextEvent>
+] ;
+  :outboundPolicy "Whitelist"^^xsd:string ;
+  :outboundMatches [
+a <http://ontology.universAAL.org/Context.owl#ContextEvent>
+] .
