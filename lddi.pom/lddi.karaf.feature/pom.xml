@@ -60,6 +60,10 @@
       <artifactId>ont.karaf.feature</artifactId>
     </dependency>
     <dependency>
+	  <groupId>org.universAAL.support</groupId>
+      <artifactId>utilities.karaf.feature</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.knx.library</artifactId>
     </dependency>

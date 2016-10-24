@@ -4,6 +4,7 @@
 	<!-- import Respositories -->
 	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/${mw.karaf.feature.version}/xml/features</repository>
 	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/${ont.karaf.feature.version}/xml/features</repository>
+	<repository>mvn:org.universAAL.support/utilities.karaf.feature/${utilities.karaf.feature.version}/xml/features</repository>
 
 	<feature name="uAAL-LDDI-Abstraction" description="Defines the interfaces to be used in addition to ontologies for linking the access and integration layers of LDDI."
 		version="${pom.version}" resolver='(obr)'>
