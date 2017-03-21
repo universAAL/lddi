@@ -12,6 +12,7 @@
   <artifactId>lddi.karaf.feature</artifactId>
   <version>3.4.1-SNAPSHOT</version>
   <name>universAAL LDDI Karaf Feature</name>
+  <packaging>pom</packaging>
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
   </properties>
@@ -58,6 +59,10 @@
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.karaf.feature</artifactId>
+    </dependency>
+    <dependency>
+	  <groupId>org.universAAL.support</groupId>
+      <artifactId>utilities.karaf.feature</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
