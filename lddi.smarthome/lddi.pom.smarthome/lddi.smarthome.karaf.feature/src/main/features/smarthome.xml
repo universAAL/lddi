@@ -9,7 +9,6 @@
 		<bundle start-level="81" start="true">mvn:org.universAAL.thirdparty/jslp.osgi/${jslp.osgi.version}</bundle>
 		<bundle start-level="81" start="true">mvn:org.jgroups/jgroups/${jgroups.version}</bundle>
 		<bundle start-level="82" start="true">mvn:org.universAAL.middleware/mw.schemas/${mw.schemas.version}</bundle>
-		<bundle start-level="82" start="true">mvn:org.universAAL.middleware/mw.container.xfaces.osgi/${mw.container.xfaces.osgi.version}</bundle>
 		<bundle start-level="83" start="true">mvn:org.universAAL.middleware/mw.container.osgi/${mw.container.osgi.version}</bundle>
 		<bundle start-level="83" start="true">mvn:org.universAAL.middleware/mw.data.representation.osgi/${mw.data.representation.osgi.version}</bundle>
 		<bundle start-level="84" start="true">mvn:org.universAAL.middleware/mw.interfaces.osgi/${mw.interfaces.osgi.version}</bundle>

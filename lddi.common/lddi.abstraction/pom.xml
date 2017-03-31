@@ -20,7 +20,7 @@
     </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.container.xfaces.osgi</artifactId>
+      <artifactId>mw.container.core</artifactId>
     </dependency>
   </dependencies>
   <build>
