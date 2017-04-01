@@ -11,7 +11,7 @@
   <artifactId>lddi.pom.smarthome</artifactId>
   <version>3.4.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>universAAL LDDI ESH</name>
+  <name>universAAL LDDI Eclipse Smarthome Integration</name>
   <description>Integration of Eclipse Smarthome components</description>
   <modules>
     <module>../lddi.smarthome.exporter</module>
