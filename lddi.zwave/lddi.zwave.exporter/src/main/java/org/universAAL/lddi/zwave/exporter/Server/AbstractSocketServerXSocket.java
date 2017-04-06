@@ -187,7 +187,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer i
     /**
      * Closes the server.
      * 
-     * @throws IOException error closgin the socket server.
+     * @throws IOException error closing the socket server.
      */
     public void close() throws IOException {
         if (srv != null) {
