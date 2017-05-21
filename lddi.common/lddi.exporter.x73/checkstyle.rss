@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>universAAL LDDI Exporter of ISO11073 devices (blood pressure, scale) for uAAL - Checkstyle report</title>
+    <link>http://lddi/lddi.common/lddi.exporter.x73/</link>
+    <description>universAAL LDDI Exporter of ISO11073 devices (blood pressure, scale) for uAAL - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2012 - 2017 Austrian Institute of Technology (AIT)</copyright>
+    <item>
+      <title>File: 8,
+             Errors: 105,
+             Warnings: 54,
+             Infos: 372
+      </title>
+            <link>http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#com.signove.health.device.java">com/signove/health/device.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.ISO11073DBusServer.java">org/universAAL/lddi/exporter/x73/ISO11073DBusServer.java</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#com.signove.health.agent.java">com/signove/health/agent.java</a>
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#com.signove.health.manager.java">com/signove/health/manager.java</a>
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.Activator.java">org/universAAL/lddi/exporter/x73/Activator.java</a>
+                </td>
+                <td>
+                  29
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.MyAgent.java">org/universAAL/lddi/exporter/x73/MyAgent.java</a>
+                </td>
+                <td>
+                  164
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  40
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.ISO11073ContextProvider.java">org/universAAL/lddi/exporter/x73/ISO11073ContextProvider.java</a>
+                </td>
+                <td>
+                  118
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.util.LogTracker.java">org/universAAL/lddi/exporter/x73/util/LogTracker.java</a>
+                </td>
+                <td>
+                  25
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

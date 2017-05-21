@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="c23234" href="./FS20RGBSADevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20RGBSADevice" alt="" coords="15,118,155,143"/>
+<area shape="rect" id="node1" href="./FS20RGBSADevice.html" title="&lt;TABLE&gt;" alt="" coords="5,107,165,155"/>
+<area shape="rect" id="c23235" href="./FS20STDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20STDevice" alt="" coords="200,118,309,143"/>
+<area shape="rect" id="node2" href="./FS20STDevice.html" title="&lt;TABLE&gt;" alt="" coords="189,107,320,155"/>
+<area shape="rect" id="c23236" href="./FS20PIRxDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20PIRxDevice" alt="" coords="355,118,477,143"/>
+<area shape="rect" id="node3" href="./FS20PIRxDevice.html" title="&lt;TABLE&gt;" alt="" coords="344,107,488,155"/>
+<area shape="rect" id="c23237" href="./FS20SIGDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20SIGDevice" alt="" coords="522,118,638,143"/>
+<area shape="rect" id="node4" href="./FS20SIGDevice.html" title="&lt;TABLE&gt;" alt="" coords="512,107,648,155"/>
+<area shape="rect" id="c23238" href="./FS20FMSDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20FMSDevice" alt="" coords="682,118,803,143"/>
+<area shape="rect" id="node5" href="./FS20FMSDevice.html" title="&lt;TABLE&gt;" alt="" coords="672,107,813,155"/>
+<area shape="rect" id="c23239" href="./FS20DeviceTypes.html" title="org.universAAL.lddi.fs20.devicemodel.FS20DeviceTypes" alt="" coords="507,11,637,53"/>
+<area shape="rect" id="node6" href="./FS20DeviceTypes.html" title="&lt;TABLE&gt;" alt="" coords="497,6,647,58"/>
+<area shape="rect" id="c23240" href="./FS20DeviceProperties.html" title="org.universAAL.lddi.fs20.devicemodel.FS20DeviceProperties" alt="" coords="681,19,833,45"/>
+<area shape="rect" id="node7" href="./FS20DeviceProperties.html" title="&lt;TABLE&gt;" alt="" coords="671,8,844,56"/>
+<area shape="rect" id="c23241" href="./FS20Device.html" title="org.universAAL.lddi.fs20.devicemodel.FS20Device" alt="" coords="369,19,463,45"/>
+<area shape="rect" id="node8" href="./FS20Device.html" title="&lt;TABLE&gt;" alt="" coords="359,8,473,56"/>
+</map>

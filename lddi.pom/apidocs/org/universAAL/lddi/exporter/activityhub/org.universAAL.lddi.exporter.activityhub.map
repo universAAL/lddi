@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="c19396" href="./AHServiceProvider.html" title="org.universAAL.lddi.exporter.activityhub.AHServiceProvider" alt="" coords="15,17,147,42"/>
+<area shape="rect" id="node1" href="./AHServiceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,5,157,53"/>
+<area shape="rect" id="c19397" href="./AHContextPublisher.html" title="org.universAAL.lddi.exporter.activityhub.AHContextPublisher" alt="" coords="191,17,331,42"/>
+<area shape="rect" id="node2" href="./AHContextPublisher.html" title="&lt;TABLE&gt;" alt="" coords="181,5,341,53"/>
+<area shape="rect" id="c19398" href="./AHManager.html" title="org.universAAL.lddi.exporter.activityhub.AHManager" alt="" coords="375,17,465,42"/>
+<area shape="rect" id="node3" href="./AHManager.html" title="&lt;TABLE&gt;" alt="" coords="365,5,475,53"/>
+<area shape="rect" id="c19399" href="./Activator.html" title="org.universAAL.lddi.exporter.activityhub.Activator" alt="" coords="509,17,582,42"/>
+<area shape="rect" id="node4" href="./Activator.html" title="&lt;TABLE&gt;" alt="" coords="499,5,592,53"/>
+<area shape="rect" id="c19400" href="./AHServiceOntology.html" title="org.universAAL.lddi.exporter.activityhub.AHServiceOntology" alt="" coords="627,17,763,42"/>
+<area shape="rect" id="node5" href="./AHServiceOntology.html" title="&lt;TABLE&gt;" alt="" coords="616,5,773,53"/>
+</map>

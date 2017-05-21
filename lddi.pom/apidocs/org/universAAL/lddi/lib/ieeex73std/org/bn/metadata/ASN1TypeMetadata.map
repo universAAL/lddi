@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="c68141" href="./ASN1EnumMetadata.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.ASN1EnumMetadata" alt="" coords="16,209,160,234"/>
+<area shape="rect" id="node1" href="./ASN1EnumMetadata.html" title="&lt;TABLE&gt;" alt="" coords="5,197,171,245"/>
+<area shape="rect" id="c68145" href="./ASN1ChoiceMetadata.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.ASN1ChoiceMetadata" alt="" coords="205,209,355,234"/>
+<area shape="rect" id="node2" href="./ASN1ChoiceMetadata.html" title="&lt;TABLE&gt;" alt="" coords="195,197,365,245"/>
+<area shape="rect" id="c68151" href="./ASN1TypeMetadata.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.ASN1TypeMetadata" alt="" coords="211,113,349,138"/>
+<area shape="rect" id="node3" href="./ASN1TypeMetadata.html" title="&lt;TABLE&gt;" alt="" coords="200,101,360,149"/>
+<area shape="rect" id="c68152" href="./ASN1SequenceMetadata.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.ASN1SequenceMetadata" alt="" coords="400,209,568,234"/>
+<area shape="rect" id="node4" href="./ASN1SequenceMetadata.html" title="&lt;TABLE&gt;" alt="" coords="389,197,579,245"/>
+<area shape="rect" id="c68158" href="./ASN1Metadata.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.ASN1Metadata" alt="" coords="225,17,335,42"/>
+<area shape="rect" id="node5" href="./ASN1Metadata.html" title="&lt;TABLE&gt;" alt="" coords="215,5,345,53"/>
+</map>

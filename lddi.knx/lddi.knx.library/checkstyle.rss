@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>universAAL LDDI KNX Datapoint Type Library - Checkstyle report</title>
+    <link>http://lddi/lddi.knx/lddi.knx.library/</link>
+    <description>universAAL LDDI KNX Datapoint Type Library - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2012 - 2017 Austrian Institute of Technology (AIT)</copyright>
+    <item>
+      <title>File: 26,
+             Errors: 383,
+             Warnings: 162,
+             Infos: 755
+      </title>
+            <link>http://lddi/lddi.knx/lddi.knx.library//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt2.java">org/universAAL/lddi/knx/groupdevicecategory/IKnxDpt2.java</a>
+                </td>
+                <td>
+                  35
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.interfaces.IKnxSendMessage.java">org/universAAL/lddi/knx/interfaces/IKnxSendMessage.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice.java">org/universAAL/lddi/knx/groupdevicemodel/KnxGroupDevice.java</a>
+                </td>
+                <td>
+                  43
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  31
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxDpt3GroupDevice.java">org/universAAL/lddi/knx/groupdevicemodel/KnxDpt3GroupDevice.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage.java">org/universAAL/lddi/knx/interfaces/IKnxReceiveMessage.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.utils.KnxCommand.java">org/universAAL/lddi/knx/utils/KnxCommand.java</a>
+                </td>
+                <td>
+                  21
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.utils.KnxEncoder.java">org/universAAL/lddi/knx/utils/KnxEncoder.java</a>
+                </td>
+                <td>
+                  109
+                </td>
+                <td>
+                  37
+                </td>
+                <td>
+                  21
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice.java">org/universAAL/lddi/knx/groupdevicemodel/KnxDpt9GroupDevice.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  12
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt5.java">org/universAAL/lddi/knx/groupdevicecategory/IKnxDpt5.java</a>
+                </td>
+                <td>
+                  36
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.utils.KnxGroupAddress.java">org/universAAL/lddi/knx/utils/KnxGroupAddress.java</a>
+                </td>
+                <td>
+                  31
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxDpt4GroupDevice.java">org/universAAL/lddi/knx/groupdevicemodel/KnxDpt4GroupDevice.java</a>
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.interfaces.IKnxDriverClient.java">org/universAAL/lddi/knx/interfaces/IKnxDriverClient.java</a>
+                </td>
+                <td>
+                  26
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt3.java">org/universAAL/lddi/knx/groupdevicecategory/IKnxDpt3.java</a>
+                </td>
+                <td>
+                  40
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxDpt1GroupDevice.java">org/universAAL/lddi/knx/groupdevicemodel/KnxDpt1GroupDevice.java</a>
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.utils.KnxTelegram.java">org/universAAL/lddi/knx/utils/KnxTelegram.java</a>
+                </td>
+                <td>
+                  86
+                </td>
+                <td>
+                  39
+                </td>
+                <td>
+                  38
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.library.utils.LogTracker.java">org/universAAL/lddi/knx/library/utils/LogTracker.java</a>
+                </td>
+                <td>
+                  28
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt9.java">org/universAAL/lddi/knx/groupdevicecategory/IKnxDpt9.java</a>
+                </td>
+                <td>
+                  45
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxDpt2GroupDevice.java">org/universAAL/lddi/knx/groupdevicemodel/KnxDpt2GroupDevice.java</a>
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.java">org/universAAL/lddi/knx/groupdevicecategory/KnxGroupDeviceCategoryUtil.java</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  75
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.interfaces.KnxDriver.java">org/universAAL/lddi/knx/interfaces/KnxDriver.java</a>
+                </td>
+                <td>
+                  31
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.utils.KnxPacketPriority.java">org/universAAL/lddi/knx/utils/KnxPacketPriority.java</a>
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDeviceFactory.java">org/universAAL/lddi/knx/groupdevicemodel/KnxGroupDeviceFactory.java</a>
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicemodel.KnxDpt5GroupDevice.java">org/universAAL/lddi/knx/groupdevicemodel/KnxDpt5GroupDevice.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  12
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.interfaces.IKnxNetwork.java">org/universAAL/lddi/knx/interfaces/IKnxNetwork.java</a>
+                </td>
+                <td>
+                  25
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt4.java">org/universAAL/lddi/knx/groupdevicecategory/IKnxDpt4.java</a>
+                </td>
+                <td>
+                  32
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.knx/lddi.knx.library//checkstyle.html#org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt1.java">org/universAAL/lddi/knx/groupdevicecategory/IKnxDpt1.java</a>
+                </td>
+                <td>
+                  33
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="c228213" href="../../p104zz/DeviceSpecialization.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p104zz.DeviceSpecialization" alt="" coords="63,214,206,239"/>
+<area shape="rect" id="node1" href="../../p104zz/DeviceSpecialization.html" title="&lt;TABLE&gt;" alt="" coords="53,203,216,251"/>
+<area shape="rect" id="c228377" href="./Scanner.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Scanner" alt="" coords="251,214,320,239"/>
+<area shape="rect" id="node2" href="./Scanner.html" title="&lt;TABLE&gt;" alt="" coords="240,203,331,251"/>
+<area shape="rect" id="c228384" href="./GET_Service.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service" alt="" coords="16,11,115,53"/>
+<area shape="rect" id="node3" href="./GET_Service.html" title="&lt;TABLE&gt;" alt="" coords="5,6,125,58"/>
+<area shape="rect" id="c228387" href="./MDS.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS" alt="" coords="184,118,235,143"/>
+<area shape="rect" id="node6" href="./MDS.html" title="&lt;TABLE&gt;" alt="" coords="173,107,245,155"/>
+<area shape="rect" id="c228385" href="./MDS_Events.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS_Events" alt="" coords="160,11,259,53"/>
+<area shape="rect" id="node4" href="./MDS_Events.html" title="&lt;TABLE&gt;" alt="" coords="149,6,269,58"/>
+<area shape="rect" id="c228386" href="./DIM.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM" alt="" coords="307,19,352,45"/>
+<area shape="rect" id="node5" href="./DIM.html" title="&lt;TABLE&gt;" alt="" coords="293,8,365,56"/>
+</map>

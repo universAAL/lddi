@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="c208891" href="../groupdevicecategory/IKnxDpt4.html" title="org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt4" alt="" coords="16,11,101,53"/>
+<area shape="rect" id="node1" href="../groupdevicecategory/IKnxDpt4.html" title="&lt;TABLE&gt;" alt="" coords="5,6,112,58"/>
+<area shape="rect" id="c208901" href="./KnxDpt4GroupDevice.html" title="org.universAAL.lddi.knx.groupdevicemodel.KnxDpt4GroupDevice" alt="" coords="58,118,206,143"/>
+<area shape="rect" id="node2" href="./KnxDpt4GroupDevice.html" title="&lt;TABLE&gt;" alt="" coords="48,107,216,155"/>
+<area shape="rect" id="c208903" href="./KnxGroupDevice.html" title="org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice" alt="" coords="147,19,267,45"/>
+<area shape="rect" id="node3" href="./KnxGroupDevice.html" title="&lt;TABLE&gt;" alt="" coords="136,8,277,56"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="c85840" href="./ActivityHubDriver.html" title="org.universAAL.lddi.lib.activityhub.driver.interfaces.ActivityHubDriver" alt="" coords="427,17,551,42"/>
+<area shape="rect" id="node1" href="./ActivityHubDriver.html" title="&lt;TABLE&gt;" alt="" coords="417,5,561,53"/>
+<area shape="rect" id="c85855" href="../../../../exporter/activityhub/driver/Iso11073MotionSensorInstance.html" title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073MotionSensorInstance" alt="" coords="15,113,219,138"/>
+<area shape="rect" id="node2" href="../../../../exporter/activityhub/driver/Iso11073MotionSensorInstance.html" title="&lt;TABLE&gt;" alt="" coords="5,101,229,149"/>
+<area shape="rect" id="c85857" href="../../../../exporter/activityhub/driver/Iso11073UsageSensorInstance.html" title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073UsageSensorInstance" alt="" coords="264,113,467,138"/>
+<area shape="rect" id="node3" href="../../../../exporter/activityhub/driver/Iso11073UsageSensorInstance.html" title="&lt;TABLE&gt;" alt="" coords="253,101,477,149"/>
+<area shape="rect" id="c85858" href="../../../../exporter/activityhub/driver/Iso11073SwitchSensorInstance.html" title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073SwitchSensorInstance" alt="" coords="512,113,717,138"/>
+<area shape="rect" id="node4" href="../../../../exporter/activityhub/driver/Iso11073SwitchSensorInstance.html" title="&lt;TABLE&gt;" alt="" coords="501,101,728,149"/>
+<area shape="rect" id="c85859" href="../../../../exporter/activityhub/driver/Iso11073ContactClosureSensorInstance.html" title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073ContactClosureSensorInstance" alt="" coords="763,113,1019,138"/>
+<area shape="rect" id="node5" href="../../../../exporter/activityhub/driver/Iso11073ContactClosureSensorInstance.html" title="&lt;TABLE&gt;" alt="" coords="752,101,1029,149"/>
+</map>

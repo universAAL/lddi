@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="c234900" href="./PM_Segment.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.PM_Segment" alt="" coords="15,209,115,234"/>
+<area shape="rect" id="node1" href="./PM_Segment.html" title="&lt;TABLE&gt;" alt="" coords="5,197,125,245"/>
+<area shape="rect" id="c234902" href="./Numeric.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Numeric" alt="" coords="160,209,229,234"/>
+<area shape="rect" id="node2" href="./Numeric.html" title="&lt;TABLE&gt;" alt="" coords="149,197,240,245"/>
+<area shape="rect" id="c234908" href="./Enumeration.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Enumeration" alt="" coords="275,209,368,234"/>
+<area shape="rect" id="node3" href="./Enumeration.html" title="&lt;TABLE&gt;" alt="" coords="264,197,379,245"/>
+<area shape="rect" id="c234909" href="./Metric.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Metric" alt="" coords="229,113,286,138"/>
+<area shape="rect" id="node4" href="./Metric.html" title="&lt;TABLE&gt;" alt="" coords="219,101,296,149"/>
+<area shape="rect" id="c234910" href="./RT_SA.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.RT_SA" alt="" coords="413,209,477,234"/>
+<area shape="rect" id="node5" href="./RT_SA.html" title="&lt;TABLE&gt;" alt="" coords="403,197,488,245"/>
+<area shape="rect" id="c234914" href="./DIM.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM" alt="" coords="235,17,280,42"/>
+<area shape="rect" id="node6" href="./DIM.html" title="&lt;TABLE&gt;" alt="" coords="221,5,293,53"/>
+</map>

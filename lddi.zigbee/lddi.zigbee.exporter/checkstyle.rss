@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>universAAL LDDI ZigBee exporter for uAAL - Home Automation - Checkstyle report</title>
+    <link>http://lddi/lddi.zigbee/lddi.zigbee.exporter/</link>
+    <description>universAAL LDDI ZigBee exporter for uAAL - Home Automation - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2008 - 2017 Instituto Tecnologico de Aplicaciones de Comunicacion Avanzadas - Grupo Tecnologias para la Salud y el Bienestar (TSB)</copyright>
+    <item>
+      <title>File: 17,
+             Errors: 127,
+             Warnings: 26,
+             Infos: 315
+      </title>
+            <link>http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.DimmerLightCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java</a>
+                </td>
+                <td>
+                  17
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/ExporterSensorCallee.java</a>
+                </td>
+                <td>
+                  16
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OnOffLightListener.java">org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OnOffLightListener.java</a>
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.ExporterDimmerCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/ExporterDimmerCallee.java</a>
+                </td>
+                <td>
+                  16
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.Activator.java">org/universAAL/hw/exporter/zigbee/ha/Activator.java</a>
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.listeners.IASZoneListener.java">org/universAAL/hw/exporter/zigbee/ha/devices/listeners/IASZoneListener.java</a>
+                </td>
+                <td>
+                  13
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OccupancySensorListener.java">org/universAAL/hw/exporter/zigbee/ha/devices/listeners/OccupancySensorListener.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.listeners.PresenceDetectorListener.java">org/universAAL/hw/exporter/zigbee/ha/devices/listeners/PresenceDetectorListener.java</a>
+                </td>
+                <td>
+                  17
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/IASZoneCallee.java</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.listeners.TemperatureSensorListener.java">org/universAAL/hw/exporter/zigbee/ha/devices/listeners/TemperatureSensorListener.java</a>
+                </td>
+                <td>
+                  17
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.ExporterActuatorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/ExporterActuatorCallee.java</a>
+                </td>
+                <td>
+                  28
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/OccupancySensorCallee.java</a>
+                </td>
+                <td>
+                  21
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.TemperatureSensorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/TemperatureSensorCallee.java</a>
+                </td>
+                <td>
+                  31
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.listeners.DimmerLightListener.java">org/universAAL/hw/exporter/zigbee/ha/devices/listeners/DimmerLightListener.java</a>
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.listeners.ExporterListener.java">org/universAAL/hw/exporter/zigbee/ha/devices/listeners/ExporterListener.java</a>
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/PresenceDetectorCallee.java</a>
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

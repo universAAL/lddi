@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>universAAL LDDI Library for ISO/IEEE 11073 standard - ActivityHub Specification - Checkstyle report</title>
+    <link>http://lddi/lddi.common/lddi.lib.activityhub/</link>
+    <description>universAAL LDDI Library for ISO/IEEE 11073 standard - ActivityHub Specification - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2012 - 2017 Austrian Institute of Technology (AIT)</copyright>
+    <item>
+      <title>File: 36,
+             Errors: 289,
+             Warnings: 73,
+             Infos: 707
+      </title>
+            <link>http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073EnuresisSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073EnuresisSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073WaterSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073WaterSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/UsageSensor.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073CoSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073CoSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/ActivityHubSensor.java</a>
+                </td>
+                <td>
+                  52
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  25
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensorEvent.java">org/universAAL/lddi/lib/activityhub/devicemodel/SwitchSensorEvent.java</a>
+                </td>
+                <td>
+                  17
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073FallSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073FallSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.driver.interfaces.ActivityHubDriver.java">org/universAAL/lddi/lib/activityhub/driver/interfaces/ActivityHubDriver.java</a>
+                </td>
+                <td>
+                  69
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/SwitchSensor.java</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.java">org/universAAL/lddi/lib/activityhub/location/ActivityHubLocationUtil.java</a>
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  49
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensorEvent.java">org/universAAL/lddi/lib/activityhub/devicemodel/UsageSensorEvent.java</a>
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073MotionSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073MotionSensor.java</a>
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.driver.interfaces.ActivityHubDriverClient.java">org/universAAL/lddi/lib/activityhub/driver/interfaces/ActivityHubDriverClient.java</a>
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.driver.interfaces.IActivityHubActuator.java">org/universAAL/lddi/lib/activityhub/driver/interfaces/IActivityHubActuator.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073SwitchSensor.java</a>
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubFactory.java">org/universAAL/lddi/lib/activityhub/devicemodel/ActivityHubFactory.java</a>
+                </td>
+                <td>
+                  21
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensorEvent.java">org/universAAL/lddi/lib/activityhub/devicemodel/ContactClosureSensorEvent.java</a>
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073MedicationDosageSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073MedicationDosageSensor.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073PersSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073PersSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensorEvent.java">org/universAAL/lddi/lib/activityhub/devicemodel/MotionSensorEvent.java</a>
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/MotionSensor.java</a>
+                </td>
+                <td>
+                  24
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensorEvent.java">org/universAAL/lddi/lib/activityhub/devicemodel/TemperatureSensorEvent.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073UsageSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/TemperatureSensor.java</a>
+                </td>
+                <td>
+                  26
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/ContactClosureSensor.java</a>
+                </td>
+                <td>
+                  29
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.knxmapping.KnxMappingFactory.java">org/universAAL/lddi/lib/activityhub/knxmapping/KnxMappingFactory.java</a>
+                </td>
+                <td>
+                  45
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubBaseDeviceCategory.java">org/universAAL/lddi/lib/activityhub/devicecategory/ActivityHubBaseDeviceCategory.java</a>
+                </td>
+                <td>
+                  27
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.util.LogTracker.java">org/universAAL/lddi/lib/activityhub/util/LogTracker.java</a>
+                </td>
+                <td>
+                  25
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073PropertyExitSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073PropertyExitSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SmokeSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073SmokeSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/FallSensor.java</a>
+                </td>
+                <td>
+                  21
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073GasSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073GasSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073TemperatureSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073TemperatureSensor.java</a>
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCategoryUtil.java">org/universAAL/lddi/lib/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073ContactClosureSensor.java</a>
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.FallSensorEvent.java">org/universAAL/lddi/lib/activityhub/devicemodel/FallSensorEvent.java</a>
+                </td>
+                <td>
+                  17
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
