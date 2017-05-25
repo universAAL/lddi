@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.010774996653727748" branch-rate="0.008342303552206673" lines-covered="161" lines-valid="14942" branches-covered="31" branches-valid="3716" complexity="1.8889583984985925" version="2.1.1" timestamp="1495338209352">
+<coverage line-rate="0.010774996653727748" branch-rate="0.008342303552206673" lines-covered="161" lines-valid="14942" branches-covered="31" branches-valid="3716" complexity="1.8889583984985925" version="2.1.1" timestamp="1495727032853">
 	<sources>
 		<source>/home/travis/build/universAAL/lddi/lddi.common/lddi.exporter.x73/src/main/java</source>
 		<source>--source</source>
