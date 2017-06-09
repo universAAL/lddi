@@ -62,108 +62,144 @@
 <tr>  <td class="numLine">&nbsp;22</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> ExtendedCfg10408 {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;23</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;24</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">byte</span>[] apdu;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;25</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;26</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">public</span> ExtendedCfg10408(){</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;27</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                apdu = <span class="keyword">new</span> <span class="keyword">byte</span>[]{</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;29</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0xE7, (<span class="keyword">byte</span>)0x00,                                                 <span class="comment">//APDU CHOICE Type (PrstApdu)</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;30</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x44,                                                 <span class="comment">//CHOICE.length = 68</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;31</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x42,                                                 <span class="comment">// OCTET STRING.length = 66</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;32</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x99, (<span class="keyword">byte</span>)0x99,                                                 <span class="comment">// invoke-id = 0x1235 (start of DataApdu. MDER encoded.)</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x01, (<span class="keyword">byte</span>)0x01,                                                  <span class="comment">// CHOICE(Remote Operation Invoke | Confirmed Event Report)</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x3C,                                                        <span class="comment">// CHOICE.length = 60</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;35</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00,                                                 <span class="comment">// obj-handle = 0 (MDS object)</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;36</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0xFF, (<span class="keyword">byte</span>)0xFF, (<span class="keyword">byte</span>)0xFF, (<span class="keyword">byte</span>)0xFF, <span class="comment">// event-time = 0xFFFFFFFF</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                </pre></td></tr>
-<tr>  <td class="numLine">&nbsp;38</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                </pre></td></tr>
-<tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x0D, (<span class="keyword">byte</span>)0x1C,                                                 <span class="comment">// event-type = MDC_NOTI_CONFIG</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x32,                                                  <span class="comment">// event-info.length = 50 (start of ConfigReport)</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x40, (<span class="keyword">byte</span>)0x00,                                                 <span class="comment">// config-report-id</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x01,                                                 <span class="comment">// config-obj-list.count = 1 Measurement objects will be announced</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x2C,                                                        <span class="comment">// config-obj-list.length =44</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x06,                                                 <span class="comment">//obj-class = MDC_MOC_VMO_METRIC_NU</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;45</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                </pre></td></tr>
-<tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x01,                                                        <span class="comment">//obj-handle = 1 (1st Measurement is body weight)</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;47</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x04,                                                 <span class="comment">// attributes.count = 4</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x24,                                                        <span class="comment">// attributes.length = 36</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x09, (<span class="keyword">byte</span>)0x2F,                                                        <span class="comment">//attribute-id = MDC_ATTR_ID_TYPE</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x04,                                                 <span class="comment">// attribute-value.length = 4</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;51</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x02,        (<span class="keyword">byte</span>)0x4B, (<span class="keyword">byte</span>)0x5C, <span class="comment">//MDC_PART_SCADA, MDC_TEMP_BODY</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;52</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x0A, (<span class="keyword">byte</span>)0x46,                                                 <span class="comment">// attribute-id = MDC_ATTR_METRIC_SPEC_SMALL</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;53</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x02,                                                        <span class="comment">// attribute-value.length = 2</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;54</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0xF0, (<span class="keyword">byte</span>)0x40,                                                        <span class="comment">//intermittent, stored data, upd &amp; msmt aperiodic, agent init, measured</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;55</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x09, (<span class="keyword">byte</span>)0x96,                                                 <span class="comment">// attribute-id = MDC_ATTR_UNIT_CODE</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x02,                                                        <span class="comment">// attribute-value.length = 2</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;57</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x17, (<span class="keyword">byte</span>)0xA0,                                                        <span class="comment">//MDC_DIM_DEGC</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;58</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x0A, (<span class="keyword">byte</span>)0x55,                                                 <span class="comment">// attribute-id = MDC_ATTR_ATTRIBUTE_VAL_MAP</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;59</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x0C,                                                        <span class="comment">// attribute-value.length = 12</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x02,                                                        <span class="comment">//AttrValMap.count = 2</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x08,                                                 <span class="comment">// AttrValMap.length = 8</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;62</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x0A, (<span class="keyword">byte</span>)0x56,        (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x04,        <span class="comment">// MDC_ATTR_NU_VAL_OBS_SIMP | value length = 4</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x09, (<span class="keyword">byte</span>)0x90,        (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x08        <span class="comment">// MDC_ATTR_TIME_STAMP_ABS | value length = 8</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                };</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        }</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span> getByte(<span class="keyword">int</span> i ){</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu[i]; </span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span>[] getByteArray(){</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;72</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu;</span></pre></td></tr>
-<tr>  <td class="numLine">&nbsp;73</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;26</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">public</span> ExtendedCfg10408() {</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;27</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                apdu = <span class="keyword">new</span> <span class="keyword">byte</span>[] { (<span class="keyword">byte</span>) 0xE7, (<span class="keyword">byte</span>) 0x00, <span class="comment">// APDU CHOICE Type</span></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;29</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                <span class="comment">// (PrstApdu)</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;30</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x44, <span class="comment">// CHOICE.length = 68</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;31</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x42, <span class="comment">// OCTET STRING.length = 66</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;32</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x99, (<span class="keyword">byte</span>) 0x99, <span class="comment">// invoke-id = 0x1235 (start of</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// DataApdu. MDER encoded.)</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x01, (<span class="keyword">byte</span>) 0x01, <span class="comment">// CHOICE(Remote Operation Invoke |</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;35</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// Confirmed Event Report)</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;36</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x3C, <span class="comment">// CHOICE.length = 60</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, <span class="comment">// obj-handle = 0 (MDS object)</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;38</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0xFF, (<span class="keyword">byte</span>) 0xFF, (<span class="keyword">byte</span>) 0xFF, (<span class="keyword">byte</span>) 0xFF, <span class="comment">// event-time</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// =</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// 0xFFFFFFFF</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x0D, (<span class="keyword">byte</span>) 0x1C, <span class="comment">// event-type = MDC_NOTI_CONFIG</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x32, <span class="comment">// event-info.length = 50 (start of</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// ConfigReport)</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;45</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x40, (<span class="keyword">byte</span>) 0x00, <span class="comment">// config-report-id</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x01, <span class="comment">// config-obj-list.count = 1</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;47</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// Measurement objects will be</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// announced</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x2C, <span class="comment">// config-obj-list.length =44</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x06, <span class="comment">// obj-class = MDC_MOC_VMO_METRIC_NU</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;51</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;52</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x01, <span class="comment">// obj-handle = 1 (1st Measurement is</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;53</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// body weight)</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;54</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x04, <span class="comment">// attributes.count = 4</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;55</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x24, <span class="comment">// attributes.length = 36</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x09, (<span class="keyword">byte</span>) 0x2F, <span class="comment">// attribute-id = MDC_ATTR_ID_TYPE</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;57</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x04, <span class="comment">// attribute-value.length = 4</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;58</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x02, (<span class="keyword">byte</span>) 0x4B, (<span class="keyword">byte</span>) 0x5C, <span class="comment">// MDC_PART_SCADA,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;59</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// MDC_TEMP_BODY</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x0A, (<span class="keyword">byte</span>) 0x46, <span class="comment">// attribute-id =</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// MDC_ATTR_METRIC_SPEC_SMALL</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;62</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x02, <span class="comment">// attribute-value.length = 2</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0xF0, (<span class="keyword">byte</span>) 0x40, <span class="comment">// intermittent, stored data, upd &amp;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// msmt aperiodic, agent init,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;65</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// measured</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x09, (<span class="keyword">byte</span>) 0x96, <span class="comment">// attribute-id = MDC_ATTR_UNIT_CODE</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x02, <span class="comment">// attribute-value.length = 2</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x17, (<span class="keyword">byte</span>) 0xA0, <span class="comment">// MDC_DIM_DEGC</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x0A, (<span class="keyword">byte</span>) 0x55, <span class="comment">// attribute-id =</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// MDC_ATTR_ATTRIBUTE_VAL_MAP</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x0C, <span class="comment">// attribute-value.length = 12</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;72</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x02, <span class="comment">// AttrValMap.count = 2</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;73</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x08, <span class="comment">// AttrValMap.length = 8</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x0A, (<span class="keyword">byte</span>) 0x56, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x04, <span class="comment">// MDC_ATTR_NU_VAL_OBS_SIMP</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// | value</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;76</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// length =</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;77</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// 4</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;78</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x09, (<span class="keyword">byte</span>) 0x90, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x08 <span class="comment">// MDC_ATTR_TIME_STAMP_ABS</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;79</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// | value</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;80</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// length =</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;81</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// 8</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;82</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                };</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        }</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;84</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;85</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span> getByte(<span class="keyword">int</span> i) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu[i];</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;87</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;88</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;89</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span>[] getByteArray() {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;90</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;91</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;92</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;93</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 5/25/17 9:55 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 6/9/17 4:33 AM.</div>
 </body>
 </html>

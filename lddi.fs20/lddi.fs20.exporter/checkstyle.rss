@@ -27,8 +27,8 @@ under the License.
     <item>
       <title>File: 5,
              Errors: 132,
-             Warnings: 92,
-             Infos: 523
+             Warnings: 24,
+             Infos: 46
       </title>
             <link>http://lddi/lddi.fs20/lddi.fs20.exporter//checkstyle.html</link>
       <description>
@@ -49,10 +49,10 @@ under the License.
                   <a href="http://lddi/lddi.fs20/lddi.fs20.exporter//checkstyle.html#org.universAAL.lddi.fs20.exporter.ProvidedFS20Service.java">org/universAAL/lddi/fs20/exporter/ProvidedFS20Service.java</a>
                 </td>
                 <td>
-                  206
+                  8
                 </td>
                 <td>
-                  38
+                  9
                 </td>
                 <td>
                   49
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://lddi/lddi.fs20/lddi.fs20.exporter//checkstyle.html#org.universAAL.lddi.fs20.exporter.util.LogTracker.java">org/universAAL/lddi/fs20/exporter/util/LogTracker.java</a>
                 </td>
                 <td>
-                  30
+                  6
                 </td>
                 <td>
                   1
@@ -77,10 +77,10 @@ under the License.
                   <a href="http://lddi/lddi.fs20/lddi.fs20.exporter//checkstyle.html#org.universAAL.lddi.fs20.exporter.Activator.java">org/universAAL/lddi/fs20/exporter/Activator.java</a>
                 </td>
                 <td>
-                  56
+                  7
                 </td>
                 <td>
-                  10
+                  4
                 </td>
                 <td>
                   24
@@ -91,10 +91,10 @@ under the License.
                   <a href="http://lddi/lddi.fs20/lddi.fs20.exporter//checkstyle.html#org.universAAL.lddi.fs20.exporter.FS20ContextPublisher.java">org/universAAL/lddi/fs20/exporter/FS20ContextPublisher.java</a>
                 </td>
                 <td>
-                  36
+                  8
                 </td>
                 <td>
-                  10
+                  1
                 </td>
                 <td>
                   10
@@ -105,10 +105,10 @@ under the License.
                   <a href="http://lddi/lddi.fs20/lddi.fs20.exporter//checkstyle.html#org.universAAL.lddi.fs20.exporter.FS20Server.java">org/universAAL/lddi/fs20/exporter/FS20Server.java</a>
                 </td>
                 <td>
-                  195
+                  17
                 </td>
                 <td>
-                  33
+                  9
                 </td>
                 <td>
                   37

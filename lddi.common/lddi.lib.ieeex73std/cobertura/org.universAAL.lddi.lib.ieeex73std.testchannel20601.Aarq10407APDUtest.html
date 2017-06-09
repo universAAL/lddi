@@ -66,72 +66,106 @@
 <tr>  <td class="numLine">&nbsp;24</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">byte</span>[] apdu;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;25</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;26</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">public</span> Aarq10407APDUtest(){</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;26</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">public</span> Aarq10407APDUtest() {</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;27</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                apdu = <span class="keyword">new</span> <span class="keyword">byte</span>[]{</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                apdu = <span class="keyword">new</span> <span class="keyword">byte</span>[] { (<span class="keyword">byte</span>) 0xE2, (<span class="keyword">byte</span>) 0x00, <span class="comment">// choice APDU</span></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;29</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0xE2, (<span class="keyword">byte</span>)0x00,                                                 <span class="comment">//choice APDU</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x32, <span class="comment">// length</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;30</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x32,                                                 <span class="comment">//length</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x80, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, <span class="comment">// association</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;31</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x80, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, <span class="comment">// association version</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// version</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;32</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x01, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x2A, <span class="comment">// data protocol list = 1, length 42</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x01, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x2A, <span class="comment">// data</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x50, (<span class="keyword">byte</span>)0x79,                                                  <span class="comment">// data protocol id 20601</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// protocol</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x26,                                                        <span class="comment">// data proto info length</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// list = 1,</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;35</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x80, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, <span class="comment">// protocol version</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// length 42</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;36</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0xA0, (<span class="keyword">byte</span>)0x00,                                                 <span class="comment">// encoding rules (MDER)</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x50, (<span class="keyword">byte</span>) 0x79, <span class="comment">// data protocol id 20601</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x80, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00,        <span class="comment">// nomenclature version</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x26, <span class="comment">// data proto info length</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;38</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, <span class="comment">// functional units</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x80, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, <span class="comment">// protocol</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x80, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, <span class="comment">// sysType (agent)</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// version</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x08,                                                 <span class="comment">// sys-id length (8)</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0xA0, (<span class="keyword">byte</span>) 0x00, <span class="comment">// encoding rules (MDER)</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x11, (<span class="keyword">byte</span>)0x22, (<span class="keyword">byte</span>)0x33, (<span class="keyword">byte</span>)0x44, <span class="comment">// sys-id</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x80, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, <span class="comment">// nomenclature</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x55, (<span class="keyword">byte</span>)0x66, (<span class="keyword">byte</span>)0x77, (<span class="keyword">byte</span>)0x88,</pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// version</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x02, (<span class="keyword">byte</span>)0xBC,                                                  <span class="comment">//dev config id (standard 700 -&gt; blood pressure)</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, <span class="comment">// functional</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x01,                                                         <span class="comment">//data request mode flags </span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// units</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;45</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x01, (<span class="keyword">byte</span>)0x00,                                                 <span class="comment">// data-req-agent-count | data-req-manager-count</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x80, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, <span class="comment">// sysType</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, (<span class="keyword">byte</span>)0x00, <span class="comment">// option list.count | option list length</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// (agent)</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;47</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                };</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;48</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        }</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x08, <span class="comment">// sys-id length (8)</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x11, (<span class="keyword">byte</span>) 0x22, (<span class="keyword">byte</span>) 0x33, (<span class="keyword">byte</span>) 0x44, <span class="comment">// sys-id</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x55, (<span class="keyword">byte</span>) 0x66, (<span class="keyword">byte</span>) 0x77, (<span class="keyword">byte</span>) 0x88, (<span class="keyword">byte</span>) 0x02, (<span class="keyword">byte</span>) 0xBC, <span class="comment">// dev</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span> getByte(<span class="keyword">int</span> i ){</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;51</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu[i]; </span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                                                                                <span class="comment">// config</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;51</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                                                                                <span class="comment">// id</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;52</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                                                                                <span class="comment">// (standard</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;53</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                                                                                <span class="comment">// 700</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;54</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span>[] getByteArray(){</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;55</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu;</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                                                                                <span class="comment">// -&gt;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;55</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                                                                                <span class="comment">// blood</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                                                                                <span class="comment">// pressure)</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;57</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x01, <span class="comment">// data request mode flags</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;58</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x01, (<span class="keyword">byte</span>) 0x00, <span class="comment">// data-req-agent-count |</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;59</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                        <span class="comment">// data-req-manager-count</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, (<span class="keyword">byte</span>) 0x00, <span class="comment">// option</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// list.count</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;62</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// | option</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// list</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                                                                                                                        <span class="comment">// length</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;65</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                };</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        }</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span> getByte(<span class="keyword">int</span> i) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu[i];</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;72</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">byte</span>[] getByteArray() {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">return</span> apdu;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;76</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 5/25/17 9:52 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 6/9/17 4:25 AM.</div>
 </body>
 </html>

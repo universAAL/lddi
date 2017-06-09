@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2010 - 2017 universAAL Consortium</copyright>
     <item>
       <title>File: 20,
-             Errors: 120,
-             Warnings: 27,
-             Infos: 338
+             Errors: 108,
+             Warnings: 6,
+             Infos: 102
       </title>
             <link>http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html</link>
       <description>
@@ -49,10 +49,10 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Activator.java">org/universAAL/lddi/zwave/exporter/Activator.java</a>
                 </td>
                 <td>
-                  23
+                  0
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   10
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.PowerConsumption.PowerPublisher.java">org/universAAL/lddi/zwave/exporter/PowerConsumption/PowerPublisher.java</a>
                 </td>
                 <td>
-                  38
+                  1
                 </td>
                 <td>
                   1
@@ -119,10 +119,10 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.PowerConsumption.PowerReader.java">org/universAAL/lddi/zwave/exporter/PowerConsumption/PowerReader.java</a>
                 </td>
                 <td>
-                  32
+                  0
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   6
@@ -133,13 +133,13 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.TransferRateCalculator.java">org/universAAL/lddi/zwave/exporter/Server/TransferRateCalculator.java</a>
                 </td>
                 <td>
-                  15
+                  12
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  8
+                  7
                 </td>
               </tr>
                           <tr>
@@ -147,13 +147,13 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.AbstractSocketServerXSocket.java">org/universAAL/lddi/zwave/exporter/Server/AbstractSocketServerXSocket.java</a>
                 </td>
                 <td>
-                  49
+                  20
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  17
+                  14
                 </td>
               </tr>
                           <tr>
@@ -189,10 +189,10 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.ConnectionDataHandler.java">org/universAAL/lddi/zwave/exporter/Server/ConnectionDataHandler.java</a>
                 </td>
                 <td>
-                  20
+                  16
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   19
@@ -203,7 +203,7 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Setup.java">org/universAAL/lddi/zwave/exporter/Setup.java</a>
                 </td>
                 <td>
-                  27
+                  1
                 </td>
                 <td>
                   0
@@ -217,13 +217,13 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.AbstractSocketServer.java">org/universAAL/lddi/zwave/exporter/Server/AbstractSocketServer.java</a>
                 </td>
                 <td>
-                  15
+                  4
                 </td>
                 <td>
-                  7
+                  1
                 </td>
                 <td>
-                  9
+                  2
                 </td>
               </tr>
                           <tr>
@@ -231,7 +231,7 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.MotionDecoder.java">org/universAAL/lddi/zwave/exporter/Server/MotionDecoder.java</a>
                 </td>
                 <td>
-                  22
+                  1
                 </td>
                 <td>
                   0
@@ -245,7 +245,7 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.MotionDecoderFactory.java">org/universAAL/lddi/zwave/exporter/Server/MotionDecoderFactory.java</a>
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   0
@@ -259,13 +259,13 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.AbstractProtocolDecoder.java">org/universAAL/lddi/zwave/exporter/Server/AbstractProtocolDecoder.java</a>
                 </td>
                 <td>
-                  5
+                  4
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
-                  2
+                  1
                 </td>
               </tr>
                           <tr>
@@ -273,10 +273,10 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.ConnectionLinker.java">org/universAAL/lddi/zwave/exporter/Server/ConnectionLinker.java</a>
                 </td>
                 <td>
-                  11
+                  7
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   4
@@ -301,7 +301,7 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.MotionContact.MotionContactSensorPublisher.java">org/universAAL/lddi/zwave/exporter/MotionContact/MotionContactSensorPublisher.java</a>
                 </td>
                 <td>
-                  25
+                  1
                 </td>
                 <td>
                   1
@@ -315,7 +315,7 @@ under the License.
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.MotionServer.java">org/universAAL/lddi/zwave/exporter/Server/MotionServer.java</a>
                 </td>
                 <td>
-                  15
+                  1
                 </td>
                 <td>
                   0

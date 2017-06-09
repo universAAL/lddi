@@ -140,7 +140,7 @@
 <td>Write to static field org.universAAL.lddi.knx.networkdriver.Activator.networkDriver from instance method org.universAAL.lddi.knx.networkdriver.Activator.start(BundleContext)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>60</td>
+<td>62</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp"></a>org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp</h3>
@@ -155,7 +155,7 @@
 <td>Boxing/unboxing to parse a primitive org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp.updated(Dictionary)</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOXED_PRIMITIVE_FOR_PARSING">DM_BOXED_PRIMITIVE_FOR_PARSING</a></td>
-<td>115</td>
+<td>111</td>
 <td>High</td></tr></table></div><a name="org.universAAL.lddi.knx.networkdriver.KnxReader"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.knx.networkdriver.KnxReader"></a>org.universAAL.lddi.knx.networkdriver.KnxReader</h3>
@@ -170,19 +170,19 @@
 <td>Write to static field org.universAAL.lddi.knx.networkdriver.KnxReader.GROUP_ADDRESS from instance method new org.universAAL.lddi.knx.networkdriver.KnxReader(KnxNetworkDriverImp)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>77</td>
+<td>78</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Write to static field org.universAAL.lddi.knx.networkdriver.KnxReader.GROUP_PORT from instance method new org.universAAL.lddi.knx.networkdriver.KnxReader(KnxNetworkDriverImp)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>78</td>
+<td>79</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Unread field: org.universAAL.lddi.knx.networkdriver.KnxReader.pc</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#URF_UNREAD_FIELD">URF_UNREAD_FIELD</a></td>
-<td>207</td>
+<td>189</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.knx.networkdriver.KnxWriter"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.knx.networkdriver.KnxWriter"></a>org.universAAL.lddi.knx.networkdriver.KnxWriter</h3>
@@ -197,13 +197,13 @@
 <td>org.universAAL.lddi.knx.networkdriver.KnxWriter.getLastPacketSent() may expose internal representation by returning KnxWriter.lastPacketSent</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
-<td>294</td>
+<td>276</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.knx.networkdriver.KnxWriter.write(String, byte[], KnxCommand) may expose internal representation by storing an externally mutable object into KnxWriter.lastDataByte</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
-<td>156</td>
+<td>144</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Write to static field org.universAAL.lddi.knx.networkdriver.KnxWriter.GROUP_ADDRESS from instance method new org.universAAL.lddi.knx.networkdriver.KnxWriter(KnxNetworkDriverImp)</td>

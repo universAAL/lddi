@@ -155,7 +155,7 @@
 <td>Found reliance on default encoding in org.universAAL.hw.exporter.zigbee.ha.Activator.setProperties(Properties): new java.io.FileWriter(String)</td>
 <td>I18N</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING</a></td>
-<td>78</td>
+<td>77</td>
 <td>High</td></tr>
 <tr class="a">
 <td>org.universAAL.hw.exporter.zigbee.ha.Activator.moduleContext isn't final and can't be protected from malicious code </td>
@@ -167,13 +167,13 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.Activator.getProperties() may fail to clean up java.io.InputStream on checked exception</td>
 <td>EXPERIMENTAL</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE</a></td>
-<td>102</td>
+<td>101</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.hw.exporter.zigbee.ha.Activator.setProperties(Properties) may fail to clean up java.io.Writer on checked exception</td>
 <td>EXPERIMENTAL</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE</a></td>
-<td>78</td>
+<td>77</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Write to static field org.universAAL.hw.exporter.zigbee.ha.Activator.context from instance method org.universAAL.hw.exporter.zigbee.ha.Activator.start(BundleContext)</td>
@@ -203,13 +203,13 @@
 <td>Dead store to finalValue in org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee.getValue()</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE</a></td>
-<td>141</td>
+<td>128</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee.getValue() invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOOLEAN_CTOR">DM_BOOLEAN_CTOR</a></td>
-<td>141</td>
+<td>128</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee"></a>org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee</h3>
@@ -224,13 +224,13 @@
 <td>Dead store to finalValue in org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee.getValue()</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE</a></td>
-<td>125</td>
+<td>118</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee.getValue() invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOOLEAN_CTOR">DM_BOOLEAN_CTOR</a></td>
-<td>125</td>
+<td>118</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee"></a>org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee</h3>
@@ -245,7 +245,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.OnOffLightCallee.executeGet() has Boolean return type and returns explicit null</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_BOOLEAN_RETURN_NULL">NP_BOOLEAN_RETURN_NULL</a></td>
-<td>215</td>
+<td>196</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee"></a>org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee</h3>
@@ -260,7 +260,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee.getValue() invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOOLEAN_CTOR">DM_BOOLEAN_CTOR</a></td>
-<td>123</td>
+<td>110</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.DimmerLightListener"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.DimmerLightListener"></a>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.DimmerLightListener</h3>
@@ -275,7 +275,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.DimmerLightListener.unregisteruAALService() makes inefficient use of keySet iterator instead of entrySet iterator</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
-<td>93</td>
+<td>87</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.ExporterListener"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.ExporterListener"></a>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.ExporterListener</h3>
@@ -290,19 +290,19 @@
 <td>new org.universAAL.hw.exporter.zigbee.ha.devices.listeners.ExporterListener(BundleContext) synchronizes on updated field ExporterListener.discoveryLock</td>
 <td>MT_CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ML_SYNC_ON_UPDATED_FIELD">ML_SYNC_ON_UPDATED_FIELD</a></td>
-<td>53</td>
+<td>52</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.ExporterListener.filter isn't final but should be</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_SHOULD_BE_FINAL">MS_SHOULD_BE_FINAL</a></td>
-<td>47</td>
+<td>46</td>
 <td>High</td></tr>
 <tr class="a">
 <td>Switch statement found in org.universAAL.hw.exporter.zigbee.ha.devices.listeners.ExporterListener.serviceChanged(ServiceEvent) where default case is missing</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SF_SWITCH_NO_DEFAULT">SF_SWITCH_NO_DEFAULT</a></td>
-<td>72</td>
+<td>71</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.IASZoneListener"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.IASZoneListener"></a>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.IASZoneListener</h3>
@@ -317,7 +317,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.IASZoneListener.unregisteruAALService() makes inefficient use of keySet iterator instead of entrySet iterator</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
-<td>83</td>
+<td>76</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OccupancySensorListener"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OccupancySensorListener"></a>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OccupancySensorListener</h3>
@@ -332,7 +332,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OccupancySensorListener.unregisteruAALService() makes inefficient use of keySet iterator instead of entrySet iterator</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
-<td>83</td>
+<td>76</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OnOffLightListener"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OnOffLightListener"></a>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OnOffLightListener</h3>
@@ -347,7 +347,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.OnOffLightListener.unregisteruAALService() makes inefficient use of keySet iterator instead of entrySet iterator</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
-<td>93</td>
+<td>87</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.PresenceDetectorListener"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.PresenceDetectorListener"></a>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.PresenceDetectorListener</h3>
@@ -362,7 +362,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.PresenceDetectorListener.unregisteruAALService() makes inefficient use of keySet iterator instead of entrySet iterator</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
-<td>93</td>
+<td>86</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.TemperatureSensorListener"></a>
 <div class="section">
 <h3><a name="org.universAAL.hw.exporter.zigbee.ha.devices.listeners.TemperatureSensorListener"></a>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.TemperatureSensorListener</h3>
@@ -377,7 +377,7 @@
 <td>org.universAAL.hw.exporter.zigbee.ha.devices.listeners.TemperatureSensorListener.unregisteruAALService() makes inefficient use of keySet iterator instead of entrySet iterator</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
-<td>93</td>
+<td>87</td>
 <td>Medium</td></tr></table></div>
       </div>
     </div>

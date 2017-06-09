@@ -140,25 +140,25 @@
 <td>Bitwise add of signed byte value computed in org.universAAL.lddi.fs20.connect.FHZ1000PC.deviceEvent() </td>
 <td>CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#BIT_ADD_OF_SIGNED_BYTE">BIT_ADD_OF_SIGNED_BYTE</a></td>
-<td>412</td>
+<td>426</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>The method name org.universAAL.lddi.fs20.connect.FHZ1000PC.StringFS20ToInt(String) doesn't start with a lower case letter</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#NM_METHOD_NAMING_CONVENTION">NM_METHOD_NAMING_CONVENTION</a></td>
-<td>503</td>
+<td>521</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>new org.universAAL.lddi.fs20.connect.FHZ1000PC(String) concatenates strings using + in a loop</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC_USE_STRINGBUFFER_CONCATENATION</a></td>
-<td>351</td>
+<td>362</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.fs20.connect.FHZ1000PC.binFS20ByteToString(int, int) concatenates strings using + in a loop</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC_USE_STRINGBUFFER_CONCATENATION</a></td>
-<td>490</td>
+<td>507</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.fs20.connect.FHZ1000PCFHZ1000SerialDevice"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.connect.FHZ1000PCFHZ1000SerialDevice"></a>org.universAAL.lddi.fs20.connect.FHZ1000PC$FHZ1000SerialDevice</h3>
@@ -173,13 +173,13 @@
 <td>Switch statement found in org.universAAL.lddi.fs20.connect.FHZ1000PC$FHZ1000SerialDevice.serialEvent(SerialPortEvent) where default case is missing</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SF_SWITCH_NO_DEFAULT">SF_SWITCH_NO_DEFAULT</a></td>
-<td>228</td>
+<td>232</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Unread field: org.universAAL.lddi.fs20.connect.FHZ1000PC$FHZ1000SerialDevice.MAX_WAIT_TIME_MS; should this field be static?</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SS_SHOULD_BE_STATIC">SS_SHOULD_BE_STATIC</a></td>
-<td>159</td>
+<td>164</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.fs20.connect.FHZ1000PCJD2XXFHZ1000Device"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.connect.FHZ1000PCJD2XXFHZ1000Device"></a>org.universAAL.lddi.fs20.connect.FHZ1000PC$JD2XXFHZ1000Device</h3>
@@ -194,7 +194,7 @@
 <td>Unread field: org.universAAL.lddi.fs20.connect.FHZ1000PC$JD2XXFHZ1000Device.DEVICE_DESCRIPTION; should this field be static?</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SS_SHOULD_BE_STATIC">SS_SHOULD_BE_STATIC</a></td>
-<td>103</td>
+<td>107</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.fs20.connect.FS20Listener"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.connect.FS20Listener"></a>org.universAAL.lddi.fs20.connect.FS20Listener</h3>
@@ -209,31 +209,31 @@
 <td>The method name org.universAAL.lddi.fs20.connect.FS20Listener.Init(FHZ1000PC, LogTracker) doesn't start with a lower case letter</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#NM_METHOD_NAMING_CONVENTION">NM_METHOD_NAMING_CONVENTION</a></td>
-<td>139</td>
+<td>144</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.fs20.connect.FS20Listener.binFS20ByteToString(int, int) concatenates strings using + in a loop</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC_USE_STRINGBUFFER_CONCATENATION</a></td>
-<td>189</td>
+<td>185</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Switch statement found in org.universAAL.lddi.fs20.connect.FS20Listener.sendContextEvent(ServiceRegistration) where default case is missing</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SF_SWITCH_NO_DEFAULT">SF_SWITCH_NO_DEFAULT</a></td>
-<td>74</td>
+<td>77</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Write to static field org.universAAL.lddi.fs20.connect.FS20Listener.context from instance method new org.universAAL.lddi.fs20.connect.FS20Listener(BundleContext)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>62</td>
+<td>63</td>
 <td>High</td></tr>
 <tr class="a">
 <td>Write to static field org.universAAL.lddi.fs20.connect.FS20Listener.logger from instance method org.universAAL.lddi.fs20.connect.FS20Listener.Init(FHZ1000PC, LogTracker)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>139</td>
+<td>144</td>
 <td>High</td></tr>
 <tr class="b">
 <td>Unused field: org.universAAL.lddi.fs20.connect.FS20Listener.port</td>
@@ -254,13 +254,13 @@
 <td>Primitive value is boxed then unboxed to perform primitive coercion in org.universAAL.lddi.fs20.connect.FS20Listener$1.fs20Event(FS20Event)</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#BX_BOXING_IMMEDIATELY_UNBOXED_TO_PERFORM_COERCION">BX_BOXING_IMMEDIATELY_UNBOXED_TO_PERFORM_COERCION</a></td>
-<td>153</td>
+<td>155</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.connect.FS20Listener$1.fs20Event(FS20Event) invokes inefficient new Byte(byte) constructor; use Byte.valueOf(byte) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NUMBER_CTOR">DM_NUMBER_CTOR</a></td>
-<td>153</td>
+<td>155</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.fs20.devicemodel.FS20Device"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.devicemodel.FS20Device"></a>org.universAAL.lddi.fs20.devicemodel.FS20Device</h3>
@@ -275,7 +275,7 @@
 <td>org.universAAL.lddi.fs20.devicemodel.FS20Device.write(String, String, Byte) explicitly invokes run on a thread (did you mean to start it instead?)</td>
 <td>MT_CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RU_INVOKE_RUN">RU_INVOKE_RUN</a></td>
-<td>182</td>
+<td>192</td>
 <td>High</td></tr></table></div><a name="org.universAAL.lddi.fs20.server.Activator"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.server.Activator"></a>org.universAAL.lddi.fs20.server.Activator</h3>
@@ -311,19 +311,19 @@
 <td>Possible null pointer dereference in org.universAAL.lddi.fs20.server.DeviceReader.readDevices(BundleContext, FHZ1000PC) due to return value of called method</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE</a></td>
-<td>75</td>
+<td>77</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.server.DeviceReader.readDevices(BundleContext, FHZ1000PC) may fail to clean up java.io.InputStream on checked exception</td>
 <td>EXPERIMENTAL</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE</a></td>
-<td>78</td>
+<td>80</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Exception is caught when Exception is not thrown in org.universAAL.lddi.fs20.server.DeviceReader.readDevices(BundleContext, FHZ1000PC)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#REC_CATCH_EXCEPTION">REC_CATCH_EXCEPTION</a></td>
-<td>180</td>
+<td>168</td>
 <td>Medium</td></tr></table></div>
       </div>
     </div>

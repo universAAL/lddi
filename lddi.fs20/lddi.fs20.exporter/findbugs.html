@@ -128,49 +128,49 @@
 <td>Dead store to objectClass in org.universAAL.lddi.fs20.exporter.Activator.serviceChanged(ServiceEvent)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE</a></td>
-<td>101</td>
+<td>96</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.fs20.exporter.Activator.context should be package protected</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_PKGPROTECT">MS_PKGPROTECT</a></td>
-<td>53</td>
+<td>52</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.exporter.Activator.mc should be package protected</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_PKGPROTECT">MS_PKGPROTECT</a></td>
-<td>155</td>
+<td>154</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Read of unwritten field thread in org.universAAL.lddi.fs20.exporter.Activator.stop(BundleContext)</td>
 <td>CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#NP_UNWRITTEN_FIELD">NP_UNWRITTEN_FIELD</a></td>
-<td>90</td>
+<td>87</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.exporter.Activator.start(BundleContext) explicitly invokes run on a thread (did you mean to start it instead?)</td>
 <td>MT_CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RU_INVOKE_RUN">RU_INVOKE_RUN</a></td>
-<td>85</td>
+<td>82</td>
 <td>High</td></tr>
 <tr class="b">
 <td>Switch statement found in org.universAAL.lddi.fs20.exporter.Activator.serviceChanged(ServiceEvent) where default case is missing</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SF_SWITCH_NO_DEFAULT">SF_SWITCH_NO_DEFAULT</a></td>
-<td>108</td>
+<td>102</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Write to static field org.universAAL.lddi.fs20.exporter.Activator.context from instance method org.universAAL.lddi.fs20.exporter.Activator.start(BundleContext)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>66</td>
+<td>65</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Unwritten field: org.universAAL.lddi.fs20.exporter.Activator.thread</td>
 <td>CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD</a></td>
-<td>90</td>
+<td>87</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.fs20.exporter.FS20ContextPublisher"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.exporter.FS20ContextPublisher"></a>org.universAAL.lddi.fs20.exporter.FS20ContextPublisher</h3>
@@ -185,7 +185,7 @@
 <td>Switch statement found in org.universAAL.lddi.fs20.exporter.FS20ContextPublisher.publishContextEvent(FS20Device, int) where default case is missing</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SF_SWITCH_NO_DEFAULT">SF_SWITCH_NO_DEFAULT</a></td>
-<td>88</td>
+<td>84</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.fs20.exporter.FS20Server"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.exporter.FS20Server"></a>org.universAAL.lddi.fs20.exporter.FS20Server</h3>
@@ -200,73 +200,73 @@
 <td>Primitive value is boxed and then immediately unboxed in org.universAAL.lddi.fs20.exporter.FS20Server._activateGong(String)</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#BX_BOXING_IMMEDIATELY_UNBOXED">BX_BOXING_IMMEDIATELY_UNBOXED</a></td>
-<td>410</td>
+<td>391</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Primitive value is boxed and then immediately unboxed in org.universAAL.lddi.fs20.exporter.FS20Server._startAnimation(String, Byte)</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#BX_BOXING_IMMEDIATELY_UNBOXED">BX_BOXING_IMMEDIATELY_UNBOXED</a></td>
-<td>376</td>
+<td>358</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Primitive value is boxed and then immediately unboxed in org.universAAL.lddi.fs20.exporter.FS20Server._turnOffFS20ST(String)</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#BX_BOXING_IMMEDIATELY_UNBOXED">BX_BOXING_IMMEDIATELY_UNBOXED</a></td>
-<td>481</td>
+<td>459</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Primitive value is boxed and then immediately unboxed in org.universAAL.lddi.fs20.exporter.FS20Server._turnOnFS20ST(String)</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#BX_BOXING_IMMEDIATELY_UNBOXED">BX_BOXING_IMMEDIATELY_UNBOXED</a></td>
-<td>446</td>
+<td>425</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.fs20.exporter.FS20Server._activateGong(String) invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOOLEAN_CTOR">DM_BOOLEAN_CTOR</a></td>
-<td>410</td>
+<td>391</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.exporter.FS20Server._startAnimation(String, Byte) invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOOLEAN_CTOR">DM_BOOLEAN_CTOR</a></td>
-<td>376</td>
+<td>358</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.fs20.exporter.FS20Server._turnOffFS20ST(String) invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOOLEAN_CTOR">DM_BOOLEAN_CTOR</a></td>
-<td>481</td>
+<td>459</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.exporter.FS20Server._turnOnFS20ST(String) invokes inefficient Boolean constructor; use Boolean.valueOf(...) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOOLEAN_CTOR">DM_BOOLEAN_CTOR</a></td>
-<td>446</td>
+<td>425</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Primitive boxed just to call toString in org.universAAL.lddi.fs20.exporter.FS20Server.handleCall(ServiceCall)</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_BOXED_PRIMITIVE_TOSTRING">DM_BOXED_PRIMITIVE_TOSTRING</a></td>
-<td>172</td>
+<td>161</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.exporter.FS20Server.handleCall(ServiceCall) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NUMBER_CTOR">DM_NUMBER_CTOR</a></td>
-<td>169</td>
+<td>160</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.fs20.exporter.FS20Server.initMap() invokes inefficient new Byte(byte) constructor; use Byte.valueOf(byte) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NUMBER_CTOR">DM_NUMBER_CTOR</a></td>
-<td>344</td>
+<td>327</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>org.universAAL.lddi.fs20.exporter.FS20Server.startAnimation(String, byte) invokes inefficient new Byte(byte) constructor; use Byte.valueOf(byte) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NUMBER_CTOR">DM_NUMBER_CTOR</a></td>
-<td>334</td>
+<td>316</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.fs20.exporter.ProvidedFS20Service"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.fs20.exporter.ProvidedFS20Service"></a>org.universAAL.lddi.fs20.exporter.ProvidedFS20Service</h3>
@@ -281,13 +281,13 @@
 <td>org.universAAL.lddi.fs20.exporter.ProvidedFS20Service.&lt;static initializer for ProvidedFS20Service&gt;() invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_NUMBER_CTOR">DM_NUMBER_CTOR</a></td>
-<td>210</td>
+<td>204</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>org.universAAL.lddi.fs20.exporter.ProvidedFS20Service.&lt;static initializer for ProvidedFS20Service&gt;() invokes inefficient new String(String) constructor</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DM_STRING_CTOR">DM_STRING_CTOR</a></td>
-<td>193</td>
+<td>190</td>
 <td>Medium</td></tr></table></div>
       </div>
     </div>

@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2010 - 2017 universAAL Consortium</copyright>
     <item>
       <title>File: 30,
-             Errors: 283,
-             Warnings: 65,
-             Infos: 514
+             Errors: 277,
+             Warnings: 6,
+             Infos: 262
       </title>
             <link>http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html</link>
       <description>
@@ -49,10 +49,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.TemperatureSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/TemperatureSensorWrapper.java</a>
                 </td>
                 <td>
-                  18
+                  11
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   9
@@ -63,10 +63,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.BlindActuatorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/BlindActuatorWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   7
@@ -77,10 +77,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.SwitchSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/SwitchSensorWrapper.java</a>
                 </td>
                 <td>
-                  14
+                  7
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   9
@@ -91,10 +91,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.LightswitchSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/LightswitchSensorWrapper.java</a>
                 </td>
                 <td>
-                  17
+                  10
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   9
@@ -105,13 +105,13 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.AbstractFloatCallee.java">org/universAAL/lddi/smarthome/exporter/devices/AbstractFloatCallee.java</a>
                 </td>
                 <td>
-                  26
+                  10
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  15
+                  13
                 </td>
               </tr>
                           <tr>
@@ -119,10 +119,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.CurtainControllerWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/CurtainControllerWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   9
@@ -133,13 +133,13 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.AbstractIntegerCallee.java">org/universAAL/lddi/smarthome/exporter/devices/AbstractIntegerCallee.java</a>
                 </td>
                 <td>
-                  26
+                  10
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  15
+                  13
                 </td>
               </tr>
                           <tr>
@@ -147,10 +147,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.CurtainSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/CurtainSensorWrapper.java</a>
                 </td>
                 <td>
-                  17
+                  10
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   9
@@ -161,10 +161,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.BlindControllerWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/BlindControllerWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   9
@@ -175,10 +175,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.SwitchControllerWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/SwitchControllerWrapper.java</a>
                 </td>
                 <td>
-                  13
+                  7
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   9
@@ -189,10 +189,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.PresenceSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/PresenceSensorWrapper.java</a>
                 </td>
                 <td>
-                  15
+                  8
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   9
@@ -203,10 +203,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.WaterflowSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/WaterflowSensorWrapper.java</a>
                 </td>
                 <td>
-                  15
+                  8
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   9
@@ -217,10 +217,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.DimmerControllerWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/DimmerControllerWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   9
@@ -231,10 +231,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.DimmerActuatorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/DimmerActuatorWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   7
@@ -245,13 +245,13 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee.java">org/universAAL/lddi/smarthome/exporter/devices/AbstractStatusValueCallee.java</a>
                 </td>
                 <td>
-                  26
+                  10
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  17
+                  15
                 </td>
               </tr>
                           <tr>
@@ -259,10 +259,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.SwitchActuatorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/SwitchActuatorWrapper.java</a>
                 </td>
                 <td>
-                  13
+                  7
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   7
@@ -273,10 +273,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.ContactSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/ContactSensorWrapper.java</a>
                 </td>
                 <td>
-                  15
+                  8
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   9
@@ -287,10 +287,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.LightswitchActuatorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/LightswitchActuatorWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   7
@@ -301,7 +301,7 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.Receiver.java">org/universAAL/lddi/smarthome/exporter/Receiver.java</a>
                 </td>
                 <td>
-                  19
+                  1
                 </td>
                 <td>
                   0
@@ -315,10 +315,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.LightdimmerActuatorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/LightdimmerActuatorWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   7
@@ -329,7 +329,7 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.Activator.java">org/universAAL/lddi/smarthome/exporter/Activator.java</a>
                 </td>
                 <td>
-                  33
+                  2
                 </td>
                 <td>
                   1
@@ -343,10 +343,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.LightdimmerSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/LightdimmerSensorWrapper.java</a>
                 </td>
                 <td>
-                  17
+                  10
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   9
@@ -357,10 +357,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.BlindSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/BlindSensorWrapper.java</a>
                 </td>
                 <td>
-                  17
+                  10
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   9
@@ -371,10 +371,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.LightdimmerControllerWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   9
@@ -385,10 +385,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.CurtainActuatorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/CurtainActuatorWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   7
@@ -399,7 +399,7 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.GenericDevice.java">org/universAAL/lddi/smarthome/exporter/devices/GenericDevice.java</a>
                 </td>
                 <td>
-                  11
+                  8
                 </td>
                 <td>
                   0
@@ -413,10 +413,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.WindowSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/WindowSensorWrapper.java</a>
                 </td>
                 <td>
-                  15
+                  8
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   9
@@ -427,10 +427,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.DimmerSensorWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/DimmerSensorWrapper.java</a>
                 </td>
                 <td>
-                  17
+                  10
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   9
@@ -441,7 +441,7 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.AbstractCallee.java">org/universAAL/lddi/smarthome/exporter/devices/AbstractCallee.java</a>
                 </td>
                 <td>
-                  10
+                  7
                 </td>
                 <td>
                   1
@@ -455,10 +455,10 @@ under the License.
                   <a href="http://lddi/lddi.smarthome/lddi.smarthome.exporter//checkstyle.html#org.universAAL.lddi.smarthome.exporter.devices.LightswitchControllerWrapper.java">org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</a>
                 </td>
                 <td>
-                  16
+                  10
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   9

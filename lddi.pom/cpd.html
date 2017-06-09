@@ -130,68 +130,64 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>			BlindController.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-	try {
-	    ItemCommandEvent itemCommandEvent;
-	    if (value.intValue() == 0) {
-		itemCommandEvent = ItemEventFactory
-			.createCommandEvent(shDeviceName, UpDownType.DOWN);
-	    } else if (value.intValue() == 100) {
-		itemCommandEvent = ItemEventFactory
-			.createCommandEvent(shDeviceName, UpDownType.UP);
-	    } else {
-		itemCommandEvent = ItemEventFactory.createCommandEvent(
-			shDeviceName, PercentType.valueOf(value.toString()));
-	    }
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, BlindController.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
 	}
-	return true;
-    }
 
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof UpDownType) {
-		// TODO Anything?
-	    }
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
 	}
-	if (theValue != null) {</pre></div></td></tr></table>
+
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+		try {
+			ItemCommandEvent itemCommandEvent;
+			if (value.intValue() == 0) {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName, UpDownType.DOWN);
+			} else if (value.intValue() == 100) {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName, UpDownType.UP);
+			} else {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+						PercentType.valueOf(value.toString()));
+			}
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof UpDownType) {
+				// TODO Anything?
+			}
+		}
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -200,65 +196,62 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>87</td></tr>
+<td>84</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>			DimmerController.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-
-	try {
-	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName,
-			    PercentType.valueOf(value.toString()));
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, DimmerController.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
 	}
-	return true;
-    }
 
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof OnOffType) {
-		if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
-		    theValue = Integer.valueOf(0);
-		} else {
-		    theValue = Integer.valueOf(100);
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
+
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+
+		try {
+			ItemCommandEvent itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+					PercentType.valueOf(value.toString()));
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
 		}
-	    }
+		return true;
 	}
-	if (theValue != null) {</pre></div></td></tr></table>
+
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof OnOffType) {
+				if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
+					theValue = Integer.valueOf(0);
+				} else {
+					theValue = Integer.valueOf(100);
+				}
+			}
+		}
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -267,54 +260,53 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>83</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>81</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>			DimmerSensor.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	return false;
-    }
-
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof OnOffType) {
-		if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
-		    theValue = Integer.valueOf(0);
-		} else {
-		    theValue = Integer.valueOf(100);
-		}
-	    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, DimmerSensor.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
 	}
-	if (theValue != null) {</pre></div></td></tr></table>
+
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
+
+	@Override
+	public boolean executeSet(Integer value) {
+		return false;
+	}
+
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof OnOffType) {
+				if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
+					theValue = Integer.valueOf(0);
+				} else {
+					theValue = Integer.valueOf(100);
+				}
+			}
+		}
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -323,62 +315,58 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>82</td></tr>
+<td>78</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>82</td></tr>
+<td>80</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>			BlindActuator.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-	try {
-	    ItemCommandEvent itemCommandEvent;
-	    if (value.intValue() == 0) {
-		itemCommandEvent = ItemEventFactory
-			.createCommandEvent(shDeviceName, UpDownType.DOWN);
-	    } else if (value.intValue() == 100) {
-		itemCommandEvent = ItemEventFactory
-			.createCommandEvent(shDeviceName, UpDownType.UP);
-	    } else {
-		itemCommandEvent = ItemEventFactory.createCommandEvent(
-			shDeviceName, PercentType.valueOf(value.toString()));
-	    }
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, BlindActuator.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {
-	// In theory this is not gonna happen - just keep it to satisfy
-	// interface
-    }
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
 
-    public void unregister() {
-	super.unregister();
-    }
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+		try {
+			ItemCommandEvent itemCommandEvent;
+			if (value.intValue() == 0) {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName, UpDownType.DOWN);
+			} else if (value.intValue() == 100) {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName, UpDownType.UP);
+			} else {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+						PercentType.valueOf(value.toString()));
+			}
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {
+		// In theory this is not gonna happen - just keep it to satisfy
+		// interface
+	}
+
+	public void unregister() {
+		super.unregister();
+	}
 
 }</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
@@ -425,20 +413,20 @@
 	@Override
 	public Object addingService(ServiceReference reference) {
 		Object ret = super.addingService(reference);
-		log(LOG_DEBUG,&quot;LogService added!&quot;);
+		log(LOG_DEBUG, &quot;LogService added!&quot;);
 		return ret;
 	}
 
 	@Override
 	public void modifiedService(ServiceReference reference, Object service) {
 		super.modifiedService(reference, service);
-		log(LOG_DEBUG,&quot;LogService modified!&quot;);
+		log(LOG_DEBUG, &quot;LogService modified!&quot;);
 	}
 
 	@Override
 	public void removedService(ServiceReference reference, Object service) {
 		super.removedService(reference, service);
-		log(LOG_DEBUG,&quot;LogService removed!&quot;);
+		log(LOG_DEBUG, &quot;LogService removed!&quot;);
 	}
 
 	public LogTracker(BundleContext context) {
@@ -457,9 +445,9 @@
 		log(sr, level, message, null);
 	}
 
-	public void log(ServiceReference sr, int level, String message,
-			Throwable exception) {
-		LogService log = (LogService) getService(); //obtain optional, unary LogService
+	public void log(ServiceReference sr, int level, String message, Throwable exception) {
+		LogService log = (LogService) getService(); // obtain optional, unary
+													// LogService
 		if (log != null) {
 			log.log(sr, level, message, exception);
 		}
@@ -481,24 +469,30 @@
 <td>26</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>	public Aarq10407APDUtest(){
-		
-		apdu = new byte[]{
-				(byte)0xE2, (byte)0x00, 						//choice APDU
-				(byte)0x00, (byte)0x32, 						//length
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00, // association version
-				(byte)0x00, (byte)0x01, (byte)0x00, (byte)0x2A, // data protocol list = 1, length 42
-				(byte)0x50, (byte)0x79,  						// data protocol id 20601
-				(byte)0x00, (byte)0x26,							// data proto info length
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00, // protocol version
-				(byte)0xA0, (byte)0x00, 						// encoding rules (MDER)
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00,	// nomenclature version
-				(byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, // functional units
-				(byte)0x00, (byte)0x80, (byte)0x00, (byte)0x00, // sysType (agent)
-				(byte)0x00, (byte)0x08, 						// sys-id length (8)
-				(byte)0x11, (byte)0x22, (byte)0x33, (byte)0x44, // sys-id
-				(byte)0x55, (byte)0x66, (byte)0x77, (byte)0x88,
-				(byte)0x02, (byte)0xBC, 						 //dev config id (standard 700 -&gt; blood pressure)</pre></div></td></tr></table>
+<pre>	public Aarq10407APDUtest() {
+
+		apdu = new byte[] { (byte) 0xE2, (byte) 0x00, // choice APDU
+				(byte) 0x00, (byte) 0x32, // length
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // association
+																	// version
+				(byte) 0x00, (byte) 0x01, (byte) 0x00, (byte) 0x2A, // data
+																	// protocol
+																	// list = 1,
+																	// length 42
+				(byte) 0x50, (byte) 0x79, // data protocol id 20601
+				(byte) 0x00, (byte) 0x26, // data proto info length
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // protocol
+																	// version
+				(byte) 0xA0, (byte) 0x00, // encoding rules (MDER)
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // nomenclature
+																	// version
+				(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, // functional
+																	// units
+				(byte) 0x00, (byte) 0x80, (byte) 0x00, (byte) 0x00, // sysType
+																	// (agent)
+				(byte) 0x00, (byte) 0x08, // sys-id length (8)
+				(byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44, // sys-id
+				(byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88, (byte) 0x02, (byte) 0xBC, // dev</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -514,24 +508,30 @@
 <td>26</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>	public Aarq10415APDUtest(){
-		
-		apdu = new byte[]{
-				(byte)0xE2, (byte)0x00, 						//choice APDU
-				(byte)0x00, (byte)0x32, 						//length
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00, // association version
-				(byte)0x00, (byte)0x01, (byte)0x00, (byte)0x2A, // data protocol list = 1, length 42
-				(byte)0x50, (byte)0x79,  						// data protocol id 20601
-				(byte)0x00, (byte)0x26,							// data proto info length
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00, // protocol version
-				(byte)0x80, (byte)0x00, 						// encoding rules (MDER)
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00,	// nomenclature version
-				(byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, // functional units
-				(byte)0x00, (byte)0x80, (byte)0x00, (byte)0x00, // sysType (agent)
-				(byte)0x00, (byte)0x08, 						// sys-id length (8)
-				(byte)0x11, (byte)0x22, (byte)0x33, (byte)0x44, // sys-id
-				(byte)0x55, (byte)0x66, (byte)0x77, (byte)0x88,
-				(byte)0x05, (byte)0xDC, 						 //dev config id (standard 700 -&gt; blood pressure)</pre></div></td></tr></table>
+<pre>	public Aarq10415APDUtest() {
+
+		apdu = new byte[] { (byte) 0xE2, (byte) 0x00, // choice APDU
+				(byte) 0x00, (byte) 0x32, // length
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // association
+																	// version
+				(byte) 0x00, (byte) 0x01, (byte) 0x00, (byte) 0x2A, // data
+																	// protocol
+																	// list = 1,
+																	// length 42
+				(byte) 0x50, (byte) 0x79, // data protocol id 20601
+				(byte) 0x00, (byte) 0x26, // data proto info length
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // protocol
+																	// version
+				(byte) 0x80, (byte) 0x00, // encoding rules (MDER)
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // nomenclature
+																	// version
+				(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, // functional
+																	// units
+				(byte) 0x00, (byte) 0x80, (byte) 0x00, (byte) 0x00, // sysType
+																	// (agent)
+				(byte) 0x00, (byte) 0x08, // sys-id length (8)
+				(byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44, // sys-id
+				(byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88, (byte) 0x05, (byte) 0xDC, // dev</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -580,20 +580,20 @@
 	@Override
 	public Object addingService(ServiceReference reference) {
 		Object ret = super.addingService(reference);
-		log(LOG_DEBUG,&quot;LogService added!&quot;);
+		log(LOG_DEBUG, &quot;LogService added!&quot;);
 		return ret;
 	}
 
 	@Override
 	public void modifiedService(ServiceReference reference, Object service) {
 		super.modifiedService(reference, service);
-		log(LOG_DEBUG,&quot;LogService modified!&quot;);
+		log(LOG_DEBUG, &quot;LogService modified!&quot;);
 	}
 
 	@Override
 	public void removedService(ServiceReference reference, Object service) {
 		super.removedService(reference, service);
-		log(LOG_DEBUG,&quot;LogService removed!&quot;);
+		log(LOG_DEBUG, &quot;LogService removed!&quot;);
 	}
 
 	public LogTracker(BundleContext context) {
@@ -612,9 +612,9 @@
 		log(sr, level, message, null);
 	}
 
-	public void log(ServiceReference sr, int level, String message,
-			Throwable exception) {
-		LogService log = (LogService) getService(); //obtain optional, unary LogService
+	public void log(ServiceReference sr, int level, String message, Throwable exception) {
+		LogService log = (LogService) getService(); // obtain optional, unary
+													// LogService
 		if (log != null) {
 			log.log(sr, level, message, exception);
 		}</pre></div></td></tr></table>
@@ -626,58 +626,55 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/ContactSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>69</td></tr>
+<td>66</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/PresenceSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>69</td></tr>
+<td>66</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/WaterflowSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>69</td></tr>
+<td>66</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/WindowSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>69</td></tr>
+<td>66</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			ContactSensor.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
-
-    @Override
-    public StatusValue executeGet() {
-	OpenClosedType value = (OpenClosedType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) OpenClosedType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return (value.compareTo(OpenClosedType.CLOSED) == 0)
-		? StatusValue.Activated : StatusValue.NotActivated;
-    }
-
-    @Override
-    public boolean executeSet(StatusValue value) {
-	return false;// Sensor, cannot set
-    }
-
-    public void publish(Event event) {
-	Boolean theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof OpenClosedType) {
-		theValue = Boolean.valueOf(((OpenClosedType) s)
-			.compareTo(OpenClosedType.CLOSED) == 0);
-	    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, ContactSensor.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
 	}
-	if (theValue != null) {</pre></div></td></tr></table>
+
+	@Override
+	public StatusValue executeGet() {
+		OpenClosedType value = (OpenClosedType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) OpenClosedType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return (value.compareTo(OpenClosedType.CLOSED) == 0) ? StatusValue.Activated : StatusValue.NotActivated;
+	}
+
+	@Override
+	public boolean executeSet(StatusValue value) {
+		return false;// Sensor, cannot set
+	}
+
+	public void publish(Event event) {
+		Boolean theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof OpenClosedType) {
+				theValue = Boolean.valueOf(((OpenClosedType) s).compareTo(OpenClosedType.CLOSED) == 0);
+			}
+		}
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -686,50 +683,49 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>81</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>83</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			BlindSensor.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	return false;
-    }
-
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof UpDownType) {
-		// TODO Anything?
-	    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, BlindSensor.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
 	}
-	if (theValue != null) {</pre></div></td></tr></table>
+
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
+
+	@Override
+	public boolean executeSet(Integer value) {
+		return false;
+	}
+
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof UpDownType) {
+				// TODO Anything?
+			}
+		}
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -738,48 +734,48 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>114</td></tr>
+<td>108</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>114</td></tr>
+<td>108</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			    PercentType.valueOf(value.toString()));
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
-	}
-	return true;
-    }
-
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof OnOffType) {
-		if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
-		    theValue = Integer.valueOf(0);
-		} else {
-		    theValue = Integer.valueOf(100);
+<pre>					PercentType.valueOf(value.toString()));
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
 		}
-	    }
+		return true;
 	}
-	if (theValue != null) {
-	    LightController d = (LightController) ontDevice;
-	    d.setValue(theValue.intValue());
-	    cp.publish(new ContextEvent(d, LightController.PROP_HAS_VALUE));
-	} // else dont bother TODO log
-    }
 
-    public void unregister() {
-	super.unregister();
-	cp.close();
-    }
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof OnOffType) {
+				if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
+					theValue = Integer.valueOf(0);
+				} else {
+					theValue = Integer.valueOf(100);
+				}
+			}
+		}
+		if (theValue != null) {
+			LightController d = (LightController) ontDevice;
+			d.setValue(theValue.intValue());
+			cp.publish(new ContextEvent(d, LightController.PROP_HAS_VALUE));
+		} // else dont bother TODO log
+	}
+
+	public void unregister() {
+		super.unregister();
+		cp.close();
+	}
 
 }</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
@@ -790,59 +786,55 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>82</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>91</td></tr>
+<td>89</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>91</td></tr>
+<td>89</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-	try {
-	    ItemCommandEvent itemCommandEvent;
-	    if (value.intValue() == 0) {
-		itemCommandEvent = ItemEventFactory
-			.createCommandEvent(shDeviceName, UpDownType.DOWN);
-	    } else if (value.intValue() == 100) {
-		itemCommandEvent = ItemEventFactory
-			.createCommandEvent(shDeviceName, UpDownType.UP);
-	    } else {
-		itemCommandEvent = ItemEventFactory.createCommandEvent(
-			shDeviceName, PercentType.valueOf(value.toString()));
-	    }
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {</pre></div></td></tr></table>
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
+
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+		try {
+			ItemCommandEvent itemCommandEvent;
+			if (value.intValue() == 0) {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName, UpDownType.DOWN);
+			} else if (value.intValue() == 100) {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName, UpDownType.UP);
+			} else {
+				itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+						PercentType.valueOf(value.toString()));
+			}
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -851,54 +843,53 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>81</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>83</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>83</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>81</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			BlindSensor.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, BlindSensor.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+	}
 
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
 
-    @Override
-    public boolean executeSet(Integer value) {
-	return false;
-    }
+	@Override
+	public boolean executeSet(Integer value) {
+		return false;
+	}
 
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof UpDownType) {</pre></div></td></tr></table>
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof UpDownType) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -907,74 +898,59 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p20601/ActionArgumentSimple.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>38</td></tr>
+<td>36</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p20601/ActionResultSimple.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>38</td></tr>
+<td>36</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    public class ActionArgumentSimple implements IASN1PreparedElement {
-            
-        @ASN1Element ( name = &quot;obj-handle&quot;, isOptional =  false , hasTag =  false  , hasDefaultValue =  false  )
-    
+<pre>public class ActionArgumentSimple implements IASN1PreparedElement {
+
+	@ASN1Element(name = &quot;obj-handle&quot;, isOptional = false, hasTag = false, hasDefaultValue = false)
+
 	private HANDLE obj_handle = null;
-                
-  
-        @ASN1Element ( name = &quot;action-type&quot;, isOptional =  false , hasTag =  false  , hasDefaultValue =  false  )
-    
+
+	@ASN1Element(name = &quot;action-type&quot;, isOptional = false, hasTag = false, hasDefaultValue = false)
+
 	private OID_Type action_type = null;
-                
-  @ASN1Any( name = &quot;&quot; )
-    
-        @ASN1Element ( name = &quot;action-info-args&quot;, isOptional =  false , hasTag =  false  , hasDefaultValue =  false  )
-    
+
+	@ASN1Any(name = &quot;&quot;)
+
+	@ASN1Element(name = &quot;action-info-args&quot;, isOptional = false, hasTag = false, hasDefaultValue = false)
+
 	private byte[] action_info_args = null;
-                
-  
-        
-        public HANDLE getObj_handle () {
-            return this.obj_handle;
-        }
 
-        
+	public HANDLE getObj_handle() {
+		return this.obj_handle;
+	}
 
-        public void setObj_handle (HANDLE value) {
-            this.obj_handle = value;
-        }
-        
-  
-        
-        public OID_Type getAction_type () {
-            return this.action_type;
-        }
+	public void setObj_handle(HANDLE value) {
+		this.obj_handle = value;
+	}
 
-        
+	public OID_Type getAction_type() {
+		return this.action_type;
+	}
 
-        public void setAction_type (OID_Type value) {
-            this.action_type = value;
-        }
-        
-  
-        
-        public byte[] getAction_info_args () {
-            return this.action_info_args;
-        }
+	public void setAction_type(OID_Type value) {
+		this.action_type = value;
+	}
 
-        
+	public byte[] getAction_info_args() {
+		return this.action_info_args;
+	}
 
-        public void setAction_info_args (byte[] value) {
-            this.action_info_args = value;
-        }
-        
-  
-                    
-        
-        public void initWithDefaults() {
-            
-        }
+	public void setAction_info_args(byte[] value) {
+		this.action_info_args = value;
+	}
 
-        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(ActionArgumentSimple.class);</pre></div></td></tr></table>
+	public void initWithDefaults() {
+
+	}
+
+	private static IASN1PreparedElementData preparedData = CoderFactory.getInstance()
+			.newPreparedElementData(ActionArgumentSimple.class);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -983,54 +959,51 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>81</td></tr>
+<td>79</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>81</td></tr>
+<td>77</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			DimmerActuator.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-
-	try {
-	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName,
-			    PercentType.valueOf(value.toString()));
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, DimmerActuator.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {
-	// Kept for the interface, but it will not be called
-    }
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
 
-    public void unregister() {
-	super.unregister();
-    }
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+
+		try {
+			ItemCommandEvent itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+					PercentType.valueOf(value.toString()));
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {
+		// Kept for the interface, but it will not be called
+	}
+
+	public void unregister() {
+		super.unregister();
+	}
 
 }</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
@@ -1041,59 +1014,61 @@
 <tr class="a">
 <td>org/universAAL/lddi/knx/driver/KnxDpt1Driver.java</td>
 <td>universAAL LDDI KNX Exporter</td>
-<td>95</td></tr>
+<td>90</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/KnxDpt1RefinementDriver.java</td>
 <td>universAAL LDDI KNX Refinement driver for Datapoint Type 1.* to ISO 11073-10471 device</td>
-<td>136</td></tr>
+<td>134</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>			this.logger.log(LogService.LOG_INFO, &quot;Driver for KNX-DPT 1.001 registered!&quot;);
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
 	 */
 	public int match(ServiceReference reference) throws Exception {
 		// reference = groupDevice service
 		int matchValue = Device.MATCH_NONE;
 		KnxGroupDeviceCategory groupDeviceCategory = null;
-		
+
 		try {
-			groupDeviceCategory = KnxGroupDeviceCategoryUtil.getCategory(
-					(String)reference.getProperty(Constants.DEVICE_CATEGORY)	);
+			groupDeviceCategory = KnxGroupDeviceCategoryUtil
+					.getCategory((String) reference.getProperty(Constants.DEVICE_CATEGORY));
 		} catch (ClassCastException e) {
-			this.logger.log(LogService.LOG_DEBUG,&quot;Could not cast DEVICE_CATEGORY of requesting&quot;
-					+ &quot; device service &quot; + reference.getProperty(org.osgi.framework.Constants.SERVICE_ID)
-					+ &quot; to String. No match!&quot;);
+			this.logger.log(LogService.LOG_DEBUG, &quot;Could not cast DEVICE_CATEGORY of requesting&quot; + &quot; device service &quot;
+					+ reference.getProperty(org.osgi.framework.Constants.SERVICE_ID) + &quot; to String. No match!&quot;);
 			return matchValue;
 		}
-		
-		
+
 		// match check
 		// more possible properties to match: description, serial, id
-		if ( groupDeviceCategory == MY_KNX_DEVICE_CATEGORY ) {
+		if (groupDeviceCategory == MY_KNX_DEVICE_CATEGORY) {
 			matchValue = IKnxDpt1.MATCH_CLASS;
 		} else {
-			this.logger.log(LogService.LOG_DEBUG, &quot;Requesting device service &quot; + groupDeviceCategory +
-					&quot; doesn't match with driver. No match!&quot;);
+			this.logger.log(LogService.LOG_DEBUG,
+					&quot;Requesting device service &quot; + groupDeviceCategory + &quot; doesn't match with driver. No match!&quot;);
 		}
-		
-		return matchValue; //must be &gt; 0 to match
+
+		return matchValue; // must be &gt; 0 to match
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.ServiceReference)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.
+	 * ServiceReference)
 	 */
 	public String attach(ServiceReference reference) throws Exception {
 		// get groupAddress
 		KnxDpt1GroupDevice knxDev = (KnxDpt1GroupDevice) this.context.getService(reference);
 
-		if  ( this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress()) ) {
-			this.logger.log(LogService.LOG_WARNING, &quot;There is already a driver instance available for &quot; +
-					&quot; the groupDevice &quot; + knxDev.getGroupAddress());
+		if (this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress())) {
+			this.logger.log(LogService.LOG_WARNING, &quot;There is already a driver instance available for &quot;
+					+ &quot; the groupDevice &quot; + knxDev.getGroupAddress());
 			return &quot;driver already exists for this groupDevice!&quot;;
 		}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
@@ -1104,46 +1079,46 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>120</td></tr>
+<td>114</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>120</td></tr>
+<td>114</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>109</td></tr>
+<td>103</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>    }
+<pre>	}
 
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof OnOffType) {
-		if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
-		    theValue = Integer.valueOf(0);
-		} else {
-		    theValue = Integer.valueOf(100);
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof OnOffType) {
+				if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
+					theValue = Integer.valueOf(0);
+				} else {
+					theValue = Integer.valueOf(100);
+				}
+			}
 		}
-	    }
+		if (theValue != null) {
+			LightController d = (LightController) ontDevice;
+			d.setValue(theValue.intValue());
+			cp.publish(new ContextEvent(d, LightController.PROP_HAS_VALUE));
+		} // else dont bother TODO log
 	}
-	if (theValue != null) {
-	    LightController d = (LightController) ontDevice;
-	    d.setValue(theValue.intValue());
-	    cp.publish(new ContextEvent(d, LightController.PROP_HAS_VALUE));
-	} // else dont bother TODO log
-    }
 
-    public void unregister() {
-	super.unregister();
-	cp.close();
-    }
+	public void unregister() {
+		super.unregister();
+		cp.close();
+	}
 
 }</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
@@ -1154,47 +1129,39 @@
 <tr class="b">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>74</td></tr>
+<td>72</td></tr>
 <tr class="a">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>79</td></tr>
+<td>77</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>		&quot;DimmerLightCallee&quot;, new String[] { &quot;Ready to subscribe&quot; },
-		null);
-	zbDevice = serv;
+<pre>		LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class, &quot;DimmerLightCallee&quot;,
+				new String[] { &quot;Ready to subscribe&quot; }, null);
+		zbDevice = serv;
 
-	// Info
-	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
-		.replace(&quot;\&quot;&quot;, &quot;&quot;);
-	String deviceURI = NAMESPACE + &quot;actuator&quot; + deviceSuffix;
-	ontologyDevice = new LightActuator(deviceURI);
-	// Commissioning
-	String locationSuffix = Activator.getProperties().getProperty(
-		deviceSuffix);
-	if (locationSuffix != null
-		&amp;&amp; !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
-	    ontologyDevice
-		    .setLocation(new Room(
-			    Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-				    + locationSuffix));
-	} else {
-	    Properties prop = Activator.getProperties();
-	    prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
-	    Activator.setProperties(prop);
-	}
-	// Serv reg
-	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
-		ontologyDevice);
-	this.addNewServiceProfiles(newProfiles);
-	// Context reg
-	ContextProvider info = new ContextProvider(NAMESPACE
-		+ &quot;zbLightingContextProvider&quot;);
-	info.setType(ContextProviderType.controller);
-	cp = new DefaultContextPublisher(context, info);
-	// ZB reg
-	if (zbDevice.getLevelControl().subscribe(this)) {</pre></div></td></tr></table>
+		// Info
+		String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier().replace(&quot;\&quot;&quot;, &quot;&quot;);
+		String deviceURI = NAMESPACE + &quot;actuator&quot; + deviceSuffix;
+		ontologyDevice = new LightActuator(deviceURI);
+		// Commissioning
+		String locationSuffix = Activator.getProperties().getProperty(deviceSuffix);
+		if (locationSuffix != null &amp;&amp; !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
+			ontologyDevice.setLocation(new Room(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + locationSuffix));
+		} else {
+			Properties prop = Activator.getProperties();
+			prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
+			Activator.setProperties(prop);
+		}
+		// Serv reg
+		newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI, ontologyDevice);
+		this.addNewServiceProfiles(newProfiles);
+		// Context reg
+		ContextProvider info = new ContextProvider(NAMESPACE + &quot;zbLightingContextProvider&quot;);
+		info.setType(ContextProviderType.controller);
+		cp = new DefaultContextPublisher(context, info);
+		// ZB reg
+		if (zbDevice.getLevelControl().subscribe(this)) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1203,44 +1170,41 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>85</td></tr>
+<td>81</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>92</td></tr>
+<td>89</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public Integer executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return (value.compareTo(OnOffType.ON) == 0) ? Integer.valueOf(100)
-		: Integer.valueOf(0);
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-
-	try {
-	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName, value.intValue() == 0
-			    ? OnOffType.OFF : OnOffType.ON);
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {</pre></div></td></tr></table>
+	@Override
+	public Integer executeGet() {
+		OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return (value.compareTo(OnOffType.ON) == 0) ? Integer.valueOf(100) : Integer.valueOf(0);
+	}
+
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+
+		try {
+			ItemCommandEvent itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+					value.intValue() == 0 ? OnOffType.OFF : OnOffType.ON);
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1249,45 +1213,41 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/SwitchActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>70</td></tr>
+<td>68</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/SwitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>74</td></tr>
+<td>72</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public StatusValue executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated
-		: StatusValue.NotActivated;
-    }
-
-    @Override
-    public boolean executeSet(StatusValue value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-
-	try {
-	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName,
-			    value.equals(StatusValue.Activated) ? OnOffType.ON
-				    : OnOffType.OFF);
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {</pre></div></td></tr></table>
+	@Override
+	public StatusValue executeGet() {
+		OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated : StatusValue.NotActivated;
+	}
+
+	@Override
+	public boolean executeSet(StatusValue value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+
+		try {
+			ItemCommandEvent itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+					value.equals(StatusValue.Activated) ? OnOffType.ON : OnOffType.OFF);
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1300,27 +1260,20 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>90</td></tr>
+<td>71</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>				(byte)0x15, (byte)0x02,	(byte)0x16, (byte)0x00,
-				(byte)0x09, (byte)0x96,							// Object 3: Type: Unit
-				(byte)0x00, (byte)0x02,							// Length
-				(byte)0x06, (byte)0xC3,							// Kg.
-				
+<pre>				(byte) 0x15, (byte) 0x02, (byte) 0x16, (byte) 0x00, (byte) 0x09, (byte) 0x96, // Object
+																								// 3:
+																								// Type:
+																								// Unit
+				(byte) 0x00, (byte) 0x02, // Length
+				(byte) 0x06, (byte) 0xC3, // Kg.
+
 				// Measure 2
-				(byte)0x00, (byte)0x01,
-				(byte)0x00, (byte)0x03,
-				(byte)0x00, (byte)0x1A,
-				(byte)0x0A, (byte)0x56,
-				(byte)0x00, (byte)0x04,
-				(byte)0xFE, (byte)0x00,
-				(byte)0x1C, (byte)0x66,
-				(byte)0x09, (byte)0x90,
-				(byte)0x00, (byte)0x08,
-				(byte)0x20, (byte)0x12,
-				(byte)0x05, (byte)0x08,
-				(byte)0x15, (byte)0x04,</pre></div></td></tr></table>
+				(byte) 0x00, (byte) 0x01, (byte) 0x00, (byte) 0x03, (byte) 0x00, (byte) 0x1A, (byte) 0x0A, (byte) 0x56,
+				(byte) 0x00, (byte) 0x04, (byte) 0xFE, (byte) 0x00, (byte) 0x1C, (byte) 0x66, (byte) 0x09, (byte) 0x90,
+				(byte) 0x00, (byte) 0x08, (byte) 0x20, (byte) 0x12, (byte) 0x05, (byte) 0x08, (byte) 0x15, (byte) 0x04,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1329,31 +1282,19 @@
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>72</td></tr>
+<td>65</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>108</td></tr>
+<td>77</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>				(byte)0x12, (byte)0x00,
-				(byte)0x09, (byte)0x96,
-				(byte)0x00, (byte)0x02,
-				(byte)0x06, (byte)0xC3,
-				
+<pre>				(byte) 0x12, (byte) 0x00, (byte) 0x09, (byte) 0x96, (byte) 0x00, (byte) 0x02, (byte) 0x06, (byte) 0xC3,
+
 				// Measure 3
-				(byte)0x00, (byte)0x01,
-				(byte)0x00, (byte)0x03,
-				(byte)0x00, (byte)0x1A,
-				(byte)0x0A, (byte)0x56,
-				(byte)0x00, (byte)0x04,
-				(byte)0xFE, (byte)0x00,
-				(byte)0x1C, (byte)0x5C,
-				(byte)0x09, (byte)0x90,
-				(byte)0x00, (byte)0x08,
-				(byte)0x20, (byte)0x12,
-				(byte)0x05, (byte)0x08,
-				(byte)0x15, (byte)0x17,</pre></div></td></tr></table>
+				(byte) 0x00, (byte) 0x01, (byte) 0x00, (byte) 0x03, (byte) 0x00, (byte) 0x1A, (byte) 0x0A, (byte) 0x56,
+				(byte) 0x00, (byte) 0x04, (byte) 0xFE, (byte) 0x00, (byte) 0x1C, (byte) 0x5C, (byte) 0x09, (byte) 0x90,
+				(byte) 0x00, (byte) 0x08, (byte) 0x20, (byte) 0x12, (byte) 0x05, (byte) 0x08, (byte) 0x15, (byte) 0x17,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1390,15 +1331,15 @@
 <tr class="a">
 <td>org/universAAL/lddi/knx/networkdriver/util/LogTracker.java</td>
 <td>universAAL LDDI KNX network driver</td>
-<td>51</td></tr>
+<td>52</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/knx/refinementdriver/dpt1/activityhub/util/LogTracker.java</td>
 <td>universAAL LDDI KNX Refinement driver for Datapoint Type 1.* to ISO 11073-10471 device</td>
-<td>51</td></tr>
+<td>53</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		super.removedService(reference, service);
-		log(LOG_DEBUG,&quot;LogService removed!&quot;);
+		log(LOG_DEBUG, &quot;LogService removed!&quot;);
 	}
 
 	public LogTracker(BundleContext context) {
@@ -1417,9 +1358,9 @@
 		log(sr, level, message, null);
 	}
 
-	public void log(ServiceReference sr, int level, String message,
-			Throwable exception) {
-		LogService log = (LogService) getService(); //obtain optional, unary LogService
+	public void log(ServiceReference sr, int level, String message, Throwable exception) {
+		LogService log = (LogService) getService(); // obtain optional, unary
+													// LogService
 		if (log != null) {
 			log.log(sr, level, message, exception);
 		}
@@ -1434,33 +1375,33 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/mder/EncoderMDER.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>215</td></tr>
+<td>208</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/org/bn/coders/ber/BEREncoder.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>244</td></tr>
+<td>226</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	public int encodeSequenceOf(Object object, OutputStream stream,
-			ElementInfo elementInfo) throws Exception {
-		
+<pre>	public int encodeSequenceOf(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception {
+
 		int resultSize = 0;
-        Object[] collection = ((java.util.Collection&lt;Object&gt;)object).toArray();
-        int sizeOfCollection = 0;
-		
-        for(int i=0;i&lt;collection.length;i++) {
-        	// process each element of the array
-        	// we have to know which class is it, and encode it separately.
-        	 Object obj = collection[collection.length - 1 - i];
-             ElementInfo info = new ElementInfo();
-             info.setAnnotatedClass(obj.getClass());
-             info.setParentAnnotated(elementInfo.getAnnotatedClass());
-             if(elementInfo.hasPreparedInfo()) {
-                 ASN1SequenceOfMetadata seqOfMeta = (ASN1SequenceOfMetadata)elementInfo.getPreparedInfo().getTypeMetadata();
-                 info.setPreparedInfo( seqOfMeta.getItemClassMetadata() );
-             }
-             sizeOfCollection+=encodeClassType(obj,stream,info);
-         }
+		Object[] collection = ((java.util.Collection&lt;Object&gt;) object).toArray();
+		int sizeOfCollection = 0;
+
+		for (int i = 0; i &lt; collection.length; i++) {
+			// process each element of the array
+			// we have to know which class is it, and encode it separately.
+			Object obj = collection[collection.length - 1 - i];
+			ElementInfo info = new ElementInfo();
+			info.setAnnotatedClass(obj.getClass());
+			info.setParentAnnotated(elementInfo.getAnnotatedClass());
+			if (elementInfo.hasPreparedInfo()) {
+				ASN1SequenceOfMetadata seqOfMeta = (ASN1SequenceOfMetadata) elementInfo.getPreparedInfo()
+						.getTypeMetadata();
+				info.setPreparedInfo(seqOfMeta.getItemClassMetadata());
+			}
+			sizeOfCollection += encodeClassType(obj, stream, info);
+		}
 		resultSize += sizeOfCollection;</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
@@ -1470,7 +1411,7 @@
 <tr class="a">
 <td>org/universAAL/lddi/knx/devicemanager/util/LogTracker.java</td>
 <td>universAAL LDDI KNX device manager</td>
-<td>51</td></tr>
+<td>52</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/knx/library/utils/LogTracker.java</td>
 <td>universAAL LDDI KNX Datapoint Type Library</td>
@@ -1478,8 +1419,9 @@
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		super.removedService(reference, service);
-//		System.out.println(&quot;stdout: [KNX.DEVICEMANAGER] LogService removed!&quot;);
-		log(LOG_DEBUG,&quot;LogService removed!&quot;);
+		// System.out.println(&quot;stdout: [KNX.DEVICEMANAGER] LogService
+		// removed!&quot;);
+		log(LOG_DEBUG, &quot;LogService removed!&quot;);
 	}
 
 	public LogTracker(BundleContext context) {
@@ -1498,9 +1440,9 @@
 		log(sr, level, message, null);
 	}
 
-	public void log(ServiceReference sr, int level, String message,
-			Throwable exception) {
-		LogService log = (LogService) getService(); //obtain optional, unary LogService
+	public void log(ServiceReference sr, int level, String message, Throwable exception) {
+		LogService log = (LogService) getService(); // obtain optional, unary
+													// LogService
 		if (log != null) {
 			log.log(sr, level, message, exception);
 		} else {</pre></div></td></tr></table>
@@ -1512,38 +1454,38 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>113</td></tr>
+<td>108</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>114</td></tr>
+<td>108</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			    PercentType.valueOf(value.toString()));
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
-	}
-	return true;
-    }
-
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof OnOffType) {
-		if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
-		    theValue = Integer.valueOf(0);
-		} else {
-		    theValue = Integer.valueOf(100);
+<pre>					PercentType.valueOf(value.toString()));
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
 		}
-	    }
+		return true;
 	}
-	if (theValue != null) {</pre></div></td></tr></table>
+
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof OnOffType) {
+				if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
+					theValue = Integer.valueOf(0);
+				} else {
+					theValue = Integer.valueOf(100);
+				}
+			}
+		}
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1563,35 +1505,33 @@
 <td>62</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>    protected AbstractFloatCallee(ModuleContext context,
-	    ServiceProfile[] realizedServices, String namespace) {
-	super(context, realizedServices);
-	this.namespace = namespace;
-    }
-
-    public void unregister() {
-	this.removeMatchingProfiles(newProfiles);
-	this.close();
-    }
-
-    public void communicationChannelBroken() {
-	unregister();
-    }
-
-    public ServiceResponse handleCall(ServiceCall call) {
-	ServiceResponse response;
-	if (call == null) {
-	    return null;
+<pre>	protected AbstractFloatCallee(ModuleContext context, ServiceProfile[] realizedServices, String namespace) {
+		super(context, realizedServices);
+		this.namespace = namespace;
 	}
-	String operation = call.getProcessURI();
-	if (operation == null) {
-	    return null;
+
+	public void unregister() {
+		this.removeMatchingProfiles(newProfiles);
+		this.close();
 	}
-	if (!((Device) call.getInputValue(namespace + IN_DEVICE)).getURI()
-		.equals(ontDevice.getURI())) {
-	    return new ServiceResponse(CallStatus.denied);
+
+	public void communicationChannelBroken() {
+		unregister();
 	}
-	if (operation.startsWith(namespace + SERVICE_GET_VALUE)) {</pre></div></td></tr></table>
+
+	public ServiceResponse handleCall(ServiceCall call) {
+		ServiceResponse response;
+		if (call == null) {
+			return null;
+		}
+		String operation = call.getProcessURI();
+		if (operation == null) {
+			return null;
+		}
+		if (!((Device) call.getInputValue(namespace + IN_DEVICE)).getURI().equals(ontDevice.getURI())) {
+			return new ServiceResponse(CallStatus.denied);
+		}
+		if (operation.startsWith(namespace + SERVICE_GET_VALUE)) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1600,52 +1540,49 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>85</td></tr>
+<td>83</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>91</td></tr>
+<td>89</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>85</td></tr>
+<td>81</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>92</td></tr>
+<td>89</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-
-	try {
-	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName,
-			    PercentType.valueOf(value.toString()));
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+<pre>		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {</pre></div></td></tr></table>
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
+
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+
+		try {
+			ItemCommandEvent itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+					PercentType.valueOf(value.toString()));
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1654,34 +1591,33 @@
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/org/bn/coders/per/PERAlignedDecoder.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>442</td></tr>
+<td>409</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/org/bn/coders/per/PERAlignedEncoder.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>250</td></tr>
+<td>237</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>        boolean hasConstraint = false;
-        long min = 0, max = 0;
-        
-        if(elementInfo.hasPreparedInfo()) {
-            if(elementInfo.getPreparedInfo().hasConstraint() 
-                &amp;&amp; elementInfo.getPreparedInfo().getConstraint() instanceof ASN1ValueRangeConstraintMetadata) {
-                IASN1ConstraintMetadata constraint = elementInfo.getPreparedInfo().getConstraint();
-                hasConstraint  = true;
-                min = ((ASN1ValueRangeConstraintMetadata)constraint).getMin();
-                max = ((ASN1ValueRangeConstraintMetadata)constraint).getMax();
-            }
-        }
-        else
-        if(elementInfo.getAnnotatedClass().isAnnotationPresent(ASN1ValueRangeConstraint.class)) {
-            hasConstraint  = true;
-            ASN1ValueRangeConstraint constraint = elementInfo.getAnnotatedClass().getAnnotation(ASN1ValueRangeConstraint.class);            
-            min = constraint.min();
-            max = constraint.max();
-        }
-                                   
-        if(objectClass.equals(Integer.class)) {</pre></div></td></tr></table>
+<pre>		boolean hasConstraint = false;
+		long min = 0, max = 0;
+
+		if (elementInfo.hasPreparedInfo()) {
+			if (elementInfo.getPreparedInfo().hasConstraint()
+					&amp;&amp; elementInfo.getPreparedInfo().getConstraint() instanceof ASN1ValueRangeConstraintMetadata) {
+				IASN1ConstraintMetadata constraint = elementInfo.getPreparedInfo().getConstraint();
+				hasConstraint = true;
+				min = ((ASN1ValueRangeConstraintMetadata) constraint).getMin();
+				max = ((ASN1ValueRangeConstraintMetadata) constraint).getMax();
+			}
+		} else if (elementInfo.getAnnotatedClass().isAnnotationPresent(ASN1ValueRangeConstraint.class)) {
+			hasConstraint = true;
+			ASN1ValueRangeConstraint constraint = elementInfo.getAnnotatedClass()
+					.getAnnotation(ASN1ValueRangeConstraint.class);
+			min = constraint.min();
+			max = constraint.max();
+		}
+
+		if (objectClass.equals(Integer.class)) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1690,42 +1626,42 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>102</td></tr>
+<td>98</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>102</td></tr>
+<td>96</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>103</td></tr>
+<td>97</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	return Integer.valueOf(value.intValue());
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	return false;
-    }
-
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof OnOffType) {
-		if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
-		    theValue = Integer.valueOf(0);
-		} else {
-		    theValue = Integer.valueOf(100);
-		}
-	    }
+<pre>		return Integer.valueOf(value.intValue());
 	}
-	if (theValue != null) {</pre></div></td></tr></table>
+
+	@Override
+	public boolean executeSet(Integer value) {
+		return false;
+	}
+
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof OnOffType) {
+				if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
+					theValue = Integer.valueOf(0);
+				} else {
+					theValue = Integer.valueOf(100);
+				}
+			}
+		}
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1734,38 +1670,36 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p104zz/p10404PulsiOximeter.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>160</td></tr>
+<td>154</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p104zz/p10407BloodPressure.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>207</td></tr>
+<td>202</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		bs_byte[0] = (byte)((bs_val&gt;&gt;8) &amp; 0x000000FF);
-//			System.out.println(ASNUtils.asHexwithspaces(bs_byte));
+<pre>		bs_byte[0] = (byte) ((bs_val &gt;&gt; 8) &amp; 0x000000FF);
+		// System.out.println(ASNUtils.asHexwithspaces(bs_byte));
 		bs.setValue(bs_byte);
 		mss.setValue(new BITS_16(new BitString(bs)));
 		pulseattr = new Attribute(NomenclatureCodes.MDC_ATTR_METRIC_SPEC_SMALL, mss);
 		pulserateattributes.add(pulseattr);
-		
-		
 
-		//Unit Code
+		// Unit Code
 		OID_Type unit_oid = new OID_Type();
 		unit_oid.setValue(new INT_U16(NomenclatureCodes.MDC_DIM_BEAT_PER_MIN));
 		pulseattr = new Attribute(NomenclatureCodes.MDC_ATTR_UNIT_CODE, unit_oid);
 		pulserateattributes.add(pulseattr);
-		
-		//Attribute Map
-			// - MDC_ATTR_NU_VAL_OBS_BASIC  (size 2)
+
+		// Attribute Map
+		// - MDC_ATTR_NU_VAL_OBS_BASIC (size 2)
 		AttrValMap attrmap = new AttrValMap();
 		attrmap.initValue();
-		
+
 		AttrValMapEntry entry1 = new AttrValMapEntry();
 		OID_Type entry1_oid = new OID_Type();
 		entry1_oid.setValue(new INT_U16(NomenclatureCodes.MDC_ATTR_NU_VAL_OBS_BASIC));
 		entry1.setAttribute_id(entry1_oid);
-		entry1.setAttribute_len(new INT_U16(2)); // 2 bytes (stores an SFloatType)</pre></div></td></tr></table>
+		entry1.setAttribute_len(new INT_U16(2)); // 2 bytes (stores an</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1774,57 +1708,62 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>593</td></tr>
+<td>629</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>624</td></tr>
+<td>665</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>695</td></tr>
+<td>750</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>723</td></tr>
+<td>783</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>751</td></tr>
+<td>816</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>		if(choice.isRoiv_cmip_actionSelected()){
-			if (!checkRoivState()){
+<pre>		if (choice.isRoiv_cmip_actionSelected()) {
+			if (!checkRoivState()) {
 				// Manager unassociated. Transmit abrt
 				apdu = msg_generator.AbrtApduGenerator(StatusCodes.ABORT_REASON_UNDEFINED);
 				return apdu;
-			}else{
-				// different procedures depending of the state 
-				if(statemachine.getChannelState()  == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_WAITINGFORCONFIG){
+			} else {
+				// different procedures depending of the state
+				if (statemachine
+						.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_WAITINGFORCONFIG) {
 					// not allowed
 					apdu = msg_generator.RoerGenerator(dataapdu.getInvoke_id(), StatusCodes.NO_SUCH_OBJECT_INSTANCE);
 					return apdu;
-				
-				}else if(statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_CHECKINGCONFIG){
-					
-					//The agent only sends event report messages. This should never happen
+
+				} else if (statemachine
+						.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_CHECKINGCONFIG) {
+
+					// The agent only sends event report messages. This should
+					// never happen
 					apdu = msg_generator.RoerGenerator(dataapdu.getInvoke_id(), StatusCodes.NO_SUCH_ACTION);
 					return apdu;
-					
-				}else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_OPERATING){
+
+				} else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_OPERATING) {
 					// TODO processing of Roiv_cmip_actionSelected
 					return null; // modify
-				
-				}else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_DISASSOCIATING){
-					// in disassociating state: The agent sent an invoke message as the manager sent an rlrq. 
-					// The manager has 	transitioned out of the Operating state and therefore will not provide any response.
+
+				} else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_DISASSOCIATING) {
+					// in disassociating state: The agent sent an invoke message
+					// as the manager sent an rlrq.
+					// The manager has transitioned out of the Operating state
+					// and therefore will not provide any response.
 					return null;
 				}
 
 			}
 		}
-		
-		if(choice.isRoiv_cmip_confirmed_actionSelected()){</pre></div></td></tr></table>
+
+		if (choice.isRoiv_cmip_confirmed_actionSelected()) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1833,48 +1772,44 @@
 <tr class="b">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/ExporterActuatorCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>92</td></tr>
+<td>90</td></tr>
 <tr class="a">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>139</td></tr>
+<td>127</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>			NAMESPACE + OUT_GET_ON_OFF, result));
-		return response;
-	    }else{
-		response = new ServiceResponse(
-			CallStatus.serviceSpecificFailure);
-		return response;
-	    }
-	}
+<pre>				response.addOutput(new ProcessOutput(NAMESPACE + OUT_GET_ON_OFF, result));
+				return response;
+			} else {
+				response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+				return response;
+			}
+		}
 
-	if (operation.startsWith(NAMESPACE + SERVICE_TURN_OFF)) {
-	    if (executeOff()) {
-		return new ServiceResponse(CallStatus.succeeded);
-	    } else {
-		response = new ServiceResponse(
-			CallStatus.serviceSpecificFailure);
-		return response;
-	    }
-	}
+		if (operation.startsWith(NAMESPACE + SERVICE_TURN_OFF)) {
+			if (executeOff()) {
+				return new ServiceResponse(CallStatus.succeeded);
+			} else {
+				response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+				return response;
+			}
+		}
 
-	if (operation.startsWith(NAMESPACE + SERVICE_TURN_ON)) {
-	    if (executeOn()) {
-		return new ServiceResponse(CallStatus.succeeded);
-	    } else {
-		response = new ServiceResponse(
-			CallStatus.serviceSpecificFailure);
-		return response;
-	    }
-	}
+		if (operation.startsWith(NAMESPACE + SERVICE_TURN_ON)) {
+			if (executeOn()) {
+				return new ServiceResponse(CallStatus.succeeded);
+			} else {
+				response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+				return response;
+			}
+		}
 
-	response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	response.addOutput(new ProcessOutput(
-		ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		&quot;The service requested has not been implemented in this simple editor callee&quot;));
-	return response;
-    }</pre></div></td></tr></table>
+		response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+		response.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+				&quot;The service requested has not been implemented in this simple editor callee&quot;));
+		return response;
+	}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1883,34 +1818,33 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>87</td></tr>
+<td>84</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>87</td></tr>
+<td>82</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>			LightController.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, LightController.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+	}
 
-    @Override
-    public Integer executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return (value.compareTo(OnOffType.ON) == 0) ? Integer.valueOf(100)
-		: Integer.valueOf(0);
-    }
+	@Override
+	public Integer executeGet() {
+		OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return (value.compareTo(OnOffType.ON) == 0) ? Integer.valueOf(100) : Integer.valueOf(0);
+	}
 
-    @Override
-    public boolean executeSet(Integer value) {</pre></div></td></tr></table>
+	@Override
+	public boolean executeSet(Integer value) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1919,46 +1853,44 @@
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>87</td></tr>
+<td>84</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>			BlindController.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, BlindController.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+	}
 
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
 
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-	try {
-	    ItemCommandEvent itemCommandEvent;</pre></div></td></tr></table>
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+		try {
+			ItemCommandEvent itemCommandEvent;</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -1967,43 +1899,40 @@
 <tr class="b">
 <td>org/universAAL/lddi/exporter/activityhub/driver/Iso11073MotionSensorDriver.java</td>
 <td>universAAL LDDI Exporter of ActivityHub devices (ISO 11073-10471)</td>
-<td>115</td></tr>
+<td>117</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/exporter/activityhub/driver/Iso11073SwitchSensorDriver.java</td>
 <td>universAAL LDDI Exporter of ActivityHub devices (ISO 11073-10471)</td>
-<td>115</td></tr>
+<td>116</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/exporter/activityhub/driver/Iso11073UsageSensorDriver.java</td>
 <td>universAAL LDDI Exporter of ActivityHub devices (ISO 11073-10471)</td>
-<td>116</td></tr>
+<td>117</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		Iso11073MotionSensorInstance instance = new Iso11073MotionSensorInstance(
-				this.context, client, this.logger);
-		
+<pre>		Iso11073MotionSensorInstance instance = new Iso11073MotionSensorInstance(this.context, client, this.logger);
+
 		// init service tracker on device service for instance
 		tracker = new ServiceTracker(this.context, reference, instance);
 		tracker.open();
-		
-		synchronized(this.connectedDriver){
-			if ( ! this.connectedDriver.add(instance) )
+
+		synchronized (this.connectedDriver) {
+			if (!this.connectedDriver.add(instance))
 				this.logger.log(LogService.LOG_ERROR, &quot;Duplicate Element in HashSet connectedDriver&quot;);
 		}
 
 		return null; // if attachment is correct
 	}
-	
-	
+
 	/**
 	 * register this driver in OSGi registry
 	 */
 	private void registerDriver() {
-	    Dictionary propDriver=new Properties();
-		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID );
-		this.regDriver=this.context.registerService(Driver.class.getName(), this, 
-				propDriver);
+		Dictionary propDriver = new Properties();
+		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID);
+		this.regDriver = this.context.registerService(Driver.class.getName(), this, propDriver);
 
-		if ( this.regDriver != null )
+		if (this.regDriver != null)
 			this.logger.log(LogService.LOG_INFO, &quot;Driver for Iso11073-MotionSensor registered!&quot;);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
@@ -2013,36 +1942,37 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/mder/DecoderMDER.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>333</td></tr>
+<td>337</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/org/bn/coders/per/PERAlignedDecoder.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>607</td></tr>
+<td>551</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		int numberofoctets = length.getValue();
-		if (countOfElements&gt;0)
-		{
+		if (countOfElements &gt; 0) {
 			Class paramType = CoderUtils.getCollectionType(elementInfo);
 
-			for(int i=0;i&lt;countOfElements;i++) {
+			for (int i = 0; i &lt; countOfElements; i++) {
 				ElementInfo info = new ElementInfo();
 				info.setAnnotatedClass(paramType);
 				info.setParentAnnotated(elementInfo.getAnnotatedClass());
-				if(elementInfo.hasPreparedInfo()) {
-					ASN1SequenceOfMetadata seqOfMeta = (ASN1SequenceOfMetadata)elementInfo.getPreparedInfo().getTypeMetadata();
-					info.setPreparedInfo( seqOfMeta.getItemClassMetadata() );
+				if (elementInfo.hasPreparedInfo()) {
+					ASN1SequenceOfMetadata seqOfMeta = (ASN1SequenceOfMetadata) elementInfo.getPreparedInfo()
+							.getTypeMetadata();
+					info.setPreparedInfo(seqOfMeta.getItemClassMetadata());
 				}
-	    
-				DecodedObject item=decodeClassType(null,paramType,info,stream);
-	  	     if(item!=null) {
-	  	    	 result.add(item.getValue());
-	  	     }
-		   };
+
+				DecodedObject item = decodeClassType(null, paramType, info, stream);
+				if (item != null) {
+					result.add(item.getValue());
+				}
+			}
+			;
 		}
-		
-		//total size: INT_U16(count)+INT_U16(length)+encodeditems 
-		return new DecodedObject(result, </pre></div></td></tr></table>
+
+		// total size: INT_U16(count)+INT_U16(length)+encodeditems
+		return new DecodedObject(result, (intObj.getSize() + length.getSize() + numberofoctets));</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2051,43 +1981,38 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/AbstractFloatCallee.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>138</td></tr>
+<td>132</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/AbstractIntegerCallee.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>141</td></tr>
+<td>134</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    public abstract boolean executeSet(Float value);
+<pre>	public abstract boolean executeSet(Float value);
 
-    /**
-     * Get the typical service profiles for a controller: GET/SET the has value
-     * prop.
-     * 
-     * @param namespace
-     *            Must be the same as the one set in the constructor
-     * @param instance
-     *            The instance of the ontological representation of the device
-     * @return
-     */
-    public static ServiceProfile[] getServiceProfiles(String namespace,
-	    Device instance) {
-	ServiceProfile[] profiles = new ServiceProfile[2];
-	profiles[0] = getServiceProfileGET(namespace, instance);
-	profiles[1] = getServiceProfileSET(namespace, instance);
-	return profiles;
-    }
+	/**
+	 * Get the typical service profiles for a controller: GET/SET the has value
+	 * prop.
+	 * 
+	 * @param namespace
+	 *            Must be the same as the one set in the constructor
+	 * @param instance
+	 *            The instance of the ontological representation of the device
+	 * @return
+	 */
+	public static ServiceProfile[] getServiceProfiles(String namespace, Device instance) {
+		ServiceProfile[] profiles = new ServiceProfile[2];
+		profiles[0] = getServiceProfileGET(namespace, instance);
+		profiles[1] = getServiceProfileSET(namespace, instance);
+		return profiles;
+	}
 
-    public static ServiceProfile getServiceProfileGET(String namespace,
-	    Device instance) {
-	Service getValue = (Service) OntologyManagement.getInstance()
-		.getResource(DeviceService.MY_URI,
-			namespace + SERVICE_GET_VALUE);
-	getValue.addFilteringInput(namespace + IN_DEVICE,
-		instance.getClassURI(), 0, 1,
-		new String[] { DeviceService.PROP_CONTROLS });
-	getValue.addOutput(namespace + OUT_GET_VALUE,
-		TypeMapper.getDatatypeURI(Float.class), 1, 1,</pre></div></td></tr></table>
+	public static ServiceProfile getServiceProfileGET(String namespace, Device instance) {
+		Service getValue = (Service) OntologyManagement.getInstance().getResource(DeviceService.MY_URI,
+				namespace + SERVICE_GET_VALUE);
+		getValue.addFilteringInput(namespace + IN_DEVICE, instance.getClassURI(), 0, 1,
+				new String[] { DeviceService.PROP_CONTROLS });
+		getValue.addOutput(namespace + OUT_GET_VALUE, TypeMapper.getDatatypeURI(Float.class), 1, 1,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2096,48 +2021,48 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>119</td></tr>
+<td>114</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>108</td></tr>
+<td>104</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>120</td></tr>
+<td>114</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>108</td></tr>
+<td>102</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>120</td></tr>
+<td>114</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>109</td></tr>
+<td>103</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    }
+<pre>	}
 
-    public void publish(Event event) {
-	Integer theValue = null;
-	Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof PercentType) {
-		theValue = Integer.valueOf(((PercentType) s).intValue());
-	    } else if (s instanceof OnOffType) {
-		if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
-		    theValue = Integer.valueOf(0);
-		} else {
-		    theValue = Integer.valueOf(100);
+	public void publish(Event event) {
+		Integer theValue = null;
+		Activator.logD(&quot;changedCurrentLevel&quot;, &quot;Changed-Event received&quot;);
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof PercentType) {
+				theValue = Integer.valueOf(((PercentType) s).intValue());
+			} else if (s instanceof OnOffType) {
+				if (((OnOffType) s).compareTo(OnOffType.OFF) == 0) {
+					theValue = Integer.valueOf(0);
+				} else {
+					theValue = Integer.valueOf(100);
+				}
+			}
 		}
-	    }
-	}
-	if (theValue != null) {</pre></div></td></tr></table>
+		if (theValue != null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2146,34 +2071,33 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/SwitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>69</td></tr>
+<td>67</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/SwitchSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>69</td></tr>
+<td>66</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			SwitchController.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, SwitchController.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+	}
 
-    @Override
-    public StatusValue executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated
-		: StatusValue.NotActivated;
-    }
+	@Override
+	public StatusValue executeGet() {
+		OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) OnOffType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated : StatusValue.NotActivated;
+	}
 
-    @Override
-    public boolean executeSet(StatusValue value) {</pre></div></td></tr></table>
+	@Override
+	public boolean executeSet(StatusValue value) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2182,56 +2106,45 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p20601/GetResultSimple.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>38</td></tr>
+<td>36</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p20601/SetResultSimple.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>38</td></tr>
+<td>36</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    public class GetResultSimple implements IASN1PreparedElement {
-            
-        @ASN1Element ( name = &quot;obj-handle&quot;, isOptional =  false , hasTag =  false  , hasDefaultValue =  false  )
-    
+<pre>public class GetResultSimple implements IASN1PreparedElement {
+
+	@ASN1Element(name = &quot;obj-handle&quot;, isOptional = false, hasTag = false, hasDefaultValue = false)
+
 	private HANDLE obj_handle = null;
-                
-  
-        @ASN1Element ( name = &quot;attribute-list&quot;, isOptional =  false , hasTag =  false  , hasDefaultValue =  false  )
-    
+
+	@ASN1Element(name = &quot;attribute-list&quot;, isOptional = false, hasTag = false, hasDefaultValue = false)
+
 	private AttributeList attribute_list = null;
-                
-  
-        
-        public HANDLE getObj_handle () {
-            return this.obj_handle;
-        }
 
-        
+	public HANDLE getObj_handle() {
+		return this.obj_handle;
+	}
 
-        public void setObj_handle (HANDLE value) {
-            this.obj_handle = value;
-        }
-        
-  
-        
-        public AttributeList getAttribute_list () {
-            return this.attribute_list;
-        }
+	public void setObj_handle(HANDLE value) {
+		this.obj_handle = value;
+	}
 
-        
+	public AttributeList getAttribute_list() {
+		return this.attribute_list;
+	}
 
-        public void setAttribute_list (AttributeList value) {
-            this.attribute_list = value;
-        }
-        
-  
-                    
-        
-        public void initWithDefaults() {
-            
-        }
+	public void setAttribute_list(AttributeList value) {
+		this.attribute_list = value;
+	}
 
-        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(GetResultSimple.class);</pre></div></td></tr></table>
+	public void initWithDefaults() {
+
+	}
+
+	private static IASN1PreparedElementData preparedData = CoderFactory.getInstance()
+			.newPreparedElementData(GetResultSimple.class);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2240,46 +2153,42 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/AbstractFloatCallee.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>138</td></tr>
+<td>132</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/AbstractIntegerCallee.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>141</td></tr>
+<td>134</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/AbstractStatusValueCallee.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>140</td></tr>
+<td>133</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>    public abstract boolean executeSet(Float value);
+<pre>	public abstract boolean executeSet(Float value);
 
-    /**
-     * Get the typical service profiles for a controller: GET/SET the has value
-     * prop.
-     * 
-     * @param namespace
-     *            Must be the same as the one set in the constructor
-     * @param instance
-     *            The instance of the ontological representation of the device
-     * @return
-     */
-    public static ServiceProfile[] getServiceProfiles(String namespace,
-	    Device instance) {
-	ServiceProfile[] profiles = new ServiceProfile[2];
-	profiles[0] = getServiceProfileGET(namespace, instance);
-	profiles[1] = getServiceProfileSET(namespace, instance);
-	return profiles;
-    }
+	/**
+	 * Get the typical service profiles for a controller: GET/SET the has value
+	 * prop.
+	 * 
+	 * @param namespace
+	 *            Must be the same as the one set in the constructor
+	 * @param instance
+	 *            The instance of the ontological representation of the device
+	 * @return
+	 */
+	public static ServiceProfile[] getServiceProfiles(String namespace, Device instance) {
+		ServiceProfile[] profiles = new ServiceProfile[2];
+		profiles[0] = getServiceProfileGET(namespace, instance);
+		profiles[1] = getServiceProfileSET(namespace, instance);
+		return profiles;
+	}
 
-    public static ServiceProfile getServiceProfileGET(String namespace,
-	    Device instance) {
-	Service getValue = (Service) OntologyManagement.getInstance()
-		.getResource(DeviceService.MY_URI,
-			namespace + SERVICE_GET_VALUE);
-	getValue.addFilteringInput(namespace + IN_DEVICE,
-		instance.getClassURI(), 0, 1,
-		new String[] { DeviceService.PROP_CONTROLS });
-	getValue.addOutput(namespace + OUT_GET_VALUE,</pre></div></td></tr></table>
+	public static ServiceProfile getServiceProfileGET(String namespace, Device instance) {
+		Service getValue = (Service) OntologyManagement.getInstance().getResource(DeviceService.MY_URI,
+				namespace + SERVICE_GET_VALUE);
+		getValue.addFilteringInput(namespace + IN_DEVICE, instance.getClassURI(), 0, 1,
+				new String[] { DeviceService.PROP_CONTROLS });
+		getValue.addOutput(namespace + OUT_GET_VALUE, TypeMapper.getDatatypeURI(Float.class), 1, 1,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -2288,29 +2197,31 @@
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/Aarq10407APDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>36</td></tr>
+<td>40</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/Aarq10415APDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>36</td></tr>
+<td>40</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/Aarq10417APDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>36</td></tr>
+<td>40</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/UnknownCfg.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>36</td></tr>
+<td>40</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>				(byte)0xA0, (byte)0x00, 						// encoding rules (MDER)
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00,	// nomenclature version
-				(byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, // functional units
-				(byte)0x00, (byte)0x80, (byte)0x00, (byte)0x00, // sysType (agent)
-				(byte)0x00, (byte)0x08, 						// sys-id length (8)
-				(byte)0x11, (byte)0x22, (byte)0x33, (byte)0x44, // sys-id
-				(byte)0x55, (byte)0x66, (byte)0x77, (byte)0x88,
-				(byte)0x02, (byte)0xBC, 						 //dev config id (standard 700 -&gt; blood pressure)</pre></div></td></tr></table>
+<pre>				(byte) 0xA0, (byte) 0x00, // encoding rules (MDER)
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // nomenclature
+																	// version
+				(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, // functional
+																	// units
+				(byte) 0x00, (byte) 0x80, (byte) 0x00, (byte) 0x00, // sysType
+																	// (agent)
+				(byte) 0x00, (byte) 0x08, // sys-id length (8)
+				(byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44, // sys-id
+				(byte) 0x55, (byte) 0x66, (byte) 0x77, (byte) 0x88, (byte) 0x02, (byte) 0xBC, // dev</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -2319,30 +2230,31 @@
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>42</td></tr>
+<td>41</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>75</td></tr>
+<td>65</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>111</td></tr>
+<td>77</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>				(byte)0x00, (byte)0xA0,							// total length of report
-				
+<pre>				(byte) 0x00, (byte) 0xA0, // total length of report
+
 				// Measure 1
-				(byte)0x00, (byte)0x01,							// HANDLE = 1
-				(byte)0x00, (byte)0x03,							// number of objects = 3
-				(byte)0x00, (byte)0x1A,							// Length of measure
-				(byte)0x0A, (byte)0x56,							// Object 1: Type: Nu_val_obs_simp
-				(byte)0x00, (byte)0x04,							// length
-				(byte)0xFE, (byte)0x00,	(byte)0x1C, (byte)0x5C,	// Value (mass)
-				(byte)0x09, (byte)0x90,							// Object 2: time_stamp_abs
-				(byte)0x00, (byte)0x08,							// Length
-				(byte)0x20, (byte)0x12,	(byte)0x05, (byte)0x08, // Time
-				(byte)0x15, (byte)0x02,	(byte)0x16, (byte)0x00,</pre></div></td></tr></table>
+				(byte) 0x00, (byte) 0x01, // HANDLE = 1
+				(byte) 0x00, (byte) 0x03, // number of objects = 3
+				(byte) 0x00, (byte) 0x1A, // Length of measure
+				(byte) 0x0A, (byte) 0x56, // Object 1: Type: Nu_val_obs_simp
+				(byte) 0x00, (byte) 0x04, // length
+				(byte) 0xFE, (byte) 0x00, (byte) 0x1C, (byte) 0x5C, // Value
+																	// (mass)
+				(byte) 0x09, (byte) 0x90, // Object 2: time_stamp_abs
+				(byte) 0x00, (byte) 0x08, // Length
+				(byte) 0x20, (byte) 0x12, (byte) 0x05, (byte) 0x08, // Time
+				(byte) 0x15, (byte) 0x02, (byte) 0x16, (byte) 0x00, (byte) 0x09, (byte) 0x96, // Object</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2351,45 +2263,43 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>82</td></tr>
+<td>78</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>82</td></tr>
+<td>80</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>81</td></tr>
+<td>79</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>81</td></tr>
+<td>77</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			BlindActuator.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, BlindActuator.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+	}
 
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
 
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD(&quot;setStatus&quot;,
-		&quot;The service called was 'set the status' &quot; + value);
-	try {
-	    ItemCommandEvent itemCommandEvent;</pre></div></td></tr></table>
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD(&quot;setStatus&quot;, &quot;The service called was 'set the status' &quot; + value);
+		try {
+			ItemCommandEvent itemCommandEvent;</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2398,42 +2308,40 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>68</td></tr>
+<td>67</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>68</td></tr>
+<td>67</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	Activator.logD(&quot;LightdimmerControllerWrapper&quot;, &quot;Ready to subscribe&quot;);
-	shDeviceName = itemName;
+<pre>		Activator.logD(&quot;LightdimmerControllerWrapper&quot;, &quot;Ready to subscribe&quot;);
+		shDeviceName = itemName;
 
-	// URI must be the same declared in the super constructor
-	String deviceURI = Activator.NAMESPACE + itemName;
-	ontDevice = new LightController(deviceURI);
+		// URI must be the same declared in the super constructor
+		String deviceURI = Activator.NAMESPACE + itemName;
+		ontDevice = new LightController(deviceURI);
 
-	// Commissioning
-	// TODO Set location based on tags?
+		// Commissioning
+		// TODO Set location based on tags?
 
-	// Context reg
-	ContextProvider info = new ContextProvider(deviceURI + &quot;Provider&quot;);
-	info.setType(ContextProviderType.controller);
-	ContextEventPattern cep = new ContextEventPattern();
-	MergedRestriction subjectRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			ontDevice);
-	MergedRestriction predicateRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-			LightController.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
+		// Context reg
+		ContextProvider info = new ContextProvider(deviceURI + &quot;Provider&quot;);
+		info.setType(ContextProviderType.controller);
+		ContextEventPattern cep = new ContextEventPattern();
+		MergedRestriction subjectRestriction = MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+				ontDevice);
+		MergedRestriction predicateRestriction = MergedRestriction
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, LightController.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+	}
 
-    @Override
-    public Integer executeGet() {</pre></div></td></tr></table>
+	@Override
+	public Integer executeGet() {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2442,42 +2350,40 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>67</td></tr>
+<td>64</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>68</td></tr>
+<td>65</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	Activator.logD(&quot;LightdimmerSensorWrapper&quot;, &quot;Ready to subscribe&quot;);
-	shDeviceName = itemName;
+<pre>		Activator.logD(&quot;LightdimmerSensorWrapper&quot;, &quot;Ready to subscribe&quot;);
+		shDeviceName = itemName;
 
-	// URI must be the same declared in the super constructor
-	String deviceURI = Activator.NAMESPACE + itemName;
-	ontDevice = new LightSensor(deviceURI);
+		// URI must be the same declared in the super constructor
+		String deviceURI = Activator.NAMESPACE + itemName;
+		ontDevice = new LightSensor(deviceURI);
 
-	// Commissioning
-	// TODO Set location based on tags?
+		// Commissioning
+		// TODO Set location based on tags?
 
-	// Context reg
-	ContextProvider info = new ContextProvider(deviceURI + &quot;Provider&quot;);
-	info.setType(ContextProviderType.controller);
-	ContextEventPattern cep = new ContextEventPattern();
-	MergedRestriction subjectRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			ontDevice);
-	MergedRestriction predicateRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-			LightSensor.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
+		// Context reg
+		ContextProvider info = new ContextProvider(deviceURI + &quot;Provider&quot;);
+		info.setType(ContextProviderType.controller);
+		ContextEventPattern cep = new ContextEventPattern();
+		MergedRestriction subjectRestriction = MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+				ontDevice);
+		MergedRestriction predicateRestriction = MergedRestriction
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, LightSensor.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+	}
 
-    @Override
-    public Integer executeGet() {</pre></div></td></tr></table>
+	@Override
+	public Integer executeGet() {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2486,58 +2392,57 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/BlindSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>81</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/CurtainSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>83</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>84</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/DimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>83</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerControllerWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>87</td></tr>
+<td>84</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerSensorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>86</td></tr>
+<td>81</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>			BlindController.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
+<pre>				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, BlindController.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+	}
 
-    @Override
-    public Integer executeGet() {
-	PercentType value = (PercentType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
-	Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
-	if (value == null)
-	    return null;
-	return Integer.valueOf(value.intValue());
-    }
+	@Override
+	public Integer executeGet() {
+		PercentType value = (PercentType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class&lt;? extends State&gt;) PercentType.class);
+		Activator.logD(&quot;getStatus&quot;, &quot;The service called was 'get the status'&quot;);
+		if (value == null)
+			return null;
+		return Integer.valueOf(value.intValue());
+	}
 
-    @Override
-    public boolean executeSet(Integer value) {</pre></div></td></tr></table>
+	@Override
+	public boolean executeSet(Integer value) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2546,14 +2451,15 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/measurements/Measurement.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>299</td></tr>
+<td>282</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p104zz/DeviceSpecialization.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>366</td></tr>
+<td>395</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		device_year = ASNUtils.BCDtoInt(abstime.getCentury().getValue())*100+ASNUtils.BCDtoInt(abstime.getYear().getValue());
+<pre>		device_year = ASNUtils.BCDtoInt(abstime.getCentury().getValue()) * 100
+				+ ASNUtils.BCDtoInt(abstime.getYear().getValue());
 		device_month = ASNUtils.BCDtoInt(abstime.getMonth().getValue());
 		device_day = ASNUtils.BCDtoInt(abstime.getDay().getValue());
 		device_hour = ASNUtils.BCDtoInt(abstime.getHour().getValue());
@@ -2582,17 +2488,21 @@
 <td>26</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	public Aarq10407APDUtest(){
-		
-		apdu = new byte[]{
-				(byte)0xE2, (byte)0x00, 						//choice APDU
-				(byte)0x00, (byte)0x32, 						//length
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00, // association version
-				(byte)0x00, (byte)0x01, (byte)0x00, (byte)0x2A, // data protocol list = 1, length 42
-				(byte)0x50, (byte)0x79,  						// data protocol id 20601
-				(byte)0x00, (byte)0x26,							// data proto info length
-				(byte)0x80, (byte)0x00, (byte)0x00, (byte)0x00, // protocol version
-				(byte)0xA0, (byte)0x00, 						// encoding rules (MDER)</pre></div></td></tr></table>
+<pre>	public Aarq10407APDUtest() {
+
+		apdu = new byte[] { (byte) 0xE2, (byte) 0x00, // choice APDU
+				(byte) 0x00, (byte) 0x32, // length
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // association
+																	// version
+				(byte) 0x00, (byte) 0x01, (byte) 0x00, (byte) 0x2A, // data
+																	// protocol
+																	// list = 1,
+																	// length 42
+				(byte) 0x50, (byte) 0x79, // data protocol id 20601
+				(byte) 0x00, (byte) 0x26, // data proto info length
+				(byte) 0x80, (byte) 0x00, (byte) 0x00, (byte) 0x00, // protocol
+																	// version
+				(byte) 0xA0, (byte) 0x00, // encoding rules (MDER)</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2601,37 +2511,38 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p20601/AttributeIdList.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>47</td></tr>
+<td>44</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p20601/MetricIdList.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>47</td></tr>
+<td>44</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>            public AttributeIdList ( java.util.Collection&lt;OID_Type&gt; value ) {
-                setValue(value);
-            }
-                        
-            public void setValue(java.util.Collection&lt;OID_Type&gt; value) {
-                this.value = value;
-            }
-            
-            public java.util.Collection&lt;OID_Type&gt; getValue() {
-                return this.value;
-            }            
-            
-            public void initValue() {
-                setValue(new java.util.LinkedList&lt;OID_Type&gt;()); 
-            }
-            
-            public void add(OID_Type item) {
-                value.add(item);
-            }
+<pre>	public AttributeIdList(java.util.Collection&lt;OID_Type&gt; value) {
+		setValue(value);
+	}
 
-	    public void initWithDefaults() {
-	    }
+	public void setValue(java.util.Collection&lt;OID_Type&gt; value) {
+		this.value = value;
+	}
 
-        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(AttributeIdList.class);</pre></div></td></tr></table>
+	public java.util.Collection&lt;OID_Type&gt; getValue() {
+		return this.value;
+	}
+
+	public void initValue() {
+		setValue(new java.util.LinkedList&lt;OID_Type&gt;());
+	}
+
+	public void add(OID_Type item) {
+		value.add(item);
+	}
+
+	public void initWithDefaults() {
+	}
+
+	private static IASN1PreparedElementData preparedData = CoderFactory.getInstance()
+			.newPreparedElementData(AttributeIdList.class);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2640,49 +2551,47 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>100</td></tr>
+<td>94</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>129</td></tr>
+<td>121</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>319</td></tr>
+<td>308</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>346</td></tr>
+<td>335</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		Aarq10415APDUtest aarq = new Aarq10415APDUtest();
 		try {
-			
+
 			byte[] toDecode = aarq.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
-	
-	
+
 	public void decodeUnknownCfg(APDUProcessor rmp) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
@@ -2692,44 +2601,43 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>156</td></tr>
+<td>148</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>184</td></tr>
+<td>175</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>212</td></tr>
+<td>201</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
 <pre>		ExtendedCfg10415 cfg = new ExtendedCfg10415();
 		try {
-			
+
 			byte[] toDecode = cfg.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
-	
+
 	public void decodeExtended10404CfgReport(APDUProcessor rmp) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
@@ -2739,43 +2647,43 @@
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>238</td></tr>
+<td>227</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>265</td></tr>
+<td>254</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>292</td></tr>
+<td>281</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		ExtendedMeasure10415APDUtest extmeasure = new ExtendedMeasure10415APDUtest();
 		try {
-			
+
 			byte[] toDecode = extmeasure.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
+
 	public void decodeExtended10404Measure(APDUProcessor rmp) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
@@ -2785,48 +2693,48 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>427</td></tr>
+<td>414</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>455</td></tr>
+<td>441</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>484</td></tr>
+<td>468</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>512</td></tr>
+<td>495</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		Measure10415PrstAPDUtest masurement = new Measure10415PrstAPDUtest();
 
 		try {
-			
+
 			byte[] toDecode = masurement.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
 	}
-	
-	public void decodeRealWeightMeasure(APDUProcessor rmp)</pre></div></td></tr></table>
+
+	public void decodeRealWeightMeasure(APDUProcessor rmp) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2835,52 +2743,55 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>593</td></tr>
+<td>629</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>624</td></tr>
+<td>665</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>695</td></tr>
+<td>750</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>723</td></tr>
+<td>783</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>751</td></tr>
+<td>816</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/manager/apdu/APDUProcessor.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>779</td></tr>
+<td>849</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		if(choice.isRoiv_cmip_actionSelected()){
-			if (!checkRoivState()){
+<pre>		if (choice.isRoiv_cmip_actionSelected()) {
+			if (!checkRoivState()) {
 				// Manager unassociated. Transmit abrt
 				apdu = msg_generator.AbrtApduGenerator(StatusCodes.ABORT_REASON_UNDEFINED);
 				return apdu;
-			}else{
-				// different procedures depending of the state 
-				if(statemachine.getChannelState()  == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_WAITINGFORCONFIG){
+			} else {
+				// different procedures depending of the state
+				if (statemachine
+						.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_WAITINGFORCONFIG) {
 					// not allowed
 					apdu = msg_generator.RoerGenerator(dataapdu.getInvoke_id(), StatusCodes.NO_SUCH_OBJECT_INSTANCE);
 					return apdu;
-				
-				}else if(statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_CHECKINGCONFIG){
-					
-					//The agent only sends event report messages. This should never happen
+
+				} else if (statemachine
+						.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_CONFIGURING_CHECKINGCONFIG) {
+
+					// The agent only sends event report messages. This should
+					// never happen
 					apdu = msg_generator.RoerGenerator(dataapdu.getInvoke_id(), StatusCodes.NO_SUCH_ACTION);
 					return apdu;
-					
-				}else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_OPERATING){
+
+				} else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_ASSOCIATED_OPERATING) {
 					// TODO processing of Roiv_cmip_actionSelected
 					return null; // modify
-				
-				}else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_DISASSOCIATING){</pre></div></td></tr></table>
+
+				} else if (statemachine.getChannelState() == StateMachine20601.CHANNELSTATE_DISASSOCIATING) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2889,32 +2800,37 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/ExtendedCfg10404.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>49</td></tr>
+<td>57</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/ExtendedCfg10404.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>110</td></tr>
+<td>144</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>				(byte)0x00, (byte)0x24,							// attributes.length = 36
-			
-				//8
-				(byte)0x09, (byte)0x2F,							//attribute-id = MDC_ATTR_ID_TYPE
-				(byte)0x00, (byte)0x04, 						// attribute-value.length = 4
-				(byte)0x00, (byte)0x02,	(byte)0x4B, (byte)0xB8, //MDC_PART_SCADA | MDC_PULS_OXIM_SAT_O2
-				
-				//6
-				(byte)0x0A, (byte)0x46, 						// attribute-id = MDC_ATTR_METRIC_SPEC_SMALL
-				(byte)0x00, (byte)0x02,							// attribute-value.length = 2
-				(byte)0x40, (byte)0xC0,							//avail-stored-data, acc-manager-init, acc-agent-init, measured
-				
-				//6
-				(byte)0x09, (byte)0x96, 						// attribute-id = MDC_ATTR_UNIT_CODE
-				(byte)0x00, (byte)0x02,							// attribute-value.length = 2
-				(byte)0x02, (byte)0x20,							//MDC_DIM_PERCENT
-				
-				//16
-				(byte)0x0A, (byte)0x55, 						// attribute-id = MDC_ATTR_ATTRIBUTE_VAL_MAP</pre></div></td></tr></table>
+<pre>				(byte) 0x00, (byte) 0x24, // attributes.length = 36
+
+				// 8
+				(byte) 0x09, (byte) 0x2F, // attribute-id = MDC_ATTR_ID_TYPE
+				(byte) 0x00, (byte) 0x04, // attribute-value.length = 4
+				(byte) 0x00, (byte) 0x02, (byte) 0x4B, (byte) 0xB8, // MDC_PART_SCADA
+																	// |
+																	// MDC_PULS_OXIM_SAT_O2
+
+				// 6
+				(byte) 0x0A, (byte) 0x46, // attribute-id =
+											// MDC_ATTR_METRIC_SPEC_SMALL
+				(byte) 0x00, (byte) 0x02, // attribute-value.length = 2
+				(byte) 0x40, (byte) 0xC0, // avail-stored-data,
+											// acc-manager-init, acc-agent-init,
+											// measured
+
+				// 6
+				(byte) 0x09, (byte) 0x96, // attribute-id = MDC_ATTR_UNIT_CODE
+				(byte) 0x00, (byte) 0x02, // attribute-value.length = 2
+				(byte) 0x02, (byte) 0x20, // MDC_DIM_PERCENT
+
+				// 16
+				(byte) 0x0A, (byte) 0x55, // attribute-id =</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -2923,33 +2839,34 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p104zz/p10407BloodPressure.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>217</td></tr>
+<td>212</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p104zz/p10417Glucometer.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>96</td></tr>
+<td>94</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		pulserateattributes.add(pulseattr);
-		
+
 		// Attribute Value Map
-			// - MDC_ATTR_NU_VAL_OBS_BASIC (the value of mass) size = 2 (SFloat-Type)
-			// - MDC_ATTR_TIME_STAMP_ABS (time of measurement) size = 8 (8xINT_U8)		
+		// - MDC_ATTR_NU_VAL_OBS_BASIC (the value of mass) size = 2
+		// (SFloat-Type)
+		// - MDC_ATTR_TIME_STAMP_ABS (time of measurement) size = 8 (8xINT_U8)
 		AttrValMap attrmap = new AttrValMap();
 		attrmap.initValue();
-		
+
 		AttrValMapEntry entry1 = new AttrValMapEntry();
 		OID_Type entry1_oid = new OID_Type();
 		entry1_oid.setValue(new INT_U16(NomenclatureCodes.MDC_ATTR_NU_VAL_OBS_BASIC));
 		entry1.setAttribute_id(entry1_oid);
 		entry1.setAttribute_len(new INT_U16(2));
-		
+
 		AttrValMapEntry entry2 = new AttrValMapEntry();
 		OID_Type entry2_oid = new OID_Type();
 		entry2_oid.setValue(new INT_U16(NomenclatureCodes.MDC_ATTR_TIME_STAMP_ABS));
 		entry2.setAttribute_id(entry2_oid);
 		entry2.setAttribute_len(new INT_U16(8));
-		
+
 		attrmap.add(entry1);
 		attrmap.add(entry2);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
@@ -2964,22 +2881,24 @@
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p104zz/p10417Glucometer.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>74</td></tr>
+<td>70</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		bodyweight.add(attr);
-		
-			// Metric-Spec-Small: can be mss-avail-intermitent, mss-avail-stored-data, mss-upd-aperiodic, mss-msmt-aperiodic, mss-acc-agent-initiated
-		
+
+		// Metric-Spec-Small: can be mss-avail-intermitent,
+		// mss-avail-stored-data, mss-upd-aperiodic, mss-msmt-aperiodic,
+		// mss-acc-agent-initiated
+
 		MetricSpecSmall mss = new MetricSpecSmall();
 		BitString bs = new BitString();
 		byte[] bs_byte = new byte[2];
-		
-		int bs_val = StatusCodes.MSS_AVAIL_INTERMITTENT | StatusCodes.MSS_AVAIL_STORED_DATA | StatusCodes.MSS_UPD_APERIODIC |
-					StatusCodes.MSS_MSMT_APERIODIC | StatusCodes.MSS_ACC_AGENT_INITIATED;
-		
-		bs_byte[1] = (byte)(bs_val &amp; 0x000000FF);
-		bs_byte[0] = (byte)(bs_val &amp; 0x0000FF00);
+
+		int bs_val = StatusCodes.MSS_AVAIL_INTERMITTENT | StatusCodes.MSS_AVAIL_STORED_DATA
+				| StatusCodes.MSS_UPD_APERIODIC | StatusCodes.MSS_MSMT_APERIODIC | StatusCodes.MSS_ACC_AGENT_INITIATED;
+
+		bs_byte[1] = (byte) (bs_val &amp; 0x000000FF);
+		bs_byte[0] = (byte) (bs_val &amp; 0x0000FF00);
 		bs.setValue(bs_byte);
 		mss.setValue(new BITS_16(new BitString(bs)));
 		attr = new Attribute(NomenclatureCodes.MDC_ATTR_METRIC_SPEC_SMALL, mss);</pre></div></td></tr></table>
@@ -2991,30 +2910,26 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/org/bn/coders/Decoder.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>445</td></tr>
+<td>395</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/org/bn/coders/Encoder.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>310</td></tr>
+<td>260</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>        	if(!elementInfo.getASN1ElementInfo().hasTag()) {
-        		ASN1Element fieldInfo = field.getAnnotation(ASN1Element.class);
-        		if(fieldInfo!=null &amp;&amp; fieldInfo.hasTag()) {
-	        		ASN1ElementMetadata elData = new ASN1ElementMetadata(
-	        			elementInfo.getASN1ElementInfo().name(),
-	        			elementInfo.getASN1ElementInfo().isOptional(),
-	        			fieldInfo.hasTag(),
-	        			fieldInfo.isImplicitTag(),
-	        			fieldInfo.tagClass(),
-	        			fieldInfo.tag(),
-	        			elementInfo.getASN1ElementInfo().hasDefaultValue()        				
-	        		);
-	        		elementInfo.setPreparedASN1ElementInfo(elData);
-        		};
-        	}
-            
-        }</pre></div></td></tr></table>
+<pre>			} else if (!elementInfo.getASN1ElementInfo().hasTag()) {
+				ASN1Element fieldInfo = field.getAnnotation(ASN1Element.class);
+				if (fieldInfo != null &amp;&amp; fieldInfo.hasTag()) {
+					ASN1ElementMetadata elData = new ASN1ElementMetadata(elementInfo.getASN1ElementInfo().name(),
+							elementInfo.getASN1ElementInfo().isOptional(), fieldInfo.hasTag(),
+							fieldInfo.isImplicitTag(), fieldInfo.tagClass(), fieldInfo.tag(),
+							elementInfo.getASN1ElementInfo().hasDefaultValue());
+					elementInfo.setPreparedASN1ElementInfo(elData);
+				}
+				;
+			}
+
+		}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -3023,41 +2938,39 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightdimmerActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>62</td></tr>
+<td>60</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/LightswitchActuatorWrapper.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>62</td></tr>
+<td>60</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	Activator.logD(&quot;LightdimmerActuatorWrapper&quot;, &quot;Ready to subscribe&quot;);
-	shDeviceName = itemName;
+<pre>		Activator.logD(&quot;LightdimmerActuatorWrapper&quot;, &quot;Ready to subscribe&quot;);
+		shDeviceName = itemName;
 
-	// URI must be the same declared in the super constructor
-	String deviceURI = Activator.NAMESPACE + itemName;
-	ontDevice = new LightActuator(deviceURI);
+		// URI must be the same declared in the super constructor
+		String deviceURI = Activator.NAMESPACE + itemName;
+		ontDevice = new LightActuator(deviceURI);
 
-	// Commissioning
-	// TODO Set location based on tags?
+		// Commissioning
+		// TODO Set location based on tags?
 
-	// Context reg
-	ContextProvider info = new ContextProvider(deviceURI + &quot;Provider&quot;);
-	info.setType(ContextProviderType.controller);
-	ContextEventPattern cep = new ContextEventPattern();
-	MergedRestriction subjectRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			ontDevice);
-	MergedRestriction predicateRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-			LightActuator.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
+		// Context reg
+		ContextProvider info = new ContextProvider(deviceURI + &quot;Provider&quot;);
+		info.setType(ContextProviderType.controller);
+		ContextEventPattern cep = new ContextEventPattern();
+		MergedRestriction subjectRestriction = MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+				ontDevice);
+		MergedRestriction predicateRestriction = MergedRestriction
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, LightActuator.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+	}
 
-    @Override
-    public Integer executeGet() {</pre></div></td></tr></table>
+	@Override
+	public Integer executeGet() {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -3070,30 +2983,27 @@
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>72</td></tr>
+<td>65</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>90</td></tr>
+<td>71</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/testchannel20601/RealMeasure10415PrstAPDUtest.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>108</td></tr>
+<td>77</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>				(byte)0x15, (byte)0x02,	(byte)0x16, (byte)0x00,
-				(byte)0x09, (byte)0x96,							// Object 3: Type: Unit
-				(byte)0x00, (byte)0x02,							// Length
-				(byte)0x06, (byte)0xC3,							// Kg.
-				
+<pre>				(byte) 0x15, (byte) 0x02, (byte) 0x16, (byte) 0x00, (byte) 0x09, (byte) 0x96, // Object
+																								// 3:
+																								// Type:
+																								// Unit
+				(byte) 0x00, (byte) 0x02, // Length
+				(byte) 0x06, (byte) 0xC3, // Kg.
+
 				// Measure 2
-				(byte)0x00, (byte)0x01,
-				(byte)0x00, (byte)0x03,
-				(byte)0x00, (byte)0x1A,
-				(byte)0x0A, (byte)0x56,
-				(byte)0x00, (byte)0x04,
-				(byte)0xFE, (byte)0x00,
-				(byte)0x1C, (byte)0x66,</pre></div></td></tr></table>
+				(byte) 0x00, (byte) 0x01, (byte) 0x00, (byte) 0x03, (byte) 0x00, (byte) 0x1A, (byte) 0x0A, (byte) 0x56,
+				(byte) 0x00, (byte) 0x04, (byte) 0xFE, (byte) 0x00, (byte) 0x1C, (byte) 0x66, (byte) 0x09, (byte) 0x90,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -3102,29 +3012,24 @@
 <tr class="a">
 <td>org/universAAL/lddi/smarthome/exporter/devices/AbstractFloatCallee.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>167</td></tr>
+<td>156</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/smarthome/exporter/devices/AbstractIntegerCallee.java</td>
 <td>universAAL LDDI Eclipse-Smarthome Exporter</td>
-<td>170</td></tr>
+<td>158</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		TypeMapper.getDatatypeURI(Float.class), 1, 1,
-		new String[] { DeviceService.PROP_CONTROLS,
-			ValueDevice.PROP_HAS_VALUE });
-	return getValue.getProfile();
-    }
+<pre>		getValue.addOutput(namespace + OUT_GET_VALUE, TypeMapper.getDatatypeURI(Float.class), 1, 1,
+				new String[] { DeviceService.PROP_CONTROLS, ValueDevice.PROP_HAS_VALUE });
+		return getValue.getProfile();
+	}
 
-    public static ServiceProfile getServiceProfileSET(String namespace,
-	    Device instance) {
-	Service setValue = (Service) OntologyManagement.getInstance()
-		.getResource(DeviceService.MY_URI,
-			namespace + SERVICE_SET_VALUE);
-	setValue.addFilteringInput(namespace + IN_DEVICE,
-		instance.getClassURI(), 0, 1,
-		new String[] { DeviceService.PROP_CONTROLS });
-	setValue.addInputWithChangeEffect(namespace + IN_SET_VALUE,
-		TypeMapper.getDatatypeURI(Float.class), 1, 1,</pre></div></td></tr></table>
+	public static ServiceProfile getServiceProfileSET(String namespace, Device instance) {
+		Service setValue = (Service) OntologyManagement.getInstance().getResource(DeviceService.MY_URI,
+				namespace + SERVICE_SET_VALUE);
+		setValue.addFilteringInput(namespace + IN_DEVICE, instance.getClassURI(), 0, 1,
+				new String[] { DeviceService.PROP_CONTROLS });
+		setValue.addInputWithChangeEffect(namespace + IN_SET_VALUE, TypeMapper.getDatatypeURI(Float.class), 1, 1,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -3133,43 +3038,36 @@
 <tr class="a">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/DimmerLightCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>82</td></tr>
+<td>79</td></tr>
 <tr class="b">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/OnOffLightCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>85</td></tr>
+<td>83</td></tr>
 <tr class="a">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/PresenceDetectorCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>85</td></tr>
+<td>82</td></tr>
 <tr class="b">
 <td>org/universAAL/hw/exporter/zigbee/ha/devices/TemperatureSensorCallee.java</td>
 <td>universAAL LDDI ZigBee exporter for uAAL - Home Automation</td>
-<td>94</td></tr>
+<td>91</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	ontologyDevice = new LightActuator(deviceURI);
-	// Commissioning
-	String locationSuffix = Activator.getProperties().getProperty(
-		deviceSuffix);
-	if (locationSuffix != null
-		&amp;&amp; !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
-	    ontologyDevice
-		    .setLocation(new Room(
-			    Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-				    + locationSuffix));
-	} else {
-	    Properties prop = Activator.getProperties();
-	    prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
-	    Activator.setProperties(prop);
-	}
-	// Serv reg
-	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
-		ontologyDevice);
-	this.addNewServiceProfiles(newProfiles);
-	// Context reg
-	ContextProvider info = new ContextProvider(NAMESPACE
-		+ &quot;zbLightingContextProvider&quot;);</pre></div></td></tr></table>
+<pre>		ontologyDevice = new LightActuator(deviceURI);
+		// Commissioning
+		String locationSuffix = Activator.getProperties().getProperty(deviceSuffix);
+		if (locationSuffix != null &amp;&amp; !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
+			ontologyDevice.setLocation(new Room(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + locationSuffix));
+		} else {
+			Properties prop = Activator.getProperties();
+			prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
+			Activator.setProperties(prop);
+		}
+		// Serv reg
+		newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI, ontologyDevice);
+		this.addNewServiceProfiles(newProfiles);
+		// Context reg
+		ContextProvider info = new ContextProvider(NAMESPACE + &quot;zbLightingContextProvider&quot;);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -3178,98 +3076,96 @@
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>74</td></tr>
+<td>70</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>103</td></tr>
+<td>97</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>132</td></tr>
+<td>124</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>159</td></tr>
+<td>151</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>187</td></tr>
+<td>178</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>215</td></tr>
+<td>204</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>241</td></tr>
+<td>230</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>268</td></tr>
+<td>257</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>295</td></tr>
+<td>284</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>322</td></tr>
+<td>311</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>349</td></tr>
+<td>338</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>377</td></tr>
+<td>365</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>403</td></tr>
+<td>391</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>431</td></tr>
+<td>418</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>459</td></tr>
+<td>445</td></tr>
 <tr class="b">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>488</td></tr>
+<td>472</td></tr>
 <tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/utils/Testing.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
-<td>516</td></tr>
+<td>499</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
 <pre>			byte[] toDecode = aare.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
 
-
-	
 	public void decode10415AARQ(APDUProcessor rmp) {</pre></div></td></tr></table></div>
       </div>
     </div>

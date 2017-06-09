@@ -27,8 +27,8 @@ under the License.
     <item>
       <title>File: 5,
              Errors: 37,
-             Warnings: 7,
-             Infos: 208
+             Warnings: 0,
+             Infos: 52
       </title>
             <link>http://lddi/lddi.common/lddi.abstraction//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.ComponentIntegrator.java">org/universAAL/lddi/abstraction/ComponentIntegrator.java</a>
                 </td>
                 <td>
-                  21
+                  9
                 </td>
                 <td>
                   0
@@ -63,10 +63,10 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
                 </td>
                 <td>
-                  44
+                  7
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   17
@@ -77,7 +77,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.ExternalDatapoint.java">org/universAAL/lddi/abstraction/ExternalDatapoint.java</a>
                 </td>
                 <td>
-                  38
+                  12
                 </td>
                 <td>
                   0
@@ -91,7 +91,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
                 </td>
                 <td>
-                  64
+                  12
                 </td>
                 <td>
                   0
@@ -105,7 +105,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.package-info.java">org/universAAL/lddi/abstraction/package-info.java</a>
                 </td>
                 <td>
-                  41
+                  12
                 </td>
                 <td>
                   0

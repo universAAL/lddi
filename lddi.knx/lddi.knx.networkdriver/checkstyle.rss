@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2012 - 2017 Austrian Institute of Technology (AIT)</copyright>
     <item>
       <title>File: 7,
-             Errors: 120,
-             Warnings: 32,
-             Infos: 365
+             Errors: 118,
+             Warnings: 7,
+             Infos: 25
       </title>
             <link>http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html</link>
       <description>
@@ -49,13 +49,13 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html#org.universAAL.lddi.knx.networkdriver.KnxWriter.java">org/universAAL/lddi/knx/networkdriver/KnxWriter.java</a>
                 </td>
                 <td>
-                  46
+                  5
                 </td>
                 <td>
-                  4
+                  2
                 </td>
                 <td>
-                  21
+                  20
                 </td>
               </tr>
                           <tr>
@@ -63,10 +63,10 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html#org.universAAL.lddi.knx.networkdriver.KnxCommunication.java">org/universAAL/lddi/knx/networkdriver/KnxCommunication.java</a>
                 </td>
                 <td>
-                  52
+                  3
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   16
@@ -77,10 +77,10 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html#org.universAAL.lddi.knx.networkdriver.util.KnxShellCommand.java">org/universAAL/lddi/knx/networkdriver/util/KnxShellCommand.java</a>
                 </td>
                 <td>
-                  9
+                  3
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   7
@@ -91,13 +91,13 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html#org.universAAL.lddi.knx.networkdriver.KnxReader.java">org/universAAL/lddi/knx/networkdriver/KnxReader.java</a>
                 </td>
                 <td>
-                  134
+                  6
                 </td>
                 <td>
-                  9
+                  2
                 </td>
                 <td>
-                  16
+                  15
                 </td>
               </tr>
                           <tr>
@@ -105,10 +105,10 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html#org.universAAL.lddi.knx.networkdriver.Activator.java">org/universAAL/lddi/knx/networkdriver/Activator.java</a>
                 </td>
                 <td>
-                  16
+                  2
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   9
@@ -119,10 +119,10 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html#org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp.java">org/universAAL/lddi/knx/networkdriver/KnxNetworkDriverImp.java</a>
                 </td>
                 <td>
-                  80
+                  5
                 </td>
                 <td>
-                  10
+                  0
                 </td>
                 <td>
                   39
@@ -133,7 +133,7 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.networkdriver//checkstyle.html#org.universAAL.lddi.knx.networkdriver.util.LogTracker.java">org/universAAL/lddi/knx/networkdriver/util/LogTracker.java</a>
                 </td>
                 <td>
-                  28
+                  1
                 </td>
                 <td>
                   0
