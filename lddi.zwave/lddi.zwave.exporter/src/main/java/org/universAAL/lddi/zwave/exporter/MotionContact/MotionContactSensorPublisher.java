@@ -43,10 +43,8 @@ public class MotionContactSensorPublisher {
 
 	public MotionContactSensorPublisher(BundleContext context) {
 		System.out.print("New Publisher\n");
-		info = new ContextProvider(
-				"http://www.tsbtecnologias.es/ContextProvider.owl#ZWaveEventPublisher");
-		mc = uAALBundleContainer.THE_CONTAINER
-				.registerModule(new Object[] { context });
+		info = new ContextProvider("http://www.tsbtecnologias.es/ContextProvider.owl#ZWaveEventPublisher");
+		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		info.setType(ContextProviderType.gauge);
 		info.setProvidedEvents(new ContextEventPattern[] { new ContextEventPattern() });
 		cp = new DefaultContextPublisher(mc, info);
@@ -58,7 +56,8 @@ public class MotionContactSensorPublisher {
 
 		if (veraResponse[0].compareTo("Motion") == 0) {
 			String msURL = NAMESPACE + veraResponse[0];
-			System.out.println("MOTION EVENT PROCESSING:"+veraResponse[0]+" "+veraResponse[1]+" "+veraResponse[2]);
+			System.out.println(
+					"MOTION EVENT PROCESSING:" + veraResponse[0] + " " + veraResponse[1] + " " + veraResponse[2]);
 			MotionSensorEvent mse = null;
 			if (veraResponse[1].equalsIgnoreCase("start")) {
 				mse = MotionSensorEvent.motion_detected;
@@ -70,8 +69,7 @@ public class MotionContactSensorPublisher {
 
 			MotionSensor ms = new MotionSensor(msURL);
 			ms.setMeasuredValue(mse);
-			ms.setLocation(new Location(NAMESPACE
-					+ "ZWaveMotionDetectorLocation", veraResponse[2]));
+			ms.setLocation(new Location(NAMESPACE + "ZWaveMotionDetectorLocation", veraResponse[2]));
 
 			System.out.print("Publishing motion\n");
 			cp.publish(new ContextEvent(ms, MotionSensor.PROP_HAS_VALUE));
@@ -85,12 +83,10 @@ public class MotionContactSensorPublisher {
 			}
 
 			ContactClosureSensor cc = new ContactClosureSensor(msURL);
-			cc.setLocation(new Location(NAMESPACE
-					+ "ZWaveContactClosureLocation", veraResponse[2]));
+			cc.setLocation(new Location(NAMESPACE + "ZWaveContactClosureLocation", veraResponse[2]));
 			cc.setMeasuredValue(cce);
 			System.out.print("Publishing contact\n");
-			cp.publish(new ContextEvent(cc,
-					ContactClosureSensor.PROP_HAS_VALUE));
+			cp.publish(new ContextEvent(cc, ContactClosureSensor.PROP_HAS_VALUE));
 		}
 	}
 }

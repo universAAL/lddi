@@ -26,23 +26,20 @@ import org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCateg
 import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
 /**
- * Representation of a temperature sensor according to
- * ISO 11073 - Part 10471 (Indepentend living activity hub).
+ * Representation of a temperature sensor according to ISO 11073 - Part 10471
+ * (Indepentend living activity hub).
  * 
- * Specific sensor events (from standard specification):
- * - high temperature detected
- * - low temperature detected
- * - rate of change too fast (optional)
- * - no condition detected (optional)
+ * Specific sensor events (from standard specification): - high temperature
+ * detected - low temperature detected - rate of change too fast (optional) - no
+ * condition detected (optional)
  * 
- * Initially NO_CONDITION_DETECTED is set.
- * Later, current sensor value can be set to HIGH_TEMPERATURE_DETECTED and LOW_TEMPERATURE_DETECTED
- * Event RATE_OF_CHANGE_TOO_FAST is not implemented yet!
+ * Initially NO_CONDITION_DETECTED is set. Later, current sensor value can be
+ * set to HIGH_TEMPERATURE_DETECTED and LOW_TEMPERATURE_DETECTED Event
+ * RATE_OF_CHANGE_TOO_FAST is not implemented yet!
  * 
- * @author Thomas Fuxreiter 
+ * @author Thomas Fuxreiter
  */
-public class TemperatureSensor extends ActivityHubSensor implements
-		Iso11073TemperatureSensor {
+public class TemperatureSensor extends ActivityHubSensor implements Iso11073TemperatureSensor {
 
 	private TemperatureSensorEvent lastSensorEvent;
 
@@ -52,25 +49,30 @@ public class TemperatureSensor extends ActivityHubSensor implements
 	 * @param deviceId
 	 * @param logger
 	 */
-	public TemperatureSensor(ActivityHubDeviceCategory deviceCategory,
-			ActivityHubLocation deviceLocation, String deviceId,
-			LogService logger) {
+	public TemperatureSensor(ActivityHubDeviceCategory deviceCategory, ActivityHubLocation deviceLocation,
+			String deviceId, LogService logger) {
 		super(deviceCategory, deviceLocation, deviceId, logger);
 
 		// init value is NO_CONDITION_DETECTED
 		this.lastSensorEvent = TemperatureSensorEvent.NO_CONDITION_DETECTED;
-}
+	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#getSensorEventValue()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
+	 * getSensorEventValue()
 	 */
 	@Override
 	public int getSensorEventValue() {
 		return this.lastSensorEvent.value();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#setSensorEventOff()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
+	 * setSensorEventOff()
 	 */
 	@Override
 	public void setSensorEventOff() {
@@ -78,8 +80,11 @@ public class TemperatureSensor extends ActivityHubSensor implements
 		this.sendEvent(TemperatureSensorEvent.LOW_TEMPERATURE_DETECTED.value());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#setSensorEventOn()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
+	 * setSensorEventOn()
 	 */
 	@Override
 	public void setSensorEventOn() {
@@ -87,11 +92,14 @@ public class TemperatureSensor extends ActivityHubSensor implements
 		this.sendEvent(TemperatureSensorEvent.HIGH_TEMPERATURE_DETECTED.value());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubBaseDeviceCategory#incomingSensorEvent(int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicecategory.
+	 * ActivityHubBaseDeviceCategory#incomingSensorEvent(int)
 	 */
 	public void incomingSensorEvent(int event) {
-		// driver instances must implement this method; device instances not! 
+		// driver instances must implement this method; device instances not!
 	}
 
 }

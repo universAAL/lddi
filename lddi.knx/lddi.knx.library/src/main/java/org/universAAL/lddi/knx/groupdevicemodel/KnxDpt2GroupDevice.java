@@ -29,11 +29,11 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt2;
  */
 public class KnxDpt2GroupDevice extends KnxGroupDevice implements IKnxDpt2 {
 
-    /**
-     * empty constructor for factory
-     */
-    public KnxDpt2GroupDevice() {
-    	super(MY_DEVICE_CATEGORY);
-    }
+	/**
+	 * empty constructor for factory
+	 */
+	public KnxDpt2GroupDevice() {
+		super(MY_DEVICE_CATEGORY);
+	}
 
 }

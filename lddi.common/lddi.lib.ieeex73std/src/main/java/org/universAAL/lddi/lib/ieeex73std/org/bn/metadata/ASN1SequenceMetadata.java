@@ -29,34 +29,30 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1SequenceMetadata
-    extends ASN1TypeMetadata
-{
-    private boolean isSet;
-    
-    public ASN1SequenceMetadata(ASN1Sequence annotation) {
-        this(annotation.name(),annotation.isSet());
-    }
+public class ASN1SequenceMetadata extends ASN1TypeMetadata {
+	private boolean isSet;
 
-    public ASN1SequenceMetadata(String  name,
-                                boolean isSet)
-    {
-        super(name);
-        this.isSet = isSet;
-    }
+	public ASN1SequenceMetadata(ASN1Sequence annotation) {
+		this(annotation.name(), annotation.isSet());
+	}
 
-    public boolean isSet()
-    {
-        return isSet;
-    }
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeSequence(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeSequence(decodedTag,objectClass,elementInfo,stream);
-    }    
-    
+	public ASN1SequenceMetadata(String name, boolean isSet) {
+		super(name);
+		this.isSet = isSet;
+	}
+
+	public boolean isSet() {
+		return isSet;
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeSequence(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeSequence(decodedTag, objectClass, elementInfo, stream);
+	}
+
 }

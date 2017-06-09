@@ -38,72 +38,66 @@ import org.universAAL.ontology.device.SwitchActuator;
 
 public class SwitchActuatorWrapper extends AbstractStatusValueCallee {
 
-    public SwitchActuatorWrapper(ModuleContext context, String itemName) {
-	super(context,
-		getServiceProfiles(Activator.NAMESPACE + itemName + "handler",
-			new SwitchActuator(Activator.NAMESPACE + itemName)),
-		Activator.NAMESPACE + itemName + "handler");
+	public SwitchActuatorWrapper(ModuleContext context, String itemName) {
+		super(context,
+				getServiceProfiles(Activator.NAMESPACE + itemName + "handler",
+						new SwitchActuator(Activator.NAMESPACE + itemName)),
+				Activator.NAMESPACE + itemName + "handler");
 
-	Activator.logD("SwitchActuatorWrapper", "Ready to subscribe");
-	shDeviceName = itemName;
+		Activator.logD("SwitchActuatorWrapper", "Ready to subscribe");
+		shDeviceName = itemName;
 
-	// URI must be the same declared in the super constructor
-	String deviceURI = Activator.NAMESPACE + itemName;
-	ontDevice = new SwitchActuator(deviceURI);
+		// URI must be the same declared in the super constructor
+		String deviceURI = Activator.NAMESPACE + itemName;
+		ontDevice = new SwitchActuator(deviceURI);
 
-	// Commissioning
-	// TODO Set location based on tags?
+		// Commissioning
+		// TODO Set location based on tags?
 
-	// Context reg
-	ContextProvider info = new ContextProvider(deviceURI + "Provider");
-	info.setType(ContextProviderType.controller);
-	ContextEventPattern cep = new ContextEventPattern();
-	MergedRestriction subjectRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			ontDevice);
-	MergedRestriction predicateRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-			SwitchActuator.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public StatusValue executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
-		.getStateAs((Class<? extends State>) OnOffType.class);
-	Activator.logD("getStatus", "The service called was 'get the status'");
-	if (value == null)
-	    return null;
-	return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated
-		: StatusValue.NotActivated;
-    }
-
-    @Override
-    public boolean executeSet(StatusValue value) {
-	Activator.logD("setStatus",
-		"The service called was 'set the status' " + value);
-
-	try {
-	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName,
-			    value.equals(StatusValue.Activated) ? OnOffType.ON
-				    : OnOffType.OFF);
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+		// Context reg
+		ContextProvider info = new ContextProvider(deviceURI + "Provider");
+		info.setType(ContextProviderType.controller);
+		ContextEventPattern cep = new ContextEventPattern();
+		MergedRestriction subjectRestriction = MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+				ontDevice);
+		MergedRestriction predicateRestriction = MergedRestriction
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, SwitchActuator.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {
-	// kept for the interface
-    }
+	@Override
+	public StatusValue executeGet() {
+		OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class<? extends State>) OnOffType.class);
+		Activator.logD("getStatus", "The service called was 'get the status'");
+		if (value == null)
+			return null;
+		return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated : StatusValue.NotActivated;
+	}
 
-    public void unregister() {
-	super.unregister();
-    }
+	@Override
+	public boolean executeSet(StatusValue value) {
+		Activator.logD("setStatus", "The service called was 'set the status' " + value);
+
+		try {
+			ItemCommandEvent itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+					value.equals(StatusValue.Activated) ? OnOffType.ON : OnOffType.OFF);
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {
+		// kept for the interface
+	}
+
+	public void unregister() {
+		super.unregister();
+	}
 
 }

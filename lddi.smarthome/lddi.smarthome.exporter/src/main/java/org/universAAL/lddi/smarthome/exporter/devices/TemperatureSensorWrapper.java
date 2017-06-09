@@ -44,89 +44,84 @@ import org.universAAL.ontology.device.TemperatureSensor;
  * 
  */
 public class TemperatureSensorWrapper extends AbstractFloatCallee {
-    private DefaultContextPublisher cp;
+	private DefaultContextPublisher cp;
 
-    /**
-     * Constructor to be used in the exporter, which sets up all the exporting
-     * process.
-     * 
-     * @param context
-     *            The OSGi context
-     * @param serv
-     *            The OSGi service backing the interaction with the device in
-     *            the abstraction layer
-     */
-    public TemperatureSensorWrapper(ModuleContext context, String itemName) {
-	super(context,
-		new ServiceProfile[] { getServiceProfileGET(
-			Activator.NAMESPACE + itemName + "handler",
-			new TemperatureSensor(
-				Activator.NAMESPACE + itemName)) },
-		Activator.NAMESPACE + itemName + "handler");
+	/**
+	 * Constructor to be used in the exporter, which sets up all the exporting
+	 * process.
+	 * 
+	 * @param context
+	 *            The OSGi context
+	 * @param serv
+	 *            The OSGi service backing the interaction with the device in
+	 *            the abstraction layer
+	 */
+	public TemperatureSensorWrapper(ModuleContext context, String itemName) {
+		super(context,
+				new ServiceProfile[] { getServiceProfileGET(Activator.NAMESPACE + itemName + "handler",
+						new TemperatureSensor(Activator.NAMESPACE + itemName)) },
+				Activator.NAMESPACE + itemName + "handler");
 
-	Activator.logD("TemperatureSensorWrapper", "Ready to subscribe");
-	shDeviceName = itemName;
+		Activator.logD("TemperatureSensorWrapper", "Ready to subscribe");
+		shDeviceName = itemName;
 
-	// URI must be the same declared in the super constructor
-	String deviceURI = Activator.NAMESPACE + itemName;
-	ontDevice = new TemperatureSensor(deviceURI);
+		// URI must be the same declared in the super constructor
+		String deviceURI = Activator.NAMESPACE + itemName;
+		ontDevice = new TemperatureSensor(deviceURI);
 
-	// Commissioning
-	// TODO Set location based on tags?
+		// Commissioning
+		// TODO Set location based on tags?
 
-	// Context reg
-	ContextProvider info = new ContextProvider(deviceURI + "Provider");
-	info.setType(ContextProviderType.controller);
-	ContextEventPattern cep = new ContextEventPattern();
-	MergedRestriction subjectRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			ontDevice);
-	MergedRestriction predicateRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-			TemperatureSensor.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
-
-    @Override
-    public Float executeGet() {
-	DecimalType value = (DecimalType) Activator.getOpenhab()
-		.get(shDeviceName)
-		.getStateAs((Class<? extends State>) DecimalType.class);
-	Activator.logD("getStatus", "The service called was 'get the status'");
-	if (value == null)
-	    return null;
-	return Float.valueOf(value.floatValue());
-    }
-
-    @Override
-    public boolean executeSet(Float value) {
-	return false;// Sensor cant set
-    }
-
-    public void publish(Event event) {
-	Float theValue = null;
-	Activator.logD("changedCurrentLevel", "Changed-Event received");
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof DecimalType) {
-		theValue = Float.valueOf(((DecimalType) s).floatValue());
-	    }
+		// Context reg
+		ContextProvider info = new ContextProvider(deviceURI + "Provider");
+		info.setType(ContextProviderType.controller);
+		ContextEventPattern cep = new ContextEventPattern();
+		MergedRestriction subjectRestriction = MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+				ontDevice);
+		MergedRestriction predicateRestriction = MergedRestriction
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, TemperatureSensor.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
 	}
-	if (theValue != null) {
-	    TemperatureSensor d = (TemperatureSensor) ontDevice;
-	    d.setValue(theValue.floatValue());
-	    cp.publish(new ContextEvent(d, TemperatureSensor.PROP_HAS_VALUE));
-	} // else dont bother TODO log
-    }
 
-    public void unregister() {
-	super.unregister();
-	cp.close();
-    }
+	@Override
+	public Float executeGet() {
+		DecimalType value = (DecimalType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class<? extends State>) DecimalType.class);
+		Activator.logD("getStatus", "The service called was 'get the status'");
+		if (value == null)
+			return null;
+		return Float.valueOf(value.floatValue());
+	}
+
+	@Override
+	public boolean executeSet(Float value) {
+		return false;// Sensor cant set
+	}
+
+	public void publish(Event event) {
+		Float theValue = null;
+		Activator.logD("changedCurrentLevel", "Changed-Event received");
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof DecimalType) {
+				theValue = Float.valueOf(((DecimalType) s).floatValue());
+			}
+		}
+		if (theValue != null) {
+			TemperatureSensor d = (TemperatureSensor) ontDevice;
+			d.setValue(theValue.floatValue());
+			cp.publish(new ContextEvent(d, TemperatureSensor.PROP_HAS_VALUE));
+		} // else dont bother TODO log
+	}
+
+	public void unregister() {
+		super.unregister();
+		cp.close();
+	}
 
 }

@@ -48,122 +48,97 @@ import org.universAAL.ontology.phThing.DeviceService;
  * @author alfiva
  * 
  */
-public class OccupancySensorCallee extends ExporterSensorCallee implements
-	OccupancyListener {
-    static {
-	NAMESPACE = "http://ontology.universAAL.org/ZBOccupancyService.owl#";
-    }
-
-    private OccupancySensorAAL zbDevice;
-    private PresenceSensor ontologyDevice;
-    private DefaultContextPublisher cp;
-
-    /**
-     * Constructor to be used in the exporter, which sets up all the exporting
-     * process.
-     * 
-     * @param context
-     *            The OSGi context
-     * @param serv
-     *            The OSGi service backing the interaction with the device in
-     *            the abstraction layer
-     */
-    public OccupancySensorCallee(ModuleContext context, OccupancySensorAAL serv) {
-	super(context, null);
-	LogUtils.logDebug(Activator.moduleContext, OccupancySensorCallee.class,
-		"PresenceDetectorCallee",
-		new String[] { "Ready to subscribe" }, null);
-	zbDevice = serv;
-
-	// Info Setup
-	// TODO replace the deprecated
-	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
-		.replace("\"", "");
-	String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
-	ontologyDevice = new PresenceSensor(deviceURI);
-	ontologyDevice.setValue(StatusValue.NoCondition);
-	// TODO Skip location and attachment for now
-	// String locationSuffix = Activator.getProperties().getProperty(
-	// deviceSuffix);
-	// if (locationSuffix != null
-	// && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
-	// ontologyDevice
-	// .setLocation(new Room(
-	// Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-	// + locationSuffix));
-	// } else {
-	// Properties prop = Activator.getProperties();
-	// prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
-	// Activator.setProperties(prop);
-	// }
-
-	//Service reg
-	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
-		ontologyDevice);
-	this.addNewServiceProfiles(newProfiles);
-
-	//Context reg
-	ContextProvider info = new ContextProvider(NAMESPACE
-		+ "zbOccupancySensorContextProvider");
-	info.setType(ContextProviderType.gauge);
-	cp = new DefaultContextPublisher(context, info);
-
-	// ZB device subscription
-	zbDevice.getOccupacySensing().subscribe(this);
-	LogUtils.logDebug(Activator.moduleContext, OccupancySensorCallee.class,
-		"PresenceDetectorCallee", new String[] { "Subscribed" }, null);
-
-    }
-
-    @Override
-    protected ServiceResponse getValue() {
-	LogUtils.logDebug(Activator.moduleContext, OccupancySensorCallee.class,
-		"getPresence",
-		new String[] { "The service called was 'get the status'" },
-		null);
-	ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
-	Boolean finalValue = new Boolean(false);
-	try {
-	    finalValue = (Boolean) zbDevice.getOccupacySensing().getOccupancy()
-		    .getValue();
-	} catch (ZigBeeClusterException e) {
-	    LogUtils.logError(
-		    Activator.moduleContext,
-		    OccupancySensorCallee.class,
-		    "getPresence",
-		    new String[] { "Error getting the value of the occupancy: ZB error" },
-		    e);
-	    ServiceResponse response = new ServiceResponse(
-		    CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "ZB error!"));
-	    return response;
-	} catch (ClassCastException e) {
-	    LogUtils.logError(
-		    Activator.moduleContext,
-		    OccupancySensorCallee.class,
-		    "getPresence",
-		    new String[] { "Error getting the value of the occupancy: Unexpected value" },
-		    e);
-	    ServiceResponse response = new ServiceResponse(
-		    CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Unexpected value!"));
-	    return response;
+public class OccupancySensorCallee extends ExporterSensorCallee implements OccupancyListener {
+	static {
+		NAMESPACE = "http://ontology.universAAL.org/ZBOccupancyService.owl#";
 	}
-	sr.addOutput(new ProcessOutput(NAMESPACE + OUT_GET_VALUE,
-		finalValue));
-	return sr;
-    }
 
-    public void changedOccupancy(OccupancyEvent event) {
-	LogUtils.logDebug(Activator.moduleContext,
-		PresenceDetectorCallee.class, "changedOccupancy",
-		new String[] { "Changed-Event received" }, null);
-	ontologyDevice.setValue(event.getEvent() > 0 ? StatusValue.Activated
-		: StatusValue.NotActivated);
-	cp.publish(new ContextEvent(ontologyDevice,
-		PresenceSensor.PROP_HAS_VALUE));
-    }
+	private OccupancySensorAAL zbDevice;
+	private PresenceSensor ontologyDevice;
+	private DefaultContextPublisher cp;
+
+	/**
+	 * Constructor to be used in the exporter, which sets up all the exporting
+	 * process.
+	 * 
+	 * @param context
+	 *            The OSGi context
+	 * @param serv
+	 *            The OSGi service backing the interaction with the device in
+	 *            the abstraction layer
+	 */
+	public OccupancySensorCallee(ModuleContext context, OccupancySensorAAL serv) {
+		super(context, null);
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorCallee.class, "PresenceDetectorCallee",
+				new String[] { "Ready to subscribe" }, null);
+		zbDevice = serv;
+
+		// Info Setup
+		// TODO replace the deprecated
+		String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier().replace("\"", "");
+		String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
+		ontologyDevice = new PresenceSensor(deviceURI);
+		ontologyDevice.setValue(StatusValue.NoCondition);
+		// TODO Skip location and attachment for now
+		// String locationSuffix = Activator.getProperties().getProperty(
+		// deviceSuffix);
+		// if (locationSuffix != null
+		// && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
+		// ontologyDevice
+		// .setLocation(new Room(
+		// Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+		// + locationSuffix));
+		// } else {
+		// Properties prop = Activator.getProperties();
+		// prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
+		// Activator.setProperties(prop);
+		// }
+
+		// Service reg
+		newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI, ontologyDevice);
+		this.addNewServiceProfiles(newProfiles);
+
+		// Context reg
+		ContextProvider info = new ContextProvider(NAMESPACE + "zbOccupancySensorContextProvider");
+		info.setType(ContextProviderType.gauge);
+		cp = new DefaultContextPublisher(context, info);
+
+		// ZB device subscription
+		zbDevice.getOccupacySensing().subscribe(this);
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorCallee.class, "PresenceDetectorCallee",
+				new String[] { "Subscribed" }, null);
+
+	}
+
+	@Override
+	protected ServiceResponse getValue() {
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorCallee.class, "getPresence",
+				new String[] { "The service called was 'get the status'" }, null);
+		ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
+		Boolean finalValue = new Boolean(false);
+		try {
+			finalValue = (Boolean) zbDevice.getOccupacySensing().getOccupancy().getValue();
+		} catch (ZigBeeClusterException e) {
+			LogUtils.logError(Activator.moduleContext, OccupancySensorCallee.class, "getPresence",
+					new String[] { "Error getting the value of the occupancy: ZB error" }, e);
+			ServiceResponse response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+			response.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "ZB error!"));
+			return response;
+		} catch (ClassCastException e) {
+			LogUtils.logError(Activator.moduleContext, OccupancySensorCallee.class, "getPresence",
+					new String[] { "Error getting the value of the occupancy: Unexpected value" }, e);
+			ServiceResponse response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+			response.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Unexpected value!"));
+			return response;
+		}
+		sr.addOutput(new ProcessOutput(NAMESPACE + OUT_GET_VALUE, finalValue));
+		return sr;
+	}
+
+	public void changedOccupancy(OccupancyEvent event) {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorCallee.class, "changedOccupancy",
+				new String[] { "Changed-Event received" }, null);
+		ontologyDevice.setValue(event.getEvent() > 0 ? StatusValue.Activated : StatusValue.NotActivated);
+		cp.publish(new ContextEvent(ontologyDevice, PresenceSensor.PROP_HAS_VALUE));
+	}
 }

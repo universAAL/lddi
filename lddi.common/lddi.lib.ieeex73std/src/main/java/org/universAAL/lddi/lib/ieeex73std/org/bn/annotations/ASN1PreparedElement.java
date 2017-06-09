@@ -16,6 +16,7 @@
  */
 
 package org.universAAL.lddi.lib.ieeex73std.org.bn.annotations;
+
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)

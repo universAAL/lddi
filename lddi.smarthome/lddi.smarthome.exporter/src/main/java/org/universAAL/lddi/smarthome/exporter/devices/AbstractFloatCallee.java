@@ -35,153 +35,136 @@ import org.universAAL.ontology.phThing.Device;
 import org.universAAL.ontology.phThing.DeviceService;
 
 public abstract class AbstractFloatCallee extends AbstractCallee {
-    /**
-     * Service suffix.
-     */
-    public static final String SERVICE_GET_VALUE = "servGetValue";
-    /**
-     * Argument suffix.
-     */
-    public static final String OUT_GET_VALUE = "outGetValue";
-    /**
-     * Service suffix.
-     */
-    public static final String SERVICE_SET_VALUE = "servSetValue";
-    /**
-     * Service suffix.
-     */
-    public static final String IN_SET_VALUE = "inSetValue";
-    /**
-     * Argument suffix.
-     */
-    public static final String IN_DEVICE = "inDevice";
+	/**
+	 * Service suffix.
+	 */
+	public static final String SERVICE_GET_VALUE = "servGetValue";
+	/**
+	 * Argument suffix.
+	 */
+	public static final String OUT_GET_VALUE = "outGetValue";
+	/**
+	 * Service suffix.
+	 */
+	public static final String SERVICE_SET_VALUE = "servSetValue";
+	/**
+	 * Service suffix.
+	 */
+	public static final String IN_SET_VALUE = "inSetValue";
+	/**
+	 * Argument suffix.
+	 */
+	public static final String IN_DEVICE = "inDevice";
 
-    protected String namespace;
-    protected ServiceProfile[] newProfiles;
+	protected String namespace;
+	protected ServiceProfile[] newProfiles;
 
-    protected AbstractFloatCallee(ModuleContext context,
-	    ServiceProfile[] realizedServices, String namespace) {
-	super(context, realizedServices);
-	this.namespace = namespace;
-    }
-
-    public void unregister() {
-	this.removeMatchingProfiles(newProfiles);
-	this.close();
-    }
-
-    public void communicationChannelBroken() {
-	unregister();
-    }
-
-    public ServiceResponse handleCall(ServiceCall call) {
-	ServiceResponse response;
-	if (call == null) {
-	    return null;
+	protected AbstractFloatCallee(ModuleContext context, ServiceProfile[] realizedServices, String namespace) {
+		super(context, realizedServices);
+		this.namespace = namespace;
 	}
-	String operation = call.getProcessURI();
-	if (operation == null) {
-	    return null;
+
+	public void unregister() {
+		this.removeMatchingProfiles(newProfiles);
+		this.close();
 	}
-	if (!((Device) call.getInputValue(namespace + IN_DEVICE)).getURI()
-		.equals(ontDevice.getURI())) {
-	    return new ServiceResponse(CallStatus.denied);
+
+	public void communicationChannelBroken() {
+		unregister();
 	}
-	if (operation.startsWith(namespace + SERVICE_GET_VALUE)) {
-	    Float result = executeGet();
-	    if (result != null) {
-		response = new ServiceResponse(CallStatus.succeeded);
-		response.addOutput(
-			new ProcessOutput(namespace + OUT_GET_VALUE, result));
+
+	public ServiceResponse handleCall(ServiceCall call) {
+		ServiceResponse response;
+		if (call == null) {
+			return null;
+		}
+		String operation = call.getProcessURI();
+		if (operation == null) {
+			return null;
+		}
+		if (!((Device) call.getInputValue(namespace + IN_DEVICE)).getURI().equals(ontDevice.getURI())) {
+			return new ServiceResponse(CallStatus.denied);
+		}
+		if (operation.startsWith(namespace + SERVICE_GET_VALUE)) {
+			Float result = executeGet();
+			if (result != null) {
+				response = new ServiceResponse(CallStatus.succeeded);
+				response.addOutput(new ProcessOutput(namespace + OUT_GET_VALUE, result));
+				return response;
+			} else {
+				response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+				return response;
+			}
+		}
+
+		if (operation.startsWith(namespace + SERVICE_SET_VALUE)) {
+			Float value = (Float) call.getInputValue(namespace + IN_SET_VALUE);
+			if (executeSet(value)) {
+				return new ServiceResponse(CallStatus.succeeded);
+			} else {
+				response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+				return response;
+			}
+		}
+
+		response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+		response.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+				"The service requested has not been implemented in this simple dimmer callee"));
 		return response;
-	    } else {
-		response = new ServiceResponse(
-			CallStatus.serviceSpecificFailure);
-		return response;
-	    }
 	}
 
-	if (operation.startsWith(namespace + SERVICE_SET_VALUE)) {
-	    Float value = (Float) call.getInputValue(namespace + IN_SET_VALUE);
-	    if (executeSet(value)) {
-		return new ServiceResponse(CallStatus.succeeded);
-	    } else {
-		response = new ServiceResponse(
-			CallStatus.serviceSpecificFailure);
-		return response;
-	    }
+	/**
+	 * When a GET STATUS service request is received, this method is called
+	 * automatically.
+	 * 
+	 * @return The Float value representing the status property of the actuator.
+	 */
+	public abstract Float executeGet();
+
+	/**
+	 * When a SET STATUS service request is received, this method is called
+	 * automatically.
+	 * 
+	 * @param value
+	 *            The Float representing the dimmed value
+	 * @return True if succeeded
+	 */
+	public abstract boolean executeSet(Float value);
+
+	/**
+	 * Get the typical service profiles for a controller: GET/SET the has value
+	 * prop.
+	 * 
+	 * @param namespace
+	 *            Must be the same as the one set in the constructor
+	 * @param instance
+	 *            The instance of the ontological representation of the device
+	 * @return
+	 */
+	public static ServiceProfile[] getServiceProfiles(String namespace, Device instance) {
+		ServiceProfile[] profiles = new ServiceProfile[2];
+		profiles[0] = getServiceProfileGET(namespace, instance);
+		profiles[1] = getServiceProfileSET(namespace, instance);
+		return profiles;
 	}
 
-	response = new ServiceResponse(CallStatus.serviceSpecificFailure);
-	response.addOutput(new ProcessOutput(
-		ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		"The service requested has not been implemented in this simple dimmer callee"));
-	return response;
-    }
+	public static ServiceProfile getServiceProfileGET(String namespace, Device instance) {
+		Service getValue = (Service) OntologyManagement.getInstance().getResource(DeviceService.MY_URI,
+				namespace + SERVICE_GET_VALUE);
+		getValue.addFilteringInput(namespace + IN_DEVICE, instance.getClassURI(), 0, 1,
+				new String[] { DeviceService.PROP_CONTROLS });
+		getValue.addOutput(namespace + OUT_GET_VALUE, TypeMapper.getDatatypeURI(Float.class), 1, 1,
+				new String[] { DeviceService.PROP_CONTROLS, ValueDevice.PROP_HAS_VALUE });
+		return getValue.getProfile();
+	}
 
-    /**
-     * When a GET STATUS service request is received, this method is called
-     * automatically.
-     * 
-     * @return The Float value representing the status property of the actuator.
-     */
-    public abstract Float executeGet();
-
-    /**
-     * When a SET STATUS service request is received, this method is called
-     * automatically.
-     * 
-     * @param value
-     *            The Float representing the dimmed value
-     * @return True if succeeded
-     */
-    public abstract boolean executeSet(Float value);
-
-    /**
-     * Get the typical service profiles for a controller: GET/SET the has value
-     * prop.
-     * 
-     * @param namespace
-     *            Must be the same as the one set in the constructor
-     * @param instance
-     *            The instance of the ontological representation of the device
-     * @return
-     */
-    public static ServiceProfile[] getServiceProfiles(String namespace,
-	    Device instance) {
-	ServiceProfile[] profiles = new ServiceProfile[2];
-	profiles[0] = getServiceProfileGET(namespace, instance);
-	profiles[1] = getServiceProfileSET(namespace, instance);
-	return profiles;
-    }
-
-    public static ServiceProfile getServiceProfileGET(String namespace,
-	    Device instance) {
-	Service getValue = (Service) OntologyManagement.getInstance()
-		.getResource(DeviceService.MY_URI,
-			namespace + SERVICE_GET_VALUE);
-	getValue.addFilteringInput(namespace + IN_DEVICE,
-		instance.getClassURI(), 0, 1,
-		new String[] { DeviceService.PROP_CONTROLS });
-	getValue.addOutput(namespace + OUT_GET_VALUE,
-		TypeMapper.getDatatypeURI(Float.class), 1, 1,
-		new String[] { DeviceService.PROP_CONTROLS,
-			ValueDevice.PROP_HAS_VALUE });
-	return getValue.getProfile();
-    }
-
-    public static ServiceProfile getServiceProfileSET(String namespace,
-	    Device instance) {
-	Service setValue = (Service) OntologyManagement.getInstance()
-		.getResource(DeviceService.MY_URI,
-			namespace + SERVICE_SET_VALUE);
-	setValue.addFilteringInput(namespace + IN_DEVICE,
-		instance.getClassURI(), 0, 1,
-		new String[] { DeviceService.PROP_CONTROLS });
-	setValue.addInputWithChangeEffect(namespace + IN_SET_VALUE,
-		TypeMapper.getDatatypeURI(Float.class), 1, 1,
-		new String[] { DeviceService.PROP_CONTROLS,
-			ValueDevice.PROP_HAS_VALUE });
-	return setValue.getProfile();
-    }
+	public static ServiceProfile getServiceProfileSET(String namespace, Device instance) {
+		Service setValue = (Service) OntologyManagement.getInstance().getResource(DeviceService.MY_URI,
+				namespace + SERVICE_SET_VALUE);
+		setValue.addFilteringInput(namespace + IN_DEVICE, instance.getClassURI(), 0, 1,
+				new String[] { DeviceService.PROP_CONTROLS });
+		setValue.addInputWithChangeEffect(namespace + IN_SET_VALUE, TypeMapper.getDatatypeURI(Float.class), 1, 1,
+				new String[] { DeviceService.PROP_CONTROLS, ValueDevice.PROP_HAS_VALUE });
+		return setValue.getProfile();
+	}
 }

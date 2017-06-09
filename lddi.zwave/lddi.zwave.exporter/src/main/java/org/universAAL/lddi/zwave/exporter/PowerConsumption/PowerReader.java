@@ -30,59 +30,58 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.TimerTask;
 
-public class PowerReader extends TimerTask{
-	
+public class PowerReader extends TimerTask {
+
 	private BundleContext bcontext = null;
 
 	public PowerReader(BundleContext ctx) {
 		bcontext = ctx;
 		System.out.print("Starting PowerReader");
 	}
-	
-	public void publishEnergyConsumption(){
+
+	public void publishEnergyConsumption() {
 		Setup s = new Setup();
 		String address = s.getVeraAddress();
-		System.out.print("ADDRESS! "+address);
+		System.out.print("ADDRESS! " + address);
 		HttpURLConnection connection;
-        OutputStreamWriter request = null;
-        PowerPublisher pb = new PowerPublisher(bcontext);
-            URL url = null;   
-            String response = null;        
-            String[] data;
-            try
-            {
-                url = new URL(address);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.setDoOutput(true);
-                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                connection.setRequestMethod("POST");    
+		OutputStreamWriter request = null;
+		PowerPublisher pb = new PowerPublisher(bcontext);
+		URL url = null;
+		String response = null;
+		String[] data;
+		try {
+			url = new URL(address);
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			connection.setRequestMethod("POST");
 
-                request = new OutputStreamWriter(connection.getOutputStream());
-                request.flush();
-                request.close();                           
-                InputStreamReader isr = new InputStreamReader(connection.getInputStream());
-                BufferedReader reader = new BufferedReader(isr);
-                StringBuilder sb = new StringBuilder();
-                	                
-                for (String line = null; (line = reader.readLine()) != null;) {
-                    sb.append(line).append("\n");
-                }
-                
-                // Response from server after login process will be stored in response variable.                
-                response = sb.toString();
-                data = response.split("\n");
-                isr.close();
-                reader.close();
-                for (int i=0;i<data.length;i++){
-                	System.out.print(data[i]+"\n");
-                	String[] meassure = data[i].split("\t");
-                	pb.publishPowerConsumption(meassure[1], Integer.parseInt(meassure[4]));
-                }
-            }
-            catch(IOException e){
-                System.err.print(e.getMessage());
-            } 
-            
+			request = new OutputStreamWriter(connection.getOutputStream());
+			request.flush();
+			request.close();
+			InputStreamReader isr = new InputStreamReader(connection.getInputStream());
+			BufferedReader reader = new BufferedReader(isr);
+			StringBuilder sb = new StringBuilder();
+
+			for (String line = null; (line = reader.readLine()) != null;) {
+				sb.append(line).append("\n");
+			}
+
+			// Response from server after login process will be stored in
+			// response variable.
+			response = sb.toString();
+			data = response.split("\n");
+			isr.close();
+			reader.close();
+			for (int i = 0; i < data.length; i++) {
+				System.out.print(data[i] + "\n");
+				String[] meassure = data[i].split("\t");
+				pb.publishPowerConsumption(meassure[1], Integer.parseInt(meassure[4]));
+			}
+		} catch (IOException e) {
+			System.err.print(e.getMessage());
+		}
+
 	}
 
 	@Override

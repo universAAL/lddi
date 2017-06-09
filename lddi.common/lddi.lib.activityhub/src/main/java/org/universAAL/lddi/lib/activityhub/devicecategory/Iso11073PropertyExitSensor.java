@@ -25,21 +25,20 @@ import org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCateg
 /**
  * OSGi DeviceCategory for Activityhub PropertyExit sensor
  * 
- * In general DeviceCategories specify:
- * - rules and interfaces needed for the communication between device service
- * and driver service. Devices must implement this IF.
+ * In general DeviceCategories specify: - rules and interfaces needed for the
+ * communication between device service and driver service. Devices must
+ * implement this IF.
  * 
- * - a set of service registration properties, their data types and semantics (mandatory or optional)
+ * - a set of service registration properties, their data types and semantics
+ * (mandatory or optional)
  * 
  * - a range of match values used by DeviceManager
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public interface Iso11073PropertyExitSensor extends
-		ActivityHubBaseDeviceCategory {
+public interface Iso11073PropertyExitSensor extends ActivityHubBaseDeviceCategory {
 
 	// used in driver match method
-	public static String MY_DEVICE_CATEGORY = ActivityHubDeviceCategory.
-		MDC_AI_TYPE_SENSOR_PROPEXIT.toString();
-	
+	public static String MY_DEVICE_CATEGORY = ActivityHubDeviceCategory.MDC_AI_TYPE_SENSOR_PROPEXIT.toString();
+
 }

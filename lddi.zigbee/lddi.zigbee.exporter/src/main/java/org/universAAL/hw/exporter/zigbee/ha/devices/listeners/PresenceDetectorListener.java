@@ -42,58 +42,51 @@ import org.universAAL.middleware.container.utils.LogUtils;
  */
 public class PresenceDetectorListener extends ExporterListener {
 
-    static {
-	filter = "(" + Constants.OBJECTCLASS + "="
-		+ OccupancySensor.class.getName() + ")";
-    }
-
-    /**
-     * Constructor to be used in the exporter. Configures the listener and
-     * performs initial search.
-     * 
-     * @param context
-     *            The OSGi context
-     * @throws InvalidSyntaxException
-     *             If the service to listen defined in the class is not
-     *             appropriate
-     */
-    public PresenceDetectorListener(BundleContext context)
-	    throws InvalidSyntaxException {
-	super(context);
-    }
-
-    @Override
-    protected void registeruAALService(ServiceReference sr) {
-	LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class,
-		"registeruAALService",
-		new String[] { "Creating a instance of device in uAAL" }, null);
-	OccupancySensor PresenceDetectorService = (OccupancySensor) context
-		.getService(sr);
-	setOfDevices.put(sr, new PresenceDetectorCallee(
-		Activator.moduleContext, PresenceDetectorService));
-    }
-
-    @Override
-    protected void unregisteruAALService(ServiceReference sr) {
-	LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class,
-		"registeruAALService",
-		new String[] { "Removing a instance of device in uAAL" }, null);
-	((PresenceDetectorCallee) setOfDevices.remove(sr)).unregister();
-	context.ungetService(sr);
-    }
-
-    @Override
-    public void unregisteruAALService() {
-	LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class,
-		"registeruAALService",
-		new String[] { "Removing all instances of these devices in uAAL"}, null);
-	Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
-	for (; iter.hasNext();) {
-	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((PresenceDetectorCallee) setOfDevices.get(sref)).unregister();
-	    iter.remove();
-	    context.ungetService(sref);
+	static {
+		filter = "(" + Constants.OBJECTCLASS + "=" + OccupancySensor.class.getName() + ")";
 	}
-	setOfDevices.clear();
-    }
+
+	/**
+	 * Constructor to be used in the exporter. Configures the listener and
+	 * performs initial search.
+	 * 
+	 * @param context
+	 *            The OSGi context
+	 * @throws InvalidSyntaxException
+	 *             If the service to listen defined in the class is not
+	 *             appropriate
+	 */
+	public PresenceDetectorListener(BundleContext context) throws InvalidSyntaxException {
+		super(context);
+	}
+
+	@Override
+	protected void registeruAALService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "registeruAALService",
+				new String[] { "Creating a instance of device in uAAL" }, null);
+		OccupancySensor PresenceDetectorService = (OccupancySensor) context.getService(sr);
+		setOfDevices.put(sr, new PresenceDetectorCallee(Activator.moduleContext, PresenceDetectorService));
+	}
+
+	@Override
+	protected void unregisteruAALService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "registeruAALService",
+				new String[] { "Removing a instance of device in uAAL" }, null);
+		((PresenceDetectorCallee) setOfDevices.remove(sr)).unregister();
+		context.ungetService(sr);
+	}
+
+	@Override
+	public void unregisteruAALService() {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "registeruAALService",
+				new String[] { "Removing all instances of these devices in uAAL" }, null);
+		Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
+		for (; iter.hasNext();) {
+			ServiceReference sref = (ServiceReference) iter.next();
+			((PresenceDetectorCallee) setOfDevices.get(sref)).unregister();
+			iter.remove();
+			context.ungetService(sref);
+		}
+		setOfDevices.clear();
+	}
 }

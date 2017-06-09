@@ -76,8 +76,7 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 	 * @param network
 	 * @param logger2
 	 */
-	public void setParams(KnxGroupAddress knxGroupAddress, IKnxNetwork network,
-			LogService logger) {
+	public void setParams(KnxGroupAddress knxGroupAddress, IKnxNetwork network, LogService logger) {
 		this.knxGroupDeviceProperties = knxGroupAddress;
 		this.network = network;
 		this.logger = logger;
@@ -94,8 +93,7 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 		// add groupDevice to deviceList in knx.networkdriver
 		this.network.addGroupDevice(this.groupDeviceId, this);
 
-		this.logger.log(LogService.LOG_DEBUG, "Registered groupDevice "
-				+ groupDeviceId + " in knx.networkdriver.");
+		this.logger.log(LogService.LOG_DEBUG, "Registered groupDevice " + groupDeviceId + " in knx.networkdriver.");
 	}
 
 	/** store a driver reference for this groupDevice */
@@ -108,46 +106,34 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 		this.driver = null;
 	}
 
-
-	
-	
 	/** {@inheritDoc} */
 	public void newMessageFromKnxBus(byte[] event) {
 
-		this.logger.log(LogService.LOG_INFO, "Device "
-				+ this.getGroupDeviceId() + " got value: "
-				+ KnxEncoder.convertToReadableHex(event));
+		this.logger.log(LogService.LOG_INFO,
+				"Device " + this.getGroupDeviceId() + " got value: " + KnxEncoder.convertToReadableHex(event));
 		// String.format("%02X", Arrays.toString(value)));
 
 		if (this.driver != null)
 			this.driver.newMessageFromKnxBus(event);
 		else
 			this.logger.log(LogService.LOG_WARNING,
-					"No driver for groupDevice " + this.getGroupDeviceId()
-							+ " coupled! Cannot forward knx message!");
+					"No driver for groupDevice " + this.getGroupDeviceId() + " coupled! Cannot forward knx message!");
 	}
 
 	/** {@inheritDoc} */
-	public void sendMessageToKnxBus( byte[] event ) {
+	public void sendMessageToKnxBus(byte[] event) {
 
 		if (this.network != null) {
-			this.logger.log(LogService.LOG_INFO, "GroupDevice "
-					+ this.getGroupDeviceId() + " forwards payload value "
+			this.logger.log(LogService.LOG_INFO, "GroupDevice " + this.getGroupDeviceId() + " forwards payload value "
 					+ KnxEncoder.convertToReadableHex(event) + " to Knx network driver");
 			this.network.sendMessageToKnxBus(this.groupDeviceId, event);
-		}
-		else
-			this.logger.log(LogService.LOG_WARNING,
-					"KNX network driver not available! Cannot forward knx message!");
+		} else
+			this.logger.log(LogService.LOG_WARNING, "KNX network driver not available! Cannot forward knx message!");
 	}
-	
-	
-	
-	
+
 	public void noDriverFound() {
 		this.logger.log(LogService.LOG_WARNING,
-				"No suitable drivers were found for KNX groupDevice: "
-						+ knxGroupDeviceProperties.getGroupAddress());
+				"No suitable drivers were found for KNX groupDevice: " + knxGroupDeviceProperties.getGroupAddress());
 	}
 
 	/**
@@ -174,8 +160,7 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 			return Integer.parseInt(this.knxGroupDeviceProperties.getDptMain());
 		} catch (NumberFormatException e) {
 			this.logger.log(LogService.LOG_ERROR,
-					"Error on converting main datatype number of knx groupDevice "
-							+ this.groupDeviceId);
+					"Error on converting main datatype number of knx groupDevice " + this.groupDeviceId);
 			e.printStackTrace();
 		}
 		return 0;
@@ -190,10 +175,8 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 		try {
 			return Integer.parseInt(this.knxGroupDeviceProperties.getDptSub());
 		} catch (NumberFormatException e) {
-			this.logger.log(LogService.LOG_ERROR,
-					"Error on converting minor datatype number of knx groupDevice "
-							+ this.groupDeviceId + " with dpt "
-							+ this.getDatapointType());
+			this.logger.log(LogService.LOG_ERROR, "Error on converting minor datatype number of knx groupDevice "
+					+ this.groupDeviceId + " with dpt " + this.getDatapointType());
 			e.printStackTrace();
 		}
 		return 0;

@@ -18,5 +18,5 @@
 package org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.constraints;
 
 public interface IASN1ConstraintMetadata {
-    boolean checkValue(long value) throws Exception;
+	boolean checkValue(long value) throws Exception;
 }

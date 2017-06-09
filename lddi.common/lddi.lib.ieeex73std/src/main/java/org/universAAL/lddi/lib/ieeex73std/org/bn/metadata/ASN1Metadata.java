@@ -27,24 +27,21 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public abstract class ASN1Metadata implements IASN1Metadata
-{
-    public ASN1Metadata() {
-        
-    }
-    
-    private String name;
+public abstract class ASN1Metadata implements IASN1Metadata {
+	public ASN1Metadata() {
 
-    public ASN1Metadata(String name)
-    {
-        this.name = name;
-    }
+	}
 
-    public String getName()
-    {
-        return name;
-    }    
-    
-    public void setParentAnnotated(AnnotatedElement parentAnnotated) {}    
+	private String name;
+
+	public ASN1Metadata(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setParentAnnotated(AnnotatedElement parentAnnotated) {
+	}
 }
-

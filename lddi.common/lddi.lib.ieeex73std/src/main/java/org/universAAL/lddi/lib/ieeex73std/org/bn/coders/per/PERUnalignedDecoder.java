@@ -24,58 +24,55 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.utils.*;
 
 public class PERUnalignedDecoder extends PERAlignedDecoder {
 
-    protected void skipAlignedBits(InputStream stream) {
-        // Do nothing! Unaligned encoding ;)
-    }
-    
-    protected long decodeConstraintNumber(long min, long max, BitArrayInputStream stream) throws Exception {
-     int result = 0;
-     long valueRange = max - min;
-     // !!! int narrowedVal = value - min; !!!
-     int maxBitLen = PERCoderUtils.getMaxBitLength(valueRange);
-    
-     if(valueRange == 0) {
-         return max;
-     }     
-     //For the UNALIGNED variant the value is always encoded in the minimum 
-     // number of bits necessary to represent the range (defined in 10.5.3). 
-     int currentBit = maxBitLen;
-     while(currentBit > 7 ) {
-         currentBit-=8;
-         result |= stream.read() << currentBit;         
-     }
-     if(currentBit > 0) {
-        result |= stream.readBits(currentBit);
-     }
-     result+=min;
-     return result;
-    }
-    
-    public DecodedObject decodeString(DecodedObject decodedTag, Class objectClass, 
-                                         ElementInfo elementInfo, 
-                                  InputStream stream) throws IOException, 
-                                                                    Exception {
-     if(!PERCoderUtils.is7BitEncodedString(elementInfo))
-         return super.decodeString(decodedTag, objectClass, elementInfo, stream);
-     else {
-            DecodedObject<String> result = new DecodedObject<String>();
-         int strLen = decodeLength(elementInfo, stream);
+	protected void skipAlignedBits(InputStream stream) {
+		// Do nothing! Unaligned encoding ;)
+	}
 
-         if(strLen <= 0) {
-             result.setValue("");
-             return result;
-         }
-     
-         BitArrayInputStream bitStream = (BitArrayInputStream)stream;
-         byte[] buffer = new byte[strLen];
-         // 7-bit decoding of string
-         for(int i=0;i<strLen;i++)
-            buffer[i]=(byte)bitStream.readBits(7);
-        result.setValue( new String(buffer) );
-        return result;
-     }
-     
-    }    
-    
+	protected long decodeConstraintNumber(long min, long max, BitArrayInputStream stream) throws Exception {
+		int result = 0;
+		long valueRange = max - min;
+		// !!! int narrowedVal = value - min; !!!
+		int maxBitLen = PERCoderUtils.getMaxBitLength(valueRange);
+
+		if (valueRange == 0) {
+			return max;
+		}
+		// For the UNALIGNED variant the value is always encoded in the minimum
+		// number of bits necessary to represent the range (defined in 10.5.3).
+		int currentBit = maxBitLen;
+		while (currentBit > 7) {
+			currentBit -= 8;
+			result |= stream.read() << currentBit;
+		}
+		if (currentBit > 0) {
+			result |= stream.readBits(currentBit);
+		}
+		result += min;
+		return result;
+	}
+
+	public DecodedObject decodeString(DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo,
+			InputStream stream) throws IOException, Exception {
+		if (!PERCoderUtils.is7BitEncodedString(elementInfo))
+			return super.decodeString(decodedTag, objectClass, elementInfo, stream);
+		else {
+			DecodedObject<String> result = new DecodedObject<String>();
+			int strLen = decodeLength(elementInfo, stream);
+
+			if (strLen <= 0) {
+				result.setValue("");
+				return result;
+			}
+
+			BitArrayInputStream bitStream = (BitArrayInputStream) stream;
+			byte[] buffer = new byte[strLen];
+			// 7-bit decoding of string
+			for (int i = 0; i < strLen; i++)
+				buffer[i] = (byte) bitStream.readBits(7);
+			result.setValue(new String(buffer));
+			return result;
+		}
+
+	}
 
 }

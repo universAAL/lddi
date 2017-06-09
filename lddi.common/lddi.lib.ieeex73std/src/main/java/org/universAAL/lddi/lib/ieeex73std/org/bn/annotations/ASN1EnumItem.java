@@ -21,7 +21,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ASN1EnumItem {
-    String name() default "";
-    boolean hasTag() default false;
-    int tag() default 0;
+	String name() default "";
+
+	boolean hasTag() default false;
+
+	int tag() default 0;
 }

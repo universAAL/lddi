@@ -50,504 +50,485 @@ import org.universAAL.lddi.lib.ieeex73std.testchannel20601.RlrqAPDUtest;
 import org.universAAL.lddi.lib.ieeex73std.testchannel20601.UnknownCfg;
 import org.universAAL.lddi.lib.ieeex73std.x73.p20601.ApduType;
 
-
-
 public class Testing<T> {
-	
+
 	IDecoder decoder = null;
 	IEncoder<T> encoder = null;
-	
+
 	ByteArrayInputStream bais = null;
 	ByteArrayOutputStream baos = null;
-	
-	
-	public Testing (IEncoder encoder, IDecoder decoder){
+
+	public Testing(IEncoder encoder, IDecoder decoder) {
 		this.encoder = encoder;
 		this.decoder = decoder;
 	}
-	
 
 	public void decodeAARE(APDUProcessor rmp) {
 		AareAPDUtest aare = new AareAPDUtest(false);
 		try {
-			
+
 			byte[] toDecode = aare.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
 
-
-	
 	public void decode10415AARQ(APDUProcessor rmp) {
 		Aarq10415APDUtest aarq = new Aarq10415APDUtest();
 		try {
-			
+
 			byte[] toDecode = aarq.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
-	
-	
+
 	public void decodeUnknownCfg(APDUProcessor rmp) {
 		UnknownCfg aarq = new UnknownCfg();
 		try {
-			
+
 			byte[] toDecode = aarq.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
+
 	public void decodeExtended10415CfgReport(APDUProcessor rmp) {
 		ExtendedCfg10415 cfg = new ExtendedCfg10415();
 		try {
-			
+
 			byte[] toDecode = cfg.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
-	
+
 	public void decodeExtended10404CfgReport(APDUProcessor rmp) {
 		ExtendedCfg10404 cfg = new ExtendedCfg10404();
 		try {
-			
+
 			byte[] toDecode = cfg.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
 	}
-	
-	
-	
+
 	public void decodeExtended10408CfgReport(APDUProcessor rmp) {
 		ExtendedCfg10408 cfg = new ExtendedCfg10408();
 		try {
-			
+
 			byte[] toDecode = cfg.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
 	}
-	
+
 	public void decodeExtended10415Measure(APDUProcessor rmp) {
 		ExtendedMeasure10415APDUtest extmeasure = new ExtendedMeasure10415APDUtest();
 		try {
-			
+
 			byte[] toDecode = extmeasure.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
+
 	public void decodeExtended10404Measure(APDUProcessor rmp) {
 		ExtendedMeasure10404APDUtest extmeasure = new ExtendedMeasure10404APDUtest();
 		try {
-			
+
 			byte[] toDecode = extmeasure.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
+
 	public void decodeExtended10408Measure(APDUProcessor rmp) {
 		ExtendedMeasure10408APDUtest extmeasure = new ExtendedMeasure10408APDUtest();
 		try {
-			
+
 			byte[] toDecode = extmeasure.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
+
 	public void decode10417AARQ(APDUProcessor rmp) {
 		Aarq10417APDUtest aarq = new Aarq10417APDUtest();
 		try {
-			
+
 			byte[] toDecode = aarq.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
+
 	}
-	
+
 	public void decode10407AARQ(APDUProcessor rmp) {
 		Aarq10407APDUtest aarq = new Aarq10407APDUtest();
 		try {
-			
+
 			byte[] toDecode = aarq.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
-		
-	}
 
+	}
 
 	public void decodeRLRQ(APDUProcessor rmp) {
 		RlrqAPDUtest rlrq = new RlrqAPDUtest();
 		try {
-			
+
 			byte[] toDecode = rlrq.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
-		}	
+		}
 	}
 
 	public void decodeABRT(APDUProcessor rmp) {
 		AbrtAPDUtest abrt = new AbrtAPDUtest();
 		try {
-			
+
 			byte[] toDecode = abrt.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
-		}		
+		}
 	}
-	
-	public void decode10415Measure(APDUProcessor rmp)
-	{
+
+	public void decode10415Measure(APDUProcessor rmp) {
 		Measure10415PrstAPDUtest masurement = new Measure10415PrstAPDUtest();
 
 		try {
-			
+
 			byte[] toDecode = masurement.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
 	}
-	
-	public void decodeRealWeightMeasure(APDUProcessor rmp)
-	{
+
+	public void decodeRealWeightMeasure(APDUProcessor rmp) {
 		RealMeasure10415PrstAPDUtest masurement = new RealMeasure10415PrstAPDUtest();
 
 		try {
-			
+
 			byte[] toDecode = masurement.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
 	}
-	
-	
-	public void decode10407Measure(APDUProcessor rmp)
-	{
+
+	public void decode10407Measure(APDUProcessor rmp) {
 		Measure10407PrstAPDUtest masurement = new Measure10407PrstAPDUtest();
 
 		try {
-			
+
 			byte[] toDecode = masurement.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
 	}
-	
-	public void decode10417Measure(APDUProcessor rmp)
-	{
+
+	public void decode10417Measure(APDUProcessor rmp) {
 		Measure10417PrstAPDUtest masurement = new Measure10417PrstAPDUtest();
 
 		try {
-			
+
 			byte[] toDecode = masurement.getByteArray();
-			
+
 			bais = new ByteArrayInputStream(toDecode);
 			ApduType apdu = decoder.decode(bais, ApduType.class);
 			ApduType response = rmp.processAPDU(apdu);
 
-			// simulate sending response 
-			
-			if(response != null){
+			// simulate sending response
+
+			if (response != null) {
 				baos = new ByteArrayOutputStream();
 				encoder.encode((T) response, baos);
-				
+
 				byte[] apdu_bytes = baos.toByteArray();
 				Logging.logSend(ASNUtils.asHexwithspaces(apdu_bytes));
 			}
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Logging.logError(e.toString());
 		}
 	}
-	
 
-	 public void waiting (int n){
-	    
-	    long t0, t1;
+	public void waiting(int n) {
 
-	    t0 = System.currentTimeMillis();
+		long t0, t1;
 
-	    System.out.println("Waiting for "+n+" seconds");
-	    
-	    do{
-	      t1 = System.currentTimeMillis();
-	    }
-	    while ((t1 - t0) < (n * 1000));
-	  }
+		t0 = System.currentTimeMillis();
+
+		System.out.println("Waiting for " + n + " seconds");
+
+		do {
+			t1 = System.currentTimeMillis();
+		} while ((t1 - t0) < (n * 1000));
+	}
 
 }

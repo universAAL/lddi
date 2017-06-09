@@ -28,5 +28,6 @@ import org.freedesktop.dbus.*;
 @DBusInterfaceName("com.signove.health.device")
 public interface device extends DBusInterface {
 	void RequestDeviceAttributes();
+
 	String GetConfiguration();
 }

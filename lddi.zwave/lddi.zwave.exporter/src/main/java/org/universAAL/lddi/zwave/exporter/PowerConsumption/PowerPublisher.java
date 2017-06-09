@@ -32,29 +32,27 @@ import org.universAAL.middleware.context.owl.ContextProviderType;
 import org.universAAL.ontology.device.DimmerSensor;
 
 public class PowerPublisher {
-	
+
 	private ContextPublisher cp;
 	ContextProvider info = new ContextProvider();
 	ModuleContext mc;
-	public final static String NAMESPACE = "http://tsbtecnologias.es/PowerConsumptionPublisher#";	
-	
+	public final static String NAMESPACE = "http://tsbtecnologias.es/PowerConsumptionPublisher#";
+
 	public PowerPublisher(BundleContext context) {
-    	System.out.print("New Publisher\n");
-    	info = new ContextProvider(
-				"http://www.tsbtecnologias.es/ContextProvider.owl#ZWaveEventPublisher");
-		mc = uAALBundleContainer.THE_CONTAINER
-				.registerModule(new Object[] { context });
+		System.out.print("New Publisher\n");
+		info = new ContextProvider("http://www.tsbtecnologias.es/ContextProvider.owl#ZWaveEventPublisher");
+		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		info.setType(ContextProviderType.gauge);
-		info
-				.setProvidedEvents(new ContextEventPattern[] { new ContextEventPattern() });
+		info.setProvidedEvents(new ContextEventPattern[] { new ContextEventPattern() });
 		cp = new DefaultContextPublisher(mc, info);
 	}
-	
-	public void publishPowerConsumption(String name, int value){
-		DimmerSensor ds = new DimmerSensor(NAMESPACE+name);		
+
+	public void publishPowerConsumption(String name, int value) {
+		DimmerSensor ds = new DimmerSensor(NAMESPACE + name);
 		ds.setValue(value);
-		System.out.print("Publishing Power Values for "+NAMESPACE+name+" = "+ds.getValue()+"\n");
-		LogUtils.logTrace(mc, getClass(), "publishPowerConsumption", "Publishing Power Values for "+NAMESPACE+name+" = "+ds.getValue());
+		System.out.print("Publishing Power Values for " + NAMESPACE + name + " = " + ds.getValue() + "\n");
+		LogUtils.logTrace(mc, getClass(), "publishPowerConsumption",
+				"Publishing Power Values for " + NAMESPACE + name + " = " + ds.getValue());
 		cp.publish(new ContextEvent(ds, DimmerSensor.PROP_HAS_VALUE));
 	}
 

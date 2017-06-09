@@ -45,24 +45,26 @@ import org.universAAL.ontology.device.ValueDevice;
  */
 public class KnxServiceCallee extends ServiceCallee {
 
-	static final String DEVICE_URI_PREFIX = 
-		KnxServiceCalleeProvidedService.KNX_SERVER_NAMESPACE + "controlledDevice";
-	
-	private ArrayList<ValueDevice> controlledDevices = new ArrayList<ValueDevice>(); // will be filled in the constructor
-	
-	private static final ServiceResponse invalidInput
-	= new ServiceResponse(CallStatus.serviceSpecificFailure);
+	static final String DEVICE_URI_PREFIX = KnxServiceCalleeProvidedService.KNX_SERVER_NAMESPACE + "controlledDevice";
+
+	private ArrayList<ValueDevice> controlledDevices = new ArrayList<ValueDevice>(); // will
+																						// be
+																						// filled
+																						// in
+																						// the
+																						// constructor
+
+	private static final ServiceResponse invalidInput = new ServiceResponse(CallStatus.serviceSpecificFailure);
 	static {
-		invalidInput.addOutput(
-				new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Invalid input!"));
+		invalidInput.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Invalid input!"));
 	}
-	
+
 	/* constantly sends events to the KNX bus for communication testing */
 	private MyThread testThread;
 	private static KnxManager knxManager;
 
-	private Map<String,KnxDriver> drivers;
-	
+	private Map<String, KnxDriver> drivers;
+
 	/**
 	 * @param mc
 	 * @param knxManager
@@ -74,26 +76,32 @@ public class KnxServiceCallee extends ServiceCallee {
 
 		this.knxManager = knxManager;
 
-		// devices are not ready at constructor time! init later on service call!	
+		// devices are not ready at constructor time! init later on service
+		// call!
 
 		// start simulator
 		// this.testThread = new MyThread();
 		// testThread.start();
 	}
 
-	
-	
-	/* (non-Javadoc)
-	 * @see org.universAAL.middleware.service.ServiceCallee#communicationChannelBroken()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.middleware.service.ServiceCallee#
+	 * communicationChannelBroken()
 	 */
 	@Override
 	public void communicationChannelBroken() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL.middleware.service.ServiceCall)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL
+	 * .middleware.service.ServiceCall)
 	 */
 	@Override
 	public ServiceResponse handleCall(ServiceCall call) {
@@ -108,51 +116,44 @@ public class KnxServiceCallee extends ServiceCallee {
 			return switchController(input.toString(), true);
 		return null;
 	}
-	
+
 	private ServiceResponse getControlledDevices() {
-		
+
 		// init controlledDevices
 		drivers = knxManager.getDriverList();
 		for (Entry<String, KnxDriver> e : drivers.entrySet()) {
 			String deviceName = e.getKey();
 			KnxDriver driver = e.getValue();
 			ValueDevice vd = KnxToDeviceOntologyMappingFactory.getDeviceOntologyInstanceForKnxDpt(
-					driver.groupDevice.getDatapointTypeMainNumber(),
-					driver.groupDevice.getDatapointTypeSubNumber(),
+					driver.groupDevice.getDatapointTypeMainNumber(), driver.groupDevice.getDatapointTypeSubNumber(),
 					deviceName, DeviceOntologyType.Controller);
 			if (vd != null) {
 				controlledDevices.add(vd);
 			}
 		}
-	
+
 		ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
 		sr.addOutput(new ProcessOutput(KnxServiceCalleeProvidedService.OUTPUT_CONTROLLED_DEVICES,
-				controlledDevices.isEmpty() ? null : controlledDevices ));
+				controlledDevices.isEmpty() ? null : controlledDevices));
 		return sr;
 	}
-	
+
 	private ServiceResponse switchController(String deviceURI, boolean value) {
 		try {
 			Pattern p = Pattern.compile("\\d");
 			Matcher m = p.matcher(deviceURI);
 			m.find();
 			String deviceId = deviceURI.substring(m.start());
-			
+
 			knxManager.sendSensorEvent(deviceId, value);
-			
+
 			return new ServiceResponse(CallStatus.succeeded);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return invalidInput;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * Runnable helper class for simulating incoming service requests.
 	 * Constantly looping.
@@ -160,44 +161,44 @@ public class KnxServiceCallee extends ServiceCallee {
 	 * @author Thomas Fuxreiter (foex@gmx.at)
 	 */
 	static class MyThread extends Thread {
-	    private volatile boolean active = true;
-		public MyThread() {	}
+		private volatile boolean active = true;
+
+		public MyThread() {
+		}
+
 		public void run() {
 			while (active) {
-					try {
-						Thread.sleep(10000);
-						knxManager.sendSensorEvent("0/0/4", true);
-						Thread.sleep(10000);
-						knxManager.sendSensorEvent("0/0/4", false);
-						
-						Thread.sleep(10000);
-						knxManager.sendSensorEvent("1/0/0", 5, 1, Float.parseFloat("35"));
-						Thread.sleep(10000);
-						knxManager.sendSensorEvent("1/0/0", 5, 1, Float.parseFloat("20"));
-						
-						Thread.sleep(10000);
-						knxManager.sendSensorEvent("1/0/1", 5, 1, Float.parseFloat("35"));
-						Thread.sleep(10000);
-						knxManager.sendSensorEvent("1/0/1", 5, 1, Float.parseFloat("20"));
-						
-					} catch (InterruptedException e) {
-				          System.out.println("Thread interrupted " + e.getMessage());
-					}
-				
+				try {
+					Thread.sleep(10000);
+					knxManager.sendSensorEvent("0/0/4", true);
+					Thread.sleep(10000);
+					knxManager.sendSensorEvent("0/0/4", false);
+
+					Thread.sleep(10000);
+					knxManager.sendSensorEvent("1/0/0", 5, 1, Float.parseFloat("35"));
+					Thread.sleep(10000);
+					knxManager.sendSensorEvent("1/0/0", 5, 1, Float.parseFloat("20"));
+
+					Thread.sleep(10000);
+					knxManager.sendSensorEvent("1/0/1", 5, 1, Float.parseFloat("35"));
+					Thread.sleep(10000);
+					knxManager.sendSensorEvent("1/0/1", 5, 1, Float.parseFloat("20"));
+
+				} catch (InterruptedException e) {
+					System.out.println("Thread interrupted " + e.getMessage());
+				}
+
 			}
 		}
+
 		public void stopThread() {
 			active = false;
 		}
 	}
-	
+
 	public void stop() {
 		if (testThread != null)
 			testThread.stopThread();
 	}
 
-
-	
-	
-	
 }

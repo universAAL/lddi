@@ -50,136 +50,105 @@ import org.universAAL.ontology.phThing.DeviceService;
  * @author alfiva
  * 
  */
-public class IASZoneCallee extends ExporterSensorCallee implements
-	ZoneStatusChangeNotificationListener {
-    static {
-	NAMESPACE = "http://ontology.universAAL.org/ZBIASZoneService.owl#";
-    }
-
-    private IAS_ZoneAAL zbDevice;
-    private ContactSensor ontologyDevice;
-    private DefaultContextPublisher cp;
-
-    /**
-     * Constructor to be used in the exporter, which sets up all the exporting
-     * process.
-     * 
-     * @param context
-     *            The OSGi context
-     * @param serv
-     *            The OSGi service backing the interaction with the device in
-     *            the abstraction layer
-     */
-    public IASZoneCallee(ModuleContext context, IAS_ZoneAAL serv) {
-	super(context, new ServiceProfile[]{});
-	LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
-		"IASZoneCallee",
-		new String[] { "Ready to subscribe" }, null);
-	zbDevice = serv;
-
-	// Info Setup
-	// TODO replace the deprecated
-	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
-		.replace("\"", "");
-	String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
-	ontologyDevice = new ContactSensor(deviceURI);
-	ontologyDevice.setValue(StatusValue.NoCondition);
-	// TODO Skip location and attachment for now
-	// String locationSuffix = Activator.getProperties().getProperty(
-	// deviceSuffix);
-	// if (locationSuffix != null
-	// && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
-	// ontologyDevice
-	// .setLocation(new Room(
-	// Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-	// + locationSuffix));
-	// } else {
-	// Properties prop = Activator.getProperties();
-	// prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
-	// Activator.setProperties(prop);
-	// }
-
-	//Service reg
-	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
-		ontologyDevice);
-	this.addNewServiceProfiles(newProfiles);
-
-	// Context reg
-	ContextProvider info = new ContextProvider(NAMESPACE
-		+ "zbIASZoneContextProvider");
-	info.setType(ContextProviderType.gauge);
-	ContextEventPattern cep=new ContextEventPattern();
-	cep.addRestriction(MergedRestriction
-		    .getFixedValueRestriction(
-			    ContextEvent.PROP_RDF_SUBJECT,
-			    ontologyDevice));
-	cep.addRestriction(MergedRestriction
-		    .getFixedValueRestriction(
-			    ContextEvent.PROP_RDF_PREDICATE,
-			    ContactSensor.PROP_HAS_VALUE));
-	info.setProvidedEvents(new ContextEventPattern[]{cep});
-	cp = new DefaultContextPublisher(context, info);
-
-	// ZB device subscription
-	if (zbDevice.getIASZone().addZoneStatusChangeNotificationListener(this)) {
-	    LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
-		    "IASZoneCallee", new String[] { "Subscribed" }, null);
-	} else {
-	    LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
-		    "IASZoneCallee", new String[] { "Failed to Subscribe!!!" },
-		    null);
+public class IASZoneCallee extends ExporterSensorCallee implements ZoneStatusChangeNotificationListener {
+	static {
+		NAMESPACE = "http://ontology.universAAL.org/ZBIASZoneService.owl#";
 	}
-    }
 
-    @Override
-    protected ServiceResponse getValue() {
-	LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class,
-		"getPresence",
-		new String[] { "The service called was 'get the status'" },
-		null);
-	ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
-	Boolean finalValue = new Boolean(false);
-	try {
-	    finalValue = (Boolean) zbDevice.getIASZone().getZoneStatus()
-		    .getValue();
-	} catch (ZigBeeClusterException e) {
-	    LogUtils.logError(
-		    Activator.moduleContext,
-		    IASZoneCallee.class,
-		    "getPresence",
-		    new String[] { "Error getting the value: ZB error" },
-		    e);
-	    ServiceResponse response = new ServiceResponse(
-		    CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "ZB error!"));
-	    return response;
-	} catch (ClassCastException e) {
-	    LogUtils.logError(
-		    Activator.moduleContext,
-		    IASZoneCallee.class,
-		    "getPresence",
-		    new String[] { "Error getting the value: Unexpected value" },
-		    e);
-	    ServiceResponse response = new ServiceResponse(
-		    CallStatus.serviceSpecificFailure);
-	    response.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Unexpected value!"));
-	    return response;
+	private IAS_ZoneAAL zbDevice;
+	private ContactSensor ontologyDevice;
+	private DefaultContextPublisher cp;
+
+	/**
+	 * Constructor to be used in the exporter, which sets up all the exporting
+	 * process.
+	 * 
+	 * @param context
+	 *            The OSGi context
+	 * @param serv
+	 *            The OSGi service backing the interaction with the device in
+	 *            the abstraction layer
+	 */
+	public IASZoneCallee(ModuleContext context, IAS_ZoneAAL serv) {
+		super(context, new ServiceProfile[] {});
+		LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class, "IASZoneCallee",
+				new String[] { "Ready to subscribe" }, null);
+		zbDevice = serv;
+
+		// Info Setup
+		// TODO replace the deprecated
+		String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier().replace("\"", "");
+		String deviceURI = NAMESPACE + "sensor" + deviceSuffix;
+		ontologyDevice = new ContactSensor(deviceURI);
+		ontologyDevice.setValue(StatusValue.NoCondition);
+		// TODO Skip location and attachment for now
+		// String locationSuffix = Activator.getProperties().getProperty(
+		// deviceSuffix);
+		// if (locationSuffix != null
+		// && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
+		// ontologyDevice
+		// .setLocation(new Room(
+		// Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+		// + locationSuffix));
+		// } else {
+		// Properties prop = Activator.getProperties();
+		// prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
+		// Activator.setProperties(prop);
+		// }
+
+		// Service reg
+		newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI, ontologyDevice);
+		this.addNewServiceProfiles(newProfiles);
+
+		// Context reg
+		ContextProvider info = new ContextProvider(NAMESPACE + "zbIASZoneContextProvider");
+		info.setType(ContextProviderType.gauge);
+		ContextEventPattern cep = new ContextEventPattern();
+		cep.addRestriction(MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT, ontologyDevice));
+		cep.addRestriction(MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
+				ContactSensor.PROP_HAS_VALUE));
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
+
+		// ZB device subscription
+		if (zbDevice.getIASZone().addZoneStatusChangeNotificationListener(this)) {
+			LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class, "IASZoneCallee",
+					new String[] { "Subscribed" }, null);
+		} else {
+			LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class, "IASZoneCallee",
+					new String[] { "Failed to Subscribe!!!" }, null);
+		}
 	}
-	sr.addOutput(new ProcessOutput(NAMESPACE + OUT_GET_VALUE,
-		finalValue));
-	return sr;
-    }
 
-    public void zoneStatusChangeNotification(short arg0) {
-	LogUtils.logDebug(Activator.moduleContext,
-		PresenceDetectorCallee.class, "zoneStatusChangeNotification",
-		new String[] { "Changed-Event received: "+ arg0 }, null);
-	ontologyDevice.setValue(arg0 > 0 ? StatusValue.Activated
-		: StatusValue.NotActivated);
-	cp.publish(new ContextEvent(ontologyDevice,
-		ContactSensor.PROP_HAS_VALUE));
-    }
+	@Override
+	protected ServiceResponse getValue() {
+		LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class, "getPresence",
+				new String[] { "The service called was 'get the status'" }, null);
+		ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
+		Boolean finalValue = new Boolean(false);
+		try {
+			finalValue = (Boolean) zbDevice.getIASZone().getZoneStatus().getValue();
+		} catch (ZigBeeClusterException e) {
+			LogUtils.logError(Activator.moduleContext, IASZoneCallee.class, "getPresence",
+					new String[] { "Error getting the value: ZB error" }, e);
+			ServiceResponse response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+			response.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "ZB error!"));
+			return response;
+		} catch (ClassCastException e) {
+			LogUtils.logError(Activator.moduleContext, IASZoneCallee.class, "getPresence",
+					new String[] { "Error getting the value: Unexpected value" }, e);
+			ServiceResponse response = new ServiceResponse(CallStatus.serviceSpecificFailure);
+			response.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Unexpected value!"));
+			return response;
+		}
+		sr.addOutput(new ProcessOutput(NAMESPACE + OUT_GET_VALUE, finalValue));
+		return sr;
+	}
+
+	public void zoneStatusChangeNotification(short arg0) {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorCallee.class, "zoneStatusChangeNotification",
+				new String[] { "Changed-Event received: " + arg0 }, null);
+		ontologyDevice.setValue(arg0 > 0 ? StatusValue.Activated : StatusValue.NotActivated);
+		cp.publish(new ContextEvent(ontologyDevice, ContactSensor.PROP_HAS_VALUE));
+	}
 }

@@ -27,6 +27,7 @@ import org.freedesktop.dbus.exceptions.DBusException;
 
 @DBusInterfaceName("com.signove.health.manager")
 public interface manager extends DBusInterface {
-  	void ConfigurePassive(agent agt, int data_types[]);
+	void ConfigurePassive(agent agt, int data_types[]);
+
 	void Configure(agent agt, String addr, int data_types[]);
 }

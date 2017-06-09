@@ -49,7 +49,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -69,16 +68,16 @@ import org.universAAL.lddi.zigbee.commissioning.devices.impl.OccupancySensorDevi
 
 public class Activator implements BundleActivator, Stoppable, ManagedService {
 
-	private final int IAS_ZONE_CLUSTER_ID = 1280;	
-	private final int IAS_ACE_CLUSTER_ID = 1281;	
+	private final int IAS_ZONE_CLUSTER_ID = 1280;
+	private final int IAS_ACE_CLUSTER_ID = 1281;
 	private final short OCCUPANCY_SENSING_CLUSTER_ID = 1030;
 	private final int IAS_WD_CLUSTER_ID = 1282;
 
 	private final int IAS_ZONE_DEVICE_ID = 1026;
 	private final int IAS_WD_DEVICE_ID = 1027;
-	private final int IAS_CIE_DEVICE_ID = 1024;	
-	private final int IAS_ACE_DEVICE_ID = 1025;	
-	private final int OCCUPANCY_SENSOR_ID = 263;		
+	private final int IAS_CIE_DEVICE_ID = 1024;
+	private final int IAS_ACE_DEVICE_ID = 1025;
+	private final int OCCUPANCY_SENSOR_ID = 263;
 
 	private final short IAS_WD_STOP = 0;
 	private final short IAS_WD_BURGLAR = 1;
@@ -88,14 +87,15 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 	private static BundleContext bc;
 	private boolean run = true;
 
-	private static Logger logger;	
+	private static Logger logger;
 
 	private Map<String, Device> ancillary_control_equipment_devices = new HashMap<String, Device>();
 	private Map<String, Device> cie_devices = new HashMap<String, Device>();
 
 	private Map<String, Device> ias_warning_devices = new HashMap<String, Device>();
-	//private List<IASWarningSensorImpl> ias_warning_devices_sensors = new ArrayList<IASWarningSensorImpl>();
-	private List<ServiceRegistration> ias_warning_devices_services = new ArrayList<ServiceRegistration>();	
+	// private List<IASWarningSensorImpl> ias_warning_devices_sensors = new
+	// ArrayList<IASWarningSensorImpl>();
+	private List<ServiceRegistration> ias_warning_devices_services = new ArrayList<ServiceRegistration>();
 
 	private Map<String, Device> occupancy_sensor_devices = new HashMap<String, Device>();
 	private List<OccupancySensorDeviceAAL> occupancy_sensor_devices_sensors = new ArrayList<OccupancySensorDeviceAAL>();
@@ -114,7 +114,8 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 	private boolean testReset;
 
 	private volatile long VISIBILITY_TIMEOUT = 120000, SCAN_TIMEOUT = 15000;
-	private volatile int PIROccupiedToUnoccupiedDelay = -1, PIRUnoccupiedToOccupiedDelay = -1, PIRUnoccupiedToOccupiedThreshold = -1;
+	private volatile int PIROccupiedToUnoccupiedDelay = -1, PIRUnoccupiedToOccupiedDelay = -1,
+			PIRUnoccupiedToOccupiedThreshold = -1;
 	private volatile boolean alarm, squawk;
 
 	private volatile FileWriter fstream;
@@ -122,47 +123,44 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 	public void start(BundleContext bundleContext) throws Exception {
 
-		bc = bundleContext; 
+		bc = bundleContext;
 		Dictionary dic = new Hashtable();
 		dic.put("service.pid", "lddi.zigbee.commissioning.configuration");
 
-		managedService = bc.registerService(ManagedService.class.getName(), this, dic); 
+		managedService = bc.registerService(ManagedService.class.getName(), this, dic);
 
 		ServiceReference sr = bc.getServiceReference(LoggerFactory.class.getName());
-		if(sr != null){
-			try{
-				logger = (Logger) bc.getService(sr); 
-			}
-			catch(Exception ex){
+		if (sr != null) {
+			try {
+				logger = (Logger) bc.getService(sr);
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-		}
-		else
-			logger = LoggerFactory.getLogger(Activator.class);		
-	}	
+		} else
+			logger = LoggerFactory.getLogger(Activator.class);
+	}
 
 	public void run() {
 
-		logger.info("{} STARTED Successfully", Thread.currentThread().getName() );
+		logger.info("{} STARTED Successfully", Thread.currentThread().getName());
 
-		while(this.run){
-			try{				
-				if(bc != null){
+		while (this.run) {
+			try {
+				if (bc != null) {
 					ServiceReference[] srs = bc.getServiceReferences(ZigBeeDevice.class.getName(), null);
-					if(srs != null){
-						for(int i = 0; i < srs.length; i++){
-							try{
-								deviceServices[i] = (ZigBeeDevice) bc.getService(srs[i]); 
-							}
-							catch(Exception ex){
+					if (srs != null) {
+						for (int i = 0; i < srs.length; i++) {
+							try {
+								deviceServices[i] = (ZigBeeDevice) bc.getService(srs[i]);
+							} catch (Exception ex) {
 								ex.printStackTrace();
 							}
 						}
 					}
 
-					if(fstream == null)
-						fstream = new FileWriter("DEMO.txt"); 
-					if(out == null)
+					if (fstream == null)
+						fstream = new FileWriter("DEMO.txt");
+					if (out == null)
 						out = new BufferedWriter(fstream);
 
 					findDemoDevices();
@@ -170,30 +168,31 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 					setParametersAndEnableReportingPIR();
 					addIASZoneListener();
 
-					if(testReset){
+					if (testReset) {
 						Iterator<Entry<String, Device>> it_occ = occupancy_sensor_devices.entrySet().iterator();
-						while(it_occ.hasNext()){
+						while (it_occ.hasNext()) {
 							Entry<String, Device> current = it_occ.next();
 
-							if((current.getValue().getLastTimeSeen() + VISIBILITY_TIMEOUT) < System.currentTimeMillis()){
+							if ((current.getValue().getLastTimeSeen() + VISIBILITY_TIMEOUT) < System
+									.currentTimeMillis()) {
 								resetDevice(current.getValue());
 							}
 						}
 
 						it_occ = ias_zone_devices.entrySet().iterator();
-						while(it_occ.hasNext()){
+						while (it_occ.hasNext()) {
 							Entry<String, Device> current = it_occ.next();
 
-							if((current.getValue().getLastTimeSeen() + VISIBILITY_TIMEOUT) < System.currentTimeMillis()){
+							if ((current.getValue().getLastTimeSeen() + VISIBILITY_TIMEOUT) < System
+									.currentTimeMillis()) {
 								resetDevice(current.getValue());
 							}
 						}
 					}
 
-					ThreadUtils.waitingUntil( System.currentTimeMillis() + SCAN_TIMEOUT );
+					ThreadUtils.waitingUntil(System.currentTimeMillis() + SCAN_TIMEOUT);
 				}
-			}
-			catch(Exception e){
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -203,53 +202,59 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 	public void updated(Dictionary newConfig) throws ConfigurationException {
 
-		if(newConfig != null){
+		if (newConfig != null) {
 
-			this.SCAN_TIMEOUT = Long.parseLong(newConfig.get("SCAN_TIMEOUT").toString().trim())*1000;
+			this.SCAN_TIMEOUT = Long.parseLong(newConfig.get("SCAN_TIMEOUT").toString().trim()) * 1000;
 
-			this.PIROccupiedToUnoccupiedDelay = Integer.parseInt(newConfig.get("PIROccupiedToUnoccupiedDelay").toString().trim());
-			this.PIRUnoccupiedToOccupiedDelay = Integer.parseInt(newConfig.get("PIRUnoccupiedToOccupiedDelay").toString().trim());
-			this.PIRUnoccupiedToOccupiedThreshold = Integer.parseInt(newConfig.get("PIRUnoccupiedToOccupiedThreshold").toString().trim());		
+			this.PIROccupiedToUnoccupiedDelay = Integer
+					.parseInt(newConfig.get("PIROccupiedToUnoccupiedDelay").toString().trim());
+			this.PIRUnoccupiedToOccupiedDelay = Integer
+					.parseInt(newConfig.get("PIRUnoccupiedToOccupiedDelay").toString().trim());
+			this.PIRUnoccupiedToOccupiedThreshold = Integer
+					.parseInt(newConfig.get("PIRUnoccupiedToOccupiedThreshold").toString().trim());
 
-			if(newConfig.get("alarm").toString().trim().equalsIgnoreCase("true"))
+			if (newConfig.get("alarm").toString().trim().equalsIgnoreCase("true"))
 				this.alarm = true;
 			else
 				this.alarm = false;
-			if(newConfig.get("squawk").toString().trim().equalsIgnoreCase("true"))
+			if (newConfig.get("squawk").toString().trim().equalsIgnoreCase("true"))
 				this.squawk = true;
 			else
 				this.squawk = false;
 
-			if(newConfig.get("reset").toString().trim().equalsIgnoreCase("true"))
+			if (newConfig.get("reset").toString().trim().equalsIgnoreCase("true"))
 				this.testReset = true;
 			else
 				this.testReset = false;
 
-			this.VISIBILITY_TIMEOUT = Long.parseLong(newConfig.get("VISIBILITY_TIMEOUT").toString().trim())*1000;			
+			this.VISIBILITY_TIMEOUT = Long.parseLong(newConfig.get("VISIBILITY_TIMEOUT").toString().trim()) * 1000;
 
-			if(demo == null){
+			if (demo == null) {
 				demo = new Thread(this, "DEMO AAL");
 				demo.start();
 			}
 		}
 	}
 
-	private void findDemoDevices(){		
+	private void findDemoDevices() {
 
-		try{
-			for(int j = 0; j < deviceServices.length; j++){
+		try {
+			for (int j = 0; j < deviceServices.length; j++) {
 				ZigBeeDevice current_device = deviceServices[j];
-				if(current_device != null){
+				if (current_device != null) {
 
-					if(coordinator == null && current_device.getPhysicalNode().getNetworkAddress() == 0){
+					if (coordinator == null && current_device.getPhysicalNode().getNetworkAddress() == 0) {
 						coordinator = current_device;
-						//writeLog("coordinator found!", new Device(0, current_device, System.currentTimeMillis()));
+						// writeLog("coordinator found!", new Device(0,
+						// current_device, System.currentTimeMillis()));
 					}
 
 					switch (current_device.getDeviceId()) {
 
 					case OCCUPANCY_SENSOR_ID:
-						if(occupancy_sensor_devices.get(current_device.getUniqueIdenfier()) == null){ // never found before
+						if (occupancy_sensor_devices.get(current_device.getUniqueIdenfier()) == null) { // never
+																										// found
+																										// before
 							Device d = new Device(current_device, System.currentTimeMillis());
 
 							d.getPIRattributes().add(d.new Att(false, PIROccupiedToUnoccupiedDelay));
@@ -257,57 +262,72 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 							d.getPIRattributes().add(d.new Att(false, PIRUnoccupiedToOccupiedThreshold));
 
 							occupancy_sensor_devices.put(current_device.getUniqueIdenfier(), d);
-							logger.debug("Found a OCCUPANCY_SENSOR_DEVICE: "+d.getDevice().getPhysicalNode().getIEEEAddress());
+							logger.debug("Found a OCCUPANCY_SENSOR_DEVICE: "
+									+ d.getDevice().getPhysicalNode().getIEEEAddress());
 
 							writeLog("found a OCCUPANCY_SENSOR_DEVICE", d);
 						}
 						break;
 
-					case IAS_WD_DEVICE_ID: 
-						if(ias_warning_devices.get(current_device.getUniqueIdenfier()) == null){ // never found before
+					case IAS_WD_DEVICE_ID:
+						if (ias_warning_devices.get(current_device.getUniqueIdenfier()) == null) { // never
+																									// found
+																									// before
 							Device d = new Device(current_device, System.currentTimeMillis());
 							ias_warning_devices.put(current_device.getUniqueIdenfier(), d);
-							logger.debug("Found a IAS_WARNING_DEVICE: "+d.getDevice().getPhysicalNode().getIEEEAddress());
+							logger.debug(
+									"Found a IAS_WARNING_DEVICE: " + d.getDevice().getPhysicalNode().getIEEEAddress());
 
 							writeLog("found a IAS_WARNING_DEVICE", d);
 
-							/*try{
-								IASWarningSensorImpl warningDevice = new IASWarningSensorImpl(current_device.getUniqueIdenfier());
-								ias_warning_devices_sensors.add(warningDevice);
-								ias_warning_devices_services.add(bc.registerService(IASWarningSensor.class.getName(), warningDevice, new Properties()));
-							}
-							catch(Exception ex){
-								ex.printStackTrace();
-								writeLog(ex.toString(), d);
-							}*/
+							/*
+							 * try{ IASWarningSensorImpl warningDevice = new
+							 * IASWarningSensorImpl(current_device.
+							 * getUniqueIdenfier());
+							 * ias_warning_devices_sensors.add(warningDevice);
+							 * ias_warning_devices_services.add(bc.
+							 * registerService(IASWarningSensor.class.getName(),
+							 * warningDevice, new Properties())); }
+							 * catch(Exception ex){ ex.printStackTrace();
+							 * writeLog(ex.toString(), d); }
+							 */
 						}
 						break;
 
-					case IAS_ACE_DEVICE_ID: 
-						if(ancillary_control_equipment_devices.get(current_device.getUniqueIdenfier()) == null){ // never found before
+					case IAS_ACE_DEVICE_ID:
+						if (ancillary_control_equipment_devices.get(current_device.getUniqueIdenfier()) == null) { // never
+																													// found
+																													// before
 							Device d = new Device(current_device, System.currentTimeMillis());
 							ancillary_control_equipment_devices.put(current_device.getUniqueIdenfier(), d);
-							logger.debug("Found a IAS_ANCILLARY_CONTROL_EQUIPMENT_DEVICE: "+d.getDevice().getPhysicalNode().getIEEEAddress());
+							logger.debug("Found a IAS_ANCILLARY_CONTROL_EQUIPMENT_DEVICE: "
+									+ d.getDevice().getPhysicalNode().getIEEEAddress());
 
 							writeLog("found a IAS_ANCILLARY_CONTROL_EQUIPMENT_DEVICE", d);
 						}
 						break;
 
-					case IAS_CIE_DEVICE_ID: 
-						if(cie_devices.get(current_device.getUniqueIdenfier()) == null){ // never found before
+					case IAS_CIE_DEVICE_ID:
+						if (cie_devices.get(current_device.getUniqueIdenfier()) == null) { // never
+																							// found
+																							// before
 							Device d = new Device(current_device, System.currentTimeMillis());
 							cie_devices.put(current_device.getUniqueIdenfier(), d);
-							logger.debug("Found a IAS_CONTROL_INDICATING_EQUIPMENT_DEVICE: "+d.getDevice().getPhysicalNode().getIEEEAddress());
+							logger.debug("Found a IAS_CONTROL_INDICATING_EQUIPMENT_DEVICE: "
+									+ d.getDevice().getPhysicalNode().getIEEEAddress());
 
 							writeLog("found a IAS_CONTROL_INDICATING_EQUIPMENT_DEVICE", d);
 						}
 						break;
 
-					case IAS_ZONE_DEVICE_ID: 
-						if(ias_zone_devices.get(current_device.getUniqueIdenfier()) == null){ // never found before
+					case IAS_ZONE_DEVICE_ID:
+						if (ias_zone_devices.get(current_device.getUniqueIdenfier()) == null) { // never
+																								// found
+																								// before
 							Device d = new Device(current_device, System.currentTimeMillis());
 							ias_zone_devices.put(current_device.getUniqueIdenfier(), d);
-							logger.debug("Found a IAS_ZONE_DEVICE: "+d.getDevice().getPhysicalNode().getIEEEAddress());
+							logger.debug(
+									"Found a IAS_ZONE_DEVICE: " + d.getDevice().getPhysicalNode().getIEEEAddress());
 
 							writeLog("found a IAS_ZONE_DEVICE", d);
 						}
@@ -317,33 +337,33 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 						break;
 					}
 				}
-			}			
-		}
-		catch(Exception ex){
+			}
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	private void resetDevice(final Device d){
+	private void resetDevice(final Device d) {
 
-		try{
+		try {
 			reset = new Thread(new Runnable() {
 
 				public void run() {
 
 					boolean reset = false, resetReporting = false, resetBind = false;
 
-					while(!reset){
+					while (!reset) {
 						switch (d.getDevice().getDeviceId()) {
 						case OCCUPANCY_SENSOR_ID:
 
 							writeLog("too prolonged inactivity - removing device...", d, false);
-							if(d.isReportingConfiguredPIR())
-								resetReporting = d.getSubscriptionPIR().getSubscription().removeReportListner(d.getSubscriptionPIR().getReportListener());
+							if (d.isReportingConfiguredPIR())
+								resetReporting = d.getSubscriptionPIR().getSubscription()
+										.removeReportListner(d.getSubscriptionPIR().getReportListener());
 							else
 								resetReporting = true;
 
-							if(d.isBinded())
+							if (d.isBinded())
 								try {
 									resetBind = d.getDevice().unbind(OCCUPANCY_SENSING_CLUSTER_ID);
 								} catch (ZigBeeBasedriverException e) {
@@ -352,12 +372,12 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 							else
 								resetBind = true;
 
-							if(resetReporting && resetBind){
+							if (resetReporting && resetBind) {
 								reset = true;
 								occupancy_sensor_devices.remove(d.getDevice().getUniqueIdenfier());
-								writeLog("*removed* a OCCUPANCY_SENSOR_DEVICE for prolonged inactivity (LastTimeSeen: "+getTime(d.getLastTimeSeen())+")", d);
-							} 
-							else
+								writeLog("*removed* a OCCUPANCY_SENSOR_DEVICE for prolonged inactivity (LastTimeSeen: "
+										+ getTime(d.getLastTimeSeen()) + ")", d);
+							} else
 								try {
 									reset = true;
 									occupancy_sensor_devices.remove(d.getDevice().getUniqueIdenfier());
@@ -370,16 +390,18 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 							break;
 
-						case IAS_ZONE_DEVICE_ID: 
+						case IAS_ZONE_DEVICE_ID:
 
 							writeLog("too prolonged inactivity - removing device...", d, false);
-							if(d.isListenerIASzone())
-								resetReporting = ((IASZoneClusterAAL) d.getSubscriptionIAS().getCluster() ).removeZoneStatusChangeNotificationListener(d.getSubscriptionIAS().getListener());
-							//((IASZoneClusterAAL)d.getSubscriptionIAS().getCluster()).removeZoneStatusChangeNotificationListener(d.getSubscriptionIAS().getListener());
+							if (d.isListenerIASzone())
+								resetReporting = ((IASZoneClusterAAL) d.getSubscriptionIAS().getCluster())
+										.removeZoneStatusChangeNotificationListener(
+												d.getSubscriptionIAS().getListener());
+							// ((IASZoneClusterAAL)d.getSubscriptionIAS().getCluster()).removeZoneStatusChangeNotificationListener(d.getSubscriptionIAS().getListener());
 							else
 								resetReporting = true;
 
-							if(d.isBinded())
+							if (d.isBinded())
 								try {
 									resetBind = d.getDevice().unbind(IAS_ZONE_CLUSTER_ID);
 								} catch (ZigBeeBasedriverException e) {
@@ -388,12 +410,12 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 							else
 								resetBind = true;
 
-							if(resetReporting && resetBind){
+							if (resetReporting && resetBind) {
 								reset = true;
 								ias_zone_devices.remove(d.getDevice().getUniqueIdenfier());
-								writeLog("*removed* a IAS_ZONE_DEVICE for prolonged inactivity (LastTimeSeen: "+getTime(d.getLastTimeSeen())+")", d);
-							}
-							else
+								writeLog("*removed* a IAS_ZONE_DEVICE for prolonged inactivity (LastTimeSeen: "
+										+ getTime(d.getLastTimeSeen()) + ")", d);
+							} else
 								try {
 									reset = true;
 									ias_zone_devices.remove(d.getDevice().getUniqueIdenfier());
@@ -404,18 +426,17 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 									e1.printStackTrace();
 								}
 
-							break;							
+							break;
 
 						default:
 							break;
-						}		
+						}
 					}
 				}
 			});
 
 			reset.start();
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
@@ -423,64 +444,70 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 	private boolean setParametersAndEnableReportingPIR() throws ZigBeeClusterException {
 
 		Iterator<Entry<String, Device>> it = occupancy_sensor_devices.entrySet().iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			final Entry<String, Device> current = it.next();
 			ZigBeeDevice device = current.getValue().getDevice();
 
 			OccupacySensingAALImpl occupSensing;
-			if(PIROccupiedToUnoccupiedDelay <= PIRUnoccupiedToOccupiedDelay)
-				occupSensing = new OccupacySensingAALImpl(device, Long.parseLong(PIROccupiedToUnoccupiedDelay+""));
+			if (PIROccupiedToUnoccupiedDelay <= PIRUnoccupiedToOccupiedDelay)
+				occupSensing = new OccupacySensingAALImpl(device, Long.parseLong(PIROccupiedToUnoccupiedDelay + ""));
 			else
-				occupSensing = new OccupacySensingAALImpl(device, Long.parseLong(PIRUnoccupiedToOccupiedDelay+""));
+				occupSensing = new OccupacySensingAALImpl(device, Long.parseLong(PIRUnoccupiedToOccupiedDelay + ""));
 
-			if(current.getValue().getPIRattributes().get(0).getValue() != -1 && !current.getValue().getPIRattributes().get(0).isSet())
-				try{
+			if (current.getValue().getPIRattributes().get(0).getValue() != -1
+					&& !current.getValue().getPIRattributes().get(0).isSet())
+				try {
 					occupSensing.getPIROccupiedToUnoccupiedDelay().setValue(PIROccupiedToUnoccupiedDelay);
 					current.getValue().getPIRattributes().get(0).setSet(true);
 
-					writeLog("set AttributePIROccupiedToUnoccupiedDelay - value "+PIROccupiedToUnoccupiedDelay, current.getValue());
+					writeLog("set AttributePIROccupiedToUnoccupiedDelay - value " + PIROccupiedToUnoccupiedDelay,
+							current.getValue());
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-			catch(Exception ex){
-				ex.printStackTrace();
-			}
 
-			if(current.getValue().getPIRattributes().get(1).getValue() != -1 && !current.getValue().getPIRattributes().get(1).isSet())
-				try{
+			if (current.getValue().getPIRattributes().get(1).getValue() != -1
+					&& !current.getValue().getPIRattributes().get(1).isSet())
+				try {
 					occupSensing.getPIRUnoccupiedToOccupiedDelay().setValue(PIRUnoccupiedToOccupiedDelay);
 					current.getValue().getPIRattributes().get(1).setSet(true);
 
-					writeLog("set AttributePIRUnoccupiedToOccupiedDelay - value "+PIRUnoccupiedToOccupiedDelay, current.getValue());
+					writeLog("set AttributePIRUnoccupiedToOccupiedDelay - value " + PIRUnoccupiedToOccupiedDelay,
+							current.getValue());
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-			catch(Exception ex){
-				ex.printStackTrace();
-			}
 
-			if(current.getValue().getPIRattributes().get(2).getValue() != -1 && !current.getValue().getPIRattributes().get(2).isSet())
-				try{
+			if (current.getValue().getPIRattributes().get(2).getValue() != -1
+					&& !current.getValue().getPIRattributes().get(2).isSet())
+				try {
 					occupSensing.getPIRUnoccupiedToOccupiedThreshold().setValue(PIRUnoccupiedToOccupiedThreshold);
 					current.getValue().getPIRattributes().get(2).setSet(true);
 
-					writeLog("set AttributePIRUnoccupiedToOccupiedThreshold - value "+PIRUnoccupiedToOccupiedThreshold, current.getValue());
+					writeLog(
+							"set AttributePIRUnoccupiedToOccupiedThreshold - value " + PIRUnoccupiedToOccupiedThreshold,
+							current.getValue());
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-			catch(Exception ex){
-				ex.printStackTrace();
-			}
 
-			if(/*current.getValue().isBinded() && */!current.getValue().isReportingConfiguredPIR()){ 
+			if (/* current.getValue().isBinded() && */!current.getValue().isReportingConfiguredPIR()) {
 
-				Subscription sub = configureReporting(current.getValue(), 
-						new AttributeImpl(current.getValue().getDevice(), new OccupacySensingClusterAAL(current.getValue().getDevice()), Attributes.OCCUPANCY));
+				Subscription sub = configureReporting(current.getValue(),
+						new AttributeImpl(current.getValue().getDevice(),
+								new OccupacySensingClusterAAL(current.getValue().getDevice()), Attributes.OCCUPANCY));
 
-				if(sub != null){
+				if (sub != null) {
 					current.getValue().setReportingConfiguredPIR(true);
 					current.getValue().setSubscriptionPIR(sub);
 
-					try{
-						OccupancySensorDeviceAAL pirSensor = new OccupancySensorDeviceAAL(getBundleContext(), device, occupSensing);
+					try {
+						OccupancySensorDeviceAAL pirSensor = new OccupancySensorDeviceAAL(getBundleContext(), device,
+								occupSensing);
 						this.occupancy_sensor_devices_sensors.add(pirSensor);
-						this.occupancy_sensor_devices_services.add(bc.registerService(OccupancySensorAAL.class.getName(), pirSensor, new Properties()));
-					}
-					catch(Exception ex){
+						this.occupancy_sensor_devices_services.add(
+								bc.registerService(OccupancySensorAAL.class.getName(), pirSensor, new Properties()));
+					} catch (Exception ex) {
 						ex.printStackTrace();
 						writeLog(ex.toString(), current.getValue());
 					}
@@ -498,12 +525,13 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 	private void addIASZoneListener() throws ZigBeeClusterException {
 
 		Iterator<Entry<String, Device>> it = ias_zone_devices.entrySet().iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 
 			final Entry<String, Device> current = it.next();
 			final ZigBeeDevice device = current.getValue().getDevice();
 
-			if(current.getValue().isBinded() && current.getValue().isBackbinded() && !current.getValue().isListenerIASzone()){		
+			if (current.getValue().isBinded() && current.getValue().isBackbinded()
+					&& !current.getValue().isListenerIASzone()) {
 
 				IASZoneAALImpl zone = new IASZoneAALImpl(device);
 
@@ -511,58 +539,54 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 					public void zoneStatusChangeNotification(short zoneStatus) {
 						try {
-							writeLog("\t"+zoneStatus, current.getValue());
+							writeLog("\t" + zoneStatus, current.getValue());
 
-							for(IAS_ZoneDeviceAAL sensor: ias_zone_sensors){
-								if(zoneStatus == 25648){
+							for (IAS_ZoneDeviceAAL sensor : ias_zone_sensors) {
+								if (zoneStatus == 25648) {
 									writeLog("closed", current.getValue());
 
-									//sensor.getIASZone().notifyStatusChange(false);
-								}
-								else if(zoneStatus == 25649){
+									// sensor.getIASZone().notifyStatusChange(false);
+								} else if (zoneStatus == 25649) {
 									writeLog("opened", current.getValue());
 
-									//sensor.notifyStatusChange(true);
+									// sensor.notifyStatusChange(true);
 
-									if(alarm)
+									if (alarm)
 										alarm(IAS_WD_EMERGENCY, true, 5);
-									if(squawk)
+									if (squawk)
 										squawk(new Short("0"), new Short("2"), true);
-								}							
-								else if(zoneStatus == 25616){
+								} else if (zoneStatus == 25616) {
 									writeLog("standing", current.getValue());
 
-									//sensor.notifyStatusChange(false);
-								}
-								else if(zoneStatus == 25617){
+									// sensor.notifyStatusChange(false);
+								} else if (zoneStatus == 25617) {
 									writeLog("falling", current.getValue());
 
-									//sensor.notifyStatusChange(true);
+									// sensor.notifyStatusChange(true);
 
-									if(alarm)
+									if (alarm)
 										alarm(IAS_WD_EMERGENCY, true, 5);
-									if(squawk)
+									if (squawk)
 										squawk(new Short("0"), new Short("2"), true);
 								}
 							}
-						} 
-						catch (Exception e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
 				};
 
-				if(zone.addZoneStatusChangeNotificationListener(listener)){
+				if (zone.addZoneStatusChangeNotificationListener(listener)) {
 
 					current.getValue().setListenerIASzone(true);
 					current.getValue().setSubscriptionIAS(new Listener(zone, listener));
 
-					try{
+					try {
 						IAS_ZoneDeviceAAL zoneSensor = new IAS_ZoneDeviceAAL(getBundleContext(), device, zone);
 						this.ias_zone_sensors.add(zoneSensor);
-						this.ias_zone_sensors_services.add(bc.registerService(IAS_ZoneAAL.class.getName(), zoneSensor, new Properties()));
-					}
-					catch(Exception ex){
+						this.ias_zone_sensors_services
+								.add(bc.registerService(IAS_ZoneAAL.class.getName(), zoneSensor, new Properties()));
+					} catch (Exception ex) {
 						ex.printStackTrace();
 						writeLog(ex.toString(), current.getValue());
 					}
@@ -573,71 +597,71 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 		}
 	}
 
-	private void alarm(short warningMode, boolean strobe, int secondsWarningDuration){
+	private void alarm(short warningMode, boolean strobe, int secondsWarningDuration) {
 
-		try{
+		try {
 			Iterator<Entry<String, Device>> it = ias_warning_devices.entrySet().iterator();
-			while(it.hasNext()){
+			while (it.hasNext()) {
 				Entry<String, Device> current = it.next();
 				ZigBeeDevice device = current.getValue().getDevice();
 
 				IASWDCluster c = new IASWDCluster(device);
-				if(strobe)
+				if (strobe)
 					c.startWarning(new StartWarningPayloadImpl(warningMode, new Short("0"), secondsWarningDuration));
 				else
 					c.startWarning(new StartWarningPayloadImpl(warningMode, new Short("1"), secondsWarningDuration));
 
-				writeLog("alarm "+warningMode+" for "+secondsWarningDuration+" seconds", current.getValue());
-				//for(IASWarningSensorImpl ias_warning_devices_sensor: ias_warning_devices_sensors)
-				//ias_warning_devices_sensor.notifyStatusChange();
+				writeLog("alarm " + warningMode + " for " + secondsWarningDuration + " seconds", current.getValue());
+				// for(IASWarningSensorImpl ias_warning_devices_sensor:
+				// ias_warning_devices_sensors)
+				// ias_warning_devices_sensor.notifyStatusChange();
 			}
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	private void squawk(short squawkMode, short squawkLevel, boolean strobe){
+	private void squawk(short squawkMode, short squawkLevel, boolean strobe) {
 
 		// squawkMode
 		// 1: armed
 		// 2: disarmed
 
 		// squawkLevel: low, medium high, very high level sound
-		if((squawkMode == 0 || squawkMode == 1) && (squawkLevel >= 0 && squawkLevel <= 3))
-			try{
+		if ((squawkMode == 0 || squawkMode == 1) && (squawkLevel >= 0 && squawkLevel <= 3))
+			try {
 				Iterator<Entry<String, Device>> it = ias_warning_devices.entrySet().iterator();
-				while(it.hasNext()){
+				while (it.hasNext()) {
 					Entry<String, Device> current = it.next();
 					ZigBeeDevice device = current.getValue().getDevice();
 
 					IASWDCluster c = new IASWDCluster(device);
-					if(strobe)
+					if (strobe)
 						c.squawk(new SquawkPayloadImpl(squawkMode, squawkLevel, new Short("1")));
 					else
 						c.squawk(new SquawkPayloadImpl(squawkMode, squawkLevel, new Short("0")));
 
-					writeLog("squawk "+squawkMode+" at level "+squawkLevel, current.getValue());
-					//for(IASWarningSensorImpl ias_warning_devices_sensor: ias_warning_devices_sensors)
-					//ias_warning_devices_sensor.notifyStatusChange();
+					writeLog("squawk " + squawkMode + " at level " + squawkLevel, current.getValue());
+					// for(IASWarningSensorImpl ias_warning_devices_sensor:
+					// ias_warning_devices_sensors)
+					// ias_warning_devices_sensor.notifyStatusChange();
 				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
-		catch(Exception ex){
-			ex.printStackTrace();
-		}
 
 		squawk(new Short("2"), new Short("0"), false); // disabling squawk
 	}
 
-	private void bindDevices() throws ZigBeeBasedriverException{
+	private void bindDevices() throws ZigBeeBasedriverException {
 
 		Iterator<Entry<String, Device>> it_cie = cie_devices.entrySet().iterator();
-		while(it_cie.hasNext()){
+		while (it_cie.hasNext()) {
 			Entry<String, Device> current1 = it_cie.next();
 			ZigBeeDevice cie_device = current1.getValue().getDevice();
 
 			Iterator<Entry<String, Device>> it_ace = ancillary_control_equipment_devices.entrySet().iterator();
-			while(it_ace.hasNext()){
+			while (it_ace.hasNext()) {
 				Entry<String, Device> current2 = it_ace.next();
 				ZigBeeDevice ancillary_control_equipment_device = current2.getValue().getDevice();
 				// CIE -> ACE (1280,1281)
@@ -650,69 +674,75 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 			// ias zone -> cie (1280)
 			Iterator<Entry<String, Device>> it = ias_zone_devices.entrySet().iterator();
-			while(it.hasNext()){
+			while (it.hasNext()) {
 				Entry<String, Device> current = it.next();
-				if(current != null){
-					if(!current.getValue().isBackbinded()){
-						current.getValue().setBackbinded(bindTo(current.getValue().getDevice(), cie_device, IAS_ZONE_CLUSTER_ID));
+				if (current != null) {
+					if (!current.getValue().isBackbinded()) {
+						current.getValue()
+								.setBackbinded(bindTo(current.getValue().getDevice(), cie_device, IAS_ZONE_CLUSTER_ID));
 
-						if(current.getValue().isBackbinded())
-							writeLog("binded to "+cie_device.getUniqueIdenfier()+" on cluster IAS_ZONE", current.getValue());
+						if (current.getValue().isBackbinded())
+							writeLog("binded to " + cie_device.getUniqueIdenfier() + " on cluster IAS_ZONE",
+									current.getValue());
 
 					}
-					if(!current.getValue().isBinded()){
-						current.getValue().setBinded(bindTo(cie_device, current.getValue().getDevice(), IAS_ZONE_CLUSTER_ID));
+					if (!current.getValue().isBinded()) {
+						current.getValue()
+								.setBinded(bindTo(cie_device, current.getValue().getDevice(), IAS_ZONE_CLUSTER_ID));
 
-						if(current.getValue().isBinded())
-							writeLog("bind from "+cie_device.getUniqueIdenfier()+" on cluster IAS_ZONE", current.getValue());
+						if (current.getValue().isBinded())
+							writeLog("bind from " + cie_device.getUniqueIdenfier() + " on cluster IAS_ZONE",
+									current.getValue());
 					}
 				}
 			}
 
 			// CIE -> WD (1280,1282)
 			it = ias_warning_devices.entrySet().iterator();
-			while(it.hasNext()){
+			while (it.hasNext()) {
 				Entry<String, Device> current = it.next();
-				if(current != null){
+				if (current != null) {
 					bindTo(cie_device, current.getValue().getDevice(), IAS_ZONE_CLUSTER_ID);
 					bindTo(current.getValue().getDevice(), cie_device, IAS_ZONE_CLUSTER_ID);
 
 					bindTo(cie_device, current.getValue().getDevice(), IAS_WD_CLUSTER_ID);
-					bindTo(current.getValue().getDevice(), cie_device, IAS_WD_CLUSTER_ID);			
+					bindTo(current.getValue().getDevice(), cie_device, IAS_WD_CLUSTER_ID);
 				}
-			}	
+			}
 		}
 
-		/*Iterator<Entry<String, Device>> it = occupancy_sensor_devices.entrySet().iterator();
-		while(it.hasNext()){
-			Entry<String, Device> current = it.next();
-			//if(coordinator != null)
-			if(!current.getValue().isBinded()){
-				current.getValue().setBinded(current.getValue().getDevice().bind(OCCUPANCY_SENSING_CLUSTER_ID));
-
-				if(current.getValue().isBinded())
-					writeLog("binded on cluster OCCUPANCY_SENSING", current.getValue());
-			}
-		}*/
+		/*
+		 * Iterator<Entry<String, Device>> it =
+		 * occupancy_sensor_devices.entrySet().iterator(); while(it.hasNext()){
+		 * Entry<String, Device> current = it.next(); //if(coordinator != null)
+		 * if(!current.getValue().isBinded()){
+		 * current.getValue().setBinded(current.getValue().getDevice().bind(
+		 * OCCUPANCY_SENSING_CLUSTER_ID));
+		 * 
+		 * if(current.getValue().isBinded())
+		 * writeLog("binded on cluster OCCUPANCY_SENSING", current.getValue());
+		 * } }
+		 */
 	}
 
-	private void writeLog(String s, Device d){
+	private void writeLog(String s, Device d) {
 
 		writeLog(s, d, true);
 	}
 
-	private void writeLog(String s, Device d, boolean update){
+	private void writeLog(String s, Device d, boolean update) {
 
-		try{
-			System.out.println("DEMO AAL - "+getTime()+" - device "+d.getDevice().getUniqueIdenfier()+" - "+s);
-			out.write(getTime()+" - device "+d.getDevice().getUniqueIdenfier()+" - "+s);
+		try {
+			System.out
+					.println("DEMO AAL - " + getTime() + " - device " + d.getDevice().getUniqueIdenfier() + " - " + s);
+			out.write(getTime() + " - device " + d.getDevice().getUniqueIdenfier() + " - " + s);
 			out.newLine();
 			out.flush();
 
-			if(update)
+			if (update)
 				d.setLastTimeSeen(System.currentTimeMillis());
+		} catch (Exception ex) {
 		}
-		catch(Exception ex){}
 	}
 
 	private Subscription configureReporting(final Device d, AttributeImpl att) throws ZigBeeClusterException {
@@ -727,33 +757,34 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 				public void receivedReport(Dictionary<Attribute, Object> reports) {
 
 					Enumeration<Attribute> attributes = reports.keys();
-					while (attributes.hasMoreElements()) {							
+					while (attributes.hasMoreElements()) {
 						Attribute a = (Attribute) attributes.nextElement();
 						Object v = reports.get(a);
 
-						writeLog("\t"+((Integer)v).intValue(), d);
+						writeLog("\t" + ((Integer) v).intValue(), d);
 
-						for(OccupancySensorDeviceAAL occupancy_sensor_devices_sensor: occupancy_sensor_devices_sensors){
+						for (OccupancySensorDeviceAAL occupancy_sensor_devices_sensor : occupancy_sensor_devices_sensors) {
 
-							if(((Integer)v).intValue() == 0){
+							if (((Integer) v).intValue() == 0) {
 								writeLog("\tsent 'no presence' message.", d);
-								//occupancy_sensor_devices_sensor.getOccupacySensing(). get notifyStatusChange(false);
+								// occupancy_sensor_devices_sensor.getOccupacySensing().
+								// get notifyStatusChange(false);
 							}
-							if(((Integer)v).intValue() == 1){
+							if (((Integer) v).intValue() == 1) {
 								writeLog("\tsent 'presence detected' message.", d);
-								//occupancy_sensor_devices_sensor.notifyStatusChange(true);
+								// occupancy_sensor_devices_sensor.notifyStatusChange(true);
 
-								if(alarm)
+								if (alarm)
 									alarm(IAS_WD_EMERGENCY, true, 5);
-								if(squawk)
+								if (squawk)
 									squawk(new Short("0"), new Short("2"), true);
 							}
 						}
-					}	
+					}
 				}
 			};
 
-			if(sub.addReportListner(rl))
+			if (sub.addReportListner(rl))
 				return new Subscription(rl, sub);
 			else
 				return null;
@@ -764,62 +795,61 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 		return null;
 	}
 
-	private String getTime(){
+	private String getTime() {
 
 		long time = System.currentTimeMillis();
-		long seconds = (time/1000)%60;
-		long minutes = (time/(1000*60))%60;
-		long hours = (time/(1000*60*60))%24;
+		long seconds = (time / 1000) % 60;
+		long minutes = (time / (1000 * 60)) % 60;
+		long hours = (time / (1000 * 60 * 60)) % 24;
 
 		String second, minute, hour;
-		if(seconds < 10)
-			second = "0"+seconds;
+		if (seconds < 10)
+			second = "0" + seconds;
 		else
-			second = seconds+"";
-		if(minutes < 10)
-			minute = "0"+minutes;
+			second = seconds + "";
+		if (minutes < 10)
+			minute = "0" + minutes;
 		else
-			minute = minutes+"";
-		if(hours < 10)
-			hour = "0"+hours;
+			minute = minutes + "";
+		if (hours < 10)
+			hour = "0" + hours;
 		else
-			hour = hours+"";
+			hour = hours + "";
 
-		return hour+":"+minute+":"+second;
+		return hour + ":" + minute + ":" + second;
 	}
 
-	private String getTime(long millis){
+	private String getTime(long millis) {
 
 		long time = millis;
-		long seconds = (time/1000)%60;
-		long minutes = (time/(1000*60))%60;
-		long hours = (time/(1000*60*60))%24;
+		long seconds = (time / 1000) % 60;
+		long minutes = (time / (1000 * 60)) % 60;
+		long hours = (time / (1000 * 60 * 60)) % 24;
 
 		String second, minute, hour;
-		if(seconds < 10)
-			second = "0"+seconds;
+		if (seconds < 10)
+			second = "0" + seconds;
 		else
-			second = seconds+"";
-		if(minutes < 10)
-			minute = "0"+minutes;
+			second = seconds + "";
+		if (minutes < 10)
+			minute = "0" + minutes;
 		else
-			minute = minutes+"";
-		if(hours < 10)
-			hour = "0"+hours;
+			minute = minutes + "";
+		if (hours < 10)
+			hour = "0" + hours;
 		else
-			hour = hours+"";
+			hour = hours + "";
 
-		return "(GMT) "+hour+":"+minute+":"+second;
+		return "(GMT) " + hour + ":" + minute + ":" + second;
 	}
 
-	private boolean bindTo(ZigBeeDevice src, ZigBeeDevice dst, int clusterID){
+	private boolean bindTo(ZigBeeDevice src, ZigBeeDevice dst, int clusterID) {
 
-		try{
-			if(src.bindTo(dst, clusterID)){		
+		try {
+			if (src.bindTo(dst, clusterID)) {
 				return true;
 			}
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 
@@ -828,25 +858,25 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 	public void end() {
 
-		try {			
+		try {
 			run = false;
-			if(demo != null && demo.isAlive())
+			if (demo != null && demo.isAlive())
 				demo.interrupt();
-			if(reset != null && reset.isAlive())
+			if (reset != null && reset.isAlive())
 				reset.interrupt();
 
-			out.close();	
+			out.close();
 			fstream.close();
 
 			managedService.unregister();
 
-			for(ServiceRegistration ias_zone_sensors_service: this.ias_zone_sensors_services)
+			for (ServiceRegistration ias_zone_sensors_service : this.ias_zone_sensors_services)
 				ias_zone_sensors_service.unregister();
 
-			for(ServiceRegistration occupancy_sensor_devices_service: this.occupancy_sensor_devices_services)
+			for (ServiceRegistration occupancy_sensor_devices_service : this.occupancy_sensor_devices_services)
 				occupancy_sensor_devices_service.unregister();
 
-			for(ServiceRegistration ias_warning_devices_service: this.ias_warning_devices_services)
+			for (ServiceRegistration ias_warning_devices_service : this.ias_warning_devices_services)
 				ias_warning_devices_service.unregister();
 
 		} catch (Exception e) {
@@ -856,19 +886,19 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 	public void stop(BundleContext arg0) throws Exception {
 		end();
-		bc = null;		
+		bc = null;
 		deviceServices = null;
 	}
 
-	public static BundleContext getBundleContext(){ 
-		return bc; 
+	public static BundleContext getBundleContext() {
+		return bc;
 	}
 
-	private class Subscription{
+	private class Subscription {
 		private ReportListener reportListener;
 		private SubscriptionImpl subscription;
 
-		public Subscription(ReportListener reportListener, SubscriptionImpl subscription){
+		public Subscription(ReportListener reportListener, SubscriptionImpl subscription) {
 			this.reportListener = reportListener;
 			this.subscription = subscription;
 		}
@@ -890,11 +920,11 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 		}
 	}
 
-	private class Listener{
+	private class Listener {
 		private Cluster cluster;
 		private ZoneStatusChangeNotificationListener listener;
 
-		public Listener(Cluster cluster, ZoneStatusChangeNotificationListener listener){
+		public Listener(Cluster cluster, ZoneStatusChangeNotificationListener listener) {
 			this.cluster = cluster;
 			this.listener = listener;
 		}
@@ -902,24 +932,27 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 		public Cluster getCluster() {
 			return cluster;
 		}
+
 		public void setCluster(Cluster cluster) {
 			this.cluster = cluster;
 		}
+
 		public ZoneStatusChangeNotificationListener getListener() {
 			return listener;
 		}
+
 		public void setListener(ZoneStatusChangeNotificationListener listener) {
 			this.listener = listener;
-		}	
+		}
 	}
 
-	public class Device{
+	public class Device {
 
-		public class Att{
+		public class Att {
 			private boolean set;
 			private int value;
 
-			private Att(boolean set, int value){
+			private Att(boolean set, int value) {
 				this.set = set;
 				this.value = value;
 			}
@@ -935,9 +968,10 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 			public boolean isSet() {
 				return set;
 			}
+
 			public void setSet(boolean set) {
 				this.set = set;
-			}			
+			}
 		}
 
 		private List<Att> PIRattributes;
@@ -953,7 +987,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 		private ZigBeeDevice device;
 		private long lastTimeSeen;
 
-		public Device(ZigBeeDevice device, long lastTimeSeen){
+		public Device(ZigBeeDevice device, long lastTimeSeen) {
 			this.setPIRattributes(new ArrayList<Activator.Device.Att>());
 
 			this.reportingConfiguredPIR = false;
@@ -991,6 +1025,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 		public void setReportingConfiguredPIR(boolean reportingConfiguredPIR) {
 			this.reportingConfiguredPIR = reportingConfiguredPIR;
 		}
+
 		public boolean isListenerIASzone() {
 			return listenerIASzone;
 		}

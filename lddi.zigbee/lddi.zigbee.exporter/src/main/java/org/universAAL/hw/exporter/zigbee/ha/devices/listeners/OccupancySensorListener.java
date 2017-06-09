@@ -24,7 +24,6 @@ package org.universAAL.hw.exporter.zigbee.ha.devices.listeners;
 
 import java.util.Iterator;
 
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.InvalidSyntaxException;
@@ -43,47 +42,41 @@ import org.universAAL.middleware.container.utils.LogUtils;
  */
 public class OccupancySensorListener extends ExporterListener {
 
-    static {
-	filter = "(" + Constants.OBJECTCLASS + "=" + OccupancySensorAAL.class.getName()
-		+ ")";
-    }
-
-    public OccupancySensorListener(BundleContext context)
-	    throws InvalidSyntaxException {
-	super(context);
-    }
-
-    @Override
-    protected void registeruAALService(ServiceReference sr) {
-	LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class,
-		"registeruAALService",
-		new String[] { "Creating a instance of device in uAAL" }, null);
-	OccupancySensorAAL service = (OccupancySensorAAL) context.getService(sr);
-	setOfDevices.put(sr, new OccupancySensorCallee(Activator.moduleContext,
-		service));
-    }
-
-    @Override
-    protected void unregisteruAALService(ServiceReference sr) {
-	LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class,
-		"registeruAALService",
-		new String[] { "Removing a instance of device in uAAL" }, null);
-	((OccupancySensorCallee) setOfDevices.remove(sr)).unregister();
-	context.ungetService(sr);
-    }
-
-    @Override
-    public void unregisteruAALService() {
-	LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class,
-		"registeruAALService",
-		new String[] { "Removing all instances of these devices in uAAL" }, null);
-	Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
-	for (; iter.hasNext();) {
-	    ServiceReference sref = (ServiceReference) iter.next();
-	    ((OccupancySensorCallee) setOfDevices.get(sref)).unregister();
-	    iter.remove();
-	    context.ungetService(sref);
+	static {
+		filter = "(" + Constants.OBJECTCLASS + "=" + OccupancySensorAAL.class.getName() + ")";
 	}
-	setOfDevices.clear();
-    }
+
+	public OccupancySensorListener(BundleContext context) throws InvalidSyntaxException {
+		super(context);
+	}
+
+	@Override
+	protected void registeruAALService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "registeruAALService",
+				new String[] { "Creating a instance of device in uAAL" }, null);
+		OccupancySensorAAL service = (OccupancySensorAAL) context.getService(sr);
+		setOfDevices.put(sr, new OccupancySensorCallee(Activator.moduleContext, service));
+	}
+
+	@Override
+	protected void unregisteruAALService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "registeruAALService",
+				new String[] { "Removing a instance of device in uAAL" }, null);
+		((OccupancySensorCallee) setOfDevices.remove(sr)).unregister();
+		context.ungetService(sr);
+	}
+
+	@Override
+	public void unregisteruAALService() {
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "registeruAALService",
+				new String[] { "Removing all instances of these devices in uAAL" }, null);
+		Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
+		for (; iter.hasNext();) {
+			ServiceReference sref = (ServiceReference) iter.next();
+			((OccupancySensorCallee) setOfDevices.get(sref)).unregister();
+			iter.remove();
+			context.ungetService(sref);
+		}
+		setOfDevices.clear();
+	}
 }

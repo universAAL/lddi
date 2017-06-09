@@ -21,13 +21,13 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.types;
  * Dummy class declaration for ASN.1 NULL type
  */
 public class NullObject {
-    public NullObject() {
-    }
-       
-    public boolean equals(Object obj) {
-        if(obj instanceof NullObject && obj!=null)
-            return true;
-        else
-            return false;
-    }
+	public NullObject() {
+	}
+
+	public boolean equals(Object obj) {
+		if (obj instanceof NullObject && obj != null)
+			return true;
+		else
+			return false;
+	}
 }

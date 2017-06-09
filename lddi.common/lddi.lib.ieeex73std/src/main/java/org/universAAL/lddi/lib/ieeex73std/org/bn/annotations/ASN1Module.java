@@ -21,6 +21,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface ASN1Module {
-    String name();
-    boolean isImplicitTags() default true;
+	String name();
+
+	boolean isImplicitTags() default true;
 }

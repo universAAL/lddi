@@ -31,26 +31,26 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
  */
 public class ASN1BooleanMetadata extends ASN1FieldMetadata {
 
-    public ASN1BooleanMetadata() {
-        
-    }
-    
-    public ASN1BooleanMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public ASN1BooleanMetadata(ASN1Boolean annotation) {
-        this(annotation.name());
-    }
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeBoolean(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeBoolean(decodedTag,objectClass,elementInfo,stream);
-    }
-    
+	public ASN1BooleanMetadata() {
+
+	}
+
+	public ASN1BooleanMetadata(String name) {
+		super(name);
+	}
+
+	public ASN1BooleanMetadata(ASN1Boolean annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeBoolean(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeBoolean(decodedTag, objectClass, elementInfo, stream);
+	}
+
 }

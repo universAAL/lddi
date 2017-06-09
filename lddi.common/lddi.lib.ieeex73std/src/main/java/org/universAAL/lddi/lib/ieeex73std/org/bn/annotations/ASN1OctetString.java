@@ -21,5 +21,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ASN1OctetString {
-    String name() default "";
+	String name() default "";
 }

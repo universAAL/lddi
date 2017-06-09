@@ -29,24 +29,22 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1AnyMetadata
-    extends ASN1FieldMetadata
-{
-    public ASN1AnyMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public ASN1AnyMetadata(ASN1Any annotation) {
-        this(annotation.name());
-    }
+public class ASN1AnyMetadata extends ASN1FieldMetadata {
+	public ASN1AnyMetadata(String name) {
+		super(name);
+	}
 
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeAny(object, stream, elementInfo);
-    }
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeAny(decodedTag,objectClass,elementInfo,stream);
-    }
+	public ASN1AnyMetadata(ASN1Any annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeAny(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeAny(decodedTag, objectClass, elementInfo, stream);
+	}
 }

@@ -14,12 +14,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
- package org.universAAL.lddi.lib.ieeex73std.org.bn.coders.der;
+package org.universAAL.lddi.lib.ieeex73std.org.bn.coders.der;
 
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BERDecoder;
 
-
 public class DERDecoder extends BERDecoder {
-    public DERDecoder() {
-    }
+	public DERDecoder() {
+	}
 }

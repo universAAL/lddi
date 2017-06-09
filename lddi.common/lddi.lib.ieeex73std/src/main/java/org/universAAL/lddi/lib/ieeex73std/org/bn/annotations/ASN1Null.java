@@ -19,7 +19,7 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.annotations;
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target( {ElementType.FIELD,ElementType.TYPE} )
+@Target({ ElementType.FIELD, ElementType.TYPE })
 public @interface ASN1Null {
-    String name() default ""; 
+	String name() default "";
 }

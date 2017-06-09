@@ -38,80 +38,74 @@ import org.universAAL.ontology.device.StatusValue;
 import org.universAAL.ontology.device.SwitchSensor;
 
 public class SwitchSensorWrapper extends AbstractStatusValueCallee {
-    private DefaultContextPublisher cp;
+	private DefaultContextPublisher cp;
 
-    public SwitchSensorWrapper(ModuleContext context, String itemName) {
-	super(context,
-		new ServiceProfile[] { getServiceProfileGET(
-			Activator.NAMESPACE + itemName + "handler",
-			new SwitchSensor(Activator.NAMESPACE + itemName)) },
-		Activator.NAMESPACE + itemName + "handler");
+	public SwitchSensorWrapper(ModuleContext context, String itemName) {
+		super(context,
+				new ServiceProfile[] { getServiceProfileGET(Activator.NAMESPACE + itemName + "handler",
+						new SwitchSensor(Activator.NAMESPACE + itemName)) },
+				Activator.NAMESPACE + itemName + "handler");
 
-	Activator.logD("SwitchSensorWrapper", "Ready to subscribe");
-	shDeviceName = itemName;
+		Activator.logD("SwitchSensorWrapper", "Ready to subscribe");
+		shDeviceName = itemName;
 
-	// URI must be the same declared in the super constructor
-	String deviceURI = Activator.NAMESPACE + itemName;
-	ontDevice = new SwitchSensor(deviceURI);
+		// URI must be the same declared in the super constructor
+		String deviceURI = Activator.NAMESPACE + itemName;
+		ontDevice = new SwitchSensor(deviceURI);
 
-	// Commissioning
-	// TODO Set location based on tags?
+		// Commissioning
+		// TODO Set location based on tags?
 
-	// Context reg
-	ContextProvider info = new ContextProvider(deviceURI + "Provider");
-	info.setType(ContextProviderType.controller);
-	ContextEventPattern cep = new ContextEventPattern();
-	MergedRestriction subjectRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			ontDevice);
-	MergedRestriction predicateRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-			SwitchSensor.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-	cp = new DefaultContextPublisher(context, info);
-    }
-
-    @Override
-    public StatusValue executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
-		.getStateAs((Class<? extends State>) OnOffType.class);
-	Activator.logD("getStatus", "The service called was 'get the status'");
-	if (value == null)
-	    return null;
-	return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated
-		: StatusValue.NotActivated;
-    }
-
-    @Override
-    public boolean executeSet(StatusValue value) {
-	return false;
-    }
-
-    public void publish(Event event) {
-	Boolean theValue = null;
-	Activator.logD("changedCurrentLevel", "Changed-Event received");
-	if (event instanceof ItemStateEvent) {
-	    ItemStateEvent stateEvent = (ItemStateEvent) event;
-	    State s = stateEvent.getItemState();
-	    if (s instanceof OnOffType) {
-		theValue = Boolean
-			.valueOf(((OnOffType) s).compareTo(OnOffType.ON) == 0);
-	    }
+		// Context reg
+		ContextProvider info = new ContextProvider(deviceURI + "Provider");
+		info.setType(ContextProviderType.controller);
+		ContextEventPattern cep = new ContextEventPattern();
+		MergedRestriction subjectRestriction = MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+				ontDevice);
+		MergedRestriction predicateRestriction = MergedRestriction
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, SwitchSensor.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
+		cp = new DefaultContextPublisher(context, info);
 	}
-	if (theValue != null) {
-	    SwitchSensor d = (SwitchSensor) ontDevice;
-	    d.setValue(theValue.booleanValue() ? StatusValue.Activated
-		    : StatusValue.NotActivated);
-	    cp.publish(new ContextEvent(d, SwitchSensor.PROP_HAS_VALUE));
-	} // else dont bother TODO log
-    }
 
-    public void unregister() {
-	super.unregister();
-	cp.close();
-    }
+	@Override
+	public StatusValue executeGet() {
+		OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class<? extends State>) OnOffType.class);
+		Activator.logD("getStatus", "The service called was 'get the status'");
+		if (value == null)
+			return null;
+		return (value.compareTo(OnOffType.ON) == 0) ? StatusValue.Activated : StatusValue.NotActivated;
+	}
+
+	@Override
+	public boolean executeSet(StatusValue value) {
+		return false;
+	}
+
+	public void publish(Event event) {
+		Boolean theValue = null;
+		Activator.logD("changedCurrentLevel", "Changed-Event received");
+		if (event instanceof ItemStateEvent) {
+			ItemStateEvent stateEvent = (ItemStateEvent) event;
+			State s = stateEvent.getItemState();
+			if (s instanceof OnOffType) {
+				theValue = Boolean.valueOf(((OnOffType) s).compareTo(OnOffType.ON) == 0);
+			}
+		}
+		if (theValue != null) {
+			SwitchSensor d = (SwitchSensor) ontDevice;
+			d.setValue(theValue.booleanValue() ? StatusValue.Activated : StatusValue.NotActivated);
+			cp.publish(new ContextEvent(d, SwitchSensor.PROP_HAS_VALUE));
+		} // else dont bother TODO log
+	}
+
+	public void unregister() {
+		super.unregister();
+		cp.close();
+	}
 
 }

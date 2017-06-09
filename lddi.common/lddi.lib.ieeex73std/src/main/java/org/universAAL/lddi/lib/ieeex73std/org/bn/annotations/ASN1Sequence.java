@@ -19,8 +19,9 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.annotations;
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target( ElementType.TYPE )
+@Target(ElementType.TYPE)
 public @interface ASN1Sequence {
-    String name();
-    boolean isSet() default false;
+	String name();
+
+	boolean isSet() default false;
 }

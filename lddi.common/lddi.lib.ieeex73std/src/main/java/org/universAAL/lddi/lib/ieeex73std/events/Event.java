@@ -19,28 +19,25 @@
  */
 package org.universAAL.lddi.lib.ieeex73std.events;
 
-public class Event{
+public class Event {
 
 	private int type;
 	private int reason;
-	
-	public Event (int type){
+
+	public Event(int type) {
 		this.type = type;
 	}
-	
-	public int getType(){
+
+	public int getType() {
 		return type;
 	}
-	
-	public void setReason (int reason){
+
+	public void setReason(int reason) {
 		this.reason = reason;
 	}
-	
-	public int getReason()
-	{
+
+	public int getReason() {
 		return reason;
 	}
-	
 
-	
 }

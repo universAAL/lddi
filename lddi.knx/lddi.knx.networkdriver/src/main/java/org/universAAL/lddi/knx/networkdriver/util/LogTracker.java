@@ -34,23 +34,25 @@ public class LogTracker extends ServiceTracker implements LogService {
 	@Override
 	public Object addingService(ServiceReference reference) {
 		Object ret = super.addingService(reference);
-//		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService added!");
-		log(LOG_DEBUG,"LogService added!");
+		// System.out.println("stdout: [KNX.NETWORKDRIVER] LogService added!");
+		log(LOG_DEBUG, "LogService added!");
 		return ret;
 	}
 
 	@Override
 	public void modifiedService(ServiceReference reference, Object service) {
 		super.modifiedService(reference, service);
-//		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService modified!");
-		log(LOG_DEBUG,"LogService modified!");
+		// System.out.println("stdout: [KNX.NETWORKDRIVER] LogService
+		// modified!");
+		log(LOG_DEBUG, "LogService modified!");
 	}
 
 	@Override
 	public void removedService(ServiceReference reference, Object service) {
 		super.removedService(reference, service);
-//		System.out.println("stdout: [KNX.NETWORKDRIVER] LogService removed!");
-		log(LOG_DEBUG,"LogService removed!");
+		// System.out.println("stdout: [KNX.NETWORKDRIVER] LogService
+		// removed!");
+		log(LOG_DEBUG, "LogService removed!");
 	}
 
 	public LogTracker(BundleContext context) {
@@ -69,9 +71,9 @@ public class LogTracker extends ServiceTracker implements LogService {
 		log(sr, level, message, null);
 	}
 
-	public void log(ServiceReference sr, int level, String message,
-			Throwable exception) {
-		LogService log = (LogService) getService(); //obtain optional, unary LogService
+	public void log(ServiceReference sr, int level, String message, Throwable exception) {
+		LogService log = (LogService) getService(); // obtain optional, unary
+													// LogService
 		if (log != null) {
 			log.log(sr, level, message, exception);
 		}

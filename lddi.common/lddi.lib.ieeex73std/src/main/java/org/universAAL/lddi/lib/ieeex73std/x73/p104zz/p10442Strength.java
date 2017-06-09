@@ -19,34 +19,29 @@
  */
 package org.universAAL.lddi.lib.ieeex73std.x73.p104zz;
 
-
 import java.util.LinkedList;
 
 import org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder;
 import org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Attribute;
 
-
 //Strength Fitness Equipment
 //The Strength Fitness Equipment does not have any Standard Configuration
 
-
-public class p10442Strength extends DeviceSpecialization{
+public class p10442Strength extends DeviceSpecialization {
 
 	public LinkedList<Attribute> strengthattributes;
 
-	
-	public p10442Strength(IDecoder decoder) throws Exception{
+	public p10442Strength(IDecoder decoder) throws Exception {
 		super(decoder);
 		generateStrengtheAttributes();
 	}
 
-	private void generateStrengtheAttributes() throws Exception{
-		
+	private void generateStrengtheAttributes() throws Exception {
+
 	}
 
-	
-	public String toString(){
+	public String toString() {
 		return "Strength fitness equipment";
 	}
-	
+
 }

@@ -18,37 +18,31 @@
 package org.universAAL.lddi.lib.ieeex73std.org.bn.types;
 
 public class ObjectIdentifier {
-	
-	private String oidString;
-	
-    public ObjectIdentifier(String oidAsStr) 
-    {
-        setValue(oidAsStr);
-    }
-    
-    public ObjectIdentifier() 
-    {
-    	oidString = null;
-    }
-    
-    public String getValue() 
-    {
-        return oidString;
-    }
-    
-    public void setValue(String value) 
-    {
-    	oidString = value;
-    }
 
-    public int[] getIntArray()
-    {
-        String[] sa = oidString.split("\\.");
-        int[] ia = new int[sa.length];
-        for (int i=0; i < sa.length; i++)
-        {
-        	ia[i] = new Integer(sa[i]).intValue();
-        }
-        return ia;
-    }
+	private String oidString;
+
+	public ObjectIdentifier(String oidAsStr) {
+		setValue(oidAsStr);
+	}
+
+	public ObjectIdentifier() {
+		oidString = null;
+	}
+
+	public String getValue() {
+		return oidString;
+	}
+
+	public void setValue(String value) {
+		oidString = value;
+	}
+
+	public int[] getIntArray() {
+		String[] sa = oidString.split("\\.");
+		int[] ia = new int[sa.length];
+		for (int i = 0; i < sa.length; i++) {
+			ia[i] = new Integer(sa[i]).intValue();
+		}
+		return ia;
+	}
 }

@@ -24,27 +24,35 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.ASN1Metadata;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.constraints.IASN1ConstraintMetadata;
 
 public interface IASN1PreparedElementData {
-    ASN1Metadata getTypeMetadata();
-    
-    IASN1ConstraintMetadata getConstraint();    
-    boolean hasConstraint();
-    
-    
-    Field[] getFields();
-    Field getField(int index);
-    ASN1PreparedElementData getFieldMetadata(int index);
-    
-    Field getValueField();
-    ASN1PreparedElementData getValueMetadata();    
-    
-    ASN1ElementMetadata getASN1ElementInfo();
-    boolean hasASN1ElementInfo();
-    
-    Object invokeSetterMethod(Object object, Object param) throws Exception;
-    Object invokeDoSelectMethod(Object object, Object param) throws Exception;
-    Object invokeGetterMethod(Object object, Object param) throws Exception;
-    Object invokeIsSelectedMethod(Object object, Object param) throws Exception;
-    
-    boolean isMemberClass();
-    Object newInstance() throws Exception;
+	ASN1Metadata getTypeMetadata();
+
+	IASN1ConstraintMetadata getConstraint();
+
+	boolean hasConstraint();
+
+	Field[] getFields();
+
+	Field getField(int index);
+
+	ASN1PreparedElementData getFieldMetadata(int index);
+
+	Field getValueField();
+
+	ASN1PreparedElementData getValueMetadata();
+
+	ASN1ElementMetadata getASN1ElementInfo();
+
+	boolean hasASN1ElementInfo();
+
+	Object invokeSetterMethod(Object object, Object param) throws Exception;
+
+	Object invokeDoSelectMethod(Object object, Object param) throws Exception;
+
+	Object invokeGetterMethod(Object object, Object param) throws Exception;
+
+	Object invokeIsSelectedMethod(Object object, Object param) throws Exception;
+
+	boolean isMemberClass();
+
+	Object newInstance() throws Exception;
 }

@@ -38,17 +38,18 @@ public class OccupancySensorDeviceAAL extends HADeviceBase implements OccupancyS
 	private OccupacySensingAAL occupancySensing;
 	private Groups groups;
 
-	public  OccupancySensorDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice) throws ZigBeeHAException {
+	public OccupancySensorDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice) throws ZigBeeHAException {
 
-		super(ctx,zbDevice);
+		super(ctx, zbDevice);
 
 		occupancySensing = (OccupacySensingAAL) addCluster(HAProfile.OCCUPANCY_SENSING);
 		groups = (Groups) addCluster(HAProfile.GROUPS);
 	}
 
-	public  OccupancySensorDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice, OccupacySensingAAL cluster) throws ZigBeeHAException {
+	public OccupancySensorDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice, OccupacySensingAAL cluster)
+			throws ZigBeeHAException {
 
-		super(ctx,zbDevice);
+		super(ctx, zbDevice);
 
 		occupancySensing = cluster;
 		groups = (Groups) addCluster(HAProfile.GROUPS);
@@ -63,7 +64,7 @@ public class OccupancySensorDeviceAAL extends HADeviceBase implements OccupancyS
 		return OccupancySensor.NAME;
 	}
 
-	final static DeviceDescription DEVICE_DESCRIPTOR =  new AbstractDeviceDescription(){
+	final static DeviceDescription DEVICE_DESCRIPTOR = new AbstractDeviceDescription() {
 
 		public int[] getCustomClusters() {
 			return OccupancySensor.CUSTOM;

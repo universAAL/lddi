@@ -29,28 +29,27 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1OctetStringMetadata extends ASN1FieldMetadata
-{
-    public ASN1OctetStringMetadata() {
-        
-    }
-    
-    public ASN1OctetStringMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public ASN1OctetStringMetadata(ASN1OctetString annotation) {
-        this(annotation.name());
-    }        
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeOctetString(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeOctetString(decodedTag,objectClass,elementInfo,stream);
-    }    
-    
+public class ASN1OctetStringMetadata extends ASN1FieldMetadata {
+	public ASN1OctetStringMetadata() {
+
+	}
+
+	public ASN1OctetStringMetadata(String name) {
+		super(name);
+	}
+
+	public ASN1OctetStringMetadata(ASN1OctetString annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeOctetString(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeOctetString(decodedTag, objectClass, elementInfo, stream);
+	}
+
 }

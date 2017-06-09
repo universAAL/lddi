@@ -61,8 +61,7 @@ public class KnxToDeviceOntologyMappingFactory {
 	 * @param devOntType
 	 * @return ValueDevice (parent concept of all device concepts)
 	 */
-	public static ValueDevice getDeviceOntologyInstanceForKnxDpt(
-			int knxDptMain, int knxDptSub, String deviceId,
+	public static ValueDevice getDeviceOntologyInstanceForKnxDpt(int knxDptMain, int knxDptSub, String deviceId,
 			DeviceOntologyType devOntType) {
 
 		switch (knxDptMain) {
@@ -85,11 +84,14 @@ public class KnxToDeviceOntologyMappingFactory {
 			case 13: // DPT_DimSendStyle (start-stop/cyclically)
 			case 14: // DPT_InputSource (fixed/calculated)
 			case 15: // DPT_Reset (no action (dummy)/reset command (trigger))
-			case 16: // DPT_Ack (no action (dummy)/acknowledge command (trigger) e.g. for alarming)
+			case 16: // DPT_Ack (no action (dummy)/acknowledge command (trigger)
+						// e.g. for alarming)
 			case 17: // DPT_Trigger (trigger/trigger)
-			case 21: // DPT_LogicalFunction (logical function OR/logical function AND)
+			case 21: // DPT_LogicalFunction (logical function OR/logical
+						// function AND)
 			case 22: // DPT_Scene_AB (scene A/scene B)
-			case 23: // DPT_ShutterBlinds_Mode (only move Up/Down (shutter)/move Up/Down + StepStop mode (blind))
+			case 23: // DPT_ShutterBlinds_Mode (only move Up/Down (shutter)/move
+						// Up/Down + StepStop mode (blind))
 
 				switch (devOntType) {
 				case Actuator:
@@ -102,11 +104,12 @@ public class KnxToDeviceOntologyMappingFactory {
 
 			case 9: // DPT_OpenClose (open/close)
 				return new ContactSensor("ContactSensor" + deviceId);
-				
+
 			case 18: // DPT_Occupancy (not occupied/occupied)
 				return new MotionSensor("MotionSensor" + deviceId);
-				
-			case 19: // DPT_Window_Door (closed/open) values differ from DPT_OpenClose!!
+
+			case 19: // DPT_Window_Door (closed/open) values differ from
+						// DPT_OpenClose!!
 				switch (devOntType) {
 				case Actuator:
 					return new WindowActuator("WindowActuator" + deviceId);
@@ -116,10 +119,10 @@ public class KnxToDeviceOntologyMappingFactory {
 					return new WindowSensor("WindowSensor" + deviceId);
 				}
 			}
-			
-		// knx datapoint type main number 3 (4 bit)
+
+			// knx datapoint type main number 3 (4 bit)
 		case 3:
-			switch(knxDptSub){
+			switch (knxDptSub) {
 			case 7: // DPT_Control_Dimming
 				switch (devOntType) {
 				case Actuator:
@@ -140,10 +143,10 @@ public class KnxToDeviceOntologyMappingFactory {
 				}
 			}
 			break;
-			
+
 		// knx datapoint type main number 5 (8 Bit - Unsigned Value)
 		case 5:
-			switch(knxDptSub){
+			switch (knxDptSub) {
 			case 1: // DPT_Scaling (percentage 0 - 100%)
 				switch (devOntType) {
 				case Actuator:
@@ -155,22 +158,20 @@ public class KnxToDeviceOntologyMappingFactory {
 				}
 			}
 			break;
-			
+
 		// knx datapoint type main number 9 (2-Octet Float Value)
 		case 9:
-			switch(knxDptSub){
+			switch (knxDptSub) {
 			case 1: // DPT_Value_Temp
 				return new TemperatureSensor("TemperatureSensor" + deviceId);
 			}
 			break;
 
-		
-		
-		} //end outer switch statement
+		} // end outer switch statement
 		return null;
 	}
 
-	//	
+	//
 	// /**
 	// * Returns null if no suitable ontology concept found
 	// * @param knxDptMain
@@ -273,13 +274,13 @@ public class KnxToDeviceOntologyMappingFactory {
 	//
 	// default:
 	// return null;
-	//		
+	//
 	// // knx datapoint type main number ...
 	// //...
-	//		
-	//		
+	//
+	//
 	// }
-	//		
+	//
 	// return null;
 	// }
 

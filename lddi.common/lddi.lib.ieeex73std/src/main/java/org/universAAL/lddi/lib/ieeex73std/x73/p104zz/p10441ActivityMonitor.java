@@ -19,36 +19,31 @@
  */
 package org.universAAL.lddi.lib.ieeex73std.x73.p104zz;
 
-
 import java.util.LinkedList;
 
 import org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder;
 import org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Attribute;
 
-
 // Cardiovascular fitness and Activity Monitor
 //The Activity Monitor does not have any Standard Configuration
 
-
-
-public class p10441ActivityMonitor extends DeviceSpecialization{
+public class p10441ActivityMonitor extends DeviceSpecialization {
 
 	public LinkedList<Attribute> activitymonitorattributes;
 
-	
-	public p10441ActivityMonitor(IDecoder decoder) throws Exception{
+	public p10441ActivityMonitor(IDecoder decoder) throws Exception {
 		super(decoder);
 		generateActivityMonitorAttributes();
 	}
 
-	private void generateActivityMonitorAttributes() throws Exception{
-		
-			//TODO		
-		
+	private void generateActivityMonitorAttributes() throws Exception {
+
+		// TODO
+
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return "Cardiovascular fitness and activity monitor";
 	}
-	
+
 }

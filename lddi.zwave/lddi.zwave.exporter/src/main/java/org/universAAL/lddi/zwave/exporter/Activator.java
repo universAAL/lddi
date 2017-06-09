@@ -36,23 +36,22 @@ public class Activator implements BundleActivator {
 	public static ModuleContext context = null;
 	private MotionContactSensorPublisher motionPublisher = null;
 	private BundleContext ctx;
-	
+
 	public void start(BundleContext bcontext) throws Exception {
 		ctx = bcontext;
-		context = uAALBundleContainer.THE_CONTAINER
-			.registerModule(new Object[] { bcontext });
-		new Thread(){
-			public void run(){   
+		context = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { bcontext });
+		new Thread() {
+			public void run() {
 				System.out.print("Running power reader \n");
 				Timer t = new Timer();
-				t.schedule(new PowerReader(ctx), 0, 60*1000);
-			}			
+				t.schedule(new PowerReader(ctx), 0, 60 * 1000);
+			}
 		}.start();
-		new Thread(){
-			public void run(){   
+		new Thread() {
+			public void run() {
 				System.out.print("Running movement detector\n");
 				motionPublisher = new MotionContactSensorPublisher(ctx);
-				
+
 				MotionDecoderFactory factory = new MotionDecoderFactory(motionPublisher);
 				MotionServer motionServer = new MotionServer(factory, 53007);
 				try {
@@ -62,14 +61,14 @@ public class Activator implements BundleActivator {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-			}			
+
+			}
 		}.start();
-		
+
 	}
 
 	public void stop(BundleContext arg0) throws Exception {
-		
+
 	}
 
 }

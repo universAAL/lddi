@@ -23,23 +23,22 @@ import java.io.OutputStream;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.annotations.*;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.*;
 
-public class ASN1ObjectIdentifierMetadata extends ASN1FieldMetadata
-{
-    public ASN1ObjectIdentifierMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public ASN1ObjectIdentifierMetadata(ASN1ObjectIdentifier annotation) {
-        this(annotation.name());
-    }
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeObjectIdentifier(object, stream, elementInfo);
-    }
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeObjectIdentifier(decodedTag,objectClass,elementInfo,stream);
-    }
+public class ASN1ObjectIdentifierMetadata extends ASN1FieldMetadata {
+	public ASN1ObjectIdentifierMetadata(String name) {
+		super(name);
+	}
+
+	public ASN1ObjectIdentifierMetadata(ASN1ObjectIdentifier annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeObjectIdentifier(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeObjectIdentifier(decodedTag, objectClass, elementInfo, stream);
+	}
 }

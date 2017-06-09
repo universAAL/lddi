@@ -42,9 +42,9 @@ import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
 /**
  * This Driver class manages driver instances for KNX DPT3 devices. It is called
  * on new device references coming from OSGi DeviceManager; matching on device
- * category. It instantiates drivers for every matching KNX groupDevice. Attaches
- * exactly one driver instance per deviceId. Subsequent devices with the same
- * deviceId are rejected!
+ * category. It instantiates drivers for every matching KNX groupDevice.
+ * Attaches exactly one driver instance per deviceId. Subsequent devices with
+ * the same deviceId are rejected!
  * 
  * When an attached device service is unregistered: drivers must take the
  * appropriate action to release this device service and perform any necessary
@@ -84,12 +84,10 @@ public class KnxDpt3Driver implements Driver {
 	private void registerDriver() {
 		Properties propDriver = new Properties();
 		propDriver.put(Constants.DRIVER_ID, MY_DRIVER_ID);
-		this.regDriver = this.context.registerService(Driver.class.getName(),
-				this, propDriver);
+		this.regDriver = this.context.registerService(Driver.class.getName(), this, propDriver);
 
 		if (this.regDriver != null)
-			this.logger.log(LogService.LOG_INFO,
-					"Driver for KNX-DPT 3.007 and 3.008 registered!");
+			this.logger.log(LogService.LOG_INFO, "Driver for KNX-DPT 3.007 and 3.008 registered!");
 	}
 
 	/*
@@ -105,14 +103,10 @@ public class KnxDpt3Driver implements Driver {
 
 		try {
 			groupDeviceCategory = KnxGroupDeviceCategoryUtil
-					.getCategory((String) reference
-							.getProperty(Constants.DEVICE_CATEGORY));
+					.getCategory((String) reference.getProperty(Constants.DEVICE_CATEGORY));
 		} catch (ClassCastException e) {
-			this.logger.log(LogService.LOG_DEBUG,
-							"Could not cast DEVICE_CATEGORY of requesting"
-									+ " device service "
-									+ reference.getProperty(org.osgi.framework.Constants.SERVICE_ID)
-									+ " to String. No match!");
+			this.logger.log(LogService.LOG_DEBUG, "Could not cast DEVICE_CATEGORY of requesting" + " device service "
+					+ reference.getProperty(org.osgi.framework.Constants.SERVICE_ID) + " to String. No match!");
 			return matchValue;
 		}
 
@@ -121,8 +115,8 @@ public class KnxDpt3Driver implements Driver {
 		if (groupDeviceCategory == MY_KNX_DEVICE_CATEGORY) {
 			matchValue = IKnxDpt3.MATCH_CLASS;
 		} else {
-			this.logger.log(LogService.LOG_DEBUG, "Requesting device service "
-					+ groupDeviceCategory + " doesn't match with driver. No match!");
+			this.logger.log(LogService.LOG_DEBUG,
+					"Requesting device service " + groupDeviceCategory + " doesn't match with driver. No match!");
 		}
 
 		return matchValue; // must be > 0 to match }
@@ -139,37 +133,37 @@ public class KnxDpt3Driver implements Driver {
 		// get groupAddress
 		KnxDpt3GroupDevice knxDev = (KnxDpt3GroupDevice) this.context.getService(reference);
 
-		if  ( this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress()) ) {
-			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for " +
-					" the groupDevice " + knxDev.getGroupAddress());
+		if (this.connectedDriverInstanceMap.containsKey(knxDev.getGroupAddress())) {
+			this.logger.log(LogService.LOG_WARNING, "There is already a driver instance available for "
+					+ " the groupDevice " + knxDev.getGroupAddress());
 			return "driver already exists for this groupDevice!";
 		}
-		
+
 		// create "driving" instance
 		KnxDpt3Instance instance = new KnxDpt3Instance(this);
 
 		// store instance
 		this.connectedDriverInstanceMap.put(knxDev.getGroupAddress(), instance);
 
-		// init service tracker; the driver instance itself tracks on the groupDevice reference!
+		// init service tracker; the driver instance itself tracks on the
+		// groupDevice reference!
 		ServiceTracker tracker = new ServiceTracker(this.context, reference, instance);
 		tracker.open();
 
 		return null;
 	}
-	
-	
+
 	/**
-	 * delete instance references 
-	 * unregister my services ?
+	 * delete instance references unregister my services ?
 	 */
 	public void stop() {
-		
+
 		// delete instance references !!
-		for ( Iterator<KnxDpt3Instance> it = this.connectedDriverInstanceMap.values().iterator(); it.hasNext(); ) {
+		for (Iterator<KnxDpt3Instance> it = this.connectedDriverInstanceMap.values().iterator(); it.hasNext();) {
 			it.next().detachDriver();
 		}
 
-		// the managed service and driver service is unregistered automatically by the OSGi framework!
+		// the managed service and driver service is unregistered automatically
+		// by the OSGi framework!
 	}
 }

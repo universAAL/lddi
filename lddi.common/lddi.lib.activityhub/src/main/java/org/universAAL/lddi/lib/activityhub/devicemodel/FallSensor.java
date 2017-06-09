@@ -26,17 +26,16 @@ import org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCateg
 import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
 /**
- * Representation of a fall sensor according to
- * ISO 11073 - Part 10471 (Indepentend living activity hub).
+ * Representation of a fall sensor according to ISO 11073 - Part 10471
+ * (Indepentend living activity hub).
  * 
- * Specific sensor events (from standard specification):
- * - fall detected
- * - no condition detected (optional)
+ * Specific sensor events (from standard specification): - fall detected - no
+ * condition detected (optional)
  * 
- * Initially NO_CONDITION_DETECTED is set.
- * Later, current sensor value can be set to FALL_DETECTED and back to NO_CONDITION_DETECTED
+ * Initially NO_CONDITION_DETECTED is set. Later, current sensor value can be
+ * set to FALL_DETECTED and back to NO_CONDITION_DETECTED
  * 
- * @author Thomas Fuxreiter 
+ * @author Thomas Fuxreiter
  */
 public class FallSensor extends ActivityHubSensor implements Iso11073FallSensor {
 
@@ -48,8 +47,7 @@ public class FallSensor extends ActivityHubSensor implements Iso11073FallSensor 
 	 * @param deviceId
 	 * @param logger
 	 */
-	public FallSensor(ActivityHubDeviceCategory deviceCategory,
-			ActivityHubLocation deviceLocation, String deviceId,
+	public FallSensor(ActivityHubDeviceCategory deviceCategory, ActivityHubLocation deviceLocation, String deviceId,
 			LogService logger) {
 		super(deviceCategory, deviceLocation, deviceId, logger);
 
@@ -57,16 +55,22 @@ public class FallSensor extends ActivityHubSensor implements Iso11073FallSensor 
 		this.lastSensorEvent = FallSensorEvent.NO_CONDITION_DETECTED;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#getSensorEventValue()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
+	 * getSensorEventValue()
 	 */
 	@Override
 	public int getSensorEventValue() {
 		return this.lastSensorEvent.value();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#setSensorEventOff()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
+	 * setSensorEventOff()
 	 */
 	@Override
 	public void setSensorEventOff() {
@@ -74,8 +78,11 @@ public class FallSensor extends ActivityHubSensor implements Iso11073FallSensor 
 		this.sendEvent(FallSensorEvent.NO_CONDITION_DETECTED.value());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#setSensorEventOn()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
+	 * setSensorEventOn()
 	 */
 	@Override
 	public void setSensorEventOn() {
@@ -83,12 +90,14 @@ public class FallSensor extends ActivityHubSensor implements Iso11073FallSensor 
 		this.sendEvent(FallSensorEvent.FALL_DETECTED.value());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubBaseDeviceCategory#incomingSensorEvent(int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicecategory.
+	 * ActivityHubBaseDeviceCategory#incomingSensorEvent(int)
 	 */
 	public void incomingSensorEvent(int event) {
-		// driver instances must implement this method; device instances not! 
+		// driver instances must implement this method; device instances not!
 	}
-
 
 }

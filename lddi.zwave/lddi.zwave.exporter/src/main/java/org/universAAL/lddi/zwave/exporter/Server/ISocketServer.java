@@ -30,80 +30,75 @@ import java.io.IOException;
  */
 public interface ISocketServer extends Closeable {
 
+	/**
+	 * Gracefully close server.
+	 * 
+	 * @throws IOException
+	 *             exception raised while closing the server
+	 */
+	void close() throws IOException;
 
-    /**
-     * Gracefully close server.
-     * 
-     * @throws IOException exception raised while closing the server
-     */
-    void close() throws IOException;
+	/**
+	 * Returns the total number of bytes read.
+	 * 
+	 * @return the total number of bytes read
+	 */
+	long getTotalReadBytes();
 
+	/**
+	 * Retuns the total number of bytes sent.
+	 * 
+	 * @return the total number of bytes sent
+	 */
+	long getTotalSentBytes();
 
-    /**
-     * Returns the total number of bytes read.
-     * 
-     * @return the total number of bytes read
-     */
-    long getTotalReadBytes();
+	/**
+	 * Incoming data transfer rate in bytes/second.
+	 * 
+	 * @return the incoming data transfer rate in bytes/second
+	 */
+	float getTransferRateIn();
 
+	/**
+	 * Outgoing data transfer rate in bytes/second.
+	 * 
+	 * @return the Outgoing data transfer rate in bytes/second
+	 */
+	float getTransferRateOut();
 
-    /**
-     * Retuns the total number of bytes sent.
-     * 
-     * @return the total number of bytes sent
-     */
-    long getTotalSentBytes();
+	/**
+	 * Starts server in current thread.
+	 * 
+	 * @throws IOException
+	 *             exception raised while starting the server on a separated
+	 *             thread
+	 */
+	void run() throws IOException;
 
+	/**
+	 * Sets the IP to be used by the server to bind the port for incoming
+	 * connections.
+	 * 
+	 * @param ip
+	 *            server IP in string format: "xxx.xxxx.xxx.xxx"
+	 */
+	void setIP(String ip);
 
-    /**
-     * Incoming data transfer rate in bytes/second.
-     * 
-     * @return the incoming data transfer rate in bytes/second
-     */
-    float getTransferRateIn();
+	/**
+	 * Sets the port to be used to listen for connections.
+	 * 
+	 * @param port
+	 *            usded to listen for incoming connections
+	 */
+	void setPort(int port);
 
-
-    /**
-     * Outgoing data transfer rate in bytes/second.
-     * 
-     * @return the Outgoing data transfer rate in bytes/second
-     */
-    float getTransferRateOut();
-
-
-    /**
-     * Starts server in current thread.
-     * 
-     * @throws IOException exception raised while starting the server on a
-     *         separated thread
-     */
-    void run() throws IOException;
-
-
-    /**
-     * Sets the IP to be used by the server to bind the port for incoming
-     * connections.
-     * 
-     * @param ip server IP in string format: "xxx.xxxx.xxx.xxx"
-     */
-    void setIP(String ip);
-
-
-    /**
-     * Sets the port to be used to listen for connections.
-     * 
-     * @param port usded to listen for incoming connections
-     */
-    void setPort(int port);
-
-
-    /**
-     * Starts server in independent thread.
-     * 
-     * @throws IOException exception raised while starting the server in
-     *         independent thread
-     */
-    void start() throws IOException;
-
+	/**
+	 * Starts server in independent thread.
+	 * 
+	 * @throws IOException
+	 *             exception raised while starting the server in independent
+	 *             thread
+	 */
+	void start() throws IOException;
 
 }

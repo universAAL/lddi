@@ -48,108 +48,91 @@ import org.universAAL.ontology.phThing.DeviceService;
  * @author alfiva
  * 
  */
-public class DimmerLightCallee extends ExporterDimmerCallee implements
-	CurrentLevelListener {
-    static {
-	NAMESPACE = "http://ontology.igd.fhg.de/ZBDimmerLightingServer.owl#";
-    }
-
-    private DimmableLight zbDevice;
-    LightActuator ontologyDevice;
-    private DefaultContextPublisher cp;
-
-    /**
-     * Constructor to be used in the exporter, which sets up all the exporting
-     * process.
-     * 
-     * @param context
-     *            The OSGi context
-     * @param serv
-     *            The OSGi service backing the interaction with the device in
-     *            the abstraction layer
-     */
-    public DimmerLightCallee(ModuleContext context, DimmableLight serv) {
-	super(context, null);
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"DimmerLightCallee", new String[] { "Ready to subscribe" },
-		null);
-	zbDevice = serv;
-
-	// Info
-	String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier()
-		.replace("\"", "");
-	String deviceURI = NAMESPACE + "actuator" + deviceSuffix;
-	ontologyDevice = new LightActuator(deviceURI);
-	// Commissioning
-	String locationSuffix = Activator.getProperties().getProperty(
-		deviceSuffix);
-	if (locationSuffix != null
-		&& !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
-	    ontologyDevice
-		    .setLocation(new Room(
-			    Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-				    + locationSuffix));
-	} else {
-	    Properties prop = Activator.getProperties();
-	    prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
-	    Activator.setProperties(prop);
+public class DimmerLightCallee extends ExporterDimmerCallee implements CurrentLevelListener {
+	static {
+		NAMESPACE = "http://ontology.igd.fhg.de/ZBDimmerLightingServer.owl#";
 	}
-	// Serv reg
-	newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI,
-		ontologyDevice);
-	this.addNewServiceProfiles(newProfiles);
-	// Context reg
-	ContextProvider info = new ContextProvider(NAMESPACE
-		+ "zbLightingContextProvider");
-	info.setType(ContextProviderType.controller);
-	cp = new DefaultContextPublisher(context, info);
-	// ZB reg
-	if (zbDevice.getLevelControl().subscribe(this)) {
-	    LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		    "DimmerLightCallee", new String[] { "Subscribed" }, null);
-	} else {
-	    LogUtils.logError(Activator.moduleContext, DimmerLightCallee.class,
-		    "DimmerLightCallee",
-		    new String[] { "Failed to Subscribe!!!" }, null);
-	}
-    }
 
-    @Override
-    public Integer executeGet() {
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"getStatus",
-		new String[] { "The service called was 'get the status'" },
-		null);
-	try {
-	    return (Integer) zbDevice.getLevelControl().getCurrentLevel()
-		    .getValue();
-	} catch (ZigBeeClusterException e) {
-	    return null;
-	}
-    }
+	private DimmableLight zbDevice;
+	LightActuator ontologyDevice;
+	private DefaultContextPublisher cp;
 
-    @Override
-    public boolean executeSet(Integer value) {
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"setStatus",
-		new String[] { "The service called was 'set the status' "
-			+ value }, null);
-	try {
-	    zbDevice.getLevelControl().moveToLevel(value.shortValue(), 10);
-	    return true;
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    return false;
-	}
-    }
+	/**
+	 * Constructor to be used in the exporter, which sets up all the exporting
+	 * process.
+	 * 
+	 * @param context
+	 *            The OSGi context
+	 * @param serv
+	 *            The OSGi service backing the interaction with the device in
+	 *            the abstraction layer
+	 */
+	public DimmerLightCallee(ModuleContext context, DimmableLight serv) {
+		super(context, null);
+		LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class, "DimmerLightCallee",
+				new String[] { "Ready to subscribe" }, null);
+		zbDevice = serv;
 
-    public void changedCurrentLevel(CurrentLevelEvent event) {
-	LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class,
-		"changedCurrentLevel",
-		new String[] { "Changed-Event received" }, null);
-	LightActuator ls = ontologyDevice;
-	ls.setValue(event.getEvent());
-	cp.publish(new ContextEvent(ls, LightActuator.PROP_HAS_VALUE));
-    }
+		// Info
+		String deviceSuffix = zbDevice.getZBDevice().getUniqueIdenfier().replace("\"", "");
+		String deviceURI = NAMESPACE + "actuator" + deviceSuffix;
+		ontologyDevice = new LightActuator(deviceURI);
+		// Commissioning
+		String locationSuffix = Activator.getProperties().getProperty(deviceSuffix);
+		if (locationSuffix != null && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
+			ontologyDevice.setLocation(new Room(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + locationSuffix));
+		} else {
+			Properties prop = Activator.getProperties();
+			prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);
+			Activator.setProperties(prop);
+		}
+		// Serv reg
+		newProfiles = getServiceProfiles(NAMESPACE, DeviceService.MY_URI, ontologyDevice);
+		this.addNewServiceProfiles(newProfiles);
+		// Context reg
+		ContextProvider info = new ContextProvider(NAMESPACE + "zbLightingContextProvider");
+		info.setType(ContextProviderType.controller);
+		cp = new DefaultContextPublisher(context, info);
+		// ZB reg
+		if (zbDevice.getLevelControl().subscribe(this)) {
+			LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class, "DimmerLightCallee",
+					new String[] { "Subscribed" }, null);
+		} else {
+			LogUtils.logError(Activator.moduleContext, DimmerLightCallee.class, "DimmerLightCallee",
+					new String[] { "Failed to Subscribe!!!" }, null);
+		}
+	}
+
+	@Override
+	public Integer executeGet() {
+		LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class, "getStatus",
+				new String[] { "The service called was 'get the status'" }, null);
+		try {
+			return (Integer) zbDevice.getLevelControl().getCurrentLevel().getValue();
+		} catch (ZigBeeClusterException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public boolean executeSet(Integer value) {
+		LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class, "setStatus",
+				new String[] { "The service called was 'set the status' " + value }, null);
+		try {
+			zbDevice.getLevelControl().moveToLevel(value.shortValue(), 10);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public void changedCurrentLevel(CurrentLevelEvent event) {
+		LogUtils.logDebug(Activator.moduleContext, DimmerLightCallee.class, "changedCurrentLevel",
+				new String[] { "Changed-Event received" }, null);
+		LightActuator ls = ontologyDevice;
+		ls.setValue(event.getEvent());
+		cp.publish(new ContextEvent(ls, LightActuator.PROP_HAS_VALUE));
+	}
 
 }

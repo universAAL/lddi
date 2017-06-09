@@ -23,12 +23,15 @@ import java.io.InputStream;
  * The ASN.1 decoder interface
  */
 public interface IDecoder {
-    /**
-     * Decode object from stream
-     * @param stream Input stream
-     * @param objectClass Class for object
-     * @return Created object from stream
-     * @throws Exception
-     */
-    public <T> T decode(InputStream stream, Class<T> objectClass) throws Exception;
+	/**
+	 * Decode object from stream
+	 * 
+	 * @param stream
+	 *            Input stream
+	 * @param objectClass
+	 *            Class for object
+	 * @return Created object from stream
+	 * @throws Exception
+	 */
+	public <T> T decode(InputStream stream, Class<T> objectClass) throws Exception;
 }

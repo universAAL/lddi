@@ -40,7 +40,7 @@ public class OccupacySensingClusterAAL extends ZCLClusterBase implements Occupac
 
 	private final Attribute[] attributes;
 
-	public OccupacySensingClusterAAL(ZigBeeDevice zbDevice){
+	public OccupacySensingClusterAAL(ZigBeeDevice zbDevice) {
 
 		super(zbDevice);
 
@@ -48,14 +48,18 @@ public class OccupacySensingClusterAAL extends ZCLClusterBase implements Occupac
 		occupancySensorType = new AttributeImpl(zbDevice, this, Attributes.OCCUPANCY_SENSOR_TYPE);
 		pirOccupiedToUnoccupiedDelay = new AttributeImpl(zbDevice, this, Attributes.PIR_OCCUPIED_TO_UNOCCUPIED_DELAY);
 		pirUnoccupiedToOccupiedDelay = new AttributeImpl(zbDevice, this, Attributes.PIR_UNOCCUPIED_TO_OCCUPIED_DELAY);
-		ultraSonicOccupiedToUnoccupiedDelay = new AttributeImpl(zbDevice, this, Attributes.ULTRA_SONIC_OCCUPIED_TO_UNOCCUPIED_DELAY);
-		ultraSonicUnoccupiedToOccupiedDelay = new AttributeImpl(zbDevice, this, Attributes.ULTRA_SONIC_UNOCCUPIED_TO_OCCUPIED_DELAY);
-		pirUnoccupiedToOccupiedThreshold = new AttributeImpl(zbDevice, this, Attributes.PIR_UNOCCUPIED_TO_OCCUPIED_THRESHOLD);
-		ultrasonicUnoccupiedToOccupiedThreshold = new AttributeImpl(zbDevice, this, Attributes.ULTRASONIC_UNOCCUPIED_TO_OCCUPIED_THRESHOLD);
+		ultraSonicOccupiedToUnoccupiedDelay = new AttributeImpl(zbDevice, this,
+				Attributes.ULTRA_SONIC_OCCUPIED_TO_UNOCCUPIED_DELAY);
+		ultraSonicUnoccupiedToOccupiedDelay = new AttributeImpl(zbDevice, this,
+				Attributes.ULTRA_SONIC_UNOCCUPIED_TO_OCCUPIED_DELAY);
+		pirUnoccupiedToOccupiedThreshold = new AttributeImpl(zbDevice, this,
+				Attributes.PIR_UNOCCUPIED_TO_OCCUPIED_THRESHOLD);
+		ultrasonicUnoccupiedToOccupiedThreshold = new AttributeImpl(zbDevice, this,
+				Attributes.ULTRASONIC_UNOCCUPIED_TO_OCCUPIED_THRESHOLD);
 
-		attributes = new AttributeImpl[]{occupancy,occupancySensorType,pirOccupiedToUnoccupiedDelay,
-				pirUnoccupiedToOccupiedDelay,ultraSonicOccupiedToUnoccupiedDelay,ultraSonicUnoccupiedToOccupiedDelay,
-				pirUnoccupiedToOccupiedThreshold,ultrasonicUnoccupiedToOccupiedThreshold};
+		attributes = new AttributeImpl[] { occupancy, occupancySensorType, pirOccupiedToUnoccupiedDelay,
+				pirUnoccupiedToOccupiedDelay, ultraSonicOccupiedToUnoccupiedDelay, ultraSonicUnoccupiedToOccupiedDelay,
+				pirUnoccupiedToOccupiedThreshold, ultrasonicUnoccupiedToOccupiedThreshold };
 	}
 
 	@Override

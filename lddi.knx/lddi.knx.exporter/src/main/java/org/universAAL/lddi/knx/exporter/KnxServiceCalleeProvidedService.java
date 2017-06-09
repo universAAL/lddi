@@ -40,72 +40,62 @@ import org.universAAL.ontology.phThing.DeviceService;
  */
 public class KnxServiceCalleeProvidedService extends DeviceService {
 
-	public static final String KNX_SERVER_NAMESPACE
-	= "http://ontology.universAAL.org/KnxServer.owl#";
-	public static final String MY_URI
-	= KNX_SERVER_NAMESPACE + "KnxService";
+	public static final String KNX_SERVER_NAMESPACE = "http://ontology.universAAL.org/KnxServer.owl#";
+	public static final String MY_URI = KNX_SERVER_NAMESPACE + "KnxService";
 
 	// a service for determining the device type
-	static final String SERVICE_GET_CONTROLLED_DEVICES
-	= KNX_SERVER_NAMESPACE + "getControlledDevices";
+	static final String SERVICE_GET_CONTROLLED_DEVICES = KNX_SERVER_NAMESPACE + "getControlledDevices";
 	// a service for switching a device off
-	static final String SERVICE_SWITCH_OFF
-	= KNX_SERVER_NAMESPACE + "switchOff";
+	static final String SERVICE_SWITCH_OFF = KNX_SERVER_NAMESPACE + "switchOff";
 	// a service for switching a device on
-	static final String SERVICE_SWITCH_ON
-	= KNX_SERVER_NAMESPACE + "switchOn";
+	static final String SERVICE_SWITCH_ON = KNX_SERVER_NAMESPACE + "switchOn";
 
 	static final String INPUT_DEVICE_URI = KNX_SERVER_NAMESPACE + "deviceURI";
 	static final String OUTPUT_CONTROLLED_DEVICES = KNX_SERVER_NAMESPACE + "controlledDevices";
-	
+
 	public static ServiceProfile[] profiles = new ServiceProfile[3];
 	private static Hashtable serverLevelRestrictions = new Hashtable();
 
-
 	static {
 		OntologyManagement.getInstance().register(Activator.mc,
-				new SimpleOntology(MY_URI, DeviceService.MY_URI,
-						new ResourceFactory() {
-//					@Override
-					public Resource createInstance(String classURI,
-							String instanceURI, int factoryIndex) {
+				new SimpleOntology(MY_URI, DeviceService.MY_URI, new ResourceFactory() {
+					// @Override
+					public Resource createInstance(String classURI, String instanceURI, int factoryIndex) {
 						return new KnxServiceCalleeProvidedService(instanceURI);
 					}
 				}));
-		
-		String[] ppControls = new String[] { DeviceService.PROP_CONTROLS};
-		String[] ppStatus = new String[] { DeviceService.PROP_CONTROLS, SwitchController.PROP_HAS_VALUE};
-		
-		addRestriction(
-				MergedRestriction.getAllValuesRestrictionWithCardinality(
-				SwitchController.PROP_HAS_VALUE, // URI of the property
+
+		String[] ppControls = new String[] { DeviceService.PROP_CONTROLS };
+		String[] ppStatus = new String[] { DeviceService.PROP_CONTROLS, SwitchController.PROP_HAS_VALUE };
+
+		addRestriction(MergedRestriction.getAllValuesRestrictionWithCardinality(SwitchController.PROP_HAS_VALUE, // URI
+																													// of
+																													// the
+																													// property
 				new Enumeration(new Integer[] { new Integer(0), new Integer(100) }), // Type
 				1, // min. cardinality
 				1 // max. cardinality
-				),
-				ppStatus,
-				serverLevelRestrictions
-				);				
-				
-		KnxServiceCalleeProvidedService getControlledDevices = new KnxServiceCalleeProvidedService(SERVICE_GET_CONTROLLED_DEVICES);
+		), ppStatus, serverLevelRestrictions);
+
+		KnxServiceCalleeProvidedService getControlledDevices = new KnxServiceCalleeProvidedService(
+				SERVICE_GET_CONTROLLED_DEVICES);
 		getControlledDevices.addOutput(OUTPUT_CONTROLLED_DEVICES, Device.MY_URI, 0, 0, ppControls);
 		profiles[0] = getControlledDevices.myProfile;
-		
+
 		KnxServiceCalleeProvidedService switchOff = new KnxServiceCalleeProvidedService(SERVICE_SWITCH_OFF);
 		switchOff.addFilteringInput(INPUT_DEVICE_URI, SwitchController.MY_URI, 1, 1, ppControls);
 		switchOff.myProfile.addChangeEffect(ppStatus, StatusValue.NOT_ACTIVATED);
 		profiles[1] = switchOff.myProfile;
-		
+
 		KnxServiceCalleeProvidedService switchOn = new KnxServiceCalleeProvidedService(SERVICE_SWITCH_ON);
 		switchOn.addFilteringInput(INPUT_DEVICE_URI, SwitchController.MY_URI, 1, 1, ppControls);
 		switchOn.myProfile.addChangeEffect(ppStatus, StatusValue.ACTIVATED);
 		profiles[2] = switchOn.myProfile;
-		
+
 	}
-	
-	
+
 	private KnxServiceCalleeProvidedService(String uri) {
 		super(uri);
 	}
-	
+
 }

@@ -22,8 +22,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target( {ElementType.FIELD} )
+@Target({ ElementType.FIELD })
 public @interface ASN1SequenceOf {
-    String name();    
-    boolean isSetOf() default false;
+	String name();
+
+	boolean isSetOf() default false;
 }

@@ -19,22 +19,22 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.constraints;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.annotations.constraints.*;
 
 public class ASN1ValueRangeConstraintMetadata implements IASN1ConstraintMetadata {
-    private long minValue, maxValue;
-    
-    public ASN1ValueRangeConstraintMetadata(ASN1ValueRangeConstraint annotation) {
-        this.minValue = annotation.min();
-        this.maxValue = annotation.max();
-    }
-    
-    public long getMin() {
-        return minValue;
-    }
-    
-    public long getMax() {
-        return maxValue;
-    }
-    
-    public boolean checkValue(long value) throws Exception {
-        return value<= maxValue && value>= minValue;
-    }
+	private long minValue, maxValue;
+
+	public ASN1ValueRangeConstraintMetadata(ASN1ValueRangeConstraint annotation) {
+		this.minValue = annotation.min();
+		this.maxValue = annotation.max();
+	}
+
+	public long getMin() {
+		return minValue;
+	}
+
+	public long getMax() {
+		return maxValue;
+	}
+
+	public boolean checkValue(long value) throws Exception {
+		return value <= maxValue && value >= minValue;
+	}
 }

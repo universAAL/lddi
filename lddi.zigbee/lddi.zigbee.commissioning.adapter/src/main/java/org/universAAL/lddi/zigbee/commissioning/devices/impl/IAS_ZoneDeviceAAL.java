@@ -67,7 +67,7 @@ public class IAS_ZoneDeviceAAL extends HADeviceBase implements IAS_ZoneAAL {
 		return DEVICE_DESCRIPTOR;
 	}
 
-	final static DeviceDescription DEVICE_DESCRIPTOR =  new AbstractDeviceDescription(){
+	final static DeviceDescription DEVICE_DESCRIPTOR = new AbstractDeviceDescription() {
 
 		public int[] getCustomClusters() {
 			return IAS_Zone.CUSTOM;

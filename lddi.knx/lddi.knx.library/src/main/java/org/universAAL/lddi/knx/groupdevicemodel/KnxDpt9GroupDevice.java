@@ -29,46 +29,42 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt9;
  */
 public class KnxDpt9GroupDevice extends KnxGroupDevice implements IKnxDpt9 {
 
-    /**
-     * empty constructor for factory
-     */
-    public KnxDpt9GroupDevice() {
-    	super(MY_DEVICE_CATEGORY);
-    }
-
+	/**
+	 * empty constructor for factory
+	 */
+	public KnxDpt9GroupDevice() {
+		super(MY_DEVICE_CATEGORY);
+	}
 
 	/**
-	 * Calculate float value from knx message payload.
-     * 				MSB			LSB
-     * float value |-------- --------|
-     * encoding 	MEEEEMMM MMMMMMMM
-     * FloatValue = (0,01*M)*2(E)
-     * E = [0 : 15]
-     * M = [-2 048 : 2 047], two's complement notation
-     * 
+	 * Calculate float value from knx message payload. MSB LSB float value
+	 * |-------- --------| encoding MEEEEMMM MMMMMMMM FloatValue = (0,01*M)*2(E)
+	 * E = [0 : 15] M = [-2 048 : 2 047], two's complement notation
+	 * 
 	 */
 	public static float calculateFloatValue(byte[] payload) {
-		// there are 3 bytes payload for a temperature event where the last 2 are important
-		byte MSB = payload[1]; 
+		// there are 3 bytes payload for a temperature event where the last 2
+		// are important
+		byte MSB = payload[1];
 		byte LSB = payload[2];
-		
+
 		byte M_MSB = (byte) (MSB & 0x87);
 		byte M_LSB = (byte) (LSB & 0xFF);
-		
+
 		byte E = (byte) ((MSB & 0x78) >> 3);
 
-		int e = Integer.parseInt( Byte.toString(E) );
-		
+		int e = Integer.parseInt(Byte.toString(E));
+
 		short m = (short) (M_MSB << 8 | (M_LSB & 0xFF));
-		
-		float result = (float) ((0.01*m)*(Math.pow(2, e)));
-		//System.out.println("*****************************float result: " + result);
+
+		float result = (float) ((0.01 * m) * (Math.pow(2, e)));
+		// System.out.println("*****************************float result: " +
+		// result);
 		return result;
 	}
-	
-	
+
 	public static byte[] createPayloadFromFloatValue(float value) {
-		
+
 		return null;
 	}
 }

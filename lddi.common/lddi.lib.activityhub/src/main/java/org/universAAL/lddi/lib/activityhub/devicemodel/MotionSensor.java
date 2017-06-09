@@ -26,52 +26,55 @@ import org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCateg
 import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.ActivityHubLocation;
 
 /**
- * Representation of a motion sensor according to ISO 11073 - 
- * Part 10471 (Independent living activity hub), edition 2010-05-01
+ * Representation of a motion sensor according to ISO 11073 - Part 10471
+ * (Independent living activity hub), edition 2010-05-01
  * 
- * Specific sensor events (from standard specification):
- * - motion detected
- * - motion detected delayed (optional)
- * - tamper detected (optional)
- * - no condition detected (optional)
+ * Specific sensor events (from standard specification): - motion detected -
+ * motion detected delayed (optional) - tamper detected (optional) - no
+ * condition detected (optional)
  * 
- * Initially NO_CONDITION_DETECTED is set.
- * Later, current sensor value can be set to MOTION_DETECTED and NO_CONDITION_DETECTED.
- * Events MOTION_DETECTED_DELAYED and TAMPER_DETECTED are not implemented yet!
+ * Initially NO_CONDITION_DETECTED is set. Later, current sensor value can be
+ * set to MOTION_DETECTED and NO_CONDITION_DETECTED. Events
+ * MOTION_DETECTED_DELAYED and TAMPER_DETECTED are not implemented yet!
  * 
  * @author Thomas Fuxreiter
  */
 public class MotionSensor extends ActivityHubSensor implements Iso11073MotionSensor {
-	
+
 	protected MotionSensorEvent lastSensorEvent;
- 
-	public MotionSensor(ActivityHubDeviceCategory deviceCategory, 
-			ActivityHubLocation deviceLocation, String deviceId, LogService logger) {
+
+	public MotionSensor(ActivityHubDeviceCategory deviceCategory, ActivityHubLocation deviceLocation, String deviceId,
+			LogService logger) {
 		super(deviceCategory, deviceLocation, deviceId, logger);
-		
+
 		// init value is NO_CONDITION_DETECTED
 		this.lastSensorEvent = MotionSensorEvent.NO_CONDITION_DETECTED;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#getSensorEventValue()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
+	 * getSensorEventValue()
 	 */
 	@Override
 	public int getSensorEventValue() {
 		return this.lastSensorEvent.value();
 	}
 
-//	/* (non-Javadoc)
-//	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
-//	 */
-//	@Override
-//	public void setSensorEvent(int sensorEvent) {
-//		this.lastSensorEvent = MotionSensorEvent.getMotionSensorEvent(sensorEvent);
-//	}
+	// /* (non-Javadoc)
+	// * @see
+	// org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#setSensorEvent(int)
+	// */
+	// @Override
+	// public void setSensorEvent(int sensorEvent) {
+	// this.lastSensorEvent =
+	// MotionSensorEvent.getMotionSensorEvent(sensorEvent);
+	// }
 
-//	public void setSensorEvent(MotionSensorEvent mse) {
-//		this.lastSensorEvent = mse;
-//	}
+	// public void setSensorEvent(MotionSensorEvent mse) {
+	// this.lastSensorEvent = mse;
+	// }
 
 	@Override
 	public void setSensorEventOff() {

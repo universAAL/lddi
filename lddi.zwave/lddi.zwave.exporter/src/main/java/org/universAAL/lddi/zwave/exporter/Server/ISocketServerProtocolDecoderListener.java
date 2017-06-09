@@ -19,7 +19,6 @@
  */
 package org.universAAL.lddi.zwave.exporter.Server;
 
-
 /**
  * Interface to receive notifications from {@link ISocketSeverProtocolDecoder}.
  * 
@@ -28,18 +27,19 @@ package org.universAAL.lddi.zwave.exporter.Server;
  */
 public interface ISocketServerProtocolDecoderListener {
 
-    /**
-     * Notifies that a new packet has been assembled.
-     * 
-     * @param pckt the new packet assembled
-     */
-    void packetReceived(Object pckt);
+	/**
+	 * Notifies that a new packet has been assembled.
+	 * 
+	 * @param pckt
+	 *            the new packet assembled
+	 */
+	void packetReceived(Object pckt);
 
-
-    /**
-     * Error produced while decoding data.
-     * 
-     * @param errorDecoding .
-     */
-    void errorDecoding(String errorDecoding);
+	/**
+	 * Error produced while decoding data.
+	 * 
+	 * @param errorDecoding
+	 *            .
+	 */
+	void errorDecoding(String errorDecoding);
 }

@@ -22,12 +22,15 @@ import java.io.OutputStream;
  * The ASN.1 encoder interface
  */
 public interface IEncoder<T> {
-    /**
-     * Encode object
-     * @param object User object
-     * @param stream Stream to encoding
-     * @see CoderFactory
-     * @throws Exception
-     */
-    public void encode(T object, OutputStream stream) throws Exception;
+	/**
+	 * Encode object
+	 * 
+	 * @param object
+	 *            User object
+	 * @param stream
+	 *            Stream to encoding
+	 * @see CoderFactory
+	 * @throws Exception
+	 */
+	public void encode(T object, OutputStream stream) throws Exception;
 }

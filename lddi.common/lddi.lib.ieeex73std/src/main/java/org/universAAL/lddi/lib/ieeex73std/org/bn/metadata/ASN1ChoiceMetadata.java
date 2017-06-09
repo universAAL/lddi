@@ -29,25 +29,23 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1ChoiceMetadata
-    extends ASN1TypeMetadata
-{
-    public ASN1ChoiceMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public  ASN1ChoiceMetadata(ASN1Choice annotation) {
-        this(annotation.name());
-    }
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeChoice(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeChoice(decodedTag,objectClass,elementInfo,stream);
-    }
+public class ASN1ChoiceMetadata extends ASN1TypeMetadata {
+	public ASN1ChoiceMetadata(String name) {
+		super(name);
+	}
+
+	public ASN1ChoiceMetadata(ASN1Choice annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeChoice(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeChoice(decodedTag, objectClass, elementInfo, stream);
+	}
 
 }

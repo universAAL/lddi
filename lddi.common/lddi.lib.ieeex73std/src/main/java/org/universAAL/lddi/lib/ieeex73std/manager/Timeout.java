@@ -19,7 +19,6 @@
  */
 package org.universAAL.lddi.lib.ieeex73std.manager;
 
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,101 +29,119 @@ import org.universAAL.lddi.lib.ieeex73std.utils.Hour;
 import org.universAAL.lddi.lib.ieeex73std.utils.Logging;
 import org.universAAL.lddi.lib.ieeex73std.x73.nomenclature.StatusCodes;
 
-
-
 /**
  * This class implements the timeouts defined on the IEEE 11073-20601 standard
+ * 
  * @author lgigante
  *
  */
-public class Timeout{
-	
-	/* Configuring	 */
-	public static final int TO_CONFIG = 10000; // wait 10 seconds for a configuration to check
-	
-	/* Association Release Request	 */
-	public static final int TO_RELEASE = 3000; // after sending a Association Release request, wait 3 seconds for a association release response
-	
-	/* Operating  */ 
-	
-	/*MDS and PMStore Objects*/
-	public static final int TO_CONFIRMED_ACTION = 3000; // wait 3 seconds for a Confirmed Action response
-	public static final int TO_GET = 3000; 				// wait 3 seconds for a Get response
-	/*MDS, Scanner and PMStore Objects*/
-	public static final int TO_CONFIRMED_SET = 3000; 	// wait 3 seconds for a Confirmed Set response
-	
-	/*MDS Object*/
-	public static final int TO_SP_MDS = 3000; 			// After sending Confirmed Action 
-														// Confirmed Action (MDC_ACT_DATA_REQUEST, start, time-period, time=0), 
-	/*PMStore Object*/
-	public static final int TO_SP_PMS = 3000; 			// After sending Confirmed Action (MDC_ACT_SEG_TRIG_XFER), wait 3 sec for a Confirmed Action Report
-	public static final int TO_CLR_PMS = 3000; 			// After sending Confirmed Action (MDC_ACT_SEG_CLR), wait 3 sec for a Confirmed Action Report
+public class Timeout {
 
+	/* Configuring */
+	public static final int TO_CONFIG = 10000; // wait 10 seconds for a
+												// configuration to check
 
-	private int time; // timeout 
+	/* Association Release Request */
+	public static final int TO_RELEASE = 3000; // after sending a Association
+												// Release request, wait 3
+												// seconds for a association
+												// release response
+
+	/* Operating */
+
+	/* MDS and PMStore Objects */
+	public static final int TO_CONFIRMED_ACTION = 3000; // wait 3 seconds for a
+														// Confirmed Action
+														// response
+	public static final int TO_GET = 3000; // wait 3 seconds for a Get response
+	/* MDS, Scanner and PMStore Objects */
+	public static final int TO_CONFIRMED_SET = 3000; // wait 3 seconds for a
+														// Confirmed Set
+														// response
+
+	/* MDS Object */
+	public static final int TO_SP_MDS = 3000; // After sending Confirmed Action
+												// Confirmed Action
+												// (MDC_ACT_DATA_REQUEST, start,
+												// time-period, time=0),
+	/* PMStore Object */
+	public static final int TO_SP_PMS = 3000; // After sending Confirmed Action
+												// (MDC_ACT_SEG_TRIG_XFER), wait
+												// 3 sec for a Confirmed Action
+												// Report
+	public static final int TO_CLR_PMS = 3000; // After sending Confirmed Action
+												// (MDC_ACT_SEG_CLR), wait 3 sec
+												// for a Confirmed Action Report
+
+	private int time; // timeout
 	private Timer timer;
 	private String type;
-	protected  EventIEEEManager eventmanager;
+	protected EventIEEEManager eventmanager;
 	TimeoutTask totask;
-	
-	public Timeout(EventIEEEManager evtmanager)
-	{
+
+	public Timeout(EventIEEEManager evtmanager) {
 		this.eventmanager = evtmanager;
 	}
-	
-	public Timeout (int time, String reason, EventIEEEManager evtmanager){
+
+	public Timeout(int time, String reason, EventIEEEManager evtmanager) {
 		this.time = time;
 		this.type = reason;
 		this.eventmanager = evtmanager;
 		this.timer = new Timer();
-		
+
 		this.timer.schedule(new TimeoutTask(), time);
 	}
-	
-	public void  waitforConfig(){
+
+	public void waitforConfig() {
 		time = TO_CONFIG;
 		type = "Configuration Waiting";
 		timer = new Timer();
 		totask = new TimeoutTask();
 		timer.schedule(totask, time);
 	}
-	public void  waitforReleaseResponse(){
+
+	public void waitforReleaseResponse() {
 		time = TO_RELEASE;
 		type = "Release Response";
 		timer = new Timer();
 		totask = new TimeoutTask();
 		timer.schedule(totask, time);
 	}
-	public void waitforConfirmedAction(){
+
+	public void waitforConfirmedAction() {
 		time = TO_CONFIRMED_ACTION;
 		type = "Confirmed Action";
 		timer = new Timer();
 		totask = new TimeoutTask();
 		timer.schedule(totask, time);
 	}
-	public void  waitforConfirmedSet(){
+
+	public void waitforConfirmedSet() {
 		time = TO_CONFIRMED_SET;
 		type = "Confirmed Set";
 		timer = new Timer();
 		totask = new TimeoutTask();
 		timer.schedule(totask, time);
 	}
-	public void  waitforGetResponse(){
+
+	public void waitforGetResponse() {
 		time = TO_GET;
 		type = "Get Response";
 		timer = new Timer();
 		totask = new TimeoutTask();
 		timer.schedule(totask, time);
 	}
-	public void  waitforMDS(){
-				time = TO_SP_MDS;
-				type = "MDS Request";
-				timer = new Timer();
-				totask = new TimeoutTask();
-				timer.schedule(totask, time);
+
+	public void waitforMDS() {
+		time = TO_SP_MDS;
+		type = "MDS Request";
+		timer = new Timer();
+		totask = new TimeoutTask();
+		timer.schedule(totask, time);
 	}
-	public void waitforPMStore(){
-	
+
+	public void waitforPMStore() {
+
 		time = TO_SP_PMS;
 		type = "PMStore Request";
 		timer = new Timer();
@@ -132,40 +149,38 @@ public class Timeout{
 		timer.schedule(totask, time);
 
 	}
-	public void waitforClearPMStore(){
-		
+
+	public void waitforClearPMStore() {
+
 		time = TO_CLR_PMS;
 		type = "PMStore Clear";
 		timer = new Timer();
 		totask = new TimeoutTask();
 		timer.schedule(totask, time);
 	}
-	
-	private String getTypeofTimeout(){
+
+	private String getTypeofTimeout() {
 		return type;
 	}
-	
-	
-	public boolean cancel(){
+
+	public boolean cancel() {
 		timer.purge();
 		timer.cancel();
-		
+
 		return totask.cancel();
 	}
-	
-	
-	class TimeoutTask  extends TimerTask{
+
+	class TimeoutTask extends TimerTask {
 		@Override
 		public void run() {
-			
-			Logging.logWarning("TIMEOUT EXPIRED: "+getTypeofTimeout());
-			
-			if (getTypeofTimeout().equals("Configuration Waiting"))
-			{
+
+			Logging.logWarning("TIMEOUT EXPIRED: " + getTypeofTimeout());
+
+			if (getTypeofTimeout().equals("Configuration Waiting")) {
 				Event event = new Event(EventIEEEType.TIMEOUT_EVENT);
 				event.setReason(StatusCodes.ABORT_REASON_RESPONSE_TIMEOUT);
 				eventmanager.receiveEvent(event);
-			}else{
+			} else {
 				Event event = new Event(EventIEEEType.TIMEOUT_EVENT);
 				event.setReason(StatusCodes.ABORT_REASON_RESPONSE_TIMEOUT);
 				eventmanager.receiveEvent(event);
@@ -173,15 +188,16 @@ public class Timeout{
 			timer.cancel();
 			System.out.println(Hour.getActualTime());
 		}
-		
+
 	}
-	
+
 	// public boolean cancel() method inherited from TimerTask.
 	/*
-	 * true if this task is scheduled for one-time execution and has not yet run, 
-	 * or this task is scheduled for repeated execution. Returns false if the task 
-	 * was scheduled for one-time execution and has already run, or if the task was
-	 *  never scheduled, or if the task was already cancelled. 
-	 *  (Loosely speaking, this method returns true if it prevents one or more scheduled executions from taking place.)
+	 * true if this task is scheduled for one-time execution and has not yet
+	 * run, or this task is scheduled for repeated execution. Returns false if
+	 * the task was scheduled for one-time execution and has already run, or if
+	 * the task was never scheduled, or if the task was already cancelled.
+	 * (Loosely speaking, this method returns true if it prevents one or more
+	 * scheduled executions from taking place.)
 	 */
 }

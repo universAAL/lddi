@@ -22,7 +22,9 @@ package org.universAAL.lddi.lib.ieeex73std.measurements;
 import org.universAAL.lddi.lib.ieeex73std.x73.p20601.OID_Type;
 
 /**
- * This class is the one who has the Measurement values prepared to be represented.
+ * This class is the one who has the Measurement values prepared to be
+ * represented.
+ * 
  * @author lgigante
  *
  */
@@ -31,25 +33,25 @@ public class MeasurementValue {
 	private Object time;
 	private OID_Type unit;
 	private Object value_obj;
-	
-	public MeasurementValue(Object timemeasure, OID_Type unit_code, Object measure_value_object){
-		
+
+	public MeasurementValue(Object timemeasure, OID_Type unit_code, Object measure_value_object) {
+
 		time = timemeasure;
 		value_obj = measure_value_object;
-		unit  = unit_code;
-		
+		unit = unit_code;
+
 	}
-	
-	
-	public Object getTimeObject(){
+
+	public Object getTimeObject() {
 		return time;
 	}
-	public OID_Type getOIDType(){
+
+	public OID_Type getOIDType() {
 		return unit;
 	}
-	
-	public Object getMeasureObject(){
+
+	public Object getMeasureObject() {
 		return value_obj;
 	}
-	
+
 }

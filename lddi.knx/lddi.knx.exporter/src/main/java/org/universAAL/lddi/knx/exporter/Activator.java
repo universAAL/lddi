@@ -27,55 +27,57 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 /**
- * This bundle provides drivers for KNX groupDevice services in OSGi registry. 
- * It provides access to KNX devices by offering/registering services on the uAAL service bus.
- * It also sends context events to the uAAL context bus for incoming messages from KNX sensors.
+ * This bundle provides drivers for KNX groupDevice services in OSGi registry.
+ * It provides access to KNX devices by offering/registering services on the
+ * uAAL service bus. It also sends context events to the uAAL context bus for
+ * incoming messages from KNX sensors.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class Activator implements BundleActivator {
 
 	public static BundleContext context = null;
-    public static ModuleContext mc = null;
-    private KnxManager knxManager;
+	public static ModuleContext mc = null;
+	private KnxManager knxManager;
 	private KnxServiceCallee serviceProvider;
-    private LogTracker logTracker;
+	private LogTracker logTracker;
 	private Thread thread;
-	
+
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
-		Activator.mc = uAALBundleContainer.THE_CONTAINER
-			.registerModule(new Object[] { context });
-		
-		//use a service Tracker for LogService
+		Activator.mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+
+		// use a service Tracker for LogService
 		logTracker = new LogTracker(context);
 		logTracker.open();
-		
+
 		// init server
 		knxManager = new KnxManager(context, logTracker);
-		
+
 		// start uAAL service provider
-		MyThread runnable = new MyThread(); 
-		thread=new Thread(runnable);
+		MyThread runnable = new MyThread();
+		thread = new Thread(runnable);
 		thread.start();
 	}
 
 	public void stop(BundleContext arg0) throws Exception {
-		if (serviceProvider != null) serviceProvider.stop();
+		if (serviceProvider != null)
+			serviceProvider.stop();
 		thread.interrupt();
 	}
-	
+
 	/**
 	 * Runnable helper class for access to running servers/threads.
 	 * 
 	 * @author Thomas Fuxreiter (foex@gmx.at)
 	 */
-	class MyThread implements Runnable{
+	class MyThread implements Runnable {
 		public MyThread() {
 		}
+
 		public void run() {
-				serviceProvider = new KnxServiceCallee(mc, knxManager);
-				new KnxContextPublisher(mc, knxManager);
+			serviceProvider = new KnxServiceCallee(mc, knxManager);
+			new KnxContextPublisher(mc, knxManager);
 		}
 	}
 }

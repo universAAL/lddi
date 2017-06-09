@@ -21,7 +21,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ASN1String {
-    String name();
-    boolean isUCS();
-    int stringType();
+	String name();
+
+	boolean isUCS();
+
+	int stringType();
 }

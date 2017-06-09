@@ -34,18 +34,19 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
  * Working instance of the IKnxDpt5 driver. Registers a service/device in OSGi
- * registry. Tracks on the KNX groupDevice service passed in the attach method in
- * KnxDpt5Driver class. This instance is passed to the consuming client (e.g.
- * uAAL exporter bundle). When the KNX groupDevice service disappears, this driver is
- * removed from the consuming client and detached from the groupDevice.
+ * registry. Tracks on the KNX groupDevice service passed in the attach method
+ * in KnxDpt5Driver class. This instance is passed to the consuming client (e.g.
+ * uAAL exporter bundle). When the KNX groupDevice service disappears, this
+ * driver is removed from the consuming client and detached from the
+ * groupDevice.
  * 
  * This driver handles knx 4-bit unsigned int events (knx datapoint 5), which is
  * dimming step and blind step.
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
-public class KnxDpt5Instance extends KnxDriver implements IKnxDpt5, IKnxReceiveMessage,
-		ServiceTrackerCustomizer, Constants {
+public class KnxDpt5Instance extends KnxDriver
+		implements IKnxDpt5, IKnxReceiveMessage, ServiceTrackerCustomizer, Constants {
 
 	private BundleContext context;
 	private LogService logger;
@@ -84,22 +85,18 @@ public class KnxDpt5Instance extends KnxDriver implements IKnxDpt5, IKnxReceiveM
 	 *         or null if the ServiceReference object should not be tracked.
 	 */
 	public Object addingService(ServiceReference reference) {
-		KnxDpt5GroupDevice knxDev = (KnxDpt5GroupDevice) this.context
-				.getService(reference);
+		KnxDpt5GroupDevice knxDev = (KnxDpt5GroupDevice) this.context.getService(reference);
 
 		if (knxDev == null)
-			this.logger.log(LogService.LOG_ERROR,
-					"knxDev is null for some reason!");
+			this.logger.log(LogService.LOG_ERROR, "knxDev is null for some reason!");
 
 		/** now couple my driver to the groupDevice */
 		if (this.setgroupDevice(knxDev))
-			this.logger.log(LogService.LOG_INFO, "Successfully coupled "
-					+ IKnxDpt5.MY_DEVICE_CATEGORY + " driver to groupDevice "
-					+ this.groupDevice.getGroupDeviceId());
+			this.logger.log(LogService.LOG_INFO, "Successfully coupled " + IKnxDpt5.MY_DEVICE_CATEGORY
+					+ " driver to groupDevice " + this.groupDevice.getGroupDeviceId());
 		else {
-			this.logger.log(LogService.LOG_ERROR, "Error coupling "
-					+ IKnxDpt5.MY_DEVICE_CATEGORY + " driver to groupDevice "
-					+ this.groupDevice.getGroupDeviceId());
+			this.logger.log(LogService.LOG_ERROR, "Error coupling " + IKnxDpt5.MY_DEVICE_CATEGORY
+					+ " driver to groupDevice " + this.groupDevice.getGroupDeviceId());
 			return null;
 		}
 
@@ -118,12 +115,11 @@ public class KnxDpt5Instance extends KnxDriver implements IKnxDpt5, IKnxReceiveM
 	 */
 	public void modifiedService(ServiceReference reference, Object service) {
 		this.logger.log(LogService.LOG_INFO,
-				"Tracked knx groupDevice service was modified. "
-						+ "Going to update the KnxDpt5Instance");
+				"Tracked knx groupDevice service was modified. " + "Going to update the KnxDpt5Instance");
 		removedService(reference, service);
 		addingService(reference);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -135,13 +131,12 @@ public class KnxDpt5Instance extends KnxDriver implements IKnxDpt5, IKnxReceiveM
 		// removed groupDevice service
 		this.context.ungetService(reference);
 		this.detachDriver();
-		this.removeDriver();		
-		
+		this.removeDriver();
+
 		KnxDpt5GroupDevice knxDev = (KnxDpt5GroupDevice) service;
 		this.parent.connectedDriverInstanceMap.remove(knxDev.getGroupAddress());
 	}
-	
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -151,48 +146,51 @@ public class KnxDpt5Instance extends KnxDriver implements IKnxDpt5, IKnxReceiveM
 	public void newMessageFromKnxBus(byte[] event) {
 
 		float percentage = KnxDpt5GroupDevice.calculatePercentage(event, this.groupDevice.getDatapointTypeSubNumber());
-				
+
 		if (percentage == 0) {
-			this.logger.log(LogService.LOG_WARNING, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + 
-					this.groupDevice.getGroupAddress() + " says: knx datapoint type " + this.groupDevice.getDatapointType() +
-					" is not implemented!");
+			this.logger.log(LogService.LOG_WARNING,
+					"Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + this.groupDevice.getGroupAddress()
+							+ " says: knx datapoint type " + this.groupDevice.getDatapointType()
+							+ " is not implemented!");
 			return;
 		} else if (percentage == -1) {
-			this.logger.log(LogService.LOG_WARNING, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + 
-					this.groupDevice.getGroupAddress() + " says: no detailed specification of knx datapoint type " + this.groupDevice.getDatapointType() +
-					" in the KNX standard!");
+			this.logger.log(LogService.LOG_WARNING,
+					"Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + this.groupDevice.getGroupAddress()
+							+ " says: no detailed specification of knx datapoint type "
+							+ this.groupDevice.getDatapointType() + " in the KNX standard!");
 			return;
 		}
-			
-		this.logger.log(LogService.LOG_INFO, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + 
-				this.groupDevice.getGroupAddress() + " with knx datapoint type " + this.groupDevice.getDatapointType() +
-				" received new percentage value " + percentage );
-		
-		this.client.incomingSensorEvent( this.groupDevice.getGroupAddress(), 
+
+		this.logger.log(LogService.LOG_INFO,
+				"Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + this.groupDevice.getGroupAddress()
+						+ " with knx datapoint type " + this.groupDevice.getDatapointType()
+						+ " received new percentage value " + percentage);
+
+		this.client.incomingSensorEvent(this.groupDevice.getGroupAddress(),
 				this.groupDevice.getDatapointTypeMainNumber(), this.groupDevice.getDatapointTypeSubNumber(),
 				percentage);
 	}
 
 	/**
-	 * Transfer float value to KNX data byte array (payload).
-	 * Call driver.
+	 * Transfer float value to KNX data byte array (payload). Call driver.
 	 */
 	public void sendMessageToKnxBus(float value) {
-		byte[] payload = KnxDpt5GroupDevice.createPayloadFromFloatValue(value, this.groupDevice.getDatapointTypeSubNumber());
-		
+		byte[] payload = KnxDpt5GroupDevice.createPayloadFromFloatValue(value,
+				this.groupDevice.getDatapointTypeSubNumber());
+
 		if (payload == null) {
-			this.logger.log(LogService.LOG_WARNING, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + 
-					this.groupDevice.getGroupAddress() + " says: knx datapoint type " + this.groupDevice.getDatapointType() +
-					" is not implemented or not specified in the KNX standard!");
+			this.logger.log(LogService.LOG_WARNING,
+					"Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " for groupDevice " + this.groupDevice.getGroupAddress()
+							+ " says: knx datapoint type " + this.groupDevice.getDatapointType()
+							+ " is not implemented or not specified in the KNX standard!");
 			return;
 		}
-		
-		this.logger.log(LogService.LOG_INFO, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + 
-				" sends new knx message " + KnxEncoder.convertToReadableHex(payload) + " to groupDevice " + 
-				this.groupDevice.getGroupAddress() + " (with knx datapoint type " + 
-				this.groupDevice.getDatapointType() + ")");
-		
-		this.groupDevice.sendMessageToKnxBus( payload );
+
+		this.logger.log(LogService.LOG_INFO, "Driver " + IKnxDpt5.MY_DEVICE_CATEGORY + " sends new knx message "
+				+ KnxEncoder.convertToReadableHex(payload) + " to groupDevice " + this.groupDevice.getGroupAddress()
+				+ " (with knx datapoint type " + this.groupDevice.getDatapointType() + ")");
+
+		this.groupDevice.sendMessageToKnxBus(payload);
 	}
-	
+
 }

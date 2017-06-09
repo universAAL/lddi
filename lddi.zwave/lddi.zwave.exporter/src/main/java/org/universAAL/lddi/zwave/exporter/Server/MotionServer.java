@@ -22,10 +22,8 @@ package org.universAAL.lddi.zwave.exporter.Server;
 import org.universAAL.lddi.zwave.exporter.MotionContact.MotionContactSensorPublisher;
 
 public class MotionServer extends AbstractSocketServerXSocket {
-	
-	
-	public MotionServer(ISocketServerProtocolDecoderFactory protocolFactory,
-			int listenPort) {
+
+	public MotionServer(ISocketServerProtocolDecoderFactory protocolFactory, int listenPort) {
 		super(protocolFactory, listenPort);
 		// TODO Auto-generated constructor stub
 	}

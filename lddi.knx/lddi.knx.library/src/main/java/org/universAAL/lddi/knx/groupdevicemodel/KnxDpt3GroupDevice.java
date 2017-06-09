@@ -29,33 +29,30 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt3;
  */
 public class KnxDpt3GroupDevice extends KnxGroupDevice implements IKnxDpt3 {
 
-    /**
-     * empty constructor for factory
-     */
-    public KnxDpt3GroupDevice() {
-    	super(MY_DEVICE_CATEGORY);
-    }
-
+	/**
+	 * empty constructor for factory
+	 */
+	public KnxDpt3GroupDevice() {
+		super(MY_DEVICE_CATEGORY);
+	}
 
 	/**
-	 * Calculate step code from knx message payload.
-     * last 4-bit of data byte
-     * encoding |xxxx cSSS|
-     * c = {0,1} control
-     * SSS = [000b - 111b] Stepcode
-     * 
-     * @return null if the datapoint type is not implemented. Now implemented: 3.007 and 3.008
+	 * Calculate step code from knx message payload. last 4-bit of data byte
+	 * encoding |xxxx cSSS| c = {0,1} control SSS = [000b - 111b] Stepcode
+	 * 
+	 * @return null if the datapoint type is not implemented. Now implemented:
+	 *         3.007 and 3.008
 	 */
 	public static String calculateStepCode(byte payload, int datapointTypeSubNumber) {
 		byte c = (byte) ((payload & 0x08) >> 3);
-		
+
 		// for the step code only the last bit is important
 		byte S = (byte) (payload & 0x01);
-		
+
 		switch (datapointTypeSubNumber) {
-		
+
 		case 7: // dimming
-			switch (c){
+			switch (c) {
 			case 0: // getting darker
 				if (S == 1)
 					return DECREASE_3_007;
@@ -67,11 +64,11 @@ public class KnxDpt3GroupDevice extends KnxGroupDevice implements IKnxDpt3 {
 					return INCREASE_3_007;
 				else if (S == 0)
 					return STEPCODE_BREAK;
-				break;				
+				break;
 			}
 
-		case 8: //blinds
-			switch (c){
+		case 8: // blinds
+			switch (c) {
 			case 0: // moving down
 				if (S == 1)
 					return DOWN_3_008;
@@ -83,7 +80,7 @@ public class KnxDpt3GroupDevice extends KnxGroupDevice implements IKnxDpt3 {
 					return UP_3_008;
 				else if (S == 0)
 					return STEPCODE_BREAK;
-				break;				
+				break;
 			}
 
 		default:
@@ -91,15 +88,13 @@ public class KnxDpt3GroupDevice extends KnxGroupDevice implements IKnxDpt3 {
 		}
 	}
 
-    
-    /**
-     * Calculate Step number of interval from stepcode.
-     * stepcode are bits 1-3
-     * Step Number of intervals = 2^(stepcode-1); max. 64
-     */
-    public static int calculateStepNumberOfInterval(byte payload) {
-    	// not implemented yet!
-    	return 0;
-    }
-    
+	/**
+	 * Calculate Step number of interval from stepcode. stepcode are bits 1-3
+	 * Step Number of intervals = 2^(stepcode-1); max. 64
+	 */
+	public static int calculateStepNumberOfInterval(byte payload) {
+		// not implemented yet!
+		return 0;
+	}
+
 }

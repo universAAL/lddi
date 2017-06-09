@@ -25,114 +25,113 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.annotations.ASN1Element;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.ASN1ElementMetadata;
 
 public final class ElementInfo {
-    private ASN1Element element;
-    private AnnotatedElement  annotatedClass, parentAnnotated;
-    private Type genericInfo;
-    private Object parentObject;
-    private IASN1PreparedElementData preparedInfo;
-    private Object preparedInstance;
-    private ASN1ElementMetadata preparedElementMetadata;
-    private int maxAvailableLen = -1;
+	private ASN1Element element;
+	private AnnotatedElement annotatedClass, parentAnnotated;
+	private Type genericInfo;
+	private Object parentObject;
+	private IASN1PreparedElementData preparedInfo;
+	private Object preparedInstance;
+	private ASN1ElementMetadata preparedElementMetadata;
+	private int maxAvailableLen = -1;
 
-    public ElementInfo() {            
-    }
-       
-    public ASN1Element getASN1ElementInfo() {
-        return element;
-    }
+	public ElementInfo() {
+	}
 
-    public void setASN1ElementInfo(ASN1Element element) {
-        this.element = element;
-    }
-    
-    public void setASN1ElementInfoForClass(AnnotatedElement anElement) {
-        this.element = anElement.getAnnotation(ASN1Element.class);
-    }
+	public ASN1Element getASN1ElementInfo() {
+		return element;
+	}
 
-    public AnnotatedElement  getAnnotatedClass() {
-        return this.annotatedClass;
-    }
-    
-    public void setAnnotatedClass(AnnotatedElement cls) {
-        this.annotatedClass = cls;
-    }
-        
-    public void setGenericInfo(Type info) {
-        this.genericInfo = info;
-    }
-    
-    public Type getGenericInfo() {
-        return this.genericInfo;
-    }
+	public void setASN1ElementInfo(ASN1Element element) {
+		this.element = element;
+	}
 
-    public AnnotatedElement getParentAnnotated() {
-        return parentAnnotated;
-    }
+	public void setASN1ElementInfoForClass(AnnotatedElement anElement) {
+		this.element = anElement.getAnnotation(ASN1Element.class);
+	}
 
-    public void setParentAnnotated(AnnotatedElement parentAnnotated) {
-        this.parentAnnotated = parentAnnotated;
-    }
+	public AnnotatedElement getAnnotatedClass() {
+		return this.annotatedClass;
+	}
 
-    public Object getParentObject() {
-        return parentObject;
-    }
+	public void setAnnotatedClass(AnnotatedElement cls) {
+		this.annotatedClass = cls;
+	}
 
-    public void setParentObject(Object parentObject) {
-        this.parentObject = parentObject;
-    }
+	public void setGenericInfo(Type info) {
+		this.genericInfo = info;
+	}
 
-    public IASN1PreparedElementData getPreparedInfo() {
-        return preparedInfo;
-    }
+	public Type getGenericInfo() {
+		return this.genericInfo;
+	}
 
-    public void setPreparedInfo(IASN1PreparedElementData preparedInfo) {
-        this.preparedInfo = preparedInfo;
-        if(preparedInfo!=null) {
-            setPreparedASN1ElementInfo(preparedInfo.getASN1ElementInfo());
-        }       
-    }
-    
-    public boolean hasPreparedInfo() {
-        return this.preparedInfo !=null;
-    }
+	public AnnotatedElement getParentAnnotated() {
+		return parentAnnotated;
+	}
 
-    public Object getPreparedInstance() {
-        return preparedInstance;
-    }
+	public void setParentAnnotated(AnnotatedElement parentAnnotated) {
+		this.parentAnnotated = parentAnnotated;
+	}
 
-    public void setPreparedInstance(Object preparedInstance) {
-        this.preparedInstance = preparedInstance;
-    }
-    
-    public boolean hasPreparedInstance() {
-        return this.preparedInstance!=null;
-    }
-    
-    public Field[] getFields(Class objClass) {
-        if(hasPreparedInfo()) {
-            return getPreparedInfo().getFields();
-        }
-        else
-            return objClass.getDeclaredFields();
-    }
+	public Object getParentObject() {
+		return parentObject;
+	}
 
-    public ASN1ElementMetadata getPreparedASN1ElementInfo() {
-        return preparedElementMetadata;
-    }
+	public void setParentObject(Object parentObject) {
+		this.parentObject = parentObject;
+	}
 
-    public void setPreparedASN1ElementInfo(ASN1ElementMetadata value) {
-        this.preparedElementMetadata = value;
-    }
-    
-    public boolean hasPreparedASN1ElementInfo() {
-        return this.preparedElementMetadata != null;
-    }
+	public IASN1PreparedElementData getPreparedInfo() {
+		return preparedInfo;
+	}
 
-    public int getMaxAvailableLen() {
-        return maxAvailableLen;
-    }
+	public void setPreparedInfo(IASN1PreparedElementData preparedInfo) {
+		this.preparedInfo = preparedInfo;
+		if (preparedInfo != null) {
+			setPreparedASN1ElementInfo(preparedInfo.getASN1ElementInfo());
+		}
+	}
 
-    public void setMaxAvailableLen(int maxAvailableLen) {
-        this.maxAvailableLen = maxAvailableLen;
-    }
+	public boolean hasPreparedInfo() {
+		return this.preparedInfo != null;
+	}
+
+	public Object getPreparedInstance() {
+		return preparedInstance;
+	}
+
+	public void setPreparedInstance(Object preparedInstance) {
+		this.preparedInstance = preparedInstance;
+	}
+
+	public boolean hasPreparedInstance() {
+		return this.preparedInstance != null;
+	}
+
+	public Field[] getFields(Class objClass) {
+		if (hasPreparedInfo()) {
+			return getPreparedInfo().getFields();
+		} else
+			return objClass.getDeclaredFields();
+	}
+
+	public ASN1ElementMetadata getPreparedASN1ElementInfo() {
+		return preparedElementMetadata;
+	}
+
+	public void setPreparedASN1ElementInfo(ASN1ElementMetadata value) {
+		this.preparedElementMetadata = value;
+	}
+
+	public boolean hasPreparedASN1ElementInfo() {
+		return this.preparedElementMetadata != null;
+	}
+
+	public int getMaxAvailableLen() {
+		return maxAvailableLen;
+	}
+
+	public void setMaxAvailableLen(int maxAvailableLen) {
+		this.maxAvailableLen = maxAvailableLen;
+	}
 }

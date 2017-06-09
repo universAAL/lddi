@@ -43,35 +43,37 @@ import org.universAAL.ontology.device.MotionSensor;
 import org.universAAL.ontology.device.SwitchActuator;
 
 /**
- * Load all devices out of property files stored in the folder rundir/confadmin/fs20 and
- * register them to OSGi
+ * Load all devices out of property files stored in the folder
+ * rundir/confadmin/fs20 and register them to OSGi
  *
  *
  * @author Steeven Zeiss Fraunhofer IGD (steeven.zeiss@igd.fraunhofer.de)
  * @date 30.05.2013
  */
 public class DeviceReader {
-	
+
 	private static HashMap<String, ServiceRegistration> registrations = new HashMap<String, ServiceRegistration>();
 
-
-/**
- * Load all devices out of property files stored in the folder rundir/confadmin/fs20
- * 
- * @param context = bundle context for registering the devices as services
- * @param connection = the connection to the FS20 network
- * @return returns all ServiceRegistrations
- */
-	public static HashMap<String, ServiceRegistration> readDevices( BundleContext context, FHZ1000PC connection) {
+	/**
+	 * Load all devices out of property files stored in the folder
+	 * rundir/confadmin/fs20
+	 * 
+	 * @param context
+	 *            = bundle context for registering the devices as services
+	 * @param connection
+	 *            = the connection to the FS20 network
+	 * @return returns all ServiceRegistrations
+	 */
+	public static HashMap<String, ServiceRegistration> readDevices(BundleContext context, FHZ1000PC connection) {
 
 		try {
 
-			File home = new File("../confadmin/fs20"); //"../confadmin/fs20"
+			File home = new File("../confadmin/fs20"); // "../confadmin/fs20"
 
 			File[] files = home.listFiles();
 
 			InputStream in;
-			
+
 			for (int i = 0; i < files.length; i++) {
 				File tempFile = files[i];
 
@@ -80,50 +82,43 @@ public class DeviceReader {
 				tempProps.load(in);
 				in.close();
 
-				if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20PIRx.name())) { //"FS20PIRx"
+				if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20PIRx.name())) { // "FS20PIRx"
 
 					FS20PIRxDevice device = new FS20PIRxDevice(connection);
 					FS20DeviceProperties props = new FS20DeviceProperties(
-							MotionSensor.MY_URI+"#"+tempProps.getProperty("housecode")+tempProps.getProperty("devicecode"),
-							tempProps.getProperty("name"),
-							tempProps.getProperty("housecode"),
-							tempProps.getProperty("devicecode"),
-							FS20DeviceTypes.FS20PIRx);
-					
+							MotionSensor.MY_URI + "#" + tempProps.getProperty("housecode")
+									+ tempProps.getProperty("devicecode"),
+							tempProps.getProperty("name"), tempProps.getProperty("housecode"),
+							tempProps.getProperty("devicecode"), FS20DeviceTypes.FS20PIRx);
+
 					device.setParams(props);
-					
-					registrations.put(device.getHouseCode()+device.getDeviceCode(),context.registerService(
-							FS20PIRxDevice.class.getName(),
-							device, null));
-				}
-				else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20ST.name())) {
+
+					registrations.put(device.getHouseCode() + device.getDeviceCode(),
+							context.registerService(FS20PIRxDevice.class.getName(), device, null));
+				} else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20ST.name())) {
 
 					FS20STDevice device = new FS20STDevice(connection);
 					FS20DeviceProperties props = new FS20DeviceProperties(
-							SwitchActuator.MY_URI+"#"+tempProps.getProperty("housecode")+tempProps.getProperty("devicecode"),
-							tempProps.getProperty("name"),
-							tempProps.getProperty("housecode"),
-							tempProps.getProperty("devicecode"),
-							FS20DeviceTypes.FS20ST);
-					
+							SwitchActuator.MY_URI + "#" + tempProps.getProperty("housecode")
+									+ tempProps.getProperty("devicecode"),
+							tempProps.getProperty("name"), tempProps.getProperty("housecode"),
+							tempProps.getProperty("devicecode"), FS20DeviceTypes.FS20ST);
+
 					device.setParams(props);
 
-					registrations.put(device.getHouseCode()+device.getDeviceCode(),context.registerService(
-							FS20STDevice.class.getName(),
-							device, null));
-				}
-				else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20RGBSA.name())) {
+					registrations.put(device.getHouseCode() + device.getDeviceCode(),
+							context.registerService(FS20STDevice.class.getName(), device, null));
+				} else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20RGBSA.name())) {
 
 					FS20RGBSADevice device = new FS20RGBSADevice(connection);
 					FS20DeviceProperties props = new FS20DeviceProperties(
-							LightActuator.MY_URI+"#"+tempProps.getProperty("housecode")+tempProps.getProperty("devicecode"),
-							tempProps.getProperty("name"),
-							tempProps.getProperty("housecode"),
-							tempProps.getProperty("devicecode"),
-							FS20DeviceTypes.FS20RGBSA);
-					
+							LightActuator.MY_URI + "#" + tempProps.getProperty("housecode")
+									+ tempProps.getProperty("devicecode"),
+							tempProps.getProperty("name"), tempProps.getProperty("housecode"),
+							tempProps.getProperty("devicecode"), FS20DeviceTypes.FS20RGBSA);
+
 					device.setParams(props);
-					
+
 					device.setDescriptionToAnimation(1, tempProps.getProperty("description1"));
 					device.setDescriptionToAnimation(2, tempProps.getProperty("description2"));
 					device.setDescriptionToAnimation(3, tempProps.getProperty("description3"));
@@ -136,42 +131,35 @@ public class DeviceReader {
 					device.setDescriptionToAnimation(10, tempProps.getProperty("description10"));
 					device.setDescriptionToAnimation(11, tempProps.getProperty("description11"));
 					device.setDescriptionToAnimation(12, tempProps.getProperty("description12"));
-					
-					registrations.put(device.getHouseCode()+device.getDeviceCode(),context.registerService(
-							FS20RGBSADevice.class.getName(),
-							device, null));
-				}
-				else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20SIG.name())) {
+
+					registrations.put(device.getHouseCode() + device.getDeviceCode(),
+							context.registerService(FS20RGBSADevice.class.getName(), device, null));
+				} else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20SIG.name())) {
 
 					FS20SIGDevice device = new FS20SIGDevice(connection);
 					FS20DeviceProperties props = new FS20DeviceProperties(
-							LoudSpeaker.MY_URI+"#"+tempProps.getProperty("housecode")+tempProps.getProperty("devicecode"),
-							tempProps.getProperty("name"),
-							tempProps.getProperty("housecode"),
-							tempProps.getProperty("devicecode"),
-							FS20DeviceTypes.FS20SIG);
-					
+							LoudSpeaker.MY_URI + "#" + tempProps.getProperty("housecode")
+									+ tempProps.getProperty("devicecode"),
+							tempProps.getProperty("name"), tempProps.getProperty("housecode"),
+							tempProps.getProperty("devicecode"), FS20DeviceTypes.FS20SIG);
+
 					device.setParams(props);
 
-					registrations.put(device.getHouseCode()+device.getDeviceCode(),context.registerService(
-							FS20SIGDevice.class.getName(),
-							device, null));
-				}
-				else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20FMS.name())) {
+					registrations.put(device.getHouseCode() + device.getDeviceCode(),
+							context.registerService(FS20SIGDevice.class.getName(), device, null));
+				} else if (tempProps.getProperty("type").equals(FS20DeviceTypes.FS20FMS.name())) {
 
 					FS20FMSDevice device = new FS20FMSDevice(connection);
 					FS20DeviceProperties props = new FS20DeviceProperties(
-							UsageSensor.MY_URI+"#"+tempProps.getProperty("housecode")+tempProps.getProperty("devicecode"),
-							tempProps.getProperty("name"),
-							tempProps.getProperty("housecode"),
-							tempProps.getProperty("devicecode"),
-							FS20DeviceTypes.FS20FMS);
-					
+							UsageSensor.MY_URI + "#" + tempProps.getProperty("housecode")
+									+ tempProps.getProperty("devicecode"),
+							tempProps.getProperty("name"), tempProps.getProperty("housecode"),
+							tempProps.getProperty("devicecode"), FS20DeviceTypes.FS20FMS);
+
 					device.setParams(props);
 
-					registrations.put(device.getHouseCode()+device.getDeviceCode(),context.registerService(
-							FS20FMSDevice.class.getName(),
-							device, null));
+					registrations.put(device.getHouseCode() + device.getDeviceCode(),
+							context.registerService(FS20FMSDevice.class.getName(), device, null));
 				}
 			}
 			return registrations;
@@ -182,5 +170,5 @@ public class DeviceReader {
 			return null;
 		}
 	}
-	
+
 }

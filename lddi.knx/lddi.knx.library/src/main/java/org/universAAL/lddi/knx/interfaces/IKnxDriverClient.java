@@ -32,8 +32,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
 public interface IKnxDriverClient {
 
 	/** couple KNX driver to upper layer */
-	public void addDriver(String groupDeviceId,
-			KnxGroupDeviceCategory groupDeviceCategory, KnxDriver knxDriver);
+	public void addDriver(String groupDeviceId, KnxGroupDeviceCategory groupDeviceCategory, KnxDriver knxDriver);
 
 	public void removeDriver(String groupDeviceId, KnxDriver knxDriver);
 
@@ -42,61 +41,77 @@ public interface IKnxDriverClient {
 	/**
 	 * get event message from KNX DPT1 driver (bool value).
 	 * 
-	 * @param groupDeviceId (e.g. knx group address 1/2/3)
-	 * @param datapointTypeMainNubmer (i.e. 1 for 1.018)
-	 * @param datapointTypeSubNubmer (i.e. 18 for 1.018)
-	 * @param value (on/off)
+	 * @param groupDeviceId
+	 *            (e.g. knx group address 1/2/3)
+	 * @param datapointTypeMainNubmer
+	 *            (i.e. 1 for 1.018)
+	 * @param datapointTypeSubNubmer
+	 *            (i.e. 18 for 1.018)
+	 * @param value
+	 *            (on/off)
 	 */
-	public void incomingSensorEvent(String groupDeviceId,
-			int datapointTypeMainNubmer, int datapointTypeSubNubmer,
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
 			boolean value);
+
 	/**
 	 * send event message to KNX DPT1 driver (bool value).
 	 * 
- 	 * @param groupDeviceId (e.g. knx group address 1/2/3)
-	 * @param value (on/off)
+	 * @param groupDeviceId
+	 *            (e.g. knx group address 1/2/3)
+	 * @param value
+	 *            (on/off)
 	 */
 	public void sendSensorEvent(String groupDeviceId, boolean value);
 
-	
-	
 	/**
 	 * get event message from KNX DPT3 driver (String code).
 	 * 
-	 * @param groupDeviceId (e.g. knx group address 1/2/3)
-	 * @param datapointTypeMainNubmer (i.e. 1 for 1.018)
-	 * @param datapointTypeSubNubmer (i.e. 18 for 1.018)
-	 * @param code (e.g. break, increase, decrease)
+	 * @param groupDeviceId
+	 *            (e.g. knx group address 1/2/3)
+	 * @param datapointTypeMainNubmer
+	 *            (i.e. 1 for 1.018)
+	 * @param datapointTypeSubNubmer
+	 *            (i.e. 18 for 1.018)
+	 * @param code
+	 *            (e.g. break, increase, decrease)
 	 */
-	public void incomingSensorEvent(String groupDeviceId,
-			int datapointTypeMainNubmer, int datapointTypeSubNubmer, String code);
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
+			String code);
+
 	/**
 	 * send event message to KNX DPT3 driver (String code).
 	 *
-	 * @param groupDeviceId (e.g. knx group address 1/2/3)
-	 * @param code (e.g. break, increase, decrease)
+	 * @param groupDeviceId
+	 *            (e.g. knx group address 1/2/3)
+	 * @param code
+	 *            (e.g. break, increase, decrease)
 	 */
 	public void sendSensorEvent(String groupDeviceId, String code);
 
-
-	
 	/**
 	 * get event message from KNX DPT5 or DPT9 driver (float value).
 	 * 
-	 * @param groupDeviceId (e.g. knx group address 1/2/3)
-	 * @param datapointTypeMainNubmer (i.e. 1 for 1.018)
-	 * @param datapointTypeSubNubmer (i.e. 18 for 1.018)
-	 * @param value (e.g. temperature value 25.2 or dimming percentage 70.5)
+	 * @param groupDeviceId
+	 *            (e.g. knx group address 1/2/3)
+	 * @param datapointTypeMainNubmer
+	 *            (i.e. 1 for 1.018)
+	 * @param datapointTypeSubNubmer
+	 *            (i.e. 18 for 1.018)
+	 * @param value
+	 *            (e.g. temperature value 25.2 or dimming percentage 70.5)
 	 */
-	public void incomingSensorEvent(String groupDeviceId,
-			int datapointTypeMainNubmer, int datapointTypeSubNubmer, float value);
+	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
+			float value);
+
 	/**
 	 * send event message to KNX DPT5 or DPT9 driver (float value).
 	 * 
-	 * @param groupDeviceId (e.g. knx group address 1/2/3)
-	 * @param value (e.g. temperature value 25.2 or dimming percentage 70.5)
+	 * @param groupDeviceId
+	 *            (e.g. knx group address 1/2/3)
+	 * @param value
+	 *            (e.g. temperature value 25.2 or dimming percentage 70.5)
 	 */
-	public void sendSensorEvent(String groupDeviceId, 
-			int datapointTypeMainNubmer, int datapointTypeSubNubmer, float value);
+	public void sendSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
+			float value);
 
 }

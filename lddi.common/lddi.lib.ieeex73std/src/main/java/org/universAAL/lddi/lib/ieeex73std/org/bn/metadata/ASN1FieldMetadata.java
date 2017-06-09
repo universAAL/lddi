@@ -22,13 +22,12 @@ import java.lang.reflect.AnnotatedElement;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public abstract class ASN1FieldMetadata extends ASN1Metadata
-{
-    public ASN1FieldMetadata() {
-        
-    }
-    public ASN1FieldMetadata(String name)
-    {
-        super(name);
-    }
+public abstract class ASN1FieldMetadata extends ASN1Metadata {
+	public ASN1FieldMetadata() {
+
+	}
+
+	public ASN1FieldMetadata(String name) {
+		super(name);
+	}
 }

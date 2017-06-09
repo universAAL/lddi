@@ -19,50 +19,51 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.types;
 
 /**
  * BitString represents ASN.1 BIT STRING data types
+ * 
  * @todo Need more functional operations for write/read bits
  */
 public class BitString {
-    private byte[] bitStrValue = new byte[0];
-    private int trailBitsCnt = 0; // count of buffer bit's trail
-    
-    public BitString() {
-    }
+	private byte[] bitStrValue = new byte[0];
+	private int trailBitsCnt = 0; // count of buffer bit's trail
 
-    public BitString(byte[] bitStrValue) {
-        setValue(bitStrValue);
-    }
+	public BitString() {
+	}
 
-    public BitString(byte[] bitStrValue,int trailBitsCnt) {
-        setValue(bitStrValue, trailBitsCnt);
-    }
-    
-    public BitString(BitString src) {
-        setValue(src.getValue(),src.getTrailBitsCnt());        
-    }
-    
-    public int getLength() {
-        return bitStrValue.length;
-    }
-    
-    public int getTrailBitsCnt() {
-        return trailBitsCnt;
-    }
+	public BitString(byte[] bitStrValue) {
+		setValue(bitStrValue);
+	}
 
-    public int getLengthInBits() {
-	return getLength()*8 - getTrailBitsCnt();
-    }
-    
-    public byte[] getValue() {
-        return bitStrValue;
-    }
-    
-    public void setValue(byte[] val) {
-        this.bitStrValue = val;
-        this.trailBitsCnt = 0;
-    }
-    
-    public void setValue(byte[] val, int trailBitsCnt) {
-        setValue(val);
-        this.trailBitsCnt = trailBitsCnt;
-    }    
+	public BitString(byte[] bitStrValue, int trailBitsCnt) {
+		setValue(bitStrValue, trailBitsCnt);
+	}
+
+	public BitString(BitString src) {
+		setValue(src.getValue(), src.getTrailBitsCnt());
+	}
+
+	public int getLength() {
+		return bitStrValue.length;
+	}
+
+	public int getTrailBitsCnt() {
+		return trailBitsCnt;
+	}
+
+	public int getLengthInBits() {
+		return getLength() * 8 - getTrailBitsCnt();
+	}
+
+	public byte[] getValue() {
+		return bitStrValue;
+	}
+
+	public void setValue(byte[] val) {
+		this.bitStrValue = val;
+		this.trailBitsCnt = 0;
+	}
+
+	public void setValue(byte[] val, int trailBitsCnt) {
+		setValue(val);
+		this.trailBitsCnt = trailBitsCnt;
+	}
 }

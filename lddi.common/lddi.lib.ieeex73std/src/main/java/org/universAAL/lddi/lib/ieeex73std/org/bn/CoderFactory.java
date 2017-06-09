@@ -107,8 +107,6 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn;
 * @endcode
 */
 
-
-
 import org.universAAL.lddi.lib.ieeex73std.mder.DecoderMDER;
 import org.universAAL.lddi.lib.ieeex73std.mder.EncoderMDER;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.*;
@@ -116,100 +114,93 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.*;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.der.*;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.*;
 
-
 /**
- * The CoderFactory class is factory for creating ASN.1 encoding/decoding implementations
+ * The CoderFactory class is factory for creating ASN.1 encoding/decoding
+ * implementations
  */
 public class CoderFactory {
-    private static CoderFactory instance = new CoderFactory();
-    
-    /**
-     * Access to factory (Singleton)
-     * @return CoderFactory instance
-     */
-    public static CoderFactory getInstance() {
-        return instance;
-    }
+	private static CoderFactory instance = new CoderFactory();
 
-    /**
-     * Create new default encoder (The BER encoding is default)
-     * @return Encoder
-     */    
-    public <T> IEncoder<T> newEncoder() throws Exception {
-        return newEncoder("BER");
-    }
+	/**
+	 * Access to factory (Singleton)
+	 * 
+	 * @return CoderFactory instance
+	 */
+	public static CoderFactory getInstance() {
+		return instance;
+	}
 
-    /**
-     * Create new encoder for specified schema (BER, PER, PER/Aligned, PER/Unaligned, ...)
-     * @param encodingSchema ASN.1 encoding specification
-     * @return Encoder for specified specification
-     * @throws Exception
-     */
-    public <T> IEncoder<T> newEncoder(String encodingSchema) throws Exception {
-        if(encodingSchema.equalsIgnoreCase("BER")) {
-            return new BEREncoder<T>();
-        }
-        else
-        if(encodingSchema.equalsIgnoreCase("PER")||encodingSchema.equalsIgnoreCase("PER/Aligned")||encodingSchema.equalsIgnoreCase("PER/A")) {
-            return new PERAlignedEncoder<T>();
-        }        
-        else
-        if(encodingSchema.equalsIgnoreCase("PER/Unaligned")||encodingSchema.equalsIgnoreCase("PER/U")) {
-            return new PERUnalignedEncoder<T>();
-        }        
-        else        
-        if(encodingSchema.equalsIgnoreCase("DER")) {
-            return new DEREncoder<T>();
-        }    
-        else
-        if(encodingSchema.equalsIgnoreCase("MDER")) {
-            return new EncoderMDER<T>();
-        } 
-        else
-            return null;
-    }
+	/**
+	 * Create new default encoder (The BER encoding is default)
+	 * 
+	 * @return Encoder
+	 */
+	public <T> IEncoder<T> newEncoder() throws Exception {
+		return newEncoder("BER");
+	}
 
-    /**
-     * Create new default decoder (The BER decoding is default)
-     * @return
-     * @throws Exception
-     */
-    public IDecoder newDecoder() throws Exception {
-        return newDecoder("BER");
-    }
+	/**
+	 * Create new encoder for specified schema (BER, PER, PER/Aligned,
+	 * PER/Unaligned, ...)
+	 * 
+	 * @param encodingSchema
+	 *            ASN.1 encoding specification
+	 * @return Encoder for specified specification
+	 * @throws Exception
+	 */
+	public <T> IEncoder<T> newEncoder(String encodingSchema) throws Exception {
+		if (encodingSchema.equalsIgnoreCase("BER")) {
+			return new BEREncoder<T>();
+		} else if (encodingSchema.equalsIgnoreCase("PER") || encodingSchema.equalsIgnoreCase("PER/Aligned")
+				|| encodingSchema.equalsIgnoreCase("PER/A")) {
+			return new PERAlignedEncoder<T>();
+		} else if (encodingSchema.equalsIgnoreCase("PER/Unaligned") || encodingSchema.equalsIgnoreCase("PER/U")) {
+			return new PERUnalignedEncoder<T>();
+		} else if (encodingSchema.equalsIgnoreCase("DER")) {
+			return new DEREncoder<T>();
+		} else if (encodingSchema.equalsIgnoreCase("MDER")) {
+			return new EncoderMDER<T>();
+		} else
+			return null;
+	}
 
-    /**
-     * Create new decoder for specified schema (BER, PER, PER/Aligned, PER/Unaligned, ...)
-     * @param encodingSchema
-     * @return Decoder for specified specification
-     * @throws Exception
-     */
-    public IDecoder newDecoder(String encodingSchema) throws Exception {
-        if(encodingSchema.equalsIgnoreCase("BER")) {
-            return new BERDecoder();
-        }
-        else
-        if(encodingSchema.equalsIgnoreCase("PER")||encodingSchema.equalsIgnoreCase("PER/Aligned")||encodingSchema.equalsIgnoreCase("PER/A")) {
-            return new PERAlignedDecoder();
-        }        
-        else
-        if(encodingSchema.equalsIgnoreCase("PER")||encodingSchema.equalsIgnoreCase("PER/Unaligned")||encodingSchema.equalsIgnoreCase("PER/U")) {
-            return new PERUnalignedDecoder();
-        }        
-        else
-        if(encodingSchema.equalsIgnoreCase("DER")) {
-            return new DERDecoder();
-        }
-        else
-        if(encodingSchema.equalsIgnoreCase("MDER")) {
-            return new DecoderMDER();
-        } 
-        else
-            return null;
-    }
-    
-    public IASN1PreparedElementData newPreparedElementData(Class<?> typeInfo) {
-        return new ASN1PreparedElementData(typeInfo);
-    }
-    
+	/**
+	 * Create new default decoder (The BER decoding is default)
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public IDecoder newDecoder() throws Exception {
+		return newDecoder("BER");
+	}
+
+	/**
+	 * Create new decoder for specified schema (BER, PER, PER/Aligned,
+	 * PER/Unaligned, ...)
+	 * 
+	 * @param encodingSchema
+	 * @return Decoder for specified specification
+	 * @throws Exception
+	 */
+	public IDecoder newDecoder(String encodingSchema) throws Exception {
+		if (encodingSchema.equalsIgnoreCase("BER")) {
+			return new BERDecoder();
+		} else if (encodingSchema.equalsIgnoreCase("PER") || encodingSchema.equalsIgnoreCase("PER/Aligned")
+				|| encodingSchema.equalsIgnoreCase("PER/A")) {
+			return new PERAlignedDecoder();
+		} else if (encodingSchema.equalsIgnoreCase("PER") || encodingSchema.equalsIgnoreCase("PER/Unaligned")
+				|| encodingSchema.equalsIgnoreCase("PER/U")) {
+			return new PERUnalignedDecoder();
+		} else if (encodingSchema.equalsIgnoreCase("DER")) {
+			return new DERDecoder();
+		} else if (encodingSchema.equalsIgnoreCase("MDER")) {
+			return new DecoderMDER();
+		} else
+			return null;
+	}
+
+	public IASN1PreparedElementData newPreparedElementData(Class<?> typeInfo) {
+		return new ASN1PreparedElementData(typeInfo);
+	}
+
 }

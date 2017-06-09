@@ -31,25 +31,25 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
  */
 public class ASN1EnumItemMetadata extends ASN1FieldMetadata {
 
-    private Class enumClass;
-    
-    public ASN1EnumItemMetadata(String name, Class enumClass)
-    {
-        super(name);
-        this.enumClass = enumClass;
-    }
-    
-    public ASN1EnumItemMetadata(ASN1EnumItem annotation, Class enumClass) {
-        this(annotation.name(),enumClass);
-    }    
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeEnumItem(object, enumClass, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeEnumItem(decodedTag,objectClass,enumClass,elementInfo,stream);
-    }
-    
+	private Class enumClass;
+
+	public ASN1EnumItemMetadata(String name, Class enumClass) {
+		super(name);
+		this.enumClass = enumClass;
+	}
+
+	public ASN1EnumItemMetadata(ASN1EnumItem annotation, Class enumClass) {
+		this(annotation.name(), enumClass);
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeEnumItem(object, enumClass, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeEnumItem(decodedTag, objectClass, enumClass, elementInfo, stream);
+	}
+
 }

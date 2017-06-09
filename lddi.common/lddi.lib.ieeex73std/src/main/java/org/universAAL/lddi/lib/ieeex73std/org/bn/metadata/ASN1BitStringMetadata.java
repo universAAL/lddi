@@ -30,26 +30,23 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1BitStringMetadata
-    extends ASN1FieldMetadata
-{
-    public ASN1BitStringMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public ASN1BitStringMetadata(ASN1BitString annotation) {
-        this(annotation.name());
-    }
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeBitString(object, stream, elementInfo);
-    }
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeBitString(decodedTag,objectClass,elementInfo,stream);
-    }
-    
-    
+public class ASN1BitStringMetadata extends ASN1FieldMetadata {
+	public ASN1BitStringMetadata(String name) {
+		super(name);
+	}
+
+	public ASN1BitStringMetadata(ASN1BitString annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeBitString(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeBitString(decodedTag, objectClass, elementInfo, stream);
+	}
+
 }

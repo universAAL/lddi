@@ -17,8 +17,8 @@
 
 package org.universAAL.lddi.lib.ieeex73std.org.bn.coders;
 
-
 public interface IASN1PreparedElement {
-    IASN1PreparedElementData getPreparedData();
-    void initWithDefaults();
+	IASN1PreparedElementData getPreparedData();
+
+	void initWithDefaults();
 }

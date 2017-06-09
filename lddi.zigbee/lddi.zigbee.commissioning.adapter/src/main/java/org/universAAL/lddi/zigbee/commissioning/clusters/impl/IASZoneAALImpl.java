@@ -44,7 +44,7 @@ public class IASZoneAALImpl implements IASZoneAAL {
 	private final Attribute zoneStatus;
 	private final Attribute iasCIEaddress;
 
-	public IASZoneAALImpl(ZigBeeDevice zbDevice){
+	public IASZoneAALImpl(ZigBeeDevice zbDevice) {
 
 		cluster = new IASZoneClusterAAL(zbDevice);
 		zoneState = cluster.getAttributeZoneState();
@@ -73,7 +73,7 @@ public class IASZoneAALImpl implements IASZoneAAL {
 
 		Attribute[] attributes = cluster.getAvailableAttributes();
 		for (int i = 0; i < attributes.length; i++) {
-			if( attributes[i].getId() == id ) 
+			if (attributes[i].getId() == id)
 				return attributes[i];
 		}
 		return null;
@@ -104,8 +104,7 @@ public class IASZoneAALImpl implements IASZoneAAL {
 		try {
 			ZoneEnrollResponse response = (ZoneEnrollResponse) cluster.zoneEnrollRequest(payload);
 			return response;
-		} 
-		catch (ZigBeeClusterException e) {
+		} catch (ZigBeeClusterException e) {
 			throw new ZigBeeHAException(e);
 		}
 	}
@@ -114,7 +113,7 @@ public class IASZoneAALImpl implements IASZoneAAL {
 		try {
 			Response response = cluster.zoneStatusChangeNotification(payload);
 			if (response.getZCLHeader().getCommandId() != ZoneStatusChangeNotificationResponse.ID)
-				throw new ZigBeeHAException( ((DefaultResponse) response).getStatus().toString());
+				throw new ZigBeeHAException(((DefaultResponse) response).getStatus().toString());
 
 			return response;
 		} catch (ZigBeeClusterException e) {

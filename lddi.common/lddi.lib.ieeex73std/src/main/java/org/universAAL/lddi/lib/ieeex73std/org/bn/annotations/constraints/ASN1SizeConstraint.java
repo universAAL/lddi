@@ -19,7 +19,7 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.annotations.constraints;
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD )
+@Target(ElementType.FIELD)
 public @interface ASN1SizeConstraint {
-    long max();
+	long max();
 }

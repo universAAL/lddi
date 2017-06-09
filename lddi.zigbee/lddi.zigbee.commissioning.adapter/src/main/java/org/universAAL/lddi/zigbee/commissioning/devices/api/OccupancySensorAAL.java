@@ -33,21 +33,18 @@ public interface OccupancySensorAAL extends HADevice {
 	public static final int DEVICE_ID = 0x0107;
 	public static final String NAME = "Occupancy Sensor 'stabilized'";
 
-	public static final int[] MANDATORY = ArraysUtil.append(HADevice.MANDATORY, new int[]{
-			HAProfile.OCCUPANCY_SENSING
-	});
-	public static final int[] OPTIONAL = ArraysUtil.append(HADevice.OPTIONAL, new int[]{
-			HAProfile.GROUPS
-	});
+	public static final int[] MANDATORY = ArraysUtil.append(HADevice.MANDATORY,
+			new int[] { HAProfile.OCCUPANCY_SENSING });
+	public static final int[] OPTIONAL = ArraysUtil.append(HADevice.OPTIONAL, new int[] { HAProfile.GROUPS });
 	public static final int[] STANDARD = ArraysUtil.append(MANDATORY, OPTIONAL);
 	public static final int[] CUSTOM = {};
 
 	/**
-	 * Access method for the <b>Mandatory</b> cluster: {@link OccupacySensing} 
-	 *  
+	 * Access method for the <b>Mandatory</b> cluster: {@link OccupacySensing}
+	 * 
 	 * @return the {@link OccupacySensing} cluster implemented by the device
 	 */
-	public OccupacySensingAAL getOccupacySensing();	
+	public OccupacySensingAAL getOccupacySensing();
 
-	public Groups getGroups();	
+	public Groups getGroups();
 }

@@ -29,24 +29,23 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1EnumMetadata extends ASN1TypeMetadata
-{
-    public ASN1EnumMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public  ASN1EnumMetadata(ASN1Enum annotation) {
-        this(annotation.name());
-    }
+public class ASN1EnumMetadata extends ASN1TypeMetadata {
+	public ASN1EnumMetadata(String name) {
+		super(name);
+	}
 
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeEnum(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeEnum(decodedTag,objectClass,elementInfo,stream);
-    }
-    
+	public ASN1EnumMetadata(ASN1Enum annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeEnum(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeEnum(decodedTag, objectClass, elementInfo, stream);
+	}
+
 }

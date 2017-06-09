@@ -30,16 +30,16 @@ import org.universAAL.lddi.fs20.connect.FS20Listener;
 import org.universAAL.lddi.fs20.util.LogTracker;
 
 /**
- * Activator class, it establishes a connection to the FS20 network,
- * starts a FS20 event listener and initializes to read all 
- * FS20 devices out of property files
+ * Activator class, it establishes a connection to the FS20 network, starts a
+ * FS20 event listener and initializes to read all FS20 devices out of property
+ * files
  *
  *
  * @author Steeven Zeiss Fraunhofer IGD (steeven.zeiss@igd.fraunhofer.de)
  * @date 30.05.2013
  */
 public class Activator implements BundleActivator {
-	
+
 	private HashMap<String, ServiceRegistration> registrations = new HashMap<String, ServiceRegistration>();
 
 	private LogTracker logTracker;
@@ -47,7 +47,7 @@ public class Activator implements BundleActivator {
 	private static FHZ1000PC connection;
 
 	private static BundleContext context;
-	
+
 	private static FS20Listener eventlistener;
 
 	public static BundleContext getContext() {
@@ -70,18 +70,19 @@ public class Activator implements BundleActivator {
 
 		connection = new FHZ1000PC("");
 		connection.fs20Init();
-		
+
 		eventlistener = new FS20Listener(context);
 
-		registrations = DeviceReader.readDevices(context,connection);
-		
-		eventlistener.setDevices(registrations);
-	
-		new Thread(){public void start (){
-			eventlistener.Init(connection, logTracker);
-		}}.start();
-	}
+		registrations = DeviceReader.readDevices(context, connection);
 
+		eventlistener.setDevices(registrations);
+
+		new Thread() {
+			public void start() {
+				eventlistener.Init(connection, logTracker);
+			}
+		}.start();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -93,10 +94,11 @@ public class Activator implements BundleActivator {
 		connection.unregisterEventListener();
 	}
 
-/**
- * Get all registered devices as ServiceRegistrations
- * @return returns all ServiceRegistrations
- */
+	/**
+	 * Get all registered devices as ServiceRegistrations
+	 * 
+	 * @return returns all ServiceRegistrations
+	 */
 	public HashMap<String, ServiceRegistration> getAllDeviceRegistrations() {
 		return registrations;
 	}

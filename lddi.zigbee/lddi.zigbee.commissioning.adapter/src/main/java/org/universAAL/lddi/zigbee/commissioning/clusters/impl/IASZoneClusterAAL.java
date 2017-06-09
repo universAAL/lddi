@@ -52,45 +52,46 @@ public class IASZoneClusterAAL extends IASZoneCluster {
 
 		previousStatus = -1;
 	}
+
 	public boolean addZoneStatusChangeNotificationListener(ZoneStatusChangeNotificationListener listener) {
 		synchronized (listeners) {
-			if ( listeners.size() == 0 ){
+			if (listeners.size() == 0) {
 				try {
 					getZigBeeDevice().bind(ID);
 				} catch (ZigBeeBasedriverException e) {
 					log.error("Unable to bind to device for IASZone reporting", e);
 					return false;
 				}
-				if ( getZigBeeDevice().addClusterListener(bridge) == false ) {
+				if (getZigBeeDevice().addClusterListener(bridge) == false) {
 					log.error("Unable to register the cluster listener for IASZone reporting");
 					return false;
 				}
 			}
 			listeners.add(listener);
-			return true;		
+			return true;
 		}
 	}
 
 	public boolean removeZoneStatusChangeNotificationListener(ZoneStatusChangeNotificationListener listener) {
 		synchronized (listeners) {
-			boolean removed = listeners.remove(listener); 
-			if ( listeners.size() == 0 && removed ){
+			boolean removed = listeners.remove(listener);
+			if (listeners.size() == 0 && removed) {
 				try {
 					getZigBeeDevice().unbind(ID);
 				} catch (ZigBeeBasedriverException e) {
 					log.error("Unable to unbind to device for IASZone reporting", e);
 					return false;
 				}
-				if ( getZigBeeDevice().removeClusterListener(bridge) == false ) {
+				if (getZigBeeDevice().removeClusterListener(bridge) == false) {
 					log.error("Unable to unregister the cluster listener for IASZone reporting");
 					return false;
 				}
 			}
-			return removed;		
+			return removed;
 		}
 	}
 
-	private class ZoneStatusChangeNotificationListenerNotifierAAL implements ClusterListner{
+	private class ZoneStatusChangeNotificationListenerNotifierAAL implements ClusterListner {
 
 		public void setClusterFilter(ClusterFilter filter) {
 		}
@@ -105,25 +106,24 @@ public class IASZoneClusterAAL extends IASZoneCluster {
 				ZoneStatusChangeNotificationResponse zscnr = new ZoneStatusChangeNotificationResponseImpl(response);
 				ArrayList<ZoneStatusChangeNotificationListener> localCopy;
 				synchronized (listeners) {
-					localCopy = new ArrayList<ZoneStatusChangeNotificationListener>(listeners);					
+					localCopy = new ArrayList<ZoneStatusChangeNotificationListener>(listeners);
 				}
 				log.debug("Notifying {} ZoneStatusChangeNotificationListener", localCopy.size());
 				for (ZoneStatusChangeNotificationListener alarmListner : localCopy) {
-					try{
-						if(zscnr.getZoneStatus() != previousStatus){ // notifying only changes
+					try {
+						if (zscnr.getZoneStatus() != previousStatus) { // notifying
+																		// only
+																		// changes
 							log.debug("Notifying {}:{}", alarmListner.getClass().getName(), alarmListner);
-							alarmListner.zoneStatusChangeNotification(zscnr.getZoneStatus());	
+							alarmListner.zoneStatusChangeNotification(zscnr.getZoneStatus());
 						}
-					}
-					catch(Exception e){
-						log.error("Error while notifying {}:{} caused by {}",new Object[]{
-								alarmListner.getClass().getName(), alarmListner, e.getStackTrace() 
-						});
+					} catch (Exception e) {
+						log.error("Error while notifying {}:{} caused by {}",
+								new Object[] { alarmListner.getClass().getName(), alarmListner, e.getStackTrace() });
 					}
 				}
 				previousStatus = zscnr.getZoneStatus();
-			} 
-			catch (ZigBeeClusterException e) {
+			} catch (ZigBeeClusterException e) {
 				e.printStackTrace();
 			}
 		}

@@ -14,7 +14,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
- package org.universAAL.lddi.lib.ieeex73std.org.bn.coders.der;
+package org.universAAL.lddi.lib.ieeex73std.org.bn.coders.der;
 
 import java.io.OutputStream;
 import java.lang.reflect.Field;
@@ -23,32 +23,32 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.*;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.*;
 
 public class DEREncoder<T> extends BEREncoder<T> {
-    public DEREncoder() {
-    }
+	public DEREncoder() {
+	}
 
-    public int encodeSequence(Object object, OutputStream stream, 
-                                 ElementInfo elementInfo) throws Exception {
-        // ASN1Sequence seqInfo = elementInfo.getAnnotatedClass().getAnnotation(ASN1Sequence.class);
-        if(!CoderUtils.isSequenceSet(elementInfo)) {
-            return super.encodeSequence(object, stream, elementInfo);
-        }
-        else {
-            int resultSize = 0;
-            Field[] fields = null;
-            if(elementInfo.hasPreparedInfo()) {
-                fields = elementInfo.getPreparedInfo().getFields();
-            }
-            else {
-                SortedMap<Integer,Field> fieldOrder = CoderUtils.getSetOrder(object.getClass());
-                fields = new Field[0];
-                fields = fieldOrder.values().toArray(fields);
-            }
-            
-            for(int i=0; i < fields.length; i++) {
-                resultSize+=encodeSequenceField(object, fields.length - 1 - i, fields[fields.length - 1 - i], stream, elementInfo);
-            }
-            resultSize += encodeHeader (BERCoderUtils.getTagValueForElement (elementInfo,TagClass.Universal, ElementType.Constructed, UniversalTag.Set), resultSize, stream );
-            return resultSize;            
-        }
-    }
+	public int encodeSequence(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception {
+		// ASN1Sequence seqInfo =
+		// elementInfo.getAnnotatedClass().getAnnotation(ASN1Sequence.class);
+		if (!CoderUtils.isSequenceSet(elementInfo)) {
+			return super.encodeSequence(object, stream, elementInfo);
+		} else {
+			int resultSize = 0;
+			Field[] fields = null;
+			if (elementInfo.hasPreparedInfo()) {
+				fields = elementInfo.getPreparedInfo().getFields();
+			} else {
+				SortedMap<Integer, Field> fieldOrder = CoderUtils.getSetOrder(object.getClass());
+				fields = new Field[0];
+				fields = fieldOrder.values().toArray(fields);
+			}
+
+			for (int i = 0; i < fields.length; i++) {
+				resultSize += encodeSequenceField(object, fields.length - 1 - i, fields[fields.length - 1 - i], stream,
+						elementInfo);
+			}
+			resultSize += encodeHeader(BERCoderUtils.getTagValueForElement(elementInfo, TagClass.Universal,
+					ElementType.Constructed, UniversalTag.Set), resultSize, stream);
+			return resultSize;
+		}
+	}
 }

@@ -20,6 +20,6 @@
 package org.universAAL.lddi.lib.ieeex73std.events;
 
 public interface EventIEEEListener {
-	public void eventReceived( EventIEEE eventieee );
+	public void eventReceived(EventIEEE eventieee);
 
 }

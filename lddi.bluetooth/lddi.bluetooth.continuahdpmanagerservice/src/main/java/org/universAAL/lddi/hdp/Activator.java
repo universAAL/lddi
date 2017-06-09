@@ -38,29 +38,29 @@ import org.universAAL.middleware.container.utils.LogUtils;
 public class Activator implements BundleActivator {
 
 	// Attributes
-	
+
 	private ContinuaHdpManagerProvider provider = null;
-	public static ModuleContext mc;	
+	public static ModuleContext mc;
 
 	// Methods
-	
+
 	/** Start method */
 	public void start(final BundleContext context) throws Exception {
 		// Config
-		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] {context});		
+		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		provider = new ContinuaHdpManagerProvider(context);
 		// Log
-		LogUtils.logInfo(mc,getClass(),"start",new String[] {"Start Continua HDP manager"},null);
+		LogUtils.logInfo(mc, getClass(), "start", new String[] { "Start Continua HDP manager" }, null);
 	}
 
 	/** Stop method */
 	public void stop(BundleContext arg0) throws Exception {
 		// Log
-		LogUtils.logInfo(mc,getClass(),"stop",new String[] {"Stop Continua HDP manager"},null);
+		LogUtils.logInfo(mc, getClass(), "stop", new String[] { "Stop Continua HDP manager" }, null);
 		// Closing references
-		if(provider != null) {
+		if (provider != null) {
 			provider.close();
 			provider = null;
-		}				
+		}
 	}
 }

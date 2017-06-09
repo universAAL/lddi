@@ -40,10 +40,10 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
 /**
  * KnxNetworkDriverImp is the main class of this bundle. It registers as a
  * service in the OSGi framework with the name
- * org.universAAL.lddi.knx.networkdriver.test.KnxNetwork. It manages a list of KNX
- * devices (injected by knx.devicemanager) where the KNX group address is used
- * as key. Incoming sensor events are passed on to the appropriate KNX groupDevice
- * (identified by KNX group address).
+ * org.universAAL.lddi.knx.networkdriver.test.KnxNetwork. It manages a list of
+ * KNX devices (injected by knx.devicemanager) where the KNX group address is
+ * used as key. Incoming sensor events are passed on to the appropriate KNX
+ * groupDevice (identified by KNX group address).
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  * 
@@ -93,34 +93,27 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	 * Register this class as Managed Service
 	 */
 	private void registerManagedService() {
-	    Dictionary propManagedService = new Properties();
-		propManagedService.put(Constants.SERVICE_PID, this.context.getBundle()
-				.getSymbolicName());
-		this.context.registerService(ManagedService.class.getName(), this,
-				propManagedService);
+		Dictionary propManagedService = new Properties();
+		propManagedService.put(Constants.SERVICE_PID, this.context.getBundle().getSymbolicName());
+		this.context.registerService(ManagedService.class.getName(), this, propManagedService);
 	}
 
 	/**
 	 * Update from OSGi Configuration Manager
 	 */
-	public void updated(@SuppressWarnings("unchecked") Dictionary settings)
-			throws ConfigurationException {
-		this.logger.log(LogService.LOG_DEBUG, "KnxNetworkDriverImp.updated: "
-				+ settings);
+	public void updated(@SuppressWarnings("unchecked") Dictionary settings) throws ConfigurationException {
+		this.logger.log(LogService.LOG_DEBUG, "KnxNetworkDriverImp.updated: " + settings);
 
 		try {
 			if (settings != null) {
-				this.setMulticast(Boolean.parseBoolean((String)settings.get("multicast")));
+				this.setMulticast(Boolean.parseBoolean((String) settings.get("multicast")));
 				this.setMulticastIp((String) settings.get("multicastIp"));
-				this.setMulticastUdpPort(Integer.valueOf((String) settings
-						.get("multicastUdpPort")));
+				this.setMulticastUdpPort(Integer.valueOf((String) settings.get("multicastUdpPort")));
 				this.setKnxGatewayIp((String) settings.get("knxGatewayIp"));
-				this.setKnxGatewayPort(Integer.valueOf((String) settings
-						.get("knxGatewayPort")));
+				this.setKnxGatewayPort(Integer.valueOf((String) settings.get("knxGatewayPort")));
 				this.setMyIp((String) settings.get("myIp"));
-				this.setMyPort(Integer.valueOf((String) settings
-						.get("myPort")));
-				
+				this.setMyPort(Integer.valueOf((String) settings.get("myPort")));
+
 				if (this.network != null) {
 					this.unRegister();
 					this.network = null;
@@ -130,20 +123,17 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 				this.network.init();
 
 			} else {
-				this.logger.log(LogService.LOG_ERROR,
-						"Unconfigured knx network driver!");
+				this.logger.log(LogService.LOG_ERROR, "Unconfigured knx network driver!");
 			}
 		} catch (NumberFormatException nfe) {
-			this.logger.log(LogService.LOG_ERROR, "NumberFormatException\n"
-					+ nfe.getMessage());
+			this.logger.log(LogService.LOG_ERROR, "NumberFormatException\n" + nfe.getMessage());
 		} catch (Exception e) {
 			this.logger.log(LogService.LOG_ERROR, e.getMessage());
 		}
 	}
 
 	public void networkConnected() {
-		this.regServiceKnx = this.context.registerService(IKnxNetwork.class
-				.getName(), this, null);
+		this.regServiceKnx = this.context.registerService(IKnxNetwork.class.getName(), this, null);
 	}
 
 	public void networkDisconnected() {
@@ -153,7 +143,6 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	public LogService getLogger() {
 		return this.logger;
 	}
-
 
 	public void unRegister() {
 		// stop reader thread
@@ -181,8 +170,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 			}
 		}
 		devices.add(device);
-		this.logger.log(LogService.LOG_DEBUG,
-				"New groupDevice added for groupAddress " + deviceId);
+		this.logger.log(LogService.LOG_DEBUG, "New groupDevice added for groupAddress " + deviceId);
 	}
 
 	/**
@@ -191,18 +179,12 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	public void removeGroupDevice(String deviceId, KnxGroupDevice device) {
 		Set<KnxGroupDevice> devices = this.groupDeviceList.get(deviceId);
 		devices.remove(device);
-		this.logger.log(LogService.LOG_INFO, "Removed groupDevice for groupAddress "
-				+ deviceId);
+		this.logger.log(LogService.LOG_INFO, "Removed groupDevice for groupAddress " + deviceId);
 	}
 
-
-	
-	
-	
-
-
 	/**
-	 * Forward the message from the house to the groupDevice; mapping on groupAddress
+	 * Forward the message from the house to the groupDevice; mapping on
+	 * groupAddress
 	 * 
 	 * @param groupAddress
 	 *            the knx groupAddress
@@ -221,65 +203,59 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 		}
 	}
 
-	
 	/** {@inheritDoc} */
 	public void sendMessageToKnxBus(String groupDeviceId, byte[] event) {
-		this.logger.log(LogService.LOG_INFO,
-				"Got new payload " + KnxEncoder.convertToReadableHex(event) + 
-				" for groupDevice " + groupDeviceId + ". Send it to KNX Bus.");
+		this.logger.log(LogService.LOG_INFO, "Got new payload " + KnxEncoder.convertToReadableHex(event)
+				+ " for groupDevice " + groupDeviceId + ". Send it to KNX Bus.");
 
 		// TODO: send message to knx bus
 		// for now use boolean (dpt1) method
 		// extend send methods to use byte[] !!
-		
-//		if (event.length == 1) {
-//			// DPT = 1
-//			if (event[0] == 0x0) {
-//				this.sendCommand(groupDeviceId, false);
-//			} else if (event[0] == 0x1) {
-//				this.sendCommand(groupDeviceId, true);
-//			} else {
-//				this.logger.log(LogService.LOG_ERROR, "Event is wheter 0 nor 1 but has databyte length 1 (DPT1)." +
-//						" Not sending to KNX bus! Group Address: " + groupDeviceId);
-//				return;
-//			}
-//		} else {
-			// forward command
-			this.network.sendCommand(groupDeviceId, event, KnxCommand.VALUE_WRITE);
-//		}
+
+		// if (event.length == 1) {
+		// // DPT = 1
+		// if (event[0] == 0x0) {
+		// this.sendCommand(groupDeviceId, false);
+		// } else if (event[0] == 0x1) {
+		// this.sendCommand(groupDeviceId, true);
+		// } else {
+		// this.logger.log(LogService.LOG_ERROR, "Event is wheter 0 nor 1 but
+		// has databyte length 1 (DPT1)." +
+		// " Not sending to KNX bus! Group Address: " + groupDeviceId);
+		// return;
+		// }
+		// } else {
+		// forward command
+		this.network.sendCommand(groupDeviceId, event, KnxCommand.VALUE_WRITE);
+		// }
 	}
-	
+
 	// for manual command on OSGi shell
 	public void sendCommand(String deviceId, boolean command) {
 		this.sendCommand(deviceId, command, KnxCommand.VALUE_WRITE);
 	}
+
 	// for manual command on OSGi shell
 	public void sendCommand(String device, boolean command, KnxCommand commandType) {
 		byte status = 0x0;
 		if (command)
 			status = 0x1;
-		this.network.sendCommand(device, new byte[] {status}, commandType);
+		this.network.sendCommand(device, new byte[] { status }, commandType);
 	}
 
-//	public void sendCommand(String deviceId, byte[] command) {
-//		this.sendCommand(deviceId, command, KnxCommand.VALUE_WRITE);
-//	}
-//	public void sendCommand(String device, byte[] command, KnxCommand commandType) {
-//		this.network.sendCommand(device, command, commandType);
-//	}
-	
-	
+	// public void sendCommand(String deviceId, byte[] command) {
+	// this.sendCommand(deviceId, command, KnxCommand.VALUE_WRITE);
+	// }
+	// public void sendCommand(String device, byte[] command, KnxCommand
+	// commandType) {
+	// this.network.sendCommand(device, command, commandType);
+	// }
+
 	public void requestState(String deviceId) {
 		this.network.readState(deviceId);
 
 	}
 
-	
-	
-	
-	
-	
-	
 	/**
 	 * @return the multicast
 	 */
@@ -288,14 +264,16 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	}
 
 	/**
-	 * @param multicast the multicast to set
+	 * @param multicast
+	 *            the multicast to set
 	 */
 	public void setMulticast(boolean multicast) {
 		this.multicast = multicast;
 	}
-	
+
 	/**
-	 * @param knxGatewayIp the knxGatewayIp to set
+	 * @param knxGatewayIp
+	 *            the knxGatewayIp to set
 	 */
 	public void setKnxGatewayIp(String knxGatewayIp) {
 		this.knxGatewayIp = knxGatewayIp;
@@ -309,7 +287,8 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	}
 
 	/**
-	 * @param knxGatewayPort the knxGatewayPort to set
+	 * @param knxGatewayPort
+	 *            the knxGatewayPort to set
 	 */
 	public void setKnxGatewayPort(int knxGatewayPort) {
 		this.knxGatewayPort = knxGatewayPort;
@@ -323,7 +302,8 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	}
 
 	/**
-	 * @param myIp the myIp to set
+	 * @param myIp
+	 *            the myIp to set
 	 */
 	public void setMyIp(String myIp) {
 		this.myIp = myIp;
@@ -344,7 +324,8 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	}
 
 	/**
-	 * @param myPort the myPort to set
+	 * @param myPort
+	 *            the myPort to set
 	 */
 	public void setMyPort(int myPort) {
 		this.myPort = myPort;
@@ -355,7 +336,8 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	}
 
 	/**
-	 * @param multicastIp the multicastIp to set
+	 * @param multicastIp
+	 *            the multicastIp to set
 	 */
 	public void setMulticastIp(String multicastIp) {
 		this.multicastIp = multicastIp;
@@ -369,7 +351,8 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	}
 
 	/**
-	 * @param multicastUdpPort the multicastUdpPort to set
+	 * @param multicastUdpPort
+	 *            the multicastUdpPort to set
 	 */
 	public void setMulticastUdpPort(int multicastUdpPort) {
 		this.multicastUdpPort = multicastUdpPort;

@@ -22,30 +22,30 @@ package org.universAAL.lddi.knx.utils;
 
 public class KnxGroupAddress {
 
-    private String name;
-    private String groupAddress;
-    private String dpt;
-    private String command = "N/A";
-    private Boolean importGA = Boolean.FALSE;
-    
-    private String description;
-    private String comment;
-    
-    // building part information belongs to one physical KNX device
-    // not to a group device (KNX group address)
-//    private String bpType; //BuildingPart Type
-//    private String bpName; //BuildingPart Name
-//    private String bpDescription;
-    //location (room)
-    
-    public KnxGroupAddress(String dpt, String groupAddress, String name) {
-        super();
-        this.dpt = dpt;
-        this.groupAddress = groupAddress;
-        this.name = name;
-    }
+	private String name;
+	private String groupAddress;
+	private String dpt;
+	private String command = "N/A";
+	private Boolean importGA = Boolean.FALSE;
 
-    /**
+	private String description;
+	private String comment;
+
+	// building part information belongs to one physical KNX device
+	// not to a group device (KNX group address)
+	// private String bpType; //BuildingPart Type
+	// private String bpName; //BuildingPart Name
+	// private String bpDescription;
+	// location (room)
+
+	public KnxGroupAddress(String dpt, String groupAddress, String name) {
+		super();
+		this.dpt = dpt;
+		this.groupAddress = groupAddress;
+		this.name = name;
+	}
+
+	/**
 	 * @param name
 	 * @param groupAddress
 	 * @param dpt
@@ -56,16 +56,16 @@ public class KnxGroupAddress {
 	 * @param bpName
 	 * @param bpDescription
 	 */
-	public KnxGroupAddress(String dpt, String groupAddress, String name,
-			String description, String comment, String bpType, String bpName, String bpDescription) {
+	public KnxGroupAddress(String dpt, String groupAddress, String name, String description, String comment,
+			String bpType, String bpName, String bpDescription) {
 		this.name = name;
 		this.groupAddress = groupAddress;
 		this.dpt = dpt;
 		this.description = description;
 		this.comment = comment;
-//		this.bpType = bpType;
-//		this.bpName = bpName;
-//		this.bpDescription = bpDescription;
+		// this.bpType = bpType;
+		// this.bpName = bpName;
+		// this.bpDescription = bpDescription;
 	}
 
 	/**
@@ -75,64 +75,60 @@ public class KnxGroupAddress {
 		return description;
 	}
 
-//	/**
-//	 * @return type of the BuildingPart where the KNX device is located
-//	 */
-//	public String getBpType() {
-//		return bpType;
-//	}
-//
-//	/**
-//	 * @return Name of the BuildingPart where the KNX device is located
-//	 */
-//	public String getBpName() {
-//		return bpName;
-//	}
-//
-//	/**
-//	 * @return description of the BuildingPart where the KNX device is located
-//	 */
-//	public String getBpDescription() {
-//		return bpDescription;
-//	}
+	// /**
+	// * @return type of the BuildingPart where the KNX device is located
+	// */
+	// public String getBpType() {
+	// return bpType;
+	// }
+	//
+	// /**
+	// * @return Name of the BuildingPart where the KNX device is located
+	// */
+	// public String getBpName() {
+	// return bpName;
+	// }
+	//
+	// /**
+	// * @return description of the BuildingPart where the KNX device is located
+	// */
+	// public String getBpDescription() {
+	// return bpDescription;
+	// }
 
 	/**
 	 * @return name of the KNX groupDevice
 	 */
 	public String getName() {
-        return name;
-    }
-        
-    /**
-     * @return group address as String in format "M/L/D"
-     */
-    public String getGroupAddress() {
-        return groupAddress;
-    }
+		return name;
+	}
 
-    /**
-     * @return datapoint type of the KNX groupDevice
-     */
-    public String getDpt() {
-        return dpt;
-    }
+	/**
+	 * @return group address as String in format "M/L/D"
+	 */
+	public String getGroupAddress() {
+		return groupAddress;
+	}
 
-    /**
-     * @return name, group address, datapoint type and  of the KNX groupDevice
-     */
-    public String toString() {
-    	return getName() + "; " +
-    		getGroupAddress() + "; " +
-    		getDpt() + "; " +
-    		getDescription() + "; " +
-    		getComment();
-//    	+ "; " +
-//    		getBpType() + "; " +
-//    		getBpName() + "; " +
-//    		getBpDescription();
-    }
-    
-    /**
+	/**
+	 * @return datapoint type of the KNX groupDevice
+	 */
+	public String getDpt() {
+		return dpt;
+	}
+
+	/**
+	 * @return name, group address, datapoint type and of the KNX groupDevice
+	 */
+	public String toString() {
+		return getName() + "; " + getGroupAddress() + "; " + getDpt() + "; " + getDescription() + "; " + getComment();
+		// + "; " +
+		// getBpType() + "; " +
+		// getBpName() + "; " +
+		// getBpDescription();
+	}
+
+	/**
 	 * @return comment on KNX groupDevice
 	 */
 	private String getComment() {
@@ -140,28 +136,27 @@ public class KnxGroupAddress {
 	}
 
 	/**
-     * @return main datapoint type number of the KNX groupDevice 
-     */
-    public String getDptMain() {
+	 * @return main datapoint type number of the KNX groupDevice
+	 */
+	public String getDptMain() {
 		String temp = this.getDpt().trim();
-		return temp.substring(0, temp.indexOf(".") );
-    }
+		return temp.substring(0, temp.indexOf("."));
+	}
 
-    /**
-     * @return sub datapoint type number of the KNX groupDevice 
-     */
-    public String getDptSub() {
+	/**
+	 * @return sub datapoint type number of the KNX groupDevice
+	 */
+	public String getDptSub() {
 		String temp = this.getDpt().trim();
-		return temp.substring(temp.indexOf(".")+1);
-    }
-    
+		return temp.substring(temp.indexOf(".") + 1);
+	}
 
-    public Boolean getImportGA() {
-        return importGA;
-    }
+	public Boolean getImportGA() {
+		return importGA;
+	}
 
-    public String getCommand() {
-        return command;
-    }
+	public String getCommand() {
+		return command;
+	}
 
 }

@@ -19,7 +19,6 @@
  */
 package org.universAAL.lddi.lib.ieeex73std.utils;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,29 +36,28 @@ import java.util.StringTokenizer;
 
 public class ValueCodesGenerator {
 
-	public ValueCodesGenerator()
-	{
+	public ValueCodesGenerator() {
 		System.out.println("Alla voy");
-	
+
 		FileWriter fw = null;
 		String outputfile = "StatusCodes.java";
-	
+
 		try {
 			fw = new FileWriter(outputfile);
-				String fileName = "ieeesources/statuscodes.txt";
-				BufferedReader in = new BufferedReader(new FileReader(fileName));
-				String line;
-				line = in.readLine();
-				while (line != null) {
-					StringTokenizer tokens = new StringTokenizer(line, " ");
-					if (tokens.countTokens() > 1) {
-						String name = tokens.nextToken();	
-						String value = tokens.nextToken();
-						generateDef(fw, name, value);
-						System.out.println(name +" "+value);
-					}
-				line = in.readLine();
+			String fileName = "ieeesources/statuscodes.txt";
+			BufferedReader in = new BufferedReader(new FileReader(fileName));
+			String line;
+			line = in.readLine();
+			while (line != null) {
+				StringTokenizer tokens = new StringTokenizer(line, " ");
+				if (tokens.countTokens() > 1) {
+					String name = tokens.nextToken();
+					String value = tokens.nextToken();
+					generateDef(fw, name, value);
+					System.out.println(name + " " + value);
 				}
+				line = in.readLine();
+			}
 			fw.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -70,10 +68,9 @@ public class ValueCodesGenerator {
 
 	private void generateDef(FileWriter fw, String name, String value) {
 		try {
-			fw.write("\t\tpublic static final int "+name+ "\t\t\t\t\t\t = "+value+ ";\n");
+			fw.write("\t\tpublic static final int " + name + "\t\t\t\t\t\t = " + value + ";\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 }
-

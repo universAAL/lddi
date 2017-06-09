@@ -32,9 +32,10 @@ import org.universAAL.lddi.fs20.devicemodel.FS20Device;
 import org.universAAL.lddi.fs20.util.LogTracker;
 
 /**
- * This class registers a new FS20 event listener. If a new event is detected it searches the 
- * matching registered service and changes the value of the service which is recognized by
- * the fs20.exporter bundle via ServiceEvent.MODIFIED and will converted to an UAAL context event 
+ * This class registers a new FS20 event listener. If a new event is detected it
+ * searches the matching registered service and changes the value of the service
+ * which is recognized by the fs20.exporter bundle via ServiceEvent.MODIFIED and
+ * will converted to an UAAL context event
  *
  *
  * @author Steeven Zeiss Fraunhofer IGD (steeven.zeiss@igd.fraunhofer.de)
@@ -63,15 +64,17 @@ public class FS20Listener {
 	}
 
 	/**
-	 * Changes the value of a registered service which conducts to an UAAL context event
-	 * @param sr = the ServiceRegistration of the matches service
+	 * Changes the value of a registered service which conducts to an UAAL
+	 * context event
+	 * 
+	 * @param sr
+	 *            = the ServiceRegistration of the matches service
 	 */
 	private void sendContextEvent(ServiceRegistration sr) {
 		if (sr != null) {
-			FS20Device device = (FS20Device) context.getService(sr
-					.getReference());
-			
-			switch(device.getDeviceType()){
+			FS20Device device = (FS20Device) context.getService(sr.getReference());
+
+			switch (device.getDeviceType()) {
 			case FS20FMS:
 				if (functionAsString.equals("1111")) {
 					dic.put("value", "0");
@@ -95,24 +98,22 @@ public class FS20Listener {
 	}
 
 	/**
-	 * Searches the matching ServiceRegistration to the given housecode 
-	 * and devicecode
+	 * Searches the matching ServiceRegistration to the given housecode and
+	 * devicecode
 	 * 
-	 * @param housecode = the given HouseCode of the FS20 device
-	 * @param devicecode = the given DeviceCode of the FS20 device
+	 * @param housecode
+	 *            = the given HouseCode of the FS20 device
+	 * @param devicecode
+	 *            = the given DeviceCode of the FS20 device
 	 * @return the matching ServiceRegistration, or null
 	 */
-	private ServiceRegistration getMatchingDevice(String housecode,
-			String devicecode) {
+	private ServiceRegistration getMatchingDevice(String housecode, String devicecode) {
 		FS20Device device;
 
-		for (Iterator<ServiceRegistration> it = registrations.values()
-				.iterator(); it.hasNext();) 									
-		{
+		for (Iterator<ServiceRegistration> it = registrations.values().iterator(); it.hasNext();) {
 			ServiceRegistration sr = it.next();
 			device = (FS20Device) context.getService(sr.getReference());
-			if ((housecode.equals(device.getHouseCode()))
-					&& (devicecode.equals(device.getDeviceCode()))) {
+			if ((housecode.equals(device.getHouseCode())) && (devicecode.equals(device.getDeviceCode()))) {
 				return sr;
 			}
 		}
@@ -121,7 +122,9 @@ public class FS20Listener {
 
 	/**
 	 * Called by the Activator and sets all ServiceRegistrations
-	 * @param reg = all registered FS20 devices as ServiceRegistrations
+	 * 
+	 * @param reg
+	 *            = all registered FS20 devices as ServiceRegistrations
 	 */
 	public void setDevices(HashMap<String, ServiceRegistration> reg) {
 		registrations = reg;
@@ -130,8 +133,10 @@ public class FS20Listener {
 	/**
 	 * Initializes a new FS20EventListener
 	 * 
-	 * @param fhz = the FS20 gateway connection
-	 * @param log = the logger
+	 * @param fhz
+	 *            = the FS20 gateway connection
+	 * @param log
+	 *            = the logger
 	 */
 	public void Init(FHZ1000PC fhz, LogTracker log) {
 		try {
@@ -145,28 +150,17 @@ public class FS20Listener {
 					received_deviceCode = event.getButton();
 					received_function = event.getFunction();
 
-					houseCodeAsString = binFS20ByteToString(
-							received_houseCode.intValue(), 16);
-					deviceCodeAsString = binFS20ByteToString(
-							received_deviceCode.intValue(), 8);
-					functionAsString = binFS20ByteToString(new Byte(
-							received_function).intValue(), 8);
+					houseCodeAsString = binFS20ByteToString(received_houseCode.intValue(), 16);
+					deviceCodeAsString = binFS20ByteToString(received_deviceCode.intValue(), 8);
+					functionAsString = binFS20ByteToString(new Byte(received_function).intValue(), 8);
 
-					sendContextEvent(getMatchingDevice(houseCodeAsString,
-							deviceCodeAsString));
+					sendContextEvent(getMatchingDevice(houseCodeAsString, deviceCodeAsString));
 
-					logger.log(
-							LogService.LOG_INFO,
-							"New FS20 event detectet: "
-									+ "HouseCode="
-									+ binFS20ByteToString(
-											received_houseCode.intValue(), 16)
-									+ " DeviceCode="
-									+ binFS20ByteToString(
-											received_deviceCode.intValue(), 8)
-									+ " Function="
-									+ binFS20ByteToString(new Byte(
-											received_function).intValue(), 8));
+					logger.log(LogService.LOG_INFO,
+							"New FS20 event detectet: " + "HouseCode="
+									+ binFS20ByteToString(received_houseCode.intValue(), 16) + " DeviceCode="
+									+ binFS20ByteToString(received_deviceCode.intValue(), 8) + " Function="
+									+ binFS20ByteToString(new Byte(received_function).intValue(), 8));
 				}
 			});
 
@@ -178,8 +172,10 @@ public class FS20Listener {
 	/**
 	 * Converts the houseCode, deviceCode and functionCode to a String object
 	 * 
-	 * @param value = the integer value of a received code
-	 * @param bits = number of bits
+	 * @param value
+	 *            = the integer value of a received code
+	 * @param bits
+	 *            = number of bits
 	 * @return returns the received code as a String
 	 */
 	public static String binFS20ByteToString(int value, int bits) {

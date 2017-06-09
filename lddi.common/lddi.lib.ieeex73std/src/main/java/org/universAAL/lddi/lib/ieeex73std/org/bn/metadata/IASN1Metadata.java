@@ -26,7 +26,10 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesDecoder;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 
 public interface IASN1Metadata {
-    String getName();
-    int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
-    DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception;
+	String getName();
+
+	int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
+	DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception;
 }

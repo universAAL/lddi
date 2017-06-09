@@ -27,8 +27,8 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
  * Possible values are from 0 - 255.
  * 
  * In general GroupDeviceCategories specify: - rules and interfaces needed for
- * the communication between OSGi groupDevice service and driver service. Both of
- * them (groupDevice and driver) implement this IF.
+ * the communication between OSGi groupDevice service and driver service. Both
+ * of them (groupDevice and driver) implement this IF.
  * 
  * - a set of service registration properties, their data types and semantics
  * (mandatory or optional)
@@ -72,8 +72,8 @@ public interface IKnxDpt5 {
 	public static float RESOLUTION_5_001 = (float) 100 / 256;
 
 	/**
-	 * 5.003 - DPT_Angle From 0 - 360&deg;- This gives a resolution of about 1,4&deg;
-	 * (360 / 256 = 1,40625)
+	 * 5.003 - DPT_Angle From 0 - 360&deg;- This gives a resolution of about
+	 * 1,4&deg; (360 / 256 = 1,40625)
 	 */
 	public static float RESOLUTION_5_003 = (float) 360 / 256;
 

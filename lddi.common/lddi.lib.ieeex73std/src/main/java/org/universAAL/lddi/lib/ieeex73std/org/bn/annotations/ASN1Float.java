@@ -20,7 +20,7 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.annotations;
 import java.lang.annotation.*;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target( ElementType.TYPE )
+@Target(ElementType.TYPE)
 public @interface ASN1Float {
-    String name();
+	String name();
 }

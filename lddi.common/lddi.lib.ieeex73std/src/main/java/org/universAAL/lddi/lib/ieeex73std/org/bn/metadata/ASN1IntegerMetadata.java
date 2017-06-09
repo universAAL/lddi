@@ -29,26 +29,25 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1IntegerMetadata extends ASN1FieldMetadata
-{
-    public ASN1IntegerMetadata() {};
-    
-    public ASN1IntegerMetadata(String name)
-    {
-        super(name);
-    }
-    
-    
-    public ASN1IntegerMetadata(ASN1Integer annotation) {
-        this(annotation.name());
-    }    
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeInteger(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeInteger(decodedTag,objectClass,elementInfo,stream);
-    }    
+public class ASN1IntegerMetadata extends ASN1FieldMetadata {
+	public ASN1IntegerMetadata() {
+	};
+
+	public ASN1IntegerMetadata(String name) {
+		super(name);
+	}
+
+	public ASN1IntegerMetadata(ASN1Integer annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeInteger(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeInteger(decodedTag, objectClass, elementInfo, stream);
+	}
 }

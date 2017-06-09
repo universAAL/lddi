@@ -15,21 +15,22 @@
  limitations under the License.
  */
 package org.universAAL.lddi.lib.ieeex73std.org.bn.metadata.constraints;
+
 import org.universAAL.lddi.lib.ieeex73std.org.bn.annotations.constraints.ASN1SizeConstraint;
 
 public class ASN1SizeConstraintMetadata implements IASN1ConstraintMetadata {
-    private long maxValue;
-    
-    public ASN1SizeConstraintMetadata(ASN1SizeConstraint annotation) {
-        this.maxValue = annotation.max();
-    }
-    
-    public long getMax() {
-        return this.maxValue;
-    }
-    
-    public boolean checkValue(long value) throws Exception {
-        return value == maxValue;
-    }
-    
+	private long maxValue;
+
+	public ASN1SizeConstraintMetadata(ASN1SizeConstraint annotation) {
+		this.maxValue = annotation.max();
+	}
+
+	public long getMax() {
+		return this.maxValue;
+	}
+
+	public boolean checkValue(long value) throws Exception {
+		return value == maxValue;
+	}
+
 }

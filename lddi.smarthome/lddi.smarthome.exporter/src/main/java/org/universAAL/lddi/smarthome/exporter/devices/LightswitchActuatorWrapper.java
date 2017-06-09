@@ -43,81 +43,74 @@ import org.universAAL.ontology.device.LightActuator;
  * 
  */
 public class LightswitchActuatorWrapper extends AbstractIntegerCallee {
-    /**
-     * Constructor to be used in the exporter, which sets up all the exporting
-     * process.
-     * 
-     * @param context
-     *            The OSGi context
-     * @param serv
-     *            The OSGi service backing the interaction with the device in
-     *            the abstraction layer
-     */
-    public LightswitchActuatorWrapper(ModuleContext context, String itemName) {
-	super(context,
-		getServiceProfiles(Activator.NAMESPACE + itemName + "handler",
-			new LightActuator(Activator.NAMESPACE + itemName)),
-		Activator.NAMESPACE + itemName + "handler");
+	/**
+	 * Constructor to be used in the exporter, which sets up all the exporting
+	 * process.
+	 * 
+	 * @param context
+	 *            The OSGi context
+	 * @param serv
+	 *            The OSGi service backing the interaction with the device in
+	 *            the abstraction layer
+	 */
+	public LightswitchActuatorWrapper(ModuleContext context, String itemName) {
+		super(context, getServiceProfiles(Activator.NAMESPACE + itemName + "handler",
+				new LightActuator(Activator.NAMESPACE + itemName)), Activator.NAMESPACE + itemName + "handler");
 
-	Activator.logD("LightswitchActuatorWrapper", "Ready to subscribe");
-	shDeviceName = itemName;
+		Activator.logD("LightswitchActuatorWrapper", "Ready to subscribe");
+		shDeviceName = itemName;
 
-	// URI must be the same declared in the super constructor
-	String deviceURI = Activator.NAMESPACE + itemName;
-	ontDevice = new LightActuator(deviceURI);
+		// URI must be the same declared in the super constructor
+		String deviceURI = Activator.NAMESPACE + itemName;
+		ontDevice = new LightActuator(deviceURI);
 
-	// Commissioning
-	// TODO Set location based on tags?
+		// Commissioning
+		// TODO Set location based on tags?
 
-	// Context reg
-	ContextProvider info = new ContextProvider(deviceURI + "Provider");
-	info.setType(ContextProviderType.controller);
-	ContextEventPattern cep = new ContextEventPattern();
-	MergedRestriction subjectRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			ontDevice);
-	MergedRestriction predicateRestriction = MergedRestriction
-		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
-			LightActuator.PROP_HAS_VALUE);
-	// TODO Object restr
-	cep.addRestriction(subjectRestriction);
-	cep.addRestriction(predicateRestriction);
-	info.setProvidedEvents(new ContextEventPattern[] { cep });
-    }
-
-    @Override
-    public Integer executeGet() {
-	OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
-		.getStateAs((Class<? extends State>) OnOffType.class);
-	Activator.logD("getStatus", "The service called was 'get the status'");
-	if (value == null)
-	    return null;
-	return (value.compareTo(OnOffType.ON) == 0) ? Integer.valueOf(100)
-		: Integer.valueOf(0);
-    }
-
-    @Override
-    public boolean executeSet(Integer value) {
-	Activator.logD("setStatus",
-		"The service called was 'set the status' " + value);
-
-	try {
-	    ItemCommandEvent itemCommandEvent = ItemEventFactory
-		    .createCommandEvent(shDeviceName, value.intValue() == 0
-			    ? OnOffType.OFF : OnOffType.ON);
-	    Activator.getPub().post(itemCommandEvent);
-	} catch (Exception e) {
-	    return false;
+		// Context reg
+		ContextProvider info = new ContextProvider(deviceURI + "Provider");
+		info.setType(ContextProviderType.controller);
+		ContextEventPattern cep = new ContextEventPattern();
+		MergedRestriction subjectRestriction = MergedRestriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+				ontDevice);
+		MergedRestriction predicateRestriction = MergedRestriction
+				.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, LightActuator.PROP_HAS_VALUE);
+		// TODO Object restr
+		cep.addRestriction(subjectRestriction);
+		cep.addRestriction(predicateRestriction);
+		info.setProvidedEvents(new ContextEventPattern[] { cep });
 	}
-	return true;
-    }
 
-    public void publish(Event event) {
-	// Kept for the interface, but it will not be called
-    }
+	@Override
+	public Integer executeGet() {
+		OnOffType value = (OnOffType) Activator.getOpenhab().get(shDeviceName)
+				.getStateAs((Class<? extends State>) OnOffType.class);
+		Activator.logD("getStatus", "The service called was 'get the status'");
+		if (value == null)
+			return null;
+		return (value.compareTo(OnOffType.ON) == 0) ? Integer.valueOf(100) : Integer.valueOf(0);
+	}
 
-    public void unregister() {
-	super.unregister();
-    }
+	@Override
+	public boolean executeSet(Integer value) {
+		Activator.logD("setStatus", "The service called was 'set the status' " + value);
+
+		try {
+			ItemCommandEvent itemCommandEvent = ItemEventFactory.createCommandEvent(shDeviceName,
+					value.intValue() == 0 ? OnOffType.OFF : OnOffType.ON);
+			Activator.getPub().post(itemCommandEvent);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public void publish(Event event) {
+		// Kept for the interface, but it will not be called
+	}
+
+	public void unregister() {
+		super.unregister();
+	}
 
 }

@@ -21,6 +21,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ASN1ValueRangeConstraint {
-    long min();
-    long max();
+	long min();
+
+	long max();
 }

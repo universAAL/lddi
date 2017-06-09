@@ -26,86 +26,67 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.*;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1ElementMetadata
-    extends ASN1FieldMetadata
-{
-    private String  name             = "";
-    private boolean isOptional      = true;
-    private boolean hasTag          = false;
-    private boolean isImplicitTag   = false;
-    private int     tagClass        = TagClass.ContextSpecific;
-    private int     tag             = 0;
-    private boolean hasDefaultValue = false;
+public class ASN1ElementMetadata extends ASN1FieldMetadata {
+	private String name = "";
+	private boolean isOptional = true;
+	private boolean hasTag = false;
+	private boolean isImplicitTag = false;
+	private int tagClass = TagClass.ContextSpecific;
+	private int tag = 0;
+	private boolean hasDefaultValue = false;
 
-    public ASN1ElementMetadata(ASN1Element annotation) {
-        this(
-            annotation.name(),
-            annotation.isOptional(),
-            annotation.hasTag(),
-            annotation.isImplicitTag(),
-            annotation.tagClass(),
-            annotation.tag(),
-            annotation.hasDefaultValue()
-        );
-    }
-    
-    public ASN1ElementMetadata(String  name,
-                               boolean isOptional,
-                               boolean hasTag,
-                               boolean isImplicitTag,
-                               int     tagClass,
-                               int     tag,
-                               boolean hasDefaultValue)
-    {
-        super(name);
+	public ASN1ElementMetadata(ASN1Element annotation) {
+		this(annotation.name(), annotation.isOptional(), annotation.hasTag(), annotation.isImplicitTag(),
+				annotation.tagClass(), annotation.tag(), annotation.hasDefaultValue());
+	}
 
-        this.isOptional      = isOptional;
-        this.hasTag          = hasTag;
-        this.isImplicitTag   = isImplicitTag;
-        this.tagClass        = tagClass;
-        this.tag             = tag;
-        this.hasDefaultValue = hasDefaultValue;
-    }
+	public ASN1ElementMetadata(String name, boolean isOptional, boolean hasTag, boolean isImplicitTag, int tagClass,
+			int tag, boolean hasDefaultValue) {
+		super(name);
 
-    public boolean isOptional()
-    {
-        return isOptional;
-    }
+		this.isOptional = isOptional;
+		this.hasTag = hasTag;
+		this.isImplicitTag = isImplicitTag;
+		this.tagClass = tagClass;
+		this.tag = tag;
+		this.hasDefaultValue = hasDefaultValue;
+	}
 
-    public boolean hasTag()
-    {
-        return hasTag;
-    }
+	public boolean isOptional() {
+		return isOptional;
+	}
 
-    public boolean isImplicitTag()
-    {
-        return isImplicitTag;
-    }
+	public boolean hasTag() {
+		return hasTag;
+	}
 
-    public int getTagClass()
-    {
-        return tagClass;
-    }
+	public boolean isImplicitTag() {
+		return isImplicitTag;
+	}
 
-    public int getTag()
-    {
-        return tag;
-    }
+	public int getTagClass() {
+		return tagClass;
+	}
 
-    public boolean hasDefaultValue()
-    {
-        return hasDefaultValue;
-    }
+	public int getTag() {
+		return tag;
+	}
 
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodePreparedElement(object,stream,elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {    
-        //return decoder.decodePreparedElement(decodedTag,objectClass,elementInfo,stream);        
-        elementInfo.setPreparedInstance(null);
-        return decoder.decodeElement(decodedTag,objectClass,elementInfo,stream);
-    }
-    
+	public boolean hasDefaultValue() {
+		return hasDefaultValue;
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodePreparedElement(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		// return
+		// decoder.decodePreparedElement(decodedTag,objectClass,elementInfo,stream);
+		elementInfo.setPreparedInstance(null);
+		return decoder.decodeElement(decodedTag, objectClass, elementInfo, stream);
+	}
+
 }

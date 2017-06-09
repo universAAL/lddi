@@ -21,20 +21,28 @@ import java.lang.annotation.*;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.TagClass;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target( {ElementType.FIELD })
+@Target({ ElementType.FIELD })
 public @interface ASN1Element {
-    String name() default "";
-    boolean isOptional() default true;
-    boolean hasTag() default false;    
-    boolean isImplicitTag() default true;
-    int tagClass() default TagClass.ContextSpecific;
-    int tag() default 0;
-    boolean hasDefaultValue() default false;
-    /*
-     * Used to get fields in declaration order. Not all java virtual machines
-     * returns fields in order in getDeclaredFields method.
-     * Next annotation is desirable to be automatically set by BNCompiler
-     */
-    boolean hasExplicitOrder () default false;
-    int declarationOrder() default -1;
+	String name() default "";
+
+	boolean isOptional() default true;
+
+	boolean hasTag() default false;
+
+	boolean isImplicitTag() default true;
+
+	int tagClass() default TagClass.ContextSpecific;
+
+	int tag() default 0;
+
+	boolean hasDefaultValue() default false;
+
+	/*
+	 * Used to get fields in declaration order. Not all java virtual machines
+	 * returns fields in order in getDeclaredFields method. Next annotation is
+	 * desirable to be automatically set by BNCompiler
+	 */
+	boolean hasExplicitOrder() default false;
+
+	int declarationOrder() default -1;
 }

@@ -21,70 +21,68 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
- /**
-  * This class implements an output stream in which the data is 
-  * written into a reverse byte array. The buffer automatically grows as data 
-  * is written to it. 
-  * The data can be retrieved using <code>toByteArray()</code> and
-  * <code>toString()</code>.
-  * <p>
-  * Closing a <tt>ByteArrayOutputStream</tt> has no effect. The methods in
-  * this class can be called after the stream has been closed without
-  * generating an <tt>IOException</tt>.
-  *
-  */
+/**
+ * This class implements an output stream in which the data is written into a
+ * reverse byte array. The buffer automatically grows as data is written to it.
+ * The data can be retrieved using <code>toByteArray()</code> and
+ * <code>toString()</code>.
+ * <p>
+ * Closing a <tt>ByteArrayOutputStream</tt> has no effect. The methods in this
+ * class can be called after the stream has been closed without generating an
+ * <tt>IOException</tt>.
+ *
+ */
 public class ReverseByteArrayOutputStream extends ByteArrayOutputStream {
-    public ReverseByteArrayOutputStream() {
-        super(1024);
-    }
+	public ReverseByteArrayOutputStream() {
+		super(1024);
+	}
 
-    public synchronized void writeTo(OutputStream out) throws IOException {
-        byte[] bufTmp = toByteArray();
-        out.write(bufTmp, 0, bufTmp.length);
-    }
-    
-    public synchronized byte toByteArray()[] {
-        byte newbuf[] = new byte[count];
-        System.arraycopy(buf, buf.length - count, newbuf, 0, count);
-        return newbuf;
-    }
+	public synchronized void writeTo(OutputStream out) throws IOException {
+		byte[] bufTmp = toByteArray();
+		out.write(bufTmp, 0, bufTmp.length);
+	}
 
-    public String toString() {
-        return new String(toByteArray());
-    }
-    
-    public String toString(String enc) throws UnsupportedEncodingException {
-        return new String(toByteArray(),enc);
-    }
-    
-    public synchronized void write(int b) {
-        int newcount = count + 1;
-        resizeBuffer(newcount);
-        buf[buf.length - 1 - count] = (byte)b;
-        count = newcount;
-    }
+	public synchronized byte toByteArray()[] {
+		byte newbuf[] = new byte[count];
+		System.arraycopy(buf, buf.length - count, newbuf, 0, count);
+		return newbuf;
+	}
 
-    protected void resizeBuffer(int newcount) {
-        if (newcount > buf.length) {
-            byte newbuf[] = new byte[Math.max(buf.length << 1, newcount)];
-            //System.arraycopy(buf, 0, newbuf, 0, count);
-	    // Memory corruption bug fix. Thanks to John Finley.
-	    System.arraycopy(buf, buf.length - count, newbuf, newbuf.length - count, count);
-            buf = newbuf;
-        }
-    }
+	public String toString() {
+		return new String(toByteArray());
+	}
 
-    public synchronized void write(byte b[], int off, int len) {
-        if ((off < 0) || (off > b.length) || (len < 0) ||
-            ((off + len) > b.length) || ((off + len) < 0)) {
-            throw new IndexOutOfBoundsException();
-        } else if (len == 0) {
-            return;
-        }
-        int newcount = count + len;
-        resizeBuffer(newcount);        
-        System.arraycopy(b, off, buf, buf.length - count - len, len);
-        count = newcount;
-    }
+	public String toString(String enc) throws UnsupportedEncodingException {
+		return new String(toByteArray(), enc);
+	}
+
+	public synchronized void write(int b) {
+		int newcount = count + 1;
+		resizeBuffer(newcount);
+		buf[buf.length - 1 - count] = (byte) b;
+		count = newcount;
+	}
+
+	protected void resizeBuffer(int newcount) {
+		if (newcount > buf.length) {
+			byte newbuf[] = new byte[Math.max(buf.length << 1, newcount)];
+			// System.arraycopy(buf, 0, newbuf, 0, count);
+			// Memory corruption bug fix. Thanks to John Finley.
+			System.arraycopy(buf, buf.length - count, newbuf, newbuf.length - count, count);
+			buf = newbuf;
+		}
+	}
+
+	public synchronized void write(byte b[], int off, int len) {
+		if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) > b.length) || ((off + len) < 0)) {
+			throw new IndexOutOfBoundsException();
+		} else if (len == 0) {
+			return;
+		}
+		int newcount = count + len;
+		resizeBuffer(newcount);
+		System.arraycopy(b, off, buf, buf.length - count - len, len);
+		count = newcount;
+	}
 
 }

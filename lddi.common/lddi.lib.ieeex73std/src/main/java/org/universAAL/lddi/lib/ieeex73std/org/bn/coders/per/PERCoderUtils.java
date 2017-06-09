@@ -25,47 +25,41 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ElementInfo;
 import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.UniversalTag;
 
 public class PERCoderUtils {
-    public static int getMaxBitLength(long value) {
-        int bitCnt = 0;
-        while( value !=0 ) {
-            value >>>= 1;
-            bitCnt++;
-        }
-        return bitCnt;
-    }    
-    
-    public static int getRealFieldsCount(Class objectClass, ElementInfo info) {
-        int result = 0;            
-        if(info.hasPreparedInfo()) {
-            result = info.getPreparedInfo().getFields().length;
-        }
-        else {
-            for(Field item: objectClass.getDeclaredFields()) {
-                if(!item.isSynthetic())
-                    result++;
-            }
-        }
-        return result;
-    }
-    
-    public static List<Field> getRealFields(Class objectClass) {        
-        List<Field> result = new LinkedList<Field>();        
-        for(Field item: objectClass.getDeclaredFields()) {
-            if(!item.isSynthetic())
-                result.add(item);
-        }
-        return result;
-    }
-    
-    public static boolean is7BitEncodedString(ElementInfo elementInfo) {
-        int stringType = CoderUtils.getStringTagForElement(elementInfo);
-        boolean is7Bit = 
-            ( 
-                stringType == UniversalTag.PrintableString || 
-                stringType ==UniversalTag.VisibleString
-            )
-            ;
-        return is7Bit;
-    }
-    
+	public static int getMaxBitLength(long value) {
+		int bitCnt = 0;
+		while (value != 0) {
+			value >>>= 1;
+			bitCnt++;
+		}
+		return bitCnt;
+	}
+
+	public static int getRealFieldsCount(Class objectClass, ElementInfo info) {
+		int result = 0;
+		if (info.hasPreparedInfo()) {
+			result = info.getPreparedInfo().getFields().length;
+		} else {
+			for (Field item : objectClass.getDeclaredFields()) {
+				if (!item.isSynthetic())
+					result++;
+			}
+		}
+		return result;
+	}
+
+	public static List<Field> getRealFields(Class objectClass) {
+		List<Field> result = new LinkedList<Field>();
+		for (Field item : objectClass.getDeclaredFields()) {
+			if (!item.isSynthetic())
+				result.add(item);
+		}
+		return result;
+	}
+
+	public static boolean is7BitEncodedString(ElementInfo elementInfo) {
+		int stringType = CoderUtils.getStringTagForElement(elementInfo);
+		boolean is7Bit = (stringType == UniversalTag.PrintableString || stringType == UniversalTag.VisibleString);
+		return is7Bit;
+	}
+
 }

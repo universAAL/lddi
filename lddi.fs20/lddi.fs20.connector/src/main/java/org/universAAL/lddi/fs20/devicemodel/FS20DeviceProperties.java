@@ -54,8 +54,7 @@ public class FS20DeviceProperties {
 	 *            = the type of the device, e.g. motionsensor, display, FMS,
 	 *            gong
 	 */
-	public FS20DeviceProperties(String URI, String name, String housecode,
-			String devicecode, FS20DeviceTypes type) {
+	public FS20DeviceProperties(String URI, String name, String housecode, String devicecode, FS20DeviceTypes type) {
 		super();
 		this.URI = URI;
 		this.name = name;
@@ -89,9 +88,8 @@ public class FS20DeviceProperties {
 	 * @param location
 	 *            = the location of the device, e.g. livingroom
 	 */
-	public FS20DeviceProperties(String URI, String name, String housecode,
-			String devicecode, FS20DeviceTypes type, String value, String description,
-			String functiondescription, String location) {
+	public FS20DeviceProperties(String URI, String name, String housecode, String devicecode, FS20DeviceTypes type,
+			String value, String description, String functiondescription, String location) {
 		this.URI = URI;
 		this.name = name;
 		this.housecode = housecode;
@@ -183,8 +181,6 @@ public class FS20DeviceProperties {
 	public String getLocation() {
 		return location;
 	}
-	
-
 
 	/**
 	 * Returns all properties as a string
@@ -192,14 +188,10 @@ public class FS20DeviceProperties {
 	 * @return A string of all properties
 	 */
 	public String toString() {
-		return "Name:" + getName() + "; " + "ID:" + getURI() + "; "
-				+ "Housecode:" + getHousecode() + "; " + "Devicecode:"
-				+ getDevicecode() + "; " + "DeviceType:" + getDeviceType()
-				+ "; " + "MeasuredValue:" + getMeasurementValue() + "; "
-				+ "Description:" + getDeviceDescription() + "; "
-				+ "FunctionDescription:" + getFunctionDesciption() + "; "
-				+ "Location:" + getLocation();
+		return "Name:" + getName() + "; " + "ID:" + getURI() + "; " + "Housecode:" + getHousecode() + "; "
+				+ "Devicecode:" + getDevicecode() + "; " + "DeviceType:" + getDeviceType() + "; " + "MeasuredValue:"
+				+ getMeasurementValue() + "; " + "Description:" + getDeviceDescription() + "; " + "FunctionDescription:"
+				+ getFunctionDesciption() + "; " + "Location:" + getLocation();
 	}
-	
 
 }

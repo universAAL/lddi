@@ -33,55 +33,49 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.UniversalTag;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1StringMetadata
-    extends ASN1FieldMetadata
-{
-    private boolean isUCS = false;
-    private int     stringType = UniversalTag.PrintableString ;
-    private boolean hasDefaults = false;
-    
-    public ASN1StringMetadata() {
-        hasDefaults = true;
-    }
-    
-    public ASN1StringMetadata(ASN1String annotation) {
-        this(annotation.name(),annotation.isUCS(),annotation.stringType());
-    }
+public class ASN1StringMetadata extends ASN1FieldMetadata {
+	private boolean isUCS = false;
+	private int stringType = UniversalTag.PrintableString;
+	private boolean hasDefaults = false;
 
-    public ASN1StringMetadata(String  name,
-                              boolean isUCS,
-                              int     stringType)
-    {
-        super(name);
-        this.isUCS = isUCS;
-        this.stringType = stringType;
-    }
+	public ASN1StringMetadata() {
+		hasDefaults = true;
+	}
 
-    public boolean isUCS()
-    {
-        return isUCS;
-    }
+	public ASN1StringMetadata(ASN1String annotation) {
+		this(annotation.name(), annotation.isUCS(), annotation.stringType());
+	}
 
-    public int getStringType()
-    {
-        return stringType;
-    }
-    
-    public void setParentAnnotated(AnnotatedElement parent) {
-        if(parent!=null) {
-            if(parent.isAnnotationPresent(ASN1String.class)) {
-                ASN1String value = parent.getAnnotation(ASN1String.class);
-                stringType = value.stringType();
-            }    
-        }        
-    }
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeString(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeString(decodedTag,objectClass,elementInfo,stream);
-    }    
+	public ASN1StringMetadata(String name, boolean isUCS, int stringType) {
+		super(name);
+		this.isUCS = isUCS;
+		this.stringType = stringType;
+	}
+
+	public boolean isUCS() {
+		return isUCS;
+	}
+
+	public int getStringType() {
+		return stringType;
+	}
+
+	public void setParentAnnotated(AnnotatedElement parent) {
+		if (parent != null) {
+			if (parent.isAnnotationPresent(ASN1String.class)) {
+				ASN1String value = parent.getAnnotation(ASN1String.class);
+				stringType = value.stringType();
+			}
+		}
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeString(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeString(decodedTag, objectClass, elementInfo, stream);
+	}
 }

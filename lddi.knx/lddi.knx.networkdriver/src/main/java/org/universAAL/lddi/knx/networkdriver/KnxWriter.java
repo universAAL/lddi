@@ -76,20 +76,16 @@ public class KnxWriter {
 				// mcSocket.setTimeToLive(socketTTL);
 			} catch (UnknownHostException e) {
 				core.getLogger().log(LogService.LOG_ERROR,
-								"UnknownHostException - configuration of multicastIp in config file seems wrong! "
-										+ e.getMessage());
-			} catch (IOException e) {
-				core.getLogger().log(
-						LogService.LOG_ERROR,
-						"Error creating the multicast socket! "
+						"UnknownHostException - configuration of multicastIp in config file seems wrong! "
 								+ e.getMessage());
+			} catch (IOException e) {
+				core.getLogger().log(LogService.LOG_ERROR, "Error creating the multicast socket! " + e.getMessage());
 				e.printStackTrace();
 			}
 		} else {
 			// Using direct UDP connection (Tunneling)
 			try {
-				remoteEndPoint = new InetSocketAddress(core.getKnxGatewayIp(),
-						core.getKnxGatewayPort());
+				remoteEndPoint = new InetSocketAddress(core.getKnxGatewayIp(), core.getKnxGatewayPort());
 				// localEndPoint = new InetSocketAddress(core.getMyIp(), core
 				// .getMyPort());
 
@@ -97,8 +93,7 @@ public class KnxWriter {
 				dgSocket.connect(remoteEndPoint);
 
 			} catch (SocketException e) {
-				core.getLogger().log(LogService.LOG_ERROR,
-						"Error creating the UDP socket! " + e.getMessage());
+				core.getLogger().log(LogService.LOG_ERROR, "Error creating the UDP socket! " + e.getMessage());
 				e.printStackTrace();
 			}
 		}
@@ -113,41 +108,34 @@ public class KnxWriter {
 	 *            knx command
 	 * @param commandType
 	 */
-	public void write(String deviceAddress, byte[] dataByte,
-			KnxCommand commandType) {
-		if (this.lastDeviceAddress != null
-				&& this.lastDeviceAddress.equals(deviceAddress)
-				&& Arrays.equals(this.lastDataByte, dataByte)
-				&& this.lastCommandType == commandType) {
+	public void write(String deviceAddress, byte[] dataByte, KnxCommand commandType) {
+		if (this.lastDeviceAddress != null && this.lastDeviceAddress.equals(deviceAddress)
+				&& Arrays.equals(this.lastDataByte, dataByte) && this.lastCommandType == commandType) {
 			// same command as last time; set Repeat-Bit
 			this.repeatBit = true;
 		}
 
-		byte[] telegram = KnxEncoder.encode(repeatBit, sourceByte,
-				deviceAddress, dataByte, commandType, core.isMulticast());
+		byte[] telegram = KnxEncoder.encode(repeatBit, sourceByte, deviceAddress, dataByte, commandType,
+				core.isMulticast());
 
 		try {
 			// Generating UDP packet
-			DatagramPacket packet = new DatagramPacket(telegram,
-					telegram.length, GROUP_ADDRESS, GROUP_PORT);
+			DatagramPacket packet = new DatagramPacket(telegram, telegram.length, GROUP_ADDRESS, GROUP_PORT);
 
-			core.getLogger().log(
-					LogService.LOG_INFO,
-					"Sending command to KNX: "
-							+ KnxEncoder.convertToReadableHex(telegram));
+			core.getLogger().log(LogService.LOG_INFO,
+					"Sending command to KNX: " + KnxEncoder.convertToReadableHex(telegram));
 
 			// Sending the packet
 			if (core.isMulticast() && mcSocket.isBound()) {
 				// using multicast socket
-				core.getLogger().log(LogService.LOG_INFO,"Sending on multicast channel!");
+				core.getLogger().log(LogService.LOG_INFO, "Sending on multicast channel!");
 				mcSocket.send(packet);
 			} else if (dgSocket.isBound()) {
-				core.getLogger().log(LogService.LOG_INFO,"Sending on direct UDP channel!");
+				core.getLogger().log(LogService.LOG_INFO, "Sending on direct UDP channel!");
 				dgSocket.send(packet);
 			} else {
-				core.getLogger().log(LogService.LOG_WARNING,"Not sent on any channel!");
-				throw new Exception(
-						"Unable to write to KNX bus! Socket not bound to destination address!");
+				core.getLogger().log(LogService.LOG_WARNING, "Not sent on any channel!");
+				throw new Exception("Unable to write to KNX bus! Socket not bound to destination address!");
 			}
 
 			// store last sent command
@@ -157,8 +145,7 @@ public class KnxWriter {
 			this.lastCommandType = commandType;
 
 		} catch (IOException e) {
-			core.getLogger().log(LogService.LOG_ERROR,
-					"Unable to write to KNX bus! " + e.getMessage());
+			core.getLogger().log(LogService.LOG_ERROR, "Unable to write to KNX bus! " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
 			core.getLogger().log(LogService.LOG_ERROR, e.getMessage());
@@ -256,21 +243,17 @@ public class KnxWriter {
 
 			// Translating commands from String to byte[]
 			// adding 00 for status and READ as message type
-			byte[] telegram = KnxEncoder.encode(false, sourceByte, deviceId,
-					new byte[] { 0 }, KnxCommand.VALUE_READ, true);
+			byte[] telegram = KnxEncoder.encode(false, sourceByte, deviceId, new byte[] { 0 }, KnxCommand.VALUE_READ,
+					true);
 
 			// Generating UDP packet
-			DatagramPacket packet = new DatagramPacket(telegram,
-					telegram.length, addr, core.getMulticastUdpPort());
+			DatagramPacket packet = new DatagramPacket(telegram, telegram.length, addr, core.getMulticastUdpPort());
 
 			// Sending the packet
-			core.getLogger().log(LogService.LOG_INFO,
-					"Requesting status from KNX (group-)device " + deviceId);
+			core.getLogger().log(LogService.LOG_INFO, "Requesting status from KNX (group-)device " + deviceId);
 			mcSocket.send(packet);
-			core.getLogger().log(
-					LogService.LOG_DEBUG,
-					"Sending KNX command "
-							+ KnxEncoder.convertToReadableHex(telegram));
+			core.getLogger().log(LogService.LOG_DEBUG,
+					"Sending KNX command " + KnxEncoder.convertToReadableHex(telegram));
 
 			this.lastPacketSent = KnxEncoder.removeTrailingZeros(telegram);
 			// core.getLogger().log(LogService.LOG_DEBUG,
@@ -282,8 +265,7 @@ public class KnxWriter {
 			// mcSocket.close();
 
 		} catch (Exception e) {
-			core.getLogger().log(LogService.LOG_ERROR,
-					"Unable to write to KNX bus " + e);
+			core.getLogger().log(LogService.LOG_ERROR, "Unable to write to KNX bus " + e);
 		}
 	}
 

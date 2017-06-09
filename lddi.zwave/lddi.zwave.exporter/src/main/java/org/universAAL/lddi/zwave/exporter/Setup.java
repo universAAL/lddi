@@ -25,43 +25,41 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Setup {
-public static final String SETUP_FILENAME = "ZWaveDataPublisher.properties";
-	
+	public static final String SETUP_FILENAME = "ZWaveDataPublisher.properties";
+
 	private static String setupFileName = null;
-	
+
 	private static String configFolderPath = Activator.context.getConfigHome().getAbsolutePath();
-	
+
 	static public String getSetupFileName() {
 		if (setupFileName != null) {
 			return setupFileName;
 		}
 		File dir1 = new File(".");
 		try {
-			if(configFolderPath.substring(configFolderPath.length() - 1)!="/"){
-				configFolderPath+="/";
+			if (configFolderPath.substring(configFolderPath.length() - 1) != "/") {
+				configFolderPath += "/";
 			}
-			setupFileName = configFolderPath+"ZWaveDataPublisher/"+SETUP_FILENAME;
-            System.out.println("Fichero: "+setupFileName);
+			setupFileName = configFolderPath + "ZWaveDataPublisher/" + SETUP_FILENAME;
+			System.out.println("Fichero: " + setupFileName);
 			return setupFileName;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-		
-	
-	public String getVeraAddress(){
+
+	public String getVeraAddress() {
 		Properties properties = new Properties();
 		try {
 			String setup = getSetupFileName();
-			System.out.println("setup is in: "+setup);
-		    properties.load(new FileInputStream(setup));
-		    return properties.getProperty("VeraAddress");
+			System.out.println("setup is in: " + setup);
+			properties.load(new FileInputStream(setup));
+			return properties.getProperty("VeraAddress");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return null;
-	}	
-}
 
+		return null;
+	}
+}

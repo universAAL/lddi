@@ -24,5 +24,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ASN1BitString {
-    String name() default "";
+	String name() default "";
 }

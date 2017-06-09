@@ -29,27 +29,26 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public class ASN1RealMetadata extends ASN1FieldMetadata
-{
-    public ASN1RealMetadata() {
-        
-    }
-    
-    public ASN1RealMetadata(String name)
-    {
-        super(name);
-    }
-    
-    public ASN1RealMetadata(ASN1Real annotation) {
-        this(annotation.name());
-    }           
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
-        return encoder.encodeReal(object, stream, elementInfo);
-    }    
-    
-    public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeReal(decodedTag,objectClass,elementInfo,stream);
-    }    
+public class ASN1RealMetadata extends ASN1FieldMetadata {
+	public ASN1RealMetadata() {
+
+	}
+
+	public ASN1RealMetadata(String name) {
+		super(name);
+	}
+
+	public ASN1RealMetadata(ASN1Real annotation) {
+		this(annotation.name());
+	}
+
+	public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo)
+			throws Exception {
+		return encoder.encodeReal(object, stream, elementInfo);
+	}
+
+	public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass,
+			ElementInfo elementInfo, InputStream stream) throws Exception {
+		return decoder.decodeReal(decodedTag, objectClass, elementInfo, stream);
+	}
 }

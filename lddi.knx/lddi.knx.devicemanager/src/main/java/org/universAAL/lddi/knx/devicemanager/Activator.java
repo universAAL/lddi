@@ -34,22 +34,22 @@ public class Activator implements BundleActivator {
 
 	private LogTracker logTracker;
 	private KnxDeviceManager knxDeviceManager;
-	
+
 	public void start(BundleContext context) throws Exception {
-		//use a service Tracker for LogService
+		// use a service Tracker for LogService
 		logTracker = new LogTracker(context);
 		logTracker.open();
-		
+
 		knxDeviceManager = new KnxDeviceManager(context, logTracker);
 	}
 
-
 	public void stop(BundleContext context) throws Exception {
 		// the OSGi framework automatically unregisters any services
-		// registered by this bundle when it is deactivated 
-		// but references of devices in knx.networkdriver must be removed manually
+		// registered by this bundle when it is deactivated
+		// but references of devices in knx.networkdriver must be removed
+		// manually
 		knxDeviceManager.stop();
-		this.logTracker.log(LogService.LOG_WARNING,"KnxDeviceManager stopped!");
+		this.logTracker.log(LogService.LOG_WARNING, "KnxDeviceManager stopped!");
 	}
 
 }

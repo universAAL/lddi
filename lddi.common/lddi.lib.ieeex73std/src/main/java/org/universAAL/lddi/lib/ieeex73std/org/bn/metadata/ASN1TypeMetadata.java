@@ -20,10 +20,8 @@ package org.universAAL.lddi.lib.ieeex73std.org.bn.metadata;
 /**
  * @author jcfinley@users.sourceforge.net
  */
-public abstract class ASN1TypeMetadata extends ASN1Metadata
-{
-    public ASN1TypeMetadata(String name)
-    {
-        super(name);
-    }
+public abstract class ASN1TypeMetadata extends ASN1Metadata {
+	public ASN1TypeMetadata(String name) {
+		super(name);
+	}
 }

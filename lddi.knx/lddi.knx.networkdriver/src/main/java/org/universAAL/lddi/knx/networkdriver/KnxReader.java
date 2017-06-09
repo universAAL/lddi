@@ -47,27 +47,28 @@ import tuwien.auto.calimero.process.ProcessCommunicator;
 import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
 
 /**
- * Listens on IP network for KNX Packets.
- * According to configuration this class listens either on a UDP multicast channel,
- * or established a direct tunneling connection to the KNX/IP gateway.
+ * Listens on IP network for KNX Packets. According to configuration this class
+ * listens either on a UDP multicast channel, or established a direct tunneling
+ * connection to the KNX/IP gateway.
  * 
- * Uses KNXEncoder to operate translation from low level data (knx) to high level data (sent to uAAL).
+ * Uses KNXEncoder to operate translation from low level data (knx) to high
+ * level data (sent to uAAL).
  * 
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxReader implements Runnable {
 
 	private boolean shutdown = false;
-	
+
 	protected KnxNetworkDriverImp core;
 
 	static private int socketTimeout = 0; // infinite timeout on receive()
 
 	private MulticastSocket mcReceiver;
 
-    static InetAddress GROUP_ADDRESS;
-    static int GROUP_PORT;
-    
+	static InetAddress GROUP_ADDRESS;
+	static int GROUP_PORT;
+
 	private KNXNetworkLinkIP tunnel;
 	private ProcessCommunicator pc;
 
@@ -75,7 +76,7 @@ public class KnxReader implements Runnable {
 		this.core = core;
 		try {
 			GROUP_ADDRESS = InetAddress.getByName(core.getMulticastIp());
-	        GROUP_PORT = core.getMulticastUdpPort();
+			GROUP_PORT = core.getMulticastUdpPort();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,212 +84,185 @@ public class KnxReader implements Runnable {
 	}
 
 	public void run() {
-	    while (!shutdown) {
-		if (core.isMulticast()) {
-			// USING UDP MULTICAST!
-			core.getLogger().log(LogService.LOG_INFO,
-				"KNX network driver listens on UDP MULTICAST CHANNEL for KNX telegrams!");
-			try {
-				// create socket on KNX port
-				this.mcReceiver = new MulticastSocket(core.getMulticastUdpPort());
-				InetAddress group = InetAddress.getByName(core.getMulticastIp());
-				this.mcReceiver.joinGroup(group);
-				this.mcReceiver.setSoTimeout(socketTimeout);
-
+		while (!shutdown) {
+			if (core.isMulticast()) {
+				// USING UDP MULTICAST!
 				core.getLogger().log(LogService.LOG_INFO,
-						"Server KNX listening on port " +
-						core.getMulticastUdpPort() + " (joined " +
-						core.getMulticastIp() + ")");
+						"KNX network driver listens on UDP MULTICAST CHANNEL for KNX telegrams!");
+				try {
+					// create socket on KNX port
+					this.mcReceiver = new MulticastSocket(core.getMulticastUdpPort());
+					InetAddress group = InetAddress.getByName(core.getMulticastIp());
+					this.mcReceiver.joinGroup(group);
+					this.mcReceiver.setSoTimeout(socketTimeout);
 
-				while (!Thread.currentThread().isInterrupted()) {
+					core.getLogger().log(LogService.LOG_INFO, "Server KNX listening on port "
+							+ core.getMulticastUdpPort() + " (joined " + core.getMulticastIp() + ")");
 
-					byte buffer[] = new byte[mcReceiver.getReceiveBufferSize()];
-					DatagramPacket udpPacket = new DatagramPacket(buffer,
-							buffer.length);
+					while (!Thread.currentThread().isInterrupted()) {
 
-					// blocking here...
-					this.mcReceiver.receive(udpPacket);
-					// The datagram packet contains also the mcSocket's IP
-					// address, and the port number on the mcSocket's machine.
-					// This method blocks until a datagram is received.
+						byte buffer[] = new byte[mcReceiver.getReceiveBufferSize()];
+						DatagramPacket udpPacket = new DatagramPacket(buffer, buffer.length);
 
-					byte[] temp = udpPacket.getData();
+						// blocking here...
+						this.mcReceiver.receive(udpPacket);
+						// The datagram packet contains also the mcSocket's IP
+						// address, and the port number on the mcSocket's
+						// machine.
+						// This method blocks until a datagram is received.
 
-					byte[] dataPacket = KnxEncoder.removeTrailingZeros(temp);
+						byte[] temp = udpPacket.getData();
 
-					core.getLogger().log(LogService.LOG_DEBUG,
-							"Incoming command from KNX: " +
-							udpPacket.getAddress().toString() + " " +
-							KnxEncoder.convertToReadableHex(dataPacket));
+						byte[] dataPacket = KnxEncoder.removeTrailingZeros(temp);
 
-					// if this packet was just sent by KnxWriter discard it
-					if (Arrays.equals(dataPacket, core.network.getLastSentPacket())) {
 						core.getLogger().log(LogService.LOG_DEBUG,
-							"Discard incoming UDP Multicast Packet " +
-							"which was just sent by KnxWriter " +
-							KnxEncoder.convertToReadableHex(dataPacket));
-						continue;
-					}
+								"Incoming command from KNX: " + udpPacket.getAddress().toString() + " "
+										+ KnxEncoder.convertToReadableHex(dataPacket));
 
-					byte[] lastPacket = core.network.getLastSentPacket();
-					if (lastPacket != null) {
-						core.getLogger().log(LogService.LOG_DEBUG,
-							"last sent command: " +
-							KnxEncoder.convertToReadableHex(lastPacket));
-					}
-
-					// 17 data bytes minimum!
-					// remove the header from the data packet (8 bytes)
-					int l = (dataPacket.length) - 8; // 8 bytes header
-					byte[] knxPacket = new byte[l];
-					System.arraycopy(temp, 8, knxPacket, 0, l);
-
-					KnxTelegram telegram = KnxEncoder.decode(knxPacket);
-					if (telegram == null) {
-						core.getLogger().log(LogService.LOG_WARNING,
-							"Incoming command from KNX bus is not valid " +
-							"and will not be processed! --- " + 
-							udpPacket.getAddress().toString() + " BYTEs " +
-							KnxEncoder.convertToReadableHex(dataPacket));
-						continue;
-					}
-
-					String groupAddress = KnxEncoder
-							.convertGroupAddressToReadable(telegram
-									.getDestByte());
-
-					core.getLogger().log(LogService.LOG_INFO,
-							"KNX telegram received (" + knxPacket.length
-									+ " bytes - data length:"
-									+ telegram.getDataLength() + "): "
-									+ telegram.toString());
-					core.getLogger().log(LogService.LOG_DEBUG,
-							"Source: " + groupAddress + "; TELEGRAM: " +
-									KnxEncoder.convertToReadableHex(knxPacket));
-
-//					if (telegram.isTelegramIsDatapointType1()) {
-//						this.core.newMessageFromHouse(groupAddress,
-//								new byte[] { telegram.getDpt1DataByte() });
-//					} else {
-						this.core.newMessageFromHouse(groupAddress, telegram
-								.getDataByte());
-//					}
-
-				}
-			} catch (SocketException se) {
-				core.getLogger().log(LogService.LOG_INFO,
-						"UDP Multicast Socket closed! Stop listening!");
-			} catch (Exception e) {
-				core.getLogger().log(LogService.LOG_ERROR, e.getMessage());
-				e.printStackTrace();
-			} finally {
-				shutdown = true;
-			}
-
-		} else {
-			// USING DIRECT TUNNELING!
-			core.getLogger().log(LogService.LOG_INFO,
-					"KNX network driver uses DIRECT TUNNELING to KNX gateway!");
-
-			InetSocketAddress remoteEndPoint = new InetSocketAddress(core
-					.getKnxGatewayIp(), core.getKnxGatewayPort());
-			InetSocketAddress localEndPoint = new InetSocketAddress(core
-					.getMyIp(), core.getMyPort());
-
-			core.getLogger().log(
-					LogService.LOG_INFO,
-					"Creating IP tunnel from " + localEndPoint + " to "
-							+ remoteEndPoint);
-
-			try {
-				tunnel = new KNXNetworkLinkIP(KNXNetworkLinkIP.TUNNEL,
-						localEndPoint, remoteEndPoint, false, new TPSettings(
-								false));
-				pc = new ProcessCommunicatorImpl(tunnel);
-
-				tunnel.addLinkListener(new NetworkLinkListener() {
-					public void confirmation(final FrameEvent frameEvent) {
-						core.getLogger().log(LogService.LOG_INFO,
-								"Confirmation " + frameEvent);
-					}
-
-					public void indication(final FrameEvent frameEvent) {
-						core.getLogger().log(LogService.LOG_DEBUG,
-								"Indication " + KnxEncoder
-								.convertToReadableHex(frameEvent.getFrame().toByteArray()));
-
-//						byte[] frameBytes = frameEvent.getFrameBytes(); // is always null!!
-//						if (frameBytes != null) {
-//							core.getLogger().log(LogService.LOG_ERROR,
-//									"Received KNX frame: " + frameBytes);
-//							core
-//									.getLogger()
-//									.log(
-//											LogService.LOG_ERROR,
-//											"Received KNX frame: "
-//													+ KnxEncoder
-//															.convertToReadableHex(frameBytes));
-//						}
-
-						final CEMILData frame = (CEMILData) frameEvent
-								.getFrame();
-						KNXAddress destAddress = frame.getDestination();
-						final byte[] apdu = frame.getPayload();
-						
-						core.getLogger().log(LogService.LOG_INFO,
-								"Received KNX frame with destination address " 
-								+ destAddress + " and payload " + KnxEncoder
-								.convertToReadableHex(apdu));
-						
-
-						// prepare data bytes
-						byte[] databyte = null;
-						if (apdu.length == 2) // datapoint type = 1
-							databyte = new byte[] {(byte) (apdu[1] & 0x3F)};
-						else {
-							databyte = new byte[apdu.length-2];
-							System.arraycopy(apdu, 2, databyte, 0, apdu.length-2);
+						// if this packet was just sent by KnxWriter discard it
+						if (Arrays.equals(dataPacket, core.network.getLastSentPacket())) {
+							core.getLogger().log(LogService.LOG_DEBUG,
+									"Discard incoming UDP Multicast Packet " + "which was just sent by KnxWriter "
+											+ KnxEncoder.convertToReadableHex(dataPacket));
+							continue;
 						}
-						
-//						core.getLogger().log(LogService.LOG_ERROR, "DATABYTE: " 
-//								+ KnxEncoder.convertToReadableHex(databyte));
-						
-						
-						// pass on to core driver
-						core.newMessageFromHouse(destAddress.toString(), databyte);
-								
+
+						byte[] lastPacket = core.network.getLastSentPacket();
+						if (lastPacket != null) {
+							core.getLogger().log(LogService.LOG_DEBUG,
+									"last sent command: " + KnxEncoder.convertToReadableHex(lastPacket));
+						}
+
+						// 17 data bytes minimum!
+						// remove the header from the data packet (8 bytes)
+						int l = (dataPacket.length) - 8; // 8 bytes header
+						byte[] knxPacket = new byte[l];
+						System.arraycopy(temp, 8, knxPacket, 0, l);
+
+						KnxTelegram telegram = KnxEncoder.decode(knxPacket);
+						if (telegram == null) {
+							core.getLogger().log(LogService.LOG_WARNING,
+									"Incoming command from KNX bus is not valid " + "and will not be processed! --- "
+											+ udpPacket.getAddress().toString() + " BYTEs "
+											+ KnxEncoder.convertToReadableHex(dataPacket));
+							continue;
+						}
+
+						String groupAddress = KnxEncoder.convertGroupAddressToReadable(telegram.getDestByte());
+
+						core.getLogger().log(LogService.LOG_INFO, "KNX telegram received (" + knxPacket.length
+								+ " bytes - data length:" + telegram.getDataLength() + "): " + telegram.toString());
+						core.getLogger().log(LogService.LOG_DEBUG, "Source: " + groupAddress + "; TELEGRAM: "
+								+ KnxEncoder.convertToReadableHex(knxPacket));
+
+						// if (telegram.isTelegramIsDatapointType1()) {
+						// this.core.newMessageFromHouse(groupAddress,
+						// new byte[] { telegram.getDpt1DataByte() });
+						// } else {
+						this.core.newMessageFromHouse(groupAddress, telegram.getDataByte());
+						// }
+
 					}
+				} catch (SocketException se) {
+					core.getLogger().log(LogService.LOG_INFO, "UDP Multicast Socket closed! Stop listening!");
+				} catch (Exception e) {
+					core.getLogger().log(LogService.LOG_ERROR, e.getMessage());
+					e.printStackTrace();
+				} finally {
+					shutdown = true;
+				}
 
-					
-					public void linkClosed(final CloseEvent closeEvent) {
-						core.getLogger().log(LogService.LOG_WARNING,
-								"Closed event " + closeEvent.getReason());
+			} else {
+				// USING DIRECT TUNNELING!
+				core.getLogger().log(LogService.LOG_INFO, "KNX network driver uses DIRECT TUNNELING to KNX gateway!");
 
-						// TODO: What to do when the tunnel is closed by the
-						// gateway?
-					}
-				});
+				InetSocketAddress remoteEndPoint = new InetSocketAddress(core.getKnxGatewayIp(),
+						core.getKnxGatewayPort());
+				InetSocketAddress localEndPoint = new InetSocketAddress(core.getMyIp(), core.getMyPort());
 
-			} catch (KNXLinkClosedException e) {
-				core.getLogger().log(LogService.LOG_ERROR,
-						"KnxReader: KNX NETWORK LINK was CLOSED! " + e.getMessage());
-			} catch (KNXRemoteException e) {
-				core.getLogger().log(LogService.LOG_ERROR,
-						"KnxReader: KNX NETWORK LINK problem: " + e.getMessage());
-			} catch (KNXTimeoutException e) {
-				core.getLogger().log(LogService.LOG_ERROR,
-						"KnxReader: KNX NETWORK LINK problem: " + e.getMessage());
-			} catch (KNXException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				shutdown = true;
+				core.getLogger().log(LogService.LOG_INFO,
+						"Creating IP tunnel from " + localEndPoint + " to " + remoteEndPoint);
+
+				try {
+					tunnel = new KNXNetworkLinkIP(KNXNetworkLinkIP.TUNNEL, localEndPoint, remoteEndPoint, false,
+							new TPSettings(false));
+					pc = new ProcessCommunicatorImpl(tunnel);
+
+					tunnel.addLinkListener(new NetworkLinkListener() {
+						public void confirmation(final FrameEvent frameEvent) {
+							core.getLogger().log(LogService.LOG_INFO, "Confirmation " + frameEvent);
+						}
+
+						public void indication(final FrameEvent frameEvent) {
+							core.getLogger().log(LogService.LOG_DEBUG, "Indication "
+									+ KnxEncoder.convertToReadableHex(frameEvent.getFrame().toByteArray()));
+
+							// byte[] frameBytes = frameEvent.getFrameBytes();
+							// // is always null!!
+							// if (frameBytes != null) {
+							// core.getLogger().log(LogService.LOG_ERROR,
+							// "Received KNX frame: " + frameBytes);
+							// core
+							// .getLogger()
+							// .log(
+							// LogService.LOG_ERROR,
+							// "Received KNX frame: "
+							// + KnxEncoder
+							// .convertToReadableHex(frameBytes));
+							// }
+
+							final CEMILData frame = (CEMILData) frameEvent.getFrame();
+							KNXAddress destAddress = frame.getDestination();
+							final byte[] apdu = frame.getPayload();
+
+							core.getLogger().log(LogService.LOG_INFO, "Received KNX frame with destination address "
+									+ destAddress + " and payload " + KnxEncoder.convertToReadableHex(apdu));
+
+							// prepare data bytes
+							byte[] databyte = null;
+							if (apdu.length == 2) // datapoint type = 1
+								databyte = new byte[] { (byte) (apdu[1] & 0x3F) };
+							else {
+								databyte = new byte[apdu.length - 2];
+								System.arraycopy(apdu, 2, databyte, 0, apdu.length - 2);
+							}
+
+							// core.getLogger().log(LogService.LOG_ERROR,
+							// "DATABYTE: "
+							// + KnxEncoder.convertToReadableHex(databyte));
+
+							// pass on to core driver
+							core.newMessageFromHouse(destAddress.toString(), databyte);
+
+						}
+
+						public void linkClosed(final CloseEvent closeEvent) {
+							core.getLogger().log(LogService.LOG_WARNING, "Closed event " + closeEvent.getReason());
+
+							// TODO: What to do when the tunnel is closed by the
+							// gateway?
+						}
+					});
+
+				} catch (KNXLinkClosedException e) {
+					core.getLogger().log(LogService.LOG_ERROR,
+							"KnxReader: KNX NETWORK LINK was CLOSED! " + e.getMessage());
+				} catch (KNXRemoteException e) {
+					core.getLogger().log(LogService.LOG_ERROR,
+							"KnxReader: KNX NETWORK LINK problem: " + e.getMessage());
+				} catch (KNXTimeoutException e) {
+					core.getLogger().log(LogService.LOG_ERROR,
+							"KnxReader: KNX NETWORK LINK problem: " + e.getMessage());
+				} catch (KNXException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					shutdown = true;
+				}
 			}
 		}
-	    }
 	}
-	
 
 	public void stopReader() {
 		if (this.mcReceiver != null)

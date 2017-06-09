@@ -29,52 +29,55 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt5;
  */
 public class KnxDpt5GroupDevice extends KnxGroupDevice implements IKnxDpt5 {
 
-    /**
-     * empty constructor for factory
-     */
-    public KnxDpt5GroupDevice() {
-    	super(MY_DEVICE_CATEGORY);
-    }
+	/**
+	 * empty constructor for factory
+	 */
+	public KnxDpt5GroupDevice() {
+		super(MY_DEVICE_CATEGORY);
+	}
 
-    /**
-     * calculate percentage according to datapoint sub-type.
-     * 8-bit extra data byte; e.g. 80:b3; 80:33
-     * 
-     * @return -1 if there is no detailed specification of the given datapointTypeSubNumber in the KNX standard.
-     * @return 0 if the given datapointTypeSubNumber is not defined in the KNX standard.
-     */
+	/**
+	 * calculate percentage according to datapoint sub-type. 8-bit extra data
+	 * byte; e.g. 80:b3; 80:33
+	 * 
+	 * @return -1 if there is no detailed specification of the given
+	 *         datapointTypeSubNumber in the KNX standard.
+	 * @return 0 if the given datapointTypeSubNumber is not defined in the KNX
+	 *         standard.
+	 */
 	public static float calculatePercentage(byte[] payload, int datapointTypeSubNumber) {
 		int i_value = payload[1] & 0xFF; // get unsigned byte
-		
+
 		switch (datapointTypeSubNumber) {
 		case 1:
-			return (float)i_value * RESOLUTION_5_001; 
+			return (float) i_value * RESOLUTION_5_001;
 		case 3:
-			return (float)i_value * RESOLUTION_5_003;
+			return (float) i_value * RESOLUTION_5_003;
 		case 4:
-			return (float)i_value * RESOLUTION_5_004;
+			return (float) i_value * RESOLUTION_5_004;
 		case 5:
 			return -1f;
 		case 6:
 			return -1f;
 		case 10:
-			return (float)i_value * RESOLUTION_5_010;
+			return (float) i_value * RESOLUTION_5_010;
 		default:
 			return 0f;
 		}
 	}
 
-    /**
-     * calculate byte from float value according to datapoint sub-type.
-     * 8-bit extra data byte; e.g. 00:b3; 00:33
-     * 
-     * @return null if there is no detailed specification of the given datapointTypeSubNumber in the KNX standard,
-     * or the given datapointTypeSubNumber is not defined in the KNX standard.
-     */
+	/**
+	 * calculate byte from float value according to datapoint sub-type. 8-bit
+	 * extra data byte; e.g. 00:b3; 00:33
+	 * 
+	 * @return null if there is no detailed specification of the given
+	 *         datapointTypeSubNumber in the KNX standard, or the given
+	 *         datapointTypeSubNumber is not defined in the KNX standard.
+	 */
 	public static byte[] createPayloadFromFloatValue(float value, int datapointTypeSubNumber) {
 		// apci byte (always 0 here) + payload (1 byte)
-		byte[] ret = new byte[]{0,0};
-		
+		byte[] ret = new byte[] { 0, 0 };
+
 		switch (datapointTypeSubNumber) {
 		case 1:
 			ret[1] = (byte) (value / RESOLUTION_5_001);

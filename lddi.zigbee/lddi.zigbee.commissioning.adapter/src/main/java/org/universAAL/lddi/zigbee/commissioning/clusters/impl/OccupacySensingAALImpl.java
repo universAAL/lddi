@@ -43,7 +43,7 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 
 	private OccupancyBridgeListenersAAL eventBridge;
 
-	public OccupacySensingAALImpl(ZigBeeDevice zbDevice){		
+	public OccupacySensingAALImpl(ZigBeeDevice zbDevice) {
 
 		occupacySensingCluster = new OccupacySensingClusterAAL(zbDevice);
 
@@ -54,12 +54,13 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 		ultraSonicOccupiedToUnoccupiedDelay = occupacySensingCluster.getAttributeUltraSonicOccupiedToUnoccupiedDelay();
 		ultraSonicUnoccupiedToOccupiedDelay = occupacySensingCluster.getAttributeUltraSonicUnoccupiedToOccupiedDelay();
 		pirUnoccupiedToOccupiedThreshold = occupacySensingCluster.getAttributePIRUnoccupiedToOccupiedThreshold();
-		ultrasonicUnoccupiedToOccupiedThreshold = occupacySensingCluster.getAttributeUltrasonicUnoccupiedToOccupiedThreshold();
+		ultrasonicUnoccupiedToOccupiedThreshold = occupacySensingCluster
+				.getAttributeUltrasonicUnoccupiedToOccupiedThreshold();
 
-		eventBridge = new OccupancyBridgeListenersAAL(Activator.getConfiguration(), occupancy, this, 2);		
+		eventBridge = new OccupancyBridgeListenersAAL(Activator.getConfiguration(), occupancy, this, 2);
 	}
 
-	public OccupacySensingAALImpl(ZigBeeDevice zbDevice, long minTimeBeforeNotifyStatusChange){		
+	public OccupacySensingAALImpl(ZigBeeDevice zbDevice, long minTimeBeforeNotifyStatusChange) {
 
 		occupacySensingCluster = new OccupacySensingClusterAAL(zbDevice);
 
@@ -70,9 +71,11 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 		ultraSonicOccupiedToUnoccupiedDelay = occupacySensingCluster.getAttributeUltraSonicOccupiedToUnoccupiedDelay();
 		ultraSonicUnoccupiedToOccupiedDelay = occupacySensingCluster.getAttributeUltraSonicUnoccupiedToOccupiedDelay();
 		pirUnoccupiedToOccupiedThreshold = occupacySensingCluster.getAttributePIRUnoccupiedToOccupiedThreshold();
-		ultrasonicUnoccupiedToOccupiedThreshold = occupacySensingCluster.getAttributeUltrasonicUnoccupiedToOccupiedThreshold();
+		ultrasonicUnoccupiedToOccupiedThreshold = occupacySensingCluster
+				.getAttributeUltrasonicUnoccupiedToOccupiedThreshold();
 
-		eventBridge = new OccupancyBridgeListenersAAL(Activator.getConfiguration(), occupancy, this, minTimeBeforeNotifyStatusChange);		
+		eventBridge = new OccupancyBridgeListenersAAL(Activator.getConfiguration(), occupancy, this,
+				minTimeBeforeNotifyStatusChange);
 	}
 
 	public Attribute getOccupancy() {
@@ -127,10 +130,10 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 		eventBridge.unsubscribe(listener);
 	}
 
-	public Attribute getAttribute(int id) {		
+	public Attribute getAttribute(int id) {
 		Attribute[] attributes = occupacySensingCluster.getAvailableAttributes();
 		for (int i = 0; i < attributes.length; i++) {
-			if( attributes[i].getId() == id ) 
+			if (attributes[i].getId() == id)
 				return attributes[i];
 		}
 		return null;
@@ -146,5 +149,5 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 
 	public Attribute getUltraSonicUnoccupiedToOccupiedThreshold() {
 		return ultrasonicUnoccupiedToOccupiedThreshold;
-	}	
+	}
 }

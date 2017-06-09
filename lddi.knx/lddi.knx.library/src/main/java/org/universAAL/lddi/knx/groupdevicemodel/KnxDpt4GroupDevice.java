@@ -29,16 +29,15 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt4;
  */
 public class KnxDpt4GroupDevice extends KnxGroupDevice implements IKnxDpt4 {
 
-    /**
-     * empty constructor for factory
-     */
-    public KnxDpt4GroupDevice() {
-    	super(MY_DEVICE_CATEGORY);
-    }
+	/**
+	 * empty constructor for factory
+	 */
+	public KnxDpt4GroupDevice() {
+		super(MY_DEVICE_CATEGORY);
+	}
 
-
-    public static String convertHexToString(CharacterSet characterSet) {
-    	// http://www.mkyong.com/java/how-to-convert-hex-to-ascii-in-java/
-    	return null;
-    }
+	public static String convertHexToString(CharacterSet characterSet) {
+		// http://www.mkyong.com/java/how-to-convert-hex-to-ascii-in-java/
+		return null;
+	}
 }

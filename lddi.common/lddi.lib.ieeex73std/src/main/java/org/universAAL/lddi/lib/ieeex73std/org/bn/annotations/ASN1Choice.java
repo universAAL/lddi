@@ -21,5 +21,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface ASN1Choice {
-    String name() default "";
+	String name() default "";
 }
