@@ -22,7 +22,7 @@
 		<bundle start-level="88" start="true">mvn:org.universAAL.middleware/mw.brokers.control.osgi/${mw.brokers.control.osgi.version}</bundle>
 		<bundle start-level="88" start="true">mvn:org.universAAL.middleware/mw.modules.aalspace.osgi/${mw.modules.aalspace.osgi.version}</bundle>
 		<bundle start-level="88" start="true">mvn:org.universAAL.middleware/mw.managers.aalspace.osgi/${mw.managers.aalspace.osgi.version}</bundle>
-		<bundle start-level="88" start="true">mvn:org.universAAL.middleware/mw.data.serialization.osgi/${mw.data.serialization.osgi.version}</bundle>
+		<bundle start-level="88" start="true">mvn:org.universAAL.middleware/mw.data.serialization.turtle.osgi/${mw.data.serialization.turtle.osgi.version}</bundle>
 		<bundle start-level="89" start="true">mvn:org.universAAL.middleware/mw.bus.model.osgi/${mw.bus.model.osgi.version}</bundle>
 		<bundle start-level="90" start="true">mvn:org.universAAL.middleware/mw.bus.context.osgi/${mw.bus.context.osgi.version}</bundle>	
 		<bundle start-level="90" start="true">mvn:org.universAAL.middleware/mw.bus.service.osgi/${mw.bus.service.osgi.version}</bundle>
