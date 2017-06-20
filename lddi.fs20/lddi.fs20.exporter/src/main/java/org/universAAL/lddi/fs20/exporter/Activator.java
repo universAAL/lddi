@@ -34,7 +34,7 @@ import org.universAAL.lddi.fs20.devicemodel.FS20SIGDevice;
 import org.universAAL.lddi.fs20.devicemodel.FS20STDevice;
 import org.universAAL.lddi.fs20.exporter.util.LogTracker;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 
 /**
  * This bundle notices OSGi service events. If a new service is registered the
@@ -66,7 +66,7 @@ public class Activator implements BundleActivator, ServiceListener {
 
 		context.addServiceListener(this);
 
-		Activator.mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		Activator.mc = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 
 		// use a service Tracker for LogService
 		logTracker = new LogTracker(context);

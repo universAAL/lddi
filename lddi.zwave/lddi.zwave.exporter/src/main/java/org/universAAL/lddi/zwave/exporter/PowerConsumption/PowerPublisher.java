@@ -21,7 +21,7 @@ package org.universAAL.lddi.zwave.exporter.PowerConsumption;
 
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
@@ -41,7 +41,7 @@ public class PowerPublisher {
 	public PowerPublisher(BundleContext context) {
 		System.out.print("New Publisher\n");
 		info = new ContextProvider("http://www.tsbtecnologias.es/ContextProvider.owl#ZWaveEventPublisher");
-		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		mc = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		info.setType(ContextProviderType.gauge);
 		info.setProvidedEvents(new ContextEventPattern[] { new ContextEventPattern() });
 		cp = new DefaultContextPublisher(mc, info);

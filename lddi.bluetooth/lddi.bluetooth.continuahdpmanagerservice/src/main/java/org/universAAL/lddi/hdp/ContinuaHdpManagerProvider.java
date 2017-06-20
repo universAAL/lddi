@@ -31,7 +31,7 @@ package org.universAAL.lddi.hdp;
 import org.osgi.framework.BundleContext;
 import org.universAAL.lddi.manager.publisher.hdpManager;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceCall;
@@ -60,7 +60,7 @@ public class ContinuaHdpManagerProvider extends ServiceCallee {
 	}
 
 	protected ContinuaHdpManagerProvider(BundleContext context) {
-		super(uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context }),
+		super(OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context }),
 				ProvidedContinuaHdpManagerService.profiles);
 		ctx = context;
 	}

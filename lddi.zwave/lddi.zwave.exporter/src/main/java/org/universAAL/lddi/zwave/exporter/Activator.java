@@ -29,7 +29,7 @@ import org.universAAL.lddi.zwave.exporter.PowerConsumption.PowerReader;
 import org.universAAL.lddi.zwave.exporter.Server.MotionDecoderFactory;
 import org.universAAL.lddi.zwave.exporter.Server.MotionServer;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 
 public class Activator implements BundleActivator {
 	public static BundleContext osgiContext = null;
@@ -39,7 +39,7 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext bcontext) throws Exception {
 		ctx = bcontext;
-		context = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { bcontext });
+		context = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { bcontext });
 		new Thread() {
 			public void run() {
 				System.out.print("Running power reader \n");

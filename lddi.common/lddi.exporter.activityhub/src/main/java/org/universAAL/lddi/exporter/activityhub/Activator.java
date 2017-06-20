@@ -24,7 +24,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.lddi.exporter.activityhub.util.LogTracker;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 
 /**
  * This bundle provides drivers for ActivityHub device services in OSGi
@@ -48,7 +48,7 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
-		Activator.mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		Activator.mc = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 
 		// use a service Tracker for LogService
 		logTracker = new LogTracker(context);

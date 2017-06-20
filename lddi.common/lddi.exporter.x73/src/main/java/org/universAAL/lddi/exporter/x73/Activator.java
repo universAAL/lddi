@@ -25,7 +25,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.exporter.x73.util.LogTracker;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 
 /**
  * This bundle connects to the local operating system dbus and gathers
@@ -51,7 +51,7 @@ public class Activator implements BundleActivator {
 		// "http://ontology.universAAL.org/X73.owl#BloodPressureMonitor");
 
 		Activator.context = context;
-		Activator.moduleContext = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		Activator.moduleContext = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 
 		// use a service Tracker for LogService
 		logTracker = new LogTracker(context);

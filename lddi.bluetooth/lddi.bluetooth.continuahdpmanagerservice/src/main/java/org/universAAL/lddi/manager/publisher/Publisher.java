@@ -32,7 +32,7 @@ package org.universAAL.lddi.manager.publisher;
 // Imports
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.ContextPublisher;
@@ -71,7 +71,7 @@ public class Publisher {
 	public Publisher(BundleContext context) {
 		// Instantiate the context provider info with a valid provider URI
 		cpInfo = new ContextProvider(PUBLISHER_URI_PREFIX + "personalHealthDeviceContextProvider");
-		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		mc = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		// Set to type gauge (only publishes data information it senses)
 		cpInfo.setType(ContextProviderType.gauge);
 		// Set the provided events to unknown with an empty pattern

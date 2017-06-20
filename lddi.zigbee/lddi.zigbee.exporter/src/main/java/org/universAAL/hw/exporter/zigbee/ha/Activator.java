@@ -32,7 +32,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceListener;
 import org.universAAL.hw.exporter.zigbee.ha.devices.listeners.*;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 public class Activator implements BundleActivator {
@@ -45,7 +45,7 @@ public class Activator implements BundleActivator {
 
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
-		Activator.moduleContext = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		Activator.moduleContext = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		listeners[0] = new DimmerLightListener(context);
 		listeners[1] = new OnOffLightListener(context);
 		listeners[2] = new PresenceDetectorListener(context);

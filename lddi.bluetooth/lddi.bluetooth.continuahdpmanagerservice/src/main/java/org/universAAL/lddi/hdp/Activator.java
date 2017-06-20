@@ -31,7 +31,7 @@ package org.universAAL.lddi.hdp;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 // Main class
@@ -47,7 +47,7 @@ public class Activator implements BundleActivator {
 	/** Start method */
 	public void start(final BundleContext context) throws Exception {
 		// Config
-		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		mc = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 		provider = new ContinuaHdpManagerProvider(context);
 		// Log
 		LogUtils.logInfo(mc, getClass(), "start", new String[] { "Start Continua HDP manager" }, null);
