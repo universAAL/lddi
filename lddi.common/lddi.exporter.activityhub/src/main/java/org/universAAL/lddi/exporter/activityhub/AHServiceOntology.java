@@ -44,7 +44,7 @@ import org.universAAL.ontology.phThing.PhysicalThing;
 public class AHServiceOntology extends ActivityHub {
 
 	// define namespace URIs
-	public static final String ACTIVITYHUB_SERVER_NAMESPACE = Resource.uAAL_NAMESPACE_PREFIX + "ActivityHubServer.owl#";
+	public static final String ACTIVITYHUB_SERVER_NAMESPACE = Resource.NAMESPACE_PREFIX + "ActivityHubServer.owl#";
 
 	public static final String MY_URI = ACTIVITYHUB_SERVER_NAMESPACE + "ActivityHubService";
 

@@ -41,7 +41,7 @@ public class Activator implements BundleActivator {
 
 	private Properties types;
 
-	public static final String NAMESPACE = Resource.uAAL_NAMESPACE_PREFIX + "ESHExporter.owl#";
+	public static final String NAMESPACE = Resource.NAMESPACE_PREFIX + "ESHExporter.owl#";
 
 	public void start(BundleContext bcontext) throws Exception {
 		// Set contexts

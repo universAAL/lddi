@@ -80,7 +80,7 @@ public class DimmerLightCallee extends ExporterDimmerCallee implements CurrentLe
 		// Commissioning
 		String locationSuffix = Activator.getProperties().getProperty(deviceSuffix);
 		if (locationSuffix != null && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
-			ontologyDevice.setLocation(new Room(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + locationSuffix));
+			ontologyDevice.setLocation(new Room(Constants.MIDDLEWARE_LOCAL_ID_PREFIX + locationSuffix));
 		} else {
 			Properties prop = Activator.getProperties();
 			prop.setProperty(deviceSuffix, Activator.UNINITIALIZED_SUFFIX);

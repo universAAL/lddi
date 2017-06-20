@@ -50,7 +50,7 @@ public class FS20ContextPublisher {
 	// Context provider info (provider type)
 	ContextProvider cpInfo = new ContextProvider();
 
-	public static final String FS20_SERVER_NAMESPACE = Resource.uAAL_NAMESPACE_PREFIX + "FS20Manager.owl#";
+	public static final String FS20_SERVER_NAMESPACE = Resource.NAMESPACE_PREFIX + "FS20Manager.owl#";
 
 	/**
 	 * Constructor.
