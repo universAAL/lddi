@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="614" branches-covered="0" branches-valid="104" complexity="2.4078947368421053" version="2.1.1" timestamp="1498295586378">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="614" branches-covered="0" branches-valid="104" complexity="2.4078947368421053" version="2.1.1" timestamp="1498343352744">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/lddi/lddi.zigbee/lddi.zigbee.exporter/src/main/java</source>
@@ -749,7 +749,7 @@
 								<line number="56" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="&lt;init&gt;" signature="(Lorg/universAAL/middleware/container/ModuleContext;Lorg/universAAL/lddi/zigbee/commissioning/devices/api/IAS_ZoneAAL;)V" line-rate="0.0" branch-rate="0.0" complexity="0">
+						<method name="&lt;init&gt;" signature="(Lorg/universAAL/middleware/container/ModuleContext;Lorg/universAAL/lddi/zigbee/commissioning/devices/api/IAS_ZoneBridge;)V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="73" hits="0" branch="false"/>
 								<line number="74" hits="0" branch="false"/>
@@ -873,7 +873,7 @@
 								<line number="54" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="&lt;init&gt;" signature="(Lorg/universAAL/middleware/container/ModuleContext;Lorg/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="&lt;init&gt;" signature="(Lorg/universAAL/middleware/container/ModuleContext;Lorg/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorBridge;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="71" hits="0" branch="false"/>
 								<line number="72" hits="0" branch="false"/>
@@ -1515,7 +1515,7 @@
 								<line number="62" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="registeruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="registerService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="66" hits="0" branch="false"/>
 								<line number="68" hits="0" branch="false"/>
@@ -1523,7 +1523,7 @@
 								<line number="70" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
+						<method name="unregisterService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="82" hits="0" branch="false"/>
 								<line number="84" hits="0" branch="false"/>
@@ -1541,7 +1541,7 @@
 								<line number="92" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="unregisterService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="74" hits="0" branch="false"/>
 								<line number="76" hits="0" branch="false"/>
@@ -1679,7 +1679,7 @@
 								<line number="51" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="registeruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="registerService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="55" hits="0" branch="false"/>
 								<line number="57" hits="0" branch="false"/>
@@ -1687,7 +1687,7 @@
 								<line number="59" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
+						<method name="unregisterService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="71" hits="0" branch="false"/>
 								<line number="73" hits="0" branch="false"/>
@@ -1705,7 +1705,7 @@
 								<line number="81" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="unregisterService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="63" hits="0" branch="false"/>
 								<line number="65" hits="0" branch="false"/>
@@ -1757,7 +1757,7 @@
 								<line number="51" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="registeruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="registerService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="55" hits="0" branch="false"/>
 								<line number="57" hits="0" branch="false"/>
@@ -1765,7 +1765,7 @@
 								<line number="59" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
+						<method name="unregisterService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="71" hits="0" branch="false"/>
 								<line number="73" hits="0" branch="false"/>
@@ -1783,7 +1783,7 @@
 								<line number="81" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="unregisterService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="63" hits="0" branch="false"/>
 								<line number="65" hits="0" branch="false"/>
@@ -1835,7 +1835,7 @@
 								<line number="62" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="registeruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="registerService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="66" hits="0" branch="false"/>
 								<line number="68" hits="0" branch="false"/>
@@ -1843,7 +1843,7 @@
 								<line number="70" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
+						<method name="unregisterService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="82" hits="0" branch="false"/>
 								<line number="84" hits="0" branch="false"/>
@@ -1861,7 +1861,7 @@
 								<line number="92" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="unregisterService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="74" hits="0" branch="false"/>
 								<line number="76" hits="0" branch="false"/>
@@ -1913,7 +1913,7 @@
 								<line number="61" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="registeruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="registerService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="65" hits="0" branch="false"/>
 								<line number="67" hits="0" branch="false"/>
@@ -1921,7 +1921,7 @@
 								<line number="69" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
+						<method name="unregisterService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="81" hits="0" branch="false"/>
 								<line number="83" hits="0" branch="false"/>
@@ -1939,7 +1939,7 @@
 								<line number="91" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="unregisterService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="73" hits="0" branch="false"/>
 								<line number="75" hits="0" branch="false"/>
@@ -1991,7 +1991,7 @@
 								<line number="62" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="registeruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="registerService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="66" hits="0" branch="false"/>
 								<line number="68" hits="0" branch="false"/>
@@ -1999,7 +1999,7 @@
 								<line number="70" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
+						<method name="unregisterService" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="82" hits="0" branch="false"/>
 								<line number="84" hits="0" branch="false"/>
@@ -2017,7 +2017,7 @@
 								<line number="92" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="unregisteruAALService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="unregisterService" signature="(Lorg/osgi/framework/ServiceReference;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="74" hits="0" branch="false"/>
 								<line number="76" hits="0" branch="false"/>

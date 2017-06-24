@@ -19,9 +19,9 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>universAAL LDDI ZigBee exporter for uAAL - Home Automation - Checkstyle report</title>
+    <title>universAAL LDDI ZigBee exporter - Home Automation - Checkstyle report</title>
     <link>http://lddi/lddi.zigbee/lddi.zigbee.exporter/</link>
-    <description>universAAL LDDI ZigBee exporter for uAAL - Home Automation - Checkstyle report</description>
+    <description>universAAL LDDI ZigBee exporter - Home Automation - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2008 - 2017 Instituto Tecnologico de Aplicaciones de Comunicacion Avanzadas - Grupo Tecnologias para la Salud y el Bienestar (TSB)</copyright>
     <item>

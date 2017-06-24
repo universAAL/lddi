@@ -19,9 +19,9 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>universAAL LDDI Eclipse-Smarthome Exporter - Checkstyle report</title>
+    <title>universAAL LDDI Eclipse Smarthome Exporter - Checkstyle report</title>
     <link>http://lddi/lddi.smarthome/lddi.smarthome.exporter/</link>
-    <description>universAAL LDDI Eclipse-Smarthome Exporter - Checkstyle report</description>
+    <description>universAAL LDDI Eclipse Smarthome Exporter - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2010 - 2017 universAAL Consortium</copyright>
     <item>

@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 6,
              Errors: 106,
-             Warnings: 16,
+             Warnings: 17,
              Infos: 6
       </title>
             <link>http://lddi/lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice//checkstyle.html</link>
@@ -66,7 +66,7 @@ under the License.
                   1
                 </td>
                 <td>
-                  11
+                  12
                 </td>
                 <td>
                   50

@@ -104,7 +104,7 @@
 <tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * uAAL service provider (service bus) for the ActivityHub no ontology</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * universAAL service provider (service bus) for the ActivityHub no ontology</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;45</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * definitions here!</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
@@ -124,7 +124,7 @@
 <tr>  <td class="numLine">&nbsp;53</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;54</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;        <span class="keyword">static</span> <span class="keyword">final</span> String LOCATION_URI_PREFIX = <span class="string">"urn:aal_space:myHome#"</span>;</pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">static</span> <span class="keyword">final</span> String LOCATION_URI_PREFIX = <span class="string">"urn:space:myHome#"</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;55</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">static</span> <span class="keyword">final</span> String ACTIVITYHUB_LOCATION_PREFIX = <span class="string">"MDC_AI_LOCATION_"</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
@@ -147,7 +147,7 @@
 <tr>  <td class="numLine">&nbsp;65</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> AHServiceProvider(AHManager ahManager) {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                <span class="comment">/** register my services on uAAL service bus */</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                <span class="comment">/** register my services on universAAL service bus */</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">super</span>(Activator.mc, AHServiceOntology.profiles);</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
@@ -156,7 +156,7 @@
 <tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;72</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">this</span>.logger.log(LogService.LOG_INFO, AHServiceOntology.profiles.length</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                + <span class="string">" ActivityHubServer services registered on uAAL service bus:"</span> + getserviceNames());</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                + <span class="string">" ActivityHubServer services registered on universAAL service bus:"</span> + getserviceNames());</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;74</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        }</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
@@ -542,7 +542,7 @@
 <tr>  <td class="numLine">&nbsp;308</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">/**</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;309</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment">         * handle service request from uAAL service bus</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">         * handle service request from universAAL service bus</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;310</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">         *</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;311</td>  <td class="nbHits">&nbsp;</td>
@@ -632,7 +632,7 @@
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">public</span> <span class="keyword">void</span> communicationChannelBroken() {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;362</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                LogUtils.logWarn(Activator.mc, AHServiceProvider.<span class="keyword">class</span>, <span class="string">"communicationChannelBroken"</span>,</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;363</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                                <span class="keyword">new</span> Object[] { <span class="string">"Service Bus is stopped by the uAAL middleware!"</span> }, <span class="keyword">null</span>);</pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                                <span class="keyword">new</span> Object[] { <span class="string">"Service Bus is stopped by the universAAL middleware!"</span> }, <span class="keyword">null</span>);</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;364</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        }</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;365</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
@@ -727,6 +727,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 6/24/17 9:14 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 6/24/17 10:31 PM.</div>
 </body>
 </html>

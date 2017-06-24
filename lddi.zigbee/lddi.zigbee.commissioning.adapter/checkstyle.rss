@@ -46,30 +46,16 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL.java">org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorAAL.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupancyBridgeListeners.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupancyBridgeListeners.java</a>
                 </td>
                 <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.impl.OccupancySensorDeviceAAL.java">org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDeviceAAL.java</a>
+                  4
                 </td>
                 <td>
                   2
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  12
+                  23
                 </td>
               </tr>
                           <tr>
@@ -88,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL.java">org/universAAL/lddi/zigbee/commissioning/clusters/api/OccupacySensingAAL.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingBridge.java">org/universAAL/lddi/zigbee/commissioning/clusters/api/OccupacySensingBridge.java</a>
                 </td>
                 <td>
                   0
@@ -102,13 +88,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.impl.IAS_ZoneDeviceAAL.java">org/universAAL/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDeviceAAL.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneImpl.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/IASZoneImpl.java</a>
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
-                  2
+                  0
+                </td>
+                <td>
+                  33
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge.java">org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorBridge.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   9
@@ -116,27 +116,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingClusterAAL.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupacySensingClusterAAL.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.impl.OccupancySensorDevice.java">org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDevice.java</a>
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  30
+                  12
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneClusterAAL.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/IASZoneClusterAAL.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneClusterImpl.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/IASZoneClusterImpl.java</a>
                 </td>
                 <td>
                   2
                 </td>
                 <td>
-                  2
+                  3
                 </td>
                 <td>
                   14
@@ -144,21 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupancyBridgeListenersAAL.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupancyBridgeListenersAAL.java</a>
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  23
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneAAL.java">org/universAAL/lddi/zigbee/commissioning/clusters/api/IASZoneAAL.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneBridge.java">org/universAAL/lddi/zigbee/commissioning/clusters/api/IASZoneBridge.java</a>
                 </td>
                 <td>
                   1
@@ -172,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL.java">org/universAAL/lddi/zigbee/commissioning/devices/api/IAS_ZoneAAL.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge.java">org/universAAL/lddi/zigbee/commissioning/devices/api/IAS_ZoneBridge.java</a>
                 </td>
                 <td>
                   1
@@ -186,21 +172,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneAALImpl.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/IASZoneAALImpl.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingCluster.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupacySensingCluster.java</a>
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  33
+                  30
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingAALImpl.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupacySensingAALImpl.java</a>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingImpl.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupacySensingImpl.java</a>
                 </td>
                 <td>
                   1
@@ -210,6 +196,20 @@ under the License.
                 </td>
                 <td>
                   47
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.impl.IAS_ZoneDevice.java">org/universAAL/lddi/zigbee/commissioning/devices/impl/IAS_ZoneDevice.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  9
                 </td>
               </tr>
                       </tbody>
