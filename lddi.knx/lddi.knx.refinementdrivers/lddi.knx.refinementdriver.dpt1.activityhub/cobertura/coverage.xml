@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="148" branches-covered="0" branches-valid="24" complexity="1.7777777777777777" version="2.1.1" timestamp="1498200052442">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="148" branches-covered="0" branches-valid="24" complexity="1.7777777777777777" version="2.1.1" timestamp="1498295558103">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/lddi/lddi.knx/lddi.knx.refinementdrivers/lddi.knx.refinementdriver.dpt1.activityhub/src/main/java</source>

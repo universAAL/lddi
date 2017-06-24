@@ -28,7 +28,7 @@ under the License.
       <title>File: 8,
              Errors: 106,
              Warnings: 42,
-             Infos: 46
+             Infos: 35
       </title>
             <link>http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html</link>
       <description>
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.ISO11073DBusServer.java">org/universAAL/lddi/exporter/x73/ISO11073DBusServer.java</a>
                 </td>
                 <td>
-                  4
+                  2
                 </td>
                 <td>
                   4
@@ -105,7 +105,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.Activator.java">org/universAAL/lddi/exporter/x73/Activator.java</a>
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   1
@@ -119,7 +119,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.MyAgent.java">org/universAAL/lddi/exporter/x73/MyAgent.java</a>
                 </td>
                 <td>
-                  22
+                  21
                 </td>
                 <td>
                   16
@@ -133,7 +133,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.ISO11073ContextProvider.java">org/universAAL/lddi/exporter/x73/ISO11073ContextProvider.java</a>
                 </td>
                 <td>
-                  8
+                  4
                 </td>
                 <td>
                   4
@@ -147,7 +147,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.exporter.x73//checkstyle.html#org.universAAL.lddi.exporter.x73.util.LogTracker.java">org/universAAL/lddi/exporter/x73/util/LogTracker.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1

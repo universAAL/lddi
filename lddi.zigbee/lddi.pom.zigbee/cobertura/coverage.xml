@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="1409" branches-covered="0" branches-valid="357" complexity="2.308411214953271" version="2.1.1" timestamp="1498200307881">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="1409" branches-covered="0" branches-valid="357" complexity="2.308411214953271" version="2.1.1" timestamp="1498295698136">
 	<sources>
 		<source>/home/travis/build/universAAL/lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter/src/main/java</source>
 		<source>--source</source>

@@ -28,7 +28,7 @@ under the License.
       <title>File: 4,
              Errors: 52,
              Warnings: 3,
-             Infos: 14
+             Infos: 1
       </title>
             <link>http://lddi/lddi.knx/lddi.knx.devicemanager//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.devicemanager//checkstyle.html#org.universAAL.lddi.knx.devicemanager.KnxDeviceManager.java">org/universAAL/lddi/knx/devicemanager/KnxDeviceManager.java</a>
                 </td>
                 <td>
-                  6
+                  1
                 </td>
                 <td>
                   1
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.devicemanager//checkstyle.html#org.universAAL.lddi.knx.devicemanager.KnxImporter.java">org/universAAL/lddi/knx/devicemanager/KnxImporter.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   0
@@ -77,7 +77,7 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.devicemanager//checkstyle.html#org.universAAL.lddi.knx.devicemanager.Activator.java">org/universAAL/lddi/knx/devicemanager/Activator.java</a>
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   1
@@ -91,7 +91,7 @@ under the License.
                   <a href="http://lddi/lddi.knx/lddi.knx.devicemanager//checkstyle.html#org.universAAL.lddi.knx.devicemanager.util.LogTracker.java">org/universAAL/lddi/knx/devicemanager/util/LogTracker.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
