@@ -30,7 +30,7 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
@@ -43,7 +43,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 public class IASZoneListener extends ExporterListener {
 
 	static {
-		filter = "(" + Constants.OBJECTCLASS + "=" + IAS_ZoneAAL.class.getName() + ")";
+		filter = "(" + Constants.OBJECTCLASS + "=" + IAS_ZoneBridge.class.getName() + ")";
 	}
 
 	public IASZoneListener(BundleContext context) throws InvalidSyntaxException {
@@ -51,25 +51,25 @@ public class IASZoneListener extends ExporterListener {
 	}
 
 	@Override
-	protected void registeruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class, "registeruAALService",
-				new String[] { "Creating a instance of device in uAAL" }, null);
-		IAS_ZoneAAL service = (IAS_ZoneAAL) context.getService(sr);
+	protected void registerService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class, "registerService",
+				new String[] { "Creating a instance of device in universAAL" }, null);
+		IAS_ZoneBridge service = (IAS_ZoneBridge) context.getService(sr);
 		setOfDevices.put(sr, new IASZoneCallee(Activator.moduleContext, service));
 	}
 
 	@Override
-	protected void unregisteruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class, "registeruAALService",
-				new String[] { "Removing a instance of device in uAAL" }, null);
+	protected void unregisterService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class, "unregisterService",
+				new String[] { "Removing a instance of device in universAAL" }, null);
 		((IASZoneCallee) setOfDevices.remove(sr)).unregister();
 		context.ungetService(sr);
 	}
 
 	@Override
-	public void unregisteruAALService() {
-		LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class, "registeruAALService",
-				new String[] { "Removing all instances of these devices in uAAL" }, null);
+	public void unregisterService() {
+		LogUtils.logDebug(Activator.moduleContext, IASZoneListener.class, "unregisterService",
+				new String[] { "Removing all instances of these devices in universAAL" }, null);
 		Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 		for (; iter.hasNext();) {
 			ServiceReference sref = (ServiceReference) iter.next();

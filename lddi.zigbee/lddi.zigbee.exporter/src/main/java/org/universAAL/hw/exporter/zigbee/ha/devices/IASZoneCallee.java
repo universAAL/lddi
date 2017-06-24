@@ -26,7 +26,7 @@ import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 import it.cnr.isti.zigbee.zcl.library.api.security_safety.ias_zone.ZoneStatusChangeNotificationListener;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
@@ -44,8 +44,8 @@ import org.universAAL.ontology.device.StatusValue;
 import org.universAAL.ontology.phThing.DeviceService;
 
 /**
- * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
- * device with the uAAL middleware through the service and context buses.
+ * Exporter class that acts as wrapper towards universAAL. Connects interaction of the
+ * device with the universAAL middleware through the service and context buses.
  *
  * @author alfiva
  *
@@ -55,7 +55,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements ZoneStatusCha
 		NAMESPACE = "http://ontology.universAAL.org/ZBIASZoneService.owl#";
 	}
 
-	private IAS_ZoneAAL zbDevice;
+	private IAS_ZoneBridge zbDevice;
 	private ContactSensor ontologyDevice;
 	private DefaultContextPublisher cp;
 
@@ -69,7 +69,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements ZoneStatusCha
 	 *            The OSGi service backing the interaction with the device in
 	 *            the abstraction layer
 	 */
-	public IASZoneCallee(ModuleContext context, IAS_ZoneAAL serv) {
+	public IASZoneCallee(ModuleContext context, IAS_ZoneBridge serv) {
 		super(context, new ServiceProfile[] {});
 		LogUtils.logDebug(Activator.moduleContext, IASZoneCallee.class, "IASZoneCallee",
 				new String[] { "Ready to subscribe" }, null);
@@ -88,7 +88,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements ZoneStatusCha
 		// && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
 		// ontologyDevice
 		// .setLocation(new Room(
-		// Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+		// Constants.MIDDLEWARE_LOCAL_ID_PREFIX
 		// + locationSuffix));
 		// } else {
 		// Properties prop = Activator.getProperties();

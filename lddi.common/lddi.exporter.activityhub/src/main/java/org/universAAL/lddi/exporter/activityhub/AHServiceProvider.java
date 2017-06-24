@@ -41,7 +41,7 @@ import org.universAAL.ontology.activityhub.factory.ActivityHubFactory;
 import org.universAAL.ontology.location.indoor.Room;
 
 /**
- * uAAL service provider (service bus) for the ActivityHub no ontology
+ * universAAL service provider (service bus) for the ActivityHub no ontology
  * definitions here!
  *
  * @author Thomas Fuxreiter (foex@gmx.at)
@@ -51,7 +51,7 @@ public class AHServiceProvider extends ServiceCallee {
 	AHManager ahManager;
 	private LogService logger;
 
-	static final String LOCATION_URI_PREFIX = "urn:aal_space:myHome#";
+	static final String LOCATION_URI_PREFIX = "urn:space:myHome#";
 	static final String ACTIVITYHUB_LOCATION_PREFIX = "MDC_AI_LOCATION_";
 
 	private static ActivityHubFactory factory = new ActivityHubFactory();
@@ -63,14 +63,14 @@ public class AHServiceProvider extends ServiceCallee {
 	 * @param realizedServices
 	 */
 	public AHServiceProvider(AHManager ahManager) {
-		/** register my services on uAAL service bus */
+		/** register my services on universAAL service bus */
 		super(Activator.mc, AHServiceOntology.profiles);
 
 		this.ahManager = ahManager;
 		this.logger = ahManager.getLogger();
 
 		this.logger.log(LogService.LOG_INFO, AHServiceOntology.profiles.length
-				+ " ActivityHubServer services registered on uAAL service bus:" + getserviceNames());
+				+ " ActivityHubServer services registered on universAAL service bus:" + getserviceNames());
 	}
 
 	// this is just to prepare a standard error message for later use
@@ -306,7 +306,7 @@ public class AHServiceProvider extends ServiceCallee {
 	}
 
 	/**
-	 * handle service request from uAAL service bus
+	 * handle service request from universAAL service bus
 	 *
 	 * @see org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL.middleware.service.ServiceCall)
 	 */
@@ -360,7 +360,7 @@ public class AHServiceProvider extends ServiceCallee {
 	@Override
 	public void communicationChannelBroken() {
 		LogUtils.logWarn(Activator.mc, AHServiceProvider.class, "communicationChannelBroken",
-				new Object[] { "Service Bus is stopped by the uAAL middleware!" }, null);
+				new Object[] { "Service Bus is stopped by the universAAL middleware!" }, null);
 	}
 
 	/**

@@ -61,25 +61,25 @@ public class PresenceDetectorListener extends ExporterListener {
 	}
 
 	@Override
-	protected void registeruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "registeruAALService",
-				new String[] { "Creating a instance of device in uAAL" }, null);
+	protected void registerService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "registerService",
+				new String[] { "Creating a instance of device in universAAL" }, null);
 		OccupancySensor PresenceDetectorService = (OccupancySensor) context.getService(sr);
 		setOfDevices.put(sr, new PresenceDetectorCallee(Activator.moduleContext, PresenceDetectorService));
 	}
 
 	@Override
-	protected void unregisteruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "registeruAALService",
-				new String[] { "Removing a instance of device in uAAL" }, null);
+	protected void unregisterService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "unregisterService",
+				new String[] { "Removing a instance of device in universAAL" }, null);
 		((PresenceDetectorCallee) setOfDevices.remove(sr)).unregister();
 		context.ungetService(sr);
 	}
 
 	@Override
-	public void unregisteruAALService() {
-		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "registeruAALService",
-				new String[] { "Removing all instances of these devices in uAAL" }, null);
+	public void unregisterService() {
+		LogUtils.logDebug(Activator.moduleContext, PresenceDetectorListener.class, "unregisterService",
+				new String[] { "Removing all instances of these devices in universAAL" }, null);
 		Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 		for (; iter.hasNext();) {
 			ServiceReference sref = (ServiceReference) iter.next();

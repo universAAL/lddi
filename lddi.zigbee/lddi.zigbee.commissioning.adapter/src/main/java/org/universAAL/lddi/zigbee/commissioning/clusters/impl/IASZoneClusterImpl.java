@@ -38,17 +38,17 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class IASZoneClusterAAL extends IASZoneCluster {
+public class IASZoneClusterImpl extends IASZoneCluster {
 
 	private final ArrayList<ZoneStatusChangeNotificationListener> listeners = new ArrayList<ZoneStatusChangeNotificationListener>();
-	private final Logger log = LoggerFactory.getLogger(IASZoneClusterAAL.class);
-	private ZoneStatusChangeNotificationListenerNotifierAAL bridge;
+	private final Logger log = LoggerFactory.getLogger(IASZoneClusterImpl.class);
+	private ZoneStatusChangeNotificationListenerNotifier bridge;
 
 	private short previousStatus;
 
-	public IASZoneClusterAAL(ZigBeeDevice zbDevice) {
+	public IASZoneClusterImpl(ZigBeeDevice zbDevice) {
 		super(zbDevice);
-		bridge = new ZoneStatusChangeNotificationListenerNotifierAAL();
+		bridge = new ZoneStatusChangeNotificationListenerNotifier();
 
 		previousStatus = -1;
 	}
@@ -91,7 +91,7 @@ public class IASZoneClusterAAL extends IASZoneCluster {
 		}
 	}
 
-	private class ZoneStatusChangeNotificationListenerNotifierAAL implements ClusterListner {
+	private class ZoneStatusChangeNotificationListenerNotifier implements ClusterListner {
 
 		public void setClusterFilter(ClusterFilter filter) {
 		}

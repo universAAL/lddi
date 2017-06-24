@@ -35,7 +35,7 @@ public abstract class KnxDriver {
 	public KnxGroupDevice groupDevice;
 
 	/** upper layer instance */
-	protected IKnxDriverClient client; // ->uAAL bus/exporter
+	protected IKnxDriverClient client; // ->universAAL bus/exporter
 
 	public KnxDriver() {
 	}

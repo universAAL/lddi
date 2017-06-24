@@ -35,7 +35,7 @@ import org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensorEvent;
  * Working instance of the ActivityHub SwitchSensor driver. Tracks on the
  * SwitchSensor device service passed in the attach method in
  * Iso11073SwitchSensorDriver class. This instance is passed to the consuming
- * client (e.g. uAAL exporter bundle). When the SwitchSensor device service
+ * client (e.g. universAAL exporter bundle). When the SwitchSensor device service
  * disappears, this driver is removed from the consuming client and from the
  * device.
  *
@@ -53,7 +53,7 @@ public class Iso11073SwitchSensorInstance extends ActivityHubDriver
 	 * @param sr
 	 *            Service reference of ISO device
 	 * @param client
-	 *            Link to consumer of this driver (e.g. uAAL exporter bundle)
+	 *            Link to consumer of this driver (e.g. universAAL exporter bundle)
 	 */
 	public Iso11073SwitchSensorInstance(BundleContext c, ActivityHubDriverClient client, LogService log) {
 		super(client);

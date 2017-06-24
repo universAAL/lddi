@@ -57,14 +57,14 @@ import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneAALImpl;
-import org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneClusterAAL;
-import org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingAALImpl;
-import org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingClusterAAL;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
-import org.universAAL.lddi.zigbee.commissioning.devices.impl.IAS_ZoneDeviceAAL;
-import org.universAAL.lddi.zigbee.commissioning.devices.impl.OccupancySensorDeviceAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneImpl;
+import org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneClusterImpl;
+import org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingImpl;
+import org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingCluster;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge;
+import org.universAAL.lddi.zigbee.commissioning.devices.impl.IAS_ZoneDevice;
+import org.universAAL.lddi.zigbee.commissioning.devices.impl.OccupancySensorDevice;
 
 public class Activator implements BundleActivator, Stoppable, ManagedService {
 
@@ -98,11 +98,11 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 	private List<ServiceRegistration> ias_warning_devices_services = new ArrayList<ServiceRegistration>();
 
 	private Map<String, Device> occupancy_sensor_devices = new HashMap<String, Device>();
-	private List<OccupancySensorDeviceAAL> occupancy_sensor_devices_sensors = new ArrayList<OccupancySensorDeviceAAL>();
+	private List<OccupancySensorDevice> occupancy_sensor_devices_sensors = new ArrayList<OccupancySensorDevice>();
 	private List<ServiceRegistration> occupancy_sensor_devices_services = new ArrayList<ServiceRegistration>();
 
 	private Map<String, Device> ias_zone_devices = new HashMap<String, Device>();
-	private List<IAS_ZoneDeviceAAL> ias_zone_sensors = new ArrayList<IAS_ZoneDeviceAAL>();
+	private List<IAS_ZoneDevice> ias_zone_sensors = new ArrayList<IAS_ZoneDevice>();
 	private List<ServiceRegistration> ias_zone_sensors_services = new ArrayList<ServiceRegistration>();
 
 	private ZigBeeDevice[] deviceServices = new ZigBeeDevice[1024];
@@ -230,7 +230,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 			this.VISIBILITY_TIMEOUT = Long.parseLong(newConfig.get("VISIBILITY_TIMEOUT").toString().trim()) * 1000;
 
 			if (demo == null) {
-				demo = new Thread(this, "DEMO AAL");
+				demo = new Thread(this, "DEMO lddi.zigbee.commissioning.adapter");
 				demo.start();
 			}
 		}
@@ -394,10 +394,10 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 							writeLog("too prolonged inactivity - removing device...", d, false);
 							if (d.isListenerIASzone())
-								resetReporting = ((IASZoneClusterAAL) d.getSubscriptionIAS().getCluster())
+								resetReporting = ((IASZoneClusterImpl) d.getSubscriptionIAS().getCluster())
 										.removeZoneStatusChangeNotificationListener(
 												d.getSubscriptionIAS().getListener());
-							// ((IASZoneClusterAAL)d.getSubscriptionIAS().getCluster()).removeZoneStatusChangeNotificationListener(d.getSubscriptionIAS().getListener());
+							// ((IASZoneCluster)d.getSubscriptionIAS().getCluster()).removeZoneStatusChangeNotificationListener(d.getSubscriptionIAS().getListener());
 							else
 								resetReporting = true;
 
@@ -448,11 +448,11 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 			final Entry<String, Device> current = it.next();
 			ZigBeeDevice device = current.getValue().getDevice();
 
-			OccupacySensingAALImpl occupSensing;
+			OccupacySensingImpl occupSensing;
 			if (PIROccupiedToUnoccupiedDelay <= PIRUnoccupiedToOccupiedDelay)
-				occupSensing = new OccupacySensingAALImpl(device, Long.parseLong(PIROccupiedToUnoccupiedDelay + ""));
+				occupSensing = new OccupacySensingImpl(device, Long.parseLong(PIROccupiedToUnoccupiedDelay + ""));
 			else
-				occupSensing = new OccupacySensingAALImpl(device, Long.parseLong(PIRUnoccupiedToOccupiedDelay + ""));
+				occupSensing = new OccupacySensingImpl(device, Long.parseLong(PIRUnoccupiedToOccupiedDelay + ""));
 
 			if (current.getValue().getPIRattributes().get(0).getValue() != -1
 					&& !current.getValue().getPIRattributes().get(0).isSet())
@@ -495,18 +495,18 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 				Subscription sub = configureReporting(current.getValue(),
 						new AttributeImpl(current.getValue().getDevice(),
-								new OccupacySensingClusterAAL(current.getValue().getDevice()), Attributes.OCCUPANCY));
+								new OccupacySensingCluster(current.getValue().getDevice()), Attributes.OCCUPANCY));
 
 				if (sub != null) {
 					current.getValue().setReportingConfiguredPIR(true);
 					current.getValue().setSubscriptionPIR(sub);
 
 					try {
-						OccupancySensorDeviceAAL pirSensor = new OccupancySensorDeviceAAL(getBundleContext(), device,
+						OccupancySensorDevice pirSensor = new OccupancySensorDevice(getBundleContext(), device,
 								occupSensing);
 						this.occupancy_sensor_devices_sensors.add(pirSensor);
 						this.occupancy_sensor_devices_services.add(
-								bc.registerService(OccupancySensorAAL.class.getName(), pirSensor, new Properties()));
+								bc.registerService(OccupancySensorBridge.class.getName(), pirSensor, new Properties()));
 					} catch (Exception ex) {
 						ex.printStackTrace();
 						writeLog(ex.toString(), current.getValue());
@@ -533,7 +533,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 			if (current.getValue().isBinded() && current.getValue().isBackbinded()
 					&& !current.getValue().isListenerIASzone()) {
 
-				IASZoneAALImpl zone = new IASZoneAALImpl(device);
+				IASZoneImpl zone = new IASZoneImpl(device);
 
 				ZoneStatusChangeNotificationListener listener = new ZoneStatusChangeNotificationListener() {
 
@@ -541,7 +541,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 						try {
 							writeLog("\t" + zoneStatus, current.getValue());
 
-							for (IAS_ZoneDeviceAAL sensor : ias_zone_sensors) {
+							for (IAS_ZoneDevice sensor : ias_zone_sensors) {
 								if (zoneStatus == 25648) {
 									writeLog("closed", current.getValue());
 
@@ -582,10 +582,10 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 					current.getValue().setSubscriptionIAS(new Listener(zone, listener));
 
 					try {
-						IAS_ZoneDeviceAAL zoneSensor = new IAS_ZoneDeviceAAL(getBundleContext(), device, zone);
+						IAS_ZoneDevice zoneSensor = new IAS_ZoneDevice(getBundleContext(), device, zone);
 						this.ias_zone_sensors.add(zoneSensor);
 						this.ias_zone_sensors_services
-								.add(bc.registerService(IAS_ZoneAAL.class.getName(), zoneSensor, new Properties()));
+								.add(bc.registerService(IAS_ZoneBridge.class.getName(), zoneSensor, new Properties()));
 					} catch (Exception ex) {
 						ex.printStackTrace();
 						writeLog(ex.toString(), current.getValue());
@@ -734,7 +734,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 		try {
 			System.out
-					.println("DEMO AAL - " + getTime() + " - device " + d.getDevice().getUniqueIdenfier() + " - " + s);
+					.println("DEMO lddi.zigbee.commissioning.adapter - " + getTime() + " - device " + d.getDevice().getUniqueIdenfier() + " - " + s);
 			out.write(getTime() + " - device " + d.getDevice().getUniqueIdenfier() + " - " + s);
 			out.newLine();
 			out.flush();
@@ -748,7 +748,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 	private Subscription configureReporting(final Device d, AttributeImpl att) throws ZigBeeClusterException {
 
 		final ZigBeeDevice device = d.getDevice();
-		OccupacySensingClusterAAL c = new OccupacySensingClusterAAL(device);
+		OccupacySensingCluster c = new OccupacySensingCluster(device);
 
 		SubscriptionImpl sub = new SubscriptionImpl(device, c, att);
 		try {
@@ -763,7 +763,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 
 						writeLog("\t" + ((Integer) v).intValue(), d);
 
-						for (OccupancySensorDeviceAAL occupancy_sensor_devices_sensor : occupancy_sensor_devices_sensors) {
+						for (OccupancySensorDevice occupancy_sensor_devices_sensor : occupancy_sensor_devices_sensors) {
 
 							if (((Integer) v).intValue() == 0) {
 								writeLog("\tsent 'no presence' message.", d);

@@ -30,23 +30,23 @@ import it.cnr.isti.zigbee.ha.driver.core.reflection.AbstractDeviceDescription;
 import it.cnr.isti.zigbee.ha.driver.core.reflection.DeviceDescription;
 
 import org.osgi.framework.BundleContext;
-import org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingBridge;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge;
 
-public class OccupancySensorDeviceAAL extends HADeviceBase implements OccupancySensorAAL {
+public class OccupancySensorDevice extends HADeviceBase implements OccupancySensorBridge {
 
-	private OccupacySensingAAL occupancySensing;
+	private OccupacySensingBridge occupancySensing;
 	private Groups groups;
 
-	public OccupancySensorDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice) throws ZigBeeHAException {
+	public OccupancySensorDevice(BundleContext ctx, ZigBeeDevice zbDevice) throws ZigBeeHAException {
 
 		super(ctx, zbDevice);
 
-		occupancySensing = (OccupacySensingAAL) addCluster(HAProfile.OCCUPANCY_SENSING);
+		occupancySensing = (OccupacySensingBridge) addCluster(HAProfile.OCCUPANCY_SENSING);
 		groups = (Groups) addCluster(HAProfile.GROUPS);
 	}
 
-	public OccupancySensorDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice, OccupacySensingAAL cluster)
+	public OccupancySensorDevice(BundleContext ctx, ZigBeeDevice zbDevice, OccupacySensingBridge cluster)
 			throws ZigBeeHAException {
 
 		super(ctx, zbDevice);
@@ -55,7 +55,7 @@ public class OccupancySensorDeviceAAL extends HADeviceBase implements OccupancyS
 		groups = (Groups) addCluster(HAProfile.GROUPS);
 	}
 
-	public OccupacySensingAAL getOccupacySensing() {
+	public OccupacySensingBridge getOccupacySensing() {
 		return occupancySensing;
 	}
 

@@ -11,7 +11,7 @@
   <artifactId>lddi.exporter.x73</artifactId>
   <version>3.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>universAAL LDDI Exporter of ISO11073 devices (blood pressure, scale) for uAAL</name>
+  <name>universAAL LDDI Exporter of ISO11073 devices (blood pressure, scale)</name>
   <description>Hardware exporter of devices based on ISO 11073 devices/model (health device communication) for the universAAL middleware</description>
   <inceptionYear>2012</inceptionYear>
   <organization>

@@ -38,7 +38,7 @@ import org.universAAL.ontology.device.WindowController;
 import org.universAAL.ontology.device.WindowSensor;
 
 /**
- * Mapping of KNX datapoint types to uAAL Device Ontology. Not all ontology
+ * Mapping of KNX datapoint types to universAAL Device Ontology. Not all ontology
  * concepts can be mapped certainly to one KNX DPT. e.g. environmental sensors
  * like gas, smoke, water can have the same KNX DPT (e.g. Alarm 1.005) this must
  * be mapped by a human according to name and description of the KNX group

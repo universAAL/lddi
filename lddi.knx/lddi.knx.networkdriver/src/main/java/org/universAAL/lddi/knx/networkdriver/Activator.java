@@ -63,7 +63,7 @@ public class Activator implements BundleActivator {
 
 		// Register Gogo shell command
 		Hashtable props = new Hashtable();
-		props.put("osgi.command.scope", "uaal");
+		props.put("osgi.command.scope", "universAAL");
 		props.put("osgi.command.function", new String[] { "knxcommand" });
 		context.registerService(KnxShellCommand.class.getName(), new KnxShellCommand(networkDriver), props);
 	}

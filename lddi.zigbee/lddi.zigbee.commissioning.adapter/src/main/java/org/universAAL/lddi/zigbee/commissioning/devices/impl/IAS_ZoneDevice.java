@@ -29,28 +29,28 @@ import it.cnr.isti.zigbee.ha.driver.core.reflection.AbstractDeviceDescription;
 import it.cnr.isti.zigbee.ha.driver.core.reflection.DeviceDescription;
 
 import org.osgi.framework.BundleContext;
-import org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneBridge;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge;
 
-public class IAS_ZoneDeviceAAL extends HADeviceBase implements IAS_ZoneAAL {
+public class IAS_ZoneDevice extends HADeviceBase implements IAS_ZoneBridge {
 
-	private IASZoneAAL iasZoneCluster;
+	private IASZoneBridge iasZoneCluster;
 
-	public IAS_ZoneDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice) throws ZigBeeHAException {
+	public IAS_ZoneDevice(BundleContext ctx, ZigBeeDevice zbDevice) throws ZigBeeHAException {
 
 		super(ctx, zbDevice);
 
-		iasZoneCluster = (IASZoneAAL) addCluster(HAProfile.IAS_ZONE);
+		iasZoneCluster = (IASZoneBridge) addCluster(HAProfile.IAS_ZONE);
 	}
 
-	public IAS_ZoneDeviceAAL(BundleContext ctx, ZigBeeDevice zbDevice, IASZoneAAL cluster) throws ZigBeeHAException {
+	public IAS_ZoneDevice(BundleContext ctx, ZigBeeDevice zbDevice, IASZoneBridge cluster) throws ZigBeeHAException {
 
 		super(ctx, zbDevice);
 
 		iasZoneCluster = cluster;
 	}
 
-	public IASZoneAAL getIASZone() {
+	public IASZoneBridge getIASZone() {
 
 		return iasZoneCluster;
 	}

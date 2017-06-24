@@ -37,7 +37,7 @@ import org.universAAL.ontology.X73.WeighingScale;
 import org.universAAL.ontology.X73.X73Ontology;
 
 /**
- * Provides context event patterns for the uAAL context bus
+ * Provides context event patterns for the universAAL context bus
  *
  * @author Thomas Fuxreiter (foex@gmx.at)
  * @author Patrick Stern (sternp@gmx.at)

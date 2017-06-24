@@ -11,7 +11,7 @@
   <artifactId>lddi.zigbee.exporter</artifactId>
   <version>3.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>universAAL LDDI ZigBee exporter for uAAL - Home Automation</name>
+  <name>universAAL LDDI ZigBee exporter - Home Automation</name>
   <description>Hardware exporter for universAAL: ZigBee technology devices</description>
   <inceptionYear>2008</inceptionYear>
   <organization>

@@ -108,7 +108,7 @@ public class hdpManager implements hdpManagerListener {
 	private String remoteDeviceType = null;
 
 	/** Publisher object to send events */
-	private Publisher uaalX73Publisher = null;
+	private Publisher X73Publisher = null;
 
 	/** Bundle context object */
 	private BundleContext ctx = null;
@@ -336,7 +336,7 @@ public class hdpManager implements hdpManagerListener {
 			macAddressRemoteDevice = str2;
 		}
 		dataTypeValue = CONTINUA_DEVICE;
-		uaalX73Publisher = new Publisher(ctx);
+		X73Publisher = new Publisher(ctx);
 	}
 
 	/** Java methods */
@@ -480,13 +480,13 @@ public class hdpManager implements hdpManagerListener {
 					double temp_0 = Measurement.sysMeasurement;
 					double temp_1 = Measurement.diaMeasurement;
 					double temp_2 = Measurement.hrMeasurement;
-					uaalX73Publisher.publishBloodPressureEvent((int) temp_0, (int) temp_1, (int) temp_2);
+					X73Publisher.publishBloodPressureEvent((int) temp_0, (int) temp_1, (int) temp_2);
 				}
 			} else {
 				if (Measurement.weightMeasurement != null) {
 					double temp_1 = shortDecimalNumber(Measurement.weightMeasurement) * 1000;
 					int temp = (int) temp_1;
-					uaalX73Publisher.publishWeightEvent(temp);
+					X73Publisher.publishWeightEvent(temp);
 				}
 			}
 		}

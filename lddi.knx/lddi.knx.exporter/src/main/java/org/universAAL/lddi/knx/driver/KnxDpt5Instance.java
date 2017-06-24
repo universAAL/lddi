@@ -36,7 +36,7 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
  * Working instance of the IKnxDpt5 driver. Registers a service/device in OSGi
  * registry. Tracks on the KNX groupDevice service passed in the attach method
  * in KnxDpt5Driver class. This instance is passed to the consuming client (e.g.
- * uAAL exporter bundle). When the KNX groupDevice service disappears, this
+ * universAAL exporter bundle). When the KNX groupDevice service disappears, this
  * driver is removed from the consuming client and detached from the
  * groupDevice.
  *
@@ -58,7 +58,7 @@ public class KnxDpt5Instance extends KnxDriver
 	 * @param sr
 	 *            Service reference of KNX groupDevice
 	 * @param client
-	 *            Link to consumer of this driver (e.g. uAAL exporter bundle)
+	 *            Link to consumer of this driver (e.g. universAAL exporter bundle)
 	 */
 	public KnxDpt5Instance(KnxDpt5Driver parent_) {
 		// BundleContext context, IKnxDriverClient client,

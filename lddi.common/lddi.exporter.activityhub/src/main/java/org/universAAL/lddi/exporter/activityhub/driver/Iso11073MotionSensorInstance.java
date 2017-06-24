@@ -35,7 +35,7 @@ import org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensorEvent;
  * Working instance of the ActivityHub MotionSensor driver. Tracks on the
  * MotionSensor device service passed in the attach method in
  * Iso11073MotionSensorDriver class. This instance is passed to the consuming
- * client (e.g. uAAL exporter bundle). When the MotionSensor device service
+ * client (e.g. universAAL exporter bundle). When the MotionSensor device service
  * disappears, this driver is removed from the consuming client and from the
  * device.
  *
@@ -53,7 +53,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 	 * @param sr
 	 *            Service reference of ISO device
 	 * @param client
-	 *            Link to consumer of this driver (e.g. uAAL exporter bundle)
+	 *            Link to consumer of this driver (e.g. universAAL exporter bundle)
 	 */
 	public Iso11073MotionSensorInstance(BundleContext c, ActivityHubDriverClient client, LogService log) {
 		super(client);

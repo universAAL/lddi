@@ -44,7 +44,7 @@ package org.universAAL.lddi.knx.networkdriver.test;
 // import org.universAAL.lddi.knx.networkdriver.Activator;
 // import org.universAAL.lddi.knx.utils.KnxCommand;
 // import org.universAAL.middleware.container.ModuleContext;
-// import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+// import org.universAAL.middleware.container.osgi.OSGiContainer;
 // import org.universAAL.middleware.container.utils.LogUtils;
 //
 /// **
@@ -65,7 +65,7 @@ package org.universAAL.lddi.knx.networkdriver.test;
 // setLogLevel(2);
 //
 // // set ModuleContext for logging
-// mc = uAALBundleContainer.THE_CONTAINER
+// mc = OSGiContainer.THE_CONTAINER
 // .registerModule(new Object[] { Activator.context });
 // }
 //

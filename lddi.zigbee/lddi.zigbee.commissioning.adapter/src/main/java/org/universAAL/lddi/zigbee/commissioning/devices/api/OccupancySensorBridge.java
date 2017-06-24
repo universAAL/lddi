@@ -20,7 +20,7 @@
  */
 package org.universAAL.lddi.zigbee.commissioning.devices.api;
 
-import org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingBridge;
 
 import it.cnr.isti.zigbee.ha.cluster.glue.general.Groups;
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.OccupacySensing;
@@ -28,7 +28,7 @@ import it.cnr.isti.zigbee.ha.driver.ArraysUtil;
 import it.cnr.isti.zigbee.ha.driver.core.HADevice;
 import it.cnr.isti.zigbee.ha.driver.core.HAProfile;
 
-public interface OccupancySensorAAL extends HADevice {
+public interface OccupancySensorBridge extends HADevice {
 
 	public static final int DEVICE_ID = 0x0107;
 	public static final String NAME = "Occupancy Sensor 'stabilized'";
@@ -44,7 +44,7 @@ public interface OccupancySensorAAL extends HADevice {
 	 *
 	 * @return the {@link OccupacySensing} cluster implemented by the device
 	 */
-	public OccupacySensingAAL getOccupacySensing();
+	public OccupacySensingBridge getOccupacySensing();
 
 	public Groups getGroups();
 }

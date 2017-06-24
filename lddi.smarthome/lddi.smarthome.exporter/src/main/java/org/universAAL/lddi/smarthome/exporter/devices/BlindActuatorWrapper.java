@@ -37,8 +37,8 @@ import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.ontology.device.BlindActuator;
 
 /**
- * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
- * device with the uAAL middleware through the service and context buses.
+ * Exporter class that acts as wrapper towards universAAL. Connects interaction of the
+ * device with the universAAL middleware through the service and context buses.
  *
  * @author alfiva
  *

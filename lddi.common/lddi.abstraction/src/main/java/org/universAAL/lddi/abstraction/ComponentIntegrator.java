@@ -37,7 +37,7 @@ public interface ComponentIntegrator {
 	 * ontological representation of an external component to its corresponding
 	 * original {@link ExternalComponent}.
 	 */
-	public static final String PROP_CORRESPONDING_COMPONENT = "uAAL:lddi.abstraction/ComponentIntegrator#correspondingComponent";
+	public static final String PROP_CORRESPONDING_COMPONENT = "universAAL:lddi.abstraction/ComponentIntegrator#correspondingComponent";
 
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to share with

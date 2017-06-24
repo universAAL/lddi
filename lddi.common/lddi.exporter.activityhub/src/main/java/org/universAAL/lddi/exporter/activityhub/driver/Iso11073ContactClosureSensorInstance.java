@@ -35,7 +35,7 @@ import org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensorEvent
  * Working instance of the ActivityHub ContactClosure driver. Tracks on the
  * ContactClosureSensor device service passed in the attach method in
  * Iso11073ContactClosureSensorDriver class. This instance is passed to the
- * consuming client (e.g. uAAL exporter bundle). When the ContactClosureSensor
+ * consuming client (e.g. universAAL exporter bundle). When the ContactClosureSensor
  * device service disappears, this driver is removed from the consuming client
  * and from the device.
  *
@@ -55,7 +55,7 @@ public class Iso11073ContactClosureSensorInstance extends ActivityHubDriver
 	 * @param sr
 	 *            Service reference of ISO device
 	 * @param client
-	 *            Link to consumer of this driver (e.g. uAAL exporter bundle)
+	 *            Link to consumer of this driver (e.g. universAAL exporter bundle)
 	 */
 	public Iso11073ContactClosureSensorInstance(BundleContext c, ActivityHubDriverClient client, LogService log) {
 		super(client);

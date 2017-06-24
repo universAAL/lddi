@@ -42,7 +42,7 @@ import org.universAAL.ontology.device.MotionSensor;
 import org.universAAL.ontology.device.SwitchActuator;
 
 /**
- * Handles service calls from uAAL and reacts on them
+ * Handles service calls from universAAL and reacts on them
  *
  *
  * @author Steeven Zeiss Fraunhofer IGD (steeven.zeiss@igd.fraunhofer.de)
@@ -81,7 +81,7 @@ public class FS20Server extends ServiceCallee {
 	 * Handles the service call and react on it
 	 *
 	 * @param call
-	 *            = the call from uAAL
+	 *            = the call from universAAL
 	 */
 	public ServiceResponse handleCall(ServiceCall call) {
 

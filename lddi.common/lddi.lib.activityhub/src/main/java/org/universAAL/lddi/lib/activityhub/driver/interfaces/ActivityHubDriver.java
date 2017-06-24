@@ -43,7 +43,7 @@ public abstract class ActivityHubDriver {
 	// Map<String, IActivityHubSensorEvent> map;
 
 	/** upper layer instance */
-	protected ActivityHubDriverClient client; // ->uAAL bus/exporter
+	protected ActivityHubDriverClient client; // ->uuniversAAL bus/exporter
 
 	/** Driver state */
 	// protected DeviceState currentState;

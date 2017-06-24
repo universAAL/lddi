@@ -43,7 +43,7 @@ import org.universAAL.lddi.knx.exporter.util.LogTracker;
 /**
  * Instantiates KNX drivers from KNX library. The drivers call back and register
  * themselves in the driverList. Just passing the incoming sensor value to
- * uAAL-MW related class (-> context publisher) and vice versa, from uAAL
+ * universAAL-MW related class (-> context publisher) and vice versa, from universAAL
  * service provider to KNX driver. No storage of events in this class!
  *
  * @author Thomas Fuxreiter (foex@gmx.at)

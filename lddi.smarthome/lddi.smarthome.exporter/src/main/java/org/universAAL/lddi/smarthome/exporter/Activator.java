@@ -59,7 +59,7 @@ public class Activator implements BundleActivator {
 		if (references.length > 0) {
 			pub = (EventPublisher) bcontext.getService(references[0]);
 		}
-		// Load openhab-uaal default mapping, if any
+		// Load openhab-universAAL default mapping, if any
 		String configfile = System.getProperty("org.universaal.lddi.smarthome.config");
 		types = new Properties();
 		InputStream in;

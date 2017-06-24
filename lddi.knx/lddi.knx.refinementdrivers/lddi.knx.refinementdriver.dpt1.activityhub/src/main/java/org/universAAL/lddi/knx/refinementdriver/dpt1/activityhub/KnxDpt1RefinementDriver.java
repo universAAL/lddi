@@ -49,7 +49,7 @@ import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt1GroupDevice;
  * necessary cleanup, as described in their groupDevice category spec
  *
  * Initially a manual mapping config from KNX to ISO sensors were implemented.
- * But in universAAL this configuration should be done by AAL Space
+ * But in universAAL this configuration should be done by Space
  * configurator. Therefore this code is commented; but kept here for potential
  * later use.
  *

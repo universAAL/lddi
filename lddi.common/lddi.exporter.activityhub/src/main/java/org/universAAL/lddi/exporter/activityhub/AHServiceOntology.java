@@ -36,7 +36,7 @@ import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
 
 /**
- * Definition of service for the uAAL service bus (service profiles) for
+ * Definition of service for the universAAL service bus (service profiles) for
  * available ActivityHub devices.
  *
  * @author Thomas Fuxreiter (foex@gmx.at)
@@ -67,7 +67,7 @@ public class AHServiceOntology extends ActivityHub {
 
 	static final String OUTPUT_SENSOR_LOCATION = ACTIVITYHUB_SERVER_NAMESPACE + "location";
 
-	// declaration of uaal bus service profiles
+	// declaration of universAAL bus service profiles
 	static final ServiceProfile[] profiles = new ServiceProfile[2];
 
 	private static Hashtable serverLightingRestrictions = new Hashtable();

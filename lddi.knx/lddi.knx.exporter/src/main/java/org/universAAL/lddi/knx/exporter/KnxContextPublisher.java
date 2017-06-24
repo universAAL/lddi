@@ -38,7 +38,7 @@ import org.universAAL.ontology.device.TemperatureSensor;
 import org.universAAL.ontology.device.ValueDevice;
 
 /**
- * Sends context events to uAAL context bus using the device.ontology.
+ * Sends context events to universAAL context bus using the device.ontology.
  *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -85,7 +85,7 @@ public class KnxContextPublisher {
 	/**
 	 * A proper ontology class is chosen according to main and sub type. Boolean
 	 * value is mapped to status ACTIVATED or NOTACTIVATED. The event is
-	 * published on the uAAL context bus.
+	 * published on the universAAL context bus.
 	 *
 	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
@@ -130,7 +130,7 @@ public class KnxContextPublisher {
 
 	/**
 	 * A proper ontology class is chosen according to main and sub type. The
-	 * event is published on the uAAL context bus.
+	 * event is published on the universAAL context bus.
 	 *
 	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
@@ -159,7 +159,7 @@ public class KnxContextPublisher {
 
 	/**
 	 * A proper ontology class is chosen according to main and sub type. The
-	 * event is published on the uAAL context bus.
+	 * event is published on the universAAL context bus.
 	 *
 	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer

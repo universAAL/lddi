@@ -127,7 +127,7 @@ public class AHManager implements ActivityHubDriverClient {
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#incomingSensorEvent(java.lang.String,
 	 *      byte[])
 	 *
-	 *      Just passing the incoming sensor event to uAAL-MW related class (->
+	 *      Just passing the incoming sensor event to universAAL-MW related class (->
 	 *      context provider). No storage of event here!
 	 *
 	 * @param deviceId

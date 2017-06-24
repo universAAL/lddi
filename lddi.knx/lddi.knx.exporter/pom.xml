@@ -12,7 +12,7 @@
   <version>3.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI KNX Exporter</name>
-  <description>Hardware exporter of KNX Home Automation components for the universAAL middleware using uAAL Device Ontology</description>
+  <description>Hardware exporter of KNX Home Automation components for the universAAL middleware using universAAL Device Ontology</description>
   <inceptionYear>2012</inceptionYear>
   <organization>
     <name>Austrian Institute of Technology (AIT)</name>

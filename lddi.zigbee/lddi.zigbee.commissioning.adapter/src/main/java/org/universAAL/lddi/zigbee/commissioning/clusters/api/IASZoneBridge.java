@@ -18,22 +18,10 @@
         See the License for the specific language governing permissions and
         limitations under the License.
  */
-package org.universAAL.lddi.zigbee.commissioning.devices.api;
+package org.universAAL.lddi.zigbee.commissioning.clusters.api;
 
-import org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
+import it.cnr.isti.zigbee.ha.cluster.glue.security_safety.IASZone;
 
-import it.cnr.isti.zigbee.ha.driver.ArraysUtil;
-import it.cnr.isti.zigbee.ha.driver.core.HADevice;
-import it.cnr.isti.zigbee.ha.driver.core.HAProfile;
+public interface IASZoneBridge extends IASZone {
 
-public interface IAS_ZoneAAL extends HADevice {
-
-	public static final int DEVICE_ID = 0x0402;
-	public static final String NAME = "IAS Zone 'stabilized'";
-	public static final int[] MANDATORY = ArraysUtil.append(HADevice.MANDATORY, new int[] { HAProfile.IAS_ZONE });
-	public static final int[] OPTIONAL = HADevice.OPTIONAL;
-	public static final int[] STANDARD = ArraysUtil.append(MANDATORY, OPTIONAL);
-	public static final int[] CUSTOM = {};
-
-	public IASZoneAAL getIASZone();
 }

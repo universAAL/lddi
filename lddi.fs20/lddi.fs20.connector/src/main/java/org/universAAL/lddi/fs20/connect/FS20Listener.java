@@ -35,7 +35,7 @@ import org.universAAL.lddi.fs20.util.LogTracker;
  * This class registers a new FS20 event listener. If a new event is detected it
  * searches the matching registered service and changes the value of the service
  * which is recognized by the fs20.exporter bundle via ServiceEvent.MODIFIED and
- * will converted to an UAAL context event
+ * will converted to an universAAL context event
  *
  *
  * @author Steeven Zeiss Fraunhofer IGD (steeven.zeiss@igd.fraunhofer.de)
@@ -64,7 +64,7 @@ public class FS20Listener {
 	}
 
 	/**
-	 * Changes the value of a registered service which conducts to an UAAL
+	 * Changes the value of a registered service which conducts to a universAAL
 	 * context event
 	 *
 	 * @param sr

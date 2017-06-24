@@ -29,7 +29,7 @@ import org.universAAL.middleware.container.osgi.OSGiContainer;
 
 /**
  * This bundle connects to the local operating system dbus and gathers
- * measurements from ISO 11073 devices. The measurements are exposed to the uAAL
+ * measurements from ISO 11073 devices. The measurements are exposed to the universAAL
  * context bus.
  *
  * @author Thomas Fuxreiter
@@ -61,7 +61,7 @@ public class Activator implements BundleActivator {
 		// init server
 		x73Server = new ISO11073DBusServer(context, logTracker);
 
-		// start uAAL service provider
+		// start universAAL service provider
 		MyThread runnable = new MyThread();
 		thread = new Thread(runnable);
 		thread.start();

@@ -20,7 +20,7 @@
  */
 package org.universAAL.lddi.zigbee.commissioning.clusters.impl;
 
-import org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneBridge;
 
 import it.cnr.isti.zigbee.api.ZigBeeDevice;
 import it.cnr.isti.zigbee.ha.driver.core.ZigBeeHAException;
@@ -35,18 +35,18 @@ import it.cnr.isti.zigbee.zcl.library.api.security_safety.ias_zone.ZoneStatusCha
 import it.cnr.isti.zigbee.zcl.library.api.security_safety.ias_zone.ZoneStatusChangeNotificationPayload;
 import it.cnr.isti.zigbee.zcl.library.api.security_safety.ias_zone.ZoneStatusChangeNotificationResponse;
 
-public class IASZoneAALImpl implements IASZoneAAL {
+public class IASZoneImpl implements IASZoneBridge {
 
-	private final IASZoneClusterAAL cluster;
+	private final IASZoneClusterImpl cluster;
 
 	private final Attribute zoneState;
 	private final Attribute zoneType;
 	private final Attribute zoneStatus;
 	private final Attribute iasCIEaddress;
 
-	public IASZoneAALImpl(ZigBeeDevice zbDevice) {
+	public IASZoneImpl(ZigBeeDevice zbDevice) {
 
-		cluster = new IASZoneClusterAAL(zbDevice);
+		cluster = new IASZoneClusterImpl(zbDevice);
 		zoneState = cluster.getAttributeZoneState();
 		zoneType = cluster.getAttributeZoneType();
 		zoneStatus = cluster.getAttributeZoneStatus();

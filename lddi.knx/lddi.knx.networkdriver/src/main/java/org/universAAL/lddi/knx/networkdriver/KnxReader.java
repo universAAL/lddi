@@ -52,7 +52,7 @@ import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
  * connection to the KNX/IP gateway.
  *
  * Uses KNXEncoder to operate translation from low level data (knx) to high
- * level data (sent to uAAL).
+ * level data (sent to universAAL).
  *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */

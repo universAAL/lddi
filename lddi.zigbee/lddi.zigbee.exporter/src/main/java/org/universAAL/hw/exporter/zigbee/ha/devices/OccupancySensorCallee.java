@@ -27,7 +27,7 @@ import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.event.OccupancyLi
 import it.cnr.isti.zigbee.zcl.library.api.core.ZigBeeClusterException;
 
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
@@ -42,8 +42,8 @@ import org.universAAL.ontology.device.StatusValue;
 import org.universAAL.ontology.phThing.DeviceService;
 
 /**
- * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
- * device with the uAAL middleware through the service and context buses.
+ * Exporter class that acts as wrapper towards universAAL. Connects interaction of the
+ * device with the universAAL middleware through the service and context buses.
  *
  * @author alfiva
  *
@@ -53,7 +53,7 @@ public class OccupancySensorCallee extends ExporterSensorCallee implements Occup
 		NAMESPACE = "http://ontology.universAAL.org/ZBOccupancyService.owl#";
 	}
 
-	private OccupancySensorAAL zbDevice;
+	private OccupancySensorBridge zbDevice;
 	private PresenceSensor ontologyDevice;
 	private DefaultContextPublisher cp;
 
@@ -67,7 +67,7 @@ public class OccupancySensorCallee extends ExporterSensorCallee implements Occup
 	 *            The OSGi service backing the interaction with the device in
 	 *            the abstraction layer
 	 */
-	public OccupancySensorCallee(ModuleContext context, OccupancySensorAAL serv) {
+	public OccupancySensorCallee(ModuleContext context, OccupancySensorBridge serv) {
 		super(context, null);
 		LogUtils.logDebug(Activator.moduleContext, OccupancySensorCallee.class, "PresenceDetectorCallee",
 				new String[] { "Ready to subscribe" }, null);
@@ -86,7 +86,7 @@ public class OccupancySensorCallee extends ExporterSensorCallee implements Occup
 		// && !locationSuffix.equals(Activator.UNINITIALIZED_SUFFIX)) {
 		// ontologyDevice
 		// .setLocation(new Room(
-		// Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+		// Constants.MIDDLEWARE_LOCAL_ID_PREFIX
 		// + locationSuffix));
 		// } else {
 		// Properties prop = Activator.getProperties();

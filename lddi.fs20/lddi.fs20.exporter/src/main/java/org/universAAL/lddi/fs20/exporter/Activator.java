@@ -38,10 +38,10 @@ import org.universAAL.middleware.container.osgi.OSGiContainer;
 
 /**
  * This bundle notices OSGi service events. If a new service is registered the
- * received device will be stored. If a service is modified it will send a uAAL
+ * received device will be stored. If a service is modified it will send a universAAL
  * context event.
  *
- * Also it notices service requests from uAAL and handles them.
+ * Also it notices service requests from universAAL and handles them.
  *
  *
  * @author Steeven Zeiss Fraunhofer IGD (steeven.zeiss@igd.fraunhofer.de)
@@ -90,7 +90,7 @@ public class Activator implements BundleActivator, ServiceListener {
 	/**
 	 * Listens on OSGi service events and handles them If a new service is
 	 * registered the received device will be stored. If a service is modified
-	 * it will send a uAAL context event.
+	 * it will send a universAAL context event.
 	 */
 	public void serviceChanged(ServiceEvent event) {
 		String[] objectClass = (String[]) event.getServiceReference().getProperty("objectClass");

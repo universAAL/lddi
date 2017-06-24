@@ -59,7 +59,7 @@ public abstract class ExporterListener implements ServiceListener {
 			ServiceReference[] srs = context.getServiceReferences(null, filter);
 			if (srs != null) {
 				for (int i = 0; i < srs.length; i++) {
-					registeruAALService(srs[i]);
+					registerService(srs[i]);
 				}
 			}
 		}
@@ -70,13 +70,13 @@ public abstract class ExporterListener implements ServiceListener {
 			ServiceReference sr = event.getServiceReference();
 			switch (event.getType()) {
 			case ServiceEvent.REGISTERED:
-				registeruAALService(sr);
+				registerService(sr);
 				break;
 			case ServiceEvent.MODIFIED:
 				// never modified
 				break;
 			case ServiceEvent.UNREGISTERING:
-				unregisteruAALService(sr);
+				unregisterService(sr);
 				break;
 			}
 		}
@@ -88,7 +88,7 @@ public abstract class ExporterListener implements ServiceListener {
 	 * @param sr
 	 *            The service reference identifying the instance to register.
 	 */
-	protected abstract void registeruAALService(ServiceReference sr);
+	protected abstract void registerService(ServiceReference sr);
 
 	/**
 	 * Disconnect a single instance of exported device.
@@ -96,11 +96,11 @@ public abstract class ExporterListener implements ServiceListener {
 	 * @param sr
 	 *            The service reference identifying the instance to disconnect.
 	 */
-	protected abstract void unregisteruAALService(ServiceReference sr);
+	protected abstract void unregisterService(ServiceReference sr);
 
 	/**
 	 * Disconnects and removes all instantiated exported devices of this type.
 	 */
-	public abstract void unregisteruAALService();
+	public abstract void unregisterService();
 
 }

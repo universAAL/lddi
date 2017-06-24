@@ -22,6 +22,6 @@ package org.universAAL.lddi.zigbee.commissioning.clusters.api;
 
 import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.OccupacySensing;
 
-public interface OccupacySensingAAL extends OccupacySensing {
+public interface OccupacySensingBridge extends OccupacySensing {
 
 }

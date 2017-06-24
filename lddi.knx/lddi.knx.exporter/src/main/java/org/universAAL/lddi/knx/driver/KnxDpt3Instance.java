@@ -34,7 +34,7 @@ import org.universAAL.lddi.knx.interfaces.KnxDriver;
  * Working instance of the IKnxDpt3 driver. Registers a service/device in OSGi
  * registry. Tracks on the KNX groupDevice service passed in the attach method
  * in KnxDpt3Driver class. This instance is passed to the consuming client (e.g.
- * uAAL exporter bundle). When the KNX groupDevice service disappears, this
+ * universAAL exporter bundle). When the KNX groupDevice service disappears, this
  * driver is removed from the consuming client and detached from the
  * groupDevice.
  *
@@ -56,7 +56,7 @@ public class KnxDpt3Instance extends KnxDriver
 	 * @param sr
 	 *            Service reference of KNX groupDevice
 	 * @param client
-	 *            Link to consumer of this driver (e.g. uAAL exporter bundle)
+	 *            Link to consumer of this driver (e.g. universAAL exporter bundle)
 	 */
 	public KnxDpt3Instance(KnxDpt3Driver parent_) {
 		// BundleContext context, IKnxDriverClient client,

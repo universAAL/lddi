@@ -45,7 +45,7 @@ import java.util.List;
  * @since 0.6.0
  *
  */
-public class OccupancyBridgeListenersAAL implements ReportListener {
+public class OccupancyBridgeListeners implements ReportListener {
 
 	private class OccupancyEventImpl implements OccupancyEvent {
 
@@ -74,7 +74,7 @@ public class OccupancyBridgeListenersAAL implements ReportListener {
 	private int previousEvent;
 	private long lastReadingTime, minTimeBeforeNotifyStatusChange;
 
-	public OccupancyBridgeListenersAAL(final ReportingConfiguration conf, final Attribute attribute, final Cluster c) {
+	public OccupancyBridgeListeners(final ReportingConfiguration conf, final Attribute attribute, final Cluster c) {
 		bridged = attribute;
 		cluster = c;
 		configuration = conf;
@@ -84,7 +84,7 @@ public class OccupancyBridgeListenersAAL implements ReportListener {
 		this.minTimeBeforeNotifyStatusChange = 2 * 1000;
 	}
 
-	public OccupancyBridgeListenersAAL(final ReportingConfiguration conf, final Attribute attribute, final Cluster c,
+	public OccupancyBridgeListeners(final ReportingConfiguration conf, final Attribute attribute, final Cluster c,
 			long minTimeBeforeNotifyStatusChange) {
 		bridged = attribute;
 		cluster = c;

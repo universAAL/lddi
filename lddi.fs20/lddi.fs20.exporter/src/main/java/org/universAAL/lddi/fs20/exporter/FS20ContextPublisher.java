@@ -35,7 +35,7 @@ import org.universAAL.ontology.activityhub.UsageSensorEvent;
 import org.universAAL.ontology.device.MotionSensor;
 
 /**
- * Sends context events to uAAL context bus.
+ * Sends context events to universAAL context bus.
  *
  *
  * @author Steeven Zeiss Fraunhofer IGD (steeven.zeiss@igd.fraunhofer.de)
@@ -70,7 +70,7 @@ public class FS20ContextPublisher {
 	}
 
 	/**
-	 * Public context event to uAAL context bus
+	 * Public context event to universAAL context bus
 	 *
 	 * @param fs20device
 	 *            = the modified device

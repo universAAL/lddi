@@ -57,7 +57,7 @@ public class ProvidedContinuaHdpManagerService extends ContinuaHealthManager {
 	// Input Continua Health device (include MAC address and data type)
 	public static final String INPUT_CONTINUA_HEALTH_DEVICE = CONTINUA_HDP_MANAGER_NAMESPACE + "ContinuaHealthDevice";
 
-	// Registration process to the uAAL mw
+	// Registration process to the universAAL mw
 	static {
 		OntologyManagement.getInstance().register(Activator.mc,
 				new SimpleOntology(MY_URI, ContinuaHealthManager.MY_URI, new ResourceFactory() {

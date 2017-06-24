@@ -27,7 +27,7 @@ import it.cnr.isti.zigbee.zcl.library.impl.attribute.Attributes;
 import it.cnr.isti.zigbee.zcl.library.impl.core.AttributeImpl;
 import it.cnr.isti.zigbee.zcl.library.impl.core.ZCLClusterBase;
 
-public class OccupacySensingClusterAAL extends ZCLClusterBase implements OccupacySensing {
+public class OccupacySensingCluster extends ZCLClusterBase implements OccupacySensing {
 
 	private final AttributeImpl occupancy;
 	private final AttributeImpl occupancySensorType;
@@ -40,7 +40,7 @@ public class OccupacySensingClusterAAL extends ZCLClusterBase implements Occupac
 
 	private final Attribute[] attributes;
 
-	public OccupacySensingClusterAAL(ZigBeeDevice zbDevice) {
+	public OccupacySensingCluster(ZigBeeDevice zbDevice) {
 
 		super(zbDevice);
 

@@ -28,7 +28,7 @@ package org.universAAL.lddi.lib.activityhub.driver.interfaces;
 public interface IActivityHubActuator {
 	/***
 	 * The specific drivers instances have to implement this method to receive
-	 * events from the consuming bundles (e.g. uAAL context bus events)
+	 * events from the consuming bundles (e.g. universAAL context bus events)
 	 *
 	 * @param deviceAddress
 	 *            address of the device or the group that fire the message

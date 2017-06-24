@@ -55,12 +55,12 @@ public class Activator implements BundleActivator {
 	}
 
 	public void stop(BundleContext arg0) throws Exception {
-		((DimmerLightListener) listeners[0]).unregisteruAALService();
-		((OnOffLightListener) listeners[1]).unregisteruAALService();
-		((PresenceDetectorListener) listeners[2]).unregisteruAALService();
-		((TemperatureSensorListener) listeners[3]).unregisteruAALService();
-		((OccupancySensorListener) listeners[4]).unregisteruAALService();
-		((IASZoneListener) listeners[5]).unregisteruAALService();
+		((DimmerLightListener) listeners[0]).unregisterService();
+		((OnOffLightListener) listeners[1]).unregisterService();
+		((PresenceDetectorListener) listeners[2]).unregisterService();
+		((TemperatureSensorListener) listeners[3]).unregisterService();
+		((OccupancySensorListener) listeners[4]).unregisterService();
+		((IASZoneListener) listeners[5]).unregisterService();
 	}
 
 	/**

@@ -47,7 +47,7 @@
 // }
 //
 // /**
-// * groupDevice types from uAAL groupDevice ontology
+// * groupDevice types from universAAL groupDevice ontology
 // * according to org.universAAL.ontology.DeviceFactory
 // */
 // public enum DeviceOntologyType {

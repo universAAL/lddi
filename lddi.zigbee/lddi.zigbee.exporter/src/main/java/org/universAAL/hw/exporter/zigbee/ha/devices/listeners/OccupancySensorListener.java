@@ -30,7 +30,7 @@ import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.universAAL.hw.exporter.zigbee.ha.Activator;
 import org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee;
-import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorAAL;
+import org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
@@ -43,7 +43,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 public class OccupancySensorListener extends ExporterListener {
 
 	static {
-		filter = "(" + Constants.OBJECTCLASS + "=" + OccupancySensorAAL.class.getName() + ")";
+		filter = "(" + Constants.OBJECTCLASS + "=" + OccupancySensorBridge.class.getName() + ")";
 	}
 
 	public OccupancySensorListener(BundleContext context) throws InvalidSyntaxException {
@@ -51,25 +51,25 @@ public class OccupancySensorListener extends ExporterListener {
 	}
 
 	@Override
-	protected void registeruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "registeruAALService",
-				new String[] { "Creating a instance of device in uAAL" }, null);
-		OccupancySensorAAL service = (OccupancySensorAAL) context.getService(sr);
+	protected void registerService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "registerService",
+				new String[] { "Creating a instance of device in universAAL" }, null);
+		OccupancySensorBridge service = (OccupancySensorBridge) context.getService(sr);
 		setOfDevices.put(sr, new OccupancySensorCallee(Activator.moduleContext, service));
 	}
 
 	@Override
-	protected void unregisteruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "registeruAALService",
-				new String[] { "Removing a instance of device in uAAL" }, null);
+	protected void unregisterService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "unregisterService",
+				new String[] { "Removing a instance of device in universAAL" }, null);
 		((OccupancySensorCallee) setOfDevices.remove(sr)).unregister();
 		context.ungetService(sr);
 	}
 
 	@Override
-	public void unregisteruAALService() {
-		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "registeruAALService",
-				new String[] { "Removing all instances of these devices in uAAL" }, null);
+	public void unregisterService() {
+		LogUtils.logDebug(Activator.moduleContext, OccupancySensorListener.class, "unregisterService",
+				new String[] { "Removing all instances of these devices in universAAL" }, null);
 		Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 		for (; iter.hasNext();) {
 			ServiceReference sref = (ServiceReference) iter.next();

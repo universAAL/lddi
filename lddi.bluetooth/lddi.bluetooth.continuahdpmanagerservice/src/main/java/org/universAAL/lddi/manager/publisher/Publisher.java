@@ -18,7 +18,7 @@
     limitations under the License.
  */
 /**
- * x073 Continua agent publisher (agent events will be published over uAAL bus)
+ * x073 Continua agent publisher (agent events will be published over universAAL bus)
  *
  * @author Angel Martinez-Cavero
  * @version 0
@@ -82,7 +82,7 @@ public class Publisher {
 
 	// Methods
 
-	/** Publish weighting scale events to uAAL bus */
+	/** Publish weighting scale events to universAAL bus */
 	public void publishWeightEvent(int weight) {
 		WeighingScale ws = new WeighingScale(PUBLISHER_URI_PREFIX + "continuaBTWeighingScale");
 		PersonWeight m_ws = new PersonWeight();
@@ -91,7 +91,7 @@ public class Publisher {
 		cp.publish(new ContextEvent(ws, WeighingScale.PROP_HAS_VALUE));
 	}
 
-	/** Publish blood pressure events to uAAL bus */
+	/** Publish blood pressure events to universAAL bus */
 	public void publishBloodPressureEvent(int sys, int dia, int hr) {
 		BloodPressure value = new BloodPressure(PUBLISHER_URI_PREFIX + "BloodPressureMeasurement");
 

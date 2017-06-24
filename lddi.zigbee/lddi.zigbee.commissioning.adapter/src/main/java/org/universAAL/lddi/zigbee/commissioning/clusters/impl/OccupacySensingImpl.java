@@ -20,7 +20,7 @@
  */
 package org.universAAL.lddi.zigbee.commissioning.clusters.impl;
 
-import org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingAAL;
+import org.universAAL.lddi.zigbee.commissioning.clusters.api.OccupacySensingBridge;
 
 import it.cnr.isti.zigbee.api.ZigBeeDevice;
 import it.cnr.isti.zigbee.ha.Activator;
@@ -28,9 +28,9 @@ import it.cnr.isti.zigbee.ha.cluster.glue.measureament_sensing.event.OccupancyLi
 import it.cnr.isti.zigbee.zcl.library.api.core.Attribute;
 import it.cnr.isti.zigbee.zcl.library.api.core.Subscription;
 
-public class OccupacySensingAALImpl implements OccupacySensingAAL {
+public class OccupacySensingImpl implements OccupacySensingBridge {
 
-	private OccupacySensingClusterAAL occupacySensingCluster;
+	private OccupacySensingCluster occupacySensingCluster;
 
 	private Attribute occupancy;
 	private Attribute occupancySensorType;
@@ -41,11 +41,11 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 	private Attribute ultraSonicUnoccupiedToOccupiedDelay;
 	private Attribute ultrasonicUnoccupiedToOccupiedThreshold;
 
-	private OccupancyBridgeListenersAAL eventBridge;
+	private OccupancyBridgeListeners eventBridge;
 
-	public OccupacySensingAALImpl(ZigBeeDevice zbDevice) {
+	public OccupacySensingImpl(ZigBeeDevice zbDevice) {
 
-		occupacySensingCluster = new OccupacySensingClusterAAL(zbDevice);
+		occupacySensingCluster = new OccupacySensingCluster(zbDevice);
 
 		occupancy = occupacySensingCluster.getAttributeOccupancy();
 		occupancySensorType = occupacySensingCluster.getAttributeOccupancySensorType();
@@ -57,12 +57,12 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 		ultrasonicUnoccupiedToOccupiedThreshold = occupacySensingCluster
 				.getAttributeUltrasonicUnoccupiedToOccupiedThreshold();
 
-		eventBridge = new OccupancyBridgeListenersAAL(Activator.getConfiguration(), occupancy, this, 2);
+		eventBridge = new OccupancyBridgeListeners(Activator.getConfiguration(), occupancy, this, 2);
 	}
 
-	public OccupacySensingAALImpl(ZigBeeDevice zbDevice, long minTimeBeforeNotifyStatusChange) {
+	public OccupacySensingImpl(ZigBeeDevice zbDevice, long minTimeBeforeNotifyStatusChange) {
 
-		occupacySensingCluster = new OccupacySensingClusterAAL(zbDevice);
+		occupacySensingCluster = new OccupacySensingCluster(zbDevice);
 
 		occupancy = occupacySensingCluster.getAttributeOccupancy();
 		occupancySensorType = occupacySensingCluster.getAttributeOccupancySensorType();
@@ -74,7 +74,7 @@ public class OccupacySensingAALImpl implements OccupacySensingAAL {
 		ultrasonicUnoccupiedToOccupiedThreshold = occupacySensingCluster
 				.getAttributeUltrasonicUnoccupiedToOccupiedThreshold();
 
-		eventBridge = new OccupancyBridgeListenersAAL(Activator.getConfiguration(), occupancy, this,
+		eventBridge = new OccupancyBridgeListeners(Activator.getConfiguration(), occupancy, this,
 				minTimeBeforeNotifyStatusChange);
 	}
 

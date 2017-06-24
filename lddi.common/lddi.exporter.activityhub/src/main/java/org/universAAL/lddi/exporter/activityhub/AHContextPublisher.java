@@ -38,7 +38,7 @@ import org.universAAL.ontology.activityhub.factory.ActivityHubFactory;
 import org.universAAL.ontology.activityhub.factory.ActivityHubEventFactory;
 
 /**
- * Provides context event patterns for the uAAL context bus
+ * Provides context event patterns for the universAAL context bus
  *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -106,7 +106,7 @@ public class AHContextPublisher {
 	}
 
 	/**
-	 * publish activityhub sensor event on the uAAL context bus
+	 * publish activityhub sensor event on the universAAL context bus
 	 *
 	 * @param deviceId
 	 * @param activityHubDeviceCategory

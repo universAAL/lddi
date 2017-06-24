@@ -71,7 +71,7 @@ public class KnxServiceCallee extends ServiceCallee {
 	 */
 	public KnxServiceCallee(ModuleContext mc, KnxManager knxManager) {
 
-		/** register my services on uAAL service bus */
+		/** register my services on universAAL service bus */
 		super(mc, KnxServiceCalleeProvidedService.profiles);
 
 		this.knxManager = knxManager;

@@ -29,7 +29,7 @@ import org.universAAL.middleware.container.osgi.OSGiContainer;
 /**
  * This bundle provides drivers for ActivityHub device services in OSGi
  * registry. It provides access to ActivityHub devices by offering/registering
- * services on the uAAL service bus. It also sends context events to the uAAL
+ * services on the universAAL service bus. It also sends context events to the universAAL
  * context bus for arising ActivityHub sensor messages.
  *
  * @author Thomas Fuxreiter (foex@gmx.at)
@@ -57,7 +57,7 @@ public class Activator implements BundleActivator {
 		// init server
 		ahManager = new AHManager(context, logTracker);
 
-		// start uAAL service provider
+		// start universAAL service provider
 		MyThread runnable = new MyThread();
 		thread = new Thread(runnable);
 		thread.start();

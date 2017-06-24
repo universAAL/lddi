@@ -21,7 +21,7 @@
 package org.universAAL.lddi.knx.utils;
 
 /**
- * Provides bottom-up (knx to uAAL) and top-down (uAAL to knx) translation of
+ * Provides bottom-up (knx to universAAL) and top-down (universAAL to knx) translation of
  * commands.
  *
  * @author Enrico Allione (enrico.allione@gmail.com)

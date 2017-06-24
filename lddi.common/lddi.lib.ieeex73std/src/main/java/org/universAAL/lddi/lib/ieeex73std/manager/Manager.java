@@ -69,7 +69,7 @@ public class Manager<T> {
 	public Manager(EventIEEEManager eventmanager) {
 
 		manufacturer = "tsb";
-		model = "manager_uaal";
+		model = "manager_universAAL";
 		version = "1";
 
 		agentcache = new AgentCache();

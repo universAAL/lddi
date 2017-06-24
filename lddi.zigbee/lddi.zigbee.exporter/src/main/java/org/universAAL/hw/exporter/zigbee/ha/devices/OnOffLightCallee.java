@@ -46,8 +46,8 @@ import org.universAAL.ontology.location.indoor.Room;
 import org.universAAL.ontology.phThing.DeviceService;
 
 /**
- * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
- * device with the uAAL middleware through the service and context buses.
+ * Exporter class that acts as wrapper towards universAAL. Connects interaction of the
+ * device with the universAAL middleware through the service and context buses.
  *
  * @author alfiva
  *
@@ -107,7 +107,7 @@ public class OnOffLightCallee extends ExporterActuatorCallee implements OnOffLis
 		}
 	}
 
-	// Overriden because OnOffLight in uAAL has integer value (kind-of-dimmer)
+	// Overriden because OnOffLight in universAAL has integer value (kind-of-dimmer)
 	// No need to change profiles because no restriction is made on the output
 	@Override
 	public ServiceResponse handleCall(ServiceCall call) {

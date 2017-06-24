@@ -62,25 +62,25 @@ public class DimmerLightListener extends ExporterListener {
 	}
 
 	@Override
-	protected void registeruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, DimmerLightListener.class, "registeruAALService",
-				new String[] { "Creating a instance of device in uAAL" }, null);
+	protected void registerService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, DimmerLightListener.class, "registerService",
+				new String[] { "Creating a instance of device in universAAL" }, null);
 		DimmableLight lightService = (DimmableLight) context.getService(sr);
 		setOfDevices.put(sr, new DimmerLightCallee(Activator.moduleContext, lightService));
 	}
 
 	@Override
-	protected void unregisteruAALService(ServiceReference sr) {
-		LogUtils.logDebug(Activator.moduleContext, DimmerLightListener.class, "registeruAALService",
-				new String[] { "Removing a instance of device in uAAL" }, null);
+	protected void unregisterService(ServiceReference sr) {
+		LogUtils.logDebug(Activator.moduleContext, DimmerLightListener.class, "unregisterService",
+				new String[] { "Removing a instance of device in universAAL" }, null);
 		((DimmerLightCallee) setOfDevices.remove(sr)).unregister();
 		context.ungetService(sr);
 	}
 
 	@Override
-	public void unregisteruAALService() {
-		LogUtils.logDebug(Activator.moduleContext, DimmerLightListener.class, "registeruAALService",
-				new String[] { "Removing all instances of these devices in uAAL" }, null);
+	public void unregisterService() {
+		LogUtils.logDebug(Activator.moduleContext, DimmerLightListener.class, "unregisterService",
+				new String[] { "Removing all instances of these devices in universAAL" }, null);
 		Iterator<ServiceReference> iter = setOfDevices.keySet().iterator();
 		for (; iter.hasNext();) {
 			ServiceReference sref = (ServiceReference) iter.next();

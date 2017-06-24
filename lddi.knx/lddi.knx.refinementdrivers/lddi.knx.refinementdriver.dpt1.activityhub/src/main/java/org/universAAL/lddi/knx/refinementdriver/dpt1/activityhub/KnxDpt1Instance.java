@@ -46,7 +46,7 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
  * Initially it was planned to map certain parameters of KNX sensors to ISO
  * sensors (e.g. location) where this mapping info is stored in a config file.
  * Although, in universAAL this kind of configuration should be done by other
- * components (e.g. AAL Space Configurator). Therefore all knx-iso-mapping code
+ * components (e.g. Space Configurator). Therefore all knx-iso-mapping code
  * is commented below.
  *
  * Possibility for automatic location mapping from ETS config: In ETS Building
