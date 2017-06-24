@@ -4,17 +4,17 @@
  * 2008-12-07	Added removeEventListener when closing down serial port.
  * 2008-09-07	Added support for Linux
  * 2007-01-08	Corrected COMMAND_DIM_LOOP and COMMAND_TOGGLE
- * 2007 jan 5	Created 
+ * 2007 jan 5	Created
 
-  	See the NOTICE file distributed with this work for additional 
+  	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +46,7 @@ import jd2xx.JD2XXEventListener;
  * This class encapsulates an interface towards the FHZ1000PC device. It works
  * on both Windows and Linux, with different internal access methods but the
  * external interface is the same.
- * 
+ *
  * FHZ1000PC is part of the FS20-system which is a home automation system with
  * devices like dimmers, switches, rain sensors and so on. The devices talk with
  * each other via radio messages. The FHZ1000PC is a USB-based interface that
@@ -54,27 +54,27 @@ import jd2xx.JD2XXEventListener;
  * control and monitor the devices. Unfortunatly only a german control program
  * without any external API accompany the device, so I had to write this
  * interface to communicate with it.
- * 
+ *
  * The FHZ1000PC hardware is originally built for serial communication, but an
  * FTDI-chip (http://www.ftdichip.com) is used internally to convert the serial
  * communication to USB. In Windows The FTDI-drivers are installed when the
  * FHZ1000PC software is installed, and API software for those drivers are
  * provided free by FTDI.
- * 
+ *
  * Those API:s are C-based, so some interface class is needed to access it from
  * Java. Such an interface is provided by https://jd2xx.dev.java.net. This
  * interface is released with a Berkeley Software Distribution (BSD) License.
  * This interface is implemented in two files which are needed to use this
  * interface: - jd2xx.dll - jd2xx.jar
- * 
+ *
  * The http://fhz4linux.info/tiki-index.php site provided me with information on
  * the serial protocol that FHZ1000PC uses.
- * 
+ *
  * I Linux we access the device directly via the serial interface. We only have
  * to persuade Linux that it really is a serial device. This is described on:
  * http://fhz4linux.info/tiki-index.php?page=Driver+installation
- * 
- * 
+ *
+ *
  * @author Stefan Strömberg
  *
  */
@@ -83,7 +83,7 @@ public class FHZ1000PC {
 	/**
 	 * An interface to the "raw" FHZ1000 device where you can read and write
 	 * data to it.
-	 * 
+	 *
 	 * @author Stefan Strömberg
 	 */
 	public interface FHZ1000Device {
@@ -99,7 +99,7 @@ public class FHZ1000PC {
 	/**
 	 * When running on Windows, we access the USB-device via FTDI-specific
 	 * drivers to access the device. This is done via this class.
-	 * 
+	 *
 	 * @author Stefan Strömberg
 	 */
 	public class JD2XXFHZ1000Device implements JD2XXEventListener, FHZ1000Device {
@@ -157,7 +157,7 @@ public class FHZ1000PC {
 	/**
 	 * When running on Linux, we access the USB-device via generic serial
 	 * drivers for FTDI-chips. This is done via this class.
-	 * 
+	 *
 	 * @author Stefan Strömberg
 	 */
 	public class FHZ1000SerialDevice implements FHZ1000Device, SerialPortEventListener {
@@ -378,7 +378,7 @@ public class FHZ1000PC {
 	 * Send a command (for example COMMAND_DIM_DOWN) to a FS20 device (for
 	 * example a dimmer) via the FHZ1000PC. The FS20 device is addressed via
 	 * house code and button id.
-	 * 
+	 *
 	 * @param houseCode
 	 *            16 bit House Code of the FS20 device in binary form, not the
 	 *            1111 2222-form.
@@ -442,7 +442,7 @@ public class FHZ1000PC {
 	/**
 	 * Sends an string of bytes to the FHZ1000PC device. The method will add the
 	 * required header information including checksum.
-	 * 
+	 *
 	 * @param data
 	 *            Array of bytes to send to device
 	 * @param telegramType
@@ -472,7 +472,7 @@ public class FHZ1000PC {
 	 * message begins at index 2 in the array, index 0 is the telegram type and
 	 * index 1 is the checksum. If no data was available before timeout an empty
 	 * array is returned.
-	 * 
+	 *
 	 * @return bytes read including telegram type and checksum
 	 * @throws IOException
 	 */
@@ -493,7 +493,7 @@ public class FHZ1000PC {
 	/**
 	 * Converts an integer address to the "base 4 + 1" format used by FS20 to
 	 * denote the addresses for buttons and devices.
-	 * 
+	 *
 	 * @param value
 	 *            The binary value to convert
 	 * @param bits
@@ -512,7 +512,7 @@ public class FHZ1000PC {
 	/**
 	 * Converts an address string in the "base 4 + 1" format used by FS20 to a
 	 * binary byte format actually used on the protocol.
-	 * 
+	 *
 	 * @param value
 	 *            The address string to convert
 	 * @return the corresponding binary value

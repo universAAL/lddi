@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -22,14 +22,14 @@ package org.universAAL.lddi.lib.activityhub.driver.interfaces;
 
 /**
  * An actuator device is controllable. It should implement this interface.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface IActivityHubActuator {
 	/***
 	 * The specific drivers instances have to implement this method to receive
 	 * events from the consuming bundles (e.g. uAAL context bus events)
-	 * 
+	 *
 	 * @param deviceAddress
 	 *            address of the device or the group that fire the message
 	 * @param message

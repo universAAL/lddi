@@ -1,16 +1,16 @@
 /*
 	Copyright 2013-2016 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,7 +27,7 @@ import java.util.Hashtable;
  * universAAL network and can be reached via a {@link CommunicationGateway
  * gateway}.
  * </p>
- * 
+ *
  * <p>
  * Instances of this class should be created only by instances of
  * {@link CommunicationGateway}. The gateway that have created an instance can
@@ -35,7 +35,7 @@ import java.util.Hashtable;
  * instances of {@link ComponentIntegrator} when they are notified by gateways
  * about the existence of external components.
  * </p>
- * 
+ *
  * <p>
  * To support gateways in mapping the ontological way of "addressing" in
  * universAAL to the kind of addressing in the external network, this class

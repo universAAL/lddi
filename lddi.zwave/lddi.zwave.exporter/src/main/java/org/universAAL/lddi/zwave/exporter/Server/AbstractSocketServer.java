@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Abstract class with the basics of implementing a {@link ISocketServer} .
- * 
+ *
  * @author fraperod
  * @version $Rev: 3702 $ $Date: 2011-02-22 10:11:15 +0100 (mar, 22 feb 2011) $
  * @uml.dependency supplier="es.tsbsoluciones.socketServer.ISocketServerProtocolDecoderFactory"
@@ -59,7 +59,7 @@ public abstract class AbstractSocketServer implements ISocketServer {
 
 	/**
 	 * SocketServer protocolDecoderFactory.
-	 * 
+	 *
 	 * @uml.property name="protocolDecoderFactory"
 	 * @uml.associationEnd
 	 */
@@ -67,7 +67,7 @@ public abstract class AbstractSocketServer implements ISocketServer {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param protocolFactory
 	 *            protocol decoder factory
 	 * @param listenPort
@@ -92,7 +92,7 @@ public abstract class AbstractSocketServer implements ISocketServer {
 
 	/**
 	 * Sets the server listening port.
-	 * 
+	 *
 	 * @see ISocketServer setPort
 	 * @param port
 	 *            the port number

@@ -718,7 +718,7 @@ public class Activator implements BundleActivator, Stoppable, ManagedService {
 		 * if(!current.getValue().isBinded()){
 		 * current.getValue().setBinded(current.getValue().getDevice().bind(
 		 * OCCUPANCY_SENSING_CLUSTER_ID));
-		 * 
+		 *
 		 * if(current.getValue().isBinded())
 		 * writeLog("binded on cluster OCCUPANCY_SENSING", current.getValue());
 		 * } }

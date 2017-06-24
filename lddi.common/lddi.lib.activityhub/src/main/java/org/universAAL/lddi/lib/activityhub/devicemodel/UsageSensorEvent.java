@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -22,7 +22,7 @@ package org.universAAL.lddi.lib.activityhub.devicemodel;
 
 /**
  * sensor events of usage sensor ISO 11073-10471
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public enum UsageSensorEvent {
@@ -41,7 +41,7 @@ public enum UsageSensorEvent {
 
 	/**
 	 * convert String to enum item
-	 * 
+	 *
 	 * @param str
 	 * @return enum item
 	 */
@@ -60,7 +60,7 @@ public enum UsageSensorEvent {
 
 	/**
 	 * convert int to enum item
-	 * 
+	 *
 	 * @param int
 	 * @return enum item
 	 */

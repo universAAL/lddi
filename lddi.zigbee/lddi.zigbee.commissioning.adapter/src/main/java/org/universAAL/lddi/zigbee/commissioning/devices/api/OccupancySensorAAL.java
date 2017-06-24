@@ -41,7 +41,7 @@ public interface OccupancySensorAAL extends HADevice {
 
 	/**
 	 * Access method for the <b>Mandatory</b> cluster: {@link OccupacySensing}
-	 * 
+	 *
 	 * @return the {@link OccupacySensing} cluster implemented by the device
 	 */
 	public OccupacySensingAAL getOccupacySensing();

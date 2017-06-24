@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -26,7 +26,7 @@ import org.universAAL.lddi.knx.utils.KnxCommand;
 
 /**
  * Provide Gogo shell commands.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxShellCommand {
@@ -39,7 +39,7 @@ public class KnxShellCommand {
 
 	/**
 	 * Provide Gogo shell command: 'knxcommand'
-	 * 
+	 *
 	 * @param knx
 	 *            group address
 	 * @param command

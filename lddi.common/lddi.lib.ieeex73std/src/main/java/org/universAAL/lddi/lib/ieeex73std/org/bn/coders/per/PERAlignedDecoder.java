@@ -68,7 +68,7 @@ public class PERAlignedDecoder extends Decoder {
 	/**
 	 * Decode the constraint length determinant. ITU-T X.691. 10.9. General
 	 * rules for encoding a length determinant
-	 * 
+	 *
 	 */
 	protected int decodeConstraintLengthDeterminant(int min, int max, BitArrayInputStream stream) throws Exception {
 		if (max <= 0xFFFF) {

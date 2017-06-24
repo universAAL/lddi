@@ -255,7 +255,7 @@ public class MyAgent implements agent {
 
 		/*
 		 * Debug Output:
-		 * 
+		 *
 		 * System.out.println("Extracted data: "); System.out.println("unit: " +
 		 * unit + " - " +unitCode); System.out.println("compoundObservedValue: "
 		 * + measuredValue_18949 + measuredValue_18950 + measuredValue_18951);

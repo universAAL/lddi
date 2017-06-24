@@ -34,7 +34,7 @@ public class FloatType {
 	/*
 	 * /___EXPONENT__/___________MANTISSA_______________/ 8 bit (MSB) 24 bit
 	 * (LSBs)
-	 * 
+	 *
 	 * The number represented is (mantissa)x(10^exponent)
 	 */
 	private int exponent; // signed 8 bit

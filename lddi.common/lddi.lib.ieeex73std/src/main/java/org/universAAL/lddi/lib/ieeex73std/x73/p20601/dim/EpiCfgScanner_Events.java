@@ -33,7 +33,7 @@ import org.universAAL.lddi.lib.ieeex73std.x73.p20601.ScanReportInfoVar;
  * whenever one of the observed attributes changes value; however, two
  * consecutive event reports shall not have a time interval less than the value
  * of the Min-Reporting-Interval attribute.
- * 
+ *
  * @author lgigante
  *
  */

@@ -53,7 +53,7 @@ public abstract class MDS extends DIM implements MDS_Events, GET_Service {
 	 * real-time clock (RTC) with the absolute time. The agent indicates whether
 	 * the Set-Time command is valid by using the mds-time-capab-set-clock bit
 	 * in the Mds-Time-Info attribute (see Table 2).
-	 * 
+	 *
 	 */
 	public abstract void Set_Time();
 

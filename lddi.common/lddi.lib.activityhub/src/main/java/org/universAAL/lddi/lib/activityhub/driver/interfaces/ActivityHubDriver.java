@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -27,11 +27,11 @@ import org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor;
  * This abstract class is designed to help developing an activityhub driver. It
  * stores information about the deviceIds (which one?) and commands (from iso
  * spec) Additional client config necessary?
- * 
+ *
  * Actuators additionally have to implement the IActivityHubActuator IF.
- * 
+ *
  * It provides an OSGi service tracker for the attached ISO device service.
- * 
+ *
  * @author Thomas Fuxreiter
  *
  */
@@ -72,9 +72,9 @@ public abstract class ActivityHubDriver {
 	/**
 	 * store the device Add this driver instance to the driver list in my
 	 * consumer. Key = deviceId
-	 * 
+	 *
 	 * link this driver to the device
-	 * 
+	 *
 	 * @param device
 	 *            the device to set
 	 */
@@ -89,7 +89,7 @@ public abstract class ActivityHubDriver {
 
 	/**
 	 * coupling this driver to device reference
-	 * 
+	 *
 	 * @param id
 	 */
 	protected boolean attachDriver() {
@@ -111,7 +111,7 @@ public abstract class ActivityHubDriver {
 
 	/**
 	 * device access
-	 * 
+	 *
 	 * @return
 	 */
 	public final ActivityHubSensor getDevice() {
@@ -132,7 +132,7 @@ public abstract class ActivityHubDriver {
 
 	/**
 	 * Remove this driver from the driver list in knx network driver
-	 * 
+	 *
 	 * @param device
 	 *            the device to remove
 	 */

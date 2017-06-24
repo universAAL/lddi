@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -26,7 +26,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
 /**
  * Applications using KNXDriver should implement this IF to get event messages
  * from real Sensors (incoming) and to send events to Actuators (outgoing).
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface IKnxDriverClient {
@@ -40,7 +40,7 @@ public interface IKnxDriverClient {
 
 	/**
 	 * get event message from KNX DPT1 driver (bool value).
-	 * 
+	 *
 	 * @param groupDeviceId
 	 *            (e.g. knx group address 1/2/3)
 	 * @param datapointTypeMainNubmer
@@ -55,7 +55,7 @@ public interface IKnxDriverClient {
 
 	/**
 	 * send event message to KNX DPT1 driver (bool value).
-	 * 
+	 *
 	 * @param groupDeviceId
 	 *            (e.g. knx group address 1/2/3)
 	 * @param value
@@ -65,7 +65,7 @@ public interface IKnxDriverClient {
 
 	/**
 	 * get event message from KNX DPT3 driver (String code).
-	 * 
+	 *
 	 * @param groupDeviceId
 	 *            (e.g. knx group address 1/2/3)
 	 * @param datapointTypeMainNubmer
@@ -90,7 +90,7 @@ public interface IKnxDriverClient {
 
 	/**
 	 * get event message from KNX DPT5 or DPT9 driver (float value).
-	 * 
+	 *
 	 * @param groupDeviceId
 	 *            (e.g. knx group address 1/2/3)
 	 * @param datapointTypeMainNubmer
@@ -105,7 +105,7 @@ public interface IKnxDriverClient {
 
 	/**
 	 * send event message to KNX DPT5 or DPT9 driver (float value).
-	 * 
+	 *
 	 * @param groupDeviceId
 	 *            (e.g. knx group address 1/2/3)
 	 * @param value

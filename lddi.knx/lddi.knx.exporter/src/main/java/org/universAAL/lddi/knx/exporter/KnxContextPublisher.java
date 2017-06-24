@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -39,7 +39,7 @@ import org.universAAL.ontology.device.ValueDevice;
 
 /**
  * Sends context events to uAAL context bus using the device.ontology.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxContextPublisher {
@@ -56,7 +56,7 @@ public class KnxContextPublisher {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param mc
 	 * @param knxManager
 	 */
@@ -86,7 +86,7 @@ public class KnxContextPublisher {
 	 * A proper ontology class is chosen according to main and sub type. Boolean
 	 * value is mapped to status ACTIVATED or NOTACTIVATED. The event is
 	 * published on the uAAL context bus.
-	 * 
+	 *
 	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
 	 * @param datapointTypeSubNubmer
@@ -131,7 +131,7 @@ public class KnxContextPublisher {
 	/**
 	 * A proper ontology class is chosen according to main and sub type. The
 	 * event is published on the uAAL context bus.
-	 * 
+	 *
 	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
 	 * @param datapointTypeSubNubmer
@@ -160,7 +160,7 @@ public class KnxContextPublisher {
 	/**
 	 * A proper ontology class is chosen according to main and sub type. The
 	 * event is published on the uAAL context bus.
-	 * 
+	 *
 	 * @param groupDeviceId
 	 * @param datapointTypeMainNubmer
 	 * @param datapointTypeSubNubmer

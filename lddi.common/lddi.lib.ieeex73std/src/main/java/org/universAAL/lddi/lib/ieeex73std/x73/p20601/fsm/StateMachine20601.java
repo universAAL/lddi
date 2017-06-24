@@ -57,7 +57,7 @@ public class StateMachine20601 {
 
 	/**
 	 * Getters and setters
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean getTransportState() {
@@ -179,7 +179,7 @@ public class StateMachine20601 {
 	/**
 	 * Once the transport is activated, the process of associating may start.
 	 * First of all, it has to receive a association request from the agent.
-	 * 
+	 *
 	 */
 
 	public boolean transitiontoAssociating() { // 1
@@ -198,7 +198,7 @@ public class StateMachine20601 {
 	/**
 	 * Finally, after checking that the configuration is valid, the data channel
 	 * can be stablished
-	 * 
+	 *
 	 * Also, the process of receiving and checking configurations could be
 	 * avoided if the agent information has been stored in a previous connection
 	 * in a cache.
@@ -243,7 +243,7 @@ public class StateMachine20601 {
 	 * manager, but the agent information is not stored in cache. So, it has to
 	 * obtain a configuration from it in order to know what king of device is
 	 * and what information the agent provides.
-	 * 
+	 *
 	 * Another option is, while configurating, the received configuration is not
 	 * accepted, so the manager will wait for another one.
 	 */
@@ -269,7 +269,7 @@ public class StateMachine20601 {
 	/**
 	 * The data communication has finished successfully, so the agent and the
 	 * manager close the association until the next interaction.
-	 * 
+	 *
 	 */
 
 	public boolean transitiontoDisassociating() { // 5

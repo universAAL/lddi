@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -32,7 +32,7 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
  * Envelopes KNX commands to UDP Packets and sends them on a UDP Multicast
  * Channel. Uses KNXEncoder to operate translation from high-level commands to
  * low-level KNX commands.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxWriter {
@@ -101,7 +101,7 @@ public class KnxWriter {
 
 	/**
 	 * Send KNX command to UPD multicast channel. Store current sent telegram.
-	 * 
+	 *
 	 * @param deviceAddress
 	 *            knx group address (1/2/3)
 	 * @param dataByte
@@ -225,7 +225,7 @@ public class KnxWriter {
 	 * Send KNX command 00 to group Address. Is seems that all devices belonging
 	 * to this group address answer with their status. So, multiple answer
 	 * telegrams are possible.
-	 * 
+	 *
 	 * @param knx
 	 *            address; either group address (1/2/3) or groupDevice address
 	 *            (1.2.3)

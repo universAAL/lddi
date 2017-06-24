@@ -38,7 +38,7 @@ import org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Numeric;
  * Class for processing the unknown configuration of an Agent device. Usually,
  * it will be an extended one Please note that in this moment, only Numeric
  * objects are supported.
- * 
+ *
  * @author lgigante
  *
  */

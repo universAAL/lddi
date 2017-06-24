@@ -17,12 +17,12 @@
     See the License for the specific language governing permissions and
     limitations under the License.
  */
-/** 
- *  
- *  @author Angel Martinez & Luis Gigante  
- *  
- *  NOTE 1: OMRON is a register trademark  
- *  
+/**
+ *
+ *  @author Angel Martinez & Luis Gigante
+ *
+ *  NOTE 1: OMRON is a register trademark
+ *
  *  */
 
 /** Package */

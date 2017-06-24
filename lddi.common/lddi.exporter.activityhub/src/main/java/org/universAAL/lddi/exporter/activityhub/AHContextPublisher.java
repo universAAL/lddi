@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -39,7 +39,7 @@ import org.universAAL.ontology.activityhub.factory.ActivityHubEventFactory;
 
 /**
  * Provides context event patterns for the uAAL context bus
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class AHContextPublisher {
@@ -107,7 +107,7 @@ public class AHContextPublisher {
 
 	/**
 	 * publish activityhub sensor event on the uAAL context bus
-	 * 
+	 *
 	 * @param deviceId
 	 * @param activityHubDeviceCategory
 	 * @param event

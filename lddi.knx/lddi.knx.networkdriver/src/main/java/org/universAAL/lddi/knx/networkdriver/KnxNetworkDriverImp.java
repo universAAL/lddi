@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -44,9 +44,9 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
  * KNX devices (injected by knx.devicemanager) where the KNX group address is
  * used as key. Incoming sensor events are passed on to the appropriate KNX
  * groupDevice (identified by KNX group address).
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
- * 
+ *
  */
 public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 
@@ -73,7 +73,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 
 	/**
 	 * Class constructor
-	 * 
+	 *
 	 * @param context
 	 *            OSGi framework
 	 * @param log
@@ -185,7 +185,7 @@ public final class KnxNetworkDriverImp implements ManagedService, IKnxNetwork {
 	/**
 	 * Forward the message from the house to the groupDevice; mapping on
 	 * groupAddress
-	 * 
+	 *
 	 * @param groupAddress
 	 *            the knx groupAddress
 	 * @param b

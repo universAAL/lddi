@@ -68,7 +68,7 @@ public class DeviceSpecialization extends MDS {
 	/*
 	 * TODO PLEASE NOTE THE NEXT OBJECT: It will be used for correcting time not
 	 * syncronized between agent and manager, after issuing the GET MDS command.
-	 * 
+	 *
 	 * See method getTimeGapofDevice(GetResultSimple rors_cmip_get) implemented,
 	 * but not used yet because we have problems for finding the right moment to
 	 * send that command,
@@ -78,12 +78,12 @@ public class DeviceSpecialization extends MDS {
 	/**
 	 * Analyze a configuration report from the Agent. With it, it describes the
 	 * objects is using (measurement types)
-	 * 
+	 *
 	 * @param cfgreport
 	 *            the configuration report from the agent
 	 * @return the response to the configuration report. It indicates whether it
 	 *         has been accepted or not.
-	 * 
+	 *
 	 */
 
 	public DeviceSpecialization(IDecoder decoder) {

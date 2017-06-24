@@ -21,7 +21,7 @@ package org.universAAL.lddi.zwave.exporter.Server;
 
 /**
  * Callback interface used to receive events from the ISocketServerConnection.
- * 
+ *
  * @author fraperod
  * @version $Rev: 5339 $ $Date: 2012-09-25 17:17:28 +0200 (mar, 25 sep 2012) $
  */
@@ -29,7 +29,7 @@ public interface ISocketServerConnectionListener {
 
 	/**
 	 * Called when a packet is fully reassembled.
-	 * 
+	 *
 	 * @param connection
 	 *            the source of the event.
 	 * @param pckt
@@ -41,7 +41,7 @@ public interface ISocketServerConnectionListener {
 	/**
 	 * Called after a packet has been sent. The packet is sent using
 	 * {@link ISocketServerConnection writeToConnection}
-	 * 
+	 *
 	 * @param connection
 	 *            The connection which sent the packet
 	 * @param size
@@ -52,7 +52,7 @@ public interface ISocketServerConnectionListener {
 	/**
 	 * Called when the read operation reaches the end of stream. This means that
 	 * the socket was closed.
-	 * 
+	 *
 	 * @param connection
 	 *            the source of the event.
 	 */
@@ -61,7 +61,7 @@ public interface ISocketServerConnectionListener {
 	/**
 	 * Called when a new connection is established, and the handler has been
 	 * setup.
-	 * 
+	 *
 	 * @param connection
 	 *            the source of the event.
 	 */
@@ -69,7 +69,7 @@ public interface ISocketServerConnectionListener {
 
 	/**
 	 * Called when some error occurs while reading or writing to the socket.
-	 * 
+	 *
 	 * @param connection
 	 *            the source of the event.
 	 * @param ex

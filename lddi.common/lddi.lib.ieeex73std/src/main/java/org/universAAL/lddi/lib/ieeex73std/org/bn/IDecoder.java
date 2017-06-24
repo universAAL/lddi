@@ -25,7 +25,7 @@ import java.io.InputStream;
 public interface IDecoder {
 	/**
 	 * Decode object from stream
-	 * 
+	 *
 	 * @param stream
 	 *            Input stream
 	 * @param objectClass

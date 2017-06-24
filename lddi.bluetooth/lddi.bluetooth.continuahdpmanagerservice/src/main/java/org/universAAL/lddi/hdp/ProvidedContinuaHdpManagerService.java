@@ -19,9 +19,9 @@
  */
 /**
  * Continua HDP manager service descriptor
- * 
+ *
  * @author Angel Martinez-Cavero TSB Technologies for Health and Well-being
- * 
+ *
  */
 
 // Package

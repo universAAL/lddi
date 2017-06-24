@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -50,10 +50,10 @@ import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
  * Listens on IP network for KNX Packets. According to configuration this class
  * listens either on a UDP multicast channel, or established a direct tunneling
  * connection to the KNX/IP gateway.
- * 
+ *
  * Uses KNXEncoder to operate translation from low level data (knx) to high
  * level data (sent to uAAL).
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxReader implements Runnable {

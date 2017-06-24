@@ -1,10 +1,10 @@
 /*
  Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- Instituto Tecnologico de Aplicaciones de Comunicacion 
- Avanzadas - Grupo Tecnologias para la Salud y el 
+ Instituto Tecnologico de Aplicaciones de Comunicacion
+ Avanzadas - Grupo Tecnologias para la Salud y el
  Bienestar (TSB)
 
- See the NOTICE file distributed with this work for additional 
+ See the NOTICE file distributed with this work for additional
  information regarding copyright ownership
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -92,7 +92,7 @@ public abstract class ExporterSensorCallee extends ServiceCallee {
 
 	/**
 	 * This is a sensor, so it must provide its sensed value when asked.
-	 * 
+	 *
 	 * @return The Service Response representing the requested output, as
 	 *         defined by the appropriate Service Ontology.
 	 */

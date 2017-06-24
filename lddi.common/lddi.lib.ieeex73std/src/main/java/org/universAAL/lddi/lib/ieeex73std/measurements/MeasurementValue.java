@@ -24,7 +24,7 @@ import org.universAAL.lddi.lib.ieeex73std.x73.p20601.OID_Type;
 /**
  * This class is the one who has the Measurement values prepared to be
  * represented.
- * 
+ *
  * @author lgigante
  *
  */

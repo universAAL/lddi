@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -29,7 +29,7 @@ import java.util.Map;
  * X X C C C C D D D D D D B = Command (APCI) D = Data 0 0 0 0 Value Read 0 0 0
  * 1 Value Response 0 0 1 0 Value Write 1 0 1 0 Memory Write 0 0 0 0 0 0 0 0 1 0
  * 0 0 0 0 0 0 0x80
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public enum KnxCommand {

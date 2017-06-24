@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -45,11 +45,11 @@ import org.universAAL.lddi.knx.interfaces.IKnxDriverClient;
  * groupDevice category. It instantiates drivers for every matching KNX
  * groupDevice. Attaches exactly one driver instance per deviceId. Subsequent
  * devices with the same deviceId are rejected!
- * 
+ *
  * When an attached device service is unregistered: drivers must take the
  * appropriate action to release this device service and perform any necessary
  * cleanup, as described in their groupDevice category spec.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt1Driver implements Driver {
@@ -92,7 +92,7 @@ public class KnxDpt1Driver implements Driver {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
 	 */
@@ -124,7 +124,7 @@ public class KnxDpt1Driver implements Driver {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.
 	 * ServiceReference)
 	 */

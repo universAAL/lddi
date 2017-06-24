@@ -62,10 +62,10 @@ import org.universAAL.lddi.lib.ieeex73std.x73.p20601.fsm.StateMachine20601;
 /**
  * This class processes the APDUs received from the Agent, and generate the
  * proper response.
- * 
+ *
  * Also, it manages if the received APDU is acceptable in the current state of
  * the state machine.
- * 
+ *
  * @author lgigante
  *
  */
@@ -140,7 +140,7 @@ public class APDUProcessor {
 	 */
 	/**
 	 * Processing of an Association Request APDU.
-	 * 
+	 *
 	 * Request is analised in this order: 1- The only state we can accept
 	 * Association Request APDUs is when the Manager is in Unassociated state.
 	 * Otherwise, we abort the current association and return to Unassociated.
@@ -160,12 +160,12 @@ public class APDUProcessor {
 	 * Response ADPU. 6- If all the previous is correct, the Manager send a
 	 * AareAPDU accepting the association and both transition to Operating
 	 * State.
-	 * 
-	 * 
+	 *
+	 *
 	 * NOTE: since in this version we are only accepting Standard
 	 * Configurations, there is no chance to get into the Waiting for and
 	 * Checking Config states.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	private ApduType processAarq(AarqApdu aarq) throws Exception {
@@ -385,17 +385,17 @@ public class APDUProcessor {
 	/**
 	 * In the case of receiving an Release Request, we have to be in any state
 	 * but Unassociated.
-	 * 
+	 *
 	 * If we are unassociated, we send an Abort APDU to force the Agent to
 	 * restart. If not, we normally accept the Release request, send a Release
 	 * Response with Normal reason and transition to Unassociated.
-	 * 
+	 *
 	 * NOTE: exception while we are in Diassociating state, in which the Manager
 	 * wants to start a disassociation. We sent previously our Rlrq, so we have
 	 * to wait for the Agent to send the Rlre response to that APDU prior to
 	 * this Rlrq reception. In any case, we send another Rlre to avoid the Rlre
 	 * timeout event in the Agent, which will be generate an Abort APDU.
-	 * 
+	 *
 	 * @param rlrq
 	 * @throws Exception
 	 */
@@ -453,15 +453,15 @@ public class APDUProcessor {
 	 */
 	/**
 	 * Processing of a received Release Response APDU.
-	 * 
+	 *
 	 * The functionality of the Manager depends of the state of the state
 	 * machine:
-	 * 
+	 *
 	 * - Unassociated: ignore it. - Waiting for Config: should not happen. Send
 	 * Abort APDU. - Checking Config: should not happen. Send Abort APDU. -
 	 * Operating: should not happen. Send Abort APDU. - Disassociating: Release
 	 * process completed. Exit to unassociated. Do not send anything.
-	 * 
+	 *
 	 * @param rlre
 	 * @return
 	 * @throws Exception
@@ -518,11 +518,11 @@ public class APDUProcessor {
 	/**
 	 * Processing of a received Abort APDU. Since there is no other option, we
 	 * have to accept it because something went wrong at the Agent side.
-	 * 
+	 *
 	 * Manager must return to unassociated state no matter in what status is
 	 * now.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param abrt
 	 * @return
 	 */
@@ -545,10 +545,10 @@ public class APDUProcessor {
 	 * Processing of Presentation APDUs. This messages contains all data
 	 * communication. - Reports of measurements - Error messages - Reject
 	 * messages - Get and Set method invocations and responses.
-	 * 
+	 *
 	 * Prst APDUs only can be received while the manager and agent are
 	 * associated (operating or waiting/checking config)
-	 * 
+	 *
 	 * @param prst
 	 * @return response APDU to the message received (if needed)
 	 * @throws Exception

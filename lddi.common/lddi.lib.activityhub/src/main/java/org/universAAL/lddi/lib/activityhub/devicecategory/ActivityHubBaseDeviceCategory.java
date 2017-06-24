@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -21,7 +21,7 @@
 package org.universAAL.lddi.lib.activityhub.devicecategory;
 
 /**
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface ActivityHubBaseDeviceCategory {
@@ -31,7 +31,7 @@ public interface ActivityHubBaseDeviceCategory {
 	/**
 	 * The specific drivers have to implement this method to receive messages
 	 * from devices
-	 * 
+	 *
 	 * @param event
 	 *            Integer representation of a specific ActivityHubSensorEvent.
 	 *            example MotionSensor: motion-detected = 0;

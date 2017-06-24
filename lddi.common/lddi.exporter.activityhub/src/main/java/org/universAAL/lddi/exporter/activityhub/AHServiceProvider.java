@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -43,7 +43,7 @@ import org.universAAL.ontology.location.indoor.Room;
 /**
  * uAAL service provider (service bus) for the ActivityHub no ontology
  * definitions here!
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class AHServiceProvider extends ServiceCallee {
@@ -58,7 +58,7 @@ public class AHServiceProvider extends ServiceCallee {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param context
 	 * @param realizedServices
 	 */
@@ -84,7 +84,7 @@ public class AHServiceProvider extends ServiceCallee {
 
 	/**
 	 * create a service response with all available ActivityHub sensors
-	 * 
+	 *
 	 * @return ServiceResponse with output objects
 	 */
 	private ServiceResponse getControlledActivityHubSensors() {
@@ -158,7 +158,7 @@ public class AHServiceProvider extends ServiceCallee {
 	/**
 	 * create a service response with information about the requested
 	 * ActivityHub device
-	 * 
+	 *
 	 * @param activityHubDeviceURI
 	 * @return ServiceResponse with output objects
 	 */
@@ -239,7 +239,7 @@ public class AHServiceProvider extends ServiceCallee {
 	/**
 	 * Creates sensor event object from ontology (from enums). The abstract
 	 * class ActivityHubSensorEvent is used here.
-	 * 
+	 *
 	 * @param lastSensorEvent
 	 * @return sensor specific event object from ontology
 	 */
@@ -294,7 +294,7 @@ public class AHServiceProvider extends ServiceCallee {
 
 	/**
 	 * If param loc is null "unknown" is returned
-	 * 
+	 *
 	 * @param loc
 	 * @return URI of room
 	 */
@@ -307,7 +307,7 @@ public class AHServiceProvider extends ServiceCallee {
 
 	/**
 	 * handle service request from uAAL service bus
-	 * 
+	 *
 	 * @see org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL.middleware.service.ServiceCall)
 	 */
 	@Override
@@ -353,7 +353,7 @@ public class AHServiceProvider extends ServiceCallee {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.middleware.service.ServiceCallee#
 	 * communicationChannelBroken()
 	 */
@@ -365,7 +365,7 @@ public class AHServiceProvider extends ServiceCallee {
 
 	/**
 	 * provide names (URI) of service profiles
-	 * 
+	 *
 	 * @return
 	 */
 	private String getserviceNames() {

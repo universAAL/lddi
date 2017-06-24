@@ -1,16 +1,16 @@
 /*
 	Copyright 2013-2016 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@ package org.universAAL.lddi.abstraction;
  * using {@link ExternalComponent#addPropMapping(String, ExternalDatapoint)} /
  * {@link ExternalComponent#getDatapoint(String)}.
  * </p>
- * 
+ *
  * <p>
  * It is important that gateways map each ontological property of a distinct
  * external component to a single instance of this class. Therefore, in cases
@@ -40,12 +40,12 @@ package org.universAAL.lddi.abstraction;
  * implement this interface. A way to do so, is to define the specific classes
  * for implementing this interface the following way:
  * </p>
- * 
+ *
  * <p>
  * <img src="./doc-files/dpHierarchy.png" width="600" height="450" alt="a
  * possible hierarchy of classes implementing ExternalDatapoint">
  * </p>
- * 
+ *
  * <p>
  * Another important point is related to the info needed for realizing the read
  * and write actions; in the above text, this was most of the times reduced only
@@ -64,12 +64,12 @@ public interface ExternalDatapoint {
 	 * If this method returns true, it means that the status / value reachable
 	 * at this address can be read but cannot be changed. In that case,
 	 * {@link #isWriteOnly()} must return false.
-	 * 
+	 *
 	 * If this method returns false, the interpretation will depend on the
 	 * return value of {@link #isWriteOnly()}: in case of true, the status /
 	 * value reachable at this address cannot be read but can be changed.
 	 * Otherwise, it is both read- and writable.
-	 * 
+	 *
 	 * No implementation of ExternalDatapoint may return for both this and the
 	 * {@link #isWriteOnly()} method simultaneously true!
 	 */
@@ -79,12 +79,12 @@ public interface ExternalDatapoint {
 	 * If this method returns true, it means that the status / value reachable
 	 * at this address can be changed but cannot be read. In that case,
 	 * {@link #isReadOnly()} must return false.
-	 * 
+	 *
 	 * If this method returns false, the interpretation will depend on the
 	 * return value of {@link #isReadOnly()}: in case of true, the status /
 	 * value reachable at this address cannot be changed but can be read.
 	 * Otherwise, it is both read- and writable.
-	 * 
+	 *
 	 * No implementation of ExternalDatapoint may return for both this and the
 	 * {@link #isReadOnly()} method simultaneously true!
 	 */

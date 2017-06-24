@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -40,7 +40,7 @@ import org.universAAL.ontology.device.LightController;
 import org.universAAL.ontology.device.ValueDevice;
 
 /**
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxServiceCallee extends ServiceCallee {
@@ -86,7 +86,7 @@ public class KnxServiceCallee extends ServiceCallee {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.middleware.service.ServiceCallee#
 	 * communicationChannelBroken()
 	 */
@@ -98,7 +98,7 @@ public class KnxServiceCallee extends ServiceCallee {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL
 	 * .middleware.service.ServiceCall)
@@ -157,7 +157,7 @@ public class KnxServiceCallee extends ServiceCallee {
 	/**
 	 * Runnable helper class for simulating incoming service requests.
 	 * Constantly looping.
-	 * 
+	 *
 	 * @author Thomas Fuxreiter (foex@gmx.at)
 	 */
 	static class MyThread extends Thread {

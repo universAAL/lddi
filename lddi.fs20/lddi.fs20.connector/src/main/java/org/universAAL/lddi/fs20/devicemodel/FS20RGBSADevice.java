@@ -1,16 +1,16 @@
-/*	
+/*
 	Copyright 2007-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institut f�r Graphische Datenverarbeitung
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,7 +26,7 @@ import org.universAAL.lddi.fs20.connect.FHZ1000PC;
 
 /**
  * Representation of an FS20RGB-SA display device
- * 
+ *
  * <b>Annotation:</b> 12 different views are equipped, more a possible
  *
  *
@@ -41,7 +41,7 @@ public class FS20RGBSADevice extends FS20Device {
 
 	/**
 	 * Constructor for a FS20RGBSA device with the used connection
-	 * 
+	 *
 	 * @param connection
 	 *            = the connection to the FS20 network
 	 */
@@ -51,7 +51,7 @@ public class FS20RGBSADevice extends FS20Device {
 
 	/**
 	 * Starts the animation 1 to 12
-	 * 
+	 *
 	 * @param animationNumber
 	 *            = the given animation number
 	 * @throws IOException

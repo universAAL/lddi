@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -37,9 +37,9 @@ import org.universAAL.lddi.knx.interfaces.KnxDriver;
  * in KnxDpt1Driver class. This instance is passed to the consuming client (e.g.
  * uAAL exporter bundle). When the KNX groupDevice service disappears, this
  * driver is removed from the consuming client and from the groupDevice.
- * 
+ *
  * This driver handles knx 1-bit events (knx datapoint 1), which is on/off.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt1Instance extends KnxDriver
@@ -69,7 +69,7 @@ public class KnxDpt1Instance extends KnxDriver
 
 	/**
 	 * track on my groupDevice
-	 * 
+	 *
 	 * @param IKnxDpt1
 	 *            groupDevice service
 	 * @return The service object to be tracked for the ServiceReference object
@@ -100,7 +100,7 @@ public class KnxDpt1Instance extends KnxDriver
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.util.tracker.ServiceTrackerCustomizer#modifiedService(org.osgi.
 	 * framework.ServiceReference, java.lang.Object)
@@ -114,7 +114,7 @@ public class KnxDpt1Instance extends KnxDriver
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.util.tracker.ServiceTrackerCustomizer#removedService(org.osgi.
 	 * framework.ServiceReference, java.lang.Object)
@@ -134,7 +134,7 @@ public class KnxDpt1Instance extends KnxDriver
 	/**
 	 * Calculate readable measurement value (boolean) from given byte array
 	 * according to KNX DPT 1. Call client.
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage#newMessageFromKnxBus(byte[])
 	 */
 	public void newMessageFromKnxBus(byte[] event) {

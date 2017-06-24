@@ -30,7 +30,7 @@ import org.xsocket.connection.IConnection.FlushMode;
 
 /**
  * Connection wrapper to be used with xSocket library.
- * 
+ *
  * @author fraperod
  * @version $Rev: 5339 $ $Date: 2012-09-25 17:17:28 +0200 (mar, 25 sep 2012) $
  */
@@ -44,7 +44,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * ConnectionDataHandler listener.
-	 * 
+	 *
 	 * @uml.property name="listener"
 	 * @uml.associationEnd
 	 */
@@ -57,7 +57,7 @@ public class ConnectionDataHandler
 	private final INonBlockingConnection connectionSynchronized;
 	/**
 	 * ConnectionDataHandler protocolDecoder.
-	 * 
+	 *
 	 * @uml.property name="protocolDecoder"
 	 * @uml.associationEnd
 	 */
@@ -65,7 +65,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * ConnectionDataHandler identifier.
-	 * 
+	 *
 	 * @uml.property name="id"
 	 */
 	private int id;
@@ -97,7 +97,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param connection
 	 *            xSocket connection that wraps the socket channel
 	 * @param listener
@@ -138,7 +138,7 @@ public class ConnectionDataHandler
 	/**
 	 * Decodes incoming data. New frames will be notified to the connection
 	 * Listener.
-	 * 
+	 *
 	 * @param newData
 	 *            incoming new data
 	 */
@@ -153,7 +153,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Gets the total number of received packets.
-	 * 
+	 *
 	 * @return the total number of received packets
 	 */
 	public int getConnectionReceivedPackets() {
@@ -162,7 +162,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Gets the total number of sent packets.
-	 * 
+	 *
 	 * @return the total number of sent packets
 	 */
 	public int getConnectionSentPackets() {
@@ -171,7 +171,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Returns the connection identifier.
-	 * 
+	 *
 	 * @return connection identifier
 	 * @uml.property name="id"
 	 */
@@ -181,7 +181,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Returns true if the connections is closed.
-	 * 
+	 *
 	 * @return true if the connection is closed
 	 */
 	public boolean isConnectionClosed() {
@@ -190,7 +190,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Exception raised while trying to write.
-	 * 
+	 *
 	 * @param ioe
 	 *            error while trying to write to the connection.
 	 */
@@ -200,7 +200,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Callback method that notifies that a packet has been sent.
-	 * 
+	 *
 	 * @see org.xsocket.connection.IWriteCompletionHandler#onWritten(int)
 	 * @param written
 	 *            the size of the packet written
@@ -215,7 +215,7 @@ public class ConnectionDataHandler
 	/**
 	 * Method called by the protocol decoder when a new packet has been
 	 * assembled.
-	 * 
+	 *
 	 * @param pckt
 	 *            the new assembled packet
 	 */
@@ -236,7 +236,7 @@ public class ConnectionDataHandler
 	 * Writes data to connection. Asynchronous method, retuns imediatly.
 	 * {@link ConnectionDataHandler onWritten} is called after the packet has
 	 * been written.
-	 * 
+	 *
 	 * @param data
 	 *            data to be written
 	 */
@@ -266,7 +266,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * getConnectionSynchronized.
-	 * 
+	 *
 	 * @return .
 	 */
 	public INonBlockingConnection getConnection() {
@@ -295,7 +295,7 @@ public class ConnectionDataHandler
 
 	/**
 	 * Returns the listener.
-	 * 
+	 *
 	 * @return the listener
 	 */
 	public ISocketServerConnectionListener getListener() {

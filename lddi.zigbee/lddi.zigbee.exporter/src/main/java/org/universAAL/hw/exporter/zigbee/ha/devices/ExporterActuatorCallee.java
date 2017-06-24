@@ -1,10 +1,10 @@
 /*
  Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- Instituto Tecnologico de Aplicaciones de Comunicacion 
- Avanzadas - Grupo Tecnologias para la Salud y el 
+ Instituto Tecnologico de Aplicaciones de Comunicacion
+ Avanzadas - Grupo Tecnologias para la Salud y el
  Bienestar (TSB)
 
- See the NOTICE file distributed with this work for additional 
+ See the NOTICE file distributed with this work for additional
  information regarding copyright ownership
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -122,7 +122,7 @@ public abstract class ExporterActuatorCallee extends ServiceCallee {
 	/**
 	 * When a SET ON service request is received, this method is called
 	 * automatically.
-	 * 
+	 *
 	 * @return <code>true</code> if the actuator could be set to ON
 	 */
 	public abstract boolean executeOn();
@@ -130,7 +130,7 @@ public abstract class ExporterActuatorCallee extends ServiceCallee {
 	/**
 	 * When a SET OFF service request is received, this method is called
 	 * automatically.
-	 * 
+	 *
 	 * @return <code>true</code> if the actuator could be set to OFF
 	 */
 	public abstract boolean executeOff();
@@ -138,7 +138,7 @@ public abstract class ExporterActuatorCallee extends ServiceCallee {
 	/**
 	 * When a GET STATUS service request is received, this method is called
 	 * automatically.
-	 * 
+	 *
 	 * @return The Boolean value representing the status property of the
 	 *         actuator.
 	 */

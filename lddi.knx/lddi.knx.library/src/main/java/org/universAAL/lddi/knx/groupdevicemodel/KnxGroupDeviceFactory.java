@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -23,7 +23,7 @@ package org.universAAL.lddi.knx.groupdevicemodel;
 /**
  * Factory for KNX group devices for each data point type. According to spec:
  * "KXN Datapoint Types v1.7.00 AS"
- * 
+ *
  * @author Thomas Fuxreiter
  */
 public abstract class KnxGroupDeviceFactory {

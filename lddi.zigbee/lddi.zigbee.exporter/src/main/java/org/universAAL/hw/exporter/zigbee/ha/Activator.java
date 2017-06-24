@@ -1,10 +1,10 @@
 /*
  Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- Instituto Tecnologico de Aplicaciones de Comunicacion 
- Avanzadas - Grupo Tecnologias para la Salud y el 
+ Instituto Tecnologico de Aplicaciones de Comunicacion
+ Avanzadas - Grupo Tecnologias para la Salud y el
  Bienestar (TSB)
 
- See the NOTICE file distributed with this work for additional 
+ See the NOTICE file distributed with this work for additional
  information regarding copyright ownership
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -65,10 +65,10 @@ public class Activator implements BundleActivator {
 
 	/**
 	 * Saves commissioning location properties of devices in a preset file.
-	 * 
+	 *
 	 * The current format of property=value stored is:
 	 * <code>FullDeviceID=URIsuffixOfRoom</code>
-	 * 
+	 *
 	 * @param prop
 	 */
 	public static synchronized void setProperties(Properties prop) {
@@ -86,12 +86,12 @@ public class Activator implements BundleActivator {
 	/**
 	 * Gets the commissioning location properties of already known devices from
 	 * a preset file.
-	 * 
+	 *
 	 * The current format of property=value stored is:
 	 * <code>FullDeviceID=URIsuffixOfRoom</code>
-	 * 
+	 *
 	 * If the file does not exists, it is created.
-	 * 
+	 *
 	 * @return The <code>Properties</code> object with the commissioning data.
 	 */
 	public static synchronized Properties getProperties() {

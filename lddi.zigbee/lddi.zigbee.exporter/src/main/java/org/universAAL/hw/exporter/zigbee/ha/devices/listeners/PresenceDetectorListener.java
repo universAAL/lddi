@@ -1,10 +1,10 @@
 /*
  Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- Instituto Tecnologico de Aplicaciones de Comunicacion 
- Avanzadas - Grupo Tecnologias para la Salud y el 
+ Instituto Tecnologico de Aplicaciones de Comunicacion
+ Avanzadas - Grupo Tecnologias para la Salud y el
  Bienestar (TSB)
 
- See the NOTICE file distributed with this work for additional 
+ See the NOTICE file distributed with this work for additional
  information regarding copyright ownership
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,9 +36,9 @@ import org.universAAL.middleware.container.utils.LogUtils;
 /**
  * OSGi Service Listener that looks for a specific service published by the
  * abstraction layer and creates and updates the appropriate exporter callee.
- * 
+ *
  * @author alfiva
- * 
+ *
  */
 public class PresenceDetectorListener extends ExporterListener {
 
@@ -49,7 +49,7 @@ public class PresenceDetectorListener extends ExporterListener {
 	/**
 	 * Constructor to be used in the exporter. Configures the listener and
 	 * performs initial search.
-	 * 
+	 *
 	 * @param context
 	 *            The OSGi context
 	 * @throws InvalidSyntaxException

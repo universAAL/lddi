@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -24,7 +24,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt3;
 
 /**
  * Concrete implementation of KNX group devices for KNX data type 3.***.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt3GroupDevice extends KnxGroupDevice implements IKnxDpt3 {
@@ -39,7 +39,7 @@ public class KnxDpt3GroupDevice extends KnxGroupDevice implements IKnxDpt3 {
 	/**
 	 * Calculate step code from knx message payload. last 4-bit of data byte
 	 * encoding |xxxx cSSS| c = {0,1} control SSS = [000b - 111b] Stepcode
-	 * 
+	 *
 	 * @return null if the datapoint type is not implemented. Now implemented:
 	 *         3.007 and 3.008
 	 */

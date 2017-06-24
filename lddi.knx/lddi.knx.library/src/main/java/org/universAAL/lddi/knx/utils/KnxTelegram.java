@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -22,7 +22,7 @@ package org.universAAL.lddi.knx.utils;
 
 /**
  * Structure of a KNX telegram. Minimum 9 bytes.
- * 
+ *
  * 0 1 2 3 4 5 6 7 8 9 - N-1 Controlbyte IP-Fill-Byte Sourceaddress Destaddress
  * DRL TPCI/APCI APCI/Data Data
  *
@@ -77,7 +77,7 @@ public class KnxTelegram {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param knxMessage
 	 */
 	public KnxTelegram(byte[] knxMessage) {

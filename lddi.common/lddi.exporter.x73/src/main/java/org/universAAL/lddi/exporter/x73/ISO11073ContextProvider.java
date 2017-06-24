@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -38,7 +38,7 @@ import org.universAAL.ontology.X73.X73Ontology;
 
 /**
  * Provides context event patterns for the uAAL context bus
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  * @author Patrick Stern (sternp@gmx.at)
  */
@@ -73,11 +73,11 @@ public class ISO11073ContextProvider {
 		 * MergedRestriction subjectRestriction = MergedRestriction
 		 * .getAllValuesRestriction(ContextEvent.PROP_RDF_SUBJECT,
 		 * WeighingScale.MY_URI);
-		 * 
+		 *
 		 * MergedRestriction predicateRestriction = MergedRestriction
 		 * .getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
 		 * WeighingScale.PROP_HAS_MEASURED_WEIGHT);
-		 * 
+		 *
 		 * MergedRestriction objectRestriction = MergedRestriction
 		 * .getFixedValueRestriction(ContextEvent.PROP_RDF_OBJECT,
 		 * MDSAttribute.basicNuObservedValue);

@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -26,7 +26,7 @@ import org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice;
  * This abstract class is designed to help developing a knx driver. It stores
  * information about the coupled groupDevice. It provides an service tracker for
  * the attached groupDevice service.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public abstract class KnxDriver {
@@ -46,7 +46,7 @@ public abstract class KnxDriver {
 
 	/**
 	 * store the groupDevice link this driver to the groupDevice
-	 * 
+	 *
 	 * @param the
 	 *            groupDevice to set
 	 */
@@ -63,14 +63,14 @@ public abstract class KnxDriver {
 	/**
 	 * coupling this driver to groupDevice reference method is abstract because
 	 * of cast to groupDevice category IF
-	 * 
+	 *
 	 * @param id
 	 */
 	// protected abstract boolean attachDriver();
 
 	/**
 	 * coupling this driver to groupDevice reference
-	 * 
+	 *
 	 * @param id
 	 */
 	protected boolean attachDriver() {
@@ -92,7 +92,7 @@ public abstract class KnxDriver {
 
 	/**
 	 * Remove this driver from the driver list in knx network driver
-	 * 
+	 *
 	 * @param groupDevice
 	 *            the groupDevice to remove
 	 */
@@ -103,7 +103,7 @@ public abstract class KnxDriver {
 
 	/**
 	 * This method remove, if present, the "0x" prefix of the hexValue variable
-	 * 
+	 *
 	 * @param hexValue
 	 *            string containing an hex value
 	 * @return the same string without prefix

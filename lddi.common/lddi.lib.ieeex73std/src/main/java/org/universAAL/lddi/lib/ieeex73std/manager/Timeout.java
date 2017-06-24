@@ -31,7 +31,7 @@ import org.universAAL.lddi.lib.ieeex73std.x73.nomenclature.StatusCodes;
 
 /**
  * This class implements the timeouts defined on the IEEE 11073-20601 standard
- * 
+ *
  * @author lgigante
  *
  */

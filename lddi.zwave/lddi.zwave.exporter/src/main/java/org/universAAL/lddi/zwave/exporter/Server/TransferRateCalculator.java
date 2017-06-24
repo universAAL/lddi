@@ -24,7 +24,7 @@ import java.util.TimerTask;
 
 /**
  * Class to calculate transfer rates.
- * 
+ *
  * @author fraperod
  * @version $Rev: 5339 $ $Date: 2012-09-25 17:17:28 +0200 (mar, 25 sep 2012) $
  */
@@ -56,26 +56,26 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * TransferRateCalculator totalIncomingBytes.
-	 * 
+	 *
 	 * @uml.property name="totalIncomingBytes"
 	 */
 	private long totalIncomingBytes;
 	/**
 	 * TransferRateCalculator totalOutgoingBytes.
-	 * 
+	 *
 	 * @uml.property name="totalOutgoingBytes"
 	 */
 	private long totalOutgoingBytes;
 
 	/**
 	 * TransferRateCalculator incomingByteRate.
-	 * 
+	 *
 	 * @uml.property name="incomingByteRate"
 	 */
 	private float incomingByteRate;
 	/**
 	 * TransferRateCalculator outgoingByteRate.
-	 * 
+	 *
 	 * @uml.property name="outgoingByteRate"
 	 */
 	private float outgoingByteRate;
@@ -92,7 +92,7 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param calcPeriodMilisecons
 	 *            time to update calculations in milliseconds
 	 */
@@ -105,7 +105,7 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * Returns the incoming byte rate.
-	 * 
+	 *
 	 * @return the incoming byte rate
 	 * @uml.property name="incomingByteRate"
 	 */
@@ -115,7 +115,7 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * Returns the outgoing byte rate.
-	 * 
+	 *
 	 * @return the outgoing byte rate
 	 * @uml.property name="outgoingByteRate"
 	 */
@@ -125,7 +125,7 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * Returns the total incoming bytes.
-	 * 
+	 *
 	 * @return the total incoming bytes
 	 * @uml.property name="totalIncomingBytes"
 	 */
@@ -135,7 +135,7 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * Returns the total outgoing bytes.
-	 * 
+	 *
 	 * @return the total outgoing bytes
 	 * @uml.property name="totalOutgoingBytes"
 	 */
@@ -145,7 +145,7 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * New data received.
-	 * 
+	 *
 	 * @param dataSize
 	 *            size of the new incoming data
 	 */
@@ -158,7 +158,7 @@ public class TransferRateCalculator extends TimerTask {
 
 	/**
 	 * New data sent.
-	 * 
+	 *
 	 * @param dataSize
 	 *            size of the new outgoing data
 	 */

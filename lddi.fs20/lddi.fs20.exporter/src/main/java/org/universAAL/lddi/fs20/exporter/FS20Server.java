@@ -1,16 +1,16 @@
-/*	
+/*
 	Copyright 2007-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institut f�r Graphische Datenverarbeitung
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -68,7 +68,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Constructor with a given ModuleContext
-	 * 
+	 *
 	 * @param context
 	 *            = the given ModuleContext
 	 */
@@ -79,7 +79,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Handles the service call and react on it
-	 * 
+	 *
 	 * @param call
 	 *            = the call from uAAL
 	 */
@@ -170,7 +170,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Get all loudspeaker alias FS20SIG
-	 * 
+	 *
 	 * @return returns all loudspeaker alias FS20SIG
 	 */
 	private ServiceResponse getFS20Gong() {
@@ -187,7 +187,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Get all LightActuators alisa FS20RGBSA
-	 * 
+	 *
 	 * @return returns all LightActuators alisa FS20RGBSA
 	 */
 	private ServiceResponse getFS20Display() {
@@ -205,7 +205,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Get all UsageSensors alias FS20FMS
-	 * 
+	 *
 	 * @return returns all UsageSensors alias FS20FMS
 	 */
 	private ServiceResponse getFS20FMS() {
@@ -223,7 +223,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Get all SwitchActuators alias FS20ST
-	 * 
+	 *
 	 * @return return all SwitchActuators alias FS20ST
 	 */
 	private ServiceResponse getFS20ST() {
@@ -241,7 +241,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Return all MotionSensors alias FS20PIRx
-	 * 
+	 *
 	 * @return returns all MotionSensors alias FS20PIRx
 	 */
 	private ServiceResponse getFS20PIRx() {
@@ -260,7 +260,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Turn FS20ST device on by URI
-	 * 
+	 *
 	 * @param uri
 	 *            = the URI of the FS20 device
 	 * @return returns the CallStatus
@@ -275,7 +275,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Turn FS20ST device off by URI
-	 * 
+	 *
 	 * @param uri
 	 *            = the URI of the FS20ST device
 	 * @return returns the CallStatus
@@ -290,7 +290,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Activates the FS20SIG by URI
-	 * 
+	 *
 	 * @param uri
 	 *            = the URI of the FS20SIG device
 	 * @return returns the CallStatus
@@ -305,7 +305,7 @@ public class FS20Server extends ServiceCallee {
 
 	/**
 	 * Starts the animation with a given number on a FS20RGBSA device by URI
-	 * 
+	 *
 	 * @param animation
 	 * @param uri
 	 *            = the URI of the FS20ST device

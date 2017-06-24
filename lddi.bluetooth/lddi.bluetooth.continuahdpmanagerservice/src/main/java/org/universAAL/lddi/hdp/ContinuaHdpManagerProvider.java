@@ -19,9 +19,9 @@
  */
 /**
  * Services offered to other applications by the Continua HDP Manager
- * 
+ *
  * @author Angel Martinez-Cavero TSB Technologies for Health and Well-being
- * 
+ *
  */
 
 // Package

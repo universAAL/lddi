@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -22,13 +22,13 @@ package org.universAAL.lddi.knx.interfaces;
 
 /**
  * Define receive methods for messages from knx bus.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface IKnxReceiveMessage {
 	/***
 	 * Receive low level messages from the knx bus
-	 * 
+	 *
 	 * @param event
 	 *            the status/event byte of the knx telegram
 	 */

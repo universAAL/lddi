@@ -53,7 +53,7 @@ public class DecoderMDER extends Decoder {
 	 * integers and the absolute value for unsigned. For the size-constrained
 	 * integer values supported by MDER, Figure F.2 defines octet encodings.
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.bn.coders.IASN1TypesDecoder#decodeInteger(org.bn.coders.
 	 * DecodedObject, java.lang.Class, org.bn.coders.ElementInfo,
 	 * java.io.InputStream)
@@ -161,7 +161,7 @@ public class DecoderMDER extends Decoder {
 	 * the next bit in the octet, etc. For the size-constrained bit string
 	 * values supported by MDER, Figure F.3 defines octet encodings.
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.bn.coders.IASN1TypesDecoder#decodeBitString(org.bn.coders.
 	 * DecodedObject, java.lang.Class, org.bn.coders.ElementInfo,
 	 * java.io.InputStream)
@@ -198,22 +198,22 @@ public class DecoderMDER extends Decoder {
 	 * The encoding of an octet string value is primitive, and the contents
 	 * octets simply represent the elements of the string. The encoding of the
 	 * octets is inherent to the definition of the type of the string
-	 * 
+	 *
 	 * The octets may contain ASCII printable characters or may contain
 	 * encapsulated binary data. OCTET STRINGs containing ASCII printable
 	 * characters shall be even length using a NULL character as padding. Note
 	 * that strings that are naturally even length may not be NULL terminated.
-	 * 
+	 *
 	 * Fixed OCTET STRING types are encoded without a length field and have only
 	 * the content octets. Variable-length OCTET STRING types are encoded with a
 	 * 16-bit length field (unsigned integer, twoscomplement), followed by the
 	 * specific number of content octets.
-	 * 
+	 *
 	 * MDER distinguishes between the fixed-length (size-constrained) OCTET
 	 * STRING and the variable-length OCTET STRING as shown in Figure F.4:
-	 * 
+	 *
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.bn.coders.IASN1TypesDecoder#decodeOctetString(org.bn.coders.
 	 * DecodedObject, java.lang.Class, org.bn.coders.ElementInfo,
 	 * java.io.InputStream)
@@ -261,7 +261,7 @@ public class DecoderMDER extends Decoder {
 	 * A SEQUENCE is encoded by encoding each element of the SEQUENCE in the
 	 * order in which it is defined in the ASN.1 SEQUENCE. No alignment is
 	 * performed. (non-Javadoc)
-	 * 
+	 *
 	 * @see org.bn.coders.Decoder#decodeSequence(org.bn.coders.DecodedObject,
 	 * java.lang.Class, org.bn.coders.ElementInfo, java.io.InputStream)
 	 */
@@ -311,10 +311,10 @@ public class DecoderMDER extends Decoder {
 	 * n size, where size is the length of each encoded element. Note that
 	 * length does not include the size of the count and length elements. The
 	 * header is followed by the encoded elements in order. See Figure F.6.
-	 * 
+	 *
 	 * A count and length field with contents 0 indicates an empty list data
 	 * structure and is an allowed value.
-	 * 
+	 *
 	 * Has 3 fields: - INT_U16 : count of elements encoded - INT_U16 : length,
 	 * octets of the elements encoded - The encoded elements one after another.
 	 */
@@ -361,7 +361,7 @@ public class DecoderMDER extends Decoder {
 	}
 
 	/*
-	 * 
+	 *
 	 * CHOICE is encoded by a header of a tag field to specify the encoding of
 	 * the chosen alternative and a length field to specify the number of octets
 	 * in the encoding of the chosen alternative that follows. See Figure F.7
@@ -376,7 +376,7 @@ public class DecoderMDER extends Decoder {
 	 * which is mapped directly to the choice_id field in the encoding rule just
 	 * defined. In this case, choices are sequential, but disjoint, depending on
 	 * the application, as in the following example:
-	 * 
+	 *
 	 * Three fields: - INT_U16 Tag - INT_U16 Length - Encoding of the choice
 	 */
 
@@ -437,10 +437,10 @@ public class DecoderMDER extends Decoder {
 	 * F.8. The type specified refers to embedded syntaxes that are specified
 	 * using a registered OID. Refer to Annex H of ISO/IEEE 11073-20101:2004
 	 * [B14] for compatibility cases.
-	 * 
+	 *
 	 * This example shows the byte encoding of the SEQUENCE containing a
 	 * context-sensitive OID and the value of an ANY DEFINED BY.
-	 * 
+	 *
 	 * In the preceding mapping, the type-id field is a context-free OID. An
 	 * application uses the ID field to cast the any_data field to the right
 	 * data type. The character data type for the any_data field is essentially
@@ -448,7 +448,7 @@ public class DecoderMDER extends Decoder {
 	 * can be 0, which means the any_data field does not exist. The instance-of
 	 * type encodes the ASN.1 TYPE-IDENTIFIER construct and is identical to the
 	 * ANY DEFINED BY encoding for the purpose of backwards-compatibility.
-	 * 
+	 *
 	 * INT_U16 - Length Encoding of the selected value
 	 */
 	public DecodedObject decodeAny(DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo,

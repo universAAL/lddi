@@ -1,10 +1,10 @@
 /*
  Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- Instituto Tecnologico de Aplicaciones de Comunicacion 
- Avanzadas - Grupo Tecnologias para la Salud y el 
+ Instituto Tecnologico de Aplicaciones de Comunicacion
+ Avanzadas - Grupo Tecnologias para la Salud y el
  Bienestar (TSB)
 
- See the NOTICE file distributed with this work for additional 
+ See the NOTICE file distributed with this work for additional
  information regarding copyright ownership
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -115,7 +115,7 @@ public abstract class ExporterDimmerCallee extends ServiceCallee {
 	/**
 	 * When a GET STATUS service request is received, this method is called
 	 * automatically.
-	 * 
+	 *
 	 * @return The Integer value representing the status property of the
 	 *         actuator.
 	 */
@@ -124,7 +124,7 @@ public abstract class ExporterDimmerCallee extends ServiceCallee {
 	/**
 	 * When a SET STATUS service request is received, this method is called
 	 * automatically.
-	 * 
+	 *
 	 * @param value
 	 *            The Integer representing the dimmed value
 	 * @return The Boolean value representing the status property of the

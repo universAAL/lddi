@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -19,7 +19,7 @@
 */
 
 /*
- * File: ConnectionLinker.java 
+ * File: ConnectionLinker.java
  * $Id: ConnectionLinker.java 5339 2012-09-25 15:17:28Z fraperod $
  *
  * Copyright (C) 2009 TSB Soluciones.
@@ -55,7 +55,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Links connection Id with actual connections.
- * 
+ *
  * @author fraperod
  * @version $Rev: 5339 $ $Date: 2012-09-25 17:17:28 +0200 (mar, 25 sep 2012) $
  */
@@ -77,7 +77,7 @@ public class ConnectionLinker {
 
 	/**
 	 * Adds a new connection.
-	 * 
+	 *
 	 * @param connection
 	 *            connection
 	 */
@@ -89,7 +89,7 @@ public class ConnectionLinker {
 
 	/**
 	 * Returns the connection with the required id.
-	 * 
+	 *
 	 * @param id
 	 *            id of the connection
 	 * @return connection, or null if not id not present
@@ -100,7 +100,7 @@ public class ConnectionLinker {
 
 	/**
 	 * .
-	 * 
+	 *
 	 * @return next free connection id.
 	 * @throws Exception
 	 *             when no connection ID available.
@@ -124,7 +124,7 @@ public class ConnectionLinker {
 
 	/**
 	 * Removes a connection.
-	 * 
+	 *
 	 * @param connection
 	 *            connection.
 	 */

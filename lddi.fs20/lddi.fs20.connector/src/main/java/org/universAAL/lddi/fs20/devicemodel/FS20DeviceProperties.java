@@ -1,16 +1,16 @@
-/*	
+/*
 	Copyright 2007-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institut f�r Graphische Datenverarbeitung
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Constructor of an incomplete described FS20 Device
-	 * 
+	 *
 	 * @param URI
 	 *            = the unique id
 	 * @param name
@@ -65,7 +65,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Constructor of a complete described FS20 Device
-	 * 
+	 *
 	 * @param URI
 	 *            = the unique id
 	 * @param name
@@ -103,7 +103,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns the name of the FS20 device
-	 * 
+	 *
 	 * @return name of the FS20 device
 	 */
 	public String getName() {
@@ -112,7 +112,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns the unique device ID of the FS20 device
-	 * 
+	 *
 	 * @return the unique device ID
 	 */
 	public String getURI() {
@@ -121,7 +121,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns the housecode of the FS20 device
-	 * 
+	 *
 	 * @return the housecode
 	 */
 	public String getHousecode() {
@@ -130,7 +130,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns the devicecode of the FS20 device
-	 * 
+	 *
 	 * @return the devicecode
 	 */
 	public String getDevicecode() {
@@ -139,7 +139,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns the device type of the FS20 device
-	 * 
+	 *
 	 * @return the device type
 	 */
 	public FS20DeviceTypes getDeviceType() {
@@ -148,7 +148,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns the last measured value of the FS20 device
-	 * 
+	 *
 	 * @return the last measured value
 	 */
 	public String getMeasurementValue() {
@@ -157,7 +157,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns a longer description of the FS20 device
-	 * 
+	 *
 	 * @return description of the device
 	 */
 	public String getDeviceDescription() {
@@ -166,7 +166,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns a longer description of the functionality of the FS20 device
-	 * 
+	 *
 	 * @return description of the function
 	 */
 	public String getFunctionDesciption() {
@@ -175,7 +175,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns the name of the location where the FS20 device is located
-	 * 
+	 *
 	 * @return the location of the device
 	 */
 	public String getLocation() {
@@ -184,7 +184,7 @@ public class FS20DeviceProperties {
 
 	/**
 	 * Returns all properties as a string
-	 * 
+	 *
 	 * @return A string of all properties
 	 */
 	public String toString() {

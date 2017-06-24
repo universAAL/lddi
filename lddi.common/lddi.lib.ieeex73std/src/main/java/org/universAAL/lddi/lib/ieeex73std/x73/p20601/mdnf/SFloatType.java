@@ -34,7 +34,7 @@ public class SFloatType {
 	/*
 	 * /___EXPONENT__/___________MANTISSA_______________/ 4 bit (1/2 MSB) 12 bit
 	 * (1/2 MSB and LSB)
-	 * 
+	 *
 	 * The number represented is (mantissa)x(10^exponent)
 	 */
 	private short exponent; // signed 4 bit

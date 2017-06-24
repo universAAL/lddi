@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -28,15 +28,15 @@ import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.Acti
 /**
  * Representation of a temperature sensor according to ISO 11073 - Part 10471
  * (Indepentend living activity hub).
- * 
+ *
  * Specific sensor events (from standard specification): - high temperature
  * detected - low temperature detected - rate of change too fast (optional) - no
  * condition detected (optional)
- * 
+ *
  * Initially NO_CONDITION_DETECTED is set. Later, current sensor value can be
  * set to HIGH_TEMPERATURE_DETECTED and LOW_TEMPERATURE_DETECTED Event
  * RATE_OF_CHANGE_TOO_FAST is not implemented yet!
- * 
+ *
  * @author Thomas Fuxreiter
  */
 public class TemperatureSensor extends ActivityHubSensor implements Iso11073TemperatureSensor {
@@ -59,7 +59,7 @@ public class TemperatureSensor extends ActivityHubSensor implements Iso11073Temp
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
 	 * getSensorEventValue()
 	 */
@@ -70,7 +70,7 @@ public class TemperatureSensor extends ActivityHubSensor implements Iso11073Temp
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
 	 * setSensorEventOff()
 	 */
@@ -82,7 +82,7 @@ public class TemperatureSensor extends ActivityHubSensor implements Iso11073Temp
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
 	 * setSensorEventOn()
 	 */
@@ -94,7 +94,7 @@ public class TemperatureSensor extends ActivityHubSensor implements Iso11073Temp
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.lddi.lib.activityhub.devicecategory.
 	 * ActivityHubBaseDeviceCategory#incomingSensorEvent(int)
 	 */

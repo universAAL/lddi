@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -30,7 +30,7 @@ import java.util.Map;
  * 0 0 0 System command (highest priority) 1 0 Alarm command 0 1 Normal (high
  * priority) 1 1 Auto (low priority) DEFAULT ! 0 Repeat (0 if this telegram was
  * sent again)
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public enum KnxPacketPriority {

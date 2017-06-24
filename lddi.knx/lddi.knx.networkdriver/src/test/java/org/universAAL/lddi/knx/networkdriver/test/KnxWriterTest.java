@@ -18,7 +18,7 @@ import org.universAAL.lddi.knx.utils.KnxCommand;
 import org.universAAL.lddi.knx.utils.KnxEncoder;
 
 /**
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxWriterTest {
@@ -69,7 +69,7 @@ public class KnxWriterTest {
 
 	/**
 	 * Send KNX command to UPD multicast channel. Store current sent telegram.
-	 * 
+	 *
 	 * @param deviceAddress
 	 *            knx group address (1/2/3)
 	 * @param dataByte

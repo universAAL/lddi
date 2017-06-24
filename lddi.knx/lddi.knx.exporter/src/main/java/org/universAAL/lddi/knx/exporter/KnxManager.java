@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -45,7 +45,7 @@ import org.universAAL.lddi.knx.exporter.util.LogTracker;
  * themselves in the driverList. Just passing the incoming sensor value to
  * uAAL-MW related class (-> context publisher) and vice versa, from uAAL
  * service provider to KNX driver. No storage of events in this class!
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxManager implements IKnxDriverClient {
@@ -59,7 +59,7 @@ public class KnxManager implements IKnxDriverClient {
 	/**
 	 * stores the knxInstance (there should be just one!) for each
 	 * groupDeviceId.
-	 * 
+	 *
 	 * key = groupDeviceId value = KnxDriver
 	 */
 	private Map<String, KnxDriver> driverList;
@@ -83,7 +83,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param context
 	 * @param logTracker
 	 */
@@ -102,7 +102,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
 	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
@@ -122,7 +122,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
 	public void sendSensorEvent(String groupDeviceId, boolean value) {
@@ -153,7 +153,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
 	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
@@ -173,7 +173,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
 	public void sendSensorEvent(String groupDeviceId, String code) {
@@ -183,7 +183,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
 	public void incomingSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
@@ -203,7 +203,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.IKnxDriverClient.KnxDriverClient
 	 */
 	public void sendSensorEvent(String groupDeviceId, int datapointTypeMainNubmer, int datapointTypeSubNubmer,
@@ -276,7 +276,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * store listener for context bus connection.
-	 * 
+	 *
 	 * @param knxContextPublisher
 	 */
 	public void addContextListener(KnxContextPublisher knxContextPublisher) {
@@ -285,7 +285,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * remove listener for context bus connection.
-	 * 
+	 *
 	 * @param knxContextPublisher
 	 */
 	public void removeContextListener(KnxContextPublisher knxContextPublisher) {
@@ -294,7 +294,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * store listener for service bus connection.
-	 * 
+	 *
 	 * @param knxServiceCallee
 	 */
 	public void addServiceProvider(KnxServiceCallee knxServiceCallee) {
@@ -303,7 +303,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/**
 	 * remove listener for service bus connection.
-	 * 
+	 *
 	 * @param knxServiceCallee
 	 */
 	public void removeServiceProvider(KnxServiceCallee knxServiceCallee) {
@@ -312,7 +312,7 @@ public class KnxManager implements IKnxDriverClient {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.lddi.knx.devicedriver.KnxDriverClient#getLogger()
 	 */
 	public LogService getLogger() {

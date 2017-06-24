@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -31,7 +31,7 @@ import org.universAAL.middleware.container.osgi.OSGiContainer;
  * registry. It provides access to ActivityHub devices by offering/registering
  * services on the uAAL service bus. It also sends context events to the uAAL
  * context bus for arising ActivityHub sensor messages.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
@@ -69,7 +69,7 @@ public class Activator implements BundleActivator {
 
 	/**
 	 * Runnable helper class for access to running servers/threads.
-	 * 
+	 *
 	 * @author Thomas Fuxreiter (foex@gmx.at)
 	 */
 	class MyThread implements Runnable {

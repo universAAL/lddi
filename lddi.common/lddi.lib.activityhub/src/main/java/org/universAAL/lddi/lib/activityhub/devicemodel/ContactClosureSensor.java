@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -28,13 +28,13 @@ import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.Acti
 /**
  * Representation of a contact closure sensor according to ISO 11073 - Part
  * 10471 (Indepentend living activity hub).
- * 
+ *
  * Specific sensor events (from standard specification): - contact opened -
  * contact closed - no condition detected (optional)
- * 
+ *
  * Initially NO_CONDITION_DETECTED is set. Later, current sensor value can be
  * set to CONTACT_OPENED and CONTACT_CLOSED
- * 
+ *
  * @author Thomas Fuxreiter
  */
 public class ContactClosureSensor extends ActivityHubSensor implements Iso11073ContactClosureSensor {
@@ -55,7 +55,7 @@ public class ContactClosureSensor extends ActivityHubSensor implements Iso11073C
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
 	 * getSensorEventValue()
 	 */

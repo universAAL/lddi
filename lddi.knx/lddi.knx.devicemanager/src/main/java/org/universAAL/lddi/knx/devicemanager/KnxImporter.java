@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -46,10 +46,10 @@ import org.universAAL.lddi.knx.utils.KnxGroupAddress;
  * KnxGroupAddress objects including building part information if available Name
  * and description of building parts are editable in ETS; type is fixed: Floor,
  * Room, Corridor, Cabinet, Stairway or Building Part
- * 
+ *
  * This class is only tested with ETS4 XML data schema 1.0 and 1.1 ! Higher
  * schema versions may require refinement of this code !!
- * 
+ *
  * @author marcus@openremote.org
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -66,7 +66,7 @@ public class KnxImporter {
 	/**
 	 * This method can import ETS4 XML data schemas version 1.0 and 1.1 Higher
 	 * schema versions may require refinement of this code !!
-	 * 
+	 *
 	 * @param inputStream
 	 *            of ETS4 export file (zip file)
 	 * @return list of KnxGroupAddress objects
@@ -252,7 +252,7 @@ public class KnxImporter {
 
 	/**
 	 * Transform a plain integer KNX group address to 1/2/3 format.
-	 * 
+	 *
 	 * @param knxaddress
 	 * @return readable group address
 	 */

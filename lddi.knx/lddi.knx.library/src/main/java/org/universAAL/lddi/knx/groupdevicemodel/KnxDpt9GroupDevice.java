@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -24,7 +24,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt9;
 
 /**
  * Concrete implementation of KNX group devices for KNX data type 9.***.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt9GroupDevice extends KnxGroupDevice implements IKnxDpt9 {
@@ -40,7 +40,7 @@ public class KnxDpt9GroupDevice extends KnxGroupDevice implements IKnxDpt9 {
 	 * Calculate float value from knx message payload. MSB LSB float value
 	 * |-------- --------| encoding MEEEEMMM MMMMMMMM FloatValue = (0,01*M)*2(E)
 	 * E = [0 : 15] M = [-2 048 : 2 047], two's complement notation
-	 * 
+	 *
 	 */
 	public static float calculateFloatValue(byte[] payload) {
 		// there are 3 bytes payload for a temperature event where the last 2

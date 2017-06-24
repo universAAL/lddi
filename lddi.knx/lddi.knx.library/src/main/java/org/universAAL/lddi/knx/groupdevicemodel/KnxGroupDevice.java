@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -32,9 +32,9 @@ import org.universAAL.lddi.knx.utils.*;
  * One KNX group groupDevice represents one groupAddress (with additional
  * properties) from ETS4 XML export. This groupDevice is registered in OSGi
  * framework.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
- * 
+ *
  */
 public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnxSendMessage {
 
@@ -71,7 +71,7 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 
 	/**
 	 * Fill empty groupDevice with parameters and set it alive
-	 * 
+	 *
 	 * @param knxGroupAddress
 	 * @param network
 	 * @param logger2
@@ -152,7 +152,7 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 
 	/**
 	 * Returns 0 on error. {@code for dpt "1.018" this method will return 1}
-	 * 
+	 *
 	 * @return knx datapoint main type
 	 */
 	public int getDatapointTypeMainNumber() {
@@ -168,7 +168,7 @@ public abstract class KnxGroupDevice implements Device, IKnxReceiveMessage, IKnx
 
 	/**
 	 * Returns 0 on error. {@code for dpt "1.018" this method will return 18}
-	 * 
+	 *
 	 * @return knx datapoint minor type
 	 */
 	public int getDatapointTypeSubNumber() {

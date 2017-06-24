@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -25,24 +25,24 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
 /**
  * Base GroupDeviceCategory for KNX datapoint type B1U3 (4-Bit). Possible values
  * are Bit 4: c = {0,1} (Decrease, Increase).
- * 
+ *
  * Bit 1-3: StepCode = {000b ... 111b} (The amount of intervals into which the
  * range of 0 % - 100 % is subdivided, or the break indication)
- * 
+ *
  * 001b ... 111b: Step Number of intervals = 2^(stepcode-1) Maximum resolution
  * is 64 = 2^(7-1)
- * 
+ *
  * 000b: Break
- * 
+ *
  * In general GroupDeviceCategories specify: - rules and interfaces needed for
  * the communication between OSGi groupDevice service and driver service. Both
  * of them (groupDevice and driver) implement this IF.
- * 
+ *
  * - a set of service registration properties, their data types and semantics
  * (mandatory or optional)
- * 
+ *
  * - a range of match values
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface IKnxDpt3 {

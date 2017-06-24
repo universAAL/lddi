@@ -24,7 +24,7 @@ import java.io.OutputStream;
 public interface IEncoder<T> {
 	/**
 	 * Encode object
-	 * 
+	 *
 	 * @param object
 	 *            User object
 	 * @param stream

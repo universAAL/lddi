@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -24,25 +24,25 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
 
 /**
  * Base GroupDeviceCategory for KNX datapoint type "2-Octet Float Value".
- * 
+ *
  * Specification from KNX Datapoint Types v1.07.00 AS :
- * 
+ *
  * Format: 2 octets: F16 MSB LSB float value |-------- --------| encoding
  * MEEEEMMM MMMMMMMM FloatValue = (0,01*M)*2(E) E = [0 : 15] M = [-2 048 : 2
  * 047], two's complement notation For all Datapoint Types 9.xxx, the encoded
  * value 7FFFh shall always be used to denote invalid data. Possible values are
  * from 0 - 255. Range: [-671 088,64 : 670 760,96] PDT: PDT_KNX_FLOAT
- * 
- * 
+ *
+ *
  * In general GroupDeviceCategories specify: - rules and interfaces needed for
  * the communication between OSGi groupDevice service and driver service. Both
  * of them (groupDevice and driver) implement this IF.
- * 
+ *
  * - a set of service registration properties, their data types and semantics
  * (mandatory or optional)
- * 
+ *
  * - a range of match values
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface IKnxDpt9 {

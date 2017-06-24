@@ -33,7 +33,7 @@ public interface MDS_Events {
 	 * if the manager does not already know the agent's configuration from past
 	 * associations. The event provides static information about the supported
 	 * measurement capabilities of the agent.
-	 * 
+	 *
 	 */
 	public ConfigReportRsp MDS_Configuration_Event(ConfigReport cfgreport);
 
@@ -66,7 +66,7 @@ public interface MDS_Events {
 	 * activation and/or period of the data transmission. For agents that do not
 	 * support manager-initiated measurement data transmission, refer to
 	 * 8.9.3.3.2 for information on the limited control a manager can assert.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void MDS_Dynamic_Data_Update_Fixed(ScanReportInfoFixed scanreportinfofixed) throws Exception;

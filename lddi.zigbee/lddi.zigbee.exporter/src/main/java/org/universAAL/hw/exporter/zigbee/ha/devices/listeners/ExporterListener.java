@@ -1,10 +1,10 @@
 /*
  Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- Instituto Tecnologico de Aplicaciones de Comunicacion 
- Avanzadas - Grupo Tecnologias para la Salud y el 
+ Instituto Tecnologico de Aplicaciones de Comunicacion
+ Avanzadas - Grupo Tecnologias para la Salud y el
  Bienestar (TSB)
 
- See the NOTICE file distributed with this work for additional 
+ See the NOTICE file distributed with this work for additional
  information regarding copyright ownership
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +40,7 @@ public abstract class ExporterListener implements ServiceListener {
 	/**
 	 * Constructor to be used in the exporter. Configures the listener and
 	 * performs initial search.
-	 * 
+	 *
 	 * @param context
 	 *            The OSGi context
 	 * @throws InvalidSyntaxException
@@ -84,7 +84,7 @@ public abstract class ExporterListener implements ServiceListener {
 
 	/**
 	 * Registers a service reference as a new instance of exported device.
-	 * 
+	 *
 	 * @param sr
 	 *            The service reference identifying the instance to register.
 	 */
@@ -92,7 +92,7 @@ public abstract class ExporterListener implements ServiceListener {
 
 	/**
 	 * Disconnect a single instance of exported device.
-	 * 
+	 *
 	 * @param sr
 	 *            The service reference identifying the instance to disconnect.
 	 */

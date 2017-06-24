@@ -57,7 +57,7 @@ public class PERAlignedEncoder<T> extends Encoder<T> {
 	/**
 	 * Encoding constraint length determinant procedure. ITU-T X.691. 10.9.
 	 * General rules for encoding a length determinant
-	 * 
+	 *
 	 */
 	protected int encodeConstraintLengthDeterminant(int length, int min, int max, BitArrayOutputStream stream)
 			throws Exception {

@@ -34,7 +34,7 @@ import org.universAAL.lddi.lib.ieeex73std.x73.p20601.TrigSegmDataXferRsp;
  * by the manager using object access services (see 7.3). Anybody not familiar
  * with the PMstore concept may wish to read Annex C for a conceptual overview
  * prior to reading the following subclauses.
- * 
+ *
  * @author lgigante
  *
  */

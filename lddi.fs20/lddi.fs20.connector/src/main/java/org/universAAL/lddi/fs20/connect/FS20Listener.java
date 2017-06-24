@@ -1,16 +1,16 @@
-/*	
+/*
 	Copyright 2007-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institut f�r Graphische Datenverarbeitung
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -66,7 +66,7 @@ public class FS20Listener {
 	/**
 	 * Changes the value of a registered service which conducts to an UAAL
 	 * context event
-	 * 
+	 *
 	 * @param sr
 	 *            = the ServiceRegistration of the matches service
 	 */
@@ -100,7 +100,7 @@ public class FS20Listener {
 	/**
 	 * Searches the matching ServiceRegistration to the given housecode and
 	 * devicecode
-	 * 
+	 *
 	 * @param housecode
 	 *            = the given HouseCode of the FS20 device
 	 * @param devicecode
@@ -122,7 +122,7 @@ public class FS20Listener {
 
 	/**
 	 * Called by the Activator and sets all ServiceRegistrations
-	 * 
+	 *
 	 * @param reg
 	 *            = all registered FS20 devices as ServiceRegistrations
 	 */
@@ -132,7 +132,7 @@ public class FS20Listener {
 
 	/**
 	 * Initializes a new FS20EventListener
-	 * 
+	 *
 	 * @param fhz
 	 *            = the FS20 gateway connection
 	 * @param log
@@ -171,7 +171,7 @@ public class FS20Listener {
 
 	/**
 	 * Converts the houseCode, deviceCode and functionCode to a String object
-	 * 
+	 *
 	 * @param value
 	 *            = the integer value of a received code
 	 * @param bits

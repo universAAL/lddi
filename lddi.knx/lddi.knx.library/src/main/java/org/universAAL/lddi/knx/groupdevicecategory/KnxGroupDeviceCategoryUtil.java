@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -27,14 +27,14 @@ import java.util.Map;
 /**
  * Definition of main groupDevice categories in KNX. According to spec: "KXN
  * Datapoint Types v1.7.00 AS"
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public abstract class KnxGroupDeviceCategoryUtil {
 
 	/**
 	 * convert String to enum item
-	 * 
+	 *
 	 * @param str
 	 * @return enum item
 	 */

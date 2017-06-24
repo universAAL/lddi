@@ -37,7 +37,7 @@ import org.universAAL.lddi.lib.ieeex73std.x73.p20601.TYPE;
 import org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Attribute;
 import org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Numeric;
 
-//Weighing Scale 
+//Weighing Scale
 
 // Standard configuration values: 1500-1599 (0x05DC - 0x063F)
 

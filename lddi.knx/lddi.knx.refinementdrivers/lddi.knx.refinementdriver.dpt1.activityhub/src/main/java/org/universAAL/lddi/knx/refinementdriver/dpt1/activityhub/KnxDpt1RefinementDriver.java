@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -43,16 +43,16 @@ import org.universAAL.lddi.knx.groupdevicemodel.KnxDpt1GroupDevice;
  * checks device references coming from OSGi DeviceManager; matching KNX
  * groupDevice category attaches exactly one driver instance per deviceId (first
  * groupDevice) subsequent devices with the same deviceId are rejected!
- * 
+ *
  * when an attached groupDevice service is unregistered: drivers must take the
  * appropriate action to release this groupDevice service and peform any
  * necessary cleanup, as described in their groupDevice category spec
- * 
+ *
  * Initially a manual mapping config from KNX to ISO sensors were implemented.
  * But in universAAL this configuration should be done by AAL Space
  * configurator. Therefore this code is commented; but kept here for potential
  * later use.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt1RefinementDriver implements Driver
@@ -200,7 +200,7 @@ public class KnxDpt1RefinementDriver implements Driver
 	/**
 	 * called from OSGI DeviceManager check device services if they have
 	 * identical device_category as this driver
-	 * 
+	 *
 	 * @see org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
 	 */
 	public int match(ServiceReference reference) throws Exception {

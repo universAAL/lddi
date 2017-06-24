@@ -28,9 +28,9 @@ public class Attribute {
 	 * we need an attribute ID because there are pairs of different attributes,
 	 * which use the same class, but not the same ID from the nomenclature.
 	 * Without this id, there is no way for differencing them.
-	 * 
+	 *
 	 * i.e.: MDC_ATTR_SYS_TYPE(TYPE.class) and MDC_ATTR_ID_TYPE(TYPE.class)
-	 * 
+	 *
 	 * @see utils.ASNUtils auxiliar class.
 	 */
 

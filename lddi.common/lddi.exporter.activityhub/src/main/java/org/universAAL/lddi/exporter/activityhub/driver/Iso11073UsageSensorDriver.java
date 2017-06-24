@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -39,11 +39,11 @@ import org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor;
 
 /**
  * This Driver class manages driver instances for UsageSensor devices.
- * 
+ *
  * when an attached device service is unregistered: drivers must take the
  * appropriate action to release this device service and peform any necessary
  * cleanup, as described in their device category spec
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  *
  */
@@ -77,7 +77,7 @@ public class Iso11073UsageSensorDriver implements Driver {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.service.device.Driver#match(org.osgi.framework.ServiceReference)
 	 */
@@ -107,7 +107,7 @@ public class Iso11073UsageSensorDriver implements Driver {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.osgi.service.device.Driver#attach(org.osgi.framework.
 	 * ServiceReference)
 	 */

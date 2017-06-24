@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -28,13 +28,13 @@ import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.Acti
 
 /**
  * Activity hub sensor base class
- * 
+ *
  * Now all ActivityHub sensors are implemented as on/off sensors having
  * setSensorEventOn and setSensorEventOff methods. TODO: check if it's
  * possible/better to use any value setSensorEvent(int sensorEvent); for KNX
  * datapoint type 1.*** (which are used mainly during development) on/off is
  * sufficient
- * 
+ *
  * Generic sensor properties flags for activity hub sensors are not implement
  * yet! (Because they are not supported by KNX sensors)
  * auto-presence-received(16) (For sensors that have "heartbeat" operational
@@ -48,7 +48,7 @@ import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.Acti
  * attention. This determination is unique to the sensor.) end-of-life(20)
  * (Indicates that the sensor has reached end of life and needs replacement.
  * This indication is unique to the sensor.)
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public abstract class ActivityHubSensor implements Device {
@@ -71,7 +71,7 @@ public abstract class ActivityHubSensor implements Device {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param deviceCategory
 	 * @param deviceLocation
 	 * @param deviceId
@@ -98,9 +98,9 @@ public abstract class ActivityHubSensor implements Device {
 	/**
 	 * set sensor event to on (e.g. switch-on) if input comes from an 1-bit
 	 * sensor
-	 * 
+	 *
 	 * called by refinement driver
-	 * 
+	 *
 	 * is on/off feasible for all ActivityHubSensors?
 	 */
 	public abstract void setSensorEventOn();
@@ -168,7 +168,7 @@ public abstract class ActivityHubSensor implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.osgi.service.device.Device#noDriverFound()
 	 */
 	public void noDriverFound() {

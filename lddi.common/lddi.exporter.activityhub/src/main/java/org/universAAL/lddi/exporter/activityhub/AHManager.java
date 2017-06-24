@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -40,7 +40,7 @@ import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.Acti
 /**
  * Instantiates all ActivityHub drivers from ISO11073 library. The drivers call
  * back and register themselves in the driverList.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class AHManager implements ActivityHubDriverClient {
@@ -50,7 +50,7 @@ public class AHManager implements ActivityHubDriverClient {
 
 	/**
 	 * stores activityHubInstances for deviceCategories.
-	 * 
+	 *
 	 * key = deviceCategory value = ActivityHubDriver
 	 */
 	private Hashtable<ActivityHubDeviceCategory, Set<ActivityHubDriver>> driverListForCategory;
@@ -58,7 +58,7 @@ public class AHManager implements ActivityHubDriverClient {
 	/**
 	 * stores the activityHubInstance (there should be just one!) for each
 	 * deviceId.
-	 * 
+	 *
 	 * key = deviceId value = ActivityHubDriver
 	 */
 	private Map<String, ActivityHubDriver> driverList;
@@ -84,7 +84,7 @@ public class AHManager implements ActivityHubDriverClient {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.
 	 * ActivityHubDriverClient#addDriver(java.lang.String,
 	 * org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver)
@@ -126,10 +126,10 @@ public class AHManager implements ActivityHubDriverClient {
 	/**
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriverClient#incomingSensorEvent(java.lang.String,
 	 *      byte[])
-	 * 
+	 *
 	 *      Just passing the incoming sensor event to uAAL-MW related class (->
 	 *      context provider). No storage of event here!
-	 * 
+	 *
 	 * @param deviceId
 	 *            (e.g. knx group address 1/2/3)
 	 * @param activityHubDeviceCategory
@@ -153,7 +153,7 @@ public class AHManager implements ActivityHubDriverClient {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.
 	 * ActivityHubDriverClient#removeDriver(java.lang.String,
 	 * org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver)
@@ -165,7 +165,7 @@ public class AHManager implements ActivityHubDriverClient {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.iso11073.activityhub.driver.interfaces.
 	 * ActivityHubDriverClient#getLogger()
 	 */
@@ -175,7 +175,7 @@ public class AHManager implements ActivityHubDriverClient {
 
 	/**
 	 * Returns null if no location available!
-	 * 
+	 *
 	 * @param deviceId
 	 * @return ActivityHubLocation
 	 */
@@ -206,7 +206,7 @@ public class AHManager implements ActivityHubDriverClient {
 	/**
 	 * Find the driver for the requested device according to unique deviceId.
 	 * Returns -1 if no driver found for this device
-	 * 
+	 *
 	 * @param deviceId
 	 * @return integer value of last device event from device dependent event
 	 *         enumeration
@@ -226,7 +226,7 @@ public class AHManager implements ActivityHubDriverClient {
 
 	/**
 	 * store listener for context bus connection.
-	 * 
+	 *
 	 * @param aHContextPublisher
 	 */
 	public void addListener(AHContextPublisher aHContextPublisher) {
@@ -243,7 +243,7 @@ public class AHManager implements ActivityHubDriverClient {
 	/**
 	 * copy deviceId(String) and ActivityHub device category(Integer) into
 	 * sensorList parameter for all available ActivityHub sensors.
-	 * 
+	 *
 	 * @param sensorList
 	 */
 	public void getActivityHubSensorList(Map<String, Integer> sensorList) {

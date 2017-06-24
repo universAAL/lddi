@@ -23,8 +23,8 @@
  Author      : Angel Martinez (amartinez@tsbtecnologias.es) & Luis Gigante (lgigante@tsbtecnologias.es)
  Version     : 0
  Copyright   : TSB
- Description : HDP manager manages Bluetooth native methods and implements an interface between 
- 			   the medical device and the ISO/IEEE 11073 manager. 
+ Description : HDP manager manages Bluetooth native methods and implements an interface between
+ 			   the medical device and the ISO/IEEE 11073 manager.
  Important   : Any change at this file implies necessary generate the C header file again.
 
  */
@@ -118,7 +118,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Start dbus platform for message interchanging within processes in Linux
 	 * OS.
-	 * 
+	 *
 	 * @return if the Dbus platform is correctly initialized.
 	 */
 	private native boolean startDbusPlatform();
@@ -126,7 +126,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Get the path for the local Bluetooth adapter which is in use at the
 	 * moment.
-	 * 
+	 *
 	 * @return local bluetooth adapter path
 	 */
 	private native String getLocalBluetoothAdapterPath();
@@ -147,7 +147,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Get the object path of a remote device given a MAC address
 	 * (format:XX:XX:XX:XX:XX:XX).
-	 * 
+	 *
 	 * @param macAddressRemoteDevice
 	 *            the MAC address of the desired remote device (the format of
 	 *            the MAC is XX:XX:XX:XX:XX:XX).
@@ -158,7 +158,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Show all properties of a remote device (it should be first created with
 	 * getRemoteBluetoothAdapterPath method).
-	 * 
+	 *
 	 * @param remoteDevicePath
 	 *            the path for the remote Bluetooth device in the local machine.
 	 * @see showDefaultLocalBluetoothAdaptersProperties()
@@ -169,7 +169,7 @@ public class hdpManager implements hdpManagerListener {
 	 * Modify a property of a remote device. This will be used for enabling the
 	 * "Trusted" property in a remote Health Device Profile capable device for
 	 * being establish a connection.
-	 * 
+	 *
 	 * @param remoteDevicePath
 	 *            the path for the remote Bluetooth device in the local machine.
 	 * @param propertyKey
@@ -182,7 +182,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Create a new HDP application and gets the object path of the new created
 	 * application.
-	 * 
+	 *
 	 * @param dataTypeValue
 	 *            which kind of a HDP capable device will be used.
 	 * @param roleValue
@@ -202,7 +202,7 @@ public class hdpManager implements hdpManagerListener {
 
 	/**
 	 * Destroy an HDP application.
-	 * 
+	 *
 	 * @param objectPathHDPApplication
 	 *            the path of the Health Device Profile application to be
 	 *            destroyed.
@@ -211,14 +211,14 @@ public class hdpManager implements hdpManagerListener {
 
 	/**
 	 * Checks DBUS system availability.
-	 * 
+	 *
 	 * @return true if the Dbus system is available, or false if not.
 	 */
 	private native boolean getDbusSystemAvailability();
 
 	/**
 	 * Add a specific rule to follow HDP messages inside DBUS.
-	 * 
+	 *
 	 * @return true if the local application is subscribed to HDP messages in
 	 *         DBus.
 	 */
@@ -232,7 +232,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Get the object path of the HDP channel ready to send/receive data to/from
 	 * Continua devices.
-	 * 
+	 *
 	 * @param remoteDevicePath
 	 *            the path for the remote Bluetooth device in the local machine.
 	 * @return the path of the data channel from a Health Device Profile
@@ -242,7 +242,7 @@ public class hdpManager implements hdpManagerListener {
 
 	/**
 	 * Show the properties of a HDP data channel previously created.
-	 * 
+	 *
 	 * @param hdpDataChannelPath
 	 *            the path of the data channel from a Health Device Profile
 	 *            application.
@@ -251,7 +251,7 @@ public class hdpManager implements hdpManagerListener {
 
 	/**
 	 * Get the file descriptor associated to a HDP data channel
-	 * 
+	 *
 	 * @param hdpDataChannelPath
 	 *            the path of the data channel from a Health Device Profile
 	 *            application.
@@ -262,7 +262,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Release the file descriptor associated to this HDP data channel (HDP
 	 * application will be closed).
-	 * 
+	 *
 	 * @param hdpDataChannelPath
 	 *            the path of the data channel from a Health Device Profile
 	 *            application.
@@ -272,7 +272,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Wait for HDP data frames from Continua Health devices. These frames will
 	 * be compliant with ISO/IEEE 11073 standard.
-	 * 
+	 *
 	 * @param hdpDataChannelFileDescriptor
 	 *            the file descriptor that identifies a HDP data channel.
 	 */
@@ -282,7 +282,7 @@ public class hdpManager implements hdpManagerListener {
 	 * Get the input data frame from a Continua Health device. The data will be
 	 * retrieved in raw format (byte array), and will be processed by the
 	 * ISO/IEEE 11073 library included.
-	 * 
+	 *
 	 * @param hdpDataChannelFileDescriptor
 	 *            the file descriptor that identifies a HDP data channel.
 	 * @return the data a remote device sent, in raw format.
@@ -291,7 +291,7 @@ public class hdpManager implements hdpManagerListener {
 
 	/**
 	 * Get the number of bytes read from input data frames.
-	 * 
+	 *
 	 * @param hdpDataChannelFileDescriptor
 	 *            the file descriptor that identifies a HDP data channel.
 	 * @return the size of the data frame received.
@@ -300,7 +300,7 @@ public class hdpManager implements hdpManagerListener {
 
 	/**
 	 * Show HDP data frame received.
-	 * 
+	 *
 	 * @param hdpDataChannelFileDescriptor
 	 *            the file descriptor that identifies a HDP data channel.
 	 */
@@ -309,7 +309,7 @@ public class hdpManager implements hdpManagerListener {
 	/**
 	 * Send HDP data frames to Continua Health devices after processing the ones
 	 * previously received and generate the proper response to them.
-	 * 
+	 *
 	 * @param hdpDataChannelFileDescriptor
 	 *            the file descriptor that identifies a HDP data channel.
 	 * @param hdpDataFrame
@@ -320,7 +320,7 @@ public class hdpManager implements hdpManagerListener {
 
 	/**
 	 * Free all employed resources and end HDP manager in a well-known status
-	 * 
+	 *
 	 */
 	private native void closeHDPManager();
 

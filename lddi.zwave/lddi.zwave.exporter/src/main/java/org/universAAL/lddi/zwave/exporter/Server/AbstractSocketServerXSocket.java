@@ -39,7 +39,7 @@ import org.xsocket.connection.Server;
 
 /**
  * Socket server implemented using xSocket library.
- * 
+ *
  * @author fraperod
  * @version $Rev: 4442 $ $Date: 2011-11-23 16:22:03 +0100 (mié, 23 nov 2011) $
  */
@@ -49,7 +49,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Calculates transfer rates.
-	 * 
+	 *
 	 * @uml.property name="transferRate"
 	 * @uml.associationEnd
 	 */
@@ -84,7 +84,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Sets the xSocket connection log.
-	 * 
+	 *
 	 * @param activateConnectionLogging
 	 *            true to allow xSocket connection to log
 	 * @uml.property name="activateConnectionLogging"
@@ -95,7 +95,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Constructor. No Idle timeout, nor connection timeout used.
-	 * 
+	 *
 	 * @param protocolFactory
 	 *            protocol decoder factory to be used by the server
 	 * @param listenPort
@@ -108,7 +108,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param protocolFactory
 	 *            protocol decoder factory to be used by the server.
 	 * @param listenPort
@@ -188,7 +188,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Closes the server.
-	 * 
+	 *
 	 * @throws IOException
 	 *             error closing the socket server.
 	 */
@@ -201,7 +201,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Returns the xSocket server class.
-	 * 
+	 *
 	 * @return the xSocket server class
 	 */
 	public IServer getServerXSocket() {
@@ -210,7 +210,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Returns the total number of bytes read.
-	 * 
+	 *
 	 * @return the total number of bytes read
 	 */
 	public long getTotalReadBytes() {
@@ -219,7 +219,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Retuns the total number of bytes sent.
-	 * 
+	 *
 	 * @return the total number of bytes sent
 	 */
 	public long getTotalSentBytes() {
@@ -228,7 +228,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Incoming data transfer rate in bytes/second.
-	 * 
+	 *
 	 * @return the incoming data transfer rate in bytes/second
 	 */
 	public float getTransferRateIn() {
@@ -237,7 +237,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Outgoing data transfer rate in bytes/second.
-	 * 
+	 *
 	 * @return the Outgoing data transfer rate in bytes/second
 	 */
 	public float getTransferRateOut() {
@@ -247,7 +247,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 	// ///////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Socket connected.
-	 * 
+	 *
 	 * @param connection
 	 *            new xSocket connection opened
 	 * @throws IOException
@@ -268,7 +268,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Method called when a connection timeout is reached.
-	 * 
+	 *
 	 * @param connection
 	 *            the connection
 	 * @return true if the event was handled
@@ -293,7 +293,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * New data available on xSocket connection.
-	 * 
+	 *
 	 * @param connection
 	 *            the connection
 	 * @throws IOException
@@ -316,7 +316,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Disconnect event.
-	 * 
+	 *
 	 * @param connection
 	 *            the disconnected connection
 	 * @throws IOException
@@ -331,7 +331,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Idle time out event.
-	 * 
+	 *
 	 * @param connection
 	 *            the idle connection
 	 * @throws IOException
@@ -355,7 +355,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Data sent notification.
-	 * 
+	 *
 	 * @param connection
 	 *            connection
 	 * @param size
@@ -367,7 +367,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Stars the server in the current thread.
-	 * 
+	 *
 	 * @see es.tsbsoluciones.socketServer.ISocketServer#run()
 	 * @throws IOException
 	 *             error starting the server
@@ -380,7 +380,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Sets the IP to bind the port.
-	 * 
+	 *
 	 * @param ip
 	 *            the IP to be used to bind the port
 	 */
@@ -391,7 +391,7 @@ public abstract class AbstractSocketServerXSocket extends AbstractSocketServer
 
 	/**
 	 * Starts the server in a different thread.
-	 * 
+	 *
 	 * @throws IOException
 	 *             error starting the server
 	 */

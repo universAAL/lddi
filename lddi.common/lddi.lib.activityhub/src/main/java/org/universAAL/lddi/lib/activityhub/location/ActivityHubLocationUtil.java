@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -23,14 +23,14 @@ package org.universAAL.lddi.lib.activityhub.location;
 /**
  * Definition of location codes from ISO 11073-10471 Nomenclature plus util
  * mehtods.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public abstract class ActivityHubLocationUtil {
 
 	/**
 	 * convert String to enum item
-	 * 
+	 *
 	 * @param str
 	 * @return enum item
 	 */

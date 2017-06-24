@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -24,16 +24,16 @@ import org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil.Kn
 
 /**
  * Base GroupDeviceCategory for KNX datapoint types B1 (1 bit).
- * 
+ *
  * In general GroupDeviceCategories specify: - rules and interfaces needed for
  * the communication between OSGi groupDevice service and driver service. Both
  * of them (groupDevice and driver) implement this IF.
- * 
+ *
  * - a set of service registration properties, their data types and semantics
  * (mandatory or optional)
- * 
+ *
  * - a range of match values
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface IKnxDpt1 {

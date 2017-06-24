@@ -19,9 +19,9 @@
  */
 /**
  * Activator for the Continua HDP manager service.
- * 
+ *
  * @author Angel Martinez-Cavero TSB Technologies for Health and Well-being
- * 
+ *
  */
 
 // Package

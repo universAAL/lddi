@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -39,22 +39,22 @@ import org.universAAL.lddi.knx.utils.KnxEncoder;
  * registry. Tracks on the KNX groupDevice service passed in the attach method
  * in KnxDpt1RefinementDriver class. When the KNX groupDevice disappears, this
  * service/device is unregistered.
- * 
+ *
  * This driver handles 1-bit events (knx datapoint 1), which is on/off. It maps
  * to the appropriate sensor-event of the created ISO11073 sensor.
- * 
+ *
  * Initially it was planned to map certain parameters of KNX sensors to ISO
  * sensors (e.g. location) where this mapping info is stored in a config file.
  * Although, in universAAL this kind of configuration should be done by other
  * components (e.g. AAL Space Configurator). Therefore all knx-iso-mapping code
  * is commented below.
- * 
+ *
  * Possibility for automatic location mapping from ETS config: In ETS Building
  * Parts can be assigned free name and description (String). As a convention the
  * location name according to ISO 11073 (e.g. MDC_AI_LOCATION_BEDROOM) can be
  * assigned in name or description field in ETS. But this may conflict with ETS
  * planning/config from electrical engineers!
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt1Instance extends KnxDriver implements IKnxDpt1, ServiceTrackerCustomizer, Constants {
@@ -96,7 +96,7 @@ public class KnxDpt1Instance extends KnxDriver implements IKnxDpt1, ServiceTrack
 
 	/**
 	 * track on my groupDevice
-	 * 
+	 *
 	 * @param KnxDpt1GroupDevice
 	 */
 	public Object addingService(ServiceReference reference) {
@@ -257,7 +257,7 @@ public class KnxDpt1Instance extends KnxDriver implements IKnxDpt1, ServiceTrack
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.util.tracker.ServiceTrackerCustomizer#modifiedService(org.osgi.
 	 * framework.ServiceReference, java.lang.Object)

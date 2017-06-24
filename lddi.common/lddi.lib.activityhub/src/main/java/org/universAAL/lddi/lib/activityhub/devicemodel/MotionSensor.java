@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -28,15 +28,15 @@ import org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil.Acti
 /**
  * Representation of a motion sensor according to ISO 11073 - Part 10471
  * (Independent living activity hub), edition 2010-05-01
- * 
+ *
  * Specific sensor events (from standard specification): - motion detected -
  * motion detected delayed (optional) - tamper detected (optional) - no
  * condition detected (optional)
- * 
+ *
  * Initially NO_CONDITION_DETECTED is set. Later, current sensor value can be
  * set to MOTION_DETECTED and NO_CONDITION_DETECTED. Events
  * MOTION_DETECTED_DELAYED and TAMPER_DETECTED are not implemented yet!
- * 
+ *
  * @author Thomas Fuxreiter
  */
 public class MotionSensor extends ActivityHubSensor implements Iso11073MotionSensor {
@@ -53,7 +53,7 @@ public class MotionSensor extends ActivityHubSensor implements Iso11073MotionSen
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor#
 	 * getSensorEventValue()
 	 */

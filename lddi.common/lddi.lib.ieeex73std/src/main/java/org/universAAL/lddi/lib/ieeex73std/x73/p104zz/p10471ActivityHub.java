@@ -25,7 +25,7 @@ import org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder;
 import org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Attribute;
 
 // Activity Hub
-// The Activity Hub does not have any Standard Configuration	
+// The Activity Hub does not have any Standard Configuration
 
 public class p10471ActivityHub extends DeviceSpecialization {
 

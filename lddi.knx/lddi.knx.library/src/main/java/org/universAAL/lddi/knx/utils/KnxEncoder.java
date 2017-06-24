@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -23,7 +23,7 @@ package org.universAAL.lddi.knx.utils;
 /**
  * Provides bottom-up (knx to uAAL) and top-down (uAAL to knx) translation of
  * commands.
- * 
+ *
  * @author Enrico Allione (enrico.allione@gmail.com)
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
@@ -52,7 +52,7 @@ public class KnxEncoder {
 
 	/**
 	 * Encode a knx telegram for sending to a knx bus. For all datapoint types!
-	 * 
+	 *
 	 * @param repeatBit
 	 *            has this telegram been sent already?
 	 * @param sourceByte
@@ -178,7 +178,7 @@ public class KnxEncoder {
 
 	/**
 	 * Decode knx byte array and create KnxTelegram object.
-	 * 
+	 *
 	 * @param knx
 	 *            telegram
 	 * @return KnxTelegram object; null if telegram is not valid
@@ -193,7 +193,7 @@ public class KnxEncoder {
 		/*
 		 * KNX packet structure:
 		 * http://de.wikipedia.org/wiki/Europ%C3%A4ischer_Installationsbus
-		 * 
+		 *
 		 * knxmessage[]: 0) control 1-2) source; // device which provides its
 		 * state 3-4) destination; // can be both group (managed) or single
 		 * (unmanaged) 5) DRL (Destination-adress-flag, Routing-counter,
@@ -229,7 +229,7 @@ public class KnxEncoder {
 
 	/**
 	 * Remove trailing Zero bytes.
-	 * 
+	 *
 	 * @param original
 	 * @return cropped byte array
 	 */
@@ -248,7 +248,7 @@ public class KnxEncoder {
 	/**
 	 * Translates readable device addresses to knx hex code. x is 0-15 on 4bits;
 	 * y is 0-15 on 4bits; z is 0-255 on 8bits;
-	 * 
+	 *
 	 * @param address
 	 *            of the device as x.y.z
 	 * @return the address as hex String (2 bytes)
@@ -288,7 +288,7 @@ public class KnxEncoder {
 	/**
 	 * Converts a readable knx group address to hex encoded string. x is 0-15 on
 	 * 5 bits; y is 0-7 on 3 bits; z is 0-255 on 8 bits;
-	 * 
+	 *
 	 * @param readable
 	 *            string "x/y/z" group address
 	 * @return hex-encoded string "xy" hexadecimal group address
@@ -327,7 +327,7 @@ public class KnxEncoder {
 
 	/**
 	 * Converts a hex-encoded knx message to byte array.
-	 * 
+	 *
 	 * @param a
 	 *            hex-encoded message string
 	 * @return the message as byte array
@@ -343,7 +343,7 @@ public class KnxEncoder {
 
 	/**
 	 * Convert byte array to readable hex-encoded string.
-	 * 
+	 *
 	 * @param
 	 * @return hex representation of the byte array as a String with semicolons
 	 *         as delimiter
@@ -376,7 +376,7 @@ public class KnxEncoder {
 
 	/**
 	 * Extract bits representing knx message data length (payload).
-	 * 
+	 *
 	 * @param drlByte
 	 *            of knx telegram
 	 * @return length of payload
@@ -389,7 +389,7 @@ public class KnxEncoder {
 
 	/**
 	 * Convert address from knx encoded bytes to device address in x.y.z format.
-	 * 
+	 *
 	 * @param buffer
 	 *            single device address in bytes
 	 * @return device address as String
@@ -423,7 +423,7 @@ public class KnxEncoder {
 	/**
 	 * Convert knx group address from knx encoded bytes to readable x/y/z
 	 * format.
-	 * 
+	 *
 	 * @param buffer
 	 *            group device address in bytes
 	 * @return group address as String
@@ -552,7 +552,7 @@ public class KnxEncoder {
 
 	/**
 	 * This method remove, if present, the "0x" prefix of the hexValue variable.
-	 * 
+	 *
 	 * @param hexValue
 	 *            string containing an hex value
 	 * @return the same string without prefix

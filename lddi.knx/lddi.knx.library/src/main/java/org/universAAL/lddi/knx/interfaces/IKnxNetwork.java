@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -43,7 +43,7 @@ public interface IKnxNetwork {
 	// messaging
 	/**
 	 * Sending KNX message to KNX bus.
-	 * 
+	 *
 	 * @param groupDeviceId
 	 *            KNX group address (e.g. 1/2/3)
 	 * @param event

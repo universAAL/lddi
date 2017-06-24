@@ -19,9 +19,9 @@
  */
 /**
  * In this class are generated the messages from the Manager that will be sent to the Agent.
- * 
+ *
  * The vast majority of them are responses to a previous message received from the Agent.
- * 
+ *
  */
 
 package org.universAAL.lddi.lib.ieeex73std.manager.apdu;
@@ -218,7 +218,7 @@ public class APDUGenerator<T> {
 	/**
 	 * Generation of an acknowledgement for a measurement received from an
 	 * Agent.
-	 * 
+	 *
 	 * @param datareceived
 	 *            measurement received from the Agent
 	 * @param typeofreport
@@ -276,7 +276,7 @@ public class APDUGenerator<T> {
 	/**
 	 * Something was wrong processing the Apdu from the Agent, and we will send
 	 * an Error.
-	 * 
+	 *
 	 * @param invokeid
 	 *            sequence number
 	 * @param err_code
@@ -322,7 +322,7 @@ public class APDUGenerator<T> {
 
 	/**
 	 * Some APDU is not acceptable and we send a reject message
-	 * 
+	 *
 	 * @param invokeid
 	 *            sequence number
 	 * @param err_code
@@ -365,7 +365,7 @@ public class APDUGenerator<T> {
 	/**
 	 * Generate the response to a configuration report from the Agent. Usually,
 	 * this will be an extended configuration
-	 * 
+	 *
 	 * @param invoke_id
 	 *            sequence number of DataApdu in which the configuration report
 	 *            is embedded

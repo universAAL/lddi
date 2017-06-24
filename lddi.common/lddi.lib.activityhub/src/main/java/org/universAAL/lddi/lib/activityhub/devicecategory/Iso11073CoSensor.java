@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -24,16 +24,16 @@ import org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCateg
 
 /**
  * OSGi DeviceCategory for Activityhub Co sensor
- * 
+ *
  * In general DeviceCategories specify: - rules and interfaces needed for the
  * communication between device service and driver service. Devices must
  * implement this IF.
- * 
+ *
  * - a set of service registration properties, their data types and semantics
  * (mandatory or optional)
- * 
+ *
  * - a range of match values used by DeviceManager
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public interface Iso11073CoSensor extends ActivityHubBaseDeviceCategory {

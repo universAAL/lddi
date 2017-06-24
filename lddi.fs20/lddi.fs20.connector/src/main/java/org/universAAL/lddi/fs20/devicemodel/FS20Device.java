@@ -1,16 +1,16 @@
-/*	
+/*
 	Copyright 2007-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institut f�r Graphische Datenverarbeitung
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,7 +58,7 @@ public class FS20Device {
 
 	/**
 	 * Fill empty device with parameters and set it alive
-	 * 
+	 *
 	 * @param fs20DeviceProps
 	 *            = contains all relevant properties
 	 * @param network
@@ -77,7 +77,7 @@ public class FS20Device {
 
 	/**
 	 * Fill empty device with parameters and set it alive
-	 * 
+	 *
 	 * @param fs20DeviceProps
 	 *            = contains all relevant properties
 	 * @param network
@@ -94,7 +94,7 @@ public class FS20Device {
 
 	/**
 	 * Get the device location
-	 * 
+	 *
 	 * @return returns the device location
 	 */
 	public String getDeviceLocation() {
@@ -103,7 +103,7 @@ public class FS20Device {
 
 	/**
 	 * Get the device URI
-	 * 
+	 *
 	 * @return returns the device URI
 	 */
 	public String getDeviceURI() {
@@ -112,7 +112,7 @@ public class FS20Device {
 
 	/**
 	 * Get the device name
-	 * 
+	 *
 	 * @return returns the device name
 	 */
 	public String getDeviceName() {
@@ -121,7 +121,7 @@ public class FS20Device {
 
 	/**
 	 * Get the HouseCode
-	 * 
+	 *
 	 * @return returns the houseCode
 	 */
 	public String getHouseCode() {
@@ -130,7 +130,7 @@ public class FS20Device {
 
 	/**
 	 * Get the DeviceCode
-	 * 
+	 *
 	 * @return returns the deviceCode
 	 */
 	public String getDeviceCode() {
@@ -139,7 +139,7 @@ public class FS20Device {
 
 	/**
 	 * Get the device description
-	 * 
+	 *
 	 * @return returns the device description
 	 */
 	public String getDeviceDescription() {
@@ -148,7 +148,7 @@ public class FS20Device {
 
 	/**
 	 * Get the function description
-	 * 
+	 *
 	 * @return returns the function description
 	 */
 	public String getFunctionDescription() {
@@ -157,7 +157,7 @@ public class FS20Device {
 
 	/**
 	 * Get the device type
-	 * 
+	 *
 	 * @return returns the device type
 	 */
 	public FS20DeviceTypes getDeviceType() {
@@ -166,7 +166,7 @@ public class FS20Device {
 
 	/**
 	 * Sends a FS20 command to the FS20 bus
-	 * 
+	 *
 	 * @param houseCode
 	 *            = the houseCode of the device
 	 * @param deviceCode

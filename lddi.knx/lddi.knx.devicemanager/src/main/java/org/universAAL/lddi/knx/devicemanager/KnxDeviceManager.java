@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -48,7 +48,7 @@ import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 /**
  * This bundle tracks on IKnxNetwork service. When this service appears, this
  * bundle is initialized.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomizer {
@@ -150,10 +150,10 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 	 * Get updated from ConfigurationAdmin: get configuration file from ETS4,
 	 * extract groupAddress information, create virtual KNX devices, and
 	 * register them as device services in OSGi.
-	 * 
+	 *
 	 * What if updated again all devices are removed and then the new config is
 	 * processed.
-	 * 
+	 *
 	 */
 	@SuppressWarnings("unchecked")
 	public void updated(Dictionary properties) throws ConfigurationException {
@@ -262,7 +262,7 @@ public class KnxDeviceManager implements ManagedService, ServiceTrackerCustomize
 
 	/**
 	 * check for null properties
-	 * 
+	 *
 	 * @param knxGroupAddress
 	 * @return true if OK
 	 */

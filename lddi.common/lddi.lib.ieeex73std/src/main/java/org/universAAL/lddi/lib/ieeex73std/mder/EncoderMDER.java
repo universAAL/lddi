@@ -47,18 +47,18 @@ public class EncoderMDER<T> extends Encoder<T> {
 	 * binary strings are mapped between network and memory. Network byte order
 	 * (NBO) representation is used in diagrams. The following rules are
 	 * numbered for reference convenience:
-	 * 
+	 *
 	 * 1) Representation in diagrams uses the NBO format shown in Figure F.1.
-	 * 
+	 *
 	 * 2) No alignment is used in MDER. In other words, additional bytes are not
 	 * added to byte strings, e.g., to obtain lengths that are divisible by two
 	 * or four. However, variable-length data items, i.e., strings, should have
 	 * an even length for performance reasons. For example, because most data
 	 * elements are 16-bit, they are not misaligned if strings are even length.
-	 * 
+	 *
 	 * 3) MDAP communicants are restricted to using the NBO (big-endian)
 	 * convention.
-	 * 
+	 *
 	 * 4) The association protocol shall use ISO MDER to provide for universal
 	 * interoperability during negotiation of MDER conventions. All other PDUs
 	 * exchanged in the life cycle of device-host communication will be based in
@@ -75,7 +75,7 @@ public class EncoderMDER<T> extends Encoder<T> {
 	 * machine-dependent byte-swapping instructions that typically facilitate
 	 * normalization are implementation issues, but are facilitated by
 	 * non-normative definitions in this and related standards.
-	 * 
+	 *
 	 * @see org.bn.coders.IASN1TypesDecoder#decodeInteger(org.bn.coders.
 	 * DecodedObject, java.lang.Class, org.bn.coders.ElementInfo,
 	 * java.io.InputStream)
@@ -242,7 +242,7 @@ public class EncoderMDER<T> extends Encoder<T> {
 	 * there) with marks what kind of choice is encoded. After that tag, comes a
 	 * INT_U16 field with the octet value of the encoding chosen alternative And
 	 * the chosen alternative itself.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public int encodeChoice(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception {

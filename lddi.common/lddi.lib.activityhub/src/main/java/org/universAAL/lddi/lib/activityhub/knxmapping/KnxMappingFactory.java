@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -28,14 +28,14 @@ import org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCateg
  * sensors like gas, smoke, water can have the same KNX DPT (e.g. Alarm 1.005)
  * this must be mapped by a human according to name and description of the KNX
  * group address configured in ETS
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxMappingFactory {
 
 	/**
 	 * Returns null if no suitable ActivityHubDeviceCategory found
-	 * 
+	 *
 	 * @param knxDptMain
 	 * @param knxDptSub
 	 * @return ActivityHubDeviceCategory

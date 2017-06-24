@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -24,7 +24,7 @@ import org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt5;
 
 /**
  * Concrete implementation of KNX group devices for KNX data type 5.***.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxDpt5GroupDevice extends KnxGroupDevice implements IKnxDpt5 {
@@ -39,7 +39,7 @@ public class KnxDpt5GroupDevice extends KnxGroupDevice implements IKnxDpt5 {
 	/**
 	 * calculate percentage according to datapoint sub-type. 8-bit extra data
 	 * byte; e.g. 80:b3; 80:33
-	 * 
+	 *
 	 * @return -1 if there is no detailed specification of the given
 	 *         datapointTypeSubNumber in the KNX standard.
 	 * @return 0 if the given datapointTypeSubNumber is not defined in the KNX
@@ -69,7 +69,7 @@ public class KnxDpt5GroupDevice extends KnxGroupDevice implements IKnxDpt5 {
 	/**
 	 * calculate byte from float value according to datapoint sub-type. 8-bit
 	 * extra data byte; e.g. 00:b3; 00:33
-	 * 
+	 *
 	 * @return null if there is no detailed specification of the given
 	 *         datapointTypeSubNumber in the KNX standard, or the given
 	 *         datapointTypeSubNumber is not defined in the KNX standard.

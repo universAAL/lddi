@@ -1,18 +1,18 @@
 /*
 	Copyright 2016 ITACA-SABIEN, http://www.tsb.upv.es
-	Instituto Tecnologico de Aplicaciones de Comunicacion 
-	Avanzadas - Grupo Tecnologias para la Salud y el 
+	Instituto Tecnologico de Aplicaciones de Comunicacion
+	Avanzadas - Grupo Tecnologias para la Salud y el
 	Bienestar (SABIEN)
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -116,7 +116,7 @@ public abstract class AbstractFloatCallee extends AbstractCallee {
 	/**
 	 * When a GET STATUS service request is received, this method is called
 	 * automatically.
-	 * 
+	 *
 	 * @return The Float value representing the status property of the actuator.
 	 */
 	public abstract Float executeGet();
@@ -124,7 +124,7 @@ public abstract class AbstractFloatCallee extends AbstractCallee {
 	/**
 	 * When a SET STATUS service request is received, this method is called
 	 * automatically.
-	 * 
+	 *
 	 * @param value
 	 *            The Float representing the dimmed value
 	 * @return True if succeeded
@@ -134,7 +134,7 @@ public abstract class AbstractFloatCallee extends AbstractCallee {
 	/**
 	 * Get the typical service profiles for a controller: GET/SET the has value
 	 * prop.
-	 * 
+	 *
 	 * @param namespace
 	 *            Must be the same as the one set in the constructor
 	 * @param instance

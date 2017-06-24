@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -24,10 +24,10 @@ import org.universAAL.lddi.knx.utils.KnxCommand;
 
 /**
  * Manages reader and writer for communication to the knx gateway.
- * 
+ *
  * This class is no longer a thread because the KNX gateway isn't pingable.
  * Therefore this class doesn't check the gateway continuously.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class KnxCommunication

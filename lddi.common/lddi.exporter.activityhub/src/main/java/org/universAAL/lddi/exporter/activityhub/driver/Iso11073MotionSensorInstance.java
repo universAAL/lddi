@@ -1,7 +1,7 @@
 /*
      Copyright 2010-2014 AIT Austrian Institute of Technology GmbH
 	 http://www.ait.ac.at
-     
+
      See the NOTICE file distributed with this work for additional
      information regarding copyright ownership
 
@@ -38,7 +38,7 @@ import org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensorEvent;
  * client (e.g. uAAL exporter bundle). When the MotionSensor device service
  * disappears, this driver is removed from the consuming client and from the
  * device.
- * 
+ *
  * @author Thomas Fuxreiter (foex@gmx.at)
  */
 public class Iso11073MotionSensorInstance extends ActivityHubDriver
@@ -64,7 +64,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.
 	 * framework.ServiceReference)
@@ -91,7 +91,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.util.tracker.ServiceTrackerCustomizer#modifiedService(org.osgi.
 	 * framework.ServiceReference, java.lang.Object)
@@ -105,7 +105,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.osgi.util.tracker.ServiceTrackerCustomizer#removedService(org.osgi.
 	 * framework.ServiceReference, java.lang.Object)
@@ -135,7 +135,7 @@ public class Iso11073MotionSensorInstance extends ActivityHubDriver
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.universAAL.iso11073.activityhub.driver.interfaces.ActivityHubDriver#
 	 * getLastSensorEvent()

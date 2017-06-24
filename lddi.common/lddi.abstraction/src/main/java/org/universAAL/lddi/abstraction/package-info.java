@@ -1,16 +1,16 @@
 /*
 	Copyright 2013-2016 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,12 +27,12 @@
  * that all component type specific models will be provided in term of
  * ontologies on which the access and integration layers will rely:
  * </p>
- * 
+ *
  * <p>
  * <img src="./doc-files/layers.png" width="600" alt="refinement of te LDDI
  * abstraction layer">
  * </p>
- * 
+ *
  * <p>
  * As can be seen in the above figure, the main elements in this framework are
  * {@link org.universAAL.lddi.abstraction.CommunicationGateway communication
@@ -43,7 +43,7 @@
  * {@link org.universAAL.lddi.abstraction.ExternalDatapoint external datapoints}
  * as an additional concept that is not included in this package info).
  * </p>
- * 
+ *
  * <p>
  * As indicated by the figure above, this package has a universAAL-specific
  * view; in particular, the abstraction layer of LDDI exists in this package
@@ -51,7 +51,7 @@
  * serve as the contract between the communication gateways and the component
  * integrators with regard to whatever is component type specific.
  * </p>
- * 
+ *
  * <p>
  * As opposed to component integrators, the extent of dependency of
  * communication gateways to universAAL can be limited to the usage of
@@ -68,7 +68,7 @@
  * {@link org.universAAL.lddi.abstraction.CommunicationGateway#register(String, ComponentIntegrator)
  * the related method of the gateway}.
  * </p>
- * 
+ *
  * <p>
  * Important note: the above implies that with this approach, the interplay of
  * gateways and integrators will work only when they are deployed within the

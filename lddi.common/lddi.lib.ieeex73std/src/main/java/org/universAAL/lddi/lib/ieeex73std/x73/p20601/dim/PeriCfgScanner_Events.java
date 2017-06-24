@@ -33,7 +33,7 @@ import org.universAAL.lddi.lib.ieeex73std.x73.p20601.ScanReportInfoVar;
  * end of the interval. A second difference is that the same objects and
  * attributes are included in each report regardless of whether their values
  * have changed.
- * 
+ *
  * @author lgigante
  * @see EpiCfgScanner_Events
  */

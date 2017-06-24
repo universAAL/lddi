@@ -1,10 +1,10 @@
 /*
  Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- Instituto Tecnologico de Aplicaciones de Comunicacion 
- Avanzadas - Grupo Tecnologias para la Salud y el 
+ Instituto Tecnologico de Aplicaciones de Comunicacion
+ Avanzadas - Grupo Tecnologias para la Salud y el
  Bienestar (TSB)
 
- See the NOTICE file distributed with this work for additional 
+ See the NOTICE file distributed with this work for additional
  information regarding copyright ownership
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -46,9 +46,9 @@ import org.universAAL.ontology.phThing.DeviceService;
 /**
  * Exporter class that acts as wrapper towards uAAL. Connects interaction of the
  * device with the uAAL middleware through the service and context buses.
- * 
+ *
  * @author alfiva
- * 
+ *
  */
 public class IASZoneCallee extends ExporterSensorCallee implements ZoneStatusChangeNotificationListener {
 	static {
@@ -62,7 +62,7 @@ public class IASZoneCallee extends ExporterSensorCallee implements ZoneStatusCha
 	/**
 	 * Constructor to be used in the exporter, which sets up all the exporting
 	 * process.
-	 * 
+	 *
 	 * @param context
 	 *            The OSGi context
 	 * @param serv
