@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.4.1-SNAPSHOT</version>
+    <version>3.4.2-SNAPSHOT</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.smarthome</artifactId>
-  <version>3.4.1-SNAPSHOT</version>
+  <version>3.4.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI Eclipse Smarthome Integration</name>
   <description>Integration of Eclipse Smarthome components</description>
@@ -25,6 +25,11 @@
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.exporter.exporter</artifactId>
         <version>3.4.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.lddi</groupId>
+        <artifactId>lddi.smarthome.exporter</artifactId>
+        <version>3.4.2-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

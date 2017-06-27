@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.4.1-SNAPSHOT</version>
+    <version>3.4.2-SNAPSHOT</version>
     <relativePath>../../lddi.pom</relativePath>
   </parent>
   <artifactId>lddi.pom.fs20</artifactId>
-  <version>3.4.1-SNAPSHOT</version>
+  <version>3.4.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL LDDI FS20 Suite</name>
   <description>Integration of FS20 components</description>
@@ -25,12 +25,12 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.fs20.connector</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.fs20.exporter</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

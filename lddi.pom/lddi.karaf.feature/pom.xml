@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom</artifactId>
-    <version>3.4.1-SNAPSHOT</version>
+    <version>3.4.2-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
   <groupId>org.universAAL.lddi</groupId>
   <artifactId>lddi.karaf.feature</artifactId>
-  <version>3.4.1-SNAPSHOT</version>
+  <version>3.4.2-SNAPSHOT</version>
   <name>universAAL LDDI Karaf Feature</name>
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
@@ -20,35 +20,35 @@
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.knx</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.config</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.zwave</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.bluetooth</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.universAAL.lddi</groupId>
         <artifactId>lddi.pom.zigbee</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -60,7 +60,7 @@
       <artifactId>ont.karaf.feature</artifactId>
     </dependency>
     <dependency>
-	  <groupId>org.universAAL.support</groupId>
+      <groupId>org.universAAL.support</groupId>
       <artifactId>utilities.karaf.feature</artifactId>
     </dependency>
     <dependency>
