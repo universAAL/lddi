@@ -26,7 +26,7 @@
           
                 <div class="xleft">
         <span id="publishDate">Last Published: 2017</span>
-                  &nbsp;| <span id="projectVersion">Version: 3.4.1-SNAPSHOT</span>
+                  &nbsp;| <span id="projectVersion">Version: 3.4.2-SNAPSHOT</span>
                       </div>
             <div class="xright">                    <a href="./" title="universAAL LDDI FS20 Suite">universAAL LDDI FS20 Suite</a>
             
@@ -189,28 +189,22 @@ To solve this problem, make sure there are no OSGi imports in your classes, unle
 To solve this problem, make sure there are no OSGi imports in your classes, unless the package that contains them has explicitly &quot;osgi&quot; in it's name.<br /></tt></td></tr>
 <tr class="a">
 <td>lddi.pom.smarthome</td>
-<td>DependencyManagementCheckFix</td>
-<td><b>Failed</b><br /><tt>dependencyManagement Conformance Directive Fail :<br />
-It seems the POM has a dependencyManagement malformed section.<br />
-	org.universAAL.lddi:lddi.smarthome.exporter, version should be : 3.4.1-SNAPSHOT<br /></tt></td></tr>
-<tr class="b">
-<td>lddi.pom.smarthome</td>
 <td>MavenCoordinateCheck</td>
 <td><b>Failed</b><br /><tt>Artifact Name: universAAL LDDI Eclipse Smarthome Integration<br />
 does not match convention: ^universAAL LDDI ESH .*<br />
 <br /></tt></td></tr>
-<tr class="a">
+<tr class="b">
 <td>lddi.smarthome.exporter</td>
 <td>MavenCoordinateCheck</td>
 <td><b>Failed</b><br /><tt>Artifact Name: universAAL LDDI Eclipse Smarthome Exporter<br />
 does not match convention: ^universAAL LDDI ESH .*<br />
 <br /></tt></td></tr>
-<tr class="b">
+<tr class="a">
 <td>lddi.smarthome.exporter</td>
 <td>DecoupleCheck</td>
 <td><b>Failed</b><br /><tt>The following Files are not Container Decoupled:<br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/smarthome/exporter/Activator.html">org.universAAL.lddi.smarthome.exporter.Activator</a><br />
 To solve this problem, make sure there are no OSGi imports in your classes, unless the package that contains them has explicitly &quot;osgi&quot; in it's name.<br /></tt></td></tr>
-<tr class="a">
+<tr class="b">
 <td>lddi.smarthome.exporter</td>
 <td>LicenseHeaderCheckFix</td>
 <td><b>Failed</b><br /><tt>The following Files seem not to have a proper License Header:<br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/smarthome/exporter/Activator.html">org.universAAL.lddi.smarthome.exporter.Activator</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/smarthome/exporter/Receiver.html">org.universAAL.lddi.smarthome.exporter.Receiver</a><br />
