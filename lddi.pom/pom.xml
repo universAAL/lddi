@@ -78,7 +78,7 @@
       <releases>
         <enabled>false</enabled>
       </releases>
-      <id>uaal_snapshots</id>
+      <id>uaal-snapshots</id>
       <name>universAAL Repositories</name>
       <url>http://depot.universaal.org/maven-repo/snapshots/</url>
     </repository>
