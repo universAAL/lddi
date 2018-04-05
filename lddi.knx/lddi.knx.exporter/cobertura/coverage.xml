@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="624" branches-covered="0" branches-valid="154" complexity="2.7613636363636362" version="2.1.1" timestamp="1498692512677">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="622" branches-covered="0" branches-valid="154" complexity="2.7613636363636362" version="2.1.1" timestamp="1522969213267">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/lddi/lddi.knx/lddi.knx.exporter/src/main/java</source>
@@ -1183,9 +1183,8 @@
 								<line number="40" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="74" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="access$002" signature="(Lorg/universAAL/lddi/knx/exporter/Activator;Lorg/universAAL/lddi/knx/exporter/KnxServiceCallee;)Lorg/universAAL/lddi/knx/exporter/KnxServiceCallee;" line-rate="1.0" branch-rate="1.0" complexity="0">
@@ -1244,7 +1243,6 @@
 						<line number="65" hits="0" branch="false"/>
 						<line number="66" hits="0" branch="false"/>
 						<line number="67" hits="0" branch="false"/>
-						<line number="74" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.knx.exporter.Activator$MyThread" filename="org/universAAL/lddi/knx/exporter/Activator.java" line-rate="0.0" branch-rate="1.0" complexity="1.25">
@@ -2072,7 +2070,6 @@
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="49" hits="0" branch="false"/>
-								<line number="51" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getDeviceOntologyInstanceForKnxDpt" signature="(IILjava/lang/String;Lorg/universAAL/lddi/knx/exporter/KnxToDeviceOntologyMappingFactory$DeviceOntologyType;)Lorg/universAAL/ontology/device/ValueDevice;" line-rate="0.0" branch-rate="0.0" complexity="0">
@@ -2153,7 +2150,6 @@
 					</methods>
 					<lines>
 						<line number="49" hits="0" branch="false"/>
-						<line number="51" hits="0" branch="false"/>
 						<line number="67" hits="0" branch="true" condition-coverage="0% (0/5)">
 							<conditions>
 								<condition number="0" type="switch" coverage="0%"/>

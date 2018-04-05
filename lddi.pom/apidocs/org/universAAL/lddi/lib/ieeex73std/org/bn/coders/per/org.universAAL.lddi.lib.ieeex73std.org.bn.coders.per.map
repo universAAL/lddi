@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="c7134" href="./PERCoderUtils.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERCoderUtils" alt="" coords="15,17,126,42"/>
-<area shape="rect" id="node1" href="./PERCoderUtils.html" title="&lt;TABLE&gt;" alt="" coords="5,5,136,53"/>
-<area shape="rect" id="c7135" href="./PERAlignedEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERAlignedEncoder" alt="" coords="170,17,334,42"/>
-<area shape="rect" id="node2" href="./PERAlignedEncoder.html" title="&lt;TABLE&gt;" alt="" coords="160,5,344,53"/>
-<area shape="rect" id="c7136" href="./PERUnalignedEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERUnalignedEncoder" alt="" coords="163,113,341,138"/>
-<area shape="rect" id="node3" href="./PERUnalignedEncoder.html" title="&lt;TABLE&gt;" alt="" coords="152,101,352,149"/>
-<area shape="rect" id="c7137" href="./PERAlignedDecoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERAlignedDecoder" alt="" coords="393,17,535,42"/>
-<area shape="rect" id="node4" href="./PERAlignedDecoder.html" title="&lt;TABLE&gt;" alt="" coords="383,5,545,53"/>
-<area shape="rect" id="c7138" href="./PERUnalignedDecoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERUnalignedDecoder" alt="" coords="386,113,542,138"/>
-<area shape="rect" id="node5" href="./PERUnalignedDecoder.html" title="&lt;TABLE&gt;" alt="" coords="376,101,552,149"/>
+<area shape="rect" id="node1_0" href="./PERCoderUtils.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERCoderUtils" alt="" coords="15,16,126,43"/>
+<area shape="rect" id="node1" href="./PERCoderUtils.html" title="&lt;TABLE&gt;" alt="" coords="5,5,137,53"/>
+<area shape="rect" id="node2_1" href="./PERAlignedEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERAlignedEncoder" alt="" coords="171,16,335,43"/>
+<area shape="rect" id="node2" href="./PERAlignedEncoder.html" title="&lt;TABLE&gt;" alt="" coords="161,5,346,53"/>
+<area shape="rect" id="node3_2" href="./PERUnalignedEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERUnalignedEncoder" alt="" coords="164,112,343,139"/>
+<area shape="rect" id="node3" href="./PERUnalignedEncoder.html" title="&lt;TABLE&gt;" alt="" coords="153,101,353,149"/>
+<area shape="rect" id="node4_3" href="./PERAlignedDecoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERAlignedDecoder" alt="" coords="396,16,537,43"/>
+<area shape="rect" id="node4" href="./PERAlignedDecoder.html" title="&lt;TABLE&gt;" alt="" coords="385,5,548,53"/>
+<area shape="rect" id="node5_4" href="./PERUnalignedDecoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERUnalignedDecoder" alt="" coords="389,112,545,139"/>
+<area shape="rect" id="node5" href="./PERUnalignedDecoder.html" title="&lt;TABLE&gt;" alt="" coords="378,101,555,149"/>
 </map>

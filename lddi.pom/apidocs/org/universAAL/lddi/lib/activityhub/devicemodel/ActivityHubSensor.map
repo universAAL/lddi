@@ -1,18 +1,18 @@
 <map id="G" name="G">
-<area shape="rect" id="c89089" href="./TemperatureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" alt="" coords="15,214,150,239"/>
-<area shape="rect" id="node1" href="./TemperatureSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,203,160,251"/>
-<area shape="rect" id="c89091" href="./ContactClosureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" alt="" coords="194,214,347,239"/>
-<area shape="rect" id="node2" href="./ContactClosureSensor.html" title="&lt;TABLE&gt;" alt="" coords="184,203,357,251"/>
-<area shape="rect" id="c89092" href="./SwitchSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" alt="" coords="392,214,493,239"/>
-<area shape="rect" id="node3" href="./SwitchSensor.html" title="&lt;TABLE&gt;" alt="" coords="381,203,504,251"/>
-<area shape="rect" id="c89093" href="./FallSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" alt="" coords="539,214,621,239"/>
-<area shape="rect" id="node4" href="./FallSensor.html" title="&lt;TABLE&gt;" alt="" coords="528,203,632,251"/>
-<area shape="rect" id="c89098" href="./UsageSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor" alt="" coords="666,214,766,239"/>
-<area shape="rect" id="node5" href="./UsageSensor.html" title="&lt;TABLE&gt;" alt="" coords="656,203,776,251"/>
-<area shape="rect" id="c89100" href="./MotionSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor" alt="" coords="811,214,912,239"/>
-<area shape="rect" id="node6" href="./MotionSensor.html" title="&lt;TABLE&gt;" alt="" coords="800,203,923,251"/>
-<area shape="rect" id="c89102" href="./ActivityHubSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" alt="" coords="446,118,575,143"/>
-<area shape="rect" id="node7" href="./ActivityHubSensor.html" title="&lt;TABLE&gt;" alt="" coords="436,107,585,155"/>
-<area shape="rect" id="c89298" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Device.html" title="org.osgi.service.device.Device" alt="" coords="468,11,553,53"/>
-<area shape="rect" id="node14" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Device.html" title="&lt;TABLE&gt;" alt="" coords="457,6,564,58"/>
+<area shape="rect" id="node1_0" href="./TemperatureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" alt="" coords="15,216,150,243"/>
+<area shape="rect" id="node1" href="./TemperatureSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,205,161,253"/>
+<area shape="rect" id="node2_1" href="./ContactClosureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" alt="" coords="195,216,349,243"/>
+<area shape="rect" id="node2" href="./ContactClosureSensor.html" title="&lt;TABLE&gt;" alt="" coords="185,205,359,253"/>
+<area shape="rect" id="node3_2" href="./SwitchSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" alt="" coords="395,216,496,243"/>
+<area shape="rect" id="node3" href="./SwitchSensor.html" title="&lt;TABLE&gt;" alt="" coords="384,205,507,253"/>
+<area shape="rect" id="node4_3" href="./FallSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" alt="" coords="541,216,624,243"/>
+<area shape="rect" id="node4" href="./FallSensor.html" title="&lt;TABLE&gt;" alt="" coords="531,205,635,253"/>
+<area shape="rect" id="node5_4" href="./UsageSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor" alt="" coords="670,216,770,243"/>
+<area shape="rect" id="node5" href="./UsageSensor.html" title="&lt;TABLE&gt;" alt="" coords="659,205,781,253"/>
+<area shape="rect" id="node6_5" href="./MotionSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor" alt="" coords="816,216,917,243"/>
+<area shape="rect" id="node6" href="./MotionSensor.html" title="&lt;TABLE&gt;" alt="" coords="805,205,928,253"/>
+<area shape="rect" id="node7_6" href="./ActivityHubSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" alt="" coords="449,120,578,147"/>
+<area shape="rect" id="node7" href="./ActivityHubSensor.html" title="&lt;TABLE&gt;" alt="" coords="438,109,589,157"/>
+<area shape="rect" id="node8_7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Device.html" title="org.osgi.service.device.Device" alt="" coords="471,11,556,55"/>
+<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Device.html" title="&lt;TABLE&gt;" alt="" coords="460,6,567,61"/>
 </map>

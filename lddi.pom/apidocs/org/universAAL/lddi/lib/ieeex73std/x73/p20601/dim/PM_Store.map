@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="c258299" href="./PM_Store.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.PM_Store" alt="" coords="197,118,275,143"/>
-<area shape="rect" id="node1" href="./PM_Store.html" title="&lt;TABLE&gt;" alt="" coords="187,107,285,155"/>
-<area shape="rect" id="c258302" href="./PM_Store_Events.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.PM_Store_Events" alt="" coords="15,11,142,53"/>
-<area shape="rect" id="node2" href="./PM_Store_Events.html" title="&lt;TABLE&gt;" alt="" coords="5,6,152,58"/>
-<area shape="rect" id="c258313" href="./GET_Service.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service" alt="" coords="187,11,285,53"/>
-<area shape="rect" id="node3" href="./GET_Service.html" title="&lt;TABLE&gt;" alt="" coords="176,6,296,58"/>
-<area shape="rect" id="c258315" href="./DIM.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM" alt="" coords="333,19,379,45"/>
-<area shape="rect" id="node4" href="./DIM.html" title="&lt;TABLE&gt;" alt="" coords="320,8,392,56"/>
+<area shape="rect" id="node1_0" href="./PM_Store.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.PM_Store" alt="" coords="198,120,277,147"/>
+<area shape="rect" id="node1" href="./PM_Store.html" title="&lt;TABLE&gt;" alt="" coords="187,109,287,157"/>
+<area shape="rect" id="node2_1" href="./PM_Store_Events.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.PM_Store_Events" alt="" coords="15,11,142,55"/>
+<area shape="rect" id="node2" href="./PM_Store_Events.html" title="&lt;TABLE&gt;" alt="" coords="5,6,153,61"/>
+<area shape="rect" id="node3_2" href="./GET_Service.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service" alt="" coords="188,11,287,55"/>
+<area shape="rect" id="node3" href="./GET_Service.html" title="&lt;TABLE&gt;" alt="" coords="177,6,297,61"/>
+<area shape="rect" id="node4_3" href="./DIM.html" title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM" alt="" coords="335,20,380,47"/>
+<area shape="rect" id="node4" href="./DIM.html" title="&lt;TABLE&gt;" alt="" coords="321,9,393,57"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c306752" href="../devicecategory/Iso11073TemperatureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073TemperatureSensor" alt="" coords="15,11,203,53"/>
-<area shape="rect" id="node1" href="../devicecategory/Iso11073TemperatureSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,6,213,58"/>
-<area shape="rect" id="c306769" href="./TemperatureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" alt="" coords="143,118,278,143"/>
-<area shape="rect" id="node2" href="./TemperatureSensor.html" title="&lt;TABLE&gt;" alt="" coords="133,107,288,155"/>
-<area shape="rect" id="c306782" href="./ActivityHubSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" alt="" coords="247,19,377,45"/>
-<area shape="rect" id="node3" href="./ActivityHubSensor.html" title="&lt;TABLE&gt;" alt="" coords="237,8,387,56"/>
+<area shape="rect" id="node1_0" href="../devicecategory/Iso11073TemperatureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073TemperatureSensor" alt="" coords="15,11,203,55"/>
+<area shape="rect" id="node1" href="../devicecategory/Iso11073TemperatureSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,6,214,61"/>
+<area shape="rect" id="node2_1" href="./TemperatureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" alt="" coords="143,120,278,147"/>
+<area shape="rect" id="node2" href="./TemperatureSensor.html" title="&lt;TABLE&gt;" alt="" coords="133,109,289,157"/>
+<area shape="rect" id="node3_2" href="./ActivityHubSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" alt="" coords="249,20,378,47"/>
+<area shape="rect" id="node3" href="./ActivityHubSensor.html" title="&lt;TABLE&gt;" alt="" coords="238,9,389,57"/>
 </map>

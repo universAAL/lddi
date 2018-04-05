@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="c38030" href="./Setup.html" title="org.universAAL.lddi.zwave.exporter.Setup" alt="" coords="15,17,70,42"/>
-<area shape="rect" id="node1" href="./Setup.html" title="&lt;TABLE&gt;" alt="" coords="5,5,80,53"/>
-<area shape="rect" id="c38031" href="./Activator.html" title="org.universAAL.lddi.zwave.exporter.Activator" alt="" coords="114,17,187,42"/>
-<area shape="rect" id="node2" href="./Activator.html" title="&lt;TABLE&gt;" alt="" coords="104,5,197,53"/>
+<area shape="rect" id="node1_0" href="./Setup.html" title="org.universAAL.lddi.zwave.exporter.Setup" alt="" coords="15,16,70,43"/>
+<area shape="rect" id="node1" href="./Setup.html" title="&lt;TABLE&gt;" alt="" coords="5,5,81,53"/>
+<area shape="rect" id="node2_1" href="./Activator.html" title="org.universAAL.lddi.zwave.exporter.Activator" alt="" coords="115,16,189,43"/>
+<area shape="rect" id="node2" href="./Activator.html" title="&lt;TABLE&gt;" alt="" coords="105,5,199,53"/>
 </map>

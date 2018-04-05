@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="8967" branches-covered="0" branches-valid="2301" complexity="1.778126400717167" version="2.1.1" timestamp="1498692669437">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="8963" branches-covered="0" branches-valid="2301" complexity="1.778126400717167" version="2.1.1" timestamp="1522969353744">
 	<sources>
 		<source>/home/travis/build/universAAL/lddi/lddi.common/lddi.abstraction/src/main/java</source>
 		<source>/home/travis/build/universAAL/lddi/lddi.common/lddi.exporter.x73/src/main/java</source>
@@ -1055,9 +1055,8 @@
 								<line number="42" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="75" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="access$000" signature="(Lorg/universAAL/lddi/exporter/activityhub/Activator;)Lorg/universAAL/lddi/exporter/activityhub/AHManager;" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -1100,7 +1099,6 @@
 						<line number="64" hits="0" branch="false"/>
 						<line number="67" hits="0" branch="false"/>
 						<line number="68" hits="0" branch="false"/>
-						<line number="75" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.exporter.activityhub.Activator$MyThread" filename="org/universAAL/lddi/exporter/activityhub/Activator.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
@@ -2123,9 +2121,8 @@
 								<line number="41" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="80" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="access$000" signature="(Lorg/universAAL/lddi/exporter/x73/Activator;)Lorg/universAAL/lddi/exporter/x73/ISO11073ContextProvider;" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -2178,7 +2175,6 @@
 						<line number="68" hits="0" branch="false"/>
 						<line number="71" hits="0" branch="false"/>
 						<line number="72" hits="0" branch="false"/>
-						<line number="80" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.exporter.x73.Activator$MyThread" filename="org/universAAL/lddi/exporter/x73/Activator.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
@@ -2958,7 +2954,6 @@
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="33" hits="0" branch="false"/>
-								<line number="52" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="toActivityHubDevice" signature="(Ljava/lang/String;)Lorg/universAAL/lddi/lib/activityhub/devicecategory/ActivityHubDeviceCategoryUtil$ActivityHubDeviceCategory;" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -2974,7 +2969,6 @@
 						<line number="43" hits="0" branch="false"/>
 						<line number="44" hits="0" branch="false"/>
 						<line number="45" hits="0" branch="false"/>
-						<line number="52" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubDeviceCategoryUtil$ActivityHubDeviceCategory" filename="org/universAAL/lddi/lib/activityhub/devicecategory/ActivityHubDeviceCategoryUtil.java" line-rate="0.0" branch-rate="1.0" complexity="1.5">
@@ -4266,7 +4260,6 @@
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="29" hits="0" branch="false"/>
-								<line number="48" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="toActivityHubLocation" signature="(Ljava/lang/String;)Lorg/universAAL/lddi/lib/activityhub/location/ActivityHubLocationUtil$ActivityHubLocation;" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -4282,7 +4275,6 @@
 						<line number="39" hits="0" branch="false"/>
 						<line number="40" hits="0" branch="false"/>
 						<line number="41" hits="0" branch="false"/>
-						<line number="48" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.lib.activityhub.location.ActivityHubLocationUtil$ActivityHubLocation" filename="org/universAAL/lddi/lib/activityhub/location/ActivityHubLocationUtil.java" line-rate="0.0" branch-rate="1.0" complexity="3.0">

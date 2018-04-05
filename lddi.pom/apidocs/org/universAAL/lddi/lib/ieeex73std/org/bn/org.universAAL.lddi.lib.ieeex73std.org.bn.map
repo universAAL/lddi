@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c3825" href="./CoderFactory.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.CoderFactory" alt="" coords="15,19,115,45"/>
-<area shape="rect" id="node1" href="./CoderFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,8,125,56"/>
-<area shape="rect" id="c3826" href="./IEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.IEncoder" alt="" coords="159,11,257,53"/>
-<area shape="rect" id="node2" href="./IEncoder.html" title="&lt;TABLE&gt;" alt="" coords="149,6,267,58"/>
-<area shape="rect" id="c3827" href="./IDecoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder" alt="" coords="301,11,387,53"/>
-<area shape="rect" id="node3" href="./IDecoder.html" title="&lt;TABLE&gt;" alt="" coords="291,6,397,58"/>
+<area shape="rect" id="node1_0" href="./CoderFactory.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.CoderFactory" alt="" coords="15,20,115,47"/>
+<area shape="rect" id="node1" href="./CoderFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,9,126,57"/>
+<area shape="rect" id="node2_1" href="./IEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.IEncoder" alt="" coords="161,11,258,55"/>
+<area shape="rect" id="node2" href="./IEncoder.html" title="&lt;TABLE&gt;" alt="" coords="150,6,269,61"/>
+<area shape="rect" id="node3_2" href="./IDecoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder" alt="" coords="304,11,389,55"/>
+<area shape="rect" id="node3" href="./IDecoder.html" title="&lt;TABLE&gt;" alt="" coords="293,6,400,61"/>
 </map>

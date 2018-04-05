@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="1409" branches-covered="0" branches-valid="357" complexity="2.308411214953271" version="2.1.1" timestamp="1498692690345">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="1408" branches-covered="0" branches-valid="357" complexity="2.308411214953271" version="2.1.1" timestamp="1522969363685">
 	<sources>
 		<source>/home/travis/build/universAAL/lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter/src/main/java</source>
 		<source>--source</source>
@@ -2091,7 +2091,6 @@
 								<line number="108" hits="0" branch="false"/>
 								<line number="116" hits="0" branch="false"/>
 								<line number="117" hits="0" branch="false"/>
-								<line number="949" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="access$100" signature="(Lorg/universAAL/lddi/zigbee/commissioning/Activator;Ljava/lang/String;Lorg/universAAL/lddi/zigbee/commissioning/Activator$Device;Z)V" line-rate="1.0" branch-rate="1.0" complexity="0">
@@ -3519,7 +3518,6 @@
 						<line number="890" hits="0" branch="false"/>
 						<line number="891" hits="0" branch="false"/>
 						<line number="894" hits="0" branch="false"/>
-						<line number="949" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.zigbee.commissioning.Activator$1" filename="org/universAAL/lddi/zigbee/commissioning/Activator.java" line-rate="0.0" branch-rate="0.0" complexity="3.3392857142857144">

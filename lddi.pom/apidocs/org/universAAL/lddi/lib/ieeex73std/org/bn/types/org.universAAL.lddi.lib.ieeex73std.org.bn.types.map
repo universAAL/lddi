@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c8794" href="./ObjectIdentifier.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.types.ObjectIdentifier" alt="" coords="16,17,125,42"/>
-<area shape="rect" id="node1" href="./ObjectIdentifier.html" title="&lt;TABLE&gt;" alt="" coords="5,5,136,53"/>
-<area shape="rect" id="c8795" href="./NullObject.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.types.NullObject" alt="" coords="170,17,251,42"/>
-<area shape="rect" id="node2" href="./NullObject.html" title="&lt;TABLE&gt;" alt="" coords="160,5,261,53"/>
-<area shape="rect" id="c8796" href="./BitString.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.types.BitString" alt="" coords="295,17,366,42"/>
-<area shape="rect" id="node3" href="./BitString.html" title="&lt;TABLE&gt;" alt="" coords="285,5,376,53"/>
+<area shape="rect" id="node1_0" href="./ObjectIdentifier.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.types.ObjectIdentifier" alt="" coords="15,16,124,43"/>
+<area shape="rect" id="node1" href="./ObjectIdentifier.html" title="&lt;TABLE&gt;" alt="" coords="4,5,135,53"/>
+<area shape="rect" id="node2_1" href="./NullObject.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.types.NullObject" alt="" coords="170,16,251,43"/>
+<area shape="rect" id="node2" href="./NullObject.html" title="&lt;TABLE&gt;" alt="" coords="159,5,262,53"/>
+<area shape="rect" id="node3_2" href="./BitString.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.types.BitString" alt="" coords="297,16,367,43"/>
+<area shape="rect" id="node3" href="./BitString.html" title="&lt;TABLE&gt;" alt="" coords="286,5,378,53"/>
 </map>

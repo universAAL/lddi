@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="c34740" href="./IASZoneImpl.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneImpl" alt="" coords="15,17,113,42"/>
+<area shape="rect" id="node1_0" href="./IASZoneImpl.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneImpl" alt="" coords="15,16,113,43"/>
 <area shape="rect" id="node1" href="./IASZoneImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,5,123,53"/>
-<area shape="rect" id="c34741" href="./IASZoneClusterImpl.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneClusterImpl" alt="" coords="157,17,296,42"/>
+<area shape="rect" id="node2_1" href="./IASZoneClusterImpl.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.IASZoneClusterImpl" alt="" coords="157,16,296,43"/>
 <area shape="rect" id="node2" href="./IASZoneClusterImpl.html" title="&lt;TABLE&gt;" alt="" coords="147,5,307,53"/>
-<area shape="rect" id="c34742" href="./OccupacySensingImpl.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingImpl" alt="" coords="341,17,493,42"/>
+<area shape="rect" id="node3_2" href="./OccupacySensingImpl.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingImpl" alt="" coords="341,16,493,43"/>
 <area shape="rect" id="node3" href="./OccupacySensingImpl.html" title="&lt;TABLE&gt;" alt="" coords="331,5,504,53"/>
-<area shape="rect" id="c34743" href="./OccupacySensingCluster.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingCluster" alt="" coords="538,17,707,42"/>
-<area shape="rect" id="node4" href="./OccupacySensingCluster.html" title="&lt;TABLE&gt;" alt="" coords="528,5,717,53"/>
-<area shape="rect" id="c34744" href="./OccupancyBridgeListeners.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupancyBridgeListeners" alt="" coords="751,17,929,42"/>
-<area shape="rect" id="node5" href="./OccupancyBridgeListeners.html" title="&lt;TABLE&gt;" alt="" coords="741,5,939,53"/>
+<area shape="rect" id="node4_3" href="./OccupacySensingCluster.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingCluster" alt="" coords="539,16,709,43"/>
+<area shape="rect" id="node4" href="./OccupacySensingCluster.html" title="&lt;TABLE&gt;" alt="" coords="529,5,719,53"/>
+<area shape="rect" id="node5_4" href="./OccupancyBridgeListeners.html" title="org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupancyBridgeListeners" alt="" coords="754,16,931,43"/>
+<area shape="rect" id="node5" href="./OccupancyBridgeListeners.html" title="&lt;TABLE&gt;" alt="" coords="743,5,942,53"/>
 </map>

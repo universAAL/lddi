@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.common/lddi.lib.ieeex73std/</link>
     <description>universAAL LDDI Library IEEE x073 standard implementation - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2010 - 2017 TSB Technologies for Health and Well-being</copyright>
+    <copyright>&#169;2010 - 2018 TSB Technologies for Health and Well-being</copyright>
     <item>
       <title>File: 309,
              Errors: 4893,
@@ -760,20 +760,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.ScanReportPerVar.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/ScanReportPerVar.java</a>
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.RT_SA.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/dim/RT_SA.java</a>
                 </td>
                 <td>
@@ -784,6 +770,20 @@ under the License.
                 </td>
                 <td>
                   4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.ScanReportPerVar.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/ScanReportPerVar.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  15
                 </td>
               </tr>
                           <tr>
@@ -1992,20 +1992,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.TypeVerList.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/TypeVerList.java</a>
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  16
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/dim/GET_Service.java</a>
                 </td>
                 <td>
@@ -2016,6 +2002,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.TypeVerList.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/TypeVerList.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
                 </td>
               </tr>
                           <tr>
@@ -2650,20 +2650,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmSelection.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/SegmSelection.java</a>
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  15
-                </td>
-                <td>
-                  29
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/dim/MDS.java</a>
                 </td>
                 <td>
@@ -2674,6 +2660,20 @@ under the License.
                 </td>
                 <td>
                   5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.ieeex73std//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmSelection.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/SegmSelection.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  29
                 </td>
               </tr>
                           <tr>

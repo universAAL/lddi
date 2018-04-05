@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.08865638766519823" branch-rate="0.07524271844660194" lines-covered="161" lines-valid="1816" branches-covered="31" branches-valid="412" complexity="2.175324675324675" version="2.1.1" timestamp="1498692686029">
+<coverage line-rate="0.08885209713024282" branch-rate="0.07524271844660194" lines-covered="161" lines-valid="1812" branches-covered="31" branches-valid="412" complexity="2.175324675324675" version="2.1.1" timestamp="1522969361440">
 	<sources>
 		<source>/home/travis/build/universAAL/lddi/lddi.knx/lddi.knx.library/src/main/java</source>
 		<source>--source</source>
@@ -2009,9 +2009,8 @@
 								<line number="40" hits="0" branch="false"/>
 							</lines>
 						</method>
-						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="74" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="access$002" signature="(Lorg/universAAL/lddi/knx/exporter/Activator;Lorg/universAAL/lddi/knx/exporter/KnxServiceCallee;)Lorg/universAAL/lddi/knx/exporter/KnxServiceCallee;" line-rate="1.0" branch-rate="1.0" complexity="0">
@@ -2070,7 +2069,6 @@
 						<line number="65" hits="0" branch="false"/>
 						<line number="66" hits="0" branch="false"/>
 						<line number="67" hits="0" branch="false"/>
-						<line number="74" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.knx.exporter.Activator$MyThread" filename="org/universAAL/lddi/knx/exporter/Activator.java" line-rate="0.0" branch-rate="1.0" complexity="1.25">
@@ -2898,7 +2896,6 @@
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="49" hits="0" branch="false"/>
-								<line number="51" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getDeviceOntologyInstanceForKnxDpt" signature="(IILjava/lang/String;Lorg/universAAL/lddi/knx/exporter/KnxToDeviceOntologyMappingFactory$DeviceOntologyType;)Lorg/universAAL/ontology/device/ValueDevice;" line-rate="0.0" branch-rate="0.0" complexity="0">
@@ -2979,7 +2976,6 @@
 					</methods>
 					<lines>
 						<line number="49" hits="0" branch="false"/>
-						<line number="51" hits="0" branch="false"/>
 						<line number="67" hits="0" branch="true" condition-coverage="0% (0/5)">
 							<conditions>
 								<condition number="0" type="switch" coverage="0%"/>
@@ -3280,7 +3276,6 @@
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="33" hits="0" branch="false"/>
-								<line number="52" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="getCategory" signature="(Ljava/lang/String;)Lorg/universAAL/lddi/knx/groupdevicecategory/KnxGroupDeviceCategoryUtil$KnxGroupDeviceCategory;" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -3296,7 +3291,6 @@
 						<line number="43" hits="0" branch="false"/>
 						<line number="44" hits="0" branch="false"/>
 						<line number="45" hits="0" branch="false"/>
-						<line number="52" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.lddi.knx.groupdevicecategory.KnxGroupDeviceCategoryUtil$KnxGroupDeviceCategory" filename="org/universAAL/lddi/knx/groupdevicecategory/KnxGroupDeviceCategoryUtil.java" line-rate="0.0" branch-rate="1.0" complexity="1.5">
@@ -5917,7 +5911,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="org.universAAL.lddi.knx.utils" line-rate="0.6465863453815262" branch-rate="0.5961538461538461" complexity="1.6041666666666667">
+		<package name="org.universAAL.lddi.knx.utils" line-rate="0.6491935483870968" branch-rate="0.5961538461538461" complexity="1.6041666666666667">
 			<classes>
 				<class name="org.universAAL.lddi.knx.utils.KnxCommand" filename="org/universAAL/lddi/knx/utils/KnxCommand.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
@@ -5977,7 +5971,7 @@
 						<line number="60" hits="14" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.universAAL.lddi.knx.utils.KnxEncoder" filename="org/universAAL/lddi/knx/utils/KnxEncoder.java" line-rate="0.6698113207547169" branch-rate="0.59375" complexity="2.5">
+				<class name="org.universAAL.lddi.knx.utils.KnxEncoder" filename="org/universAAL/lddi/knx/utils/KnxEncoder.java" line-rate="0.6761904761904762" branch-rate="0.59375" complexity="2.5">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
@@ -5990,7 +5984,6 @@
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="30" hits="0" branch="false"/>
-								<line number="32" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="clearHexValue" signature="(Ljava/lang/String;)Ljava/lang/String;" line-rate="0.0" branch-rate="0.0" complexity="0">
@@ -6208,7 +6201,6 @@
 					</methods>
 					<lines>
 						<line number="30" hits="0" branch="false"/>
-						<line number="32" hits="0" branch="false"/>
 						<line number="40" hits="1" branch="false"/>
 						<line number="43" hits="1" branch="false"/>
 						<line number="44" hits="1" branch="false"/>

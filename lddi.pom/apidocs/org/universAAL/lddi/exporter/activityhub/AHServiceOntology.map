@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="c42838" href="./AHServiceOntology.html" title="org.universAAL.lddi.exporter.activityhub.AHServiceOntology" alt="" coords="16,113,152,138"/>
+<area shape="rect" id="node1_0" href="./AHServiceOntology.html" title="org.universAAL.lddi.exporter.activityhub.AHServiceOntology" alt="" coords="16,112,152,139"/>
 <area shape="rect" id="node1" href="./AHServiceOntology.html" title="&lt;TABLE&gt;" alt="" coords="5,101,163,149"/>
-<area shape="rect" id="c43023" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/ontology/activityhub/ActivityHub.html" title="org.universAAL.ontology.activityhub.ActivityHub" alt="" coords="39,17,129,42"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/ontology/activityhub/ActivityHub.html" title="org.universAAL.ontology.activityhub.ActivityHub" alt="" coords="39,16,129,43"/>
 <area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/ontology/activityhub/ActivityHub.html" title="&lt;TABLE&gt;" alt="" coords="29,5,139,53"/>
 </map>

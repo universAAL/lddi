@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.pom/</link>
     <description>universAAL LDDI Suite - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2010 - 2017 universAAL Consortium</copyright>
+    <copyright>&#169;2010 - 2018 universAAL Consortium</copyright>
     <item>
       <title>File: 536,
              Errors: 7714,
@@ -6010,20 +6010,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmSelection.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/SegmSelection.java</a>
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  15
-                </td>
-                <td>
-                  29
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/dim/MDS.java</a>
                 </td>
                 <td>
@@ -6034,6 +6020,20 @@ under the License.
                 </td>
                 <td>
                   5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmSelection.java">org/universAAL/lddi/lib/ieeex73std/x73/p20601/SegmSelection.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  29
                 </td>
               </tr>
                           <tr>

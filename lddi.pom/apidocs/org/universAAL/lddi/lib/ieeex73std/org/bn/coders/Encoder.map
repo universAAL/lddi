@@ -1,14 +1,14 @@
 <map id="G" name="G">
-<area shape="rect" id="c131752" href="../../../mder/EncoderMDER.html" title="org.universAAL.lddi.lib.ieeex73std.mder.EncoderMDER" alt="" coords="16,214,149,239"/>
-<area shape="rect" id="node1" href="../../../mder/EncoderMDER.html" title="&lt;TABLE&gt;" alt="" coords="5,203,160,251"/>
-<area shape="rect" id="c131756" href="../IEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.IEncoder" alt="" coords="123,11,221,53"/>
-<area shape="rect" id="node2" href="../IEncoder.html" title="&lt;TABLE&gt;" alt="" coords="113,6,231,58"/>
-<area shape="rect" id="c131785" href="./Encoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.Encoder" alt="" coords="208,118,301,143"/>
-<area shape="rect" id="node3" href="./Encoder.html" title="&lt;TABLE&gt;" alt="" coords="197,107,312,155"/>
-<area shape="rect" id="c131796" href="./ber/BEREncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BEREncoder" alt="" coords="194,214,315,239"/>
-<area shape="rect" id="node5" href="./ber/BEREncoder.html" title="&lt;TABLE&gt;" alt="" coords="184,203,325,251"/>
-<area shape="rect" id="c131801" href="./per/PERAlignedEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERAlignedEncoder" alt="" coords="359,214,523,239"/>
-<area shape="rect" id="node6" href="./per/PERAlignedEncoder.html" title="&lt;TABLE&gt;" alt="" coords="349,203,533,251"/>
-<area shape="rect" id="c131790" href="./IASN1TypesEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder" alt="" coords="265,11,409,53"/>
-<area shape="rect" id="node4" href="./IASN1TypesEncoder.html" title="&lt;TABLE&gt;" alt="" coords="255,6,420,58"/>
+<area shape="rect" id="node1_0" href="../../../mder/EncoderMDER.html" title="org.universAAL.lddi.lib.ieeex73std.mder.EncoderMDER" alt="" coords="16,216,149,243"/>
+<area shape="rect" id="node1" href="../../../mder/EncoderMDER.html" title="&lt;TABLE&gt;" alt="" coords="5,205,160,253"/>
+<area shape="rect" id="node2_1" href="../IEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.IEncoder" alt="" coords="125,11,222,55"/>
+<area shape="rect" id="node2" href="../IEncoder.html" title="&lt;TABLE&gt;" alt="" coords="114,6,233,61"/>
+<area shape="rect" id="node3_2" href="./Encoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.Encoder" alt="" coords="209,120,303,147"/>
+<area shape="rect" id="node3" href="./Encoder.html" title="&lt;TABLE&gt;" alt="" coords="199,109,313,157"/>
+<area shape="rect" id="node5_3" href="./ber/BEREncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BEREncoder" alt="" coords="195,216,317,243"/>
+<area shape="rect" id="node5" href="./ber/BEREncoder.html" title="&lt;TABLE&gt;" alt="" coords="185,205,327,253"/>
+<area shape="rect" id="node6_4" href="./per/PERAlignedEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.per.PERAlignedEncoder" alt="" coords="362,216,526,243"/>
+<area shape="rect" id="node6" href="./per/PERAlignedEncoder.html" title="&lt;TABLE&gt;" alt="" coords="351,205,537,253"/>
+<area shape="rect" id="node4_5" href="./IASN1TypesEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder" alt="" coords="267,11,411,55"/>
+<area shape="rect" id="node4" href="./IASN1TypesEncoder.html" title="&lt;TABLE&gt;" alt="" coords="256,6,421,61"/>
 </map>

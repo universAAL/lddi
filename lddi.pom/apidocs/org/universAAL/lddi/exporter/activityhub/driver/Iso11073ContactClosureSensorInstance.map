@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="c191380" href="../../../lib/activityhub/devicecategory/Iso11073ContactClosureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor" alt="" coords="16,11,221,53"/>
-<area shape="rect" id="node1" href="../../../lib/activityhub/devicecategory/Iso11073ContactClosureSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,6,232,58"/>
-<area shape="rect" id="c191427" href="./Iso11073ContactClosureSensorInstance.html" title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073ContactClosureSensorInstance" alt="" coords="297,118,553,143"/>
-<area shape="rect" id="node3" href="./Iso11073ContactClosureSensorInstance.html" title="&lt;TABLE&gt;" alt="" coords="287,107,564,155"/>
-<area shape="rect" id="c191408" href="../../../lib/activityhub/driver/interfaces/ActivityHubDriver.html" title="org.universAAL.lddi.lib.activityhub.driver.interfaces.ActivityHubDriver" alt="" coords="266,19,390,45"/>
-<area shape="rect" id="node2" href="../../../lib/activityhub/driver/interfaces/ActivityHubDriver.html" title="&lt;TABLE&gt;" alt="" coords="256,8,400,56"/>
-<area shape="rect" id="c191602" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/util/tracker/ServiceTrackerCustomizer.html" title="org.osgi.util.tracker.ServiceTrackerCustomizer" alt="" coords="435,11,611,53"/>
-<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/util/tracker/ServiceTrackerCustomizer.html" title="&lt;TABLE&gt;" alt="" coords="424,6,621,58"/>
-<area shape="rect" id="c191603" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Constants.html" title="org.osgi.service.device.Constants" alt="" coords="656,11,741,53"/>
-<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Constants.html" title="&lt;TABLE&gt;" alt="" coords="645,6,752,58"/>
+<area shape="rect" id="node1_0" href="../../../lib/activityhub/devicecategory/Iso11073ContactClosureSensor.html" title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor" alt="" coords="16,11,221,55"/>
+<area shape="rect" id="node1" href="../../../lib/activityhub/devicecategory/Iso11073ContactClosureSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,6,232,61"/>
+<area shape="rect" id="node3_1" href="./Iso11073ContactClosureSensorInstance.html" title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073ContactClosureSensorInstance" alt="" coords="299,120,555,147"/>
+<area shape="rect" id="node3" href="./Iso11073ContactClosureSensorInstance.html" title="&lt;TABLE&gt;" alt="" coords="288,109,565,157"/>
+<area shape="rect" id="node2_2" href="../../../lib/activityhub/driver/interfaces/ActivityHubDriver.html" title="org.universAAL.lddi.lib.activityhub.driver.interfaces.ActivityHubDriver" alt="" coords="267,20,391,47"/>
+<area shape="rect" id="node2" href="../../../lib/activityhub/driver/interfaces/ActivityHubDriver.html" title="&lt;TABLE&gt;" alt="" coords="257,9,402,57"/>
+<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/util/tracker/ServiceTrackerCustomizer.html" title="org.osgi.util.tracker.ServiceTrackerCustomizer" alt="" coords="437,11,613,55"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/util/tracker/ServiceTrackerCustomizer.html" title="&lt;TABLE&gt;" alt="" coords="427,6,624,61"/>
+<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Constants.html" title="org.osgi.service.device.Constants" alt="" coords="659,11,744,55"/>
+<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Constants.html" title="&lt;TABLE&gt;" alt="" coords="648,6,755,61"/>
 </map>

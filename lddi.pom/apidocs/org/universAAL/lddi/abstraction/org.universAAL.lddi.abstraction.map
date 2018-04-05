@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="c15546" href="./ComponentIntegrator.html" title="org.universAAL.lddi.abstraction.ComponentIntegrator" alt="" coords="15,11,158,53"/>
-<area shape="rect" id="node1" href="./ComponentIntegrator.html" title="&lt;TABLE&gt;" alt="" coords="5,6,168,58"/>
-<area shape="rect" id="c15547" href="./ExternalDatapoint.html" title="org.universAAL.lddi.abstraction.ExternalDatapoint" alt="" coords="203,11,328,53"/>
-<area shape="rect" id="node2" href="./ExternalDatapoint.html" title="&lt;TABLE&gt;" alt="" coords="192,6,339,58"/>
-<area shape="rect" id="c15548" href="./CommunicationGateway.html" title="org.universAAL.lddi.abstraction.CommunicationGateway" alt="" coords="373,19,537,45"/>
-<area shape="rect" id="node3" href="./CommunicationGateway.html" title="&lt;TABLE&gt;" alt="" coords="363,8,547,56"/>
-<area shape="rect" id="c15549" href="./ExternalComponent.html" title="org.universAAL.lddi.abstraction.ExternalComponent" alt="" coords="581,19,717,45"/>
-<area shape="rect" id="node4" href="./ExternalComponent.html" title="&lt;TABLE&gt;" alt="" coords="571,8,728,56"/>
+<area shape="rect" id="node1_0" href="./ComponentIntegrator.html" title="org.universAAL.lddi.abstraction.ComponentIntegrator" alt="" coords="15,11,158,55"/>
+<area shape="rect" id="node1" href="./ComponentIntegrator.html" title="&lt;TABLE&gt;" alt="" coords="5,6,169,61"/>
+<area shape="rect" id="node2_1" href="./ExternalDatapoint.html" title="org.universAAL.lddi.abstraction.ExternalDatapoint" alt="" coords="204,11,329,55"/>
+<area shape="rect" id="node2" href="./ExternalDatapoint.html" title="&lt;TABLE&gt;" alt="" coords="193,6,340,61"/>
+<area shape="rect" id="node3_2" href="./CommunicationGateway.html" title="org.universAAL.lddi.abstraction.CommunicationGateway" alt="" coords="375,20,539,47"/>
+<area shape="rect" id="node3" href="./CommunicationGateway.html" title="&lt;TABLE&gt;" alt="" coords="365,9,550,57"/>
+<area shape="rect" id="node4_3" href="./ExternalComponent.html" title="org.universAAL.lddi.abstraction.ExternalComponent" alt="" coords="585,20,721,47"/>
+<area shape="rect" id="node4" href="./ExternalComponent.html" title="&lt;TABLE&gt;" alt="" coords="575,9,732,57"/>
 </map>

@@ -1,20 +1,20 @@
 <map id="G" name="G">
-<area shape="rect" id="c81115" href="./SwitchControllerWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.SwitchControllerWrapper" alt="" coords="16,209,181,234"/>
+<area shape="rect" id="node1_0" href="./SwitchControllerWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.SwitchControllerWrapper" alt="" coords="16,208,181,235"/>
 <area shape="rect" id="node1" href="./SwitchControllerWrapper.html" title="&lt;TABLE&gt;" alt="" coords="5,197,192,245"/>
-<area shape="rect" id="c81120" href="./WindowSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.WindowSensorWrapper" alt="" coords="227,209,384,234"/>
+<area shape="rect" id="node2_1" href="./WindowSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.WindowSensorWrapper" alt="" coords="227,208,384,235"/>
 <area shape="rect" id="node2" href="./WindowSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="216,197,395,245"/>
-<area shape="rect" id="c81121" href="./PresenceSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.PresenceSensorWrapper" alt="" coords="429,209,595,234"/>
+<area shape="rect" id="node3_2" href="./PresenceSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.PresenceSensorWrapper" alt="" coords="429,208,595,235"/>
 <area shape="rect" id="node3" href="./PresenceSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="419,197,605,245"/>
-<area shape="rect" id="c81126" href="./WaterflowSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.WaterflowSensorWrapper" alt="" coords="639,209,809,234"/>
-<area shape="rect" id="node4" href="./WaterflowSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="629,197,819,245"/>
-<area shape="rect" id="c81127" href="./SwitchSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.SwitchSensorWrapper" alt="" coords="853,209,1003,234"/>
-<area shape="rect" id="node5" href="./SwitchSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="843,197,1013,245"/>
-<area shape="rect" id="c81130" href="./SwitchActuatorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.SwitchActuatorWrapper" alt="" coords="1047,209,1206,234"/>
-<area shape="rect" id="node6" href="./SwitchActuatorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="1037,197,1216,245"/>
-<area shape="rect" id="c81131" href="./AbstractStatusValueCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee" alt="" coords="635,113,813,138"/>
-<area shape="rect" id="node7" href="./AbstractStatusValueCallee.html" title="&lt;TABLE&gt;" alt="" coords="625,101,823,149"/>
-<area shape="rect" id="c81132" href="./ContactSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.ContactSensorWrapper" alt="" coords="1251,209,1408,234"/>
-<area shape="rect" id="node8" href="./ContactSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="1240,197,1419,245"/>
-<area shape="rect" id="c81134" href="./AbstractCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractCallee" alt="" coords="671,17,777,42"/>
-<area shape="rect" id="node9" href="./AbstractCallee.html" title="&lt;TABLE&gt;" alt="" coords="660,5,788,53"/>
+<area shape="rect" id="node4_3" href="./WaterflowSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.WaterflowSensorWrapper" alt="" coords="641,208,810,235"/>
+<area shape="rect" id="node4" href="./WaterflowSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="630,197,821,245"/>
+<area shape="rect" id="node5_4" href="./SwitchSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.SwitchSensorWrapper" alt="" coords="855,208,1006,235"/>
+<area shape="rect" id="node5" href="./SwitchSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="845,197,1017,245"/>
+<area shape="rect" id="node6_5" href="./SwitchActuatorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.SwitchActuatorWrapper" alt="" coords="1051,208,1210,235"/>
+<area shape="rect" id="node6" href="./SwitchActuatorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="1041,197,1221,245"/>
+<area shape="rect" id="node7_6" href="./AbstractStatusValueCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee" alt="" coords="637,112,814,139"/>
+<area shape="rect" id="node7" href="./AbstractStatusValueCallee.html" title="&lt;TABLE&gt;" alt="" coords="626,101,825,149"/>
+<area shape="rect" id="node8_7" href="./ContactSensorWrapper.html" title="org.universAAL.lddi.smarthome.exporter.devices.ContactSensorWrapper" alt="" coords="1256,208,1413,235"/>
+<area shape="rect" id="node8" href="./ContactSensorWrapper.html" title="&lt;TABLE&gt;" alt="" coords="1245,197,1424,245"/>
+<area shape="rect" id="node9_8" href="./AbstractCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractCallee" alt="" coords="672,16,779,43"/>
+<area shape="rect" id="node9" href="./AbstractCallee.html" title="&lt;TABLE&gt;" alt="" coords="661,5,789,53"/>
 </map>

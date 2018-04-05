@@ -237,18 +237,18 @@ digraph G {
 <tr><td align="center" balign="center"> BasicNuObsValueCmp </td></tr>
 		</table></td></tr>
 		</table>>, URL="./BasicNuObsValueCmp.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmentDataResult
-	c12138 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmentDataResult" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SegmentDataResult.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> SegmentDataResult </td></tr>
-		</table></td></tr>
-		</table>>, URL="./SegmentDataResult.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.TypeVerList
-	c12139 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.TypeVerList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TypeVerList.html">
+	c12138 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.TypeVerList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TypeVerList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TypeVerList </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TypeVerList.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmentDataResult
+	c12139 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.SegmentDataResult" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SegmentDataResult.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> SegmentDataResult </td></tr>
+		</table></td></tr>
+		</table>>, URL="./SegmentDataResult.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.ScaleRangeSpec16
 	c12140 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.ScaleRangeSpec16" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ScaleRangeSpec16.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

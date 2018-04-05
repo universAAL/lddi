@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c14999" href="./Publisher.html" title="org.universAAL.lddi.manager.publisher.Publisher" alt="" coords="16,19,91,45"/>
-<area shape="rect" id="node1" href="./Publisher.html" title="&lt;TABLE&gt;" alt="" coords="5,8,101,56"/>
-<area shape="rect" id="c15000" href="./hdpManager.html" title="org.universAAL.lddi.manager.publisher.hdpManager" alt="" coords="158,118,250,143"/>
-<area shape="rect" id="node2" href="./hdpManager.html" title="&lt;TABLE&gt;" alt="" coords="148,107,260,155"/>
-<area shape="rect" id="c15001" href="./hdpManagerListener.html" title="org.universAAL.lddi.manager.publisher.hdpManagerListener" alt="" coords="135,11,273,53"/>
-<area shape="rect" id="node3" href="./hdpManagerListener.html" title="&lt;TABLE&gt;" alt="" coords="125,6,283,58"/>
+<area shape="rect" id="node1_0" href="./Publisher.html" title="org.universAAL.lddi.manager.publisher.Publisher" alt="" coords="16,20,91,47"/>
+<area shape="rect" id="node1" href="./Publisher.html" title="&lt;TABLE&gt;" alt="" coords="5,9,101,57"/>
+<area shape="rect" id="node2_1" href="./hdpManager.html" title="org.universAAL.lddi.manager.publisher.hdpManager" alt="" coords="159,120,251,147"/>
+<area shape="rect" id="node2" href="./hdpManager.html" title="&lt;TABLE&gt;" alt="" coords="149,109,262,157"/>
+<area shape="rect" id="node3_2" href="./hdpManagerListener.html" title="org.universAAL.lddi.manager.publisher.hdpManagerListener" alt="" coords="137,11,274,55"/>
+<area shape="rect" id="node3" href="./hdpManagerListener.html" title="&lt;TABLE&gt;" alt="" coords="126,6,285,61"/>
 </map>
