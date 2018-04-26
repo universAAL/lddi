@@ -1,0 +1,12 @@
+For each .properties file that is contained in this folder an
+universAAL Gateway will be created during the starting of the
+bundle.
+
+You can use both
+ - server.properties.example: as template for running the GW
+   in server mode (the machine that is on the cloud)
+
+ - client.properties.example: as template for running the GW
+   as the machine that will connect to the Cloud
+
+

@@ -1,0 +1,5 @@
+remote-gateway-host=localhost
+socket-port=8181
+security-definition-file=none
+hash-key=temporary-key
+connection-mode=server

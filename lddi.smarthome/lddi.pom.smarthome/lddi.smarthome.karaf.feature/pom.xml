@@ -5,16 +5,31 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.smarthome</artifactId>
-    <version>3.4.1-SNAPSHOT</version>
+    <version>3.4.2-SNAPSHOT</version>
   </parent>
   <artifactId>lddi.smarthome.karaf.feature</artifactId>
-  <version>3.4.1-SNAPSHOT</version>
+  <version>3.4.2-SNAPSHOT</version>
   <name>universAAL Karaf Feature Eclipse Smarthome - OpenHAB2</name>
   <properties>
     <mw.version>${project.version}</mw.version>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+	<dependency>
+		<groupId>org.bouncycastle</groupId>
+		<artifactId>jce.jdk13</artifactId>
+		<version>144</version>
+	</dependency>
+	<dependency>
+		<groupId>org.universAAL.thirdparty</groupId>
+		<artifactId>jslp.osgi</artifactId>
+		<version>3.4.2-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>org.jgroups</groupId>
+		<artifactId>jgroups</artifactId>
+		<version>3.4.1.Final</version>
+	</dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.bus.service.osgi</artifactId>
@@ -54,7 +69,7 @@
     <dependency>
       <groupId>org.universAAL.lddi</groupId>
       <artifactId>lddi.smarthome.exporter</artifactId>
-      <version>3.4.1-SNAPSHOT</version>
+      <version>3.4.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>jp.go.ipa</groupId>
