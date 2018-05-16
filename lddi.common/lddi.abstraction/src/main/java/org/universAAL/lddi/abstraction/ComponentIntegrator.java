@@ -19,6 +19,17 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.SharedObjectListener;
+import org.universAAL.middleware.owl.ManagedIndividual;
+
 /**
  * As a "specialist" for certain component types, it cooperates with all
  * {@link CommunicationGateway communication gateways} that have access to
@@ -30,15 +41,48 @@ package org.universAAL.lddi.abstraction;
  * For a better understanding, please refer to both the package documentation
  * and the documentation of the methods further below.
  */
-public interface ComponentIntegrator {
+public abstract class ComponentIntegrator implements SharedObjectListener {
 
 	/**
 	 * A constant string that can be used by component integrators to map the
 	 * ontological representation of an external component to its corresponding
 	 * original {@link ExternalComponent}.
 	 */
-	public static final String PROP_CORRESPONDING_COMPONENT = "universAAL:lddi.abstraction/ComponentIntegrator#correspondingComponent";
-
+	public static final String PROP_CORRESPONDING_EXTERNAL_COMPONENT = "universAAL:lddi.abstraction/ComponentIntegrator#correspondingExternalComponent";
+	
+//	/**
+//	 * Mapping the URI of components to their ontological representation.
+//	 * "disconnected" in the name should remind us that (1) setting properties of these ontological resources
+//	 * are not reflected in the external component, and (2) getting property values of these resources has the
+//	 * risk of not being reading the latest value as changes to the external components may not have found the
+//	 * chance to be reflected in these "copies".
+//	 */
+//	private Hashtable<String, ManagedIndividual> disconnectedOntResources = new Hashtable<String, ManagedIndividual>();
+	
+	/**
+	 * Mapping the URI of components to the original representation of the related external components.
+	 * "connected" in the name should remind that (1) getting property values of these representations will lead
+	 * to actually accessing the external component and reading the related current value, and (2) setting
+	 * properties of these representations will cause to a change of the value of the related properties of
+	 * the actual external component.
+	 */
+	private Hashtable<String, ExternalComponent> connectedComponents = new Hashtable<String, ExternalComponent>();
+	
+	private HashSet<String> myTypes = new HashSet<String>();
+	
+	protected ComponentIntegrator(ModuleContext mc, Object[] containerSpecificFetchParams, String[] myTypes) {
+		for (String type : myTypes)
+			this.myTypes.add(type);
+		
+		Object[] registeredGateways = mc.getContainer().fetchSharedObject(mc, containerSpecificFetchParams, this);
+		if (registeredGateways != null )
+			for (Object o : registeredGateways) {
+				if (o instanceof CommunicationGateway)
+					for (String type: myTypes)
+						((CommunicationGateway) o).register(type, this);
+			}
+	}
+	
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to share with
 	 * this integrator the external components reachable through that gateway
@@ -51,7 +95,56 @@ public interface ComponentIntegrator {
 	 * properties to external datapoints so that this integrator can make use of
 	 * them when utilizing some of the other methods of the gateway.
 	 */
-	public void processComponents(ExternalComponent[] components);
+	public void componentsAdded(ExternalComponent[] components) {
+		if (components == null  ||  components.length == 0)
+			return;
+			
+		for (ExternalComponent ec : components)
+			if (myTypes.contains(ec.getTypeURI()))
+				connectedComponents.put(ec.getComponentURI(), ec);
+	}
+	
+	public void componentsRemoved(ExternalComponent[] components) {
+		if (components == null  ||  components.length == 0)
+			return;
+			
+		for (ExternalComponent ec : components)
+			connectedComponents.remove(ec.getComponentURI());
+	}
+	
+	public void componentsReplaced(ExternalComponent[] components) {
+		if (components == null  ||  components.length == 0)
+			return;
+		
+		// remove only ecternal components comming fromthe same communication gateway
+		CommunicationGateway cgw = components[0].getGateway();
+		for (Iterator<Entry<String, ExternalComponent>> i=connectedComponents.entrySet().iterator(); i.hasNext();)
+			if (i.next().getValue().getGateway() == cgw)
+				i.remove();
+			
+		for (ExternalComponent ec : components)
+			if (myTypes.contains(ec.getTypeURI()))
+				connectedComponents.put(ec.getComponentURI(), ec);
+	}
+	
+	public abstract void oomponentsUpdated(ExternalComponent[] components);
+	
+	protected final ManagedIndividual getOntResourceByURI(String uriString) {
+		return connectedComponents.get(uriString).getOntResource();
+	}
+	
+	protected final void getAllOntResources(List<ManagedIndividual> targetList) {
+		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();)
+			targetList.add(e.nextElement().getOntResource());
+	}
+	
+	protected final void getOntResourcesByType(String type, List<ManagedIndividual> targetList) {
+		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();) {
+			ExternalComponent ec = e.nextElement();
+			if (ec.getTypeURI().equals(type))
+				targetList.add(ec.getOntResource());
+		}
+	}
 
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to notify the
@@ -70,6 +163,58 @@ public interface ComponentIntegrator {
 	 * @param value
 	 *            The new value of the given datapoint.
 	 */
-	public void processEvent(ExternalDatapoint datapoint, Object value);
+	public abstract void processEvent(ExternalDatapoint datapoint, Object value);
+	
+	private Hashtable<Object, CommunicationGateway> discoveredGateways = new Hashtable<Object, CommunicationGateway>();
+
+	public void sharedObjectAdded(Object sharedObj, Object removeHook) {
+		if (sharedObj instanceof CommunicationGateway) {
+			discoveredGateways.put(removeHook, (CommunicationGateway) sharedObj);
+			for (String type: myTypes)
+				((CommunicationGateway) sharedObj).register(type, this);
+		}
+	}
+
+	public void sharedObjectRemoved(Object removeHook) {
+		CommunicationGateway cgw = discoveredGateways.remove(removeHook);
+		if (cgw != null)
+			for (Iterator<Entry<String, ExternalComponent>> i=connectedComponents.entrySet().iterator(); i.hasNext();)
+				if (i.next().getValue().getGateway() == cgw)
+					i.remove();
+	}
+	
+	protected final Object getExternalValue(String componentURI, String propertyURI) {
+		if (componentURI == null  ||  propertyURI == null)
+			return null;
+		
+		ExternalComponent ec = connectedComponents.get(componentURI);
+		return (ec == null)? null : ec.getPropertyValue(propertyURI);
+	}
+	
+	protected final Object fetchProperty(ManagedIndividual ontResource, String propURI) {
+		if (ontResource == null  ||  propURI == null)
+			return null;
+		
+		ExternalComponent ec = connectedComponents.get(ontResource.getURI());
+		return (ec == null)? null : ec.getPropertyValue(propURI);
+	}
+	
+	protected final void setExternalValue(String componentURI, String propertyURI, Object value) {
+		if (componentURI == null  ||  propertyURI == null)
+			return;
+		
+		ExternalComponent ec = connectedComponents.get(componentURI);
+		if (ec != null)
+			ec.setPropertyValue(propertyURI, value);
+	}
+	
+	protected final void updateProperty(ManagedIndividual ontResource, String propertyURI, Object value) {
+		if (ontResource == null  ||  propertyURI == null)
+			return;
+		
+		ExternalComponent ec = connectedComponents.get(ontResource.getURI());
+		if (ec != null)
+			ec.setPropertyValue(propertyURI, value);
+	}
 
 }

@@ -100,4 +100,10 @@ public interface ExternalDatapoint {
 	 * Returns the URI of the ontological property that maps to this datapoint.
 	 */
 	public String getProperty();
+	
+	public String getPullAddress();
+	
+	public String getPushAddress();
+	
+	public String getSetAddress();
 }

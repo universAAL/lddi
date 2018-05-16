@@ -19,7 +19,12 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
+
+import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.ontology.location.Location;
+import org.universAAL.ontology.phThing.PhysicalThing;
 
 /**
  * <p>
@@ -52,50 +57,119 @@ import java.util.Hashtable;
  * </p>
  *
  */
-public abstract class ExternalComponent {
+public class ExternalComponent {
+
+	private static int noOfComponents = 0;
 
 	private CommunicationGateway gw;
-	private String componentURI = null;
-	private String typeURI = null;
-	private Hashtable<String, ExternalDatapoint> propMappings = null;
+	private Hashtable<String, ExternalDatapoint> propMappings = new Hashtable<String, ExternalDatapoint>();
+	private ManagedIndividual ontResource;
+//	private int seqNoInConfFile = -1;
 
 	/**
 	 * The constructor has been made 'protected' in order to force communication
 	 * gateways to create own subclasses so that each communication gateway can
 	 * create only instances defined by itself.
 	 */
-	protected ExternalComponent(CommunicationGateway gw, String componentURI, String typeURI) {
-		if (gw == null || componentURI == null || typeURI == null)
+	public ExternalComponent(CommunicationGateway gw, String typeURI) {
+		if (gw == null || typeURI == null)
 			throw new NullPointerException("ExternalComponent constructor: parameter null!");
 
 		this.gw = gw;
-		this.componentURI = componentURI;
-		this.typeURI = typeURI;
+		String componentURI = gw.getComponentURIprefix()
+				+ typeURI.substring(typeURI.lastIndexOf('#')+1)
+				+ (noOfComponents++);
+		ontResource = ManagedIndividual.getInstance(typeURI, componentURI);
 	}
+	
+//	public ExternalComponent(CommunicationGateway gw, String typeURI, int seqNoInConfFile) {
+//		if (gw == null  ||  typeURI == null  ||  seqNoInConfFile < 0)
+//			throw new NullPointerException("ExternalComponent constructor: invalid parameter!");
+//
+//		this.gw = gw;
+//		String componentURI = gw.getComponentURIprefix()
+//				+ typeURI.substring(typeURI.lastIndexOf('#')+1)
+//				+ (noOfComponents++);
+//		ontResource = ManagedIndividual.getInstance(typeURI, componentURI);
+//		
+//		this.seqNoInConfFile = seqNoInConfFile;
+//	}
 
 	public void addPropMapping(String propURI, ExternalDatapoint datapoint) {
 		if (propURI == null || datapoint == null)
 			return;
 
-		if (propMappings == null)
-			propMappings = new Hashtable<String, ExternalDatapoint>();
-
 		propMappings.put(propURI, datapoint);
+	}
+	
+	public Enumeration<ExternalDatapoint> enumerateDatapoints() {
+		return propMappings.elements();
+	}
+	
+	public Enumeration<String> enumerateProperties() {
+		return propMappings.keys();
+	}
+
+	public String getComponentURI() {
+		return ontResource.getURI();
 	}
 
 	public ExternalDatapoint getDatapoint(String propURI) {
-		return (propMappings == null) ? null : propMappings.get(propURI);
+		return propMappings.get(propURI);
 	}
 
 	public CommunicationGateway getGateway() {
 		return gw;
 	}
-
-	public String getComponentURI() {
-		return componentURI;
+	
+	public Location getLocation() {
+		if (ontResource instanceof PhysicalThing)
+			return ((PhysicalThing) ontResource).getLocation();
+		return null;
+	}
+	
+	public ManagedIndividual getOntResource() {
+		return ontResource;
+	}
+	
+	public Object getPropertyValue(String propURI) {
+		if (propURI == null)
+			return null;
+		ExternalDatapoint edp = propMappings.get(propURI);
+		if (edp == null)
+			return null;
+		Object value = gw.readValue(edp);
+		ontResource.changeProperty(propURI, value);
+		return value;
 	}
 
 	public String getTypeURI() {
-		return typeURI;
+		return ontResource.getClassURI();
+	}
+	
+	public boolean setLocation(String locURI) {
+		if (locURI != null  &&  ontResource instanceof PhysicalThing) {
+			((PhysicalThing) ontResource).setLocation(new Location(locURI));
+			return true;
+		}
+		return false;
+	}
+	
+	public void setPropertyValue(String propURI, Object value) {
+		if (propURI == null)
+			return;
+		ExternalDatapoint edp = propMappings.get(propURI);
+		if (edp == null)
+			ontResource.changeProperty(propURI, null);
+		else {
+			gw.writeValue(edp, value);
+			Object check = gw.readValue(edp);
+			if (value == null) {
+				if (check != null)
+					return;
+			} else if (!value.equals(check))
+				return;
+			ontResource.changeProperty(propURI, value);
+		}
 	}
 }

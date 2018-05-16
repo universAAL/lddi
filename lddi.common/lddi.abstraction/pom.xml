@@ -9,7 +9,6 @@
     <relativePath>../lddi.pom.common</relativePath>
   </parent>
   <artifactId>lddi.abstraction</artifactId>
-  <version>3.4.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL LDDI Common ont-based abstraction</name>
   <description>Defines the interfaces to be used in addition to ontologies for linking the access and integration layers of LDDI</description>
@@ -18,6 +17,18 @@
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.data.representation.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.phWorld</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.interfaces.core</artifactId>
     </dependency>
   </dependencies>
   <build>

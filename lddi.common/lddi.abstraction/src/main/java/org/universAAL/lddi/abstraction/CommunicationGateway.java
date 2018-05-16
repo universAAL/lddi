@@ -19,6 +19,22 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Locale;
+
+import org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration;
+import org.universAAL.lddi.abstraction.config.data.ont.CGwDataConfigOntology;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.datarep.SharedResources;
+import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
+import org.universAAL.middleware.interfaces.configuration.scope.Scope;
+import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.owl.Ontology;
+import org.universAAL.middleware.owl.OntologyManagement;
+
 /**
  * A gateway providing a bridge to a network of external components making it
  * for {@link ComponentIntegrator component integrators} possible to gain access
@@ -28,6 +44,112 @@ package org.universAAL.lddi.abstraction;
  * and the documentation of the methods further below.
  */
 public abstract class CommunicationGateway {
+	
+	public static final String CGW_CONF_APP_ID = "lddi:abstract:CommunicationGateway";
+	public static final String CGW_CONF_APP_PART_DATA_ID = "dataConfParams"; 
+	public static final String CGW_CONF_APP_PART_PROTOCOL_ID = "protocolConfParams"; 
+	
+	public static ConfigurationParameter newCGwConfParam(final String id, final String appPartID, final String description, final MergedRestriction type, final Object defaultVal) {
+		return new ConfigurationParameter() {
+
+			public Scope getScope() {
+				return Scope.applicationPartScope(id, CGW_CONF_APP_ID, appPartID);
+			}
+
+			public String getDescription(Locale loc) {
+				return description;
+			}
+
+			public MergedRestriction getType() {
+				return type;
+			}
+
+			public Object getDefaultValue() {
+				return defaultVal;
+			}
+		};
+	}
+	
+	private String componentURIprefix;
+	private Ontology cgwDataConfigOnt = new CGwDataConfigOntology();
+	// map typeURI to list of components of that type
+	private Hashtable<String, ArrayList<ExternalComponent>> discoveredComponents = new Hashtable<String, ArrayList<ExternalComponent>>();
+	// remember which integrators are interested in which types of components
+	private Hashtable<String, ArrayList<ComponentIntegrator>> registeredIntegrators = new Hashtable<String, ArrayList<ComponentIntegrator>>();
+	/**
+	 * @see #addDiscoverer(ExternalComponentDiscoverer)
+	 */
+	private HashSet<ExternalComponentDiscoverer> discoverers = new HashSet<ExternalComponentDiscoverer>(3);
+	private Hashtable<ExternalDatapoint, HashSet<ComponentIntegrator>> subscriptions = new Hashtable<ExternalDatapoint, HashSet<ComponentIntegrator>>();
+	
+	protected CommunicationGateway(ModuleContext mc, Object[] containerSpecificSharingParams, boolean useStandardConfFiles) {
+		mc.getContainer().shareObject(mc, this, containerSpecificSharingParams);
+		
+		String uSpaceURI = SharedResources.getMiddlewareProp(SharedResources.SPACE_URI);
+		if (uSpaceURI.endsWith("#"))
+			componentURIprefix = uSpaceURI + getClass().getSimpleName();
+		else if (uSpaceURI.endsWith("/"))
+			componentURIprefix = uSpaceURI + getClass().getSimpleName() + "#";
+		else
+			componentURIprefix = uSpaceURI + "/" + getClass().getSimpleName() + "#";
+		
+		OntologyManagement om = OntologyManagement.getInstance();
+		om.register(mc, cgwDataConfigOnt);
+				
+		if (useStandardConfFiles) {
+			addDiscoverer(new CGwDataConfiguration(mc, this));
+		}
+	}
+	
+	/**
+	 * Only subclasses can introduce discoverers, which just serves as a sort of "registered certificate".
+	 * Calling "component discovery methods" ({@link #addComponents(List, ExternalComponentDiscoverer) addComponents},
+	 * {@link #removeComponents(List, ExternalComponentDiscoverer) removeComponents}, {@link #replaceComponents(List,
+	 * ExternalComponentDiscoverer) replaceComponents} and {@link #updateComponents(List, ExternalComponentDiscoverer)
+	 * updateComponents}) is only possible, if such a previously "registered certificate" is passed to those methods.
+	 * 
+	 * @param d
+	 */
+	protected final void addDiscoverer(ExternalComponentDiscoverer d) {
+		if (d != null)
+			discoverers.add(d);
+	}
+	
+	public void addComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
+		if (components != null  &&  discoverers.contains(discoverer)) {
+			synchronized (discoverers) {
+				// To-Do
+			}
+		}
+	}
+	
+	public void removeComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
+		if (components != null  &&  discoverers.contains(discoverer)) {
+			synchronized (discoverers) {
+				// To-Do
+			}
+		}
+	}
+	
+	public void replaceComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
+		if (components != null  &&  discoverers.contains(discoverer)) {
+			synchronized (discoverers) {
+				// To-Do
+			}
+		}
+	}
+	
+	public void updateComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
+		if (components != null  &&  discoverers.contains(discoverer)) {
+			synchronized (discoverers) {
+				// To-Do
+			}
+		}
+	}
+	
+	public final String getComponentURIprefix() {
+		return componentURIprefix;
+	}
 
 	/**
 	 * To be used by {@link ComponentIntegrator component integrators} to
@@ -40,7 +162,19 @@ public abstract class CommunicationGateway {
 	 * registration and at any time in future when new components of the same
 	 * type are added to the external network.
 	 */
-	public abstract void register(String componentTypeURI, ComponentIntegrator integrator);
+	public final void register(String componentTypeURI, ComponentIntegrator integrator) {
+		synchronized (discoverers) {
+			ArrayList<ComponentIntegrator> integrators = registeredIntegrators.get(componentTypeURI);
+			if (integrator == null) {
+				integrators = new ArrayList<ComponentIntegrator>();
+				registeredIntegrators.put(componentTypeURI, integrators);
+			}
+			integrators.add(integrator);
+			
+			ArrayList<ExternalComponent> components = discoveredComponents.get(componentTypeURI);
+			integrator.componentsAdded(components.toArray(new ExternalComponent[components.size()]));
+		}
+	}
 
 	/**
 	 * <p>
@@ -76,8 +210,10 @@ public abstract class CommunicationGateway {
 	 * @return An ID for this subscription so that integrators can unsubscribe
 	 *         later if need be.
 	 */
-	public abstract int startEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint,
-			byte intervalSeconds);
+	public void startEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint,
+			byte intervalSeconds) {
+		
+	}
 
 	/**
 	 * Serves as means for subscribing for events related to the changes of the
@@ -88,8 +224,10 @@ public abstract class CommunicationGateway {
 	 *
 	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
 	 */
-	public abstract int startEventing(ComponentIntegrator integrator, ExternalComponent component,
-			byte intervalSeconds);
+	public void startEventing(ComponentIntegrator integrator, ExternalComponent component,
+			byte intervalSeconds) {
+		
+	}
 
 	/**
 	 * If the given property URI is not null, serves as means for subscribing
@@ -104,8 +242,32 @@ public abstract class CommunicationGateway {
 	 *
 	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
 	 */
-	public abstract int startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI,
-			byte intervalSeconds);
+	public void startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI,
+			byte intervalSeconds) {
+//		String subscribeTopic;
+//		MQTTComponent[] arr = setOfExternalComponent
+//				.get(componentTypeURI);
+//		if (propURI == null) {
+//			for (MQTTComponent externalComponent : arr) {
+//				for (ExternalDatapoint externalDataPoint : externalComponent
+//						.getAllDataPoint()) {
+//					MQTTDataPoint mqttDataPoint = (MQTTDataPoint) externalDataPoint;
+//				    subscribeTopic=mqttDataPoint.getSubscriberTopic();
+//				Activator.client.subscribe(mqttDataPoint.getSubscriberTopic());// to do subscribe
+//				subscribtionSet.put(subscribeTopic,setOfComponentIntegrato.get(componentTypeURI) );
+//				setOfDataPoint.put(subscribeTopic, mqttDataPoint);
+//				}
+//
+//			}
+//		} else
+//			for (ExternalComponent externalComponent : arr) {
+//				 subscribeTopic=((MQTTDataPoint)externalComponent.getDatapoint(propURI)).getSubscriberTopic();
+//				Activator.client.subscribe(subscribeTopic); // To do subscribe
+//				subscribtionSet.put(subscribeTopic,setOfComponentIntegrato.get(componentTypeURI) );
+//				setOfDataPoint.put(subscribeTopic, ((MQTTDataPoint)externalComponent.getDatapoint(propURI)));
+//
+//			}
+	}
 
 	/**
 	 * {@link ComponentIntegrator component integrators} can use this method to
@@ -116,7 +278,7 @@ public abstract class CommunicationGateway {
 	 *            {@link #startEventing( ComponentIntegrator, ExternalDatapoint, byte)}
 	 *            or any of the wildcarding versions of it.
 	 */
-	public abstract void stopEventing(int eventingID);
+	public abstract void stopEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint);
 
 	/**
 	 * {@link ComponentIntegrator component integrators} can use this method to
