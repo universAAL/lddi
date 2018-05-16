@@ -30,6 +30,10 @@
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.interfaces.core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.managers.api.core</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

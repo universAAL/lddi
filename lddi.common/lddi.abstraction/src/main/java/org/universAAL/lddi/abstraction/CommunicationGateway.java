@@ -20,12 +20,18 @@
 package org.universAAL.lddi.abstraction;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration;
+import org.universAAL.middleware.managers.api.ConfigurationManager;
 import org.universAAL.lddi.abstraction.config.data.ont.CGwDataConfigOntology;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.datarep.SharedResources;
@@ -76,14 +82,37 @@ public abstract class CommunicationGateway {
 	private Hashtable<String, ArrayList<ExternalComponent>> discoveredComponents = new Hashtable<String, ArrayList<ExternalComponent>>();
 	// remember which integrators are interested in which types of components
 	private Hashtable<String, ArrayList<ComponentIntegrator>> registeredIntegrators = new Hashtable<String, ArrayList<ComponentIntegrator>>();
+	
 	/**
 	 * @see #addDiscoverer(ExternalComponentDiscoverer)
 	 */
 	private HashSet<ExternalComponentDiscoverer> discoverers = new HashSet<ExternalComponentDiscoverer>(3);
+	
+	/**
+	 * To be used in the following methods:
+	 * 
+	 * @see #startEventing(ComponentIntegrator, ExternalComponent, byte)
+	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
+	 * @see #startEventing(ComponentIntegrator, String, String, byte)
+	 * @see #stopEventing(ComponentIntegrator, ExternalDatapoint)
+	 */
 	private Hashtable<ExternalDatapoint, HashSet<ComponentIntegrator>> subscriptions = new Hashtable<ExternalDatapoint, HashSet<ComponentIntegrator>>();
 	
-	protected CommunicationGateway(ModuleContext mc, Object[] containerSpecificSharingParams, boolean useStandardConfFiles) {
-		mc.getContainer().shareObject(mc, this, containerSpecificSharingParams);
+	/**
+	 * 
+	 * @param mc               The {@link ModuleContext module context} of your communication gateway.
+	 * @param cgwSharingParams This is needed for sharing your communication gateway within the current container so that
+	 *                         {@link ComponentIntegrator component integrator}s can find it. If your communication gateway
+	 *                         runs on top of OSGi, the value to pass here should be <code>"new Object[]
+	 *                         {CommunicationGateway.class.getName()}"</code>. 
+	 * @param confMgr If not null, it means that you want to use the standard configuration mechanism implemented by this
+	 *                abstract framework. In your code under OSGi, you can get the confMgr by 
+	 *                <code>"(ConfigurationManager) mc.getContainer().fetchSharedObject(mc,
+	 *				  new Object[] { ConfigurationManager.class.getName() })"</code>, where "mc" is assumed to be your ModuleContext.
+	 *				  <br /><b>Note:</b>The interface "ConfigurationManager" has been defined by the artifact "mw.managers.api.core"
+	 *				  from the "org.universAAL.middleware" group.
+	 */
+	protected void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr) {
 		
 		String uSpaceURI = SharedResources.getMiddlewareProp(SharedResources.SPACE_URI);
 		if (uSpaceURI.endsWith("#"))
@@ -96,9 +125,13 @@ public abstract class CommunicationGateway {
 		OntologyManagement om = OntologyManagement.getInstance();
 		om.register(mc, cgwDataConfigOnt);
 				
-		if (useStandardConfFiles) {
-			addDiscoverer(new CGwDataConfiguration(mc, this));
+		if (confMgr != null) {
+			CGwDataConfiguration dataConf = new CGwDataConfiguration(this);
+			addDiscoverer(dataConf);
+			confMgr.register(CGwDataConfiguration.configurations, dataConf);
 		}
+
+		mc.getContainer().shareObject(mc, this, cgwSharingParams);
 	}
 	
 	/**
@@ -134,7 +167,25 @@ public abstract class CommunicationGateway {
 	public void replaceComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
 		if (components != null  &&  discoverers.contains(discoverer)) {
 			synchronized (discoverers) {
-				// To-Do
+				// replace the components
+				discoveredComponents.clear();
+				for (ExternalComponent ec : components) {
+					String type = ec.getTypeURI();
+					ArrayList<ExternalComponent> ecs = discoveredComponents.get(type);
+					if (ecs == null) {
+						ecs = new ArrayList<ExternalComponent>();
+						discoveredComponents.put(type,  ecs);
+					}
+					ecs.add(ec);
+				}
+				// notify the registered component integrators
+				for (Iterator<Entry<String, ArrayList<ComponentIntegrator>>> i = registeredIntegrators.entrySet().iterator(); i.hasNext();) {
+					Entry<String, ArrayList<ComponentIntegrator>> entry = i.next();
+					ArrayList<ExternalComponent> ecs = discoveredComponents.get(entry.getKey());
+					ExternalComponent[] ecArr = ecs.toArray(new ExternalComponent[ecs.size()]);
+					for (ComponentIntegrator ci : entry.getValue())
+						ci.componentsReplaced(ecArr);
+				}
 			}
 		}
 	}

@@ -9,17 +9,14 @@ import java.util.Vector;
 import org.universAAL.lddi.abstraction.CommunicationGateway;
 import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.lddi.abstraction.ExternalComponentDiscoverer;
-import org.universAAL.lddi.abstraction.config.data.ont.CGwDataConfigOntology;
 import org.universAAL.lddi.abstraction.config.data.ont.Component;
 import org.universAAL.lddi.abstraction.config.data.ont.Datapoint;
 import org.universAAL.lddi.abstraction.config.data.ont.DatapointValueType;
-import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.interfaces.configuration.ConfigurableModule;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.owl.OntologyManagement;
 
 /**
  * @author mtazari
@@ -48,8 +45,7 @@ public class CGwDataConfiguration implements ConfigurableModule, ExternalCompone
 	private Vector<Datapoint> datapoints = new Vector<Datapoint>();
 	private Vector<DatapointValueType> valueTypes = new Vector<DatapointValueType>();
 	
-	public CGwDataConfiguration(ModuleContext mc, CommunicationGateway cgw) {
-		OntologyManagement.getInstance().register(mc, new CGwDataConfigOntology());
+	public CGwDataConfiguration(CommunicationGateway cgw) {
 		this.cgw = cgw;
 	}
 
