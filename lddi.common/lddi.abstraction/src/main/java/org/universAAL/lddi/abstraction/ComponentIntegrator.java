@@ -70,7 +70,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	
 	private HashSet<String> myTypes = new HashSet<String>();
 	
-	protected ComponentIntegrator(ModuleContext mc, Object[] containerSpecificFetchParams, String[] myTypes) {
+	protected void init(ModuleContext mc, Object[] containerSpecificFetchParams, String[] myTypes) {
 		for (String type : myTypes)
 			this.myTypes.add(type);
 		
@@ -127,7 +127,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 				connectedComponents.put(ec.getComponentURI(), ec);
 	}
 	
-	public abstract void oomponentsUpdated(ExternalComponent[] components);
+	public abstract void componentsUpdated(ExternalComponent[] components);
 	
 	protected final ManagedIndividual getOntResourceByURI(String uriString) {
 		return connectedComponents.get(uriString).getOntResource();
