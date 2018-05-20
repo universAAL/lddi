@@ -62,9 +62,9 @@ public class ExternalComponent {
 	private static int noOfComponents = 0;
 
 	private CommunicationGateway gw;
-	private Hashtable<String, ExternalDatapoint> propMappings = new Hashtable<String, ExternalDatapoint>();
 	private ManagedIndividual ontResource;
 //	private int seqNoInConfFile = -1;
+	private Hashtable<String, ExternalDatapoint> propMappings = new Hashtable<String, ExternalDatapoint>();
 
 	/**
 	 * The constructor has been made 'protected' in order to force communication

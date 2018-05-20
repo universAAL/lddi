@@ -20,23 +20,21 @@
 package org.universAAL.lddi.abstraction;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration;
-import org.universAAL.middleware.managers.api.ConfigurationManager;
 import org.universAAL.lddi.abstraction.config.data.ont.CGwDataConfigOntology;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.datarep.SharedResources;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
+import org.universAAL.middleware.managers.api.ConfigurationManager;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.Ontology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -51,43 +49,96 @@ import org.universAAL.middleware.owl.OntologyManagement;
  */
 public abstract class CommunicationGateway {
 	
-	public static final String CGW_CONF_APP_ID = "lddi:abstract:CommunicationGateway";
+	public static final String CGW_CONF_APP_ID = "lddi:abstract:CommunicationGateway"; 
 	public static final String CGW_CONF_APP_PART_DATA_ID = "dataConfParams"; 
-	public static final String CGW_CONF_APP_PART_PROTOCOL_ID = "protocolConfParams"; 
+	public static final String CGW_CONF_APP_PART_PROTOCOL_ID = "protocolConfParams";
+	
+	public static final short DEFAULT_AUTO_PULL_INTERVAL = 15;
 	
 	public static ConfigurationParameter newCGwConfParam(final String id, final String appPartID, final String description, final MergedRestriction type, final Object defaultVal) {
 		return new ConfigurationParameter() {
 
-			public Scope getScope() {
-				return Scope.applicationPartScope(id, CGW_CONF_APP_ID, appPartID);
+			public Object getDefaultValue() {
+				return defaultVal;
 			}
 
 			public String getDescription(Locale loc) {
 				return description;
 			}
 
-			public MergedRestriction getType() {
-				return type;
+			public Scope getScope() {
+				return Scope.applicationPartScope(id, CGW_CONF_APP_ID, appPartID);
 			}
 
-			public Object getDefaultValue() {
-				return defaultVal;
+			public MergedRestriction getType() {
+				return type;
 			}
 		};
 	}
 	
-	private String componentURIprefix;
+	private class Subscription {
+		private ExternalDatapoint datapoint;
+		private short simulationInterval = -1;
+		private HashSet<ComponentIntegrator> subscribers = new HashSet<ComponentIntegrator>(3);
+		private Object value;
+		
+		Subscription(ExternalDatapoint dp) {
+			datapoint = dp;
+			value = readValue(dp);
+		}
+		
+		void addSubscriber(ComponentIntegrator ci) {
+			subscribers.add(ci);
+		}
+		
+		void checkEventing(short intervalSeconds) {
+			if (intervalSeconds < 1)
+				intervalSeconds = DEFAULT_AUTO_PULL_INTERVAL;
+			if (simulationInterval > intervalSeconds)
+				simulationInterval = intervalSeconds;
+		}
+		
+		void eventTicker(int ticker) {
+			if (simulationInterval > 0  &&  ticker % simulationInterval == 0)
+				notifySubscribers(readValue(datapoint));
+		}
+		
+		boolean isSubscribed(ComponentIntegrator ci) {
+			return subscribers.contains(ci);
+		}
+		
+		void notifySubscribers(Object value) {
+			if (value == null) {
+				if (this.value == null)
+					return;
+			} else if (value.equals(this.value))
+				return;
+			
+			this.value = value;
+			for (ComponentIntegrator ci : subscribers)
+				ci.processEvent(datapoint, value);
+		}
+		
+		void simulateEventing(short intervalSeconds) {
+			simulationInterval = (intervalSeconds < 1)?
+					DEFAULT_AUTO_PULL_INTERVAL : intervalSeconds;
+		}
+		
+	}
+	
 	private Ontology cgwDataConfigOnt = new CGwDataConfigOntology();
+	private String componentURIprefix;
 	// map typeURI to list of components of that type
 	private Hashtable<String, ArrayList<ExternalComponent>> discoveredComponents = new Hashtable<String, ArrayList<ExternalComponent>>();
-	// remember which integrators are interested in which types of components
-	private Hashtable<String, ArrayList<ComponentIntegrator>> registeredIntegrators = new Hashtable<String, ArrayList<ComponentIntegrator>>();
-	
 	/**
 	 * @see #addDiscoverer(ExternalComponentDiscoverer)
 	 */
 	private HashSet<ExternalComponentDiscoverer> discoverers = new HashSet<ExternalComponentDiscoverer>(3);
 	
+	private int eventingSimulationTicker = 0;
+	
+	// remember which integrators are interested in which types of components
+	private Hashtable<String, ArrayList<ComponentIntegrator>> registeredIntegrators = new Hashtable<String, ArrayList<ComponentIntegrator>>();
 	/**
 	 * To be used in the following methods:
 	 * 
@@ -96,7 +147,35 @@ public abstract class CommunicationGateway {
 	 * @see #startEventing(ComponentIntegrator, String, String, byte)
 	 * @see #stopEventing(ComponentIntegrator, ExternalDatapoint)
 	 */
-	private Hashtable<ExternalDatapoint, HashSet<ComponentIntegrator>> subscriptions = new Hashtable<ExternalDatapoint, HashSet<ComponentIntegrator>>();
+	private Hashtable<String, Subscription> subscriptions = new Hashtable<String, Subscription>();
+	
+	public void addComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
+		if (components != null  &&  discoverers.contains(discoverer)) {
+			synchronized (discoverers) {
+				// To-Do
+			}
+		}
+	}
+	
+	/**
+	 * Only subclasses can introduce discoverers, which just serves as a sort of "registered certificate".
+	 * Calling "component discovery methods" ({@link #addComponents(List, ExternalComponentDiscoverer) addComponents},
+	 * {@link #removeComponents(List, ExternalComponentDiscoverer) removeComponents}, {@link #replaceComponents(List,
+	 * ExternalComponentDiscoverer) replaceComponents} and {@link #updateComponents(List, ExternalComponentDiscoverer)
+	 * updateComponents}) is only possible, if such a previously "registered certificate" is passed to those methods.
+	 * 
+	 * @param d
+	 */
+	protected final void addDiscoverer(ExternalComponentDiscoverer d) {
+		if (d != null)
+			discoverers.add(d);
+	}
+	
+	String getComponentURIprefix() {
+		return componentURIprefix;
+	}
+	
+	protected abstract Object getValue(String pullAddress);
 	
 	/**
 	 * 
@@ -112,7 +191,7 @@ public abstract class CommunicationGateway {
 	 *				  <br /><b>Note:</b>The interface "ConfigurationManager" has been defined by the artifact "mw.managers.api.core"
 	 *				  from the "org.universAAL.middleware" group.
 	 */
-	protected void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr) {
+	protected void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr, boolean needsEventingSimulation) {
 		
 		String uSpaceURI = SharedResources.getMiddlewareProp(SharedResources.SPACE_URI);
 		if (uSpaceURI.endsWith("#"))
@@ -132,30 +211,67 @@ public abstract class CommunicationGateway {
 		}
 
 		mc.getContainer().shareObject(mc, this, cgwSharingParams);
+		
+		if (needsEventingSimulation)
+			new Thread(new Runnable() {
+				public void run() {
+					while (true) {
+						eventingSimulationTicker++;
+						for (Enumeration<Subscription> e=subscriptions.elements(); e.hasMoreElements();)
+							e.nextElement().eventTicker(eventingSimulationTicker);
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}	
+			}, "lddi.abstraction.cgw.auto.pull").start();
+	}
+	
+	protected final void notifySubscribers(String address, Object value) {
+		Subscription s = subscriptions.get(address);
+		if (s != null)
+			s.notifySubscribers(value);
 	}
 	
 	/**
-	 * Only subclasses can introduce discoverers, which just serves as a sort of "registered certificate".
-	 * Calling "component discovery methods" ({@link #addComponents(List, ExternalComponentDiscoverer) addComponents},
-	 * {@link #removeComponents(List, ExternalComponentDiscoverer) removeComponents}, {@link #replaceComponents(List,
-	 * ExternalComponentDiscoverer) replaceComponents} and {@link #updateComponents(List, ExternalComponentDiscoverer)
-	 * updateComponents}) is only possible, if such a previously "registered certificate" is passed to those methods.
-	 * 
-	 * @param d
+	 * {@link ComponentIntegrator component integrators} can use this method to
+	 * get the value of a given property of a given external component by
+	 * specifying the related external datapoint. Note that this implies that
+	 * the external components made known by gateways to integrators must
+	 * include the property mapping to datapoints.
 	 */
-	protected final void addDiscoverer(ExternalComponentDiscoverer d) {
-		if (d != null)
-			discoverers.add(d);
+	Object readValue(ExternalDatapoint datapoint) {
+		return (datapoint == null)? null : getValue(datapoint.getPullAddress());
 	}
 	
-	public void addComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
-		if (components != null  &&  discoverers.contains(discoverer)) {
-			synchronized (discoverers) {
-				// To-Do
+	/**
+	 * To be used by {@link ComponentIntegrator component integrators} to
+	 * register to this gateway for external components of the given type. The
+	 * implementation must (1) add the given integrator to the list of
+	 * integrators interested in the given type of components, and (2) call
+	 * {@link ComponentIntegrator#processComponents( ExternalComponent[]) the
+	 * related notification method} of the integrator with the list of
+	 * components of the given type, both for those already known at the time of
+	 * registration and at any time in future when new components of the same
+	 * type are added to the external network.
+	 */
+	void register(String componentTypeURI, ComponentIntegrator integrator) {
+		synchronized (discoverers) {
+			ArrayList<ComponentIntegrator> integrators = registeredIntegrators.get(componentTypeURI);
+			if (integrator == null) {
+				integrators = new ArrayList<ComponentIntegrator>();
+				registeredIntegrators.put(componentTypeURI, integrators);
 			}
+			integrators.add(integrator);
+			
+			ArrayList<ExternalComponent> components = discoveredComponents.get(componentTypeURI);
+			integrator.componentsAdded(components.toArray(new ExternalComponent[components.size()]));
 		}
 	}
-	
+
 	public void removeComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
 		if (components != null  &&  discoverers.contains(discoverer)) {
 			synchronized (discoverers) {
@@ -190,41 +306,24 @@ public abstract class CommunicationGateway {
 		}
 	}
 	
-	public void updateComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
-		if (components != null  &&  discoverers.contains(discoverer)) {
-			synchronized (discoverers) {
-				// To-Do
-			}
-		}
-	}
+	protected abstract void setValue(String setAddress, Object value);
 	
-	public final String getComponentURIprefix() {
-		return componentURIprefix;
-	}
-
 	/**
-	 * To be used by {@link ComponentIntegrator component integrators} to
-	 * register to this gateway for external components of the given type. The
-	 * implementation must (1) add the given integrator to the list of
-	 * integrators interested in the given type of components, and (2) call
-	 * {@link ComponentIntegrator#processComponents( ExternalComponent[]) the
-	 * related notification method} of the integrator with the list of
-	 * components of the given type, both for those already known at the time of
-	 * registration and at any time in future when new components of the same
-	 * type are added to the external network.
+	 * Serves as means for subscribing for events related to the changes of the
+	 * value of any property of the given external component. Compared to
+	 * {@link #startEventing(ComponentIntegrator, ExternalDatapoint, byte)}, it
+	 * wildcards all datapoints within the scope of the given external
+	 * component.
+	 *
+	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
 	 */
-	public final void register(String componentTypeURI, ComponentIntegrator integrator) {
-		synchronized (discoverers) {
-			ArrayList<ComponentIntegrator> integrators = registeredIntegrators.get(componentTypeURI);
-			if (integrator == null) {
-				integrators = new ArrayList<ComponentIntegrator>();
-				registeredIntegrators.put(componentTypeURI, integrators);
-			}
-			integrators.add(integrator);
-			
-			ArrayList<ExternalComponent> components = discoveredComponents.get(componentTypeURI);
-			integrator.componentsAdded(components.toArray(new ExternalComponent[components.size()]));
-		}
+	void startEventing(ComponentIntegrator integrator, ExternalComponent component,
+			short intervalSeconds) {
+		if (component == null)
+			return;
+		
+		for (Enumeration<ExternalDatapoint> e=component.enumerateDatapoints(); e.hasMoreElements();)
+			startEventing(integrator, e.nextElement(), intervalSeconds);
 	}
 
 	/**
@@ -258,26 +357,42 @@ public abstract class CommunicationGateway {
 	 *            implement the eventing mechanism by pulling the value every n
 	 *            seconds and check if it has changed or not. In that case, this
 	 *            parameter indicates the related preference of the integrator.
-	 * @return An ID for this subscription so that integrators can unsubscribe
-	 *         later if need be.
+	 * @return The current value of the datapoint, unless<ul><li>no subscription was possible, then Float.NaN will be returned.</li>
+	 *         <li>If this is a redundant subscription, then null will be returned.<7li></ul> 
 	 */
-	public void startEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint,
-			byte intervalSeconds) {
+	Object startEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint,
+			short intervalSeconds) {
+		if (integrator == null  ||  datapoint == null)
+			return Float.NaN;
 		
-	}
+		boolean needsSimulation = false;
+		
+		String subscriptionKey = datapoint.getPushAddress();
+		if (subscriptionKey == null) {
+			subscriptionKey = datapoint.getPullAddress();
+			if (subscriptionKey == null)
+				return Float.NaN;
+			else
+				needsSimulation = true;
+		}
+		
+		Subscription s = subscriptions.get(subscriptionKey);
+		if (s == null) {
+			s = new Subscription(datapoint);
+			subscriptions.put(subscriptionKey, s);
+			if (needsSimulation)
+				s.simulateEventing(intervalSeconds);
+			else
+				subscribe(subscriptionKey);
+		} else {
+			if (needsSimulation)
+				s.checkEventing(intervalSeconds);
+			if (s.isSubscribed(integrator))
+				return null;
+		}
 
-	/**
-	 * Serves as means for subscribing for events related to the changes of the
-	 * value of any property of the given external component. Compared to
-	 * {@link #startEventing(ComponentIntegrator, ExternalDatapoint, byte)}, it
-	 * wildcards all datapoints within the scope of the given external
-	 * component.
-	 *
-	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
-	 */
-	public void startEventing(ComponentIntegrator integrator, ExternalComponent component,
-			byte intervalSeconds) {
-		
+		s.addSubscriber(integrator);
+		return s.value;
 	}
 
 	/**
@@ -293,31 +408,19 @@ public abstract class CommunicationGateway {
 	 *
 	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
 	 */
-	public void startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI,
-			byte intervalSeconds) {
-//		String subscribeTopic;
-//		MQTTComponent[] arr = setOfExternalComponent
-//				.get(componentTypeURI);
-//		if (propURI == null) {
-//			for (MQTTComponent externalComponent : arr) {
-//				for (ExternalDatapoint externalDataPoint : externalComponent
-//						.getAllDataPoint()) {
-//					MQTTDataPoint mqttDataPoint = (MQTTDataPoint) externalDataPoint;
-//				    subscribeTopic=mqttDataPoint.getSubscriberTopic();
-//				Activator.client.subscribe(mqttDataPoint.getSubscriberTopic());// to do subscribe
-//				subscribtionSet.put(subscribeTopic,setOfComponentIntegrato.get(componentTypeURI) );
-//				setOfDataPoint.put(subscribeTopic, mqttDataPoint);
-//				}
-//
-//			}
-//		} else
-//			for (ExternalComponent externalComponent : arr) {
-//				 subscribeTopic=((MQTTDataPoint)externalComponent.getDatapoint(propURI)).getSubscriberTopic();
-//				Activator.client.subscribe(subscribeTopic); // To do subscribe
-//				subscribtionSet.put(subscribeTopic,setOfComponentIntegrato.get(componentTypeURI) );
-//				setOfDataPoint.put(subscribeTopic, ((MQTTDataPoint)externalComponent.getDatapoint(propURI)));
-//
-//			}
+	void startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI,
+			short intervalSeconds) {
+		ArrayList<ExternalComponent> ecs = (componentTypeURI == null)? null
+				: discoveredComponents.get(componentTypeURI);
+		if (ecs == null  ||  ecs.isEmpty())
+			return;
+		
+		if (propURI == null)
+			for (ExternalComponent ec : ecs)
+				startEventing(integrator, ec, intervalSeconds);
+		else
+			for (ExternalComponent ec : ecs)
+				startEventing(integrator, ec.getDatapoint(propURI), intervalSeconds);
 	}
 
 	/**
@@ -329,16 +432,36 @@ public abstract class CommunicationGateway {
 	 *            {@link #startEventing( ComponentIntegrator, ExternalDatapoint, byte)}
 	 *            or any of the wildcarding versions of it.
 	 */
-	public abstract void stopEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint);
+	void stopEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint) {
+		String subscriptionKey = datapoint.getPushAddress();
+		if (subscriptionKey == null) {
+			subscriptionKey = datapoint.getPullAddress();
+			if (subscriptionKey == null)
+				return;
+		}
+		
+		Subscription s = subscriptions.get(subscriptionKey);
+		if (s == null)
+			return;
+		
+		s.subscribers.remove(integrator);
+		if (s.subscribers.isEmpty())
+			subscriptions.remove(subscriptionKey);
+	}
 
 	/**
-	 * {@link ComponentIntegrator component integrators} can use this method to
-	 * get the value of a given property of a given external component by
-	 * specifying the related external datapoint. Note that this implies that
-	 * the external components made known by gateways to integrators must
-	 * include the property mapping to datapoints.
+	 * If the subclass subscribes anyhow for all datapoints, then the implementation of this method can be just empty!
+	 * @param pushAddress
 	 */
-	public abstract Object readValue(ExternalDatapoint datapoint);
+	protected abstract void subscribe(String pushAddress);
+
+	public void updateComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
+		if (components != null  &&  discoverers.contains(discoverer)) {
+			synchronized (discoverers) {
+				// To-Do
+			}
+		}
+	}
 
 	/**
 	 * {@link ComponentIntegrator component integrators} can use this method to
@@ -347,6 +470,9 @@ public abstract class CommunicationGateway {
 	 * this implies that the external components made known by gateways to
 	 * integrators must include the property mapping to datapoints.
 	 */
-	public abstract void writeValue(ExternalDatapoint datapoint, Object value);
+	void writeValue(ExternalDatapoint datapoint, Object value) {
+		if (datapoint != null)
+			setValue(datapoint.getSetAddress(), value);
+	}
 
 }

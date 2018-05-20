@@ -23,12 +23,12 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map.Entry;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.SharedObjectListener;
 import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.ontology.location.Location;
 
 /**
  * As a "specialist" for certain component types, it cooperates with all
@@ -43,6 +43,31 @@ import org.universAAL.middleware.owl.ManagedIndividual;
  */
 public abstract class ComponentIntegrator implements SharedObjectListener {
 
+	private class Subscription {
+		private short pullWaitInterval;
+		private String typeURI, propURI;
+		
+		private Subscription(String typeURI, String propURI, short pullWaitInterval) {
+			this.typeURI = typeURI;
+			this.propURI = propURI;
+			this.pullWaitInterval = pullWaitInterval;
+			
+			for (Enumeration<CommunicationGateway> e=discoveredGateways.elements(); e.hasMoreElements();)
+				subscribe(e.nextElement());
+		}
+		
+		private void subscribe(CommunicationGateway cgw) {
+			cgw.startEventing(ComponentIntegrator.this, typeURI, propURI, pullWaitInterval);
+		}
+		
+		private void subscribe(ExternalComponent ec) {
+			if (typeURI.equals(ec.getTypeURI()))
+				ec.getGateway().startEventing(ComponentIntegrator.this, ec.getDatapoint(propURI), pullWaitInterval);
+		}
+	}
+	
+	private static final Object DUMMY_CGE_REMOVE_HOOK = new Object();
+	
 	/**
 	 * A constant string that can be used by component integrators to map the
 	 * ontological representation of an external component to its corresponding
@@ -68,20 +93,9 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	 */
 	private Hashtable<String, ExternalComponent> connectedComponents = new Hashtable<String, ExternalComponent>();
 	
-	private HashSet<String> myTypes = new HashSet<String>();
+	private Hashtable<Object, CommunicationGateway> discoveredGateways = new Hashtable<Object, CommunicationGateway>();
 	
-	protected void init(ModuleContext mc, Object[] containerSpecificFetchParams, String[] myTypes) {
-		for (String type : myTypes)
-			this.myTypes.add(type);
-		
-		Object[] registeredGateways = mc.getContainer().fetchSharedObject(mc, containerSpecificFetchParams, this);
-		if (registeredGateways != null )
-			for (Object o : registeredGateways) {
-				if (o instanceof CommunicationGateway)
-					for (String type: myTypes)
-						((CommunicationGateway) o).register(type, this);
-			}
-	}
+	private Hashtable<String, HashSet<Subscription>> subscriptions = new Hashtable<String, HashSet<Subscription>>();
 	
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to share with
@@ -95,16 +109,21 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	 * properties to external datapoints so that this integrator can make use of
 	 * them when utilizing some of the other methods of the gateway.
 	 */
-	public void componentsAdded(ExternalComponent[] components) {
+	 void componentsAdded(ExternalComponent[] components) {
 		if (components == null  ||  components.length == 0)
 			return;
 			
-		for (ExternalComponent ec : components)
-			if (myTypes.contains(ec.getTypeURI()))
+		for (ExternalComponent ec : components) {
+			HashSet<Subscription> subs = subscriptions.get(ec.getTypeURI());
+			if (subs != null) {
 				connectedComponents.put(ec.getComponentURI(), ec);
+				for (Subscription s : subs)
+					s.subscribe(ec);
+			}
+		}
 	}
 	
-	public void componentsRemoved(ExternalComponent[] components) {
+	void componentsRemoved(ExternalComponent[] components) {
 		if (components == null  ||  components.length == 0)
 			return;
 			
@@ -112,38 +131,83 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			connectedComponents.remove(ec.getComponentURI());
 	}
 	
-	public void componentsReplaced(ExternalComponent[] components) {
+	void componentsReplaced(ExternalComponent[] components) {
 		if (components == null  ||  components.length == 0)
 			return;
 		
-		// remove only ecternal components comming fromthe same communication gateway
+		// remove only external components coming from the same communication gateway
 		CommunicationGateway cgw = components[0].getGateway();
 		for (Iterator<Entry<String, ExternalComponent>> i=connectedComponents.entrySet().iterator(); i.hasNext();)
 			if (i.next().getValue().getGateway() == cgw)
 				i.remove();
 			
-		for (ExternalComponent ec : components)
-			if (myTypes.contains(ec.getTypeURI()))
-				connectedComponents.put(ec.getComponentURI(), ec);
+		componentsAdded(components);
 	}
 	
-	public abstract void componentsUpdated(ExternalComponent[] components);
+	void componentsUpdated(ExternalComponent[] components) {
+		// To-Do
+	}
+	
+	protected final Object fetchProperty(ManagedIndividual ontResource, String propURI) {
+		if (ontResource == null  ||  propURI == null)
+			return null;
+		
+		ExternalComponent ec = connectedComponents.get(ontResource.getURI());
+		return (ec == null)? null : ec.getPropertyValue(propURI);
+	}
+	
+	protected final Iterator<ManagedIndividual> getAllOntResources() {
+		HashSet<ManagedIndividual> targetList = new HashSet<ManagedIndividual>();
+		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();)
+			targetList.add(e.nextElement().getOntResource());
+		return targetList.iterator();
+	}
+	
+	protected final Object getExternalValue(String componentURI, String propertyURI) {
+		if (componentURI == null  ||  propertyURI == null)
+			return null;
+		
+		ExternalComponent ec = connectedComponents.get(componentURI);
+		return (ec == null)? null : ec.getPropertyValue(propertyURI);
+	}
 	
 	protected final ManagedIndividual getOntResourceByURI(String uriString) {
 		return connectedComponents.get(uriString).getOntResource();
 	}
 	
-	protected final void getAllOntResources(List<ManagedIndividual> targetList) {
-		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();)
-			targetList.add(e.nextElement().getOntResource());
+	protected final Iterator<ManagedIndividual> getOntResourcesByLocation(Location loc) {
+		HashSet<ManagedIndividual> targetList = new HashSet<ManagedIndividual>();
+		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();) {
+			ExternalComponent ec = e.nextElement();
+			if (loc.greaterEqual(ec.getLocation()))
+				targetList.add(ec.getOntResource());
+		}
+		return targetList.iterator();
 	}
 	
-	protected final void getOntResourcesByType(String type, List<ManagedIndividual> targetList) {
+	protected final Iterator<ManagedIndividual> getOntResourcesByType(String type) {
+		HashSet<ManagedIndividual> targetList = new HashSet<ManagedIndividual>();
 		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();) {
 			ExternalComponent ec = e.nextElement();
 			if (ec.getTypeURI().equals(type))
 				targetList.add(ec.getOntResource());
 		}
+		return targetList.iterator();
+	}
+	
+	protected final void init(ModuleContext mc, Object[] containerSpecificFetchParams, String[] myTypes) {
+		for (String type : myTypes)
+			subscriptions.put(type, new HashSet<Subscription>());
+		
+		Object[] registeredGateways = mc.getContainer().fetchSharedObject(mc, containerSpecificFetchParams, this);
+		if (registeredGateways != null )
+			for (Object o : registeredGateways) {
+				if (o instanceof CommunicationGateway) {
+					discoveredGateways.put(DUMMY_CGE_REMOVE_HOOK, (CommunicationGateway) o);
+					for (String type: myTypes)
+						((CommunicationGateway) o).register(type, this);
+				}
+			}
 	}
 
 	/**
@@ -163,42 +227,20 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	 * @param value
 	 *            The new value of the given datapoint.
 	 */
-	public abstract void processEvent(ExternalDatapoint datapoint, Object value);
-	
-	private Hashtable<Object, CommunicationGateway> discoveredGateways = new Hashtable<Object, CommunicationGateway>();
-
-	public void sharedObjectAdded(Object sharedObj, Object removeHook) {
-		if (sharedObj instanceof CommunicationGateway) {
-			discoveredGateways.put(removeHook, (CommunicationGateway) sharedObj);
-			for (String type: myTypes)
-				((CommunicationGateway) sharedObj).register(type, this);
-		}
-	}
-
-	public void sharedObjectRemoved(Object removeHook) {
-		CommunicationGateway cgw = discoveredGateways.remove(removeHook);
-		if (cgw != null)
-			for (Iterator<Entry<String, ExternalComponent>> i=connectedComponents.entrySet().iterator(); i.hasNext();)
-				if (i.next().getValue().getGateway() == cgw)
-					i.remove();
-	}
-	
-	protected final Object getExternalValue(String componentURI, String propertyURI) {
-		if (componentURI == null  ||  propertyURI == null)
-			return null;
+	void processEvent(ExternalDatapoint datapoint, Object value) {
+		if (datapoint == null)
+			return;
 		
-		ExternalComponent ec = connectedComponents.get(componentURI);
-		return (ec == null)? null : ec.getPropertyValue(propertyURI);
-	}
-	
-	protected final Object fetchProperty(ManagedIndividual ontResource, String propURI) {
-		if (ontResource == null  ||  propURI == null)
-			return null;
+		ManagedIndividual mi = datapoint.getComponent().getOntResource();
+		String propURI = datapoint.getProperty();
+		Object oldVal = mi.getProperty(propURI);
+		mi.changeProperty(propURI, value);
 		
-		ExternalComponent ec = connectedComponents.get(ontResource.getURI());
-		return (ec == null)? null : ec.getPropertyValue(propURI);
+		publish(mi, propURI, oldVal);
 	}
-	
+
+	protected abstract void publish(ManagedIndividual onResource, String propURI, Object oldValue);
+
 	protected final void setExternalValue(String componentURI, String propertyURI, Object value) {
 		if (componentURI == null  ||  propertyURI == null)
 			return;
@@ -206,6 +248,31 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		ExternalComponent ec = connectedComponents.get(componentURI);
 		if (ec != null)
 			ec.setPropertyValue(propertyURI, value);
+	}
+	
+	public final void sharedObjectAdded(Object sharedObj, Object removeHook) {
+		if (sharedObj instanceof CommunicationGateway) {
+			discoveredGateways.put(removeHook, (CommunicationGateway) sharedObj);
+			for (String type: subscriptions.keySet()) {
+				((CommunicationGateway) sharedObj).register(type, this);
+				for (Subscription s : subscriptions.get(type))
+					s.subscribe((CommunicationGateway) sharedObj);
+			}
+		}
+	}
+	
+	public final void sharedObjectRemoved(Object removeHook) {
+		CommunicationGateway cgw = discoveredGateways.remove(removeHook);
+		if (cgw != null)
+			for (Iterator<Entry<String, ExternalComponent>> i=connectedComponents.entrySet().iterator(); i.hasNext();)
+				if (i.next().getValue().getGateway() == cgw)
+					i.remove();
+	}
+	
+	protected final void subscribe(String typeURI, String propURI, short pullWaitInterval) {
+		if (typeURI != null)
+			subscriptions.get(typeURI).add(new Subscription(typeURI, propURI, pullWaitInterval));
+			
 	}
 	
 	protected final void updateProperty(ManagedIndividual ontResource, String propertyURI, Object value) {
