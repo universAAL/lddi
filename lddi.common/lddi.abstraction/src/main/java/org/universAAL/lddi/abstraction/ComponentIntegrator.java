@@ -42,6 +42,15 @@ import org.universAAL.ontology.location.Location;
  * and the documentation of the methods further below.
  */
 public abstract class ComponentIntegrator implements SharedObjectListener {
+	
+	private static final Object DUMMY_CGW_REMOVE_HOOK = new Object();
+	
+	/**
+	 * A constant string that can be used by component integrators to map the
+	 * ontological representation of an external component to its corresponding
+	 * original {@link ExternalComponent}.
+	 */
+	public static final String PROP_CORRESPONDING_EXTERNAL_COMPONENT = "universAAL:lddi.abstraction/ComponentIntegrator#correspondingExternalComponent";
 
 	private class Subscription {
 		private short pullWaitInterval;
@@ -65,15 +74,6 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 				ec.getGateway().startEventing(ComponentIntegrator.this, ec.getDatapoint(propURI), pullWaitInterval);
 		}
 	}
-	
-	private static final Object DUMMY_CGE_REMOVE_HOOK = new Object();
-	
-	/**
-	 * A constant string that can be used by component integrators to map the
-	 * ontological representation of an external component to its corresponding
-	 * original {@link ExternalComponent}.
-	 */
-	public static final String PROP_CORRESPONDING_EXTERNAL_COMPONENT = "universAAL:lddi.abstraction/ComponentIntegrator#correspondingExternalComponent";
 	
 //	/**
 //	 * Mapping the URI of components to their ontological representation.
@@ -203,7 +203,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		if (registeredGateways != null )
 			for (Object o : registeredGateways) {
 				if (o instanceof CommunicationGateway) {
-					discoveredGateways.put(DUMMY_CGE_REMOVE_HOOK, (CommunicationGateway) o);
+					discoveredGateways.put(DUMMY_CGW_REMOVE_HOOK, (CommunicationGateway) o);
 					for (String type: myTypes)
 						((CommunicationGateway) o).register(type, this);
 				}
