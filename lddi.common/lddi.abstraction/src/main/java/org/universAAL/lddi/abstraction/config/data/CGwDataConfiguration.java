@@ -17,6 +17,7 @@ import org.universAAL.middleware.interfaces.configuration.configurationDefinitio
 import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.owl.OntologyManagement;
 
 /**
  * @author mtazari
@@ -167,10 +168,6 @@ public class CGwDataConfiguration implements ConfigurableModule, ExternalCompone
 		if (components.isEmpty())
 			return;
 		
-		// resolve value types of data-points
-		for (Datapoint dp : datapoints)
-			dp.setValueType(valueTypes.get(dp.getTypeID()));
-		
 		// construct the external components and collect them in a list
 		Vector<ExternalComponent> constructedECs = new Vector<ExternalComponent>();
 		for (Component c : components) {
@@ -186,6 +183,12 @@ public class CGwDataConfiguration implements ConfigurableModule, ExternalCompone
 			}
 			// finish handling this component 
 			constructedECs.add(ec);
+		}
+		
+		// resolve value types of data-points
+		for (Datapoint dp : datapoints) {
+			dp.setExternalValueType(valueTypes.get(dp.getTypeID()));
+			dp.setInternalValueType(OntologyManagement.getInstance().getOntClassInfo(dp.getComponent().getTypeURI()).getRestrictionsOnProp(dp.getProperty()));
 		}
 		
 		cgw.replaceComponents(constructedECs, this);

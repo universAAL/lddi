@@ -7,6 +7,7 @@ import org.universAAL.lddi.abstraction.CommunicationGateway;
 import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.lddi.abstraction.ExternalDatapoint;
 import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.middleware.owl.MergedRestriction;
 
 /**
  * This class helps in the configuration files of {@link CommunicationGateway}s to specify
@@ -125,7 +126,8 @@ public class Datapoint extends ManagedIndividual implements ExternalDatapoint {
 	public static final String PROP_SET_ADDRESS = CGwDataConfigOntology.NAMESPACE + "setAddress";
 	
 	private static final String PROP_ASSIGNED_COMPONENT = CGwDataConfigOntology.NAMESPACE + "assignedComponent";
-	private static final String PROP_ASSIGNED_VALUE_TYPE = CGwDataConfigOntology.NAMESPACE + "assignedValueType";
+	private static final String PROP_ASSIGNED_EXTERNAL_VALUE_TYPE = CGwDataConfigOntology.NAMESPACE + "assignedExternalValueType";
+	private static final String PROP_ASSIGNED_INTERNAL_VALUE_TYPE = CGwDataConfigOntology.NAMESPACE + "assignedInternalValueType";
 	
 //	/**
 //	 * Optional property for storing the trigger address of the data-point at hand in the external system.
@@ -199,8 +201,12 @@ public class Datapoint extends ManagedIndividual implements ExternalDatapoint {
 		return (String) props.get(PROP_SET_ADDRESS);
 	}
 	
-	public DatapointValueType getValueType() {
-		return (DatapointValueType) props.get(PROP_ASSIGNED_VALUE_TYPE);
+	public DatapointValueType getExternalValueType() {
+		return (DatapointValueType) props.get(PROP_ASSIGNED_EXTERNAL_VALUE_TYPE);
+	}
+	
+	public MergedRestriction getInternalValueType() {
+		return (MergedRestriction) props.get(PROP_ASSIGNED_INTERNAL_VALUE_TYPE);
 	}
 
 	public boolean isReadOnly() {
@@ -232,9 +238,15 @@ public class Datapoint extends ManagedIndividual implements ExternalDatapoint {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void setValueType(DatapointValueType vt) {
-		if (vt != null  &&  props.get(PROP_ASSIGNED_VALUE_TYPE) == null)
-			props.put(PROP_ASSIGNED_VALUE_TYPE, vt);			
+	public void setExternalValueType(DatapointValueType vt) {
+		if (vt != null  &&  props.get(PROP_ASSIGNED_EXTERNAL_VALUE_TYPE) == null)
+			props.put(PROP_ASSIGNED_EXTERNAL_VALUE_TYPE, vt);			
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void setInternalValueType(MergedRestriction vt) {
+		if (vt != null  &&  props.get(PROP_ASSIGNED_INTERNAL_VALUE_TYPE) == null)
+			props.put(PROP_ASSIGNED_INTERNAL_VALUE_TYPE, vt);			
 	}
 
 }

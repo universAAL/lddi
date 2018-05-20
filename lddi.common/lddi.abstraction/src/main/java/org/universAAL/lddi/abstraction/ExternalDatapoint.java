@@ -19,6 +19,8 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import org.universAAL.middleware.owl.MergedRestriction;
+
 /**
  * <p>
  * An ExternalDatapoint is a readable and / or writable datapoint outside the
@@ -95,6 +97,9 @@ public interface ExternalDatapoint {
 	 * datapoint belongs.
 	 */
 	public ExternalComponent getComponent();
+	
+	public Object getExternalValueType();
+	public MergedRestriction getInternalValueType();
 
 	/**
 	 * Returns the URI of the ontological property that maps to this datapoint.

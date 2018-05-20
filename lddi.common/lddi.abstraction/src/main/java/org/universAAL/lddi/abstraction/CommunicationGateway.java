@@ -175,7 +175,16 @@ public abstract class CommunicationGateway {
 		return componentURIprefix;
 	}
 	
-	protected abstract Object getValue(String pullAddress);
+	/**
+	 * Subclasses must make sure to read the value of the external data-point at the given <code>pullAddress</code>
+	 * and convert it from the original <code>externalType</code> to the target <code>internalType</code> before
+	 * returning the value object.
+	 * @param pullAddress
+	 * @param externalType
+	 * @param internalType
+	 * @return
+	 */
+	protected abstract Object getValue(String pullAddress, Object externalType, MergedRestriction internalType);
 	
 	/**
 	 * 
@@ -230,6 +239,13 @@ public abstract class CommunicationGateway {
 			}, "lddi.abstraction.cgw.auto.pull").start();
 	}
 	
+	/**
+	 * Subclasses should call this method in order to pass an external event to universAAL environment.
+	 * The value is expected to be of a as defined in the underlying ontological modelling; this is why 
+	 * the expected target type is passed to the subclass as the last parameter in {@link #subscribe(String, Object, MergedRestriction)}.
+	 * @param address
+	 * @param value
+	 */
 	protected final void notifySubscribers(String address, Object value) {
 		Subscription s = subscriptions.get(address);
 		if (s != null)
@@ -244,7 +260,7 @@ public abstract class CommunicationGateway {
 	 * include the property mapping to datapoints.
 	 */
 	Object readValue(ExternalDatapoint datapoint) {
-		return (datapoint == null)? null : getValue(datapoint.getPullAddress());
+		return (datapoint == null)? null : getValue(datapoint.getPullAddress(), datapoint.getExternalValueType(), datapoint.getInternalValueType());
 	}
 	
 	/**
@@ -306,7 +322,15 @@ public abstract class CommunicationGateway {
 		}
 	}
 	
-	protected abstract void setValue(String setAddress, Object value);
+	/**
+	 * Subclasses must make sure to convert the passed input <code>value</code> from the original <code>internalType</code> to the target <code>externalType</code> before
+	 * sending the value to the external system under <code>setAddress</code>.
+	 * @param setAddress
+	 * @param value
+	 * @param externalType
+	 * @param internalType
+	 */
+	protected abstract void setValue(String setAddress, Object value, Object externalType, MergedRestriction internalType);
 	
 	/**
 	 * Serves as means for subscribing for events related to the changes of the
@@ -383,7 +407,7 @@ public abstract class CommunicationGateway {
 			if (needsSimulation)
 				s.simulateEventing(intervalSeconds);
 			else
-				subscribe(subscriptionKey);
+				subscribe(subscriptionKey, datapoint.getExternalValueType(), datapoint.getInternalValueType());
 		} else {
 			if (needsSimulation)
 				s.checkEventing(intervalSeconds);
@@ -452,8 +476,11 @@ public abstract class CommunicationGateway {
 	/**
 	 * If the subclass subscribes anyhow for all datapoints, then the implementation of this method can be just empty!
 	 * @param pushAddress
+	 * @param externalType Values linked with the given <code>pushAddress</code> and passed in the original related events from the external system 
+	 *                     are expected to be of this type.
+	 * @param internalType Values linked with the given <code>pushAddress</code> and to be passed when calling {@link #notifySubscribers(String, Object)} have to be of this type.
 	 */
-	protected abstract void subscribe(String pushAddress);
+	protected abstract void subscribe(String pushAddress, Object externalType, MergedRestriction internalType);
 
 	public void updateComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
 		if (components != null  &&  discoverers.contains(discoverer)) {
@@ -472,7 +499,7 @@ public abstract class CommunicationGateway {
 	 */
 	void writeValue(ExternalDatapoint datapoint, Object value) {
 		if (datapoint != null)
-			setValue(datapoint.getSetAddress(), value);
+			setValue(datapoint.getSetAddress(), value, datapoint.getExternalValueType(), datapoint.getInternalValueType());
 	}
 
 }
