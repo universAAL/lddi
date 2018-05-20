@@ -175,6 +175,10 @@ public abstract class CommunicationGateway {
 		return componentURIprefix;
 	}
 	
+	protected final ExternalDatapoint getSubscribedDatapoint(String address) {
+		return subscriptions.get(address).datapoint;
+	}
+	
 	/**
 	 * Subclasses must make sure to read the value of the external data-point at the given <code>pullAddress</code>
 	 * and convert it from the original <code>externalType</code> to the target <code>internalType</code> before
@@ -241,8 +245,11 @@ public abstract class CommunicationGateway {
 	
 	/**
 	 * Subclasses should call this method in order to pass an external event to universAAL environment.
-	 * The value is expected to be of a as defined in the underlying ontological modelling; this is why 
+	 * The value is expected to be of a type defined in the underlying ontological model; this is why 
 	 * the expected target type is passed to the subclass as the last parameter in {@link #subscribe(String, Object, MergedRestriction)}.
+	 * However, if the subclass does not need an own management of individual subscriptions and hence has an empty implementation of
+	 * {@link #subscribe(String, Object, MergedRestriction)} without memorizing the type info, it my use {@link #getSubscribedDatapoint(String)}
+	 * and then fetch the type info by calling {@link ExternalDatapoint#getExternalValueType()} and{@link ExternalDatapoint#getInternalValueType()}. 
 	 * @param address
 	 * @param value
 	 */
