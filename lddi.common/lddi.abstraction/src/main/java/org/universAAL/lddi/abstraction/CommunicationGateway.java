@@ -29,15 +29,17 @@ import java.util.Locale;
 import java.util.Map.Entry;
 
 import org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration;
-import org.universAAL.lddi.abstraction.config.data.ont.CGwDataConfigOntology;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.datarep.SharedResources;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.EntityPattern;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.IdPattern;
+import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
+import org.universAAL.middleware.managers.api.ConfigurationEditor; 
 import org.universAAL.middleware.managers.api.ConfigurationManager;
 import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.owl.Ontology;
-import org.universAAL.middleware.owl.OntologyManagement;
+import org.universAAL.middleware.util.Constants;
 
 /**
  * A gateway providing a bridge to a network of external components making it
@@ -49,7 +51,7 @@ import org.universAAL.middleware.owl.OntologyManagement;
  */
 public abstract class CommunicationGateway {
 	
-	public static final String CGW_CONF_APP_ID = "lddi:abstract:CommunicationGateway"; 
+	public static final String CGW_CONF_APP_ID = "lddi.abstract.CommunicationGateway"; 
 	public static final String CGW_CONF_APP_PART_DATA_ID = "dataConfParams"; 
 	public static final String CGW_CONF_APP_PART_PROTOCOL_ID = "protocolConfParams";
 	
@@ -126,7 +128,6 @@ public abstract class CommunicationGateway {
 		
 	}
 	
-	private Ontology cgwDataConfigOnt = new CGwDataConfigOntology();
 	private String componentURIprefix;
 	// map typeURI to list of components of that type
 	private Hashtable<String, ArrayList<ExternalComponent>> discoveredComponents = new Hashtable<String, ArrayList<ExternalComponent>>();
@@ -204,23 +205,36 @@ public abstract class CommunicationGateway {
 	 *				  <br /><b>Note:</b>The interface "ConfigurationManager" has been defined by the artifact "mw.managers.api.core"
 	 *				  from the "org.universAAL.middleware" group.
 	 */
-	protected void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr, boolean needsEventingSimulation) {
-		
-		String uSpaceURI = SharedResources.getMiddlewareProp(SharedResources.SPACE_URI);
+	public final void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr, ConfigurationEditor confEditor, boolean needsEventingSimulation) {
+		String uSpaceURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX;
 		if (uSpaceURI.endsWith("#"))
-			componentURIprefix = uSpaceURI + getClass().getSimpleName();
-		else if (uSpaceURI.endsWith("/"))
+			uSpaceURI = uSpaceURI.substring(0, uSpaceURI.lastIndexOf('#'));
+		
+		if (uSpaceURI.endsWith("/"))
 			componentURIprefix = uSpaceURI + getClass().getSimpleName() + "#";
 		else
 			componentURIprefix = uSpaceURI + "/" + getClass().getSimpleName() + "#";
-		
-		OntologyManagement om = OntologyManagement.getInstance();
-		om.register(mc, cgwDataConfigOnt);
 				
 		if (confMgr != null) {
 			CGwDataConfiguration dataConf = new CGwDataConfiguration(this);
 			addDiscoverer(dataConf);
-			confMgr.register(CGwDataConfiguration.configurations, dataConf);
+			
+			boolean registerModule = true;
+			if (confEditor != null) {
+				List<EntityPattern> patterns = new ArrayList<EntityPattern>();
+				patterns.add(new IdPattern(CGW_CONF_APP_ID));
+				List<ConfigurableEntityEditor> editors = confEditor.getMatchingConfigurationEditors(patterns, Locale.getDefault());
+				for (ConfigurableEntityEditor editor : editors) {
+					Scope s = editor.getScope();
+					if (s instanceof AppPartScope  &&  CGW_CONF_APP_PART_DATA_ID.equals(((AppPartScope) s).getPartID())) {
+						registerModule = false;
+						editor.subscribe2Changes(dataConf);
+					}
+				}
+			}
+			
+			if (registerModule)
+				confMgr.register(CGwDataConfiguration.configurations, dataConf);
 		}
 
 		mc.getContainer().shareObject(mc, this, cgwSharingParams);
@@ -232,6 +246,7 @@ public abstract class CommunicationGateway {
 						eventingSimulationTicker++;
 						for (Enumeration<Subscription> e=subscriptions.elements(); e.hasMoreElements();)
 							e.nextElement().eventTicker(eventingSimulationTicker);
+						// loop every second
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e) {

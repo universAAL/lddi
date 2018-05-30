@@ -5,8 +5,8 @@
   <parent>
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.common</artifactId>
-    <version>3.4.2-SNAPSHOT</version>
-    <relativePath>../lddi.pom.common</relativePath>
+    <version>3.4.1-SNAPSHOT</version>
+    <!-- relativePath>../lddi.pom.common</relativePath -->
   </parent>
   <artifactId>lddi.abstraction</artifactId>
   <packaging>bundle</packaging>
@@ -23,16 +23,21 @@
       <artifactId>mw.data.representation.core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.universAAL.ontology</groupId>
-      <artifactId>ont.phWorld</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.interfaces.core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.managers.api.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.phWorld</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.lddi.config.datapoints</artifactId>
+      <version>3.4.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
   <build>
@@ -47,7 +52,7 @@
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Export-Package>org.universAAL.lddi.abstraction</Export-Package>
-            <Import-Package>org.osgi.framework;version="[1,2)",*</Import-Package>
+            <!-- Import-Package>org.osgi.framework;version="[1,2)",*</Import-Package -->
           </instructions>
         </configuration>
       </plugin>
