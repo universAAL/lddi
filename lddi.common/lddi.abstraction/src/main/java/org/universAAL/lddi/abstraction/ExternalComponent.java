@@ -23,6 +23,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.ontology.lddi.config.datapoints.ExternalDataConverter;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
 
@@ -63,7 +64,7 @@ public class ExternalComponent {
 
 	private CommunicationGateway gw;
 	private ManagedIndividual ontResource;
-//	private int seqNoInConfFile = -1;
+	private ExternalDataConverter converter;
 	private Hashtable<String, ExternalDatapoint> propMappings = new Hashtable<String, ExternalDatapoint>();
 
 	/**
@@ -71,35 +72,29 @@ public class ExternalComponent {
 	 * gateways to create own subclasses so that each communication gateway can
 	 * create only instances defined by itself.
 	 */
-	public ExternalComponent(CommunicationGateway gw, String typeURI) {
-		if (gw == null || typeURI == null)
+	public ExternalComponent(CommunicationGateway gw, String typeURI, ExternalDataConverter converter) {
+		if (gw == null  ||  typeURI == null  ||  converter == null)
 			throw new NullPointerException("ExternalComponent constructor: parameter null!");
 
 		this.gw = gw;
+		this.converter = converter;
 		String componentURI = gw.getComponentURIprefix()
 				+ typeURI.substring(typeURI.lastIndexOf('#')+1)
 				+ (noOfComponents++);
 		ontResource = ManagedIndividual.getInstance(typeURI, componentURI);
 	}
-	
-//	public ExternalComponent(CommunicationGateway gw, String typeURI, int seqNoInConfFile) {
-//		if (gw == null  ||  typeURI == null  ||  seqNoInConfFile < 0)
-//			throw new NullPointerException("ExternalComponent constructor: invalid parameter!");
-//
-//		this.gw = gw;
-//		String componentURI = gw.getComponentURIprefix()
-//				+ typeURI.substring(typeURI.lastIndexOf('#')+1)
-//				+ (noOfComponents++);
-//		ontResource = ManagedIndividual.getInstance(typeURI, componentURI);
-//		
-//		this.seqNoInConfFile = seqNoInConfFile;
-//	}
 
 	public void addPropMapping(String propURI, ExternalDatapoint datapoint) {
 		if (propURI == null || datapoint == null)
 			return;
 
 		propMappings.put(propURI, datapoint);
+	}
+	
+	Object changeProperty(String propURI, Object value) {
+		Object oldVal = ontResource.getProperty(propURI);
+		ontResource.changeProperty(propURI, converter.importValue(value, getTypeURI(), propURI));
+		return oldVal;
 	}
 	
 	public Enumeration<ExternalDatapoint> enumerateDatapoints() {
@@ -138,7 +133,7 @@ public class ExternalComponent {
 		ExternalDatapoint edp = propMappings.get(propURI);
 		if (edp == null)
 			return null;
-		Object value = gw.readValue(edp);
+		Object value = converter.importValue(gw.readValue(edp), getTypeURI(), propURI);
 		ontResource.changeProperty(propURI, value);
 		return value;
 	}
@@ -162,12 +157,13 @@ public class ExternalComponent {
 		if (edp == null)
 			ontResource.changeProperty(propURI, null);
 		else {
-			gw.writeValue(edp, value);
+			Object exValue = converter.exportValue(getTypeURI(), propURI, value);
+			gw.writeValue(edp, exValue);
 			Object check = gw.readValue(edp);
 			if (value == null) {
 				if (check != null)
 					return;
-			} else if (!value.equals(check))
+			} else if (!exValue.equals(check))
 				return;
 			ontResource.changeProperty(propURI, value);
 		}

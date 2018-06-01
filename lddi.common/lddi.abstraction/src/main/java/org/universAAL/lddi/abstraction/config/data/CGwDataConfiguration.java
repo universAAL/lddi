@@ -12,7 +12,6 @@ import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.lddi.abstraction.ExternalComponentDiscoverer;
 import org.universAAL.ontology.lddi.config.datapoints.Component;
 import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
-import org.universAAL.ontology.lddi.config.datapoints.DatapointValueType;
 import org.universAAL.middleware.interfaces.configuration.ConfigurableModule;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
@@ -22,7 +21,6 @@ import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.Resource;
 
 /**
@@ -33,12 +31,8 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 	
 	public static final String CONF_PARAM_CGW_DATA_COMPONENTS = "components";
 	public static final String CONF_PARAM_CGW_DATA_DATAPOINTS = "datapoints";
-	public static final String CONF_PARAM_CGW_DATA_VALUE_TYPES = "valueTypes";
 
 	public static ConfigurationParameter[] configurations = { 
-			CommunicationGateway.newCGwConfParam(CONF_PARAM_CGW_DATA_VALUE_TYPES, CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...", 
-					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_VALUE, 
-							DatapointValueType.MY_URI), null),
 			CommunicationGateway.newCGwConfParam(CONF_PARAM_CGW_DATA_COMPONENTS, CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...", 
 					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_VALUE, 
 							Component.MY_URI), null),
@@ -50,7 +44,6 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 	private CommunicationGateway cgw;
 	private Vector<Component> components = new Vector<Component>();
 	private Vector<ConfiguredDatapoint> datapoints = new Vector<ConfiguredDatapoint>();
-	private Vector<DatapointValueType> valueTypes = new Vector<DatapointValueType>();
 	
 	public CGwDataConfiguration(CommunicationGateway cgw) {
 		this.cgw = cgw;
@@ -103,33 +96,6 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 				return false;
 			// ready to accept the new value
 			datapoints = validatedPValues;
-		} else if (CONF_PARAM_CGW_DATA_VALUE_TYPES.equals(id)) {
-			Vector<DatapointValueType> validatedPValues = new Vector<DatapointValueType>();
-			if (paramValue instanceof List<?>) {
-				for (Object o : (List<?>) paramValue)
-					if (o instanceof DatapointValueType)
-						validatedPValues.add((DatapointValueType) o);
-					else
-						return false;
-			} else if (paramValue instanceof DatapointValueType) {
-				validatedPValues.add((DatapointValueType) paramValue);
-			} else if (paramValue != null)
-				return false;
-			// the values passed for this conf param are all valid
-			// now sort them using their sequence numbers
-			int size = validatedPValues.size();
-			DatapointValueType[] carr = new DatapointValueType[size];
-			for (DatapointValueType vt : validatedPValues) {
-				int seqNo = vt.getID();
-				if (seqNo < size)
-					carr[seqNo] = vt;
-				else
-					return false;
-			}
-			// ready to accept the new value
-			valueTypes.clear();
-			for (int i=0; i<size; i++)
-				valueTypes.add(carr[i]);
 		} else
 			return false;
 		
@@ -141,14 +107,11 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 	private boolean isConsistent() {
 		int noOfCs = components.size();
 		if (noOfCs > 0  &&  components.get(noOfCs-1).getSeqNoInConfig() == noOfCs-1) {
-			int noOfVTs = valueTypes.size();
-			if (noOfVTs > 0  &&  valueTypes.get(noOfVTs-1).getID() == noOfVTs-1) {
-				for (ConfiguredDatapoint dp : datapoints) {
-						if (dp.getTypeID() >= noOfVTs  ||  dp.getComponentID() >= noOfCs)
-							return false;
-				}
-				return true;
+			for (ConfiguredDatapoint dp : datapoints) {
+				if (dp.getComponentID() >= noOfCs)
+					return false;
 			}
+			return true;
 		}
 		
 		return false;
@@ -169,7 +132,7 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 		// construct the external components and collect them in a list
 		Vector<ExternalComponent> constructedECs = new Vector<ExternalComponent>();
 		for (Component c : components) {
-			ExternalComponent ec = new ExternalComponent(cgw, c.getTypeURI());
+			ExternalComponent ec = new ExternalComponent(cgw, c.getTypeURI(), c.getExternalTypeSystem().getExternalDataConverter());
 			addComponentDescription(ec.getOntResource(), c.getOntDescription());
 			// add all data-points referring to this component
 			int id = c.getSeqNoInConfig();
@@ -181,12 +144,6 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 			}
 			// finish handling this component 
 			constructedECs.add(ec);
-		}
-		
-		// resolve value types of data-points
-		for (ConfiguredDatapoint dp : datapoints) {
-			dp.setExternalValueType(valueTypes.get(dp.getTypeID()));
-			dp.setInternalValueType(OntologyManagement.getInstance().getOntClassInfo(dp.getComponent().getTypeURI()).getRestrictionsOnProp(dp.getProperty()));
 		}
 		
 		cgw.replaceComponents(constructedECs, this);

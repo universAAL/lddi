@@ -231,15 +231,22 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		if (datapoint == null)
 			return;
 		
-		ManagedIndividual mi = datapoint.getComponent().getOntResource();
+		ExternalComponent ec = datapoint.getComponent();
 		String propURI = datapoint.getProperty();
-		Object oldVal = mi.getProperty(propURI);
-		mi.changeProperty(propURI, value);
 		
-		publish(mi, propURI, oldVal);
+		publish(ec.getOntResource(), propURI, ec.changeProperty(propURI, value));
 	}
 
-	protected abstract void publish(ManagedIndividual onResource, String propURI, Object oldValue);
+	/**
+	 * Note-1: The implementation is supposed to publish a context event onto the universAAL context bus.
+	 * Note-2: the new value is already set for the given <code>ontResource</code> and <code>propURI</code>
+	 *         &rarr; if the implementation needs to process the new value, it must fetch it by
+	 *         <code>ontResource.getProperty(propURI)</code>.
+	 * @param ontResource
+	 * @param propURI
+	 * @param oldValue
+	 */
+	protected abstract void publish(ManagedIndividual ontResource, String propURI, Object oldValue);
 
 	protected final void setExternalValue(String componentURI, String propertyURI, Object value) {
 		if (componentURI == null  ||  propertyURI == null)

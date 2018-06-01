@@ -189,7 +189,7 @@ public abstract class CommunicationGateway {
 	 * @param internalType
 	 * @return
 	 */
-	protected abstract Object getValue(String pullAddress, Object externalType, MergedRestriction internalType);
+	protected abstract Object getValue(String pullAddress);
 	
 	/**
 	 * 
@@ -282,7 +282,7 @@ public abstract class CommunicationGateway {
 	 * include the property mapping to datapoints.
 	 */
 	Object readValue(ExternalDatapoint datapoint) {
-		return (datapoint == null)? null : getValue(datapoint.getPullAddress(), datapoint.getExternalValueType(), datapoint.getInternalValueType());
+		return (datapoint == null)? null : getValue(datapoint.getPullAddress());
 	}
 	
 	/**
@@ -352,7 +352,7 @@ public abstract class CommunicationGateway {
 	 * @param externalType
 	 * @param internalType
 	 */
-	protected abstract void setValue(String setAddress, Object value, Object externalType, MergedRestriction internalType);
+	protected abstract void setValue(String setAddress, Object value);
 	
 	/**
 	 * Serves as means for subscribing for events related to the changes of the
@@ -429,7 +429,7 @@ public abstract class CommunicationGateway {
 			if (needsSimulation)
 				s.simulateEventing(intervalSeconds);
 			else
-				subscribe(subscriptionKey, datapoint.getExternalValueType(), datapoint.getInternalValueType());
+				subscribe(subscriptionKey);
 		} else {
 			if (needsSimulation)
 				s.checkEventing(intervalSeconds);
@@ -502,7 +502,7 @@ public abstract class CommunicationGateway {
 	 *                     are expected to be of this type.
 	 * @param internalType Values linked with the given <code>pushAddress</code> and to be passed when calling {@link #notifySubscribers(String, Object)} have to be of this type.
 	 */
-	protected abstract void subscribe(String pushAddress, Object externalType, MergedRestriction internalType);
+	protected abstract void subscribe(String pushAddress);
 
 	public void updateComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
 		if (components != null  &&  discoverers.contains(discoverer)) {
@@ -521,7 +521,7 @@ public abstract class CommunicationGateway {
 	 */
 	void writeValue(ExternalDatapoint datapoint, Object value) {
 		if (datapoint != null)
-			setValue(datapoint.getSetAddress(), value, datapoint.getExternalValueType(), datapoint.getInternalValueType());
+			setValue(datapoint.getSetAddress(), value);
 	}
 
 }
