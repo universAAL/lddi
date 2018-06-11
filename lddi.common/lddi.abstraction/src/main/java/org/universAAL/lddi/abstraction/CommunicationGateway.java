@@ -32,9 +32,10 @@ import org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurationParameterEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPartPattern;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPattern;
 import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.EntityPattern;
-import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.IdPattern;
-import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.managers.api.ConfigurationEditor; 
 import org.universAAL.middleware.managers.api.ConfigurationManager;
@@ -222,15 +223,17 @@ public abstract class CommunicationGateway {
 			boolean registerModule = true;
 			if (confEditor != null) {
 				List<EntityPattern> patterns = new ArrayList<EntityPattern>();
-				patterns.add(new IdPattern(CGW_CONF_APP_ID));
+				patterns.add(new ApplicationPattern(CGW_CONF_APP_ID));
+				patterns.add(new ApplicationPartPattern(CGW_CONF_APP_PART_DATA_ID));
 				List<ConfigurableEntityEditor> editors = confEditor.getMatchingConfigurationEditors(patterns, Locale.getDefault());
-				for (ConfigurableEntityEditor editor : editors) {
-					Scope s = editor.getScope();
-					if (s instanceof AppPartScope  &&  CGW_CONF_APP_PART_DATA_ID.equals(((AppPartScope) s).getPartID())) {
-						registerModule = false;
-						editor.subscribe2Changes(dataConf);
+				if (editors != null)
+					for (ConfigurableEntityEditor editor : editors) {
+						if (editor instanceof ConfigurationParameterEditor
+								&&  dataConf.configurationChanged(editor.getScope(), ((ConfigurationParameterEditor) editor).getConfiguredValue())) {
+							registerModule = false;
+							editor.subscribe2Changes(dataConf);
+						}
 					}
-				}
 			}
 			
 			if (registerModule)
@@ -299,14 +302,15 @@ public abstract class CommunicationGateway {
 	void register(String componentTypeURI, ComponentIntegrator integrator) {
 		synchronized (discoverers) {
 			ArrayList<ComponentIntegrator> integrators = registeredIntegrators.get(componentTypeURI);
-			if (integrator == null) {
+			if (integrators == null) {
 				integrators = new ArrayList<ComponentIntegrator>();
 				registeredIntegrators.put(componentTypeURI, integrators);
 			}
 			integrators.add(integrator);
 			
 			ArrayList<ExternalComponent> components = discoveredComponents.get(componentTypeURI);
-			integrator.componentsAdded(components.toArray(new ExternalComponent[components.size()]));
+			if (components != null)
+				integrator.componentsAdded(components.toArray(new ExternalComponent[components.size()]));
 		}
 	}
 

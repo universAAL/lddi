@@ -44,6 +44,10 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 	private CommunicationGateway cgw;
 	private Vector<Component> components = new Vector<Component>();
 	private Vector<ConfiguredDatapoint> datapoints = new Vector<ConfiguredDatapoint>();
+	/**
+	 * Used in {@link #configurationChanged} with bit #0 for {@link #CONF_PARAM_CGW_DATA_COMPONENTS} and bit #1 for {@link #CONF_PARAM_CGW_DATA_DATAPOINTS}.
+	 */
+	private int paramsBitPattern = 0;
 	
 	public CGwDataConfiguration(CommunicationGateway cgw) {
 		this.cgw = cgw;
@@ -82,6 +86,8 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 			components.clear();
 			for (int i=0; i<size; i++)
 				components.add(carr[i]);
+			if ((paramsBitPattern & 1) == 0)
+				paramsBitPattern++;
 		} else if (CONF_PARAM_CGW_DATA_DATAPOINTS.equals(id)) {
 			Vector<ConfiguredDatapoint> validatedPValues = new Vector<ConfiguredDatapoint>();
 			if (paramValue instanceof List<?>) {
@@ -96,21 +102,32 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 				return false;
 			// ready to accept the new value
 			datapoints = validatedPValues;
+			if ((paramsBitPattern & 2) == 0)
+				paramsBitPattern += 2;
 		} else
 			return false;
 		
-		if (isConsistent())
+		if (paramsBitPattern == 3  &&  isConsistent()) {
 			notifyCGw();
+			paramsBitPattern = 0;
+		}
 		return true;
 	}
 	
 	private boolean isConsistent() {
 		int noOfCs = components.size();
 		if (noOfCs > 0  &&  components.get(noOfCs-1).getSeqNoInConfig() == noOfCs-1) {
+			boolean[] check = new boolean[noOfCs];
 			for (ConfiguredDatapoint dp : datapoints) {
-				if (dp.getComponentID() >= noOfCs)
+				int id = dp.getComponentID();
+				if (id >= noOfCs)
 					return false;
+				else
+					check[id] = true;
 			}
+			for (int i = 0;  i < noOfCs;  i++)
+				if (!check[i])
+					return false;
 			return true;
 		}
 		
