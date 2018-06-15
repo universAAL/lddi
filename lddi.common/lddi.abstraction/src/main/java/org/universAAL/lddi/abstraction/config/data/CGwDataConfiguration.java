@@ -34,10 +34,10 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 
 	public static ConfigurationParameter[] configurations = { 
 			CommunicationGateway.newCGwConfParam(CONF_PARAM_CGW_DATA_COMPONENTS, CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...", 
-					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_VALUE, 
+					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_OBJECT_VALUE, 
 							Component.MY_URI), null),
 			CommunicationGateway.newCGwConfParam(CONF_PARAM_CGW_DATA_DATAPOINTS, CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...", 
-					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_VALUE, 
+					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_OBJECT_VALUE, 
 							Datapoint.MY_URI), null)
 	};
 	
