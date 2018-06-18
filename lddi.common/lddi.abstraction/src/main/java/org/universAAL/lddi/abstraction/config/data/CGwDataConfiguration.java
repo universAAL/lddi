@@ -14,9 +14,9 @@ import org.universAAL.ontology.lddi.config.datapoints.Component;
 import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
 import org.universAAL.middleware.interfaces.configuration.ConfigurableModule;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
-import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
-import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditorListener;
-import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurationParameterEditor;
+//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
+//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditorListener;
+//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurationParameterEditor;
 import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.ManagedIndividual;
@@ -27,7 +27,7 @@ import org.universAAL.middleware.rdf.Resource;
  * @author mtazari
  *
  */
-public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEntityEditorListener, ExternalComponentDiscoverer {
+public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableEntityEditorListener,*/ ExternalComponentDiscoverer {
 	
 	public static final String CONF_PARAM_CGW_DATA_COMPONENTS = "components";
 	public static final String CONF_PARAM_CGW_DATA_DATAPOINTS = "datapoints";
@@ -166,8 +166,8 @@ public class CGwDataConfiguration implements ConfigurableModule, ConfigurableEnt
 		cgw.replaceComponents(constructedECs, this);
 	}
 
-	public void ConfigurationChanged(ConfigurableEntityEditor entityChanged) {
-		if (entityChanged instanceof ConfigurationParameterEditor)
-		configurationChanged(entityChanged.getScope(), ((ConfigurationParameterEditor) entityChanged).getConfiguredValue());
-	}
+//	public void ConfigurationChanged(ConfigurableEntityEditor entityChanged) {
+//		if (entityChanged instanceof ConfigurationParameterEditor)
+//		configurationChanged(entityChanged.getScope(), ((ConfigurationParameterEditor) entityChanged).getConfiguredValue());
+//	}
 }
