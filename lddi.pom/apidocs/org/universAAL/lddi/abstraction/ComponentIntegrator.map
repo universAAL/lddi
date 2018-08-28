@@ -1,4 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ComponentIntegrator.html" title="org.universAAL.lddi.abstraction.ComponentIntegrator" alt="" coords="15,11,158,55"/>
-<area shape="rect" id="node1" href="./ComponentIntegrator.html" title="&lt;TABLE&gt;" alt="" coords="5,6,169,61"/>
+<area shape="rect" id="node1_0" href="./ComponentIntegrator.html" title="org.universAAL.lddi.abstraction.ComponentIntegrator" alt="" coords="17,120,159,147"/>
+<area shape="rect" id="node1" href="./ComponentIntegrator.html" title="&lt;TABLE&gt;" alt="" coords="6,109,170,157"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/container/SharedObjectListener.html" title="org.universAAL.middleware.container.SharedObjectListener" alt="" coords="15,11,161,55"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/container/SharedObjectListener.html" title="&lt;TABLE&gt;" alt="" coords="5,6,171,61"/>
 </map>

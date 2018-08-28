@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="879" branches-covered="0" branches-valid="204" complexity="2.218045112781955" version="2.1.1" timestamp="1522969359437">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="879" branches-covered="0" branches-valid="204" complexity="2.218045112781955" version="2.1.1" timestamp="1535480523576">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/lddi/lddi.fs20/lddi.fs20.connector/src/main/java</source>

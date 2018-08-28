@@ -93,8 +93,8 @@
 <th>Errors</th>
 <th>Missing Classes</th></tr>
 <tr class="b">
-<td>4</td>
-<td>0</td>
+<td>12</td>
+<td>9</td>
 <td>0</td>
 <td>0</td></tr></table></div>
 <div class="section">
@@ -102,7 +102,109 @@
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Class</th>
-<th>Bugs</th></tr></table></div>
+<th>Bugs</th></tr>
+<tr class="b">
+<td><a href="#org.universAAL.lddi.abstraction.CommunicationGateway">org.universAAL.lddi.abstraction.CommunicationGateway</a></td>
+<td>6</td></tr>
+<tr class="a">
+<td><a href="#org.universAAL.lddi.abstraction.ComponentIntegrator">org.universAAL.lddi.abstraction.ComponentIntegrator</a></td>
+<td>1</td></tr>
+<tr class="b">
+<td><a href="#org.universAAL.lddi.abstraction.ExternalComponent">org.universAAL.lddi.abstraction.ExternalComponent</a></td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration">org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration</a></td>
+<td>1</td></tr></table></div><a name="org.universAAL.lddi.abstraction.CommunicationGateway"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.CommunicationGateway"></a>org.universAAL.lddi.abstraction.CommunicationGateway</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.addComponents(List, ExternalComponentDiscoverer)</td>
+<td>MT_CORRECTNESS</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
+<td>158</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer)</td>
+<td>MT_CORRECTNESS</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
+<td>321</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer)</td>
+<td>MT_CORRECTNESS</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
+<td>515</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Method org.universAAL.lddi.abstraction.CommunicationGateway.addComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
+<td>160</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Method org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
+<td>323</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Method org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
+<td>517</td>
+<td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.ComponentIntegrator"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.ComponentIntegrator"></a>org.universAAL.lddi.abstraction.ComponentIntegrator</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>org.universAAL.lddi.abstraction.ComponentIntegrator.sharedObjectAdded(Object, Object) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+<td>PERFORMANCE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
+<td>265</td>
+<td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.ExternalComponent"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.ExternalComponent"></a>org.universAAL.lddi.abstraction.ExternalComponent</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.ExternalComponent.noOfComponents from instance method new org.universAAL.lddi.abstraction.ExternalComponent(CommunicationGateway, String, ExternalDataConverter)</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>82</td>
+<td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration"></a>org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration.configurations is a mutable array</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_MUTABLE_ARRAY">MS_MUTABLE_ARRAY</a></td>
+<td>39</td>
+<td>High</td></tr></table></div>
       </div>
     </div>
     <div class="clear">
