@@ -19,6 +19,27 @@
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.data.representation.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.interfaces.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.managers.api.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.phWorld</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.lddi.config.datapoints</artifactId>
+      <version>3.4.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
