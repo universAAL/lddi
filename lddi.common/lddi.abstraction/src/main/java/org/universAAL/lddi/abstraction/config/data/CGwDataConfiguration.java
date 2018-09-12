@@ -55,7 +55,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 
 	public synchronized boolean configurationChanged(Scope confParam, Object paramValue) {
 		if (!(confParam instanceof AppPartScope)
-				||  !CommunicationGateway.CGW_CONF_APP_ID.equals(((AppPartScope) confParam).getAppID())
+				||  !cgw.getConfigAppID().equals(((AppPartScope) confParam).getAppID())
 				||  !CommunicationGateway.CGW_CONF_APP_PART_DATA_ID.equals(((AppPartScope) confParam).getPartID()))
 			return false;
 		String id = confParam.getId();
@@ -149,7 +149,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 		// construct the external components and collect them in a list
 		Vector<ExternalComponent> constructedECs = new Vector<ExternalComponent>();
 		for (Component c : components) {
-			ExternalComponent ec = new ExternalComponent(cgw, c.getTypeURI(), c.getExternalTypeSystem().getExternalDataConverter());
+			ExternalComponent ec = new ExternalComponent(cgw, c.getOntDescription(), c.getExternalTypeSystem().getExternalDataConverter());
 			addComponentDescription(ec.getOntResource(), c.getOntDescription());
 			// add all data-points referring to this component
 			int id = c.getSeqNoInConfig();

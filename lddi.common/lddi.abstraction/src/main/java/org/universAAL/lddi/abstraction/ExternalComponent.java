@@ -60,7 +60,7 @@ import org.universAAL.ontology.phThing.PhysicalThing;
  */
 public class ExternalComponent {
 
-	private static int noOfComponents = 0;
+	// private static int noOfComponents = 0;
 
 	private CommunicationGateway gw;
 	private ManagedIndividual ontResource;
@@ -72,16 +72,17 @@ public class ExternalComponent {
 	 * gateways to create own subclasses so that each communication gateway can
 	 * create only instances defined by itself.
 	 */
-	public ExternalComponent(CommunicationGateway gw, String typeURI, ExternalDataConverter converter) {
-		if (gw == null  ||  typeURI == null  ||  converter == null)
+	public ExternalComponent(CommunicationGateway gw, ManagedIndividual description, ExternalDataConverter converter) {
+		if (gw == null  ||  description == null  ||  converter == null)
 			throw new NullPointerException("ExternalComponent constructor: parameter null!");
 
 		this.gw = gw;
 		this.converter = converter;
-		String componentURI = gw.getComponentURIprefix()
-				+ typeURI.substring(typeURI.lastIndexOf('#')+1)
-				+ (noOfComponents++);
-		ontResource = ManagedIndividual.getInstance(typeURI, componentURI);
+//		String componentURI = gw.getComponentURIprefix()
+//				+ typeURI.substring(typeURI.lastIndexOf('#')+1)
+//				+ (noOfComponents++);
+//		ontResource = ManagedIndividual.getInstance(typeURI, componentURI);
+		ontResource = description;
 	}
 
 	public void addPropMapping(String propURI, ExternalDatapoint datapoint) {
