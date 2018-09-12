@@ -40,7 +40,7 @@ import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.managers.api.ConfigurationEditor; 
 import org.universAAL.middleware.managers.api.ConfigurationManager;
 import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.util.Constants;
+//import org.universAAL.middleware.util.Constants;
 
 /**
  * A gateway providing a bridge to a network of external components making it
@@ -52,7 +52,7 @@ import org.universAAL.middleware.util.Constants;
  */
 public abstract class CommunicationGateway {
 	
-	public static final String CGW_CONF_APP_ID = "lddi.abstract.CommunicationGateway"; 
+	private static String CGW_CONF_APP_ID = "lddi.abstract.CommunicationGateway"; 
 	public static final String CGW_CONF_APP_PART_DATA_ID = "dataConfParams"; 
 	public static final String CGW_CONF_APP_PART_PROTOCOL_ID = "protocolConfParams";
 	
@@ -129,7 +129,7 @@ public abstract class CommunicationGateway {
 		
 	}
 	
-	private String componentURIprefix;
+	// private String componentURIprefix;
 	// map typeURI to list of components of that type
 	private Hashtable<String, ArrayList<ExternalComponent>> discoveredComponents = new Hashtable<String, ArrayList<ExternalComponent>>();
 	/**
@@ -159,6 +159,10 @@ public abstract class CommunicationGateway {
 		}
 	}
 	
+	public String getConfigAppID() {
+		return CGW_CONF_APP_ID;
+	}
+	
 	/**
 	 * Only subclasses can introduce discoverers, which just serves as a sort of "registered certificate".
 	 * Calling "component discovery methods" ({@link #addComponents(List, ExternalComponentDiscoverer) addComponents},
@@ -173,9 +177,9 @@ public abstract class CommunicationGateway {
 			discoverers.add(d);
 	}
 	
-	String getComponentURIprefix() {
-		return componentURIprefix;
-	}
+//	String getComponentURIprefix() {
+//		return componentURIprefix;
+//	}
 	
 	protected final ExternalDatapoint getSubscribedDatapoint(String address) {
 		return subscriptions.get(address).datapoint;
@@ -207,14 +211,16 @@ public abstract class CommunicationGateway {
 	 *				  from the "org.universAAL.middleware" group.
 	 */
 	public final void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr, ConfigurationEditor confEditor, boolean needsEventingSimulation) {
-		String uSpaceURI = Constants.MIDDLEWARE_LOCAL_ID_PREFIX;
-		if (uSpaceURI.endsWith("#"))
-			uSpaceURI = uSpaceURI.substring(0, uSpaceURI.lastIndexOf('#'));
+		CGW_CONF_APP_ID = getClass().getSimpleName();
 		
-		if (uSpaceURI.endsWith("/"))
-			componentURIprefix = uSpaceURI + getClass().getSimpleName() + "#";
-		else
-			componentURIprefix = uSpaceURI + "/" + getClass().getSimpleName() + "#";
+//		String uSpaceURI = Constants.MIDDLEWARE_LOCAL_ID_PREFIX;
+//		if (uSpaceURI.endsWith("#"))
+//			uSpaceURI = uSpaceURI.substring(0, uSpaceURI.lastIndexOf('#'));
+//		
+//		if (uSpaceURI.endsWith("/"))
+//			componentURIprefix = uSpaceURI + CGW_CONF_APP_ID + "#";
+//		else
+//			componentURIprefix = uSpaceURI + "/" + CGW_CONF_APP_ID + "#";
 				
 		if (confMgr != null) {
 			CGwDataConfiguration dataConf = new CGwDataConfiguration(this);
