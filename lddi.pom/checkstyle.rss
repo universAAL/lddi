@@ -26,8 +26,8 @@ under the License.
     <copyright>&#169;2010 - 2018 universAAL Consortium</copyright>
     <item>
       <title>File: 539,
-             Errors: 7844,
-             Warnings: 1186,
+             Errors: 7842,
+             Warnings: 1187,
              Infos: 1418
       </title>
             <link>http://lddi/lddi.pom//checkstyle.html</link>
@@ -3479,13 +3479,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
                 </td>
                 <td>
-                  10
+                  8
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  34
+                  33
                 </td>
               </tr>
                           <tr>
@@ -3577,13 +3577,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
                 </td>
                 <td>
-                  83
+                  85
                 </td>
                 <td>
-                  3
+                  4
                 </td>
                 <td>
-                  68
+                  67
                 </td>
               </tr>
                           <tr>

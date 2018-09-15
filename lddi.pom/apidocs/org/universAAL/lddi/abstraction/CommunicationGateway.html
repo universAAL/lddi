@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":6,"i4":10,"i5":9,"i6":10,"i7":10,"i8":10,"i9":6,"i10":6,"i11":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":6,"i5":10,"i6":9,"i7":10,"i8":10,"i9":10,"i10":6,"i11":6,"i12":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -143,17 +143,13 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#CGW_CONF_APP_ID">CGW_CONF_APP_ID</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#CGW_CONF_APP_PART_DATA_ID">CGW_CONF_APP_PART_DATA_ID</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#CGW_CONF_APP_PART_PROTOCOL_ID">CGW_CONF_APP_PART_PROTOCOL_ID</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static short</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#DEFAULT_AUTO_PULL_INTERVAL">DEFAULT_AUTO_PULL_INTERVAL</a></span></code>&nbsp;</td>
 </tr>
@@ -201,10 +197,14 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#getConfigAppID--">getConfigAppID</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#getSubscribedDatapoint-java.lang.String-">getSubscribedDatapoint</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;address)</code>&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>protected abstract <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#getValue-java.lang.String-">getValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;pullAddress)</code>
 <div class="block">Subclasses must make sure to read the value of the external data-point at the given <code>pullAddress</code>
@@ -212,7 +212,7 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
  returning the value object.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#init-org.universAAL.middleware.container.ModuleContext-java.lang.Object:A-org.universAAL.middleware.managers.api.ConfigurationManager-org.universAAL.middleware.managers.api.ConfigurationEditor-boolean-">init</a></span>(org.universAAL.middleware.container.ModuleContext&nbsp;mc,
     <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>[]&nbsp;cgwSharingParams,
@@ -220,7 +220,7 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
     org.universAAL.middleware.managers.api.ConfigurationEditor&nbsp;confEditor,
     boolean&nbsp;needsEventingSimulation)</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>static org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#newCGwConfParam-java.lang.String-java.lang.String-java.lang.String-org.universAAL.middleware.owl.MergedRestriction-java.lang.Object-">newCGwConfParam</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;id,
                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;appPartID,
@@ -228,24 +228,24 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
                org.universAAL.middleware.owl.MergedRestriction&nbsp;type,
                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;defaultVal)</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#notifySubscribers-java.lang.String-java.lang.Object-">notifySubscribers</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;address,
                  <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>
 <div class="block">Subclasses should call this method in order to pass an external event to universAAL environment.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#removeComponents-java.util.List-org.universAAL.lddi.abstraction.ExternalComponentDiscoverer-">removeComponents</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html" title="class in org.universAAL.lddi.abstraction">ExternalComponent</a>&gt;&nbsp;components,
                 <a href="../../../../org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html" title="interface in org.universAAL.lddi.abstraction">ExternalComponentDiscoverer</a>&nbsp;discoverer)</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#replaceComponents-java.util.List-org.universAAL.lddi.abstraction.ExternalComponentDiscoverer-">replaceComponents</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html" title="class in org.universAAL.lddi.abstraction">ExternalComponent</a>&gt;&nbsp;components,
                  <a href="../../../../org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html" title="interface in org.universAAL.lddi.abstraction">ExternalComponentDiscoverer</a>&nbsp;discoverer)</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#setValue-java.lang.String-java.lang.Object-">setValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;setAddress,
         <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>
@@ -253,13 +253,13 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
  sending the value to the external system under <code>setAddress</code>.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#subscribe-java.lang.String-">subscribe</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;pushAddress)</code>
 <div class="block">If the subclass subscribes anyhow for all datapoints, then the implementation of this method can be just empty!</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#updateComponents-java.util.List-org.universAAL.lddi.abstraction.ExternalComponentDiscoverer-">updateComponents</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html" title="class in org.universAAL.lddi.abstraction">ExternalComponent</a>&gt;&nbsp;components,
                 <a href="../../../../org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html" title="interface in org.universAAL.lddi.abstraction">ExternalComponentDiscoverer</a>&nbsp;discoverer)</code>&nbsp;</td>
@@ -286,19 +286,6 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="CGW_CONF_APP_ID">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CGW_CONF_APP_ID</h4>
-<pre>public static final&nbsp;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> CGW_CONF_APP_ID</pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../constant-values.html#org.universAAL.lddi.abstraction.CommunicationGateway.CGW_CONF_APP_ID">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
 <a name="CGW_CONF_APP_PART_DATA_ID">
 <!--   -->
 </a>
@@ -384,6 +371,15 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
 <h4>addComponents</h4>
 <pre>public&nbsp;void&nbsp;addComponents(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html" title="class in org.universAAL.lddi.abstraction">ExternalComponent</a>&gt;&nbsp;components,
                           <a href="../../../../org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html" title="interface in org.universAAL.lddi.abstraction">ExternalComponentDiscoverer</a>&nbsp;discoverer)</pre>
+</li>
+</ul>
+<a name="getConfigAppID--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getConfigAppID</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getConfigAppID()</pre>
 </li>
 </ul>
 <a name="addDiscoverer-org.universAAL.lddi.abstraction.ExternalComponentDiscoverer-">
