@@ -6,7 +6,7 @@
     <groupId>org.universAAL.lddi</groupId>
     <artifactId>lddi.pom.common</artifactId>
     <version>3.4.2-SNAPSHOT</version>
-    <relativePath>../lddi.pom.common</relativePath>
+    <relativePath>../lddi.pom.common/pom.xml</relativePath>
   </parent>
   <artifactId>lddi.abstraction</artifactId>
   <packaging>bundle</packaging>
@@ -37,7 +37,7 @@
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.lddi.config.datapoints</artifactId>
-      <version>3.4.1-SNAPSHOT</version>
+    <version>3.4.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
   <build>
