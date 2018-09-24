@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.smarthome.exporter.devices.WindowSensorWrapper
-	c321199 [label=<<table title="org.universAAL.lddi.smarthome.exporter.devices.WindowSensorWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./WindowSensorWrapper.html">
+	c324026 [label=<<table title="org.universAAL.lddi.smarthome.exporter.devices.WindowSensorWrapper" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./WindowSensorWrapper.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> WindowSensorWrapper </td></tr>
 		</table></td></tr>
 		</table>>, URL="./WindowSensorWrapper.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee
-	c321210 [label=<<table title="org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractStatusValueCallee.html">
+	c324037 [label=<<table title="org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractStatusValueCallee.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractStatusValueCallee </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractStatusValueCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.smarthome.exporter.devices.WindowSensorWrapper extends org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee
-	c321210:p -> c321199:p [dir=back,arrowtail=empty];
+	c324037:p -> c324026:p [dir=back,arrowtail=empty];
 }
 

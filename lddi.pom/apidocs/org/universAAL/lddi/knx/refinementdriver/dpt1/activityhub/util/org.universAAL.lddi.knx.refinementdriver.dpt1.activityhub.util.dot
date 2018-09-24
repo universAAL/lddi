@@ -10,13 +10,13 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub.util.KnxDeviceConfig
-	c33769 [label=<<table title="org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub.util.KnxDeviceConfig" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./KnxDeviceConfig.html">
+	c34441 [label=<<table title="org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub.util.KnxDeviceConfig" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./KnxDeviceConfig.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> KnxDeviceConfig </td></tr>
 		</table></td></tr>
 		</table>>, URL="./KnxDeviceConfig.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub.util.LogTracker
-	c33770 [label=<<table title="org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub.util.LogTracker" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LogTracker.html">
+	c34442 [label=<<table title="org.universAAL.lddi.knx.refinementdriver.dpt1.activityhub.util.LogTracker" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LogTracker.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LogTracker </td></tr>
 		</table></td></tr>

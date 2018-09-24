@@ -10,15 +10,23 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.abstraction.ComponentIntegrator
-	c108511 [label=<<table title="org.universAAL.lddi.abstraction.ComponentIntegrator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ComponentIntegrator.html">
+	c109456 [label=<<table title="org.universAAL.lddi.abstraction.ComponentIntegrator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ComponentIntegrator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ComponentIntegrator </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./ComponentIntegrator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.abstraction.DatapointIntegrationScreener
+	c109457 [label=<<table title="org.universAAL.lddi.abstraction.DatapointIntegrationScreener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatapointIntegrationScreener.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> DatapointIntegrationScreener </td></tr>
+		</table></td></tr>
+		</table>>, URL="./DatapointIntegrationScreener.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.abstraction.ComponentIntegrator implements org.universAAL.middleware.container.SharedObjectListener
-	c108743:p -> c108511:p [dir=back,arrowtail=empty,style=dashed];
+	c109690:p -> c109456:p [dir=back,arrowtail=empty,style=dashed];
+	//org.universAAL.lddi.abstraction.DatapointIntegrationScreener extends org.universAAL.lddi.abstraction.ComponentIntegrator
+	c109456:p -> c109457:p [dir=back,arrowtail=empty];
 	// org.universAAL.middleware.container.SharedObjectListener
-	c108743 [label=<<table title="org.universAAL.middleware.container.SharedObjectListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/container/SharedObjectListener.html">
+	c109690 [label=<<table title="org.universAAL.middleware.container.SharedObjectListener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/container/SharedObjectListener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SharedObjectListener </td></tr>

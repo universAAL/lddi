@@ -4,6 +4,7 @@ org.universAAL.hw.exporter.zigbee.ha.devices
 org.universAAL.hw.exporter.zigbee.ha.devices.listeners
 org.universAAL.lddi.abstraction
 org.universAAL.lddi.abstraction.config.data
+org.universAAL.lddi.abstraction.config.tool
 org.universAAL.lddi.exporter.activityhub
 org.universAAL.lddi.exporter.activityhub.driver
 org.universAAL.lddi.exporter.activityhub.util

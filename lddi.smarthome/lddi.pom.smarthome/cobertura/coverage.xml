@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="1200" branches-covered="0" branches-valid="352" complexity="2.509433962264151" version="2.1.1" timestamp="1536991314501">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="1200" branches-covered="0" branches-valid="352" complexity="2.509433962264151" version="2.1.1" timestamp="1537795100220">
 	<sources>
 		<source>/home/travis/build/universAAL/lddi/lddi.smarthome/lddi.smarthome.exporter/src/main/java</source>
 		<source>--source</source>

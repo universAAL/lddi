@@ -10,27 +10,27 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor
-	c115075 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../devicecategory/Iso11073ContactClosureSensor.html">
+	c116046 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../devicecategory/Iso11073ContactClosureSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Iso11073ContactClosureSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="../devicecategory/Iso11073ContactClosureSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor
-	c115090 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ContactClosureSensor.html">
+	c116061 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ContactClosureSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ContactClosureSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ContactClosureSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c115101 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubSensor.html">
+	c116072 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ActivityHubSensor </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./ActivityHubSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c115101:p -> c115090:p [dir=back,arrowtail=empty];
+	c116072:p -> c116061:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor implements org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor
-	c115075:p -> c115090:p [dir=back,arrowtail=empty,style=dashed];
+	c116046:p -> c116061:p [dir=back,arrowtail=empty,style=dashed];
 }
 

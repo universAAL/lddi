@@ -93,8 +93,8 @@
 <th>Errors</th>
 <th>Missing Classes</th></tr>
 <tr class="b">
-<td>12</td>
-<td>9</td>
+<td>22</td>
+<td>25</td>
 <td>0</td>
 <td>0</td></tr></table></div>
 <div class="section">
@@ -105,63 +105,78 @@
 <th>Bugs</th></tr>
 <tr class="b">
 <td><a href="#org.universAAL.lddi.abstraction.CommunicationGateway">org.universAAL.lddi.abstraction.CommunicationGateway</a></td>
-<td>7</td></tr>
+<td>8</td></tr>
 <tr class="a">
 <td><a href="#org.universAAL.lddi.abstraction.ComponentIntegrator">org.universAAL.lddi.abstraction.ComponentIntegrator</a></td>
 <td>1</td></tr>
 <tr class="b">
 <td><a href="#org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration">org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration</a></td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool</a></td>
+<td>13</td></tr>
+<tr class="b">
+<td><a href="#org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$EventsModel">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$EventsModel</a></td>
+<td>1</td></tr>
+<tr class="a">
+<td><a href="#org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$PropertiesModel">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$PropertiesModel</a></td>
 <td>1</td></tr></table></div><a name="org.universAAL.lddi.abstraction.CommunicationGateway"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.abstraction.CommunicationGateway"></a>org.universAAL.lddi.abstraction.CommunicationGateway</h3>
 <table border="0" class="bodyTable">
-<tr class="a">
+<tr class="b">
 <th>Bug</th>
 <th>Category</th>
 <th>Details</th>
 <th>Line</th>
 <th>Priority</th></tr>
-<tr class="b">
+<tr class="a">
 <td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.addComponents(List, ExternalComponentDiscoverer)</td>
 <td>MT_CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
-<td>158</td>
+<td>160</td>
 <td>Medium</td></tr>
-<tr class="a">
+<tr class="b">
 <td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer)</td>
 <td>MT_CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
-<td>327</td>
+<td>308</td>
 <td>Medium</td></tr>
-<tr class="b">
+<tr class="a">
 <td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer)</td>
 <td>MT_CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
-<td>521</td>
+<td>503</td>
 <td>Medium</td></tr>
+<tr class="b">
+<td>Incorrect lazy initialization and update of static field org.universAAL.lddi.abstraction.CommunicationGateway.dpIntegrationScreener in org.universAAL.lddi.abstraction.CommunicationGateway.init(ModuleContext, Object[], ConfigurationManager, ConfigurationEditor, boolean)</td>
+<td>MT_CORRECTNESS</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#LI_LAZY_INIT_UPDATE_STATIC">LI_LAZY_INIT_UPDATE_STATIC</a></td>
+<td>216</td>
+<td>High</td></tr>
 <tr class="a">
 <td>Write to static field org.universAAL.lddi.abstraction.CommunicationGateway.CGW_CONF_APP_ID from instance method org.universAAL.lddi.abstraction.CommunicationGateway.init(ModuleContext, Object[], ConfigurationManager, ConfigurationEditor, boolean)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>214</td>
-<td>High</td></tr>
+<td>221</td>
+<td>Medium</td></tr>
 <tr class="b">
 <td>Method org.universAAL.lddi.abstraction.CommunicationGateway.addComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
-<td>160</td>
+<td>162</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Method org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
-<td>329</td>
+<td>310</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Method org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
-<td>523</td>
+<td>505</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.ComponentIntegrator"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.abstraction.ComponentIntegrator"></a>org.universAAL.lddi.abstraction.ComponentIntegrator</h3>
@@ -192,7 +207,124 @@
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_MUTABLE_ARRAY">MS_MUTABLE_ARRAY</a></td>
 <td>39</td>
-<td>High</td></tr></table></div>
+<td>High</td></tr></table></div><a name="org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool"></a>org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.eventsModel from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>170</td>
+<td>High</td></tr>
+<tr class="a">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.indexValue from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>200</td>
+<td>High</td></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.propertiesModel from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>169</td>
+<td>High</td></tr>
+<tr class="a">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.lblCompID from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>242</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.lblLocation from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>260</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.lblType from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>251</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.lblValueFetched from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>323</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.notifications from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>421</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.properties from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>277</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.valPullAddress from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>304</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.valPushAddress from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>401</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.valSetAddress from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>352</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Write to static field org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.valueToWrite from instance method new org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool()</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>363</td>
+<td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.config.tool.DatapointConfigToolEventsModel"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.config.tool.DatapointConfigToolEventsModel"></a>org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$EventsModel</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>Should org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$EventsModel be a _static_ inner class?</td>
+<td>PERFORMANCE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SIC_INNER_SHOULD_BE_STATIC">SIC_INNER_SHOULD_BE_STATIC</a></td>
+<td>113</td>
+<td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.config.tool.DatapointConfigToolPropertiesModel"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.config.tool.DatapointConfigToolPropertiesModel"></a>org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$PropertiesModel</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>Should org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$PropertiesModel be a _static_ inner class?</td>
+<td>PERFORMANCE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SIC_INNER_SHOULD_BE_STATIC">SIC_INNER_SHOULD_BE_STATIC</a></td>
+<td>44</td>
+<td>Medium</td></tr></table></div>
       </div>
     </div>
     <div class="clear">

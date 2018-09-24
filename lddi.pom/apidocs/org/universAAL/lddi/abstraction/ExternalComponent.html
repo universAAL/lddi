@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html" title="class in org.universAAL.lddi.abstraction"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../org/universAAL/lddi/abstraction/DatapointIntegrationScreener.html" title="class in org.universAAL.lddi.abstraction"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html" title="interface in org.universAAL.lddi.abstraction"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -207,30 +207,41 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#getDatapoint-java.lang.String-">getDatapoint</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</code>&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#getDatapointValue-java.lang.String-java.lang.String-">getDatapointValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;pullAddress)</code>&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html" title="class in org.universAAL.lddi.abstraction">CommunicationGateway</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#getGateway--">getGateway</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>org.universAAL.ontology.location.Location</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#getLocation--">getLocation</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>org.universAAL.middleware.owl.ManagedIndividual</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#getOntResource--">getOntResource</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#getPropertyValue-java.lang.String-">getPropertyValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#getTypeURI--">getTypeURI</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#setDatapointValue-java.lang.String-java.lang.String-java.lang.String-">setDatapointValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;setAddress,
+                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value)</code>&nbsp;</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#setLocation-java.lang.String-">setLocation</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;locURI)</code>&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#setPropertyValue-java.lang.String-java.lang.Object-">setPropertyValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>&nbsp;</td>
@@ -361,6 +372,27 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;getPropertyValue(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</pre>
 </li>
 </ul>
+<a name="getDatapointValue-java.lang.String-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDatapointValue</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getDatapointValue(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;pullAddress)</pre>
+</li>
+</ul>
+<a name="setDatapointValue-java.lang.String-java.lang.String-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setDatapointValue</h4>
+<pre>public&nbsp;void&nbsp;setDatapointValue(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                              <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;setAddress,
+                              <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value)</pre>
+</li>
+</ul>
 <a name="getTypeURI--">
 <!--   -->
 </a>
@@ -417,7 +449,7 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html" title="class in org.universAAL.lddi.abstraction"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../org/universAAL/lddi/abstraction/DatapointIntegrationScreener.html" title="class in org.universAAL.lddi.abstraction"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html" title="interface in org.universAAL.lddi.abstraction"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
