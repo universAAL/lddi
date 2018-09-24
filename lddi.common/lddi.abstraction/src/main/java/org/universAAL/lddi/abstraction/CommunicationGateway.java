@@ -118,6 +118,7 @@ public abstract class CommunicationGateway {
 				return;
 			
 			this.value = value;
+			dpIntegrationScreener.processEvent(datapoint, value);
 			for (ComponentIntegrator ci : subscribers)
 				ci.processEvent(datapoint, value);
 		}
@@ -138,6 +139,7 @@ public abstract class CommunicationGateway {
 	private HashSet<ExternalComponentDiscoverer> discoverers = new HashSet<ExternalComponentDiscoverer>(3);
 	
 	private int eventingSimulationTicker = 0;
+	private static DatapointIntegrationScreener dpIntegrationScreener = null;
 	
 	// remember which integrators are interested in which types of components
 	private Hashtable<String, ArrayList<ComponentIntegrator>> registeredIntegrators = new Hashtable<String, ArrayList<ComponentIntegrator>>();
@@ -211,39 +213,18 @@ public abstract class CommunicationGateway {
 	 *				  from the "org.universAAL.middleware" group.
 	 */
 	public final void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr, ConfigurationEditor confEditor, boolean needsEventingSimulation) {
-		CGW_CONF_APP_ID = getClass().getSimpleName();
+		if (dpIntegrationScreener == null) {
+			dpIntegrationScreener = new DatapointIntegrationScreener();
+			dpIntegrationScreener.showTool();
+		}
 		
-//		String uSpaceURI = Constants.MIDDLEWARE_LOCAL_ID_PREFIX;
-//		if (uSpaceURI.endsWith("#"))
-//			uSpaceURI = uSpaceURI.substring(0, uSpaceURI.lastIndexOf('#'));
-//		
-//		if (uSpaceURI.endsWith("/"))
-//			componentURIprefix = uSpaceURI + CGW_CONF_APP_ID + "#";
-//		else
-//			componentURIprefix = uSpaceURI + "/" + CGW_CONF_APP_ID + "#";
+		CGW_CONF_APP_ID = getClass().getSimpleName();
 				
 		if (confMgr != null) {
 			CGwDataConfiguration dataConf = new CGwDataConfiguration(this);
 			addDiscoverer(dataConf);
 			
-//			boolean registerModule = true;
-//			if (confEditor != null) {
-//				List<EntityPattern> patterns = new ArrayList<EntityPattern>();
-//				patterns.add(new ApplicationPattern(CGW_CONF_APP_ID));
-//				patterns.add(new ApplicationPartPattern(CGW_CONF_APP_PART_DATA_ID));
-//				List<ConfigurableEntityEditor> editors = confEditor.getMatchingConfigurationEditors(patterns, Locale.getDefault());
-//				if (editors != null)
-//					for (ConfigurableEntityEditor editor : editors) {
-//						if (editor instanceof ConfigurationParameterEditor
-//								&&  dataConf.configurationChanged(editor.getScope(), ((ConfigurationParameterEditor) editor).getConfiguredValue())) {
-//							registerModule = false;
-//							editor.subscribe2Changes(dataConf);
-//						}
-//					}
-//			}
-//			
-//			if (registerModule)
-				confMgr.register(CGwDataConfiguration.configurations, dataConf);
+			confMgr.register(CGwDataConfiguration.configurations, dataConf);
 		}
 
 		mc.getContainer().shareObject(mc, this, cgwSharingParams);
@@ -343,6 +324,7 @@ public abstract class CommunicationGateway {
 					ecs.add(ec);
 				}
 				// notify the registered component integrators
+				dpIntegrationScreener.componentsReplaced(components.toArray(new ExternalComponent[components.size()]));
 				for (Iterator<Entry<String, ArrayList<ComponentIntegrator>>> i = registeredIntegrators.entrySet().iterator(); i.hasNext();) {
 					Entry<String, ArrayList<ComponentIntegrator>> entry = i.next();
 					ArrayList<ExternalComponent> ecs = discoveredComponents.get(entry.getKey());

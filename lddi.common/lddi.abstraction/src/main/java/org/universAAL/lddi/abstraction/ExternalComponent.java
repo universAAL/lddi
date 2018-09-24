@@ -138,6 +138,25 @@ public class ExternalComponent {
 		ontResource.changeProperty(propURI, value);
 		return value;
 	}
+	
+	public String getDatapointValue(String propURI, String pullAddress) {
+		if (propURI == null  ||  pullAddress == null)
+			return null;
+		
+		return converter.toString(getTypeURI(), propURI, converter.importValue(gw.getValue(pullAddress), getTypeURI(), propURI));
+	}
+	
+	String valueAsString(String propURI, Object value) {
+		return converter.toString(getTypeURI(), propURI, value);
+	}
+	
+	public void setDatapointValue(String propURI, String setAddress, String value) {
+		if (propURI != null  &&  setAddress != null) {
+			Object o = converter.exportValue(getTypeURI(), propURI, converter.valueOf(value, getTypeURI(), propURI));
+			if (o != null)
+				gw.setValue(setAddress, o);
+		}
+	}
 
 	public String getTypeURI() {
 		return ontResource.getClassURI();

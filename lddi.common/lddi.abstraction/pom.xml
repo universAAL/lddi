@@ -15,6 +15,10 @@
   <inceptionYear>2015</inceptionYear>
   <dependencies>
     <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.core</artifactId>
     </dependency>
