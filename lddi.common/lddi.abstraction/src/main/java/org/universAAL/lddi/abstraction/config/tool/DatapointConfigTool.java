@@ -148,12 +148,12 @@ public class DatapointConfigTool extends JFrame {
 	
 	private JPanel contentPane;
 	private static JTextField valPullAddress;
+	private static JTextField valPushAddress;
 	private static JTextField valSetAddress;
 	private static JComboBox<?> properties;
 	private static JLabel lblCompID, lblType, lblLocation;
 	
 	private static JTextField indexValue;
-	private static JSlider indexSlider;
 	private static ArrayList<ExternalComponent> components = new ArrayList<ExternalComponent>();
 	private static int indexSelectedComponent;
 	private static PropertiesModel propertiesModel;
@@ -176,25 +176,26 @@ public class DatapointConfigTool extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		indexSlider = new JSlider();
-		indexSlider.setMinimum(0);
-		indexSlider.setMaximum(52);
-		indexSlider.setValue(0);
-		indexSlider.setSnapToTicks(true);
-		indexSlider.setMinorTickSpacing(1);
-		indexSlider.setMajorTickSpacing(10);
-		GridBagConstraints gbc_indexSlider = new GridBagConstraints();
-		gbc_indexSlider.gridx = 0;
-		gbc_indexSlider.gridy = 0;
-		gbc_indexSlider.gridwidth = 2;
-		gbc_indexSlider.fill = GridBagConstraints.BOTH;
-		gbc_indexSlider.insets = new Insets(5, 5, 5, 5);
-		contentPane.add(indexSlider, gbc_indexSlider);
+		JButton btnPrevComp = new JButton("Previous");
+		GridBagConstraints gbc_btnPrevComp = new GridBagConstraints();
+		gbc_btnPrevComp.insets = new Insets(5, 5, 5, 5);
+		gbc_btnPrevComp.gridx = 0;
+		gbc_btnPrevComp.gridy = 0;
+		contentPane.add(btnPrevComp, gbc_btnPrevComp);
+		btnPrevComp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (indexSelectedComponent > -1) {
+					indexValue.setText(Integer.toString(indexSelectedComponent));
+					indexSelectedComponent--;
+					DatapointConfigTool.componentSelected(indexSelectedComponent);
+				}
+			}
+		});
 		
 		indexValue = new JTextField();
 		indexValue.setColumns(3);
@@ -202,23 +203,9 @@ public class DatapointConfigTool extends JFrame {
 		GridBagConstraints gbc_indexValue = new GridBagConstraints();
 		gbc_indexValue.anchor = GridBagConstraints.WEST;
 		gbc_indexValue.insets = new Insets(5, 5, 5, 5);
-		gbc_indexValue.gridx = 2;
+		gbc_indexValue.gridx = 1;
 		gbc_indexValue.gridy = 0;
 		contentPane.add(indexValue, gbc_indexValue);
-
-		indexSlider.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				DatapointConfigTool.componentSelected(indexSlider.getValue());
-			}
-		});
-		indexSlider.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				if (indexValue != null) {
-					indexValue.setText(Integer.toString(indexSlider.getValue()));
-				}
-			}
-		});
 
 		indexValue.addFocusListener(new FocusAdapter() {
 			@Override
@@ -227,13 +214,27 @@ public class DatapointConfigTool extends JFrame {
 					int i = Integer.parseInt(indexValue.getText());
 					if (i < 0  ||  i > components.size())
 						indexValue.grabFocus();
-					else {
-						DatapointConfigTool.indexSlider.setValue(i);
+					else
 						DatapointConfigTool.componentSelected(i);
-					}
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					indexValue.grabFocus();
+				}
+			}
+		});
+		
+		btnPrevComp = new JButton("Next");
+		gbc_btnPrevComp = new GridBagConstraints();
+		gbc_btnPrevComp.insets = new Insets(5, 5, 5, 5);
+		gbc_btnPrevComp.gridx = 2;
+		gbc_btnPrevComp.gridy = 0;
+		contentPane.add(btnPrevComp, gbc_btnPrevComp);
+		btnPrevComp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (indexSelectedComponent < components.size()) {
+					indexSelectedComponent++;
+					indexValue.setText(Integer.toString(indexSelectedComponent+1));
+					DatapointConfigTool.componentSelected(indexSelectedComponent);
 				}
 			}
 		});
@@ -397,18 +398,28 @@ public class DatapointConfigTool extends JFrame {
 		gbc_lblNotifications.gridy = 7;
 		contentPane.add(lblNotifications, gbc_lblNotifications);
 		
+		valPushAddress = new JTextField();
+		valPushAddress.setColumns(30);
+		lblNotifications.setLabelFor(valPushAddress);
+		valPushAddress.setText("the push address...");
+		GridBagConstraints gbc_valPushAddress = new GridBagConstraints();
+		gbc_valPushAddress.insets = new Insets(5, 5, 5, 5);
+		gbc_valPushAddress.anchor = GridBagConstraints.WEST;
+		gbc_valPushAddress.gridx = 1;
+		gbc_valPushAddress.gridy = 7;
+		contentPane.add(valPushAddress, gbc_valPushAddress);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridwidth = 2;
 		gbc_scrollPane.insets = new Insets(5, 5, 5, 5);
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 7;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 8;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
 		notifications = new JTable(eventsModel);
 		scrollPane.setViewportView(notifications);
-		lblNotifications.setLabelFor(notifications);
 		notifications.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		notifications.setColumnSelectionAllowed(false);
 		notifications.setRowSelectionAllowed(true);
@@ -423,13 +434,10 @@ public class DatapointConfigTool extends JFrame {
 	}
 	
 	public void componentsReplaced(ExternalComponent[] news) {
-		int prevNo = components.size();
 		if (news != null)
 			for (int i=0;  i<news.length;  i++)
 				if (news[i] != null)
 					components.add(news[i]);
-		if (components.size() != prevNo)
-			indexSlider.setMaximum(components.size());
 	}
 	
 	private static void componentSelected(int index) {
@@ -456,11 +464,13 @@ public class DatapointConfigTool extends JFrame {
 	private static void propertySelected(String prop) {
 		if (StringUtils.isNullOrEmpty(prop)) {
 			valPullAddress.setText("the pull address...");
+			valPushAddress.setText("the push address...");
 			valSetAddress.setText("the set address...");
 		} else {
 			ExternalComponent ec = components.get(indexSelectedComponent);
-			valPullAddress.setText(ec.getDatapoint(prop).getPullAddress());
-			valSetAddress.setText(ec.getDatapoint(prop).getSetAddress());
+			valPullAddress.setText(String.valueOf(ec.getDatapoint(prop).getPullAddress()));
+			valPushAddress.setText(String.valueOf(ec.getDatapoint(prop).getPushAddress()));
+			valSetAddress.setText(String.valueOf(ec.getDatapoint(prop).getSetAddress()));
 		}
 		lblValueFetched.setText("value fetched...");
 		valueToWrite.setText("value to write...");
