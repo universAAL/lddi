@@ -4,8 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.universAAL.lddi.abstraction.ComponentIntegrator;
 import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.middleware.container.utils.StringUtils;
+import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.ontology.location.Location;
 
 import java.awt.GridBagLayout;
@@ -22,15 +24,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JSlider;
 import javax.swing.JTable;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.event.ChangeEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
@@ -155,17 +155,23 @@ public class DatapointConfigTool extends JFrame {
 	
 	private static JTextField indexValue;
 	private static ArrayList<ExternalComponent> components = new ArrayList<ExternalComponent>();
-	private static int indexSelectedComponent;
+	private static int indexSelectedComponent = -1;
 	private static PropertiesModel propertiesModel;
 	private static JLabel lblValueFetched;
 	private static JTable notifications;
 	private static EventsModel eventsModel;
 	private static JTextField valueToWrite;
+	
+	private ArrayList<ExternalComponent[]> newComponents;
+	private Hashtable<String, ManagedIndividual> receivedEvents;
 
 	/**
 	 * Create the frame.
 	 */
-	public DatapointConfigTool() {
+	public DatapointConfigTool(ArrayList<ExternalComponent[]> news, Hashtable<String, ManagedIndividual> events) {
+		newComponents = news;
+		receivedEvents = events;
+		
 		propertiesModel = new PropertiesModel();
 		eventsModel = new EventsModel();
 		
@@ -231,7 +237,7 @@ public class DatapointConfigTool extends JFrame {
 		contentPane.add(btnPrevComp, gbc_btnPrevComp);
 		btnPrevComp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (indexSelectedComponent < components.size()) {
+				if (indexSelectedComponent < components.size()-1) {
 					indexSelectedComponent++;
 					indexValue.setText(Integer.toString(indexSelectedComponent+1));
 					DatapointConfigTool.componentSelected(indexSelectedComponent);
@@ -414,7 +420,7 @@ public class DatapointConfigTool extends JFrame {
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridwidth = 2;
 		gbc_scrollPane.insets = new Insets(5, 5, 5, 5);
-		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 8;
 		contentPane.add(scrollPane, gbc_scrollPane);
 		
@@ -424,6 +430,72 @@ public class DatapointConfigTool extends JFrame {
 		notifications.setColumnSelectionAllowed(false);
 		notifications.setRowSelectionAllowed(true);
 		notifications.setFillsViewportHeight(true);
+	}
+	
+	private Thread eventsThread = null;
+	private Thread componentsThread = null;
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		if (visible) {
+			if (eventsThread == null) {
+				eventsThread = new Thread() {
+					public void run() {
+						synchronized (receivedEvents) {
+							while (true) {
+								if (!receivedEvents.isEmpty()) {
+									for (String key : receivedEvents.keySet()) {
+										ManagedIndividual ontResource = receivedEvents.remove(key);
+										ExternalComponent ec = (ExternalComponent) ontResource.getProperty(ComponentIntegrator.PROP_CORRESPONDING_EXTERNAL_COMPONENT);
+										DatapointConfigTool.this.newNotification(ec, key, ec.valueAsString(key, ontResource.getProperty(key)));
+									}
+								}
+								try {
+									wait();
+								} catch (InterruptedException e) {
+									break;
+								}
+							}
+						}
+					}
+				};
+				try {
+					eventsThread.start();
+				} catch (Exception e) {}
+			}
+			
+			if (componentsThread == null) {
+				componentsThread = new Thread() {
+					public void run() {
+						synchronized (receivedEvents) {
+							while (true) {
+								while (!newComponents.isEmpty()) {
+									ExternalComponent[] ecs = newComponents.remove(0);
+									if (ecs == null) {
+										DatapointConfigTool.this.setVisible(false);
+									} else
+										DatapointConfigTool.this.componentsReplaced(ecs);
+								}
+								try {
+									wait();
+								} catch (InterruptedException e) {
+									break;
+								}
+							}
+						}
+					}
+				};
+				try {
+					componentsThread.start();
+				} catch (Exception e) {}
+			}
+		} else {
+			if (eventsThread != null  &&  eventsThread.isAlive())
+				eventsThread.interrupt();
+			if (componentsThread != null  &&  componentsThread.isAlive())
+				componentsThread.interrupt();
+			this.dispose();
+		}
 	}
 
 	public void newNotification(ExternalComponent ec, String propURI, String newValue) {

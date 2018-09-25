@@ -1,13 +1,17 @@
 package org.universAAL.lddi.abstraction;
 
 import java.awt.EventQueue;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 import org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool;
 import org.universAAL.middleware.owl.ManagedIndividual;
 
 public class DatapointIntegrationScreener extends ComponentIntegrator {
 	
-	DatapointConfigTool theTool;
+	private ArrayList<ExternalComponent[]> newComponents = new ArrayList<ExternalComponent[]>();
+	private Hashtable<String, ManagedIndividual> receivedEvents = new Hashtable<String, ManagedIndividual>();
+	
 	
 	DatapointIntegrationScreener() {
 	}
@@ -16,8 +20,7 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					theTool = new DatapointConfigTool();
-					theTool.setVisible(true);
+					new DatapointConfigTool(newComponents, receivedEvents).setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -27,19 +30,33 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 
 	@Override
 	protected void publish(ManagedIndividual ontResource, String propURI, Object oldValue) {
-		ExternalComponent ec = (ExternalComponent) ontResource.getProperty(PROP_CORRESPONDING_EXTERNAL_COMPONENT);
-		theTool.newNotification(ec, propURI, ec.valueAsString(propURI, ontResource.getProperty(propURI)));
+		if (propURI == null  ||  ontResource == null)
+			return;
+		
+		synchronized (receivedEvents) {
+			receivedEvents.put(propURI, ontResource);
+			notifyAll();
+		}
 	}
 	
 	void stop() {
-		theTool.setVisible(false);
-		theTool.dispose();
+		synchronized (newComponents) {
+			newComponents.add(null);
+			notifyAll();
+		}
 	}
 
 	@Override
 	void componentsReplaced(ExternalComponent[] components) {
+		if (components == null)
+			return;
+		
 		super.componentsReplaced(components);
-		theTool.componentsReplaced(components);
+		
+		synchronized (newComponents) {
+			newComponents.add(components);
+			notifyAll();
+		}
 	}
 
 }

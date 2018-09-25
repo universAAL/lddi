@@ -146,7 +146,7 @@ public class ExternalComponent {
 		return converter.toString(getTypeURI(), propURI, converter.importValue(gw.getValue(pullAddress), getTypeURI(), propURI));
 	}
 	
-	String valueAsString(String propURI, Object value) {
+	public String valueAsString(String propURI, Object value) {
 		return converter.toString(getTypeURI(), propURI, value);
 	}
 	
