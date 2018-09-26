@@ -25,6 +25,9 @@ import javax.swing.JScrollPane;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -140,9 +143,11 @@ public class DatapointConfigTool extends JFrame {
 		}
 		
 		void clear() {
-			int n = events.size() - 1;
-			events.clear();
-			fireTableRowsDeleted(0, n);
+			if (!events.isEmpty()) {
+				int n = events.size() - 1;
+				events.clear();
+				fireTableRowsDeleted(0, n);
+			}
 		}
 	}
 	
@@ -163,14 +168,20 @@ public class DatapointConfigTool extends JFrame {
 	private static JTextField valueToWrite;
 	
 	private ArrayList<ExternalComponent[]> newComponents;
-	private Hashtable<String, ManagedIndividual> receivedEvents;
+	private Hashtable<String, ExternalComponent> receivedEvents;
+	private final Lock lock;
+	private final Condition publishCond;
+	private final Condition componentsReplacedCond;
 
 	/**
 	 * Create the frame.
 	 */
-	public DatapointConfigTool(ArrayList<ExternalComponent[]> news, Hashtable<String, ManagedIndividual> events) {
+	public DatapointConfigTool(ArrayList<ExternalComponent[]> news, Hashtable<String, ExternalComponent> events, Lock lock, Condition publishCond, Condition componentsReplacedCond) {
 		newComponents = news;
 		receivedEvents = events;
+		this.lock = lock;
+		this.publishCond = publishCond;
+		this.componentsReplacedCond = componentsReplacedCond;
 		
 		propertiesModel = new PropertiesModel();
 		eventsModel = new EventsModel();
@@ -197,7 +208,6 @@ public class DatapointConfigTool extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (indexSelectedComponent > -1) {
 					indexValue.setText(Integer.toString(indexSelectedComponent));
-					indexSelectedComponent--;
 					DatapointConfigTool.componentSelected(indexSelectedComponent);
 				}
 			}
@@ -238,9 +248,8 @@ public class DatapointConfigTool extends JFrame {
 		btnPrevComp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (indexSelectedComponent < components.size()-1) {
-					indexSelectedComponent++;
-					indexValue.setText(Integer.toString(indexSelectedComponent+1));
-					DatapointConfigTool.componentSelected(indexSelectedComponent);
+					indexValue.setText(Integer.toString(indexSelectedComponent+2));
+					DatapointConfigTool.componentSelected(indexSelectedComponent+2);
 				}
 			}
 		});
@@ -441,20 +450,19 @@ public class DatapointConfigTool extends JFrame {
 			if (eventsThread == null) {
 				eventsThread = new Thread() {
 					public void run() {
-						synchronized (receivedEvents) {
-							while (true) {
-								if (!receivedEvents.isEmpty()) {
-									for (String key : receivedEvents.keySet()) {
-										ManagedIndividual ontResource = receivedEvents.remove(key);
-										ExternalComponent ec = (ExternalComponent) ontResource.getProperty(ComponentIntegrator.PROP_CORRESPONDING_EXTERNAL_COMPONENT);
-										DatapointConfigTool.this.newNotification(ec, key, ec.valueAsString(key, ontResource.getProperty(key)));
-									}
+						while (true) {
+							lock.lock();
+							try {
+								while (receivedEvents.isEmpty())
+									publishCond.await();
+								for (String key : receivedEvents.keySet()) {
+										ExternalComponent ec = receivedEvents.remove(key);
+										DatapointConfigTool.this.newNotification(ec, key, ec.valueAsString(key));
 								}
-								try {
-									wait();
-								} catch (InterruptedException e) {
-									break;
-								}
+							} catch (Exception e) {
+								e.printStackTrace();
+							} finally {
+								lock.unlock();
 							}
 						}
 					}
@@ -467,20 +475,20 @@ public class DatapointConfigTool extends JFrame {
 			if (componentsThread == null) {
 				componentsThread = new Thread() {
 					public void run() {
-						synchronized (receivedEvents) {
-							while (true) {
-								while (!newComponents.isEmpty()) {
-									ExternalComponent[] ecs = newComponents.remove(0);
-									if (ecs == null) {
-										DatapointConfigTool.this.setVisible(false);
-									} else
-										DatapointConfigTool.this.componentsReplaced(ecs);
-								}
-								try {
-									wait();
-								} catch (InterruptedException e) {
-									break;
-								}
+						while (true) {
+							lock.lock();
+							try {
+								while (newComponents.isEmpty())
+									componentsReplacedCond.await();
+								ExternalComponent[] ecs = newComponents.remove(0);
+								if (ecs == null)
+									DatapointConfigTool.this.setVisible(false);
+								else
+									DatapointConfigTool.this.componentsReplaced(ecs);
+							} catch (Exception e) {
+								e.printStackTrace();
+							} finally {
+								lock.unlock();
 							}
 						}
 					}

@@ -91,11 +91,11 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	 * properties of these representations will cause to a change of the value of the related properties of
 	 * the actual external component.
 	 */
-	private Hashtable<String, ExternalComponent> connectedComponents = new Hashtable<String, ExternalComponent>();
+	protected Hashtable<String, ExternalComponent> connectedComponents = new Hashtable<String, ExternalComponent>();
 	
-	private Hashtable<Object, CommunicationGateway> discoveredGateways = new Hashtable<Object, CommunicationGateway>();
+	protected Hashtable<Object, CommunicationGateway> discoveredGateways = new Hashtable<Object, CommunicationGateway>();
 	
-	private Hashtable<String, HashSet<Subscription>> subscriptions = new Hashtable<String, HashSet<Subscription>>();
+	protected Hashtable<String, HashSet<Subscription>> subscriptions = new Hashtable<String, HashSet<Subscription>>();
 	
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to share with

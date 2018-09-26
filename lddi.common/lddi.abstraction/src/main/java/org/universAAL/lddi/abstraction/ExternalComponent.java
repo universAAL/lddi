@@ -146,8 +146,8 @@ public class ExternalComponent {
 		return converter.toString(getTypeURI(), propURI, converter.importValue(gw.getValue(pullAddress), getTypeURI(), propURI));
 	}
 	
-	public String valueAsString(String propURI, Object value) {
-		return converter.toString(getTypeURI(), propURI, value);
+	public String valueAsString(String propURI) {
+		return converter.toString(getTypeURI(), propURI, ontResource.getProperty(propURI));
 	}
 	
 	public void setDatapointValue(String propURI, String setAddress, String value) {

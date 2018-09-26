@@ -3,6 +3,9 @@ package org.universAAL.lddi.abstraction;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool;
 import org.universAAL.middleware.owl.ManagedIndividual;
@@ -10,7 +13,10 @@ import org.universAAL.middleware.owl.ManagedIndividual;
 public class DatapointIntegrationScreener extends ComponentIntegrator {
 	
 	private ArrayList<ExternalComponent[]> newComponents = new ArrayList<ExternalComponent[]>();
-	private Hashtable<String, ManagedIndividual> receivedEvents = new Hashtable<String, ManagedIndividual>();
+	private Hashtable<String, ExternalComponent> receivedEvents = new Hashtable<String, ExternalComponent>();
+	private final Lock lock = new ReentrantLock();
+	private final Condition publishCond = lock.newCondition();
+	private final Condition componentsReplacedCond = lock.newCondition();
 	
 	
 	DatapointIntegrationScreener() {
@@ -20,7 +26,7 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new DatapointConfigTool(newComponents, receivedEvents).setVisible(true);
+					new DatapointConfigTool(newComponents, receivedEvents, lock, publishCond, componentsReplacedCond).setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -33,16 +39,22 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		if (propURI == null  ||  ontResource == null)
 			return;
 		
-		synchronized (receivedEvents) {
-			receivedEvents.put(propURI, ontResource);
-			notifyAll();
+		lock.lock();
+		try {
+			receivedEvents.put(propURI, connectedComponents.get(ontResource.getURI()));
+			publishCond.signal();
+		} finally {
+			lock.unlock();
 		}
 	}
 	
 	void stop() {
-		synchronized (newComponents) {
+		lock.lock();
+		try {
 			newComponents.add(null);
-			notifyAll();
+			componentsReplacedCond.signal();
+		} finally {
+			lock.unlock();
 		}
 	}
 
@@ -53,9 +65,12 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		
 		super.componentsReplaced(components);
 		
-		synchronized (newComponents) {
+		lock.lock();
+		try {
 			newComponents.add(components);
-			notifyAll();
+			componentsReplacedCond.signal();
+		} finally {
+			lock.unlock();
 		}
 	}
 
