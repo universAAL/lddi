@@ -44,6 +44,12 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		try {
 			receivedEvents.put(propURI, connectedComponents.get(ontResource.getURI()));
 			publishCond.signal();
+		} catch (Exception e) {
+			System.out.println(propURI + "@@@@@@@@@@@@@@@@@@@@@" + ontResource);
+			System.out.println("receivedEvents=================" + receivedEvents);
+			System.out.println("connectedComponents============" + connectedComponents);
+			System.out.println("Related component============" + ontResource.getProperty(ComponentIntegrator.PROP_CORRESPONDING_EXTERNAL_COMPONENT));
+			System.out.println("Related component============" + connectedComponents.get(ontResource.getURI()));
 		} finally {
 			lock.unlock();
 		}
@@ -64,7 +70,8 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		if (components == null)
 			return;
 		
-		super.componentsReplaced(components);
+		for (int i=components.length-1;  i>-1;  i--)
+			connectedComponents.put(components[i].getComponentURI(), components[i]);
 		
 		lock.lock();
 		try {

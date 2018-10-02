@@ -6,6 +6,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.universAAL.lddi.abstraction.ComponentIntegrator;
 import org.universAAL.lddi.abstraction.ExternalComponent;
+import org.universAAL.lddi.abstraction.ExternalDatapoint;
+import org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint;
 import org.universAAL.middleware.container.utils.StringUtils;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.ontology.location.Location;
@@ -43,6 +45,7 @@ public class DatapointConfigTool extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -7698455054350741666L;
+	private static final String PROP_MY_EVENT_MODEL = "urn:lddi.abstraction/DatapointConfigTool#eventsModel";
 
 	private class PropertiesModel implements ComboBoxModel {
 		ArrayList<String> propChoices = new ArrayList<String>();
@@ -167,6 +170,8 @@ public class DatapointConfigTool extends JFrame {
 	private static EventsModel eventsModel;
 	private static JTextField valueToWrite;
 	
+	private static DatapointConfigTool self;
+	
 	private ArrayList<ExternalComponent[]> newComponents;
 	private Hashtable<String, ExternalComponent> receivedEvents;
 	private final Lock lock;
@@ -183,10 +188,12 @@ public class DatapointConfigTool extends JFrame {
 		this.publishCond = publishCond;
 		this.componentsReplacedCond = componentsReplacedCond;
 		
+		self = this;
+		
 		propertiesModel = new PropertiesModel();
 		eventsModel = new EventsModel();
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -507,7 +514,20 @@ public class DatapointConfigTool extends JFrame {
 	}
 
 	public void newNotification(ExternalComponent ec, String propURI, String newValue) {
-		if (indexSelectedComponent > -1  &&  indexSelectedComponent < components.size()
+		EventsModel em = null;
+		if (ec != null  &&  propURI != null) {
+			ExternalDatapoint ed = ec.getDatapoint(propURI);
+			if (ed instanceof ConfiguredDatapoint) {
+				em = (EventsModel) ((ConfiguredDatapoint) ed).getProperty(PROP_MY_EVENT_MODEL);
+				if (em == null) {
+					em = self.new EventsModel();
+					((ConfiguredDatapoint) ed).setProperty(PROP_MY_EVENT_MODEL, em);
+				}
+				em.addValue((newValue == null)? "Null value" : newValue);
+			}
+		}
+		if (em == null
+				&&  indexSelectedComponent > -1  &&  indexSelectedComponent < components.size()
 				&&  components.get(indexSelectedComponent) == ec
 				&&  propURI != null  &&  propURI.equals(propertiesModel.getSelectedItem()))
 			eventsModel.addValue((newValue == null)? "Null value" : newValue);
@@ -542,18 +562,31 @@ public class DatapointConfigTool extends JFrame {
 	}
 	
 	private static void propertySelected(String prop) {
+		eventsModel.clear();
+		notifications.setModel(eventsModel);
+		
 		if (StringUtils.isNullOrEmpty(prop)) {
 			valPullAddress.setText("the pull address...");
 			valPushAddress.setText("the push address...");
 			valSetAddress.setText("the set address...");
 		} else {
 			ExternalComponent ec = components.get(indexSelectedComponent);
-			valPullAddress.setText(String.valueOf(ec.getDatapoint(prop).getPullAddress()));
-			valPushAddress.setText(String.valueOf(ec.getDatapoint(prop).getPushAddress()));
-			valSetAddress.setText(String.valueOf(ec.getDatapoint(prop).getSetAddress()));
+			ExternalDatapoint ed = ec.getDatapoint(prop);
+			valPullAddress.setText(String.valueOf(ed.getPullAddress()));
+			valPushAddress.setText(String.valueOf(ed.getPushAddress()));
+			valSetAddress.setText(String.valueOf(ed.getSetAddress()));
+
+			EventsModel em = null;
+			if (ed instanceof ConfiguredDatapoint) {
+				em = (EventsModel) ((ConfiguredDatapoint) ed).getProperty(PROP_MY_EVENT_MODEL);
+				if (em == null) {
+					em = self.new EventsModel();
+					((ConfiguredDatapoint) ed).setProperty(PROP_MY_EVENT_MODEL, em);
+				}
+				notifications.setModel(em);
+			}
 		}
 		lblValueFetched.setText("value fetched...");
 		valueToWrite.setText("value to write...");
-		eventsModel.clear(); 
 	}
 }

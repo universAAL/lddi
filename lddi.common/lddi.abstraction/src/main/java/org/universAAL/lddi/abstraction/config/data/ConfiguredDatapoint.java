@@ -11,7 +11,7 @@ import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
  * @author mtazari
  *
  */
-class ConfiguredDatapoint implements ExternalDatapoint {
+public class ConfiguredDatapoint implements ExternalDatapoint {
 	
 	private Datapoint dp;
 	private ExternalComponent ec = null;
@@ -41,6 +41,15 @@ class ConfiguredDatapoint implements ExternalDatapoint {
 
 	public String getProperty() {
 		return dp.getProperty();
+	}
+	
+	public Object getProperty(String prop) {
+		return (prop == null)?  null : dp.getProperty(prop);
+	}
+	
+	public void setProperty(String prop, Object value) {
+		if (prop != null  &&  value != null)
+			dp.setProperty(prop, value);
 	}
 
 	public String getPullAddress() {
