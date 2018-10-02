@@ -20,6 +20,7 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 	
 	
 	DatapointIntegrationScreener() {
+		super();
 	}
 	
 	void showTool() {
