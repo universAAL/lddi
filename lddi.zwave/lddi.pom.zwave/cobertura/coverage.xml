@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="367" branches-covered="0" branches-valid="44" complexity="1.330188679245283" version="2.1.1" timestamp="1538468021986">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="367" branches-covered="0" branches-valid="44" complexity="1.330188679245283" version="2.1.1" timestamp="1538754948247">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/lddi/lddi.zwave/lddi.zwave.exporter/src/main/java</source>

@@ -10,24 +10,24 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.abstraction.ExternalComponentDiscoverer
-	c106720 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponentDiscoverer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../ExternalComponentDiscoverer.html">
+	c106914 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponentDiscoverer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../ExternalComponentDiscoverer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ExternalComponentDiscoverer </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../ExternalComponentDiscoverer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration
-	c106721 [label=<<table title="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CGwDataConfiguration.html">
+	c106916 [label=<<table title="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CGwDataConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CGwDataConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CGwDataConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration implements org.universAAL.middleware.interfaces.configuration.ConfigurableModule
-	c106949:p -> c106721:p [dir=back,arrowtail=empty,style=dashed];
+	c107144:p -> c106916:p [dir=back,arrowtail=empty,style=dashed];
 	//org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration implements org.universAAL.lddi.abstraction.ExternalComponentDiscoverer
-	c106720:p -> c106721:p [dir=back,arrowtail=empty,style=dashed];
+	c106914:p -> c106916:p [dir=back,arrowtail=empty,style=dashed];
 	// org.universAAL.middleware.interfaces.configuration.ConfigurableModule
-	c106949 [label=<<table title="org.universAAL.middleware.interfaces.configuration.ConfigurableModule" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/interfaces/configuration/ConfigurableModule.html">
+	c107144 [label=<<table title="org.universAAL.middleware.interfaces.configuration.ConfigurableModule" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/interfaces/configuration/ConfigurableModule.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ConfigurableModule </td></tr>

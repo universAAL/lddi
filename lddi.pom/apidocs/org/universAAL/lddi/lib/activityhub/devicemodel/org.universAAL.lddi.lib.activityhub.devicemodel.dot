@@ -10,106 +10,106 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor
-	c17875 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensor.html">
+	c17908 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TemperatureSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TemperatureSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensorEvent
-	c17876 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContactClosureSensorEvent.html">
+	c17909 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContactClosureSensorEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> ContactClosureSensorEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ContactClosureSensorEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor
-	c17877 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContactClosureSensor.html">
+	c17910 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContactClosureSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ContactClosureSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ContactClosureSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor
-	c17878 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SwitchSensor.html">
+	c17911 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SwitchSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SwitchSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SwitchSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor
-	c17879 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FallSensor.html">
+	c17912 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FallSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FallSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FallSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.FallSensorEvent
-	c17880 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FallSensorEvent.html">
+	c17913 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FallSensorEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> FallSensorEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FallSensorEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensorEvent
-	c17881 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SwitchSensorEvent.html">
+	c17914 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SwitchSensorEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> SwitchSensorEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SwitchSensorEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubFactory
-	c17882 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubFactory.html">
+	c17915 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubFactory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ActivityHubFactory </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ActivityHubFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensorEvent
-	c17883 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UsageSensorEvent.html">
+	c17916 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UsageSensorEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> UsageSensorEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UsageSensorEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor
-	c17884 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UsageSensor.html">
+	c17917 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UsageSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UsageSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UsageSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensorEvent
-	c17885 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotionSensorEvent.html">
+	c17918 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotionSensorEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> MotionSensorEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MotionSensorEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor
-	c17886 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotionSensor.html">
+	c17919 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotionSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MotionSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MotionSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensorEvent
-	c17887 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensorEvent.html">
+	c17920 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensorEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensorEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> TemperatureSensorEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TemperatureSensorEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c17888 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubSensor.html">
+	c17921 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ActivityHubSensor </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./ActivityHubSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c17888:p -> c17875:p [dir=back,arrowtail=empty];
+	c17921:p -> c17908:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c17888:p -> c17877:p [dir=back,arrowtail=empty];
+	c17921:p -> c17910:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c17888:p -> c17878:p [dir=back,arrowtail=empty];
+	c17921:p -> c17911:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c17888:p -> c17879:p [dir=back,arrowtail=empty];
+	c17921:p -> c17912:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c17888:p -> c17884:p [dir=back,arrowtail=empty];
+	c17921:p -> c17917:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c17888:p -> c17886:p [dir=back,arrowtail=empty];
+	c17921:p -> c17919:p [dir=back,arrowtail=empty];
 }
 

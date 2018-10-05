@@ -1,4 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./CGwDataConfiguration.html" title="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration" alt="" coords="15,16,171,43"/>
-<area shape="rect" id="node1" href="./CGwDataConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,5,182,53"/>
+<area shape="rect" id="node1_0" href="./ConfiguredDatapoint.html" title="org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint" alt="" coords="15,16,155,43"/>
+<area shape="rect" id="node1" href="./ConfiguredDatapoint.html" title="&lt;TABLE&gt;" alt="" coords="5,5,166,53"/>
+<area shape="rect" id="node2_1" href="./CGwDataConfiguration.html" title="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration" alt="" coords="201,16,357,43"/>
+<area shape="rect" id="node2" href="./CGwDataConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="190,5,367,53"/>
 </map>

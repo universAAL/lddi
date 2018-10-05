@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.abstraction.ComponentIntegrator
-	c128645 [label=<<table title="org.universAAL.lddi.abstraction.ComponentIntegrator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ComponentIntegrator.html">
+	c129428 [label=<<table title="org.universAAL.lddi.abstraction.ComponentIntegrator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ComponentIntegrator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ComponentIntegrator </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./ComponentIntegrator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.abstraction.DatapointIntegrationScreener
-	c128646 [label=<<table title="org.universAAL.lddi.abstraction.DatapointIntegrationScreener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatapointIntegrationScreener.html">
+	c129429 [label=<<table title="org.universAAL.lddi.abstraction.DatapointIntegrationScreener" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatapointIntegrationScreener.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatapointIntegrationScreener </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DatapointIntegrationScreener.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.abstraction.DatapointIntegrationScreener extends org.universAAL.lddi.abstraction.ComponentIntegrator
-	c128645:p -> c128646:p [dir=back,arrowtail=empty];
+	c129428:p -> c129429:p [dir=back,arrowtail=empty];
 }
 
