@@ -58,6 +58,14 @@ public abstract class CommunicationGateway {
 	
 	public static final short DEFAULT_AUTO_PULL_INTERVAL = 15;
 	
+	public static boolean isShorterAutoPullInterval(short first, short second) {
+		if (first < 1)
+			first = DEFAULT_AUTO_PULL_INTERVAL;
+		if (second < 1)
+			second = DEFAULT_AUTO_PULL_INTERVAL;
+		return first < second;
+	}
+	
 	public static ConfigurationParameter newCGwConfParam(final String id, final String appPartID, final String description, final MergedRestriction type, final Object defaultVal) {
 		return new ConfigurationParameter() {
 
@@ -110,7 +118,7 @@ public abstract class CommunicationGateway {
 			return subscribers.contains(ci);
 		}
 		
-		void notifySubscribers(Object value) {
+		synchronized void notifySubscribers(Object value) {
 			if (value == null) {
 				if (this.value == null)
 					return;
@@ -118,9 +126,15 @@ public abstract class CommunicationGateway {
 				return;
 			
 			this.value = value;
-			dpIntegrationScreener.processEvent(datapoint, value);
-			for (ComponentIntegrator ci : subscribers)
-				ci.processEvent(datapoint, value);
+
+			ExternalComponent ec = datapoint.getComponent();
+			String propURI = datapoint.getProperty();
+			value = ec.changeProperty(propURI, value);
+			
+			dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
+			for (ComponentIntegrator ci : subscribers) {
+				ci.publish(ec.getOntResource(), propURI, value);
+			}
 		}
 		
 		void simulateEventing(short intervalSeconds) {
@@ -431,6 +445,10 @@ public abstract class CommunicationGateway {
 
 		s.addSubscriber(integrator);
 		return s.value;
+	}
+	
+	public boolean simulatesEventing() {
+		return eventingSimulationTicker > 0;
 	}
 
 	/**

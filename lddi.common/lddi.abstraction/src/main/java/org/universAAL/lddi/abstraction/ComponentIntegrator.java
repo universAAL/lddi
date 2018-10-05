@@ -55,11 +55,15 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	private class Subscription {
 		private short pullWaitInterval;
 		private String typeURI, propURI;
+		private int hashCode;
 		
 		private Subscription(String typeURI, String propURI, short pullWaitInterval) {
 			this.typeURI = typeURI;
 			this.propURI = propURI;
 			this.pullWaitInterval = pullWaitInterval;
+			
+			typeURI += propURI;
+			hashCode = typeURI.hashCode();
 			
 			for (Enumeration<CommunicationGateway> e=discoveredGateways.elements(); e.hasMoreElements();)
 				subscribe(e.nextElement());
@@ -72,6 +76,19 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		private void subscribe(ExternalComponent ec) {
 			if (typeURI.equals(ec.getTypeURI()))
 				ec.getGateway().startEventing(ComponentIntegrator.this, ec.getDatapoint(propURI), pullWaitInterval);
+		}
+		
+		@Override
+		public int hashCode() {
+			return hashCode; 
+		}
+		
+		@Override
+		public boolean equals(Object other) {
+			return other instanceof Subscription
+					&&  hashCode == ((Subscription) other).hashCode
+					&&  typeURI.equals(((Subscription) other).typeURI)
+					&&  propURI.equals(((Subscription) other).propURI);
 		}
 	}
 	
@@ -95,7 +112,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	
 	protected Hashtable<Object, CommunicationGateway> discoveredGateways = new Hashtable<Object, CommunicationGateway>();
 	
-	protected Hashtable<String, HashSet<Subscription>> subscriptions = new Hashtable<String, HashSet<Subscription>>();
+	protected Hashtable<String, Hashtable<String, Subscription>> subscriptions = new Hashtable<String, Hashtable<String, Subscription>>();
 	
 	/**
 	 * Used by {@link CommunicationGateway communication gateways} to share with
@@ -114,10 +131,10 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			return;
 			
 		for (ExternalComponent ec : components) {
-			HashSet<Subscription> subs = subscriptions.get(ec.getTypeURI());
+			Hashtable<String, Subscription> subs = subscriptions.get(ec.getTypeURI());
 			if (subs != null) {
 				connectedComponents.put(ec.getComponentURI(), ec);
-				for (Subscription s : subs)
+				for (Subscription s : subs.values())
 					s.subscribe(ec);
 			}
 		}
@@ -197,7 +214,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	
 	public final void init(ModuleContext mc, Object[] containerSpecificFetchParams, String[] myTypes) {
 		for (String type : myTypes)
-			subscriptions.put(type, new HashSet<Subscription>());
+			subscriptions.put(type, new Hashtable<String, Subscription>());
 		
 		Object[] registeredGateways = mc.getContainer().fetchSharedObject(mc, containerSpecificFetchParams, this);
 		if (registeredGateways != null )
@@ -208,33 +225,6 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 						((CommunicationGateway) o).register(type, this);
 				}
 			}
-	}
-
-	/**
-	 * Used by {@link CommunicationGateway communication gateways} to notify the
-	 * integrator about the change of the value of a datapoint that is within
-	 * the scope of a previous subscription of this integrator to the notifying
-	 * gateway, no matter if the subscription was done by calling
-	 * {@link CommunicationGateway#startEventing(ComponentIntegrator, ExternalDatapoint, byte)}
-	 * or any of the wildcarding versions of it.
-	 *
-	 * @param datapoint
-	 *            the datapoint whose value has changed; the integrator can use
-	 *            {@link ExternalDatapoint#getComponent()} and
-	 *            {@link ExternalDatapoint#getProperty()} for getting the
-	 *            ontological info needed for further processing the event
-	 *            (mostly for publishing a context event onto the context bus).
-	 * @param value
-	 *            The new value of the given datapoint.
-	 */
-	void processEvent(ExternalDatapoint datapoint, Object value) {
-		if (datapoint == null)
-			return;
-		
-		ExternalComponent ec = datapoint.getComponent();
-		String propURI = datapoint.getProperty();
-		
-		publish(ec.getOntResource(), propURI, ec.changeProperty(propURI, value));
 	}
 
 	/**
@@ -262,7 +252,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			discoveredGateways.put(removeHook, (CommunicationGateway) sharedObj);
 			for (String type: subscriptions.keySet()) {
 				((CommunicationGateway) sharedObj).register(type, this);
-				for (Subscription s : subscriptions.get(type))
+				for (Subscription s : subscriptions.get(type).values())
 					s.subscribe((CommunicationGateway) sharedObj);
 			}
 		}
@@ -276,10 +266,24 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 					i.remove();
 	}
 	
-	protected final void subscribe(String typeURI, String propURI, short pullWaitInterval) {
-		if (typeURI != null)
-			subscriptions.get(typeURI).add(new Subscription(typeURI, propURI, pullWaitInterval));
-			
+	protected final synchronized void subscribe(String typeURI, String propURI, short pullWaitInterval) {
+		if (typeURI != null) {
+			Hashtable<String, Subscription> subs = subscriptions.get(typeURI);
+			if (subs != null) {
+				Subscription s = subs.get(propURI);
+				if (s == null) {
+					s = new Subscription(typeURI, propURI, pullWaitInterval);
+					subs.put(propURI, s);
+				} else if (CommunicationGateway.isShorterAutoPullInterval(pullWaitInterval, s.pullWaitInterval)) {
+					s.pullWaitInterval = pullWaitInterval;
+					for (Enumeration<CommunicationGateway> e=discoveredGateways.elements(); e.hasMoreElements();) {
+						CommunicationGateway gw = e.nextElement();
+						if (gw.simulatesEventing())
+							s.subscribe(gw);
+					}
+				}
+			}
+		}
 	}
 	
 	protected final void updateProperty(ManagedIndividual ontResource, String propertyURI, Object value) {
