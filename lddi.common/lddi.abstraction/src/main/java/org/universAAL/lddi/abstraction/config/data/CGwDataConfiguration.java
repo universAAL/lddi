@@ -149,7 +149,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 		// construct the external components and collect them in a list
 		Vector<ExternalComponent> constructedECs = new Vector<ExternalComponent>();
 		for (Component c : components) {
-			ExternalComponent ec = new ExternalComponent(cgw, c.getOntDescription(), c.getExternalTypeSystem().getExternalDataConverter());
+			ExternalComponent ec = new ExternalComponent(cgw, c.getOntDescription(), c.getExternalTypeSystem().getURI());
 			addComponentDescription(ec.getOntResource(), c.getOntDescription());
 			// add all data-points referring to this component
 			int id = c.getSeqNoInConfig();

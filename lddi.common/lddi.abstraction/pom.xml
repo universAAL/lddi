@@ -19,29 +19,16 @@
       <artifactId>org.osgi.core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.container.core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.data.representation.core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.interfaces.core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.managers.api.core</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.phWorld</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.lddi.config.datapoints</artifactId>
-    <version>3.4.2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.universAAL.middleware</groupId>
+    	<artifactId>mw.composite</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -53,6 +40,7 @@
         <configuration>
           <instructions>
             <Bundle-Name>${project.name}</Bundle-Name>
+			<Bundle-Activator>org.universAAL.lddi.abstraction.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Export-Package>org.universAAL.lddi.abstraction</Export-Package>

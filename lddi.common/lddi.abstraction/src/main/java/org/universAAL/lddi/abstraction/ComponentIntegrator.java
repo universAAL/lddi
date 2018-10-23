@@ -44,13 +44,6 @@ import org.universAAL.ontology.location.Location;
 public abstract class ComponentIntegrator implements SharedObjectListener {
 	
 	private static final Object DUMMY_CGW_REMOVE_HOOK = new Object();
-	
-	/**
-	 * A constant string that can be used by component integrators to map the
-	 * ontological representation of an external component to its corresponding
-	 * original {@link ExternalComponent}.
-	 */
-	public static final String PROP_CORRESPONDING_EXTERNAL_COMPONENT = "universAAL:lddi.abstraction/ComponentIntegrator#correspondingExternalComponent";
 
 	private class Subscription {
 		private short pullWaitInterval;

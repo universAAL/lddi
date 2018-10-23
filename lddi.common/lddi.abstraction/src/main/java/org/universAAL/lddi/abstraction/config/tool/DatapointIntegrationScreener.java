@@ -1,4 +1,4 @@
-package org.universAAL.lddi.abstraction;
+package org.universAAL.lddi.abstraction.config.tool;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -7,23 +7,23 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool;
+import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.middleware.owl.ManagedIndividual;
 
-public class DatapointIntegrationScreener extends ComponentIntegrator {
+public class DatapointIntegrationScreener {
 	
 	private ArrayList<ExternalComponent[]> newComponents = new ArrayList<ExternalComponent[]>();
 	private Hashtable<String, ExternalComponent> receivedEvents = new Hashtable<String, ExternalComponent>();
+	private Hashtable<String, ExternalComponent> connectedComponents = new Hashtable<String, ExternalComponent>();
 	private final Lock lock = new ReentrantLock();
 	private final Condition publishCond = lock.newCondition();
 	private final Condition componentsReplacedCond = lock.newCondition();
 	
 	
-	DatapointIntegrationScreener() {
-		super();
+	public DatapointIntegrationScreener() {
 	}
 	
-	void showTool() {
+	public void showTool() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,8 +35,7 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		});
 	}
 
-	@Override
-	protected void publish(ManagedIndividual ontResource, String propURI, Object oldValue) {
+	public void publish(ManagedIndividual ontResource, String propURI, Object oldValue) {
 		if (propURI == null  ||  ontResource == null)
 			return;
 		
@@ -48,14 +47,13 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 			System.out.println(propURI + "@@@@@@@@@@@@@@@@@@@@@" + ontResource);
 			System.out.println("receivedEvents=================" + receivedEvents);
 			System.out.println("connectedComponents============" + connectedComponents);
-			System.out.println("Related component============" + ontResource.getProperty(ComponentIntegrator.PROP_CORRESPONDING_EXTERNAL_COMPONENT));
 			System.out.println("Related component============" + connectedComponents.get(ontResource.getURI()));
 		} finally {
 			lock.unlock();
 		}
 	}
 	
-	void stop() {
+	public void stop() {
 		lock.lock();
 		try {
 			newComponents.add(null);
@@ -65,8 +63,7 @@ public class DatapointIntegrationScreener extends ComponentIntegrator {
 		}
 	}
 
-	@Override
-	void componentsReplaced(ExternalComponent[] components) {
+	public void integrateComponents(ExternalComponent[] components) {
 		if (components == null)
 			return;
 		

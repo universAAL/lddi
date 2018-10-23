@@ -19,6 +19,7 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -29,18 +30,14 @@ import java.util.Locale;
 import java.util.Map.Entry;
 
 import org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration;
+import org.universAAL.lddi.abstraction.config.protocol.CGwProtocolConfiguration;
+import org.universAAL.lddi.abstraction.config.tool.DatapointIntegrationScreener;
+import org.universAAL.lddi.abstraction.simulation.SimulationTool;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurationParameterEditor;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPartPattern;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPattern;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.EntityPattern;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
-import org.universAAL.middleware.managers.api.ConfigurationEditor; 
 import org.universAAL.middleware.managers.api.ConfigurationManager;
 import org.universAAL.middleware.owl.MergedRestriction;
-//import org.universAAL.middleware.util.Constants;
 
 /**
  * A gateway providing a bridge to a network of external components making it
@@ -53,8 +50,14 @@ import org.universAAL.middleware.owl.MergedRestriction;
 public abstract class CommunicationGateway {
 	
 	private static String CGW_CONF_APP_ID = "lddi.abstract.CommunicationGateway"; 
+	static final Hashtable<String, ExternalDataConverter> edConverters = new Hashtable<String, ExternalDataConverter>();
+	
 	public static final String CGW_CONF_APP_PART_DATA_ID = "dataConfParams"; 
 	public static final String CGW_CONF_APP_PART_PROTOCOL_ID = "protocolConfParams";
+
+	public static final int OPERATION_MODE_IN_PRODUCTION = 0;
+	public static final int OPERATION_MODE_ADDRESS_TEST = 1;
+	public static final int OPERATION_MODE_SIMULATION = 2;
 	
 	public static final short DEFAULT_AUTO_PULL_INTERVAL = 15;
 	
@@ -78,7 +81,7 @@ public abstract class CommunicationGateway {
 			}
 
 			public Scope getScope() {
-				return Scope.applicationPartScope(id, CGW_CONF_APP_ID, appPartID);
+				return Scope.applicationPartScope(id, ((id == CGwProtocolConfiguration.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE)? "CommunicationGateway" : CGW_CONF_APP_ID), appPartID);
 			}
 
 			public MergedRestriction getType() {
@@ -131,7 +134,8 @@ public abstract class CommunicationGateway {
 			String propURI = datapoint.getProperty();
 			value = ec.changeProperty(propURI, value);
 			
-			dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
+			if (dpIntegrationScreener != null)
+				dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
 			for (ComponentIntegrator ci : subscribers) {
 				ci.publish(ec.getOntResource(), propURI, value);
 			}
@@ -154,9 +158,11 @@ public abstract class CommunicationGateway {
 	
 	private int eventingSimulationTicker = 0;
 	private static DatapointIntegrationScreener dpIntegrationScreener = null;
+	private static SimulationTool simulationTool = null;
 	
 	// remember which integrators are interested in which types of components
 	private Hashtable<String, ArrayList<ComponentIntegrator>> registeredIntegrators = new Hashtable<String, ArrayList<ComponentIntegrator>>();
+	
 	/**
 	 * To be used in the following methods:
 	 * 
@@ -166,6 +172,8 @@ public abstract class CommunicationGateway {
 	 * @see #stopEventing(ComponentIntegrator, ExternalDatapoint)
 	 */
 	private Hashtable<String, Subscription> subscriptions = new Hashtable<String, Subscription>();
+	
+	private CGwProtocolConfiguration protocolConf = null;
 	
 	public void addComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
 		if (components != null  &&  discoverers.contains(discoverer)) {
@@ -226,22 +234,27 @@ public abstract class CommunicationGateway {
 	 *				  <br /><b>Note:</b>The interface "ConfigurationManager" has been defined by the artifact "mw.managers.api.core"
 	 *				  from the "org.universAAL.middleware" group.
 	 */
-	public final void init(ModuleContext mc, Object[] cgwSharingParams, ConfigurationManager confMgr, ConfigurationEditor confEditor, boolean needsEventingSimulation) {
-		if (dpIntegrationScreener == null) {
-			dpIntegrationScreener = new DatapointIntegrationScreener();
-			dpIntegrationScreener.showTool();
-		}
-		
+	public final void init(ModuleContext mc, Object[] cgwSharingParams,
+			ConfigurationManager confMgr, ConfigurationParameter[] pConfParams, boolean needsEventingSimulation) {
 		CGW_CONF_APP_ID = getClass().getSimpleName();
+		
+		if (edConverters.isEmpty()) {
+			Object[] converters = mc.getContainer().fetchSharedObject(mc, Activator.edConverterParams, null);
+			if (converters != null)
+				for (Object converter : converters)
+					if (converter instanceof ExternalDataConverter)
+						edConverters.put(((ExternalDataConverter) converter).getExternalTypeSystemURI(), (ExternalDataConverter) converter);
+		}
 				
 		if (confMgr != null) {
 			CGwDataConfiguration dataConf = new CGwDataConfiguration(this);
 			addDiscoverer(dataConf);
 			
 			confMgr.register(CGwDataConfiguration.configurations, dataConf);
+			
+			protocolConf = new CGwProtocolConfiguration(this, pConfParams, confMgr);
+			protocolConf.registerOperationModeParameter(confMgr);
 		}
-
-		mc.getContainer().shareObject(mc, this, cgwSharingParams);
 		
 		if (needsEventingSimulation)
 			new Thread(new Runnable() {
@@ -260,6 +273,8 @@ public abstract class CommunicationGateway {
 					}
 				}	
 			}, "lddi.abstraction.cgw.auto.pull").start();
+
+		mc.getContainer().shareObject(mc, this, cgwSharingParams);
 	}
 	
 	/**
@@ -286,7 +301,13 @@ public abstract class CommunicationGateway {
 	 * include the property mapping to datapoints.
 	 */
 	Object readValue(ExternalDatapoint datapoint) {
-		return (datapoint == null)? null : getValue(datapoint.getPullAddress());
+		if (datapoint != null) {
+			ExternalComponent ec = datapoint.getComponent();
+			return (simulationTool == null)?  getValue(datapoint.getPullAddress())
+					: ec.converter.exportValue(ec.getTypeURI(), datapoint.getProperty(),
+							simulationTool.getDatapointValue(datapoint));
+		}
+		return null;
 	}
 	
 	/**
@@ -338,7 +359,8 @@ public abstract class CommunicationGateway {
 					ecs.add(ec);
 				}
 				// notify the registered component integrators
-				dpIntegrationScreener.componentsReplaced(components.toArray(new ExternalComponent[components.size()]));
+				if (dpIntegrationScreener != null)
+					dpIntegrationScreener.integrateComponents(components.toArray(new ExternalComponent[components.size()]));
 				for (Iterator<Entry<String, ArrayList<ComponentIntegrator>>> i = registeredIntegrators.entrySet().iterator(); i.hasNext();) {
 					Entry<String, ArrayList<ComponentIntegrator>> entry = i.next();
 					ArrayList<ExternalComponent> ecs = discoveredComponents.get(entry.getKey());
@@ -374,8 +396,8 @@ public abstract class CommunicationGateway {
 		if (component == null)
 			return;
 		
-		for (Enumeration<ExternalDatapoint> e=component.enumerateDatapoints(); e.hasMoreElements();)
-			startEventing(integrator, e.nextElement(), intervalSeconds);
+		for (ExternalDatapoint dp : component.datapoints())
+			startEventing(integrator, dp, intervalSeconds);
 	}
 
 	/**
@@ -530,8 +552,108 @@ public abstract class CommunicationGateway {
 	 * integrators must include the property mapping to datapoints.
 	 */
 	void writeValue(ExternalDatapoint datapoint, Object value) {
-		if (datapoint != null)
-			setValue(datapoint.getSetAddress(), value);
+		if (datapoint != null) {
+			ExternalComponent ec = datapoint.getComponent();
+			if (simulationTool == null)
+				setValue(datapoint.getSetAddress(), value);
+			else
+				simulationTool.setDatapointValue(datapoint,
+						ec.converter.importValue(value, ec.getTypeURI(), datapoint.getProperty()));
+		}
 	}
+	
+	public final boolean setOperationMode(CGwProtocolConfiguration protocolConf, int mode) {
+		if (protocolConf != null  &&  protocolConf == this.protocolConf) {
+			switch (mode) {
+			case OPERATION_MODE_IN_PRODUCTION:
+				setSimulationMode(false);
+				setAddressTestMode(false);
+				break;
+			case OPERATION_MODE_ADDRESS_TEST:
+				setSimulationMode(false);
+				setAddressTestMode(true);
+				break;
+			case OPERATION_MODE_SIMULATION:
+				setSimulationMode(true);
+				setAddressTestMode(false);
+				break;
+			default:
+				return false;
+			
+			}
+			switchOperationMode(mode);
+			return true;
+		}
+		return false;
+	}
+
+	private final void setAddressTestMode(boolean isAddressTestMode) {
+		if (isAddressTestMode == (dpIntegrationScreener == null)) {
+			if (dpIntegrationScreener == null) {
+				dpIntegrationScreener = new DatapointIntegrationScreener();
+				dpIntegrationScreener.showTool();
+			} else {
+				dpIntegrationScreener.stop();
+				dpIntegrationScreener = null;
+			}
+		}
+	}
+
+	private final void setSimulationMode(boolean isSimulationMode) {
+		if (isSimulationMode == (simulationTool == null)) {
+			if (simulationTool == null) {
+				simulationTool = new SimulationTool(this);
+				simulateDatapoints();
+				simulationTool.setVisible(true);
+			} else {
+				simulationTool.setVisible(false);
+				simulationTool.dispose();
+				simulationTool = null;
+			}
+		}
+	}
+	
+	private void simulateDatapoints() {
+		for (ArrayList<ExternalComponent> ecs : discoveredComponents.values())
+			for (ExternalComponent ec : ecs)
+				for (ExternalDatapoint dp : ec.datapoints()) {
+					Hashtable<Object, URL> altValues = ec.enumerateAltValues(dp);
+					if (altValues != null  &&  !altValues.isEmpty()) {
+						URL iconURL = altValues.get(ExternalDataConverter.NON_DISCRETE_VALUE_TYPE);
+						if (iconURL == null)
+							simulationTool.addDataPoint(dp, altValues, ec.getInitialValue(dp));
+						else
+							simulationTool.addDataPoint(dp, ec.isPercentage(dp), iconURL, ec.getInitialValue(dp));
+					}
+				}
+	}
+	
+	protected final boolean isSimulationMode() {
+		return simulationTool != null;
+	}
+	
+	protected abstract void switchOperationMode(int mode);
+	
+	public final void handleSimulatedEvent(SimulationTool st, ExternalDatapoint dp, Object value) {
+		if (dp != null  &&  st != null  &&  st == simulationTool) {
+			String subscriptionKey = dp.getPushAddress();
+			if (subscriptionKey == null) {
+				subscriptionKey = dp.getPullAddress();
+				if (subscriptionKey == null)
+					return;
+			}
+			ExternalComponent ec = dp.getComponent();
+			notifySubscribers(subscriptionKey,
+					ec.converter.exportValue(ec.getTypeURI(), dp.getProperty(), value));
+		}
+	}
+
+	public final boolean handleProtocolConfParam(CGwProtocolConfiguration protocolConf, String id, Object paramValue) {
+		return (protocolConf != null  &&  protocolConf == this.protocolConf)?
+				protocolConfParamChanged(id, paramValue)
+				: false;
+	}
+	
+	protected abstract boolean protocolConfParamChanged(String id, Object paramValue);
 
 }

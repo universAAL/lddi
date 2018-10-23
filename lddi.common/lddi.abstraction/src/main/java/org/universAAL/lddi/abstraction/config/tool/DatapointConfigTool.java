@@ -4,12 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.universAAL.lddi.abstraction.ComponentIntegrator;
 import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.lddi.abstraction.ExternalDatapoint;
 import org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint;
 import org.universAAL.middleware.container.utils.StringUtils;
-import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.ontology.location.Location;
 
 import java.awt.GridBagLayout;
@@ -29,7 +27,6 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -47,6 +44,7 @@ public class DatapointConfigTool extends JFrame {
 	private static final long serialVersionUID = -7698455054350741666L;
 	private static final String PROP_MY_EVENT_MODEL = "urn:lddi.abstraction/DatapointConfigTool#eventsModel";
 
+	@SuppressWarnings("rawtypes")
 	private class PropertiesModel implements ComboBoxModel {
 		ArrayList<String> propChoices = new ArrayList<String>();
 		ArrayList<ListDataListener> myListeners = new ArrayList<ListDataListener>(1);
@@ -181,7 +179,8 @@ public class DatapointConfigTool extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DatapointConfigTool(ArrayList<ExternalComponent[]> news, Hashtable<String, ExternalComponent> events, Lock lock, Condition publishCond, Condition componentsReplacedCond) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	DatapointConfigTool(ArrayList<ExternalComponent[]> news, Hashtable<String, ExternalComponent> events, Lock lock, Condition publishCond, Condition componentsReplacedCond) {
 		newComponents = news;
 		receivedEvents = events;
 		this.lock = lock;
@@ -355,7 +354,7 @@ public class DatapointConfigTool extends JFrame {
 				if (!"the pull address...".equals(valPullAddress.getText())
 						&&  indexSelectedComponent > -1
 						&&  indexSelectedComponent < components.size()) {
-					String s = components.get(indexSelectedComponent).getDatapointValue(
+					String s = components.get(indexSelectedComponent).getExternalValue(
 							propertiesModel.getSelectedItem(), valPullAddress.getText());
 					lblValueFetched.setText((s == null)? "value fetched..."  :  s);
 				}
@@ -464,7 +463,7 @@ public class DatapointConfigTool extends JFrame {
 									publishCond.await();
 								for (String key : receivedEvents.keySet()) {
 										ExternalComponent ec = receivedEvents.remove(key);
-										DatapointConfigTool.this.newNotification(ec, key, ec.valueAsString(key));
+										DatapointConfigTool.this.newNotification(ec, key, ec.currentValueAsString(key));
 								}
 							} catch (Exception e) {
 								e.printStackTrace();

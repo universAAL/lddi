@@ -19,11 +19,13 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.universAAL.middleware.owl.ManagedIndividual;
-import org.universAAL.ontology.lddi.config.datapoints.ExternalDataConverter;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
 
@@ -58,13 +60,11 @@ import org.universAAL.ontology.phThing.PhysicalThing;
  * </p>
  *
  */
-public class ExternalComponent {
-
-	// private static int noOfComponents = 0;
+public final class ExternalComponent {
 
 	private CommunicationGateway gw;
 	private ManagedIndividual ontResource;
-	private ExternalDataConverter converter;
+	ExternalDataConverter converter;
 	private Hashtable<String, ExternalDatapoint> propMappings = new Hashtable<String, ExternalDatapoint>();
 
 	/**
@@ -72,17 +72,13 @@ public class ExternalComponent {
 	 * gateways to create own subclasses so that each communication gateway can
 	 * create only instances defined by itself.
 	 */
-	public ExternalComponent(CommunicationGateway gw, ManagedIndividual description, ExternalDataConverter converter) {
-		if (gw == null  ||  description == null  ||  converter == null)
+	public ExternalComponent(CommunicationGateway gw, ManagedIndividual description, String externaltypeSystem) {
+		if (gw == null  ||  description == null  ||  externaltypeSystem == null)
 			throw new NullPointerException("ExternalComponent constructor: parameter null!");
 
 		this.gw = gw;
-		this.converter = converter;
-//		String componentURI = gw.getComponentURIprefix()
-//				+ typeURI.substring(typeURI.lastIndexOf('#')+1)
-//				+ (noOfComponents++);
-		// ontResource = ManagedIndividual.getInstance(typeURI, componentURI);
 		ontResource = description;
+		converter = CommunicationGateway.edConverters.get(externaltypeSystem);
 	}
 
 	public void addPropMapping(String propURI, ExternalDatapoint datapoint) {
@@ -98,24 +94,55 @@ public class ExternalComponent {
 		return oldVal;
 	}
 	
+	public String currentValueAsString(String propURI) {
+		return converter.toString(getTypeURI(), propURI, ontResource.getProperty(propURI));
+	}
+	
+	Collection<ExternalDatapoint> datapoints() {
+		return propMappings.values();
+	}
+	
+	Hashtable<Object, URL> enumerateAltValues(ExternalDatapoint dp) {
+		try {
+			return (dp == null  ||  dp.getComponent() != this)?  null
+					: converter.getAlternativeValues(ontResource.getClassURI(), dp.getProperty());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public Enumeration<ExternalDatapoint> enumerateDatapoints() {
 		return propMappings.elements();
 	}
-	
+
 	public Enumeration<String> enumerateProperties() {
 		return propMappings.keys();
 	}
-
+	
 	public String getComponentURI() {
 		return ontResource.getURI();
 	}
-
+	
 	public ExternalDatapoint getDatapoint(String propURI) {
 		return propMappings.get(propURI);
 	}
-
+	
+	public String getExternalValue(String propURI, String pullAddress) {
+		if (propURI == null  ||  pullAddress == null)
+			return null;
+		
+		return converter.toString(getTypeURI(), propURI, converter.importValue(gw.getValue(pullAddress), getTypeURI(), propURI));
+	}
+	
 	public CommunicationGateway getGateway() {
 		return gw;
+	}
+	
+	Object getInitialValue(ExternalDatapoint dp) {
+		return (dp == null  ||  dp.getComponent() != this)?  null
+				: converter.getInitialValue(ontResource.getClassURI(), dp.getProperty());
 	}
 	
 	public Location getLocation() {
@@ -133,33 +160,36 @@ public class ExternalComponent {
 			return null;
 		ExternalDatapoint edp = propMappings.get(propURI);
 		if (edp == null)
-			return null;
+			return ontResource.getProperty(propURI);
 		Object value = converter.importValue(gw.readValue(edp), getTypeURI(), propURI);
 		ontResource.changeProperty(propURI, value);
 		return value;
 	}
 	
-	public String getDatapointValue(String propURI, String pullAddress) {
-		if (propURI == null  ||  pullAddress == null)
-			return null;
-		
-		return converter.toString(getTypeURI(), propURI, converter.importValue(gw.getValue(pullAddress), getTypeURI(), propURI));
+	public String getTypeURI() {
+		return ontResource.getClassURI();
+	}
+
+	public String internalValueAsString(String propURI, Object value) {
+		return converter.toString(getTypeURI(), propURI, value);
 	}
 	
-	public String valueAsString(String propURI) {
-		return converter.toString(getTypeURI(), propURI, ontResource.getProperty(propURI));
+	public Object internalValueOf(String propURI, String valStr) {
+		return converter.exportValue(getTypeURI(), propURI, valStr);
+	}
+	
+	boolean isPercentage(ExternalDatapoint dp) {
+		return (dp == null  ||  dp.getComponent() != this)?  false
+				: converter.isPercentage(ontResource.getClassURI(), dp.getProperty());
 	}
 	
 	public void setDatapointValue(String propURI, String setAddress, String value) {
 		if (propURI != null  &&  setAddress != null) {
-			Object o = converter.exportValue(getTypeURI(), propURI, converter.valueOf(value, getTypeURI(), propURI));
+			Object o = converter.exportValue(getTypeURI(), propURI,
+					converter.valueOf(value, getTypeURI(), propURI));
 			if (o != null)
 				gw.setValue(setAddress, o);
 		}
-	}
-
-	public String getTypeURI() {
-		return ontResource.getClassURI();
 	}
 	
 	public boolean setLocation(String locURI) {
