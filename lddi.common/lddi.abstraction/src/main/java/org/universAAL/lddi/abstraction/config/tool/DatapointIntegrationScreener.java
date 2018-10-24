@@ -3,6 +3,7 @@ package org.universAAL.lddi.abstraction.config.tool;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -12,7 +13,7 @@ import org.universAAL.middleware.owl.ManagedIndividual;
 
 public class DatapointIntegrationScreener {
 	
-	private ArrayList<ExternalComponent[]> newComponents = new ArrayList<ExternalComponent[]>();
+	private ArrayList<List<ExternalComponent>> newComponents = new ArrayList<List<ExternalComponent>>();
 	private Hashtable<String, ExternalComponent> receivedEvents = new Hashtable<String, ExternalComponent>();
 	private Hashtable<String, ExternalComponent> connectedComponents = new Hashtable<String, ExternalComponent>();
 	private final Lock lock = new ReentrantLock();
@@ -63,12 +64,12 @@ public class DatapointIntegrationScreener {
 		}
 	}
 
-	public void integrateComponents(ExternalComponent[] components) {
+	public void integrateComponents(List<ExternalComponent> components) {
 		if (components == null)
 			return;
 		
-		for (int i=components.length-1;  i>-1;  i--)
-			connectedComponents.put(components[i].getComponentURI(), components[i]);
+		for (ExternalComponent ec : components)
+			connectedComponents.put(ec.getComponentURI(), ec);
 		
 		lock.lock();
 		try {

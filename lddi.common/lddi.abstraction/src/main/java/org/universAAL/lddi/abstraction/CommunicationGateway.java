@@ -24,10 +24,8 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map.Entry;
 
 import org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration;
 import org.universAAL.lddi.abstraction.config.protocol.CGwProtocolConfiguration;
@@ -36,7 +34,6 @@ import org.universAAL.lddi.abstraction.simulation.SimulationTool;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
-import org.universAAL.middleware.managers.api.ConfigurationManager;
 import org.universAAL.middleware.owl.MergedRestriction;
 
 /**
@@ -150,7 +147,7 @@ public abstract class CommunicationGateway {
 	
 	// private String componentURIprefix;
 	// map typeURI to list of components of that type
-	private Hashtable<String, ArrayList<ExternalComponent>> discoveredComponents = new Hashtable<String, ArrayList<ExternalComponent>>();
+	private Hashtable<String, List<ExternalComponent>> discoveredComponents = new Hashtable<String, List<ExternalComponent>>();
 	/**
 	 * @see #addDiscoverer(ExternalComponentDiscoverer)
 	 */
@@ -176,9 +173,38 @@ public abstract class CommunicationGateway {
 	private CGwProtocolConfiguration protocolConf = null;
 	
 	public void addComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
-		if (components != null  &&  discoverers.contains(discoverer)) {
+		if (components != null  &&  !components.isEmpty()  &&  discoverers.contains(discoverer)) {
 			synchronized (discoverers) {
-				// To-Do
+				// group by type
+				Hashtable<String, ArrayList<ExternalComponent>> news = new Hashtable<String, ArrayList<ExternalComponent>>();
+				for (ExternalComponent ec : components) {
+					String type = ec.getTypeURI();
+					ArrayList<ExternalComponent> newECs = news.get(type);
+					if (newECs == null) {
+						newECs = new ArrayList<ExternalComponent>();
+						news.put(type, newECs);
+					}
+					newECs.add(ec);
+				}
+				
+				for (String type : news.keySet()) {
+					List<ExternalComponent> ecs = discoveredComponents.get(type);
+					if (ecs == null) {
+						ecs = new ArrayList<ExternalComponent>();
+						discoveredComponents.put(type,  ecs);
+					}
+					ecs.addAll(news.get(type));
+					
+					List<ComponentIntegrator> cis = registeredIntegrators.get(type);
+					if (cis != null)
+						for (ComponentIntegrator ci : cis)
+							ci.componentsAdded(news.get(type));
+				}
+				
+				if (dpIntegrationScreener != null)
+					dpIntegrationScreener.integrateComponents(components);
+				else if (simulationTool != null)
+					simulateDatapoints(components);
 			}
 		}
 	}
@@ -234,9 +260,9 @@ public abstract class CommunicationGateway {
 	 *				  <br /><b>Note:</b>The interface "ConfigurationManager" has been defined by the artifact "mw.managers.api.core"
 	 *				  from the "org.universAAL.middleware" group.
 	 */
-	public final void init(ModuleContext mc, Object[] cgwSharingParams,
-			ConfigurationManager confMgr, ConfigurationParameter[] pConfParams, boolean needsEventingSimulation) {
+	public final void init(ModuleContext mc, boolean needsEventingSimulation, boolean useStandardDataConfig, ConfigurationParameter[] pConfParams) {
 		CGW_CONF_APP_ID = getClass().getSimpleName();
+		protocolConf = new CGwProtocolConfiguration(this, pConfParams);
 		
 		if (edConverters.isEmpty()) {
 			Object[] converters = mc.getContainer().fetchSharedObject(mc, Activator.edConverterParams, null);
@@ -244,16 +270,15 @@ public abstract class CommunicationGateway {
 				for (Object converter : converters)
 					if (converter instanceof ExternalDataConverter)
 						edConverters.put(((ExternalDataConverter) converter).getExternalTypeSystemURI(), (ExternalDataConverter) converter);
+		
+			protocolConf.registerOperationModeParameter();
 		}
 				
-		if (confMgr != null) {
+		if (useStandardDataConfig) {
 			CGwDataConfiguration dataConf = new CGwDataConfiguration(this);
 			addDiscoverer(dataConf);
 			
-			confMgr.register(CGwDataConfiguration.configurations, dataConf);
-			
-			protocolConf = new CGwProtocolConfiguration(this, pConfParams, confMgr);
-			protocolConf.registerOperationModeParameter(confMgr);
+			Activator.confMgr.register(CGwDataConfiguration.configurations, dataConf);
 		}
 		
 		if (needsEventingSimulation)
@@ -274,7 +299,7 @@ public abstract class CommunicationGateway {
 				}	
 			}, "lddi.abstraction.cgw.auto.pull").start();
 
-		mc.getContainer().shareObject(mc, this, cgwSharingParams);
+		mc.getContainer().shareObject(mc, this, Activator.cgwSharingParams);
 	}
 	
 	/**
@@ -330,9 +355,9 @@ public abstract class CommunicationGateway {
 			}
 			integrators.add(integrator);
 			
-			ArrayList<ExternalComponent> components = discoveredComponents.get(componentTypeURI);
+			List<ExternalComponent> components = discoveredComponents.get(componentTypeURI);
 			if (components != null)
-				integrator.componentsAdded(components.toArray(new ExternalComponent[components.size()]));
+				integrator.componentsAdded(components);
 		}
 	}
 
@@ -344,33 +369,34 @@ public abstract class CommunicationGateway {
 		}
 	}
 	
-	public void replaceComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
-		if (components != null  &&  discoverers.contains(discoverer)) {
-			synchronized (discoverers) {
-				// replace the components
-				discoveredComponents.clear();
-				for (ExternalComponent ec : components) {
-					String type = ec.getTypeURI();
-					ArrayList<ExternalComponent> ecs = discoveredComponents.get(type);
-					if (ecs == null) {
-						ecs = new ArrayList<ExternalComponent>();
-						discoveredComponents.put(type,  ecs);
-					}
-					ecs.add(ec);
-				}
-				// notify the registered component integrators
-				if (dpIntegrationScreener != null)
-					dpIntegrationScreener.integrateComponents(components.toArray(new ExternalComponent[components.size()]));
-				for (Iterator<Entry<String, ArrayList<ComponentIntegrator>>> i = registeredIntegrators.entrySet().iterator(); i.hasNext();) {
-					Entry<String, ArrayList<ComponentIntegrator>> entry = i.next();
-					ArrayList<ExternalComponent> ecs = discoveredComponents.get(entry.getKey());
-					ExternalComponent[] ecArr = ecs.toArray(new ExternalComponent[ecs.size()]);
-					for (ComponentIntegrator ci : entry.getValue())
-						ci.componentsReplaced(ecArr);
-				}
-			}
-		}
-	}
+//	public void replaceComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
+//		if (components != null  &&  discoverers.contains(discoverer)) {
+//			synchronized (discoverers) {
+//				discoveredComponents.clear();
+//				for (ExternalComponent ec : components) {
+//					String type = ec.getTypeURI();
+//					ArrayList<ExternalComponent> ecs = discoveredComponents.get(type);
+//					if (ecs == null) {
+//						ecs = new ArrayList<ExternalComponent>();
+//						discoveredComponents.put(type,  ecs);
+//					}
+//					ecs.add(ec);
+//				}
+//				// notify the registered component integrators
+//				if (dpIntegrationScreener != null)
+//					dpIntegrationScreener.integrateComponents(components.toArray(new ExternalComponent[components.size()]));
+//				else if (simulationTool != null)
+//					simulateDatapoints();
+//				for (Iterator<Entry<String, ArrayList<ComponentIntegrator>>> i = registeredIntegrators.entrySet().iterator(); i.hasNext();) {
+//					Entry<String, ArrayList<ComponentIntegrator>> entry = i.next();
+//					ArrayList<ExternalComponent> ecs = discoveredComponents.get(entry.getKey());
+//					ExternalComponent[] ecArr = ecs.toArray(new ExternalComponent[ecs.size()]);
+//					for (ComponentIntegrator ci : entry.getValue())
+//						ci.componentsReplaced(ecArr);
+//				}
+//			}
+//		}
+//	}
 	
 	/**
 	 * Subclasses must make sure to convert the passed input <code>value</code> from the original <code>internalType</code> to the target <code>externalType</code> before
@@ -488,7 +514,7 @@ public abstract class CommunicationGateway {
 	 */
 	void startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI,
 			short intervalSeconds) {
-		ArrayList<ExternalComponent> ecs = (componentTypeURI == null)? null
+		List<ExternalComponent> ecs = (componentTypeURI == null)? null
 				: discoveredComponents.get(componentTypeURI);
 		if (ecs == null  ||  ecs.isEmpty())
 			return;
@@ -603,7 +629,7 @@ public abstract class CommunicationGateway {
 		if (isSimulationMode == (simulationTool == null)) {
 			if (simulationTool == null) {
 				simulationTool = new SimulationTool(this);
-				simulateDatapoints();
+				// simulateDatapoints();
 				simulationTool.setVisible(true);
 			} else {
 				simulationTool.setVisible(false);
@@ -613,19 +639,18 @@ public abstract class CommunicationGateway {
 		}
 	}
 	
-	private void simulateDatapoints() {
-		for (ArrayList<ExternalComponent> ecs : discoveredComponents.values())
-			for (ExternalComponent ec : ecs)
-				for (ExternalDatapoint dp : ec.datapoints()) {
-					Hashtable<Object, URL> altValues = ec.enumerateAltValues(dp);
-					if (altValues != null  &&  !altValues.isEmpty()) {
-						URL iconURL = altValues.get(ExternalDataConverter.NON_DISCRETE_VALUE_TYPE);
-						if (iconURL == null)
-							simulationTool.addDataPoint(dp, altValues, ec.getInitialValue(dp));
-						else
-							simulationTool.addDataPoint(dp, ec.isPercentage(dp), iconURL, ec.getInitialValue(dp));
-					}
+	private void simulateDatapoints(List<ExternalComponent> components) {
+		for (ExternalComponent ec : components)
+			for (ExternalDatapoint dp : ec.datapoints()) {
+				Hashtable<Object, URL> altValues = ec.enumerateAltValues(dp);
+				if (altValues != null  &&  !altValues.isEmpty()) {
+					URL iconURL = altValues.get(ExternalDataConverter.NON_DISCRETE_VALUE_TYPE);
+					if (iconURL == null)
+						simulationTool.addDataPoint(dp, altValues, ec.getInitialValue(dp));
+					else
+						simulationTool.addDataPoint(dp, ec.isPercentage(dp), iconURL, ec.getInitialValue(dp));
 				}
+			}
 	}
 	
 	protected final boolean isSimulationMode() {

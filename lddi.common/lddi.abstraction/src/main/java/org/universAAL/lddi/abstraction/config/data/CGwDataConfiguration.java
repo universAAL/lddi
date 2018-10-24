@@ -163,7 +163,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 			constructedECs.add(ec);
 		}
 		
-		cgw.replaceComponents(constructedECs, this);
+		cgw.addComponents(constructedECs, this);
 	}
 
 //	public void ConfigurationChanged(ConfigurableEntityEditor entityChanged) {

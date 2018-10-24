@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.awt.event.ActionListener;
@@ -170,7 +171,7 @@ public class DatapointConfigTool extends JFrame {
 	
 	private static DatapointConfigTool self;
 	
-	private ArrayList<ExternalComponent[]> newComponents;
+	private ArrayList<List<ExternalComponent>> newComponents;
 	private Hashtable<String, ExternalComponent> receivedEvents;
 	private final Lock lock;
 	private final Condition publishCond;
@@ -180,7 +181,7 @@ public class DatapointConfigTool extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	DatapointConfigTool(ArrayList<ExternalComponent[]> news, Hashtable<String, ExternalComponent> events, Lock lock, Condition publishCond, Condition componentsReplacedCond) {
+	DatapointConfigTool(ArrayList<List<ExternalComponent>> news, Hashtable<String, ExternalComponent> events, Lock lock, Condition publishCond, Condition componentsReplacedCond) {
 		newComponents = news;
 		receivedEvents = events;
 		this.lock = lock;
@@ -486,11 +487,11 @@ public class DatapointConfigTool extends JFrame {
 							try {
 								while (newComponents.isEmpty())
 									componentsReplacedCond.await();
-								ExternalComponent[] ecs = newComponents.remove(0);
+								List<ExternalComponent> ecs = newComponents.remove(0);
 								if (ecs == null)
 									DatapointConfigTool.this.setVisible(false);
 								else
-									DatapointConfigTool.this.componentsReplaced(ecs);
+									DatapointConfigTool.components.addAll(ecs);
 							} catch (Exception e) {
 								e.printStackTrace();
 							} finally {
@@ -530,13 +531,6 @@ public class DatapointConfigTool extends JFrame {
 				&&  components.get(indexSelectedComponent) == ec
 				&&  propURI != null  &&  propURI.equals(propertiesModel.getSelectedItem()))
 			eventsModel.addValue((newValue == null)? "Null value" : newValue);
-	}
-	
-	public void componentsReplaced(ExternalComponent[] news) {
-		if (news != null)
-			for (int i=0;  i<news.length;  i++)
-				if (news[i] != null)
-					components.add(news[i]);
 	}
 	
 	private static void componentSelected(int index) {

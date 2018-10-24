@@ -23,6 +23,7 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.universAAL.middleware.container.ModuleContext;
@@ -119,8 +120,8 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	 * properties to external datapoints so that this integrator can make use of
 	 * them when utilizing some of the other methods of the gateway.
 	 */
-	 void componentsAdded(ExternalComponent[] components) {
-		if (components == null  ||  components.length == 0)
+	 void componentsAdded(List<ExternalComponent> components) {
+		if (components == null  ||  components.isEmpty())
 			return;
 			
 		for (ExternalComponent ec : components) {
@@ -139,19 +140,6 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			
 		for (ExternalComponent ec : components)
 			connectedComponents.remove(ec.getComponentURI());
-	}
-	
-	void componentsReplaced(ExternalComponent[] components) {
-		if (components == null  ||  components.length == 0)
-			return;
-		
-		// remove only external components coming from the same communication gateway
-		CommunicationGateway cgw = components[0].getGateway();
-		for (Iterator<Entry<String, ExternalComponent>> i=connectedComponents.entrySet().iterator(); i.hasNext();)
-			if (i.next().getValue().getGateway() == cgw)
-				i.remove();
-			
-		componentsAdded(components);
 	}
 	
 	void componentsUpdated(ExternalComponent[] components) {
@@ -209,7 +197,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		for (String type : myTypes)
 			subscriptions.put(type, new Hashtable<String, Subscription>());
 		
-		Object[] registeredGateways = mc.getContainer().fetchSharedObject(mc, containerSpecificFetchParams, this);
+		Object[] registeredGateways = mc.getContainer().fetchSharedObject(mc, Activator.cgwSharingParams, this);
 		if (registeredGateways != null )
 			for (Object o : registeredGateways) {
 				if (o instanceof CommunicationGateway) {
