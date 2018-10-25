@@ -33,7 +33,8 @@ public class PercentageDatapoint extends SimulatedDatapoint implements ChangeLis
 		super(dp, iconURL, initialVal);
 		
 		if (initialVal != null)
-			theSlider.setValue(Math.round(Float.valueOf(initialVal.toString())));
+			theSlider.setValue(Math.round(Float.valueOf(
+					dp.getComponent().internalValueAsString(dp.getProperty(), initialVal))));
 		theSlider.setMajorTickSpacing(25);
 		theSlider.setMinorTickSpacing(5);
 		theSlider.addChangeListener(this);
@@ -48,12 +49,12 @@ public class PercentageDatapoint extends SimulatedDatapoint implements ChangeLis
 	@Override
 	void setValue(Object o) {
 		if (o != null)
-			theSlider.setValue(Math.round(Float.valueOf(o.toString())));
+			theSlider.setValue(Math.round(Float.valueOf(dp.getComponent().internalValueAsString(dp.getProperty(), o))));
 		value = o;
 	}
 
 	public void stateChanged(ChangeEvent e) {
-		if (e.getSource() == theSlider) {
+		if (e.getSource() == theSlider  &&  !theSlider.getValueIsAdjusting()) {
 			pushValue(dp.getComponent().internalValueOf(dp.getProperty(), Integer.toString(theSlider.getValue())));
 		}
 	}

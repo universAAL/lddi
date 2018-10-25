@@ -175,7 +175,7 @@ public final class ExternalComponent {
 	}
 	
 	public Object internalValueOf(String propURI, String valStr) {
-		return converter.exportValue(getTypeURI(), propURI, valStr);
+		return converter.valueOf(valStr, getTypeURI(), propURI);
 	}
 	
 	boolean isPercentage(ExternalDatapoint dp) {

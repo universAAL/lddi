@@ -14,6 +14,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import org.universAAL.lddi.abstraction.Activator;
 import org.universAAL.lddi.abstraction.ExternalDatapoint;
 
 /**
@@ -54,9 +55,13 @@ class ToggledDatapoint extends SimulatedDatapoint {
 	void setValue(Object o) {
 		for (int i=0;  i<noOfButtons;  i++) {
 			ThumbnailButton jb = (ThumbnailButton) buttonBar.getComponent(i);
-			if (o == jb.value  ||  (o != null  &&  o.equals(jb.value)))
+			if (o == jb.value  ||  (o != null  &&  o.equals(jb.value))) {
+				value = o;
 				jb.actionPerformed(null);
+			}
 		}
+		if (value != o)
+			Activator.context.logWarn(getClass().getName(), "Given value not in the set of alternative values: " + o, null);
 	}
 
     
@@ -76,7 +81,8 @@ class ToggledDatapoint extends SimulatedDatapoint {
         
         public void actionPerformed(ActionEvent e) {
             dpIcon.setIcon(displayPhoto);
-            ToggledDatapoint.this.pushValue(value);
+            if (e != null)
+            	ToggledDatapoint.this.pushValue(value);
         }
     }
 }

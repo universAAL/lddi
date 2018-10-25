@@ -313,6 +313,8 @@ public abstract class CommunicationGateway {
 	 * @param value
 	 */
 	protected final void notifySubscribers(String address, Object value) {
+		if (address == null)
+			return;
 		Subscription s = subscriptions.get(address);
 		if (s != null)
 			s.notifySubscribers(value);
@@ -661,14 +663,8 @@ public abstract class CommunicationGateway {
 	
 	public final void handleSimulatedEvent(SimulationTool st, ExternalDatapoint dp, Object value) {
 		if (dp != null  &&  st != null  &&  st == simulationTool) {
-			String subscriptionKey = dp.getPushAddress();
-			if (subscriptionKey == null) {
-				subscriptionKey = dp.getPullAddress();
-				if (subscriptionKey == null)
-					return;
-			}
 			ExternalComponent ec = dp.getComponent();
-			notifySubscribers(subscriptionKey,
+			notifySubscribers(dp.getPushAddress(),
 					ec.converter.exportValue(ec.getTypeURI(), dp.getProperty(), value));
 		}
 	}
