@@ -10,20 +10,20 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.lib.ieeex73std.org.bn.CoderFactory
-	c3860 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.org.bn.CoderFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CoderFactory.html">
+	c3902 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.org.bn.CoderFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CoderFactory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CoderFactory </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CoderFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.ieeex73std.org.bn.IEncoder<T>
-	c3861 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.org.bn.IEncoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IEncoder.html">
+	c3903 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.org.bn.IEncoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IEncoder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> IEncoder&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IEncoder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder
-	c3862 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IDecoder.html">
+	c3904 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.org.bn.IDecoder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IDecoder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> IDecoder </td></tr>

@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2010 - 2018 universAAL Consortium</copyright>
     <item>
-      <title>File: 541,
-             Errors: 7938,
-             Warnings: 1209,
-             Infos: 1529
+      <title>File: 549,
+             Errors: 8052,
+             Warnings: 1227,
+             Infos: 1718
       </title>
             <link>http://lddi/lddi.pom//checkstyle.html</link>
       <description>
@@ -63,13 +63,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool.java">org/universAAL/lddi/abstraction/config/tool/DatapointConfigTool.java</a>
                 </td>
                 <td>
-                  83
+                  89
                 </td>
                 <td>
-                  22
+                  26
                 </td>
                 <td>
-                  60
+                  61
                 </td>
               </tr>
                           <tr>
@@ -301,13 +301,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration.java">org/universAAL/lddi/abstraction/config/data/CGwDataConfiguration.java</a>
                 </td>
                 <td>
-                  31
+                  42
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  13
+                  16
                 </td>
               </tr>
                           <tr>
@@ -2608,6 +2608,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.simulation.SimulationTool.java">org/universAAL/lddi/abstraction/simulation/SimulationTool.java</a>
+                </td>
+                <td>
+                  30
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.impl.OccupacySensingImpl.java">org/universAAL/lddi/zigbee/commissioning/clusters/impl/OccupacySensingImpl.java</a>
                 </td>
                 <td>
@@ -2912,6 +2926,20 @@ under the License.
                 </td>
                 <td>
                   2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.config.protocol.CGwProtocolConfiguration.java">org/universAAL/lddi/abstraction/config/protocol/CGwProtocolConfiguration.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  5
                 </td>
               </tr>
                           <tr>
@@ -3493,13 +3521,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
                 </td>
                 <td>
-                  13
+                  24
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  39
+                  31
                 </td>
               </tr>
                           <tr>
@@ -3535,13 +3563,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint.java">org/universAAL/lddi/abstraction/config/data/ConfiguredDatapoint.java</a>
                 </td>
                 <td>
-                  9
+                  10
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  25
+                  28
                 </td>
               </tr>
                           <tr>
@@ -3591,13 +3619,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
                 </td>
                 <td>
-                  84
+                  141
                 </td>
                 <td>
                   4
                 </td>
                 <td>
-                  71
+                  90
                 </td>
               </tr>
                           <tr>
@@ -4022,6 +4050,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ExternalDataConverter.java">org/universAAL/lddi/abstraction/ExternalDataConverter.java</a>
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.fs20.devicemodel.FS20SIGDevice.java">org/universAAL/lddi/fs20/devicemodel/FS20SIGDevice.java</a>
                 </td>
                 <td>
@@ -4246,6 +4288,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.config.tool.DatapointIntegrationScreener.java">org/universAAL/lddi/abstraction/config/tool/DatapointIntegrationScreener.java</a>
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.knx.interfaces.IKnxReceiveMessage.java">org/universAAL/lddi/knx/interfaces/IKnxReceiveMessage.java</a>
                 </td>
                 <td>
@@ -4326,6 +4382,20 @@ under the License.
                 </td>
                 <td>
                   18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.simulation.SimulatedDatapoint.java">org/universAAL/lddi/abstraction/simulation/SimulatedDatapoint.java</a>
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  13
                 </td>
               </tr>
                           <tr>
@@ -4736,6 +4806,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.simulation.AnyDatapoint.java">org/universAAL/lddi/abstraction/simulation/AnyDatapoint.java</a>
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.org.bn.annotations.ASN1Any.java">org/universAAL/lddi/lib/ieeex73std/org/bn/annotations/ASN1Any.java</a>
                 </td>
                 <td>
@@ -4844,20 +4928,6 @@ under the License.
                 </td>
                 <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.DatapointIntegrationScreener.java">org/universAAL/lddi/abstraction/DatapointIntegrationScreener.java</a>
-                </td>
-                <td>
-                  16
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  13
                 </td>
               </tr>
                           <tr>
@@ -5761,13 +5831,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ComponentIntegrator.java">org/universAAL/lddi/abstraction/ComponentIntegrator.java</a>
                 </td>
                 <td>
-                  53
+                  48
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  33
+                  32
                 </td>
               </tr>
                           <tr>
@@ -5782,6 +5852,20 @@ under the License.
                 </td>
                 <td>
                   10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.simulation.ToggledDatapoint.java">org/universAAL/lddi/abstraction/simulation/ToggledDatapoint.java</a>
+                </td>
+                <td>
+                  17
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  12
                 </td>
               </tr>
                           <tr>
@@ -7270,6 +7354,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.simulation.PercentageDatapoint.java">org/universAAL/lddi/abstraction/simulation/PercentageDatapoint.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.lib.ieeex73std.org.bn.types.NullObject.java">org/universAAL/lddi/lib/ieeex73std/org/bn/types/NullObject.java</a>
                 </td>
                 <td>
@@ -7420,6 +7518,20 @@ under the License.
                 </td>
                 <td>
                   9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.Activator.java">org/universAAL/lddi/abstraction/Activator.java</a>
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  21
                 </td>
               </tr>
                           <tr>

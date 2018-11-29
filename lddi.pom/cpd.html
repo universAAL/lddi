@@ -1668,6 +1668,38 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="a">
+<td>org/universAAL/lddi/abstraction/config/tool/DatapointConfigTool.java</td>
+<td>universAAL LDDI Common ont-based abstraction</td>
+<td>522</td></tr>
+<tr class="b">
+<td>org/universAAL/lddi/abstraction/simulation/SimulationTool.java</td>
+<td>universAAL LDDI Common ont-based abstraction</td>
+<td>101</td></tr>
+<tr class="a"><td colspan='3'>
+<div>
+<pre>	}
+	
+	private void changeOperationMode(int mode) {
+		List&lt;EntityPattern&gt; patterns = new ArrayList&lt;EntityPattern&gt;();
+		patterns.add(new ApplicationPattern(CommunicationGateway.class.getSimpleName()));
+		patterns.add(new ApplicationPartPattern(CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID));
+		patterns.add(new IdPattern(Activator.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE));
+		List&lt;ConfigurableEntityEditor&gt; configs = Activator.getConfigEditor().getMatchingConfigurationEditors(patterns, Locale.ENGLISH);
+		try {
+			ConfigurationParameterEditor configParam = (ConfigurationParameterEditor) configs.get(0);
+			configParam.setValue(mode);
+		} catch (Exception e) {
+			LogUtils.logError(Activator.getMC(), DatapointConfigTool.class, &quot;changeOperationMode()&quot;, e.getMessage());
+		}
+	}
+	
+	private Thread eventsThread = null;</pre></div></td></tr></table>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>File</th>
+<th>Project</th>
+<th>Line</th></tr>
+<tr class="a">
 <td>org/universAAL/lddi/lib/ieeex73std/x73/p104zz/p10404PulsiOximeter.java</td>
 <td>universAAL LDDI Library IEEE x073 standard implementation</td>
 <td>154</td></tr>

@@ -10,36 +10,36 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor
-	c203043 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Iso11073SwitchSensor.html">
+	c208045 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Iso11073SwitchSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Iso11073SwitchSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Iso11073SwitchSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubBaseDeviceCategory
-	c203048 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubBaseDeviceCategory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubBaseDeviceCategory.html">
+	c208050 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubBaseDeviceCategory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ActivityHubBaseDeviceCategory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ActivityHubBaseDeviceCategory </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ActivityHubBaseDeviceCategory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor
-	c203054 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../devicemodel/SwitchSensor.html">
+	c208056 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../devicemodel/SwitchSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SwitchSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="../devicemodel/SwitchSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.exporter.activityhub.driver.Iso11073SwitchSensorInstance
-	c203084 [label=<<table title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073SwitchSensorInstance" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../exporter/activityhub/driver/Iso11073SwitchSensorInstance.html">
+	c208086 [label=<<table title="org.universAAL.lddi.exporter.activityhub.driver.Iso11073SwitchSensorInstance" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../exporter/activityhub/driver/Iso11073SwitchSensorInstance.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Iso11073SwitchSensorInstance </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../../exporter/activityhub/driver/Iso11073SwitchSensorInstance.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor implements org.universAAL.lddi.lib.activityhub.devicecategory.ActivityHubBaseDeviceCategory
-	c203048:p -> c203043:p [dir=back,arrowtail=empty,style=dashed];
+	c208050:p -> c208045:p [dir=back,arrowtail=empty,style=dashed];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor implements org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor
-	c203043:p -> c203054:p [dir=back,arrowtail=empty,style=dashed];
+	c208045:p -> c208056:p [dir=back,arrowtail=empty,style=dashed];
 	//org.universAAL.lddi.exporter.activityhub.driver.Iso11073SwitchSensorInstance implements org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor
-	c203043:p -> c203084:p [dir=back,arrowtail=empty,style=dashed];
+	c208045:p -> c208086:p [dir=back,arrowtail=empty,style=dashed];
 }
 

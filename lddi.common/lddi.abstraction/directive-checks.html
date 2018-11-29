@@ -89,15 +89,14 @@
 <td><b>Passed</b></td></tr>
 <tr class="a">
 <td>DependencyManagementCheckFix</td>
-<td><b>Failed</b><br /><tt>dependencyManagement Conformance Directive Fail :<br />
-It seems the POM has versions it shouldn't.<br />
-	org.universAAL.ontology:ont.lddi.config.datapoints, version shouldn't be declared.<br /></tt></td></tr>
+<td><b>Passed</b></td></tr>
 <tr class="b">
 <td>MavenCoordinateCheck</td>
 <td><b>Passed</b></td></tr>
 <tr class="a">
 <td>DecoupleCheck</td>
-<td><b>Passed</b></td></tr>
+<td><b>Failed</b><br /><tt>The following Files are not Container Decoupled:<br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/Activator.html">org.universAAL.lddi.abstraction.Activator</a><br />
+To solve this problem, make sure there are no OSGi imports in your classes, unless the package that contains them has explicitly &quot;osgi&quot; in it's name.<br /></tt></td></tr>
 <tr class="b">
 <td>LicenseFileCheckFix</td>
 <td><b>Failed</b><br /><tt>License File does not exist: ASL2.0.txt<br />
@@ -105,7 +104,7 @@ License File does not exist: NOTICE.txt<br />
 <br /></tt></td></tr>
 <tr class="a">
 <td>LicenseHeaderCheckFix</td>
-<td><b>Failed</b><br /><tt>The following Files seem not to have a proper License Header:<br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/DatapointIntegrationScreener.html">org.universAAL.lddi.abstraction.DatapointIntegrationScreener</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html">org.universAAL.lddi.abstraction.ExternalComponentDiscoverer</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/data/CGwDataConfiguration.html">org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/data/ConfiguredDatapoint.html">org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/tool/DatapointConfigTool.html">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool</a><br />
+<td><b>Failed</b><br /><tt>The following Files seem not to have a proper License Header:<br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/Activator.html">org.universAAL.lddi.abstraction.Activator</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/ExternalComponentDiscoverer.html">org.universAAL.lddi.abstraction.ExternalComponentDiscoverer</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/ExternalDataConverter.html">org.universAAL.lddi.abstraction.ExternalDataConverter</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/data/CGwDataConfiguration.html">org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/data/ConfiguredDatapoint.html">org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/protocol/CGwProtocolConfiguration.html">org.universAAL.lddi.abstraction.config.protocol.CGwProtocolConfiguration</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/tool/DatapointConfigTool.html">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/config/tool/DatapointIntegrationScreener.html">org.universAAL.lddi.abstraction.config.tool.DatapointIntegrationScreener</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/simulation/AnyDatapoint.html">org.universAAL.lddi.abstraction.simulation.AnyDatapoint</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/simulation/PercentageDatapoint.html">org.universAAL.lddi.abstraction.simulation.PercentageDatapoint</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/simulation/SimulatedDatapoint.html">org.universAAL.lddi.abstraction.simulation.SimulatedDatapoint</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/simulation/SimulationTool.html">org.universAAL.lddi.abstraction.simulation.SimulationTool</a><br />&#160;&#160;&#160;&#160;<a href="xref/org/universAAL/lddi/abstraction/simulation/ToggledDatapoint.html">org.universAAL.lddi.abstraction.simulation.ToggledDatapoint</a><br />
 Make sure all your classes have an Apache Software Licence Header<br />
  see license at <a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a><br /></tt></td></tr>
 <tr class="b">

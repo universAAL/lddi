@@ -95,6 +95,10 @@
 <td class="colFirst"><a href="#org.universAAL.lddi.abstraction.config.data">org.universAAL.lddi.abstraction.config.data</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.universAAL.lddi.abstraction.simulation">org.universAAL.lddi.abstraction.simulation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -146,6 +150,12 @@
 <td class="colLast"><span class="typeNameLabel">ExternalComponent.</span><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/ExternalComponent.html#addPropMapping-java.lang.String-org.universAAL.lddi.abstraction.ExternalDatapoint-">addPropMapping</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
               <a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;datapoint)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">CommunicationGateway.</span><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/CommunicationGateway.html#handleSimulatedEvent-org.universAAL.lddi.abstraction.simulation.SimulationTool-org.universAAL.lddi.abstraction.ExternalDatapoint-java.lang.Object-">handleSimulatedEvent</a></span>(<a href="../../../../../org/universAAL/lddi/abstraction/simulation/SimulationTool.html" title="class in org.universAAL.lddi.abstraction.simulation">SimulationTool</a>&nbsp;st,
+                    <a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;dp,
+                    <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -163,6 +173,60 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/config/data/ConfiguredDatapoint.html" title="class in org.universAAL.lddi.abstraction.config.data">ConfiguredDatapoint</a></span></code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.universAAL.lddi.abstraction.simulation">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a> in <a href="../../../../../org/universAAL/lddi/abstraction/simulation/package-summary.html">org.universAAL.lddi.abstraction.simulation</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/universAAL/lddi/abstraction/simulation/package-summary.html">org.universAAL.lddi.abstraction.simulation</a> with parameters of type <a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">SimulationTool.</span><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/simulation/SimulationTool.html#addDataPoint-org.universAAL.lddi.abstraction.ExternalDatapoint-boolean-java.net.URL-java.lang.Object-">addDataPoint</a></span>(<a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;dp,
+            boolean&nbsp;isPercentage,
+            <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/net/URL.html?is-external=true" title="class or interface in java.net">URL</a>&nbsp;iconURL,
+            <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;initialVal)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">SimulationTool.</span><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/simulation/SimulationTool.html#addDataPoint-org.universAAL.lddi.abstraction.ExternalDatapoint-java.util.Hashtable-java.lang.Object-">addDataPoint</a></span>(<a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;dp,
+            <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Hashtable.html?is-external=true" title="class or interface in java.util">Hashtable</a>&lt;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/net/URL.html?is-external=true" title="class or interface in java.net">URL</a>&gt;&nbsp;altValues,
+            <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;initialVal)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SimulationTool.</span><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/simulation/SimulationTool.html#getDatapointValue-org.universAAL.lddi.abstraction.ExternalDatapoint-">getDatapointValue</a></span>(<a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;dp)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">SimulationTool.</span><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/simulation/SimulationTool.html#setDatapointValue-org.universAAL.lddi.abstraction.ExternalDatapoint-java.lang.Object-">setDatapointValue</a></span>(<a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;dp,
+                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../org/universAAL/lddi/abstraction/simulation/package-summary.html">org.universAAL.lddi.abstraction.simulation</a> with parameters of type <a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/simulation/AnyDatapoint.html#AnyDatapoint-org.universAAL.lddi.abstraction.ExternalDatapoint-java.net.URL-java.lang.Object-">AnyDatapoint</a></span>(<a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;dp,
+            <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/net/URL.html?is-external=true" title="class or interface in java.net">URL</a>&nbsp;iconURL,
+            <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;initialVal)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/universAAL/lddi/abstraction/simulation/PercentageDatapoint.html#PercentageDatapoint-org.universAAL.lddi.abstraction.ExternalDatapoint-java.net.URL-java.lang.Object-">PercentageDatapoint</a></span>(<a href="../../../../../org/universAAL/lddi/abstraction/ExternalDatapoint.html" title="interface in org.universAAL.lddi.abstraction">ExternalDatapoint</a>&nbsp;dp,
+                   <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/net/URL.html?is-external=true" title="class or interface in java.net">URL</a>&nbsp;iconURL,
+                   <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;initialVal)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
