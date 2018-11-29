@@ -3,25 +3,34 @@
  */
 package org.universAAL.lddi.abstraction.config.data;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 
+import org.universAAL.lddi.abstraction.Activator;
 import org.universAAL.lddi.abstraction.CommunicationGateway;
 import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.lddi.abstraction.ExternalComponentDiscoverer;
+import org.universAAL.lddi.abstraction.ExternalDatapoint;
 import org.universAAL.ontology.lddi.config.datapoints.Component;
 import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.interfaces.configuration.ConfigurableModule;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditorListener;
-//import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurationParameterEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurationParameterEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPartPattern;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPattern;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.EntityPattern;
 import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.Resource;
+// import org.universAAL.middleware.serialization.MessageContentSerializer;
 
 /**
  * @author mtazari
@@ -48,6 +57,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 	 * Used in {@link #configurationChanged} with bit #0 for {@link #CONF_PARAM_CGW_DATA_COMPONENTS} and bit #1 for {@link #CONF_PARAM_CGW_DATA_DATAPOINTS}.
 	 */
 	private int paramsBitPattern = 0;
+	private boolean ignoreOnce = false;
 	
 	public CGwDataConfiguration(CommunicationGateway cgw) {
 		this.cgw = cgw;
@@ -59,7 +69,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 				||  !CommunicationGateway.CGW_CONF_APP_PART_DATA_ID.equals(((AppPartScope) confParam).getPartID()))
 			return false;
 		String id = confParam.getId();
-		if (CONF_PARAM_CGW_DATA_COMPONENTS.equals(id)) {
+		if (CONF_PARAM_CGW_DATA_COMPONENTS.equals(id)  &&  paramValue != components) {
 			Vector<Component> validatedPValues = new Vector<Component>();
 			if (paramValue instanceof List<?>) {
 				for (Object o : (List<?>) paramValue)
@@ -77,10 +87,12 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 			Component[] carr = new Component[size];
 			for (Component c : validatedPValues) {
 				int seqNo = c.getSeqNoInConfig();
-				if (seqNo < size)
+				if (seqNo > -1  &&  seqNo < size)
 					carr[seqNo] = c;
-				else
+				else {
+					LogUtils.logWarn(Activator.getMC(), getClass(), "configurationChanged", "Ignoring " + c.getOntDescription()+" with an out-of-bound seqNo equal to "+seqNo);
 					return false;
+				}
 			}
 			// ready to accept the new value
 			components.clear();
@@ -89,6 +101,10 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 			if ((paramsBitPattern & 1) == 0)
 				paramsBitPattern++;
 		} else if (CONF_PARAM_CGW_DATA_DATAPOINTS.equals(id)) {
+			if (ignoreOnce) {
+				ignoreOnce = false;
+				return true;
+			}
 			Vector<ConfiguredDatapoint> validatedPValues = new Vector<ConfiguredDatapoint>();
 			if (paramValue instanceof List<?>) {
 				for (Object o : (List<?>) paramValue)
@@ -166,8 +182,61 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 		cgw.addComponents(constructedECs, this);
 	}
 
-//	public void ConfigurationChanged(ConfigurableEntityEditor entityChanged) {
-//		if (entityChanged instanceof ConfigurationParameterEditor)
-//		configurationChanged(entityChanged.getScope(), ((ConfigurationParameterEditor) entityChanged).getConfiguredValue());
-//	}
+	public void saveComponents(Collection<List<ExternalComponent>> colOfLists) {
+		components.clear();
+		ArrayList<Datapoint> dps = new ArrayList<Datapoint>(datapoints.size());
+		for (List<ExternalComponent> l : colOfLists)
+			for (ExternalComponent ec : l) {
+				int seqNo = -1;
+				for (Enumeration<ExternalDatapoint> e = ec.enumerateDatapoints(); e.hasMoreElements();) {
+					ExternalDatapoint edp = e.nextElement();
+					if (edp instanceof ConfiguredDatapoint) {
+						Datapoint dp = ((ConfiguredDatapoint) edp).dp;
+						int compID = dp.getComponentID();
+						if (compID > -1) {
+							if (seqNo == -1)
+								seqNo = compID;
+							else if (compID != seqNo)
+								LogUtils.logWarn(Activator.getMC(), getClass(), "saveComponents()", "Ignoring datapoint that belongs to a component with a different seqNo!");
+						} else
+							LogUtils.logWarn(Activator.getMC(), getClass(), "saveComponents()", "Ignoring datapoint tha tbelongs to a component with a different seqNo!");
+						dps.add(dp);
+					}
+				}
+				if (seqNo < 0)
+					LogUtils.logWarn(Activator.getMC(), getClass(), "saveComponents()", "Ignoring component without datapoint!");
+				else {
+					Component c = new Component();
+					c.setProperty(Component.PROP_CONFIG_SEQ_NO, seqNo);
+					c.setProperty(Component.PROP_DESCRIPTION, ec.getOntResource());
+					c.setProperty(Component.PROP_EXTERNAL_TYPE_SYSTEM, ec.getExternalTypeSystem());
+					components.add(c);
+				}
+			}
+		
+//		Resource dummy = new Resource("urn:debug#dummy");
+//		dummy.setProperty("urn:debug#dps", dps);
+//		dummy.setProperty("urn:debug#cs", components);
+//		MessageContentSerializer serializer = (MessageContentSerializer) Activator.context.getContainer().fetchSharedObject(Activator.context,
+//				new Object[] { MessageContentSerializer.class.getName() });
+//		System.out.println(serializer.serialize(dummy));
+		
+		List<EntityPattern> patterns = new ArrayList<EntityPattern>();
+		patterns.add(new ApplicationPattern(cgw.getConfigAppID()));
+		patterns.add(new ApplicationPartPattern(CommunicationGateway.CGW_CONF_APP_PART_DATA_ID));
+		List<ConfigurableEntityEditor> configs = Activator.getConfigEditor().getMatchingConfigurationEditors(patterns, Locale.ENGLISH);
+		try {
+			for (ConfigurableEntityEditor configParam : configs) {
+				String id = ((ConfigurationParameterEditor) configParam).getScope().getId();
+				if (CONF_PARAM_CGW_DATA_COMPONENTS.equals(id))
+					((ConfigurationParameterEditor) configParam).setValue(components);
+				else if (CONF_PARAM_CGW_DATA_DATAPOINTS.equals(id)) {
+					ignoreOnce = true;
+					((ConfigurationParameterEditor) configParam).setValue(dps);
+				}
+			}
+		} catch (Exception e) {
+			LogUtils.logError(Activator.getMC(), getClass(), "saveComponents()", e.getMessage());
+		}
+	}
 }

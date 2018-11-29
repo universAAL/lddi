@@ -16,6 +16,7 @@ import javax.swing.JToolBar;
 
 import org.universAAL.lddi.abstraction.Activator;
 import org.universAAL.lddi.abstraction.ExternalDatapoint;
+import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
  * @author mtazari
@@ -61,7 +62,7 @@ class ToggledDatapoint extends SimulatedDatapoint {
 			}
 		}
 		if (value != o)
-			Activator.context.logWarn(getClass().getName(), "Given value not in the set of alternative values: " + o, null);
+			LogUtils.logWarn(Activator.getMC(), getClass(), "setValue", "Given value not in the set of alternative values: " + o);
 	}
 
     

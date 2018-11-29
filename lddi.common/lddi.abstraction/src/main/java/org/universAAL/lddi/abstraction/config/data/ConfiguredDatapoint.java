@@ -13,7 +13,7 @@ import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
  */
 public class ConfiguredDatapoint implements ExternalDatapoint {
 	
-	private Datapoint dp;
+	Datapoint dp;
 	private ExternalComponent ec = null;
 	
 	ConfiguredDatapoint(Datapoint dp) {
@@ -45,6 +45,11 @@ public class ConfiguredDatapoint implements ExternalDatapoint {
 	
 	public Object getProperty(String prop) {
 		return (prop == null)?  null : dp.getProperty(prop);
+	}
+	
+	public void changeProperty(String prop, Object value) {
+		if (prop != null  &&  value != null)
+			dp.changeProperty(prop, value);
 	}
 	
 	public void setProperty(String prop, Object value) {

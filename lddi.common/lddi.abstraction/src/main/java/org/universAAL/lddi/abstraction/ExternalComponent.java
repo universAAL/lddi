@@ -26,6 +26,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.ontology.lddi.config.datapoints.ExternalTypeSystem;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
 
@@ -79,6 +80,13 @@ public final class ExternalComponent {
 		this.gw = gw;
 		ontResource = description;
 		converter = CommunicationGateway.edConverters.get(externaltypeSystem);
+	}
+	
+	public ExternalTypeSystem getExternalTypeSystem() {
+		for (String uri : CommunicationGateway.edConverters.keySet())
+			if (CommunicationGateway.edConverters.get(uri) == converter)
+				return ExternalTypeSystem.getLocallyRegisteredInstanceByURI(uri);
+		return null;
 	}
 
 	public void addPropMapping(String propURI, ExternalDatapoint datapoint) {

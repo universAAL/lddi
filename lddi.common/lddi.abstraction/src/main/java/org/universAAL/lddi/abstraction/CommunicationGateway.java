@@ -32,6 +32,7 @@ import org.universAAL.lddi.abstraction.config.protocol.CGwProtocolConfiguration;
 import org.universAAL.lddi.abstraction.config.tool.DatapointIntegrationScreener;
 import org.universAAL.lddi.abstraction.simulation.SimulationTool;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.MergedRestriction;
@@ -78,7 +79,8 @@ public abstract class CommunicationGateway {
 			}
 
 			public Scope getScope() {
-				return Scope.applicationPartScope(id, ((id == CGwProtocolConfiguration.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE)? "CommunicationGateway" : CGW_CONF_APP_ID), appPartID);
+				return Scope.applicationPartScope(id, ((id == Activator.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE)?
+						CommunicationGateway.class.getSimpleName() : CGW_CONF_APP_ID), appPartID);
 			}
 
 			public MergedRestriction getType() {
@@ -131,11 +133,23 @@ public abstract class CommunicationGateway {
 			String propURI = datapoint.getProperty();
 			value = ec.changeProperty(propURI, value);
 			
+			if (this.value != null) {
+				Object aux = ec.converter.exportValue(ec.getTypeURI(), propURI, ec.getOntResource().getProperty(propURI));
+				if (!this.value.equals(aux)) {
+					LogUtils.logWarn(Activator.context, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" resulted in '"+aux+"' --> Ignored!");
+					return;
+				}
+			}
+			
 			if (dpIntegrationScreener != null)
 				dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
-			for (ComponentIntegrator ci : subscribers) {
-				ci.publish(ec.getOntResource(), propURI, value);
-			}
+			
+			if (this.value == null)
+				for (ComponentIntegrator ci : subscribers)
+					ci.propertyDeleted(ec.getOntResource(), propURI);
+			else
+				for (ComponentIntegrator ci : subscribers)
+					ci.publish(ec.getOntResource(), propURI, value);
 		}
 		
 		void simulateEventing(short intervalSeconds) {
@@ -170,6 +184,7 @@ public abstract class CommunicationGateway {
 	 */
 	private Hashtable<String, Subscription> subscriptions = new Hashtable<String, Subscription>();
 	
+	private CGwDataConfiguration dataConf = null;
 	private CGwProtocolConfiguration protocolConf = null;
 	
 	public void addComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
@@ -211,6 +226,10 @@ public abstract class CommunicationGateway {
 	
 	public String getConfigAppID() {
 		return CGW_CONF_APP_ID;
+	}
+	
+	public final void saveComponentsConfiguration() {
+		dataConf.saveComponents(discoveredComponents.values());
 	}
 	
 	/**
@@ -270,12 +289,10 @@ public abstract class CommunicationGateway {
 				for (Object converter : converters)
 					if (converter instanceof ExternalDataConverter)
 						edConverters.put(((ExternalDataConverter) converter).getExternalTypeSystemURI(), (ExternalDataConverter) converter);
-		
-			protocolConf.registerOperationModeParameter();
 		}
 				
 		if (useStandardDataConfig) {
-			CGwDataConfiguration dataConf = new CGwDataConfiguration(this);
+			dataConf = new CGwDataConfiguration(this);
 			addDiscoverer(dataConf);
 			
 			Activator.confMgr.register(CGwDataConfiguration.configurations, dataConf);
@@ -286,8 +303,10 @@ public abstract class CommunicationGateway {
 				public void run() {
 					while (true) {
 						eventingSimulationTicker++;
-						for (Enumeration<Subscription> e=subscriptions.elements(); e.hasMoreElements();)
-							e.nextElement().eventTicker(eventingSimulationTicker);
+						synchronized (discoverers) {
+							for (Enumeration<Subscription> e=subscriptions.elements(); e.hasMoreElements();)
+								e.nextElement().eventTicker(eventingSimulationTicker);
+						}
 						// loop every second
 						try {
 							Thread.sleep(1000);
@@ -590,48 +609,59 @@ public abstract class CommunicationGateway {
 		}
 	}
 	
-	public final boolean setOperationMode(CGwProtocolConfiguration protocolConf, int mode) {
-		if (protocolConf != null  &&  protocolConf == this.protocolConf) {
-			switch (mode) {
-			case OPERATION_MODE_IN_PRODUCTION:
-				setSimulationMode(false);
-				setAddressTestMode(false);
-				break;
-			case OPERATION_MODE_ADDRESS_TEST:
-				setSimulationMode(false);
-				setAddressTestMode(true);
-				break;
-			case OPERATION_MODE_SIMULATION:
-				setSimulationMode(true);
-				setAddressTestMode(false);
-				break;
-			default:
-				return false;
-			
-			}
-			switchOperationMode(mode);
-			return true;
+	static final synchronized boolean setOperationMode(int mode) {
+		switch (mode) {
+		case OPERATION_MODE_IN_PRODUCTION:
+			setSimulationMode(false);
+			setAddressTestMode(false);
+			break;
+		case OPERATION_MODE_ADDRESS_TEST:
+			setSimulationMode(false);
+			setAddressTestMode(true);
+			break;
+		case OPERATION_MODE_SIMULATION:
+			setSimulationMode(true);
+			setAddressTestMode(false);
+			break;
+		default:
+			return false;
 		}
-		return false;
+		return true;
 	}
 
-	private final void setAddressTestMode(boolean isAddressTestMode) {
+	private static final void setAddressTestMode(boolean isAddressTestMode) {
 		if (isAddressTestMode == (dpIntegrationScreener == null)) {
 			if (dpIntegrationScreener == null) {
 				dpIntegrationScreener = new DatapointIntegrationScreener();
 				dpIntegrationScreener.showTool();
+				for (CommunicationGateway cgw : getAllCGws())
+					for (List<ExternalComponent> ecs : cgw.discoveredComponents.values())
+						dpIntegrationScreener.integrateComponents(ecs);
 			} else {
 				dpIntegrationScreener.stop();
 				dpIntegrationScreener = null;
 			}
 		}
 	}
+	
+	private static CommunicationGateway[] getAllCGws() {
+		Object[] cgws = Activator.context.getContainer().fetchSharedObject(Activator.context, Activator.cgwSharingParams, null);
+		if (cgws == null)
+			return new CommunicationGateway[0];
+		
+		CommunicationGateway[] result = new CommunicationGateway[cgws.length];
+		for (int i=cgws.length-1; i>-1; i--)
+			result[i] = (CommunicationGateway) cgws[i];
+		return result;
+	}
 
-	private final void setSimulationMode(boolean isSimulationMode) {
+	private static final void setSimulationMode(boolean isSimulationMode) {
 		if (isSimulationMode == (simulationTool == null)) {
 			if (simulationTool == null) {
-				simulationTool = new SimulationTool(this);
-				// simulateDatapoints();
+				simulationTool = new SimulationTool();
+				for (CommunicationGateway cgw : getAllCGws())
+					for (List<ExternalComponent> ecs : cgw.discoveredComponents.values())
+						simulateDatapoints(ecs);
 				simulationTool.setVisible(true);
 			} else {
 				simulationTool.setVisible(false);
@@ -641,7 +671,7 @@ public abstract class CommunicationGateway {
 		}
 	}
 	
-	private void simulateDatapoints(List<ExternalComponent> components) {
+	private static void simulateDatapoints(List<ExternalComponent> components) {
 		for (ExternalComponent ec : components)
 			for (ExternalDatapoint dp : ec.datapoints()) {
 				Hashtable<Object, URL> altValues = ec.enumerateAltValues(dp);
@@ -670,7 +700,8 @@ public abstract class CommunicationGateway {
 	}
 
 	public final boolean handleProtocolConfParam(CGwProtocolConfiguration protocolConf, String id, Object paramValue) {
-		return (protocolConf != null  &&  protocolConf == this.protocolConf)?
+		System.out.println("CommunicationGateway->handleProtocolConfParam() conf param: "+CGW_CONF_APP_ID+"#"+id+"="+paramValue);
+		return (this.protocolConf == null  ||  protocolConf == this.protocolConf)?
 				protocolConfParamChanged(id, paramValue)
 				: false;
 	}

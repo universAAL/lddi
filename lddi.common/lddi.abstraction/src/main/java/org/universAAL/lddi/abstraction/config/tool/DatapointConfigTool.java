@@ -4,10 +4,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.universAAL.lddi.abstraction.Activator;
+import org.universAAL.lddi.abstraction.CommunicationGateway;
 import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.lddi.abstraction.ExternalDatapoint;
 import org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.container.utils.StringUtils;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurableEntityEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.ConfigurationParameterEditor;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPartPattern;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.ApplicationPattern;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.EntityPattern;
+import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.IdPattern;
+import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
 import org.universAAL.ontology.location.Location;
 
 import java.awt.GridBagLayout;
@@ -26,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.awt.event.ActionListener;
@@ -170,6 +181,7 @@ public class DatapointConfigTool extends JFrame {
 	private static JTextField valueToWrite;
 	
 	private static DatapointConfigTool self;
+	private static boolean hasAddressChange = false;
 	
 	private ArrayList<List<ExternalComponent>> newComponents;
 	private Hashtable<String, ExternalComponent> receivedEvents;
@@ -193,16 +205,16 @@ public class DatapointConfigTool extends JFrame {
 		propertiesModel = new PropertiesModel();
 		eventsModel = new EventsModel();
 		
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JButton btnPrevComp = new JButton("Previous");
@@ -446,18 +458,97 @@ public class DatapointConfigTool extends JFrame {
 		notifications.setColumnSelectionAllowed(false);
 		notifications.setRowSelectionAllowed(true);
 		notifications.setFillsViewportHeight(true);
+		
+		JButton btnSaveDP = new JButton("Change Addresses");
+		GridBagConstraints gbc_btnSaveDP = new GridBagConstraints();
+		gbc_btnSaveDP.insets = new Insets(5, 5, 5, 5);
+		gbc_btnSaveDP.gridx = 3;
+		gbc_btnSaveDP.gridy = 8;
+		contentPane.add(btnSaveDP, gbc_btnSaveDP);
+		btnSaveDP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (indexSelectedComponent > -1  &&  indexSelectedComponent < components.size()) {
+					ExternalDatapoint dp = components.get(indexSelectedComponent).getDatapoint(propertiesModel.getSelectedItem());
+					if (dp instanceof ConfiguredDatapoint) {
+						if (!"the pull address...".equals(valPullAddress.getText()))
+							((ConfiguredDatapoint) dp).changeProperty(Datapoint.PROP_PULL_ADDRESS, valPullAddress.getText());
+						if (!"the push address...".equals(valPushAddress.getText()))
+							((ConfiguredDatapoint) dp).changeProperty(Datapoint.PROP_PUSH_ADDRESS, valPushAddress.getText());
+						if (!"the set address...".equals(valSetAddress.getText()))
+							((ConfiguredDatapoint) dp).changeProperty(Datapoint.PROP_SET_ADDRESS, valSetAddress.getText());
+						DatapointConfigTool.hasAddressChange = true;
+					}
+				}
+			}
+		});
+		
+		JButton btnSwitch2Simulation = new JButton("To Simulation Mode");
+		GridBagConstraints gbc_btnSwitch2Simulation = new GridBagConstraints();
+		gbc_btnSwitch2Simulation.insets = new Insets(5, 5, 5, 5);
+		gbc_btnSwitch2Simulation.gridx = 1;
+		gbc_btnSwitch2Simulation.gridy = 9;
+		contentPane.add(btnSwitch2Simulation, gbc_btnSwitch2Simulation);
+		btnSwitch2Simulation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (DatapointConfigTool.hasAddressChange)
+					saveDatapoints();
+				changeOperationMode(CommunicationGateway.OPERATION_MODE_SIMULATION);
+			}
+		});
+		
+		JButton btnSwitch2Production = new JButton("To Production MOde");
+		GridBagConstraints gbc_btnSwitch2Production = new GridBagConstraints();
+		gbc_btnSwitch2Production.insets = new Insets(5, 5, 5, 5);
+		gbc_btnSwitch2Production.gridx = 2;
+		gbc_btnSwitch2Production.gridy = 9;
+		contentPane.add(btnSwitch2Production, gbc_btnSwitch2Production);
+		btnSwitch2Production.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (DatapointConfigTool.hasAddressChange)
+					saveDatapoints();
+				changeOperationMode(CommunicationGateway.OPERATION_MODE_IN_PRODUCTION);
+			}
+		});
+	}
+	
+	private void saveDatapoints() {
+		Object[] cgws = Activator.getMC().getContainer().fetchSharedObject(Activator.getMC(), Activator.cgwSharingParams, null);
+		if (cgws == null)
+			return;
+		
+		for (Object o : cgws)
+			if (o instanceof CommunicationGateway)
+				((CommunicationGateway) o).saveComponentsConfiguration();
+	}
+	
+	private void changeOperationMode(int mode) {
+		List<EntityPattern> patterns = new ArrayList<EntityPattern>();
+		patterns.add(new ApplicationPattern(CommunicationGateway.class.getSimpleName()));
+		patterns.add(new ApplicationPartPattern(CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID));
+		patterns.add(new IdPattern(Activator.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE));
+		List<ConfigurableEntityEditor> configs = Activator.getConfigEditor().getMatchingConfigurationEditors(patterns, Locale.ENGLISH);
+		try {
+			ConfigurationParameterEditor configParam = (ConfigurationParameterEditor) configs.get(0);
+			configParam.setValue(mode);
+		} catch (Exception e) {
+			LogUtils.logError(Activator.getMC(), DatapointConfigTool.class, "changeOperationMode()", e.getMessage());
+		}
 	}
 	
 	private Thread eventsThread = null;
 	private Thread componentsThread = null;
 	@Override
 	public void setVisible(boolean visible) {
+		if (isVisible() == visible)
+			return;
+		
 		super.setVisible(visible);
 		if (visible) {
 			if (eventsThread == null) {
 				eventsThread = new Thread() {
 					public void run() {
-						while (true) {
+						boolean loop = true;
+						while (loop) {
 							lock.lock();
 							try {
 								while (receivedEvents.isEmpty())
@@ -467,11 +558,15 @@ public class DatapointConfigTool extends JFrame {
 										DatapointConfigTool.this.newNotification(ec, key, ec.currentValueAsString(key));
 								}
 							} catch (Exception e) {
-								e.printStackTrace();
+								if (e instanceof InterruptedException)
+									loop = false;
+								else
+									e.printStackTrace();
 							} finally {
 								lock.unlock();
 							}
 						}
+						LogUtils.logInfo(Activator.getMC(), getClass(), "setVisible()", "Events-thread stopped!");
 					}
 				};
 				try {
@@ -482,22 +577,30 @@ public class DatapointConfigTool extends JFrame {
 			if (componentsThread == null) {
 				componentsThread = new Thread() {
 					public void run() {
-						while (true) {
+						boolean loop = true;
+						while (loop) {
 							lock.lock();
 							try {
 								while (newComponents.isEmpty())
 									componentsReplacedCond.await();
 								List<ExternalComponent> ecs = newComponents.remove(0);
-								if (ecs == null)
+								if (ecs == null) {
 									DatapointConfigTool.this.setVisible(false);
-								else
-									DatapointConfigTool.components.addAll(ecs);
+									break;
+								} else
+									for (ExternalComponent ec : ecs)
+										if (!DatapointConfigTool.components.contains(ec))
+											DatapointConfigTool.components.add(ec);
 							} catch (Exception e) {
-								e.printStackTrace();
+								if (e instanceof InterruptedException)
+									loop = false;
+								else
+									e.printStackTrace();
 							} finally {
 								lock.unlock();
 							}
 						}
+						LogUtils.logInfo(Activator.getMC(), getClass(), "setVisible()", "Components-thread stopped!");
 					}
 				};
 				try {
@@ -505,11 +608,19 @@ public class DatapointConfigTool extends JFrame {
 				} catch (Exception e) {}
 			}
 		} else {
-			if (eventsThread != null  &&  eventsThread.isAlive())
+			if (eventsThread != null  &&  eventsThread.isAlive()) {
 				eventsThread.interrupt();
-			if (componentsThread != null  &&  componentsThread.isAlive())
+				eventsThread = null;
+			}
+			if (componentsThread != null  &&  componentsThread.isAlive()) {
 				componentsThread.interrupt();
-			this.dispose();
+				componentsThread = null;
+			}
+			try {
+				// this.dispose();
+			} catch (Exception e3) {
+				LogUtils.logError(Activator.getMC(), getClass(), "setVisible()", new String[] {"Disposing the address test tool!"}, e3);
+			}
 		}
 	}
 

@@ -28,6 +28,7 @@ import java.util.Map.Entry;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.SharedObjectListener;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.ontology.location.Location;
 
@@ -43,8 +44,6 @@ import org.universAAL.ontology.location.Location;
  * and the documentation of the methods further below.
  */
 public abstract class ComponentIntegrator implements SharedObjectListener {
-	
-	private static final Object DUMMY_CGW_REMOVE_HOOK = new Object();
 
 	private class Subscription {
 		private short pullWaitInterval;
@@ -201,7 +200,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		if (registeredGateways != null )
 			for (Object o : registeredGateways) {
 				if (o instanceof CommunicationGateway) {
-					discoveredGateways.put(DUMMY_CGW_REMOVE_HOOK, (CommunicationGateway) o);
+					discoveredGateways.put(Activator.getSharedObjectRemoveHook(o), (CommunicationGateway) o);
 					for (String type: myTypes)
 						((CommunicationGateway) o).register(type, this);
 				}
@@ -274,6 +273,10 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		ExternalComponent ec = connectedComponents.get(ontResource.getURI());
 		if (ec != null)
 			ec.setPropertyValue(propertyURI, value);
+	}
+	
+	protected void propertyDeleted(ManagedIndividual mi, String propURI) {
+		LogUtils.logInfo(Activator.context, getClass(), "propertyDeleted", "Ignoring the deletion of "+propURI);
 	}
 
 }
