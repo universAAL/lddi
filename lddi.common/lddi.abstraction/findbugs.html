@@ -94,7 +94,7 @@
 <th>Missing Classes</th></tr>
 <tr class="b">
 <td>38</td>
-<td>39</td>
+<td>40</td>
 <td>0</td>
 <td>0</td></tr></table></div>
 <div class="section">
@@ -110,57 +110,60 @@
 <td><a href="#org.universAAL.lddi.abstraction.CommunicationGateway">org.universAAL.lddi.abstraction.CommunicationGateway</a></td>
 <td>7</td></tr>
 <tr class="b">
+<td><a href="#org.universAAL.lddi.abstraction.CommunicationGateway$Subscription">org.universAAL.lddi.abstraction.CommunicationGateway$Subscription</a></td>
+<td>1</td></tr>
+<tr class="a">
 <td><a href="#org.universAAL.lddi.abstraction.ComponentIntegrator">org.universAAL.lddi.abstraction.ComponentIntegrator</a></td>
 <td>1</td></tr>
-<tr class="a">
+<tr class="b">
 <td><a href="#org.universAAL.lddi.abstraction.ExternalComponent">org.universAAL.lddi.abstraction.ExternalComponent</a></td>
 <td>1</td></tr>
-<tr class="b">
+<tr class="a">
 <td><a href="#org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration">org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration</a></td>
 <td>3</td></tr>
-<tr class="a">
+<tr class="b">
 <td><a href="#org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool</a></td>
 <td>16</td></tr>
-<tr class="b">
+<tr class="a">
 <td><a href="#org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$EventsModel">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$EventsModel</a></td>
 <td>1</td></tr>
-<tr class="a">
+<tr class="b">
 <td><a href="#org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$PropertiesModel">org.universAAL.lddi.abstraction.config.tool.DatapointConfigTool$PropertiesModel</a></td>
 <td>1</td></tr>
-<tr class="b">
+<tr class="a">
 <td><a href="#org.universAAL.lddi.abstraction.simulation.SimulationTool">org.universAAL.lddi.abstraction.simulation.SimulationTool</a></td>
 <td>4</td></tr>
-<tr class="a">
+<tr class="b">
 <td><a href="#org.universAAL.lddi.abstraction.simulation.ToggledDatapoint">org.universAAL.lddi.abstraction.simulation.ToggledDatapoint</a></td>
 <td>1</td></tr></table></div><a name="org.universAAL.lddi.abstraction.Activator"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.abstraction.Activator"></a>org.universAAL.lddi.abstraction.Activator</h3>
 <table border="0" class="bodyTable">
-<tr class="b">
+<tr class="a">
 <th>Bug</th>
 <th>Category</th>
 <th>Details</th>
 <th>Line</th>
 <th>Priority</th></tr>
-<tr class="a">
+<tr class="b">
 <td>org.universAAL.lddi.abstraction.Activator.getSharedObjectRemoveHook(Object) might ignore java.lang.Exception</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#DE_MIGHT_IGNORE">DE_MIGHT_IGNORE</a></td>
 <td>83</td>
 <td>High</td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.universAAL.lddi.abstraction.Activator.cgwSharingParams is a mutable array</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_MUTABLE_ARRAY">MS_MUTABLE_ARRAY</a></td>
 <td>20</td>
 <td>High</td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.universAAL.lddi.abstraction.Activator.edConverterParams should be package protected</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#MS_PKGPROTECT">MS_PKGPROTECT</a></td>
 <td>19</td>
 <td>Medium</td></tr>
-<tr class="b">
+<tr class="a">
 <td>Write to static field org.universAAL.lddi.abstraction.Activator.osgiBC from instance method org.universAAL.lddi.abstraction.Activator.start(BundleContext)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
@@ -169,6 +172,51 @@
 <div class="section">
 <h3><a name="org.universAAL.lddi.abstraction.CommunicationGateway"></a>org.universAAL.lddi.abstraction.CommunicationGateway</h3>
 <table border="0" class="bodyTable">
+<tr class="b">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="a">
+<td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer)</td>
+<td>MT_CORRECTNESS</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
+<td>387</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer)</td>
+<td>MT_CORRECTNESS</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
+<td>589</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Write to static field org.universAAL.lddi.abstraction.CommunicationGateway.CGW_CONF_APP_ID from instance method org.universAAL.lddi.abstraction.CommunicationGateway.init(ModuleContext, boolean, boolean, ConfigurationParameter[])</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
+<td>280</td>
+<td>High</td></tr>
+<tr class="b">
+<td>Method org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
+<td>389</td>
+<td>Medium</td></tr>
+<tr class="a">
+<td>Method org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
+<td>STYLE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
+<td>591</td>
+<td>Medium</td></tr>
+<tr class="b">
+<td>org.universAAL.lddi.abstraction.CommunicationGateway.addComponents(List, ExternalComponentDiscoverer) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+<td>PERFORMANCE</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
+<td>208</td>
+<td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.CommunicationGatewaySubscription"></a>
+<div class="section">
+<h3><a name="org.universAAL.lddi.abstraction.CommunicationGatewaySubscription"></a>org.universAAL.lddi.abstraction.CommunicationGateway$Subscription</h3>
+<table border="0" class="bodyTable">
 <tr class="a">
 <th>Bug</th>
 <th>Category</th>
@@ -176,41 +224,17 @@
 <th>Line</th>
 <th>Priority</th></tr>
 <tr class="b">
-<td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer)</td>
+<td>Inconsistent synchronization of org.universAAL.lddi.abstraction.CommunicationGateway$Subscription.value; locked 83% of time</td>
 <td>MT_CORRECTNESS</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
-<td>389</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#IS2_INCONSISTENT_SYNC">IS2_INCONSISTENT_SYNC</a></td>
+<td>515</td>
 <td>Medium</td></tr>
 <tr class="a">
-<td>Empty synchronized block in org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer)</td>
-<td>MT_CORRECTNESS</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ESync_EMPTY_SYNC">ESync_EMPTY_SYNC</a></td>
-<td>590</td>
-<td>Medium</td></tr>
-<tr class="b">
-<td>Write to static field org.universAAL.lddi.abstraction.CommunicationGateway.CGW_CONF_APP_ID from instance method org.universAAL.lddi.abstraction.CommunicationGateway.init(ModuleContext, boolean, boolean, ConfigurationParameter[])</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>283</td>
-<td>High</td></tr>
-<tr class="a">
-<td>Method org.universAAL.lddi.abstraction.CommunicationGateway.removeComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
-<td>391</td>
-<td>Medium</td></tr>
-<tr class="b">
-<td>Method org.universAAL.lddi.abstraction.CommunicationGateway.updateComponents(List, ExternalComponentDiscoverer) seems to be useless</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#UC_USELESS_VOID_METHOD">UC_USELESS_VOID_METHOD</a></td>
-<td>592</td>
-<td>Medium</td></tr>
-<tr class="a">
-<td>org.universAAL.lddi.abstraction.CommunicationGateway.addComponents(List, ExternalComponentDiscoverer) makes inefficient use of keySet iterator instead of entrySet iterator</td>
-<td>PERFORMANCE</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR</a></td>
-<td>211</td>
-<td>Medium</td></tr></table></div><a name="org.universAAL.lddi.abstraction.ComponentIntegrator"></a>
+<td>Suspicious comparison of Float references in org.universAAL.lddi.abstraction.CommunicationGateway$Subscription.notifySubscribers(Object)</td>
+<td>CORRECTNESS</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RC_REF_COMPARISON">RC_REF_COMPARISON</a></td>
+<td>136</td>
+<td>High</td></tr></table></div><a name="org.universAAL.lddi.abstraction.ComponentIntegrator"></a>
 <div class="section">
 <h3><a name="org.universAAL.lddi.abstraction.ComponentIntegrator"></a>org.universAAL.lddi.abstraction.ComponentIntegrator</h3>
 <table border="0" class="bodyTable">

@@ -28,7 +28,7 @@ under the License.
       <title>File: 549,
              Errors: 8052,
              Warnings: 1227,
-             Infos: 1718
+             Infos: 1699
       </title>
             <link>http://lddi/lddi.pom//checkstyle.html</link>
       <description>
@@ -2933,7 +2933,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.config.protocol.CGwProtocolConfiguration.java">org/universAAL/lddi/abstraction/config/protocol/CGwProtocolConfiguration.java</a>
                 </td>
                 <td>
-                  18
+                  12
                 </td>
                 <td>
                   1
@@ -3521,7 +3521,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
                 </td>
                 <td>
-                  24
+                  26
                 </td>
                 <td>
                   0
@@ -3619,7 +3619,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
                 </td>
                 <td>
-                  141
+                  126
                 </td>
                 <td>
                   4
