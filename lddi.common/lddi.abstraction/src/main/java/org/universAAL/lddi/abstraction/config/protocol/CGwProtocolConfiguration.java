@@ -29,7 +29,7 @@ public class CGwProtocolConfiguration implements ConfigurableModule {
 						&&  cgw.getConfigAppID().equals(((AppPartScope) pConfParams[i].getScope()).getAppID())
 						&&  CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID.equals(((AppPartScope) pConfParams[i].getScope()).getPartID())) {
 					configurations.put(pConfParams[i].getScope().getId(), pConfParams[i]);
-					System.out.println("CGwProtocolConfiguration->constructor() registered: "+((AppPartScope) pConfParams[i].getScope()).getAppID()+"#"+pConfParams[i].getScope().getId());
+					// System.out.println("CGwProtocolConfiguration->constructor() registered: "+((AppPartScope) pConfParams[i].getScope()).getAppID()+"#"+pConfParams[i].getScope().getId());
 				}
 			Activator.getConfigManager().register(configurations.values().toArray(new ConfigurationParameter[configurations.size()]), this);
 		}

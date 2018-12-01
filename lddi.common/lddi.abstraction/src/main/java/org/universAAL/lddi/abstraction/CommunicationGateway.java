@@ -133,14 +133,11 @@ public abstract class CommunicationGateway {
 			String propURI = datapoint.getProperty();
 			value = ec.changeProperty(propURI, value);
 			
-			if (this.value != null) {
-				Object aux = ec.converter.exportValue(ec.getTypeURI(), propURI, ec.getOntResource().getProperty(propURI));
-				if (!this.value.equals(aux)) {
-					LogUtils.logWarn(Activator.context, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" resulted in '"+aux+"' --> Ignored!");
-					return;
-				}
+			if (value == (Object) Float.NaN) {
+				LogUtils.logWarn(Activator.context, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" failed --> Ignored!");
+				return;
 			}
-			
+
 			if (dpIntegrationScreener != null)
 				dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
 			
@@ -335,6 +332,7 @@ public abstract class CommunicationGateway {
 		if (address == null)
 			return;
 		Subscription s = subscriptions.get(address);
+		// System.out.println(">>>>>>> "+getClass().getSimpleName()+"->notifySubscribers(): "+s+" found for "+address);
 		if (s != null)
 			s.notifySubscribers(value);
 	}
@@ -513,6 +511,7 @@ public abstract class CommunicationGateway {
 		}
 
 		s.addSubscriber(integrator);
+		// System.out.println(">>>>>>> "+getClass().getSimpleName()+"->startEventing(): "+integrator.getClass().getSimpleName()+" subscribed for "+subscriptionKey);
 		return s.value;
 	}
 	
@@ -700,7 +699,7 @@ public abstract class CommunicationGateway {
 	}
 
 	public final boolean handleProtocolConfParam(CGwProtocolConfiguration protocolConf, String id, Object paramValue) {
-		System.out.println("CommunicationGateway->handleProtocolConfParam() conf param: "+CGW_CONF_APP_ID+"#"+id+"="+paramValue);
+		// System.out.println("CommunicationGateway->handleProtocolConfParam() conf param: "+CGW_CONF_APP_ID+"#"+id+"="+paramValue);
 		return (this.protocolConf == null  ||  protocolConf == this.protocolConf)?
 				protocolConfParamChanged(id, paramValue)
 				: false;

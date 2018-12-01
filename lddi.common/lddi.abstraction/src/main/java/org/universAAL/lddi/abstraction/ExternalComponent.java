@@ -98,8 +98,8 @@ public final class ExternalComponent {
 	
 	Object changeProperty(String propURI, Object value) {
 		Object oldVal = ontResource.getProperty(propURI);
-		ontResource.changeProperty(propURI, converter.importValue(value, getTypeURI(), propURI));
-		return oldVal;
+		return ontResource.changeProperty(propURI, converter.importValue(value, getTypeURI(), propURI))?
+				oldVal  :  Float.NaN;
 	}
 	
 	public String currentValueAsString(String propURI) {
