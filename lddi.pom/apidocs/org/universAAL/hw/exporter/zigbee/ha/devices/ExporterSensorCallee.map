@@ -1,14 +1,14 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./PresenceDetectorCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee" alt="" coords="16,208,179,235"/>
 <area shape="rect" id="node1" href="./PresenceDetectorCallee.html" title="&lt;TABLE&gt;" alt="" coords="5,197,189,245"/>
-<area shape="rect" id="node2_1" href="./IASZoneCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee" alt="" coords="224,208,333,235"/>
-<area shape="rect" id="node2" href="./IASZoneCallee.html" title="&lt;TABLE&gt;" alt="" coords="213,197,344,245"/>
-<area shape="rect" id="node3_2" href="./OccupancySensorCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee" alt="" coords="379,208,544,235"/>
-<area shape="rect" id="node3" href="./OccupancySensorCallee.html" title="&lt;TABLE&gt;" alt="" coords="368,197,555,245"/>
-<area shape="rect" id="node4_3" href="./ExporterSensorCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee" alt="" coords="295,112,443,139"/>
-<area shape="rect" id="node4" href="./ExporterSensorCallee.html" title="&lt;TABLE&gt;" alt="" coords="285,101,454,149"/>
-<area shape="rect" id="node5_4" href="./TemperatureSensorCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.TemperatureSensorCallee" alt="" coords="590,208,762,235"/>
-<area shape="rect" id="node5" href="./TemperatureSensorCallee.html" title="&lt;TABLE&gt;" alt="" coords="579,197,773,245"/>
-<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="org.universAAL.middleware.service.ServiceCallee" alt="" coords="319,16,420,43"/>
-<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="&lt;TABLE&gt;" alt="" coords="308,5,431,53"/>
+<area shape="rect" id="node2_1" href="./ExporterSensorCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee" alt="" coords="339,112,487,139"/>
+<area shape="rect" id="node2" href="./ExporterSensorCallee.html" title="&lt;TABLE&gt;" alt="" coords="329,101,498,149"/>
+<area shape="rect" id="node3_2" href="./OccupancySensorCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee" alt="" coords="224,208,389,235"/>
+<area shape="rect" id="node3" href="./OccupancySensorCallee.html" title="&lt;TABLE&gt;" alt="" coords="213,197,400,245"/>
+<area shape="rect" id="node4_3" href="./TemperatureSensorCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.TemperatureSensorCallee" alt="" coords="435,208,607,235"/>
+<area shape="rect" id="node4" href="./TemperatureSensorCallee.html" title="&lt;TABLE&gt;" alt="" coords="425,197,618,245"/>
+<area shape="rect" id="node5_4" href="./IASZoneCallee.html" title="org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee" alt="" coords="653,208,763,235"/>
+<area shape="rect" id="node5" href="./IASZoneCallee.html" title="&lt;TABLE&gt;" alt="" coords="643,197,773,245"/>
+<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="org.universAAL.middleware.service.ServiceCallee" alt="" coords="363,16,464,43"/>
+<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="&lt;TABLE&gt;" alt="" coords="352,5,475,53"/>
 </map>

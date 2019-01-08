@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter/</link>
     <description>universAAL LDDI ZigBee commissioning bundle - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2010 - 2018 universAAL Consortium</copyright>
+    <copyright>&#169;2010 - 2019 universAAL Consortium</copyright>
     <item>
       <title>File: 12,
              Errors: 320,
@@ -52,7 +52,7 @@ under the License.
                   4
                 </td>
                 <td>
-                  2
+                  3
                 </td>
                 <td>
                   23
@@ -80,10 +80,24 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge.java">org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorBridge.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  9
                 </td>
               </tr>
                           <tr>
@@ -102,27 +116,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge.java">org/universAAL/lddi/zigbee/commissioning/devices/api/OccupancySensorBridge.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.devices.impl.OccupancySensorDevice.java">org/universAAL/lddi/zigbee/commissioning/devices/impl/OccupancySensorDevice.java</a>
                 </td>
                 <td>
                   2
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   12
@@ -136,24 +136,10 @@ under the License.
                   2
                 </td>
                 <td>
-                  3
+                  2
                 </td>
                 <td>
                   14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneBridge.java">org/universAAL/lddi/zigbee/commissioning/clusters/api/IASZoneBridge.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
                 </td>
               </tr>
                           <tr>
@@ -164,10 +150,24 @@ under the License.
                   1
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.commissioning.adapter//checkstyle.html#org.universAAL.lddi.zigbee.commissioning.clusters.api.IASZoneBridge.java">org/universAAL/lddi/zigbee/commissioning/clusters/api/IASZoneBridge.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
               </tr>
                           <tr>
@@ -206,7 +206,7 @@ under the License.
                   2
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   9

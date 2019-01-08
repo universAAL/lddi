@@ -1,18 +1,18 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./FS20RGBSADevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20RGBSADevice" alt="" coords="15,120,155,147"/>
-<area shape="rect" id="node1" href="./FS20RGBSADevice.html" title="&lt;TABLE&gt;" alt="" coords="5,109,166,157"/>
-<area shape="rect" id="node2_1" href="./FS20STDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20STDevice" alt="" coords="200,120,309,147"/>
-<area shape="rect" id="node2" href="./FS20STDevice.html" title="&lt;TABLE&gt;" alt="" coords="189,109,320,157"/>
-<area shape="rect" id="node3_2" href="./FS20PIRxDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20PIRxDevice" alt="" coords="355,120,477,147"/>
-<area shape="rect" id="node3" href="./FS20PIRxDevice.html" title="&lt;TABLE&gt;" alt="" coords="344,109,488,157"/>
-<area shape="rect" id="node4_3" href="./FS20SIGDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20SIGDevice" alt="" coords="523,120,639,147"/>
-<area shape="rect" id="node4" href="./FS20SIGDevice.html" title="&lt;TABLE&gt;" alt="" coords="513,109,650,157"/>
-<area shape="rect" id="node5_4" href="./FS20FMSDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20FMSDevice" alt="" coords="685,120,806,147"/>
-<area shape="rect" id="node5" href="./FS20FMSDevice.html" title="&lt;TABLE&gt;" alt="" coords="674,109,817,157"/>
-<area shape="rect" id="node6_5" href="./FS20DeviceTypes.html" title="org.universAAL.lddi.fs20.devicemodel.FS20DeviceTypes" alt="" coords="509,11,638,55"/>
-<area shape="rect" id="node6" href="./FS20DeviceTypes.html" title="&lt;TABLE&gt;" alt="" coords="498,6,649,61"/>
-<area shape="rect" id="node7_6" href="./FS20DeviceProperties.html" title="org.universAAL.lddi.fs20.devicemodel.FS20DeviceProperties" alt="" coords="684,20,836,47"/>
-<area shape="rect" id="node7" href="./FS20DeviceProperties.html" title="&lt;TABLE&gt;" alt="" coords="673,9,847,57"/>
-<area shape="rect" id="node8_7" href="./FS20Device.html" title="org.universAAL.lddi.fs20.devicemodel.FS20Device" alt="" coords="369,20,463,47"/>
-<area shape="rect" id="node8" href="./FS20Device.html" title="&lt;TABLE&gt;" alt="" coords="359,9,473,57"/>
+<area shape="rect" id="node1_0" href="./FS20FMSDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20FMSDevice" alt="" coords="15,120,137,147"/>
+<area shape="rect" id="node1" href="./FS20FMSDevice.html" title="&lt;TABLE&gt;" alt="" coords="5,109,147,157"/>
+<area shape="rect" id="node2_1" href="./FS20PIRxDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20PIRxDevice" alt="" coords="183,120,305,147"/>
+<area shape="rect" id="node2" href="./FS20PIRxDevice.html" title="&lt;TABLE&gt;" alt="" coords="172,109,316,157"/>
+<area shape="rect" id="node3_2" href="./FS20SIGDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20SIGDevice" alt="" coords="351,120,467,147"/>
+<area shape="rect" id="node3" href="./FS20SIGDevice.html" title="&lt;TABLE&gt;" alt="" coords="341,109,478,157"/>
+<area shape="rect" id="node4_3" href="./FS20Device.html" title="org.universAAL.lddi.fs20.devicemodel.FS20Device" alt="" coords="363,20,456,47"/>
+<area shape="rect" id="node4" href="./FS20Device.html" title="&lt;TABLE&gt;" alt="" coords="352,9,467,57"/>
+<area shape="rect" id="node5_4" href="./FS20RGBSADevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20RGBSADevice" alt="" coords="513,120,653,147"/>
+<area shape="rect" id="node5" href="./FS20RGBSADevice.html" title="&lt;TABLE&gt;" alt="" coords="502,109,663,157"/>
+<area shape="rect" id="node6_5" href="./FS20STDevice.html" title="org.universAAL.lddi.fs20.devicemodel.FS20STDevice" alt="" coords="697,120,807,147"/>
+<area shape="rect" id="node6" href="./FS20STDevice.html" title="&lt;TABLE&gt;" alt="" coords="687,109,817,157"/>
+<area shape="rect" id="node7_6" href="./FS20DeviceTypes.html" title="org.universAAL.lddi.fs20.devicemodel.FS20DeviceTypes" alt="" coords="502,11,631,55"/>
+<area shape="rect" id="node7" href="./FS20DeviceTypes.html" title="&lt;TABLE&gt;" alt="" coords="491,6,642,61"/>
+<area shape="rect" id="node8_7" href="./FS20DeviceProperties.html" title="org.universAAL.lddi.fs20.devicemodel.FS20DeviceProperties" alt="" coords="677,20,829,47"/>
+<area shape="rect" id="node8" href="./FS20DeviceProperties.html" title="&lt;TABLE&gt;" alt="" coords="667,9,840,57"/>
 </map>

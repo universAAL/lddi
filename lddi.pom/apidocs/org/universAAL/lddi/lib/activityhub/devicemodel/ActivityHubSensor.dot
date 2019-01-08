@@ -9,62 +9,62 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+	// org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor
+	c93103 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotionSensor.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> MotionSensor </td></tr>
+		</table></td></tr>
+		</table>>, URL="./MotionSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor
-	c93119 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensor.html">
+	c93106 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TemperatureSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TemperatureSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
+	c93107 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ActivityHubSensor.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ActivityHubSensor </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./ActivityHubSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor
+	c93109 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UsageSensor.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> UsageSensor </td></tr>
+		</table></td></tr>
+		</table>>, URL="./UsageSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor
-	c93121 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContactClosureSensor.html">
+	c93113 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ContactClosureSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ContactClosureSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ContactClosureSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor
-	c93122 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SwitchSensor.html">
+	c93114 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SwitchSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SwitchSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SwitchSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor
-	c93123 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FallSensor.html">
+	c93116 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FallSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FallSensor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./FallSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor
-	c93128 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UsageSensor.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> UsageSensor </td></tr>
-		</table></td></tr>
-		</table>>, URL="./UsageSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor
-	c93130 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotionSensor.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MotionSensor </td></tr>
-		</table></td></tr>
-		</table>>, URL="./MotionSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c93132 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ActivityHubSensor.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ActivityHubSensor </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./ActivityHubSensor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c93132:p -> c93119:p [dir=back,arrowtail=empty];
-	//org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c93132:p -> c93121:p [dir=back,arrowtail=empty];
-	//org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c93132:p -> c93122:p [dir=back,arrowtail=empty];
-	//org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c93132:p -> c93123:p [dir=back,arrowtail=empty];
-	//org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c93132:p -> c93128:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.MotionSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
-	c93132:p -> c93130:p [dir=back,arrowtail=empty];
+	c93107:p -> c93103:p [dir=back,arrowtail=empty];
+	//org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
+	c93107:p -> c93106:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor implements org.osgi.service.device.Device
-	c93328:p -> c93132:p [dir=back,arrowtail=empty,style=dashed];
+	c93328:p -> c93107:p [dir=back,arrowtail=empty,style=dashed];
+	//org.universAAL.lddi.lib.activityhub.devicemodel.UsageSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
+	c93107:p -> c93109:p [dir=back,arrowtail=empty];
+	//org.universAAL.lddi.lib.activityhub.devicemodel.ContactClosureSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
+	c93107:p -> c93113:p [dir=back,arrowtail=empty];
+	//org.universAAL.lddi.lib.activityhub.devicemodel.SwitchSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
+	c93107:p -> c93114:p [dir=back,arrowtail=empty];
+	//org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor extends org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor
+	c93107:p -> c93116:p [dir=back,arrowtail=empty];
 	// org.osgi.service.device.Device
 	c93328 [label=<<table title="org.osgi.service.device.Device" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/device/Device.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

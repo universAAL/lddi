@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor
-	c211383 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../lib/activityhub/devicecategory/Iso11073UsageSensor.html">
+	c211389 [label=<<table title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../lib/activityhub/devicecategory/Iso11073UsageSensor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Iso11073UsageSensor </td></tr>
@@ -31,7 +31,7 @@ digraph G {
 	//org.universAAL.lddi.exporter.activityhub.driver.Iso11073UsageSensorInstance extends org.universAAL.lddi.lib.activityhub.driver.interfaces.ActivityHubDriver
 	c211402:p -> c211419:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.exporter.activityhub.driver.Iso11073UsageSensorInstance implements org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor
-	c211383:p -> c211419:p [dir=back,arrowtail=empty,style=dashed];
+	c211389:p -> c211419:p [dir=back,arrowtail=empty,style=dashed];
 	//org.universAAL.lddi.exporter.activityhub.driver.Iso11073UsageSensorInstance implements org.osgi.util.tracker.ServiceTrackerCustomizer
 	c211596:p -> c211419:p [dir=back,arrowtail=empty,style=dashed];
 	//org.universAAL.lddi.exporter.activityhub.driver.Iso11073UsageSensorInstance implements org.osgi.service.device.Constants

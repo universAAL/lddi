@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice/</link>
     <description>universAAL LDDI Bluetooth Continua Manager service - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2013 - 2018 TSB Technologies for Health and Well-being</copyright>
+    <copyright>&#169;2013 - 2019 TSB Technologies for Health and Well-being</copyright>
     <item>
       <title>File: 6,
              Errors: 106,
@@ -46,20 +46,6 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice//checkstyle.html#org.universAAL.lddi.manager.publisher.Publisher.java">org/universAAL/lddi/manager/publisher/Publisher.java</a>
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  16
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice//checkstyle.html#org.universAAL.lddi.manager.publisher.hdpManager.java">org/universAAL/lddi/manager/publisher/hdpManager.java</a>
                 </td>
                 <td>
@@ -70,6 +56,20 @@ under the License.
                 </td>
                 <td>
                   50
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.bluetooth/lddi.bluetooth.continuahdpmanagerservice//checkstyle.html#org.universAAL.lddi.manager.publisher.Publisher.java">org/universAAL/lddi/manager/publisher/Publisher.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  16
                 </td>
               </tr>
                           <tr>
@@ -122,7 +122,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   10

@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.fs20/lddi.fs20.connector/</link>
     <description>universAAL LDDI FS20 Connector - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2010 - 2018 universAAL Consortium</copyright>
+    <copyright>&#169;2010 - 2019 universAAL Consortium</copyright>
     <item>
       <title>File: 15,
              Errors: 239,
@@ -66,7 +66,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   34
@@ -94,7 +94,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   3
@@ -172,6 +172,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.fs20/lddi.fs20.connector//checkstyle.html#org.universAAL.lddi.fs20.util.LogTracker.java">org/universAAL/lddi/fs20/util/LogTracker.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.fs20/lddi.fs20.connector//checkstyle.html#org.universAAL.lddi.fs20.devicemodel.FS20DeviceProperties.java">org/universAAL/lddi/fs20/devicemodel/FS20DeviceProperties.java</a>
                 </td>
                 <td>
@@ -196,20 +210,6 @@ under the License.
                 </td>
                 <td>
                   7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://lddi/lddi.fs20/lddi.fs20.connector//checkstyle.html#org.universAAL.lddi.fs20.util.LogTracker.java">org/universAAL/lddi/fs20/util/LogTracker.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  14
                 </td>
               </tr>
                           <tr>

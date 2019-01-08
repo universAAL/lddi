@@ -15,44 +15,44 @@ digraph G {
 <tr><td align="center" balign="center"> Activator </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Activator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.abstraction.ComponentIntegrator
-	c15855 [label=<<table title="org.universAAL.lddi.abstraction.ComponentIntegrator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ComponentIntegrator.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ComponentIntegrator </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./ComponentIntegrator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.abstraction.ExternalDataConverter
-	c15856 [label=<<table title="org.universAAL.lddi.abstraction.ExternalDataConverter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalDataConverter.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ExternalDataConverter </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ExternalDataConverter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.abstraction.ExternalComponent
-	c15857 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalComponent.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ExternalComponent </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ExternalComponent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.abstraction.ExternalDatapoint
-	c15858 [label=<<table title="org.universAAL.lddi.abstraction.ExternalDatapoint" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalDatapoint.html">
+	c15855 [label=<<table title="org.universAAL.lddi.abstraction.ExternalDatapoint" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalDatapoint.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ExternalDatapoint </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ExternalDatapoint.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.abstraction.CommunicationGateway
-	c15859 [label=<<table title="org.universAAL.lddi.abstraction.CommunicationGateway" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CommunicationGateway.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> CommunicationGateway </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./CommunicationGateway.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.abstraction.ExternalComponentDiscoverer
-	c15860 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponentDiscoverer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalComponentDiscoverer.html">
+	c15856 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponentDiscoverer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalComponentDiscoverer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ExternalComponentDiscoverer </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ExternalComponentDiscoverer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.abstraction.CommunicationGateway
+	c15857 [label=<<table title="org.universAAL.lddi.abstraction.CommunicationGateway" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CommunicationGateway.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> CommunicationGateway </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./CommunicationGateway.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.abstraction.ExternalComponent
+	c15858 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalComponent.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ExternalComponent </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ExternalComponent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.abstraction.ComponentIntegrator
+	c15859 [label=<<table title="org.universAAL.lddi.abstraction.ComponentIntegrator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ComponentIntegrator.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ComponentIntegrator </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./ComponentIntegrator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.abstraction.ExternalDataConverter
+	c15860 [label=<<table title="org.universAAL.lddi.abstraction.ExternalDataConverter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExternalDataConverter.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> ExternalDataConverter </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ExternalDataConverter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

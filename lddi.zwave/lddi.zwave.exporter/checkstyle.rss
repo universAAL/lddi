@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.zwave/lddi.zwave.exporter/</link>
     <description>universAAL LDDI ZWave Exporter - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2010 - 2018 universAAL Consortium</copyright>
+    <copyright>&#169;2010 - 2019 universAAL Consortium</copyright>
     <item>
       <title>File: 20,
              Errors: 108,
@@ -66,7 +66,7 @@ under the License.
                   1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   10
@@ -122,7 +122,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   6
@@ -178,7 +178,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -228,20 +228,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.MotionDecoder.java">org/universAAL/lddi/zwave/exporter/Server/MotionDecoder.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.MotionDecoderFactory.java">org/universAAL/lddi/zwave/exporter/Server/MotionDecoderFactory.java</a>
                 </td>
                 <td>
@@ -256,13 +242,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.MotionDecoder.java">org/universAAL/lddi/zwave/exporter/Server/MotionDecoder.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.zwave/lddi.zwave.exporter//checkstyle.html#org.universAAL.lddi.zwave.exporter.Server.AbstractProtocolDecoder.java">org/universAAL/lddi/zwave/exporter/Server/AbstractProtocolDecoder.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1

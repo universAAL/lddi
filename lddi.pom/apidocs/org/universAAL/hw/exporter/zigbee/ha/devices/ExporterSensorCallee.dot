@@ -15,40 +15,40 @@ digraph G {
 <tr><td align="center" balign="center"> PresenceDetectorCallee </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PresenceDetectorCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee
-	c151565 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IASZoneCallee.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> IASZoneCallee </td></tr>
-		</table></td></tr>
-		</table>>, URL="./IASZoneCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee
-	c151566 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OccupancySensorCallee.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OccupancySensorCallee </td></tr>
-		</table></td></tr>
-		</table>>, URL="./OccupancySensorCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee
-	c151569 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ExporterSensorCallee.html">
+	c151563 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ExporterSensorCallee.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ExporterSensorCallee </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./ExporterSensorCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee
+	c151564 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OccupancySensorCallee.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> OccupancySensorCallee </td></tr>
+		</table></td></tr>
+		</table>>, URL="./OccupancySensorCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.hw.exporter.zigbee.ha.devices.TemperatureSensorCallee
-	c151570 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.TemperatureSensorCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensorCallee.html">
+	c151568 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.TemperatureSensorCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TemperatureSensorCallee.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TemperatureSensorCallee </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TemperatureSensorCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee
+	c151569 [label=<<table title="org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IASZoneCallee.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> IASZoneCallee </td></tr>
+		</table></td></tr>
+		</table>>, URL="./IASZoneCallee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.hw.exporter.zigbee.ha.devices.PresenceDetectorCallee extends org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee
-	c151569:p -> c151562:p [dir=back,arrowtail=empty];
-	//org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee extends org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee
-	c151569:p -> c151565:p [dir=back,arrowtail=empty];
-	//org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee extends org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee
-	c151569:p -> c151566:p [dir=back,arrowtail=empty];
+	c151563:p -> c151562:p [dir=back,arrowtail=empty];
 	//org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee extends org.universAAL.middleware.service.ServiceCallee
-	c151628:p -> c151569:p [dir=back,arrowtail=empty];
+	c151628:p -> c151563:p [dir=back,arrowtail=empty];
+	//org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee extends org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee
+	c151563:p -> c151564:p [dir=back,arrowtail=empty];
 	//org.universAAL.hw.exporter.zigbee.ha.devices.TemperatureSensorCallee extends org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee
-	c151569:p -> c151570:p [dir=back,arrowtail=empty];
+	c151563:p -> c151568:p [dir=back,arrowtail=empty];
+	//org.universAAL.hw.exporter.zigbee.ha.devices.IASZoneCallee extends org.universAAL.hw.exporter.zigbee.ha.devices.ExporterSensorCallee
+	c151563:p -> c151569:p [dir=back,arrowtail=empty];
 	// org.universAAL.middleware.service.ServiceCallee
 	c151628 [label=<<table title="org.universAAL.middleware.service.ServiceCallee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

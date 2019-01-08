@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Encoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.Encoder" alt="" coords="40,120,133,147"/>
-<area shape="rect" id="node1" href="./Encoder.html" title="&lt;TABLE&gt;" alt="" coords="29,109,144,157"/>
-<area shape="rect" id="node2_1" href="./IASN1TypesEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder" alt="" coords="15,11,159,55"/>
-<area shape="rect" id="node2" href="./IASN1TypesEncoder.html" title="&lt;TABLE&gt;" alt="" coords="4,6,169,61"/>
+<area shape="rect" id="node1_0" href="./IASN1TypesEncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.IASN1TypesEncoder" alt="" coords="15,11,159,55"/>
+<area shape="rect" id="node1" href="./IASN1TypesEncoder.html" title="&lt;TABLE&gt;" alt="" coords="4,6,169,61"/>
+<area shape="rect" id="node2_1" href="./Encoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.Encoder" alt="" coords="40,120,133,147"/>
+<area shape="rect" id="node2" href="./Encoder.html" title="&lt;TABLE&gt;" alt="" coords="29,109,144,157"/>
 </map>

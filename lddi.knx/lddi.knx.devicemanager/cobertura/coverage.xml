@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="230" branches-covered="0" branches-valid="66" complexity="2.739130434782609" version="2.1.1" timestamp="1543653853808">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="230" branches-covered="0" branches-valid="66" complexity="2.739130434782609" version="2.1.1" timestamp="1546963767759">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/lddi/lddi.knx/lddi.knx.devicemanager/src/main/java</source>

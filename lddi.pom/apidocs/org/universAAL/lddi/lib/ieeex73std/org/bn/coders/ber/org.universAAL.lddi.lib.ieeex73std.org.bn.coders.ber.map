@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./BERCoderUtils.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BERCoderUtils" alt="" coords="15,16,126,43"/>
-<area shape="rect" id="node1" href="./BERCoderUtils.html" title="&lt;TABLE&gt;" alt="" coords="5,5,137,53"/>
-<area shape="rect" id="node2_1" href="./BERObjectIdentifier.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BERObjectIdentifier" alt="" coords="171,16,309,43"/>
-<area shape="rect" id="node2" href="./BERObjectIdentifier.html" title="&lt;TABLE&gt;" alt="" coords="161,5,319,53"/>
-<area shape="rect" id="node3_2" href="./BEREncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BEREncoder" alt="" coords="354,16,475,43"/>
-<area shape="rect" id="node3" href="./BEREncoder.html" title="&lt;TABLE&gt;" alt="" coords="343,5,486,53"/>
+<area shape="rect" id="node1_0" href="./BEREncoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BEREncoder" alt="" coords="15,16,137,43"/>
+<area shape="rect" id="node1" href="./BEREncoder.html" title="&lt;TABLE&gt;" alt="" coords="5,5,147,53"/>
+<area shape="rect" id="node2_1" href="./BERCoderUtils.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BERCoderUtils" alt="" coords="182,16,293,43"/>
+<area shape="rect" id="node2" href="./BERCoderUtils.html" title="&lt;TABLE&gt;" alt="" coords="171,5,303,53"/>
+<area shape="rect" id="node3_2" href="./BERObjectIdentifier.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BERObjectIdentifier" alt="" coords="338,16,475,43"/>
+<area shape="rect" id="node3" href="./BERObjectIdentifier.html" title="&lt;TABLE&gt;" alt="" coords="327,5,486,53"/>
 <area shape="rect" id="node4_3" href="./BERDecoder.html" title="org.universAAL.lddi.lib.ieeex73std.org.bn.coders.ber.BERDecoder" alt="" coords="521,16,618,43"/>
 <area shape="rect" id="node4" href="./BERDecoder.html" title="&lt;TABLE&gt;" alt="" coords="510,5,629,53"/>
 </map>

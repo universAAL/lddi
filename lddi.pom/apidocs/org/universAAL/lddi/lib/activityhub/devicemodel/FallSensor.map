@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../devicecategory/Iso11073FallSensor.html" title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073FallSensor" alt="" coords="16,11,152,55"/>
-<area shape="rect" id="node1" href="../devicecategory/Iso11073FallSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,6,163,61"/>
-<area shape="rect" id="node2_1" href="./FallSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" alt="" coords="132,120,215,147"/>
-<area shape="rect" id="node2" href="./FallSensor.html" title="&lt;TABLE&gt;" alt="" coords="121,109,225,157"/>
-<area shape="rect" id="node3_2" href="./ActivityHubSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" alt="" coords="198,20,327,47"/>
-<area shape="rect" id="node3" href="./ActivityHubSensor.html" title="&lt;TABLE&gt;" alt="" coords="187,9,338,57"/>
+<area shape="rect" id="node1_0" href="./ActivityHubSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubSensor" alt="" coords="15,20,145,47"/>
+<area shape="rect" id="node1" href="./ActivityHubSensor.html" title="&lt;TABLE&gt;" alt="" coords="5,9,155,57"/>
+<area shape="rect" id="node2_1" href="./FallSensor.html" title="org.universAAL.lddi.lib.activityhub.devicemodel.FallSensor" alt="" coords="128,120,211,147"/>
+<area shape="rect" id="node2" href="./FallSensor.html" title="&lt;TABLE&gt;" alt="" coords="117,109,221,157"/>
+<area shape="rect" id="node3_2" href="../devicecategory/Iso11073FallSensor.html" title="org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073FallSensor" alt="" coords="191,11,327,55"/>
+<area shape="rect" id="node3" href="../devicecategory/Iso11073FallSensor.html" title="&lt;TABLE&gt;" alt="" coords="180,6,337,61"/>
 </map>

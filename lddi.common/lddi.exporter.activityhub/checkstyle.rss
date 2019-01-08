@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.common/lddi.exporter.activityhub/</link>
     <description>universAAL LDDI Exporter of ActivityHub devices (ISO 11073-10471) - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2012 - 2018 Austrian Institute of Technology (AIT)</copyright>
+    <copyright>&#169;2012 - 2019 Austrian Institute of Technology (AIT)</copyright>
     <item>
       <title>File: 15,
              Errors: 221,
@@ -80,7 +80,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   2
@@ -136,7 +136,7 @@ under the License.
                   2
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   13
@@ -164,7 +164,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   19
@@ -178,7 +178,7 @@ under the License.
                   1
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   23
@@ -214,20 +214,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.exporter.activityhub//checkstyle.html#org.universAAL.lddi.exporter.activityhub.driver.Iso11073UsageSensorInstance.java">org/universAAL/lddi/exporter/activityhub/driver/Iso11073UsageSensorInstance.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  13
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.common/lddi.exporter.activityhub//checkstyle.html#org.universAAL.lddi.exporter.activityhub.util.LogTracker.java">org/universAAL/lddi/exporter/activityhub/util/LogTracker.java</a>
                 </td>
                 <td>
@@ -238,6 +224,20 @@ under the License.
                 </td>
                 <td>
                   12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.exporter.activityhub//checkstyle.html#org.universAAL.lddi.exporter.activityhub.driver.Iso11073UsageSensorInstance.java">org/universAAL/lddi/exporter/activityhub/driver/Iso11073UsageSensorInstance.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  13
                 </td>
               </tr>
                           <tr>

@@ -9,19 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge
-	c38225 [label=<<table title="org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IAS_ZoneBridge.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> IAS_ZoneBridge </td></tr>
-		</table></td></tr>
-		</table>>, URL="./IAS_ZoneBridge.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge
-	c38226 [label=<<table title="org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OccupancySensorBridge.html">
+	c37108 [label=<<table title="org.universAAL.lddi.zigbee.commissioning.devices.api.OccupancySensorBridge" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OccupancySensorBridge.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> OccupancySensorBridge </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OccupancySensorBridge.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge
+	c37109 [label=<<table title="org.universAAL.lddi.zigbee.commissioning.devices.api.IAS_ZoneBridge" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IAS_ZoneBridge.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> IAS_ZoneBridge </td></tr>
+		</table></td></tr>
+		</table>>, URL="./IAS_ZoneBridge.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

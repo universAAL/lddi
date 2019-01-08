@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.knx.interfaces.IKnxNetwork
-	c229806 [label=<<table title="org.universAAL.lddi.knx.interfaces.IKnxNetwork" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../interfaces/IKnxNetwork.html">
+	c229790 [label=<<table title="org.universAAL.lddi.knx.interfaces.IKnxNetwork" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../interfaces/IKnxNetwork.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> IKnxNetwork </td></tr>
@@ -25,7 +25,7 @@ digraph G {
 	//org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp implements org.osgi.service.cm.ManagedService
 	c229929:p -> c229819:p [dir=back,arrowtail=empty,style=dashed];
 	//org.universAAL.lddi.knx.networkdriver.KnxNetworkDriverImp implements org.universAAL.lddi.knx.interfaces.IKnxNetwork
-	c229806:p -> c229819:p [dir=back,arrowtail=empty,style=dashed];
+	c229790:p -> c229819:p [dir=back,arrowtail=empty,style=dashed];
 	// org.osgi.service.cm.ManagedService
 	c229929 [label=<<table title="org.osgi.service.cm.ManagedService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/osgi/service/cm/ManagedService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

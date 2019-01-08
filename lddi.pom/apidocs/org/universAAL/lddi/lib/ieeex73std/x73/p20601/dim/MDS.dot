@@ -10,52 +10,52 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.lib.ieeex73std.x73.p104zz.DeviceSpecialization
-	c239500 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p104zz.DeviceSpecialization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../p104zz/DeviceSpecialization.html">
+	c239486 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p104zz.DeviceSpecialization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../p104zz/DeviceSpecialization.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DeviceSpecialization </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../p104zz/DeviceSpecialization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Scanner
-	c239664 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Scanner" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Scanner.html">
+	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS
+	c239654 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MDS.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Scanner </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> MDS </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./Scanner.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service
-	c239671 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GET_Service.html">
+		</table>>, URL="./MDS.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM
+	c239656 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DIM.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> GET_Service </td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DIM </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./GET_Service.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./DIM.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS_Events
-	c239672 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS_Events" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MDS_Events.html">
+	c239662 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS_Events" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MDS_Events.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> MDS_Events </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MDS_Events.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM
-	c239673 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DIM.html">
+	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Scanner
+	c239665 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Scanner" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Scanner.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DIM </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Scanner </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="./DIM.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS
-	c239674 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MDS.html">
+		</table>>, URL="./Scanner.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service
+	c239668 [label=<<table title="org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GET_Service.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> MDS </font></td></tr>
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> GET_Service </td></tr>
 		</table></td></tr>
-		</table>>, URL="./MDS.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./GET_Service.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.lib.ieeex73std.x73.p104zz.DeviceSpecialization extends org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS
-	c239674:p -> c239500:p [dir=back,arrowtail=empty];
-	//org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Scanner extends org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS
-	c239674:p -> c239664:p [dir=back,arrowtail=empty];
+	c239654:p -> c239486:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS extends org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.DIM
-	c239673:p -> c239674:p [dir=back,arrowtail=empty];
+	c239656:p -> c239654:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS implements org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS_Events
-	c239672:p -> c239674:p [dir=back,arrowtail=empty,style=dashed];
+	c239662:p -> c239654:p [dir=back,arrowtail=empty,style=dashed];
 	//org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS implements org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.GET_Service
-	c239671:p -> c239674:p [dir=back,arrowtail=empty,style=dashed];
+	c239668:p -> c239654:p [dir=back,arrowtail=empty,style=dashed];
+	//org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.Scanner extends org.universAAL.lddi.lib.ieeex73std.x73.p20601.dim.MDS
+	c239654:p -> c239665:p [dir=back,arrowtail=empty];
 }
 

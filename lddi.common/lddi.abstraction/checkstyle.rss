@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.common/lddi.abstraction/</link>
     <description>universAAL LDDI Common ont-based abstraction - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2015 - 2018 universAAL Consortium</copyright>
+    <copyright>&#169;2015 - 2019 universAAL Consortium</copyright>
     <item>
       <title>File: 18,
              Errors: 375,
@@ -52,7 +52,7 @@ under the License.
                   42
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   16
@@ -94,7 +94,7 @@ under the License.
                   19
                 </td>
                 <td>
-                  2
+                  3
                 </td>
                 <td>
                   13
@@ -130,20 +130,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
-                </td>
-                <td>
-                  26
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  31
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.simulation.PercentageDatapoint.java">org/universAAL/lddi/abstraction/simulation/PercentageDatapoint.java</a>
                 </td>
                 <td>
@@ -172,30 +158,30 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
+                </td>
+                <td>
+                  26
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint.java">org/universAAL/lddi/abstraction/config/data/ConfiguredDatapoint.java</a>
                 </td>
                 <td>
                   10
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   28
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
-                </td>
-                <td>
-                  126
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  90
                 </td>
               </tr>
                           <tr>
@@ -210,6 +196,20 @@ under the License.
                 </td>
                 <td>
                   20
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
+                </td>
+                <td>
+                  126
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  90
                 </td>
               </tr>
                           <tr>
@@ -234,7 +234,7 @@ under the License.
                   4
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   7

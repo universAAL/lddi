@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./KnxImporter.html" title="org.universAAL.lddi.knx.devicemanager.KnxImporter" alt="" coords="15,16,107,43"/>
-<area shape="rect" id="node1" href="./KnxImporter.html" title="&lt;TABLE&gt;" alt="" coords="5,5,118,53"/>
-<area shape="rect" id="node2_1" href="./KnxDeviceManager.html" title="org.universAAL.lddi.knx.devicemanager.KnxDeviceManager" alt="" coords="153,16,287,43"/>
-<area shape="rect" id="node2" href="./KnxDeviceManager.html" title="&lt;TABLE&gt;" alt="" coords="142,5,298,53"/>
-<area shape="rect" id="node3_2" href="./Activator.html" title="org.universAAL.lddi.knx.devicemanager.Activator" alt="" coords="333,16,406,43"/>
-<area shape="rect" id="node3" href="./Activator.html" title="&lt;TABLE&gt;" alt="" coords="322,5,417,53"/>
+<area shape="rect" id="node1_0" href="./Activator.html" title="org.universAAL.lddi.knx.devicemanager.Activator" alt="" coords="15,16,89,43"/>
+<area shape="rect" id="node1" href="./Activator.html" title="&lt;TABLE&gt;" alt="" coords="5,5,99,53"/>
+<area shape="rect" id="node2_1" href="./KnxDeviceManager.html" title="org.universAAL.lddi.knx.devicemanager.KnxDeviceManager" alt="" coords="134,16,269,43"/>
+<area shape="rect" id="node2" href="./KnxDeviceManager.html" title="&lt;TABLE&gt;" alt="" coords="123,5,279,53"/>
+<area shape="rect" id="node3_2" href="./KnxImporter.html" title="org.universAAL.lddi.knx.devicemanager.KnxImporter" alt="" coords="314,16,406,43"/>
+<area shape="rect" id="node3" href="./KnxImporter.html" title="&lt;TABLE&gt;" alt="" coords="303,5,417,53"/>
 </map>

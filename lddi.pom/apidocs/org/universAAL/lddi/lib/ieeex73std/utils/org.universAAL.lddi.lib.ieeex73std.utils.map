@@ -3,10 +3,10 @@
 <area shape="rect" id="node1" href="./Testing.html" title="&lt;TABLE&gt;" alt="" coords="5,5,115,53"/>
 <area shape="rect" id="node2_1" href="./ASNUtils.html" title="org.universAAL.lddi.lib.ieeex73std.utils.ASNUtils" alt="" coords="150,16,226,43"/>
 <area shape="rect" id="node2" href="./ASNUtils.html" title="&lt;TABLE&gt;" alt="" coords="139,5,237,53"/>
-<area shape="rect" id="node3_2" href="./ValueCodesGenerator.html" title="org.universAAL.lddi.lib.ieeex73std.utils.ValueCodesGenerator" alt="" coords="272,16,421,43"/>
-<area shape="rect" id="node3" href="./ValueCodesGenerator.html" title="&lt;TABLE&gt;" alt="" coords="261,5,432,53"/>
-<area shape="rect" id="node4_3" href="./Hour.html" title="org.universAAL.lddi.lib.ieeex73std.utils.Hour" alt="" coords="467,16,517,43"/>
-<area shape="rect" id="node4" href="./Hour.html" title="&lt;TABLE&gt;" alt="" coords="456,5,528,53"/>
+<area shape="rect" id="node3_2" href="./Hour.html" title="org.universAAL.lddi.lib.ieeex73std.utils.Hour" alt="" coords="273,16,322,43"/>
+<area shape="rect" id="node3" href="./Hour.html" title="&lt;TABLE&gt;" alt="" coords="261,5,333,53"/>
+<area shape="rect" id="node4_3" href="./ValueCodesGenerator.html" title="org.universAAL.lddi.lib.ieeex73std.utils.ValueCodesGenerator" alt="" coords="368,16,517,43"/>
+<area shape="rect" id="node4" href="./ValueCodesGenerator.html" title="&lt;TABLE&gt;" alt="" coords="357,5,528,53"/>
 <area shape="rect" id="node5_4" href="./Logging.html" title="org.universAAL.lddi.lib.ieeex73std.utils.Logging" alt="" coords="563,16,629,43"/>
 <area shape="rect" id="node5" href="./Logging.html" title="&lt;TABLE&gt;" alt="" coords="553,5,639,53"/>
 </map>

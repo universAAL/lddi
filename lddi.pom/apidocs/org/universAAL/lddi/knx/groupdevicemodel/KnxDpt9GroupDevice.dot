@@ -9,28 +9,28 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+	// org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice
+	c222579 [label=<<table title="org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./KnxGroupDevice.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> KnxGroupDevice </font></td></tr>
+		</table></td></tr>
+		</table>>, URL="./KnxGroupDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice
+	c222581 [label=<<table title="org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./KnxDpt9GroupDevice.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> KnxDpt9GroupDevice </td></tr>
+		</table></td></tr>
+		</table>>, URL="./KnxDpt9GroupDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt9
-	c222574 [label=<<table title="org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt9" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../groupdevicecategory/IKnxDpt9.html">
+	c222585 [label=<<table title="org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt9" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../groupdevicecategory/IKnxDpt9.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> IKnxDpt9 </td></tr>
 		</table></td></tr>
 		</table>>, URL="../groupdevicecategory/IKnxDpt9.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice
-	c222583 [label=<<table title="org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./KnxDpt9GroupDevice.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> KnxDpt9GroupDevice </td></tr>
-		</table></td></tr>
-		</table>>, URL="./KnxDpt9GroupDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice
-	c222584 [label=<<table title="org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./KnxGroupDevice.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> KnxGroupDevice </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./KnxGroupDevice.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice extends org.universAAL.lddi.knx.groupdevicemodel.KnxGroupDevice
-	c222584:p -> c222583:p [dir=back,arrowtail=empty];
+	c222579:p -> c222581:p [dir=back,arrowtail=empty];
 	//org.universAAL.lddi.knx.groupdevicemodel.KnxDpt9GroupDevice implements org.universAAL.lddi.knx.groupdevicecategory.IKnxDpt9
-	c222574:p -> c222583:p [dir=back,arrowtail=empty,style=dashed];
+	c222585:p -> c222581:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.zigbee/lddi.zigbee.exporter/</link>
     <description>universAAL LDDI ZigBee exporter - Home Automation - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2008 - 2018 Instituto Tecnologico de Aplicaciones de Comunicacion Avanzadas - Grupo Tecnologias para la Salud y el Bienestar (TSB)</copyright>
+    <copyright>&#169;2008 - 2019 Instituto Tecnologico de Aplicaciones de Comunicacion Avanzadas - Grupo Tecnologias para la Salud y el Bienestar (TSB)</copyright>
     <item>
       <title>File: 17,
              Errors: 117,
@@ -52,7 +52,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   8
@@ -94,7 +94,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   11
@@ -200,20 +200,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.ExporterActuatorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/ExporterActuatorCallee.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  11
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.OccupancySensorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/OccupancySensorCallee.java</a>
                 </td>
                 <td>
@@ -224,6 +210,20 @@ under the License.
                 </td>
                 <td>
                   6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.zigbee/lddi.zigbee.exporter//checkstyle.html#org.universAAL.hw.exporter.zigbee.ha.devices.ExporterActuatorCallee.java">org/universAAL/hw/exporter/zigbee/ha/devices/ExporterActuatorCallee.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  11
                 </td>
               </tr>
                           <tr>

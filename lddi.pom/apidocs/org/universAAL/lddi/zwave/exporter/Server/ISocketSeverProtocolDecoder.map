@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./MotionDecoder.html" title="org.universAAL.lddi.zwave.exporter.Server.MotionDecoder" alt="" coords="16,120,125,147"/>
-<area shape="rect" id="node1" href="./MotionDecoder.html" title="&lt;TABLE&gt;" alt="" coords="5,109,136,157"/>
-<area shape="rect" id="node2_1" href="./AbstractProtocolDecoder.html" title="org.universAAL.lddi.zwave.exporter.Server.AbstractProtocolDecoder" alt="" coords="171,120,338,147"/>
-<area shape="rect" id="node2" href="./AbstractProtocolDecoder.html" title="&lt;TABLE&gt;" alt="" coords="161,109,349,157"/>
-<area shape="rect" id="node3_2" href="./ISocketSeverProtocolDecoder.html" title="org.universAAL.lddi.zwave.exporter.Server.ISocketSeverProtocolDecoder" alt="" coords="64,11,261,55"/>
-<area shape="rect" id="node3" href="./ISocketSeverProtocolDecoder.html" title="&lt;TABLE&gt;" alt="" coords="53,6,272,61"/>
+<area shape="rect" id="node1_0" href="./AbstractProtocolDecoder.html" title="org.universAAL.lddi.zwave.exporter.Server.AbstractProtocolDecoder" alt="" coords="15,120,182,147"/>
+<area shape="rect" id="node1" href="./AbstractProtocolDecoder.html" title="&lt;TABLE&gt;" alt="" coords="5,109,193,157"/>
+<area shape="rect" id="node2_1" href="./ISocketSeverProtocolDecoder.html" title="org.universAAL.lddi.zwave.exporter.Server.ISocketSeverProtocolDecoder" alt="" coords="92,11,289,55"/>
+<area shape="rect" id="node2" href="./ISocketSeverProtocolDecoder.html" title="&lt;TABLE&gt;" alt="" coords="81,6,300,61"/>
+<area shape="rect" id="node3_2" href="./MotionDecoder.html" title="org.universAAL.lddi.zwave.exporter.Server.MotionDecoder" alt="" coords="228,120,337,147"/>
+<area shape="rect" id="node3" href="./MotionDecoder.html" title="&lt;TABLE&gt;" alt="" coords="217,109,348,157"/>
 </map>

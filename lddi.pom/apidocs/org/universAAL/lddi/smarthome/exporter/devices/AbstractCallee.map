@@ -1,14 +1,14 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./AbstractFloatCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractFloatCallee" alt="" coords="16,216,152,243"/>
-<area shape="rect" id="node1" href="./AbstractFloatCallee.html" title="&lt;TABLE&gt;" alt="" coords="5,205,163,253"/>
-<area shape="rect" id="node2_1" href="./AbstractStatusValueCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee" alt="" coords="198,216,375,243"/>
-<area shape="rect" id="node2" href="./AbstractStatusValueCallee.html" title="&lt;TABLE&gt;" alt="" coords="187,205,386,253"/>
-<area shape="rect" id="node3_2" href="./GenericDevice.html" title="org.universAAL.lddi.smarthome.exporter.devices.GenericDevice" alt="" coords="159,11,265,55"/>
-<area shape="rect" id="node3" href="./GenericDevice.html" title="&lt;TABLE&gt;" alt="" coords="148,6,276,61"/>
-<area shape="rect" id="node4_3" href="./AbstractCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractCallee" alt="" coords="233,120,340,147"/>
-<area shape="rect" id="node4" href="./AbstractCallee.html" title="&lt;TABLE&gt;" alt="" coords="223,109,351,157"/>
-<area shape="rect" id="node5_4" href="./AbstractIntegerCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractIntegerCallee" alt="" coords="421,216,568,243"/>
-<area shape="rect" id="node5" href="./AbstractIntegerCallee.html" title="&lt;TABLE&gt;" alt="" coords="411,205,579,253"/>
-<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="org.universAAL.middleware.service.ServiceCallee" alt="" coords="311,20,412,47"/>
-<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="&lt;TABLE&gt;" alt="" coords="300,9,423,57"/>
+<area shape="rect" id="node1_0" href="./AbstractCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractCallee" alt="" coords="223,120,329,147"/>
+<area shape="rect" id="node1" href="./AbstractCallee.html" title="&lt;TABLE&gt;" alt="" coords="212,109,340,157"/>
+<area shape="rect" id="node2_1" href="./AbstractIntegerCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractIntegerCallee" alt="" coords="16,216,163,243"/>
+<area shape="rect" id="node2" href="./AbstractIntegerCallee.html" title="&lt;TABLE&gt;" alt="" coords="5,205,173,253"/>
+<area shape="rect" id="node3_2" href="./AbstractFloatCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractFloatCallee" alt="" coords="208,216,344,243"/>
+<area shape="rect" id="node3" href="./AbstractFloatCallee.html" title="&lt;TABLE&gt;" alt="" coords="197,205,355,253"/>
+<area shape="rect" id="node5_3" href="./AbstractStatusValueCallee.html" title="org.universAAL.lddi.smarthome.exporter.devices.AbstractStatusValueCallee" alt="" coords="390,216,567,243"/>
+<area shape="rect" id="node5" href="./AbstractStatusValueCallee.html" title="&lt;TABLE&gt;" alt="" coords="379,205,578,253"/>
+<area shape="rect" id="node4_4" href="./GenericDevice.html" title="org.universAAL.lddi.smarthome.exporter.devices.GenericDevice" alt="" coords="148,11,255,55"/>
+<area shape="rect" id="node4" href="./GenericDevice.html" title="&lt;TABLE&gt;" alt="" coords="137,6,265,61"/>
+<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="org.universAAL.middleware.service.ServiceCallee" alt="" coords="300,20,401,47"/>
+<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/service/ServiceCallee.html" title="&lt;TABLE&gt;" alt="" coords="289,9,412,57"/>
 </map>

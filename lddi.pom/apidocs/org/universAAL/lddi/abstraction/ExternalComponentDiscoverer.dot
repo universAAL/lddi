@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.universAAL.lddi.abstraction.ExternalComponentDiscoverer
-	c156389 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponentDiscoverer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ExternalComponentDiscoverer.html">
+	c156385 [label=<<table title="org.universAAL.lddi.abstraction.ExternalComponentDiscoverer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ExternalComponentDiscoverer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ExternalComponentDiscoverer </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ExternalComponentDiscoverer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration
-	c156391 [label=<<table title="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./config/data/CGwDataConfiguration.html">
+	c156394 [label=<<table title="org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./config/data/CGwDataConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CGwDataConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./config/data/CGwDataConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.universAAL.lddi.abstraction.config.data.CGwDataConfiguration implements org.universAAL.lddi.abstraction.ExternalComponentDiscoverer
-	c156389:p -> c156391:p [dir=back,arrowtail=empty,style=dashed];
+	c156385:p -> c156394:p [dir=back,arrowtail=empty,style=dashed];
 }
 

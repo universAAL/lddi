@@ -23,7 +23,7 @@ under the License.
     <link>http://lddi/lddi.common/lddi.lib.activityhub/</link>
     <description>universAAL LDDI Library for ISO/IEEE 11073 standard - ActivityHub Specification - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2012 - 2018 Austrian Institute of Technology (AIT)</copyright>
+    <copyright>&#169;2012 - 2019 Austrian Institute of Technology (AIT)</copyright>
     <item>
       <title>File: 36,
              Errors: 290,
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073EnuresisSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073EnuresisSensor.java</a>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073WaterSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073WaterSensor.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073WaterSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073WaterSensor.java</a>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073EnuresisSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073EnuresisSensor.java</a>
                 </td>
                 <td>
                   0
@@ -150,7 +150,7 @@ under the License.
                   1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   13
@@ -220,7 +220,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   7
@@ -242,6 +242,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubFactory.java">org/universAAL/lddi/lib/activityhub/devicemodel/ActivityHubFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073SwitchSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073SwitchSensor.java</a>
                 </td>
                 <td>
@@ -252,20 +266,6 @@ under the License.
                 </td>
                 <td>
                   2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.ActivityHubFactory.java">org/universAAL/lddi/lib/activityhub/devicemodel/ActivityHubFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  3
                 </td>
               </tr>
                           <tr>
@@ -290,7 +290,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   2
@@ -318,7 +318,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   12
@@ -354,20 +354,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073UsageSensor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.TemperatureSensor.java">org/universAAL/lddi/lib/activityhub/devicemodel/TemperatureSensor.java</a>
                 </td>
                 <td>
@@ -378,6 +364,20 @@ under the License.
                 </td>
                 <td>
                   9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073UsageSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073UsageSensor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
               </tr>
                           <tr>
@@ -416,7 +416,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   12
@@ -522,20 +522,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073ContactClosureSensor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicemodel.FallSensorEvent.java">org/universAAL/lddi/lib/activityhub/devicemodel/FallSensorEvent.java</a>
                 </td>
                 <td>
@@ -546,6 +532,20 @@ under the License.
                 </td>
                 <td>
                   10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://lddi/lddi.common/lddi.lib.activityhub//checkstyle.html#org.universAAL.lddi.lib.activityhub.devicecategory.Iso11073ContactClosureSensor.java">org/universAAL/lddi/lib/activityhub/devicecategory/Iso11073ContactClosureSensor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
               </tr>
                       </tbody>
