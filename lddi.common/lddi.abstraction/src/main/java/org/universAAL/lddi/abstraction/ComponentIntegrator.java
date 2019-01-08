@@ -192,7 +192,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		return targetList.iterator();
 	}
 	
-	public final void init(ModuleContext mc, Object[] containerSpecificFetchParams, String[] myTypes) {
+	public final void init(ModuleContext mc, String[] myTypes) {
 		for (String type : myTypes)
 			subscriptions.put(type, new Hashtable<String, Subscription>());
 		

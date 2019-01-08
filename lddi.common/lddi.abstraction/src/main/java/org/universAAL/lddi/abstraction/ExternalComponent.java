@@ -26,6 +26,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.ontology.lddi.config.datapoints.ExternalTypeSystem;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
@@ -99,7 +100,7 @@ public final class ExternalComponent {
 	Object changeProperty(String propURI, Object value) {
 		Object oldVal = ontResource.getProperty(propURI);
 		return ontResource.changeProperty(propURI, converter.importValue(value, getTypeURI(), propURI))?
-				oldVal  :  Float.NaN;
+				oldVal  :  Resource.RDF_EMPTY_LIST;
 	}
 	
 	public String currentValueAsString(String propURI) {

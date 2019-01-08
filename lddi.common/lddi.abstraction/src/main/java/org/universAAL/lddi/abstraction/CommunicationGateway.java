@@ -36,6 +36,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.rdf.Resource;
 
 /**
  * A gateway providing a bridge to a network of external components making it
@@ -133,7 +134,7 @@ public abstract class CommunicationGateway {
 			String propURI = datapoint.getProperty();
 			value = ec.changeProperty(propURI, value);
 			
-			if (value == (Object) Float.NaN) {
+			if (value == Resource.RDF_EMPTY_LIST) {
 				LogUtils.logWarn(Activator.context, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" failed --> Ignored!");
 				return;
 			}
