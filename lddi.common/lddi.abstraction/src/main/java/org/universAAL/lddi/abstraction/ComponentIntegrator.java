@@ -25,11 +25,14 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.SharedObjectListener;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.middleware.owl.OntClassInfo;
+import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.ontology.location.Location;
 
 /**
@@ -193,7 +196,15 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	}
 	
 	public final void init(ModuleContext mc, String[] myTypes) {
-		for (String type : myTypes)
+		HashSet<String> allTypes = new HashSet<String>();
+		for (String type : myTypes) {
+			allTypes.addAll(OntologyManagement.getInstance().getNamedSubClasses(type, true, false));
+			OntClassInfo oci = OntologyManagement.getInstance().getOntClassInfo(type);
+			if (oci == null  ||  !oci.isAbstract())
+				allTypes.add(type);
+		}
+		
+		for (String type : allTypes)
 			subscriptions.put(type, new Hashtable<String, Subscription>());
 		
 		Object[] registeredGateways = mc.getContainer().fetchSharedObject(mc, Activator.cgwSharingParams, this);
@@ -201,7 +212,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			for (Object o : registeredGateways) {
 				if (o instanceof CommunicationGateway) {
 					discoveredGateways.put(Activator.getSharedObjectRemoveHook(o), (CommunicationGateway) o);
-					for (String type: myTypes)
+					for (String type: allTypes)
 						((CommunicationGateway) o).register(type, this);
 				}
 			}
@@ -247,19 +258,26 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	}
 	
 	protected final synchronized void subscribe(String typeURI, String propURI, short pullWaitInterval) {
-		if (typeURI != null) {
-			Hashtable<String, Subscription> subs = subscriptions.get(typeURI);
-			if (subs != null) {
-				Subscription s = subs.get(propURI);
-				if (s == null) {
-					s = new Subscription(typeURI, propURI, pullWaitInterval);
-					subs.put(propURI, s);
-				} else if (CommunicationGateway.isShorterAutoPullInterval(pullWaitInterval, s.pullWaitInterval)) {
-					s.pullWaitInterval = pullWaitInterval;
-					for (Enumeration<CommunicationGateway> e=discoveredGateways.elements(); e.hasMoreElements();) {
-						CommunicationGateway gw = e.nextElement();
-						if (gw.simulatesEventing())
-							s.subscribe(gw);
+		if (typeURI != null  &&  propURI != null) {
+			Set<String> allTypes = OntologyManagement.getInstance().getNamedSubClasses(typeURI, true, false);
+			OntClassInfo oci = OntologyManagement.getInstance().getOntClassInfo(typeURI);
+			if (oci == null  ||  !oci.isAbstract())
+				allTypes.add(typeURI);
+			
+			for (String type : allTypes) {
+				Hashtable<String, Subscription> subs = subscriptions.get(type);
+				if (subs != null) {
+					Subscription s = subs.get(propURI);
+					if (s == null) {
+						s = new Subscription(type, propURI, pullWaitInterval);
+						subs.put(propURI, s);
+					} else if (CommunicationGateway.isShorterAutoPullInterval(pullWaitInterval, s.pullWaitInterval)) {
+						s.pullWaitInterval = pullWaitInterval;
+						for (Enumeration<CommunicationGateway> e=discoveredGateways.elements(); e.hasMoreElements();) {
+							CommunicationGateway gw = e.nextElement();
+							if (gw.simulatesEventing())
+								s.subscribe(gw);
+						}
 					}
 				}
 			}
