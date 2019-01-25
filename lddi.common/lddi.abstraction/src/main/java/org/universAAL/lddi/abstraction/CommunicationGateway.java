@@ -691,11 +691,12 @@ public abstract class CommunicationGateway {
 	
 	protected abstract void switchOperationMode(int mode);
 	
-	public final void handleSimulatedEvent(SimulationTool st, ExternalDatapoint dp, Object value) {
+	public static final void handleSimulatedEvent(SimulationTool st, ExternalDatapoint dp, Object value) {
 		if (dp != null  &&  st != null  &&  st == simulationTool) {
 			ExternalComponent ec = dp.getComponent();
-			notifySubscribers(dp.getPushAddress(),
-					ec.converter.exportValue(ec.getTypeURI(), dp.getProperty(), value));
+			for (CommunicationGateway cgw : getAllCGws())
+				cgw.notifySubscribers(dp.getPushAddress(),
+						ec.converter.exportValue(ec.getTypeURI(), dp.getProperty(), value));
 		}
 	}
 

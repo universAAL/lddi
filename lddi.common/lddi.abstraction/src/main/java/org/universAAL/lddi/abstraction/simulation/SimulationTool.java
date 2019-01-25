@@ -50,7 +50,6 @@ public class SimulationTool extends JFrame {
 	private static final Hashtable<ExternalDatapoint, SimulatedDatapoint> renderedDatapoints = new Hashtable<ExternalDatapoint, SimulatedDatapoint>();
 	
 	private JTabbedPane contentTabs;
-	private CommunicationGateway cgw;
 
 	public SimulationTool() {
 		contentTabs = new JTabbedPane();
@@ -173,6 +172,6 @@ public class SimulationTool extends JFrame {
 	
 	void pushValue(ExternalDatapoint dp, Object value) {
 		if (dp.getPushAddress() != null)
-			cgw.handleSimulatedEvent(this, dp, value);
+			CommunicationGateway.handleSimulatedEvent(this, dp, value);
 	}
 }
