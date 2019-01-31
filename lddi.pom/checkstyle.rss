@@ -28,7 +28,7 @@ under the License.
       <title>File: 549,
              Errors: 8053,
              Warnings: 1227,
-             Infos: 1703
+             Infos: 1705
       </title>
             <link>http://lddi/lddi.pom//checkstyle.html</link>
       <description>
@@ -3521,7 +3521,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
                 </td>
                 <td>
-                  28
+                  30
                 </td>
                 <td>
                   0
