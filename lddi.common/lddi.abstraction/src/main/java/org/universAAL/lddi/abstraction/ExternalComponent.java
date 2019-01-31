@@ -98,18 +98,22 @@ public final class ExternalComponent {
 	}
 	
 	Object changeProperty(String propURI, Object value) {
-		if (propURI.equals(lastPropertySet)
-				&& ((value != null  &&  value.equals(lastPropertyValueSet))
-						||  (value == null  &&  lastPropertyValueSet == null))) {
-			ontResource.changeProperty(Resource.PROP_INVOLVED_HUMAN_USER, null);
-		} else {
-			ontResource.changeProperty(Resource.PROP_INVOLVED_HUMAN_USER, new Resource("urn:indicator:UserWithPhysicalActivity"));
+		synchronized (ontResource) {
+			if (propURI.equals(lastPropertySet)
+					&& ((value != null  &&  value.equals(lastPropertyValueSet))
+							||  (value == null  &&  lastPropertyValueSet == null)))
+				// this is the "acknowledge" I get after I myself previously changed the value in setPropertyValue()
+				ontResource.changeProperty(Resource.PROP_INVOLVED_HUMAN_USER, null);
+			else
+				// this is a notification about an external change not caused from the universAAL environment
+				ontResource.changeProperty(Resource.PROP_INVOLVED_HUMAN_USER, new Resource("urn:indicator:UserWithPhysicalActivity"));
+			
+			lastPropertySet = null;
+			lastPropertyValueSet = null;
+			Object oldVal = ontResource.getProperty(propURI);
+			return ontResource.changeProperty(propURI, converter.importValue(value, getTypeURI(), propURI))?
+					oldVal  :  Resource.RDF_EMPTY_LIST;
 		}
-		lastPropertySet = null;
-		lastPropertyValueSet = null;
-		Object oldVal = ontResource.getProperty(propURI);
-		return ontResource.changeProperty(propURI, converter.importValue(value, getTypeURI(), propURI))?
-				oldVal  :  Resource.RDF_EMPTY_LIST;
 	}
 	
 	public String currentValueAsString(String propURI) {
@@ -224,27 +228,30 @@ public final class ExternalComponent {
 	public void setPropertyValue(String propURI, Object value) {
 		if (propURI == null)
 			return;
-		ExternalDatapoint edp = propMappings.get(propURI);
-		if (edp == null)
-			ontResource.changeProperty(propURI, null);
-		else {
-			Object oldValue = ontResource.getProperty(propURI);
-			if (ontResource.changeProperty(propURI, value)) {
-				Object exValue = converter.exportValue(getTypeURI(), propURI, value);
-				gw.writeValue(edp, exValue);
-				Object check = gw.readValue(edp);
-				Object inCheck = converter.importValue(check, getTypeURI(), propURI);
-				if ((value == null  &&  inCheck != null)
-						|| (exValue != null  &&  !exValue.equals(check))
-						|| (exValue == null  &&  check != null)
-						|| (value != null  &&  !value.equals(inCheck)))
-					ontResource.changeProperty(propURI, oldValue);
-				else {
-					lastPropertySet = propURI;
-					lastPropertyValueSet = value;
-				}
-			} else if (oldValue != null)
+		
+		synchronized (ontResource) {
+			ExternalDatapoint edp = propMappings.get(propURI);
+			if (edp == null)
 				ontResource.changeProperty(propURI, null);
+			else {
+				Object oldValue = ontResource.getProperty(propURI);
+				if (ontResource.changeProperty(propURI, value)) {
+					Object exValue = converter.exportValue(getTypeURI(), propURI, value);
+					gw.writeValue(edp, exValue);
+					Object check = gw.readValue(edp);
+					Object inCheck = converter.importValue(check, getTypeURI(), propURI);
+					if ((value == null  &&  inCheck != null)
+							|| (exValue != null  &&  !exValue.equals(check))
+							|| (exValue == null  &&  check != null)
+							|| (value != null  &&  !value.equals(inCheck)))
+						ontResource.changeProperty(propURI, oldValue);
+					else {
+						lastPropertySet = propURI;
+						lastPropertyValueSet = exValue;
+					}
+				} else if (oldValue != null)
+					ontResource.changeProperty(propURI, null);
+			}
 		}
 	}
 }
