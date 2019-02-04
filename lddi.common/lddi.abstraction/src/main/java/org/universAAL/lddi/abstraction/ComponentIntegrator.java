@@ -227,7 +227,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	 * @param propURI
 	 * @param oldValue
 	 */
-	protected abstract void publish(ManagedIndividual ontResource, String propURI, Object oldValue);
+	protected abstract void publish(ManagedIndividual ontResource, String propURI, Object oldValue, boolean isReflected);
 
 	protected final void setExternalValue(String componentURI, String propertyURI, Object value) {
 		if (componentURI == null  ||  propertyURI == null)
@@ -293,7 +293,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			ec.setPropertyValue(propertyURI, value);
 	}
 	
-	protected void propertyDeleted(ManagedIndividual mi, String propURI) {
+	protected void propertyDeleted(ManagedIndividual mi, String propURI, boolean isReflected) {
 		LogUtils.logInfo(Activator.context, getClass(), "propertyDeleted", "Ignoring the deletion of "+propURI);
 	}
 

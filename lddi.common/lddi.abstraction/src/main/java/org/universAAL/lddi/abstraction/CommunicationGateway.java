@@ -35,6 +35,7 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
+import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.Resource;
 
@@ -94,7 +95,7 @@ public abstract class CommunicationGateway {
 		private ExternalDatapoint datapoint;
 		private short simulationInterval = -1;
 		private HashSet<ComponentIntegrator> subscribers = new HashSet<ComponentIntegrator>(3);
-		private Object value;
+		private Object value, lastValueWritten = null;
 		
 		Subscription(ExternalDatapoint dp) {
 			datapoint = dp;
@@ -121,7 +122,17 @@ public abstract class CommunicationGateway {
 			return subscribers.contains(ci);
 		}
 		
-		synchronized void notifySubscribers(Object value) {
+		void reflect(Object value) {
+			lastValueWritten = value;
+		}
+		
+		private void notifySubscribers(Object value) {
+			boolean isReflected = false;
+			if (lastValueWritten != null  &&  lastValueWritten.equals(value)) {
+				lastValueWritten = null;
+				isReflected = true;
+			}
+			
 			if (value == null) {
 				if (this.value == null)
 					return;
@@ -144,10 +155,10 @@ public abstract class CommunicationGateway {
 			
 			if (this.value == null)
 				for (ComponentIntegrator ci : subscribers)
-					ci.propertyDeleted(ec.getOntResource(), propURI);
+					ci.propertyDeleted(ec.getOntResource(), propURI, isReflected);
 			else
 				for (ComponentIntegrator ci : subscribers)
-					ci.publish(ec.getOntResource(), propURI, value);
+					ci.publish(ec.getOntResource(), propURI, value, isReflected);
 		}
 		
 		void simulateEventing(short intervalSeconds) {
@@ -184,6 +195,21 @@ public abstract class CommunicationGateway {
 	
 	private CGwDataConfiguration dataConf = null;
 	private CGwProtocolConfiguration protocolConf = null;
+	
+	ExternalComponent getEC(ManagedIndividual mi) {
+		if (mi == null)
+			return null;
+		
+		List<ExternalComponent> ecs = discoveredComponents.get(mi.getClassURI());
+		if (ecs == null)
+			return null;
+		
+		for (ExternalComponent ec : ecs)
+			if (ec.getOntResource() == mi)
+				return ec;
+		
+		return null;
+	}
 	
 	public void addComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
 		if (components != null  &&  !components.isEmpty()  &&  discoverers.contains(discoverer)) {
@@ -301,7 +327,7 @@ public abstract class CommunicationGateway {
 				public void run() {
 					while (true) {
 						eventingSimulationTicker++;
-						synchronized (discoverers) {
+						synchronized (CommunicationGateway.this) {
 							for (Enumeration<Subscription> e=subscriptions.elements(); e.hasMoreElements();)
 								e.nextElement().eventTicker(eventingSimulationTicker);
 						}
@@ -329,7 +355,7 @@ public abstract class CommunicationGateway {
 	 * @param address
 	 * @param value
 	 */
-	protected final void notifySubscribers(String address, Object value) {
+	protected final synchronized void notifySubscribers(String address, Object value) {
 		if (address == null)
 			return;
 		Subscription s = subscriptions.get(address);
@@ -345,7 +371,7 @@ public abstract class CommunicationGateway {
 	 * the external components made known by gateways to integrators must
 	 * include the property mapping to datapoints.
 	 */
-	Object readValue(ExternalDatapoint datapoint) {
+	synchronized Object readValue(ExternalDatapoint datapoint) {
 		if (datapoint != null) {
 			ExternalComponent ec = datapoint.getComponent();
 			return (simulationTool == null)?  getValue(datapoint.getPullAddress())
@@ -485,18 +511,12 @@ public abstract class CommunicationGateway {
 		if (integrator == null  ||  datapoint == null)
 			return Float.NaN;
 		
-		boolean needsSimulation = false;
-		
-		String subscriptionKey = datapoint.getPushAddress();
-		if (subscriptionKey == null) {
-			subscriptionKey = datapoint.getPullAddress();
-			if (subscriptionKey == null)
-				return Float.NaN;
-			else
-				needsSimulation = true;
-		}
+		String subscriptionKey = getDPsubscriptionKey(datapoint);
+		if (subscriptionKey == null)
+			return Float.NaN;
 		
 		Subscription s = subscriptions.get(subscriptionKey);
+		boolean needsSimulation = (datapoint.getPushAddress() == null);
 		if (s == null) {
 			s = new Subscription(datapoint);
 			subscriptions.put(subscriptionKey, s);
@@ -558,12 +578,9 @@ public abstract class CommunicationGateway {
 	 *            or any of the wildcarding versions of it.
 	 */
 	void stopEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint) {
-		String subscriptionKey = datapoint.getPushAddress();
-		if (subscriptionKey == null) {
-			subscriptionKey = datapoint.getPullAddress();
-			if (subscriptionKey == null)
-				return;
-		}
+		String subscriptionKey = getDPsubscriptionKey(datapoint);
+		if (subscriptionKey == null)
+			return;
 		
 		Subscription s = subscriptions.get(subscriptionKey);
 		if (s == null)
@@ -598,7 +615,7 @@ public abstract class CommunicationGateway {
 	 * this implies that the external components made known by gateways to
 	 * integrators must include the property mapping to datapoints.
 	 */
-	void writeValue(ExternalDatapoint datapoint, Object value) {
+	synchronized void writeValue(ExternalDatapoint datapoint, Object value) {
 		if (datapoint != null) {
 			ExternalComponent ec = datapoint.getComponent();
 			if (simulationTool == null)
@@ -606,7 +623,21 @@ public abstract class CommunicationGateway {
 			else
 				simulationTool.setDatapointValue(datapoint,
 						ec.converter.importValue(value, ec.getTypeURI(), datapoint.getProperty()));
+			
+			String sk = getDPsubscriptionKey(datapoint);
+			if (sk != null) {
+				Subscription s = subscriptions.get(sk);
+				if (s != null)
+					s.reflect(value);
+			}
 		}
+	}
+	
+	private static String getDPsubscriptionKey(ExternalDatapoint dp) {
+		String s = dp.getPushAddress();
+		if (s == null)
+			s = dp.getPullAddress();
+		return s;
 	}
 	
 	static final synchronized boolean setOperationMode(int mode) {
@@ -695,7 +726,7 @@ public abstract class CommunicationGateway {
 		if (dp != null  &&  st != null  &&  st == simulationTool) {
 			ExternalComponent ec = dp.getComponent();
 			for (CommunicationGateway cgw : getAllCGws())
-				cgw.notifySubscribers(dp.getPushAddress(),
+				cgw.notifySubscribers(getDPsubscriptionKey(dp),
 						ec.converter.exportValue(ec.getTypeURI(), dp.getProperty(), value));
 		}
 	}
