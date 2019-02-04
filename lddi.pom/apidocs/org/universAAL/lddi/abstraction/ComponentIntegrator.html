@@ -230,14 +230,16 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-">propertyDeleted</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
-               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-">propertyDeleted</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
+               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+               boolean&nbsp;isReflected)</code>&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#publish-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-">publish</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#publish-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-boolean-">publish</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
        <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue)</code>
+       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue,
+       boolean&nbsp;isReflected)</code>
 <div class="block">Note-1: The implementation is supposed to publish a context event onto the universAAL context bus.</div>
 </td>
 </tr>
@@ -413,7 +415,7 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
                        <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;myTypes)</pre>
 </li>
 </ul>
-<a name="publish-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-">
+<a name="publish-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-boolean-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -421,7 +423,8 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 <h4>publish</h4>
 <pre>protected abstract&nbsp;void&nbsp;publish(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
                                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-                                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue)</pre>
+                                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue,
+                                boolean&nbsp;isReflected)</pre>
 <div class="block">Note-1: The implementation is supposed to publish a context event onto the universAAL context bus.
  Note-2: the new value is already set for the given <code>ontResource</code> and <code>propURI</code>
          &rarr; if the implementation needs to process the new value, it must fetch it by
@@ -494,14 +497,15 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
                                     <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
 </li>
 </ul>
-<a name="propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-">
+<a name="propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>propertyDeleted</h4>
 <pre>protected&nbsp;void&nbsp;propertyDeleted(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
-                               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</pre>
+                               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                               boolean&nbsp;isReflected)</pre>
 </li>
 </ul>
 </li>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.3382352941176471" branch-rate="0.2767857142857143" lines-covered="161" lines-valid="476" branches-covered="31" branches-valid="112" complexity="1.8859649122807018" version="2.1.1" timestamp="1548935228830">
+<coverage line-rate="0.3382352941176471" branch-rate="0.2767857142857143" lines-covered="161" lines-valid="476" branches-covered="31" branches-valid="112" complexity="1.8859649122807018" version="2.1.1" timestamp="1549267099830">
 	<sources>
 		<source>/home/travis/build/universAAL/lddi/lddi.knx/lddi.knx.library/src/main/java</source>
 		<source>--source</source>
