@@ -162,14 +162,14 @@ public final class ExternalComponent {
 		return null;
 	}
 	
-	private Location getLocation(PhysicalThing pt) {
-		Location l = pt.getLocation();
+	private Location getLocation(PhysicalThing phTh) {
+		Location l = phTh.getLocation();
 		if (l == null) {
-			Object o = pt.getProperty(PhysicalThing.PROP_PART_OF);
+			Object o = phTh.getProperty(PhysicalThing.PROP_PART_OF);
 			if (o instanceof PhysicalThing)
 				l = getLocation((PhysicalThing) o);
 			if (l == null) {
-				o = pt.getProperty(PhysicalThing.PROP_IS_IN);
+				o = phTh.getProperty(PhysicalThing.PROP_IS_IN);
 				if (o instanceof PhysicalThing)
 					l = getLocation((PhysicalThing) o);
 			}

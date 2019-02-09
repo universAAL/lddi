@@ -46,11 +46,11 @@ public class DatapointIntegrationScreener {
 		try {
 			receivedEvents.put(propURI, connectedComponents.get(ontResource.getURI()));
 			publishCond.signal();
-		} catch (Exception e) {
+		} catch (Exception ex) {
 			LogUtils.logWarn(Activator.getMC(), this.getClass(), "publish", 
 					new Object[] {"Got exception when trying to reflect external event on ",
 							propURI, " of ", ontResource, " in the address test tool: " },
-					e);
+					ex);
 		} finally {
 			lock.unlock();
 		}

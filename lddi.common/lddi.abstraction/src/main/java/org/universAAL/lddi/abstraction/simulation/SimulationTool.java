@@ -120,11 +120,11 @@ public class SimulationTool extends JFrame {
 		
 		JPanel contentPane = null;
 		int count = contentTabs.getTabCount();
-		for (int i=0; i < count; i++)
-			if (contentTabs.getTitleAt(i).equals(tabTitle))
-				contentPane = (JPanel) contentTabs.getComponentAt(i);
-			else if (contentTabs.getTitleAt(i).equals(tabContinued)) {
-				contentPane = (JPanel) contentTabs.getComponentAt(i);
+		for (int n=0; n < count; n++)
+			if (contentTabs.getTitleAt(n).equals(tabTitle))
+				contentPane = (JPanel) contentTabs.getComponentAt(n);
+			else if (contentTabs.getTitleAt(n).equals(tabContinued)) {
+				contentPane = (JPanel) contentTabs.getComponentAt(n);
 				break;
 			}
 		
