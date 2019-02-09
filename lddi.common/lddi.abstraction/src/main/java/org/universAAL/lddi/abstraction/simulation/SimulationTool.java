@@ -116,30 +116,37 @@ public class SimulationTool extends JFrame {
 	private void addDatapointToTab(ExternalDatapoint dp, SimulatedDatapoint dpPane) throws ArrayIndexOutOfBoundsException {
 		Location l = dp.getComponent().getLocation();
 		String tabTitle = (l == null)?  TAB_TITLE_NOWHERE : l.getLocalName();
+		String tabContinued = tabTitle + " 2";
 		
 		JPanel contentPane = null;
 		int count = contentTabs.getTabCount();
 		for (int i=0; i < count; i++)
-			if (contentTabs.getTitleAt(i).equals(tabTitle)) {
+			if (contentTabs.getTitleAt(i).equals(tabTitle))
+				contentPane = (JPanel) contentTabs.getComponentAt(i);
+			else if (contentTabs.getTitleAt(i).equals(tabContinued)) {
 				contentPane = (JPanel) contentTabs.getComponentAt(i);
 				break;
 			}
 		
-		if (contentPane == null)
+		if (contentPane == null) {
+			count = 0;
 			contentPane = createTab(tabTitle);
+		} else {
+			count = contentPane.getComponentCount();
+			if (count >= (TAB_MAX_COLUMN_NUMBER * TAB_MAX_ROW_NUMBER)) {
+				count = 0;
+				contentPane = createTab(tabContinued);
+			}
+		}
 		
-		count = contentPane.getComponentCount();
-		if (count < (TAB_MAX_COLUMN_NUMBER * TAB_MAX_ROW_NUMBER)) {
-			int row = count / TAB_MAX_COLUMN_NUMBER;
-			int col = count - (row * TAB_MAX_COLUMN_NUMBER);
-			GridBagConstraints gbc_dpPane = new GridBagConstraints();
-			gbc_dpPane.insets = new Insets(5, 5, 5, 5);
-			gbc_dpPane.gridx = col;
-			gbc_dpPane.gridy = row;
-			dpPane.setBorder(BorderFactory.createLineBorder(Color.darkGray));
-			contentPane.add(dpPane, gbc_dpPane);
-		} else
-			throw new ArrayIndexOutOfBoundsException();
+		int row = count / TAB_MAX_COLUMN_NUMBER;
+		int col = count - (row * TAB_MAX_COLUMN_NUMBER);
+		GridBagConstraints gbc_dpPane = new GridBagConstraints();
+		gbc_dpPane.insets = new Insets(5, 5, 5, 5);
+		gbc_dpPane.gridx = col;
+		gbc_dpPane.gridy = row;
+		dpPane.setBorder(BorderFactory.createLineBorder(Color.darkGray));
+		contentPane.add(dpPane, gbc_dpPane);
 
 		renderedDatapoints.put(dp,  dpPane);
 	}

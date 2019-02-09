@@ -8,7 +8,9 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import org.universAAL.lddi.abstraction.Activator;
 import org.universAAL.lddi.abstraction.ExternalComponent;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.ManagedIndividual;
 
 public class DatapointIntegrationScreener {
@@ -45,10 +47,10 @@ public class DatapointIntegrationScreener {
 			receivedEvents.put(propURI, connectedComponents.get(ontResource.getURI()));
 			publishCond.signal();
 		} catch (Exception e) {
-			System.out.println(propURI + "@@@@@@@@@@@@@@@@@@@@@" + ontResource);
-			System.out.println("receivedEvents=================" + receivedEvents);
-			System.out.println("connectedComponents============" + connectedComponents);
-			System.out.println("Related component============" + connectedComponents.get(ontResource.getURI()));
+			LogUtils.logWarn(Activator.getMC(), this.getClass(), "publish", 
+					new Object[] {"Got exception when trying to reflect external event on ",
+							propURI, " of ", ontResource, " in the address test tool: " },
+					e);
 		} finally {
 			lock.unlock();
 		}

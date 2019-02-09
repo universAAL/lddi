@@ -158,8 +158,23 @@ public final class ExternalComponent {
 	
 	public Location getLocation() {
 		if (ontResource instanceof PhysicalThing)
-			return ((PhysicalThing) ontResource).getLocation();
+			return getLocation((PhysicalThing) ontResource);
 		return null;
+	}
+	
+	private Location getLocation(PhysicalThing pt) {
+		Location l = pt.getLocation();
+		if (l == null) {
+			Object o = pt.getProperty(PhysicalThing.PROP_PART_OF);
+			if (o instanceof PhysicalThing)
+				l = getLocation((PhysicalThing) o);
+			if (l == null) {
+				o = pt.getProperty(PhysicalThing.PROP_IS_IN);
+				if (o instanceof PhysicalThing)
+					l = getLocation((PhysicalThing) o);
+			}
+		}
+		return l;	
 	}
 	
 	public ManagedIndividual getOntResource() {
