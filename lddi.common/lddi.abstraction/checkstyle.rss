@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2015 - 2019 universAAL Consortium</copyright>
     <item>
       <title>File: 18,
-             Errors: 379,
+             Errors: 380,
              Warnings: 45,
-             Infos: 475
+             Infos: 478
       </title>
             <link>http://lddi/lddi.common/lddi.abstraction//checkstyle.html</link>
       <description>
@@ -119,7 +119,7 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.config.tool.DatapointIntegrationScreener.java">org/universAAL/lddi/abstraction/config/tool/DatapointIntegrationScreener.java</a>
                 </td>
                 <td>
-                  9
+                  10
                 </td>
                 <td>
                   0
@@ -161,13 +161,13 @@ under the License.
                   <a href="http://lddi/lddi.common/lddi.abstraction//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
                 </td>
                 <td>
-                  26
+                  28
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  31
+                  32
                 </td>
               </tr>
                           <tr>
