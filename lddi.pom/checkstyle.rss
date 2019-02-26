@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2010 - 2019 universAAL Consortium</copyright>
     <item>
       <title>File: 549,
-             Errors: 8057,
+             Errors: 8064,
              Warnings: 1227,
-             Infos: 1712
+             Infos: 1729
       </title>
             <link>http://lddi/lddi.pom//checkstyle.html</link>
       <description>
@@ -3521,7 +3521,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ExternalComponent.java">org/universAAL/lddi/abstraction/ExternalComponent.java</a>
                 </td>
                 <td>
-                  28
+                  27
                 </td>
                 <td>
                   0
@@ -3563,7 +3563,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.config.data.ConfiguredDatapoint.java">org/universAAL/lddi/abstraction/config/data/ConfiguredDatapoint.java</a>
                 </td>
                 <td>
-                  10
+                  12
                 </td>
                 <td>
                   1
@@ -3619,13 +3619,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
                 </td>
                 <td>
-                  133
+                  142
                 </td>
                 <td>
                   4
                 </td>
                 <td>
-                  94
+                  95
                 </td>
               </tr>
                           <tr>
@@ -5831,13 +5831,13 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ComponentIntegrator.java">org/universAAL/lddi/abstraction/ComponentIntegrator.java</a>
                 </td>
                 <td>
-                  51
+                  56
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  33
+                  39
                 </td>
               </tr>
                           <tr>
@@ -6923,7 +6923,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.ExternalDatapoint.java">org/universAAL/lddi/abstraction/ExternalDatapoint.java</a>
                 </td>
                 <td>
-                  3
+                  5
                 </td>
                 <td>
                   0

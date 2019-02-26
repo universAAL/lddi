@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":6,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -162,6 +162,10 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#discoveredGateways">discoveredGateways</a></span></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected org.universAAL.middleware.context.ContextPublisher</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#myContextPublisher">myContextPublisher</a></span></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Hashtable.html?is-external=true" title="class or interface in java.util">Hashtable</a>&lt;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Hashtable.html?is-external=true" title="class or interface in java.util">Hashtable</a>&lt;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,org.universAAL.lddi.abstraction.ComponentIntegrator.Subscription&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#subscriptions">subscriptions</a></span></code>&nbsp;</td>
 </tr>
@@ -192,7 +196,7 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -230,41 +234,52 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-">propertyDeleted</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#propertyChanged-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-boolean-long-long-">propertyChanged</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-               boolean&nbsp;isReflected)</code>&nbsp;</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>protected abstract void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#publish-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-boolean-">publish</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
-       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue,
-       boolean&nbsp;isReflected)</code>
+               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue,
+               boolean&nbsp;isReflected,
+               long&nbsp;actualOccurrenceTime,
+               long&nbsp;meanOccurrenceTime)</code>
 <div class="block">Note-1: The implementation is supposed to publish a context event onto the universAAL context bus.</div>
 </td>
 </tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-long-long-">propertyDeleted</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
+               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+               boolean&nbsp;isReflected,
+               long&nbsp;actualOccurrenceTime,
+               long&nbsp;meanOccurrentTime)</code>&nbsp;</td>
+</tr>
 <tr id="i9" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#propertyStoppedToChange-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-long-long-">propertyStoppedToChange</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
+                       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                       boolean&nbsp;isReflected,
+                       long&nbsp;actualOccurrenceTime,
+                       long&nbsp;meanOccurrentTime)</code>&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#setExternalValue-java.lang.String-java.lang.String-java.lang.Object-">setExternalValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;componentURI,
                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#sharedObjectAdded-java.lang.Object-java.lang.Object-">sharedObjectAdded</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;sharedObj,
                  <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;removeHook)</code>&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#sharedObjectRemoved-java.lang.Object-">sharedObjectRemoved</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;removeHook)</code>&nbsp;</td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#subscribe-java.lang.String-java.lang.String-short-">subscribe</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;typeURI,
-         <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-         short&nbsp;pullWaitInterval)</code>&nbsp;</td>
-</tr>
 <tr id="i13" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#subscribe-java.lang.String-java.lang.String-">subscribe</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;typeURI,
+         <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</code>&nbsp;</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#updateProperty-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-">updateProperty</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
@@ -318,10 +333,19 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 <a name="subscriptions">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>subscriptions</h4>
 <pre>protected&nbsp;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Hashtable.html?is-external=true" title="class or interface in java.util">Hashtable</a>&lt;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/Hashtable.html?is-external=true" title="class or interface in java.util">Hashtable</a>&lt;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,org.universAAL.lddi.abstraction.ComponentIntegrator.Subscription&gt;&gt; subscriptions</pre>
+</li>
+</ul>
+<a name="myContextPublisher">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>myContextPublisher</h4>
+<pre>protected&nbsp;org.universAAL.middleware.context.ContextPublisher myContextPublisher</pre>
 </li>
 </ul>
 </li>
@@ -415,16 +439,18 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
                        <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>[]&nbsp;myTypes)</pre>
 </li>
 </ul>
-<a name="publish-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-boolean-">
+<a name="propertyChanged-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-boolean-long-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>publish</h4>
-<pre>protected abstract&nbsp;void&nbsp;publish(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
-                                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-                                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue,
-                                boolean&nbsp;isReflected)</pre>
+<h4>propertyChanged</h4>
+<pre>protected&nbsp;void&nbsp;propertyChanged(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
+                               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;oldValue,
+                               boolean&nbsp;isReflected,
+                               long&nbsp;actualOccurrenceTime,
+                               long&nbsp;meanOccurrenceTime)</pre>
 <div class="block">Note-1: The implementation is supposed to publish a context event onto the universAAL context bus.
  Note-2: the new value is already set for the given <code>ontResource</code> and <code>propURI</code>
          &rarr; if the implementation needs to process the new value, it must fetch it by
@@ -475,15 +501,14 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 </dl>
 </li>
 </ul>
-<a name="subscribe-java.lang.String-java.lang.String-short-">
+<a name="subscribe-java.lang.String-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>subscribe</h4>
 <pre>protected final&nbsp;void&nbsp;subscribe(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;typeURI,
-                               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-                               short&nbsp;pullWaitInterval)</pre>
+                               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</pre>
 </li>
 </ul>
 <a name="updateProperty-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-">
@@ -497,15 +522,30 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
                                     <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
 </li>
 </ul>
-<a name="propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-">
+<a name="propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-long-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>propertyDeleted</h4>
 <pre>protected&nbsp;void&nbsp;propertyDeleted(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
                                <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
-                               boolean&nbsp;isReflected)</pre>
+                               boolean&nbsp;isReflected,
+                               long&nbsp;actualOccurrenceTime,
+                               long&nbsp;meanOccurrentTime)</pre>
+</li>
+</ul>
+<a name="propertyStoppedToChange-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-long-long-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>propertyStoppedToChange</h4>
+<pre>protected&nbsp;void&nbsp;propertyStoppedToChange(org.universAAL.middleware.owl.ManagedIndividual&nbsp;mi,
+                                       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI,
+                                       boolean&nbsp;isReflected,
+                                       long&nbsp;actualOccurrenceTime,
+                                       long&nbsp;meanOccurrentTime)</pre>
 </li>
 </ul>
 </li>
