@@ -29,16 +29,6 @@ public class ConfiguredDatapoint implements ExternalDatapoint {
 			this.ec = ec;		
 	}
 
-	public boolean isReadOnly() {
-		return dp.getPullAddress() != null  &&  dp.getSetAddress() == null;
-	}
-
-	public boolean isWriteOnly() {
-		return dp.getPullAddress() == null
-				&&  dp.getPushAddress() == null
-				&&  dp.getSetAddress() != null;
-	}
-
 	public String getProperty() {
 		return dp.getProperty();
 	}
@@ -71,5 +61,13 @@ public class ConfiguredDatapoint implements ExternalDatapoint {
 	
 	int getComponentID() {
 		return dp.getComponentID();
+	}
+	
+	public int getAutoPullWaitSeconds() {
+		return dp.getAutoPullWaitSeconds();
+	}
+	
+	public int getPushDeadSeconds() {
+		return dp.getPushDeadSeconds();
 	}
 }

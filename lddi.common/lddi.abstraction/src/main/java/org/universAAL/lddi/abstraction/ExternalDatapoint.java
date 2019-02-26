@@ -61,36 +61,6 @@ package org.universAAL.lddi.abstraction;
 public interface ExternalDatapoint {
 
 	/**
-	 * If this method returns true, it means that the status / value reachable
-	 * at this address can be read but cannot be changed. In that case,
-	 * {@link #isWriteOnly()} must return false.
-	 *
-	 * If this method returns false, the interpretation will depend on the
-	 * return value of {@link #isWriteOnly()}: in case of true, the status /
-	 * value reachable at this address cannot be read but can be changed.
-	 * Otherwise, it is both read- and writable.
-	 *
-	 * No implementation of ExternalDatapoint may return for both this and the
-	 * {@link #isWriteOnly()} method simultaneously true!
-	 */
-	public boolean isReadOnly();
-
-	/**
-	 * If this method returns true, it means that the status / value reachable
-	 * at this address can be changed but cannot be read. In that case,
-	 * {@link #isReadOnly()} must return false.
-	 *
-	 * If this method returns false, the interpretation will depend on the
-	 * return value of {@link #isReadOnly()}: in case of true, the status /
-	 * value reachable at this address cannot be changed but can be read.
-	 * Otherwise, it is both read- and writable.
-	 *
-	 * No implementation of ExternalDatapoint may return for both this and the
-	 * {@link #isReadOnly()} method simultaneously true!
-	 */
-	public boolean isWriteOnly();
-
-	/**
 	 * Returns the {@link ExternalComponent external component} to which this
 	 * datapoint belongs.
 	 */
@@ -106,4 +76,8 @@ public interface ExternalDatapoint {
 	public String getPushAddress();
 	
 	public String getSetAddress();
+	
+	public int getAutoPullWaitSeconds();
+	
+	public int getPushDeadSeconds();
 }

@@ -25,8 +25,10 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.util.ResourceUtil;
 import org.universAAL.ontology.lddi.config.datapoints.ExternalTypeSystem;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.PhysicalThing;
@@ -99,9 +101,21 @@ public final class ExternalComponent {
 	
 	Object changeProperty(String propURI, Object value) {
 		synchronized (ontResource) {
+			Object newVal = converter.importValue(value, getTypeURI(), propURI);
+			if (newVal == null  &&  value != null) {
+				StringBuffer sb = new StringBuffer(512);
+				sb.append("Conversion of ").append(value).append(" for ");
+				ResourceUtil.addResource2SB(ontResource, sb);
+				sb.append("->").append(propURI).append(" failed!");
+				LogUtils.logWarn(gw.getOwnerContext(), getClass(), "changeProperty", sb.toString());
+				return Resource.RDF_EMPTY_LIST;
+			}
+
 			Object oldVal = ontResource.getProperty(propURI);
-			return ontResource.changeProperty(propURI, converter.importValue(value, getTypeURI(), propURI))?
-					oldVal  :  Resource.RDF_EMPTY_LIST;
+			// in success case, the newValue is anyhow set for the ontResource
+			// --> in that case, return the old value in order to comply with the protocol for notifying subscribes
+			// in fail case, we signal this by returning the empty list
+			return ontResource.changeProperty(propURI, newVal)?  oldVal  :  Resource.RDF_EMPTY_LIST;
 		}
 	}
 	

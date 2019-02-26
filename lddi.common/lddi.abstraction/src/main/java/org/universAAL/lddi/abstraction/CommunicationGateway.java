@@ -93,29 +93,40 @@ public abstract class CommunicationGateway {
 	
 	private class Subscription {
 		private ExternalDatapoint datapoint;
-		private short simulationInterval = -1;
+		private int simulationInterval = -1;
 		private HashSet<ComponentIntegrator> subscribers = new HashSet<ComponentIntegrator>(3);
 		private Object value, lastValueWritten = null;
+		private int meanDelayMilliseconds;
+		boolean noChangeReported;
 		
 		Subscription(ExternalDatapoint dp) {
 			datapoint = dp;
+			if (dp.getPushAddress() == null) {
+				if (dp.getPullAddress() == null)
+					throw new RuntimeException("The datapoint is write only!");
+				simulationInterval = dp.getAutoPullWaitSeconds();
+				if (simulationInterval < 1)
+					simulationInterval = DEFAULT_AUTO_PULL_INTERVAL;
+				meanDelayMilliseconds = simulationInterval * 500; // the half --> mean value
+			} else
+				meanDelayMilliseconds = dp.getPushDeadSeconds() * 500; // the half --> mean value
 			value = readValue(dp);
+			noChangeReported = (value == null);
 		}
 		
 		void addSubscriber(ComponentIntegrator ci) {
 			subscribers.add(ci);
 		}
 		
-		void checkEventing(short intervalSeconds) {
-			if (intervalSeconds < 1)
-				intervalSeconds = DEFAULT_AUTO_PULL_INTERVAL;
-			if (simulationInterval > intervalSeconds)
-				simulationInterval = intervalSeconds;
-		}
-		
-		void eventTicker(int ticker) {
+		void eventTicker(long ticker, final long timestamp) {
 			if (simulationInterval > 0  &&  ticker % simulationInterval == 0)
-				notifySubscribers(readValue(datapoint));
+				new Thread (new Runnable() { 
+					public void run() { 
+						Subscription.this.notifySubscribers(
+								CommunicationGateway.this.readValue(Subscription.this.datapoint),
+								timestamp); 
+					}
+				}).start();
 		}
 		
 		boolean isSubscribed(ComponentIntegrator ci) {
@@ -126,46 +137,60 @@ public abstract class CommunicationGateway {
 			lastValueWritten = value;
 		}
 		
-		private void notifySubscribers(Object value) {
+		private void notifySubscribers(Object value, long timestamp) {
 			boolean isReflected = false;
-			if (lastValueWritten != null  &&  lastValueWritten.equals(value)) {
+			if (lastValueWritten != null) {
+				isReflected = lastValueWritten.equals(value);
 				lastValueWritten = null;
-				isReflected = true;
 			}
-			
-			if (value == null) {
-				if (this.value == null)
-					return;
-			} else if (value.equals(this.value))
-				return;
-			
-			this.value = value;
 
 			ExternalComponent ec = datapoint.getComponent();
 			String propURI = datapoint.getProperty();
-			value = ec.changeProperty(propURI, value);
+			long actualOccurrenceTime = 0, meanOccurrentTime = 0;
+			if (meanDelayMilliseconds > 0)
+				if (timestamp > 0)
+					meanOccurrentTime = timestamp - meanDelayMilliseconds;
+				else
+					meanOccurrentTime = System.currentTimeMillis() - meanDelayMilliseconds;
+			else
+				actualOccurrenceTime = timestamp;
 			
+			if (value == null) {
+				if (this.value == null) {
+					if (!noChangeReported) {
+						noChangeReported = true;
+						for (ComponentIntegrator ci : subscribers)
+							ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
+					}
+					return;
+				}
+			} else if (value.equals(this.value)) {
+				if (!noChangeReported) {
+					noChangeReported = true;
+					for (ComponentIntegrator ci : subscribers)
+						ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
+				}
+				return;
+			}
+			
+			this.value = value;
+			value = ec.changeProperty(propURI, value);
 			if (value == Resource.RDF_EMPTY_LIST) {
-				LogUtils.logWarn(Activator.context, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" failed --> Ignored!");
+				LogUtils.logWarn(owner, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" failed --> Ignored!");
 				return;
 			}
 
 			if (dpIntegrationScreener != null)
 				dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
+
 			
 			if (this.value == null)
 				for (ComponentIntegrator ci : subscribers)
-					ci.propertyDeleted(ec.getOntResource(), propURI, isReflected);
+					ci.propertyDeleted(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
 			else
 				for (ComponentIntegrator ci : subscribers)
-					ci.publish(ec.getOntResource(), propURI, value, isReflected);
+					ci.propertyChanged(ec.getOntResource(), propURI, value, isReflected, actualOccurrenceTime, meanOccurrentTime);
 		}
-		
-		void simulateEventing(short intervalSeconds) {
-			simulationInterval = (intervalSeconds < 1)?
-					DEFAULT_AUTO_PULL_INTERVAL : intervalSeconds;
-		}
-		
 	}
 	
 	// private String componentURIprefix;
@@ -176,7 +201,7 @@ public abstract class CommunicationGateway {
 	 */
 	private HashSet<ExternalComponentDiscoverer> discoverers = new HashSet<ExternalComponentDiscoverer>(3);
 	
-	private int eventingSimulationTicker = 0;
+	// private long eventingSimulationTicker = 0;
 	private static DatapointIntegrationScreener dpIntegrationScreener = null;
 	private static SimulationTool simulationTool = null;
 	
@@ -289,6 +314,11 @@ public abstract class CommunicationGateway {
 	 */
 	protected abstract Object getValue(String pullAddress);
 	
+	private ModuleContext owner = null;
+	public ModuleContext getOwnerContext() {
+		return owner;
+	}
+	
 	/**
 	 * 
 	 * @param mc               The {@link ModuleContext module context} of your communication gateway.
@@ -304,6 +334,7 @@ public abstract class CommunicationGateway {
 	 *				  from the "org.universAAL.middleware" group.
 	 */
 	public final void init(ModuleContext mc, boolean needsEventingSimulation, boolean useStandardDataConfig, ConfigurationParameter[] pConfParams) {
+		owner = mc;
 		CGW_CONF_APP_ID = getClass().getSimpleName();
 		protocolConf = new CGwProtocolConfiguration(this, pConfParams);
 		
@@ -325,18 +356,27 @@ public abstract class CommunicationGateway {
 		if (needsEventingSimulation)
 			new Thread(new Runnable() {
 				public void run() {
-					while (true) {
-						eventingSimulationTicker++;
-						synchronized (CommunicationGateway.this) {
-							for (Enumeration<Subscription> e=subscriptions.elements(); e.hasMoreElements();)
-								e.nextElement().eventTicker(eventingSimulationTicker);
-						}
-						// loop every second
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+					long now = System.currentTimeMillis();
+					long eventingSimulationTicker = (now / 1000) + 1;
+					long actionTime = eventingSimulationTicker * 1000;
+					synchronized (CommunicationGateway.this) {
+						while (true) {
+							// wait for one second
+							try {
+								while (actionTime > now) {
+									CommunicationGateway.this.wait(actionTime-now);
+									now = System.currentTimeMillis();
+								}
+							} catch (Exception e) {
+								RuntimeException re = new RuntimeException("An Exception has been caught (see 'Caused by'). This is just to print the stack trace for logging purposes.", e);
+								re.printStackTrace();
+							}
+
+							for (Enumeration<Subscription> e=CommunicationGateway.this.subscriptions.elements(); e.hasMoreElements();)
+								e.nextElement().eventTicker(eventingSimulationTicker, actionTime);
+							
+							eventingSimulationTicker++;
+							actionTime += 1000;
 						}
 					}
 				}	
@@ -355,13 +395,13 @@ public abstract class CommunicationGateway {
 	 * @param address
 	 * @param value
 	 */
-	protected final synchronized void notifySubscribers(String address, Object value) {
+	protected final synchronized void notifySubscribers(String address, Object value, long actualOccurrenceTime) {
 		if (address == null)
 			return;
 		Subscription s = subscriptions.get(address);
 		// System.out.println(">>>>>>> "+getClass().getSimpleName()+"->notifySubscribers(): "+s+" found for "+address);
 		if (s != null)
-			s.notifySubscribers(value);
+			s.notifySubscribers(value, actualOccurrenceTime);
 	}
 	
 	/**
@@ -463,13 +503,12 @@ public abstract class CommunicationGateway {
 	 *
 	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
 	 */
-	void startEventing(ComponentIntegrator integrator, ExternalComponent component,
-			short intervalSeconds) {
+	void startEventing(ComponentIntegrator integrator, ExternalComponent component) {
 		if (component == null)
 			return;
 		
 		for (ExternalDatapoint dp : component.datapoints())
-			startEventing(integrator, dp, intervalSeconds);
+			startEventing(integrator, dp);
 	}
 
 	/**
@@ -506,8 +545,7 @@ public abstract class CommunicationGateway {
 	 * @return The current value of the datapoint, unless<ul><li>no subscription was possible, then Float.NaN will be returned.</li>
 	 *         <li>If this is a redundant subscription, then null will be returned.<7li></ul> 
 	 */
-	Object startEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint,
-			short intervalSeconds) {
+	Object startEventing(ComponentIntegrator integrator, ExternalDatapoint datapoint) {
 		if (integrator == null  ||  datapoint == null)
 			return Float.NaN;
 		
@@ -516,28 +554,18 @@ public abstract class CommunicationGateway {
 			return Float.NaN;
 		
 		Subscription s = subscriptions.get(subscriptionKey);
-		boolean needsSimulation = (datapoint.getPushAddress() == null);
 		if (s == null) {
 			s = new Subscription(datapoint);
 			subscriptions.put(subscriptionKey, s);
-			if (needsSimulation)
-				s.simulateEventing(intervalSeconds);
-			else
+			if (s.simulationInterval < 0)
 				subscribe(subscriptionKey);
-		} else {
-			if (needsSimulation)
-				s.checkEventing(intervalSeconds);
-			if (s.isSubscribed(integrator))
-				return null;
-		}
+		} else if (s.isSubscribed(integrator))
+			// signal that you have already been subscribed 
+			return null;
 
 		s.addSubscriber(integrator);
 		// System.out.println(">>>>>>> "+getClass().getSimpleName()+"->startEventing(): "+integrator.getClass().getSimpleName()+" subscribed for "+subscriptionKey);
 		return s.value;
-	}
-	
-	public boolean simulatesEventing() {
-		return eventingSimulationTicker > 0;
 	}
 
 	/**
@@ -553,8 +581,7 @@ public abstract class CommunicationGateway {
 	 *
 	 * @see #startEventing(ComponentIntegrator, ExternalDatapoint, byte)
 	 */
-	void startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI,
-			short intervalSeconds) {
+	void startEventing(ComponentIntegrator integrator, String componentTypeURI, String propURI) {
 		List<ExternalComponent> ecs = (componentTypeURI == null)? null
 				: discoveredComponents.get(componentTypeURI);
 		if (ecs == null  ||  ecs.isEmpty())
@@ -562,10 +589,10 @@ public abstract class CommunicationGateway {
 		
 		if (propURI == null)
 			for (ExternalComponent ec : ecs)
-				startEventing(integrator, ec, intervalSeconds);
+				startEventing(integrator, ec);
 		else
 			for (ExternalComponent ec : ecs)
-				startEventing(integrator, ec.getDatapoint(propURI), intervalSeconds);
+				startEventing(integrator, ec.getDatapoint(propURI));
 	}
 
 	/**
@@ -635,9 +662,7 @@ public abstract class CommunicationGateway {
 	
 	private static String getDPsubscriptionKey(ExternalDatapoint dp) {
 		String s = dp.getPushAddress();
-		if (s == null)
-			s = dp.getPullAddress();
-		return s;
+		return (s == null)? dp.getPullAddress() : s;
 	}
 	
 	static final synchronized boolean setOperationMode(int mode) {
@@ -727,7 +752,7 @@ public abstract class CommunicationGateway {
 			ExternalComponent ec = dp.getComponent();
 			for (CommunicationGateway cgw : getAllCGws())
 				cgw.notifySubscribers(getDPsubscriptionKey(dp),
-						ec.converter.exportValue(ec.getTypeURI(), dp.getProperty(), value));
+						ec.converter.exportValue(ec.getTypeURI(), dp.getProperty(), value), 0);
 		}
 	}
 

@@ -90,7 +90,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 				if (seqNo > -1  &&  seqNo < size)
 					carr[seqNo] = c;
 				else {
-					LogUtils.logWarn(Activator.getMC(), getClass(), "configurationChanged", "Ignoring " + c.getOntDescription()+" with an out-of-bound seqNo equal to "+seqNo);
+					LogUtils.logWarn(cgw.getOwnerContext(), getClass(), "configurationChanged", "Ignoring " + c.getOntDescription()+" with an out-of-bound seqNo equal to "+seqNo);
 					return false;
 				}
 			}
@@ -197,14 +197,14 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 							if (seqNo == -1)
 								seqNo = compID;
 							else if (compID != seqNo)
-								LogUtils.logWarn(Activator.getMC(), getClass(), "saveComponents()", "Ignoring datapoint that belongs to a component with a different seqNo!");
+								LogUtils.logWarn(cgw.getOwnerContext(), getClass(), "saveComponents", "Ignoring datapoint that belongs to a component with a different seqNo!");
 						} else
-							LogUtils.logWarn(Activator.getMC(), getClass(), "saveComponents()", "Ignoring datapoint tha tbelongs to a component with a different seqNo!");
+							LogUtils.logWarn(cgw.getOwnerContext(), getClass(), "saveComponents", "Ignoring datapoint tha tbelongs to a component with a different seqNo!");
 						dps.add(dp);
 					}
 				}
 				if (seqNo < 0)
-					LogUtils.logWarn(Activator.getMC(), getClass(), "saveComponents()", "Ignoring component without datapoint!");
+					LogUtils.logWarn(cgw.getOwnerContext(), getClass(), "saveComponents()", "Ignoring component without datapoint!");
 				else {
 					Component c = new Component();
 					c.setProperty(Component.PROP_CONFIG_SEQ_NO, seqNo);
@@ -236,7 +236,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 				}
 			}
 		} catch (Exception e) {
-			LogUtils.logError(Activator.getMC(), getClass(), "saveComponents()", e.getMessage());
+			LogUtils.logError(cgw.getOwnerContext(), getClass(), "saveComponents", e.getMessage());
 		}
 	}
 }

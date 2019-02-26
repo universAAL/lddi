@@ -30,9 +30,12 @@ import java.util.Set;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.SharedObjectListener;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.context.ContextEvent;
+import org.universAAL.middleware.context.ContextPublisher;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.middleware.owl.OntClassInfo;
 import org.universAAL.middleware.owl.OntologyManagement;
+import org.universAAL.middleware.util.ResourceUtil;
 import org.universAAL.ontology.location.Location;
 
 /**
@@ -49,14 +52,12 @@ import org.universAAL.ontology.location.Location;
 public abstract class ComponentIntegrator implements SharedObjectListener {
 
 	private class Subscription {
-		private short pullWaitInterval;
 		private String typeURI, propURI;
 		private int hashCode;
 		
-		private Subscription(String typeURI, String propURI, short pullWaitInterval) {
+		private Subscription(String typeURI, String propURI) {
 			this.typeURI = typeURI;
 			this.propURI = propURI;
-			this.pullWaitInterval = pullWaitInterval;
 			
 			typeURI += propURI;
 			hashCode = typeURI.hashCode();
@@ -66,12 +67,12 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		}
 		
 		private void subscribe(CommunicationGateway cgw) {
-			cgw.startEventing(ComponentIntegrator.this, typeURI, propURI, pullWaitInterval);
+			cgw.startEventing(ComponentIntegrator.this, typeURI, propURI);
 		}
 		
 		private void subscribe(ExternalComponent ec) {
 			if (typeURI.equals(ec.getTypeURI()))
-				ec.getGateway().startEventing(ComponentIntegrator.this, ec.getDatapoint(propURI), pullWaitInterval);
+				ec.getGateway().startEventing(ComponentIntegrator.this, ec.getDatapoint(propURI));
 		}
 		
 		@Override
@@ -195,7 +196,10 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		return targetList.iterator();
 	}
 	
+	private ModuleContext owner = null;
+	
 	public final void init(ModuleContext mc, String[] myTypes) {
+		owner = mc;
 		HashSet<String> allTypes = new HashSet<String>();
 		for (String type : myTypes) {
 			allTypes.addAll(OntologyManagement.getInstance().getNamedSubClasses(type, true, false));
@@ -217,6 +221,8 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 				}
 			}
 	}
+	
+	protected ContextPublisher myContextPublisher = null;
 
 	/**
 	 * Note-1: The implementation is supposed to publish a context event onto the universAAL context bus.
@@ -227,7 +233,20 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	 * @param propURI
 	 * @param oldValue
 	 */
-	protected abstract void publish(ManagedIndividual ontResource, String propURI, Object oldValue, boolean isReflected);
+	protected void propertyChanged(ManagedIndividual ontResource, String propURI, Object oldValue, boolean isReflected, long actualOccurrenceTime, long meanOccurrenceTime) {
+		if (myContextPublisher != null) {
+			ContextEvent ce = new ContextEvent(ontResource, propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
+			myContextPublisher.publish(ce);
+		} else if (owner != null) {
+			StringBuffer sb = new StringBuffer(512);
+			sb.append("Ignoring the change of ");
+			ResourceUtil.addResource2SB(ontResource, sb);
+			sb.append("->").append(propURI);
+			
+			LogUtils.logInfo(owner, getClass(), "propertyChanged", sb.toString());
+		}
+		
+	}
 
 	protected final void setExternalValue(String componentURI, String propertyURI, Object value) {
 		if (componentURI == null  ||  propertyURI == null)
@@ -257,7 +276,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 					i.remove();
 	}
 	
-	protected final synchronized void subscribe(String typeURI, String propURI, short pullWaitInterval) {
+	protected final synchronized void subscribe(String typeURI, String propURI) {
 		if (typeURI != null  &&  propURI != null) {
 			Set<String> allTypes = OntologyManagement.getInstance().getNamedSubClasses(typeURI, true, false);
 			OntClassInfo oci = OntologyManagement.getInstance().getOntClassInfo(typeURI);
@@ -269,15 +288,8 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 				if (subs != null) {
 					Subscription s = subs.get(propURI);
 					if (s == null) {
-						s = new Subscription(type, propURI, pullWaitInterval);
+						s = new Subscription(type, propURI);
 						subs.put(propURI, s);
-					} else if (CommunicationGateway.isShorterAutoPullInterval(pullWaitInterval, s.pullWaitInterval)) {
-						s.pullWaitInterval = pullWaitInterval;
-						for (Enumeration<CommunicationGateway> e=discoveredGateways.elements(); e.hasMoreElements();) {
-							CommunicationGateway gw = e.nextElement();
-							if (gw.simulatesEventing())
-								s.subscribe(gw);
-						}
 					}
 				}
 			}
@@ -293,8 +305,23 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			ec.setPropertyValue(propertyURI, value);
 	}
 	
-	protected void propertyDeleted(ManagedIndividual mi, String propURI, boolean isReflected) {
-		LogUtils.logInfo(Activator.context, getClass(), "propertyDeleted", "Ignoring the deletion of "+propURI);
+	protected void propertyDeleted(ManagedIndividual mi, String propURI, boolean isReflected, long actualOccurrenceTime, long meanOccurrentTime) {
+		StringBuffer sb = new StringBuffer(512);
+		sb.append("Ignoring the deletion of ");
+		ResourceUtil.addResource2SB(mi, sb);
+		sb.append("->").append(propURI);
+		
+		if (owner != null)
+			LogUtils.logInfo(owner, getClass(), "propertyDeleted", sb.toString());
 	}
 
+	protected void propertyStoppedToChange(ManagedIndividual mi, String propURI, boolean isReflected, long actualOccurrenceTime, long meanOccurrentTime) {
+		StringBuffer sb = new StringBuffer(512);
+		sb.append("Ignoring the change stop of ");
+		ResourceUtil.addResource2SB(mi, sb);
+		sb.append("->").append(propURI);
+		
+		if (owner != null)
+			LogUtils.logInfo(owner, getClass(), "propertyStoppedToChange", sb.toString());
+	}
 }
