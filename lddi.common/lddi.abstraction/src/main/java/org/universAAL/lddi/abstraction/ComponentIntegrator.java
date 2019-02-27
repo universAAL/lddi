@@ -243,7 +243,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			ResourceUtil.addResource2SB(ontResource, sb);
 			sb.append("->").append(propURI);
 			
-			LogUtils.logInfo(owner, getClass(), "propertyChanged", sb.toString());
+			LogUtils.logDebug(owner, getClass(), "propertyChanged", sb.toString());
 		}
 		
 	}
@@ -312,7 +312,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		sb.append("->").append(propURI);
 		
 		if (owner != null)
-			LogUtils.logInfo(owner, getClass(), "propertyDeleted", sb.toString());
+			LogUtils.logDebug(owner, getClass(), "propertyDeleted", sb.toString());
 	}
 
 	protected void propertyStoppedToChange(ManagedIndividual mi, String propURI, boolean isReflected, long actualOccurrenceTime, long meanOccurrentTime) {
@@ -322,6 +322,6 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		sb.append("->").append(propURI);
 		
 		if (owner != null)
-			LogUtils.logInfo(owner, getClass(), "propertyStoppedToChange", sb.toString());
+			LogUtils.logDebug(owner, getClass(), "propertyStoppedToChange", sb.toString());
 	}
 }
