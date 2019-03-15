@@ -68,11 +68,23 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		
 		private void subscribe(CommunicationGateway cgw) {
 			cgw.startEventing(ComponentIntegrator.this, typeURI, propURI);
+			System.out.println("---------- "+ComponentIntegrator.this.getClass().getSimpleName()
+					+ " subscribing for " + getStr(propURI)
+					+ " of any existing " + getStr(typeURI));
+		}
+		
+		String getStr(String str) {
+			int l = str.length();
+			return str.substring(l-20);
 		}
 		
 		private void subscribe(ExternalComponent ec) {
-			if (typeURI.equals(ec.getTypeURI()))
+			if (typeURI.equals(ec.getTypeURI())) {
 				ec.getGateway().startEventing(ComponentIntegrator.this, ec.getDatapoint(propURI));
+				System.out.println("---------- "+ComponentIntegrator.this.getClass().getSimpleName()
+						+ " subscribing for " + getStr(propURI)
+						+ " of " + getStr(ec.getComponentURI()));
+			}
 		}
 		
 		@Override
@@ -248,13 +260,12 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		
 	}
 
-	protected final void setExternalValue(String componentURI, String propertyURI, Object value) {
-		if (componentURI == null  ||  propertyURI == null)
-			return;
+	protected final boolean setExternalValue(String componentURI, String propertyURI, Object value) {
+		if (componentURI == null)
+			return false;
 		
 		ExternalComponent ec = connectedComponents.get(componentURI);
-		if (ec != null)
-			ec.setPropertyValue(propertyURI, value);
+		return (ec != null  &&  ec.setPropertyValue(propertyURI, value));
 	}
 	
 	public final void sharedObjectAdded(Object sharedObj, Object removeHook) {
@@ -296,13 +307,12 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		}
 	}
 	
-	protected final void updateProperty(ManagedIndividual ontResource, String propertyURI, Object value) {
-		if (ontResource == null  ||  propertyURI == null)
-			return;
+	protected final boolean updateProperty(ManagedIndividual ontResource, String propertyURI, Object value) {
+		if (ontResource == null)
+			return false;
 		
 		ExternalComponent ec = connectedComponents.get(ontResource.getURI());
-		if (ec != null)
-			ec.setPropertyValue(propertyURI, value);
+		return (ec != null  &&  ec.setPropertyValue(propertyURI, value));
 	}
 	
 	protected void propertyDeleted(ManagedIndividual mi, String propURI, boolean isReflected, long actualOccurrenceTime, long meanOccurrentTime) {

@@ -240,9 +240,10 @@ public final class ExternalComponent {
 		return false;
 	}
 	
-	public void setPropertyValue(String propURI, Object value) {
+	public boolean setPropertyValue(String propURI, Object value) {
 		if (propURI == null)
-			return;
+			return false;
+		
 		ExternalDatapoint edp = propMappings.get(propURI);
 		if (edp == null)
 			ontResource.changeProperty(propURI, value);
@@ -258,7 +259,17 @@ public final class ExternalComponent {
 						|| (exValue == null  &&  check != null)
 						|| (value != null  &&  !value.equals(inCheck)))
 					ontResource.changeProperty(propURI, oldValue);
+				else
+					return true;
 			}
 		}
+
+		StringBuffer sb = new StringBuffer(512);
+		sb.append("Setting ").append(value).append(" for the external datapoint ");
+		ResourceUtil.addResource2SB(ontResource, sb);
+		sb.append("->").append(propURI).append(" failed!");
+		LogUtils.logWarn(gw.getOwnerContext(), getClass(), "setPropertyValue", sb.toString());
+		
+		return false;
 	}
 }

@@ -61,13 +61,13 @@ public abstract class CommunicationGateway {
 	
 	public static final short DEFAULT_AUTO_PULL_INTERVAL = 15;
 	
-	public static boolean isShorterAutoPullInterval(short first, short second) {
-		if (first < 1)
-			first = DEFAULT_AUTO_PULL_INTERVAL;
-		if (second < 1)
-			second = DEFAULT_AUTO_PULL_INTERVAL;
-		return first < second;
-	}
+//	public static boolean isShorterAutoPullInterval(short first, short second) {
+//		if (first < 1)
+//			first = DEFAULT_AUTO_PULL_INTERVAL;
+//		if (second < 1)
+//			second = DEFAULT_AUTO_PULL_INTERVAL;
+//		return first < second;
+//	}
 	
 	public static ConfigurationParameter newCGwConfParam(final String id, final String appPartID, final String description, final MergedRestriction type, final Object defaultVal) {
 		return new ConfigurationParameter() {
@@ -116,6 +116,14 @@ public abstract class CommunicationGateway {
 		
 		void addSubscriber(ComponentIntegrator ci) {
 			subscribers.add(ci);
+			System.out.println("######## added "+ci.getClass().getSimpleName()
+					+ " for " + getStr(datapoint.getProperty())
+					+ " of " + datapoint.getComponent().getOntResource().getLocalName());
+		}
+		
+		String getStr(String str) {
+			int l = str.length();
+			return str.substring(l-20);
 		}
 		
 		void eventTicker(long ticker, final long timestamp) {
