@@ -260,7 +260,7 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
                        long&nbsp;meanOccurrentTime)</code>&nbsp;</td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#setExternalValue-java.lang.String-java.lang.String-java.lang.Object-">setExternalValue</a></span>(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;componentURI,
                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
                 <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>&nbsp;</td>
@@ -280,7 +280,7 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
          <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propURI)</code>&nbsp;</td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/universAAL/lddi/abstraction/ComponentIntegrator.html#updateProperty-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-java.lang.Object-">updateProperty</a></span>(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
               <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>&nbsp;</td>
@@ -469,9 +469,9 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>setExternalValue</h4>
-<pre>protected final&nbsp;void&nbsp;setExternalValue(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;componentURI,
-                                      <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
-                                      <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
+<pre>protected final&nbsp;boolean&nbsp;setExternalValue(<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;componentURI,
+                                         <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
+                                         <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
 </li>
 </ul>
 <a name="sharedObjectAdded-java.lang.Object-java.lang.Object-">
@@ -517,9 +517,9 @@ implements org.universAAL.middleware.container.SharedObjectListener</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>updateProperty</h4>
-<pre>protected final&nbsp;void&nbsp;updateProperty(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
-                                    <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
-                                    <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
+<pre>protected final&nbsp;boolean&nbsp;updateProperty(org.universAAL.middleware.owl.ManagedIndividual&nbsp;ontResource,
+                                       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;propertyURI,
+                                       <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
 </li>
 </ul>
 <a name="propertyDeleted-org.universAAL.middleware.owl.ManagedIndividual-java.lang.String-boolean-long-long-">
