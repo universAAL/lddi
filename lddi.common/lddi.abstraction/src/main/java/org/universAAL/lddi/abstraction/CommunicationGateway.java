@@ -97,7 +97,9 @@ public abstract class CommunicationGateway {
 		private HashSet<ComponentIntegrator> subscribers = new HashSet<ComponentIntegrator>(3);
 		private Object value, lastValueWritten = null;
 		private int meanDelayMilliseconds;
-		boolean noChangeReported;
+		// only if eventing is simulated by periodic auto pull, we will be able to also report that a datapoint stopped to change
+		// when a datapoint stops to change, we must report about it only once as long as there is no change; this variables controls this
+		boolean changeStopReported;
 		
 		Subscription(ExternalDatapoint dp) {
 			datapoint = dp;
@@ -111,7 +113,8 @@ public abstract class CommunicationGateway {
 			} else
 				meanDelayMilliseconds = dp.getPushDeadSeconds() * 500; // the half --> mean value
 			value = readValue(dp);
-			noChangeReported = (value == null);
+			// if the start value is null, we do not need to report that there is no change from null 
+			changeStopReported = (value == null);
 		}
 		
 		void addSubscriber(ComponentIntegrator ci) {
@@ -165,18 +168,20 @@ public abstract class CommunicationGateway {
 			
 			if (value == null) {
 				if (this.value == null) {
-					if (!noChangeReported) {
-						noChangeReported = true;
+					if (!changeStopReported) {
 						for (ComponentIntegrator ci : subscribers)
 							ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
+						// note that we have reported about the stop of changes until there is again a change
+						changeStopReported = true;
 					}
 					return;
 				}
 			} else if (value.equals(this.value)) {
-				if (!noChangeReported) {
-					noChangeReported = true;
+				if (!changeStopReported) {
 					for (ComponentIntegrator ci : subscribers)
 						ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
+					// note that we have reported about the stop of changes until there is again a change
+					changeStopReported = true;
 				}
 				return;
 			}
@@ -198,6 +203,10 @@ public abstract class CommunicationGateway {
 			else
 				for (ComponentIntegrator ci : subscribers)
 					ci.propertyChanged(ec.getOntResource(), propURI, value, isReflected, actualOccurrenceTime, meanOccurrentTime);
+			
+			// there has been a change if we reach this point
+			// --> the next time that changes stop, we must report about them
+			changeStopReported = false;
 		}
 	}
 	
