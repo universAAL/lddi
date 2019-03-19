@@ -149,28 +149,32 @@ public abstract class CommunicationGateway {
 		}
 		
 		private void notifySubscribers(Object value, long timestamp) {
+			// determine if this event is a reflection of a previous call to "writeValue"
 			boolean isReflected = false;
 			if (lastValueWritten != null) {
 				isReflected = lastValueWritten.equals(value);
 				lastValueWritten = null;
 			}
 
-			ExternalComponent ec = datapoint.getComponent();
-			String propURI = datapoint.getProperty();
-			long actualOccurrenceTime = 0, meanOccurrentTime = 0;
+			// calculate the mean and actual occurrence time-stamps
+			long actualOccurrenceTime = 0, meanOccurrenceTime = 0;
 			if (meanDelayMilliseconds > 0)
 				if (timestamp > 0)
-					meanOccurrentTime = timestamp - meanDelayMilliseconds;
+					meanOccurrenceTime = timestamp - meanDelayMilliseconds;
 				else
-					meanOccurrentTime = System.currentTimeMillis() - meanDelayMilliseconds;
+					meanOccurrenceTime = System.currentTimeMillis() - meanDelayMilliseconds;
 			else
 				actualOccurrenceTime = timestamp;
+
+			ExternalComponent ec = datapoint.getComponent();
+			String propURI = datapoint.getProperty();
 			
+			// return if there is no value change (esp. possible if eventing is simulated by periodic auto pull)
 			if (value == null) {
 				if (this.value == null) {
 					if (!changeStopReported) {
 						for (ComponentIntegrator ci : subscribers)
-							ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
+							ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
 						// note that we have reported about the stop of changes until there is again a change
 						changeStopReported = true;
 					}
@@ -179,30 +183,37 @@ public abstract class CommunicationGateway {
 			} else if (value.equals(this.value)) {
 				if (!changeStopReported) {
 					for (ComponentIntegrator ci : subscribers)
-						ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
+						ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
 					// note that we have reported about the stop of changes until there is again a change
 					changeStopReported = true;
 				}
 				return;
 			}
 			
+			// so, there was a change --> remember it for next iterations
 			this.value = value;
+			// try to reflect it in the ontological representation
+			// reuse the parameter "value" as we do not need it any more after having saved it to this.value
 			value = ec.changeProperty(propURI, value);
 			if (value == Resource.RDF_EMPTY_LIST) {
+				// the reflection in the ontological representation failed
 				LogUtils.logWarn(owner, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" failed --> Ignored!");
 				return;
 			}
+			// when "value" is different from "Resource.RDF_EMPTY_LIST",
+			// it contains the ontological representation of the old value for this datapoint
+			// we need this when notifying the subscribers		
 
+			// in case that we are in "address test mode", reflect the event in the related tool
 			if (dpIntegrationScreener != null)
 				dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
-
-			
-			if (this.value == null)
+			// otherwise notify the real subscribers
+			else if (this.value == null)
 				for (ComponentIntegrator ci : subscribers)
-					ci.propertyDeleted(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrentTime);
+					ci.propertyDeleted(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
 			else
 				for (ComponentIntegrator ci : subscribers)
-					ci.propertyChanged(ec.getOntResource(), propURI, value, isReflected, actualOccurrenceTime, meanOccurrentTime);
+					ci.propertyChanged(ec.getOntResource(), propURI, value, isReflected, actualOccurrenceTime, meanOccurrenceTime);	
 			
 			// there has been a change if we reach this point
 			// --> the next time that changes stop, we must report about them
