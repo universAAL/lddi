@@ -28,7 +28,7 @@ under the License.
       <title>File: 549,
              Errors: 8065,
              Warnings: 1227,
-             Infos: 1747
+             Infos: 1748
       </title>
             <link>http://lddi/lddi.pom//checkstyle.html</link>
       <description>
@@ -3619,7 +3619,7 @@ under the License.
                   <a href="http://lddi/lddi.pom//checkstyle.html#org.universAAL.lddi.abstraction.CommunicationGateway.java">org/universAAL/lddi/abstraction/CommunicationGateway.java</a>
                 </td>
                 <td>
-                  151
+                  152
                 </td>
                 <td>
                   4
