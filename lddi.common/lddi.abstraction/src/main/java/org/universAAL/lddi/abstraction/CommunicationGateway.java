@@ -151,8 +151,9 @@ public abstract class CommunicationGateway {
 		private void notifySubscribers(Object value, long timestamp) {
 			// determine if this event is a reflection of a previous call to "writeValue"
 			boolean isReflected = false;
+			ExternalComponent ec = datapoint.getComponent();
 			if (lastValueWritten != null) {
-				isReflected = lastValueWritten.equals(value);
+				isReflected = ec.areEqual(lastValueWritten, value);
 				lastValueWritten = null;
 			}
 
@@ -166,21 +167,21 @@ public abstract class CommunicationGateway {
 			else
 				actualOccurrenceTime = timestamp;
 
-			ExternalComponent ec = datapoint.getComponent();
 			String propURI = datapoint.getProperty();
 			
 			// return if there is no value change (esp. possible if eventing is simulated by periodic auto pull)
-			if (value == null) {
-				if (this.value == null) {
-					if (!changeStopReported) {
-						for (ComponentIntegrator ci : subscribers)
-							ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
-						// note that we have reported about the stop of changes until there is again a change
-						changeStopReported = true;
-					}
-					return;
-				}
-			} else if (value.equals(this.value)) {
+			if (ec.areEqual(value, this.value)) {
+//			if (value == null) {
+//				if (this.value == null) {
+//					if (!changeStopReported) {
+//						for (ComponentIntegrator ci : subscribers)
+//							ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
+//						// note that we have reported about the stop of changes until there is again a change
+//						changeStopReported = true;
+//					}
+//					return;
+//				}
+//			} else if (value.equals(this.value)) {
 				if (!changeStopReported) {
 					for (ComponentIntegrator ci : subscribers)
 						ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
@@ -441,10 +442,22 @@ public abstract class CommunicationGateway {
 	 */
 	synchronized Object readValue(ExternalDatapoint datapoint) {
 		if (datapoint != null) {
-			ExternalComponent ec = datapoint.getComponent();
-			return (simulationTool == null)?  getValue(datapoint.getPullAddress())
-					: ec.converter.exportValue(ec.getTypeURI(), datapoint.getProperty(),
-							simulationTool.getDatapointValue(datapoint));
+			String getAddr = datapoint.getPullAddress();
+			if (getAddr == null) {
+				getAddr = datapoint.getPushAddress();
+				if (getAddr != null) {
+					Subscription s = subscriptions.get(getAddr);
+					if (s != null) {
+						Object v = s.lastValueWritten;
+						return (v == null)? s.value : v;
+					}
+				}
+			} else {
+				ExternalComponent ec = datapoint.getComponent();
+				return (simulationTool == null)?  getValue(getAddr)
+						: ec.converter.exportValue(ec.getTypeURI(), datapoint.getProperty(),
+								simulationTool.getDatapointValue(datapoint));
+			}
 		}
 		return null;
 	}

@@ -19,11 +19,13 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.ManagedIndividual;
@@ -252,15 +254,15 @@ public final class ExternalComponent {
 			if (ontResource.changeProperty(propURI, value)) {
 				Object exValue = converter.exportValue(getTypeURI(), propURI, value);
 				gw.writeValue(edp, exValue);
+				if (edp.getPullAddress() == null)
+					return true;
+				// else check if the set really worked
 				Object check = gw.readValue(edp);
 				Object inCheck = converter.importValue(check, getTypeURI(), propURI);
-				if ((value == null  &&  inCheck != null)
-						|| (exValue != null  &&  !exValue.equals(check))
-						|| (exValue == null  &&  check != null)
-						|| (value != null  &&  !value.equals(inCheck)))
-					ontResource.changeProperty(propURI, oldValue);
-				else
+				if (areEqual(value, inCheck)  &&  areEqual(exValue, check))
 					return true;
+				// setting the value failed
+				ontResource.changeProperty(propURI, oldValue);
 			}
 		}
 
@@ -271,5 +273,35 @@ public final class ExternalComponent {
 		LogUtils.logWarn(gw.getOwnerContext(), getClass(), "setPropertyValue", sb.toString());
 		
 		return false;
+	}
+	
+	boolean areEqual(Object o1, Object o2) {
+		if (o1 == o2)
+			return true;
+		
+		if ((o1 == null  &&  o2 != null)
+				|| (o2 == null  &&  o1 != null)
+				||  o1.getClass() != o2.getClass())
+			return false;
+		
+		if (o1.getClass().isArray()) {
+			int n = Array.getLength(o1);
+			if (Array.getLength(o2) != n)
+				return false;
+			for (int i=0; i<n; i++)
+				if (!areEqual(Array.get(o1, i), Array.get(o2, i)))
+					return false;
+			return true;
+		} else if (o1 instanceof List<?>) {
+			int n = ((List<?>) o1).size();
+			if (((List<?>) o2).size() != n)
+				return false;
+			for (int i=0; i<n; i++)
+				if (!areEqual(((List<?>) o1).get(i), ((List<?>) o2).get(i)))
+					return false;
+			return true;
+		}
+		
+		return o1.equals(o2);
 	}
 }
