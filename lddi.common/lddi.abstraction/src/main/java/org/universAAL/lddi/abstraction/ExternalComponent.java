@@ -114,6 +114,9 @@ public final class ExternalComponent {
 			}
 
 			Object oldVal = ontResource.getProperty(propURI);
+			if (areEqual(newVal, oldVal))
+				return Resource.RDF_EMPTY_LIST;
+			
 			// in success case, the newValue is anyhow set for the ontResource
 			// --> in that case, return the old value in order to comply with the protocol for notifying subscribes
 			// in fail case, we signal this by returning the empty list
@@ -281,7 +284,7 @@ public final class ExternalComponent {
 		
 		if ((o1 == null  &&  o2 != null)
 				|| (o2 == null  &&  o1 != null)
-				||  o1.getClass() != o2.getClass())
+				||  !o1.getClass().equals(o2.getClass()))
 			return false;
 		
 		if (o1.getClass().isArray()) {

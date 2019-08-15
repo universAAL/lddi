@@ -198,7 +198,7 @@ public abstract class CommunicationGateway {
 			value = ec.changeProperty(propURI, value);
 			if (value == Resource.RDF_EMPTY_LIST) {
 				// the reflection in the ontological representation failed
-				LogUtils.logWarn(owner, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" failed --> Ignored!");
+				LogUtils.logDebug(owner, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" caused no change --> Ignored!");
 				return;
 			}
 			// when "value" is different from "Resource.RDF_EMPTY_LIST",
