@@ -80,4 +80,10 @@ public interface ExternalDatapoint {
 	public int getAutoPullWaitSeconds();
 	
 	public int getPushDeadSeconds();
+	
+	public boolean needsAutoReset();
+	
+	public Object getAutoResetValue();
+	
+	public int getAutoResetWaitSeconds();
 }

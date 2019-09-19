@@ -166,6 +166,15 @@ public abstract class CommunicationGateway {
 					meanOccurrenceTime = System.currentTimeMillis() - meanDelayMilliseconds;
 			else
 				actualOccurrenceTime = timestamp;
+			
+			if (datapoint.needsAutoReset()) {
+				new Thread() {
+					public void run() {
+						try { sleep(Subscription.this.datapoint.getAutoResetWaitSeconds() * 1000); } catch (Exception e) {}
+						Subscription.this.notifySubscribers(Subscription.this.datapoint.getAutoResetValue(), -1);
+					}
+				}.start();
+			}
 
 			String propURI = datapoint.getProperty();
 			

@@ -70,4 +70,16 @@ public class ConfiguredDatapoint implements ExternalDatapoint {
 	public int getPushDeadSeconds() {
 		return dp.getPushDeadSeconds();
 	}
+
+	public boolean needsAutoReset() {
+		return dp.needsAutoReset();
+	}
+
+	public Object getAutoResetValue() {
+		return dp.getAutoResetValue();
+	}
+
+	public int getAutoResetWaitSeconds() {
+		return dp.getAutoResetWaitSeconds();
+	}
 }
