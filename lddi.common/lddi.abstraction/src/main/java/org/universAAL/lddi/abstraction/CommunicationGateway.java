@@ -438,8 +438,14 @@ public abstract class CommunicationGateway {
 			return;
 		Subscription s = subscriptions.get(address);
 		// System.out.println(">>>>>>> "+getClass().getSimpleName()+"->notifySubscribers(): "+s+" found for "+address);
-		if (s != null)
+		if (s != null) {
+//			System.out.printf("%s: Notifying subscribers with '%s' = '%s'\n",
+//					this.getClass().getSimpleName(), address, String.valueOf(value));
 			s.notifySubscribers(value, actualOccurrenceTime);
+		} else
+			LogUtils.logInfo(getOwnerContext(), getClass(), "notifySubscribers", new String[] {
+					this.getClass().getSimpleName(), ": No subscription for the push address '",
+					address, "' --> current value of '", String.valueOf(value), "' not handled!\n" }, null);
 	}
 	
 	/**
