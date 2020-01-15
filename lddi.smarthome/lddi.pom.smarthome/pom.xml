@@ -11,13 +11,13 @@
   <artifactId>lddi.pom.smarthome</artifactId>
   <version>3.4.2-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>universAAL LDDI Eclipse Smarthome Integration</name>
-  <description>Integration of Eclipse Smarthome components</description>
+  <name>universAAL LDDI OpenHAB Integration</name>
+  <description>Integration of OpenHAB components</description>
   <modules>
     <module>../lddi.smarthome.exporter</module>
   </modules>
   <properties>
-    <nameMatchString>^universAAL LDDI ESH .*</nameMatchString>
+    <nameMatchString>^universAAL LDDI OpenHAB .*</nameMatchString>
   </properties>
   <dependencyManagement>
     <dependencies>

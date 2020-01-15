@@ -11,8 +11,8 @@
   <artifactId>lddi.smarthome.exporter</artifactId>
   <version>3.4.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>universAAL LDDI Eclipse Smarthome Exporter</name>
-  <description>Hardware exporter of Eclipse Smarthome (openHAB 2) for universAAL</description>
+  <name>universAAL LDDI OpenHAB Exporter</name>
+  <description>Hardware exporter of OpenHAB for universAAL</description>
   <dependencies>
     <dependency>
       <groupId>org.osgi</groupId>

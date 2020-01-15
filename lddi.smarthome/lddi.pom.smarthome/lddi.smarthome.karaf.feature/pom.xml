@@ -9,7 +9,7 @@
   </parent>
   <artifactId>lddi.smarthome.karaf.feature</artifactId>
   <version>3.4.2-SNAPSHOT</version>
-  <name>universAAL Karaf Feature Eclipse Smarthome - OpenHAB2</name>
+  <name>universAAL Karaf Feature OpenHAB</name>
   <properties>
     <mw.version>${project.version}</mw.version>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
