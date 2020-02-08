@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="universAAL-${mw.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+<feature name="uAAL-MW.OpenHAB"
+		description="The universAAL bundles for OpenHAB Karaf runtime"
+		version="${project.version}" resolver='(obr)'>
+		<feature>wrap</feature>
+		
+		<bundle start-level="81" start="true">wrap:mvn:org.bouncycastle/jce.jdk13/${jce.jdk13.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.thirdparty/jslp.osgi/${jslp.osgi.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.jgroups/jgroups/${jgroups.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.middleware/mw.schemas/${project.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.middleware/mw.interfaces.osgi/${project.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.middleware/mw.connectors.api.osgi/${project.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.middleware/mw.managers.api.osgi/${project.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.middleware/mw.modules.api.osgi/${project.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.middleware/mw.brokers.api.osgi/${project.version}</bundle>
+		<bundle start-level="81" start="true">mvn:org.universAAL.middleware/mw.container.osgi/${project.version}</bundle>
+
+		<bundle start-level="83" start="true">mvn:org.universAAL.middleware/mw.connectors.communication.jgroups.osgi/${project.version}</bundle>
+		<bundle start-level="83" start="true">mvn:org.universAAL.middleware/mw.connectors.discovery.slp.osgi/${project.version}</bundle>
+
+		<bundle start-level="84" start="true">mvn:org.universAAL.middleware/mw.modules.communication.osgi/${project.version}</bundle>
+		<bundle start-level="85" start="true">mvn:org.universAAL.middleware/mw.modules.space.osgi/${project.version}</bundle>
+
+		<bundle start-level="86" start="true">mvn:org.universAAL.middleware/mw.brokers.control.osgi/${project.version}</bundle>
+
+		<bundle start-level="87" start="true">mvn:org.universAAL.middleware/mw.managers.space.osgi/${project.version}</bundle>
+
+		<bundle start-level="83" start="true">mvn:org.universAAL.middleware/mw.data.representation.osgi/${project.version}</bundle>
+		<bundle start-level="84" start="true">mvn:org.universAAL.middleware/mw.data.serialization.turtle.osgi/${project.version}</bundle>
+		<bundle start-level="89" start="true">mvn:org.universAAL.middleware/mw.bus.model.osgi/${project.version}</bundle>
+		<bundle start-level="90" start="true">mvn:org.universAAL.middleware/mw.bus.context.osgi/${project.version}</bundle>	
+		<bundle start-level="90" start="true">mvn:org.universAAL.middleware/mw.bus.service.osgi/${project.version}</bundle>
+		<bundle start-level="90" start="true">mvn:org.universAAL.middleware/mw.bus.ui.osgi/${project.version}</bundle>
+	</feature>
+	<feature name="uAAL-Ont.OpenHAB"
+		description="The Ontology bundles for OpenHAB Karaf runtime"
+		version="${project.version}" resolver='(obr)'>
+		<bundle start-level="91" start="true">wrap:mvn:jp.go.ipa/jgcl/1.0</bundle>
+		<bundle start-level="91" start="true">mvn:org.universAAL.ontology/ont.phWorld/${ont.phWorld.version}</bundle>
+		<bundle start-level="92" start="true">mvn:org.universAAL.ontology/ont.unit/${ont.unit.version}</bundle>
+		<bundle start-level="93" start="true">mvn:org.universAAL.ontology/ont.measurement/${ont.measurement.version}</bundle>
+		<bundle start-level="94" start="true">mvn:org.universAAL.ontology/ont.profile/${ont.profile.version}</bundle>
+		<bundle start-level="95" start="true">mvn:org.universAAL.ontology/ont.device/${ont.device.version}</bundle>
+	</feature>
+	<feature name="uAAL-LDDI.OpenHAB"
+		description="The Smarthome LDDI Exporter bundles for OpenHAB Karaf runtime"
+		version="${project.version}" resolver='(obr)'>
+		<feature>uAAL-MW.OpenHAB</feature>
+		<feature>uAAL-Ont.OpenHAB</feature>
+		<bundle start-level="99" start="true">mvn:org.universAAL.lddi/lddi.smarthome.exporter/${lddi.smarthome.exporter.version}</bundle>
+	</feature>
+
+<!-- For backwards compatibility and legacy support, we keep the features with the old "Eclipse Smarthome" name. They are otherwise identical. -->
 
 	<feature name="uAAL-MW.Smarthome"
 		description="The universAAL bundles for Eclipse Smarthome Karaf runtime"
@@ -35,7 +87,7 @@
 		<bundle start-level="90" start="true">mvn:org.universAAL.middleware/mw.bus.ui.osgi/${project.version}</bundle>
 	</feature>
 	<feature name="uAAL-Ont.Smarthome"
-		description="The Smarthome Ontology bundles for Eclipse Smarthome Karaf runtime"
+		description="The Ontology bundles for Eclipse Smarthome Karaf runtime"
 		version="${project.version}" resolver='(obr)'>
 		<bundle start-level="91" start="true">wrap:mvn:jp.go.ipa/jgcl/1.0</bundle>
 		<bundle start-level="91" start="true">mvn:org.universAAL.ontology/ont.phWorld/${ont.phWorld.version}</bundle>
