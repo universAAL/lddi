@@ -261,11 +261,15 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	}
 
 	protected final boolean setExternalValue(String componentURI, String propertyURI, Object value) {
+		return setExternalValue(componentURI, propertyURI, value, 0);
+	}
+
+	protected final boolean setExternalValue(String componentURI, String propertyURI, Object value, int msDelay) {
 		if (componentURI == null)
 			return false;
 		
 		ExternalComponent ec = connectedComponents.get(componentURI);
-		return (ec != null  &&  ec.setPropertyValue(propertyURI, value));
+		return (ec != null  &&  ec.setPropertyValue(propertyURI, value, msDelay));
 	}
 	
 	public final void sharedObjectAdded(Object sharedObj, Object removeHook) {
@@ -308,11 +312,15 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	}
 	
 	protected final boolean updateProperty(ManagedIndividual ontResource, String propertyURI, Object value) {
+		return updateProperty(ontResource, propertyURI, value, 0);
+	}
+	
+	protected final boolean updateProperty(ManagedIndividual ontResource, String propertyURI, Object value, int msDelay) {
 		if (ontResource == null)
 			return false;
 		
 		ExternalComponent ec = connectedComponents.get(ontResource.getURI());
-		return (ec != null  &&  ec.setPropertyValue(propertyURI, value));
+		return (ec != null  &&  ec.setPropertyValue(propertyURI, value, msDelay));
 	}
 	
 	protected void propertyDeleted(ManagedIndividual mi, String propURI, boolean isReflected, long actualOccurrenceTime, long meanOccurrentTime) {

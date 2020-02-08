@@ -24,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -72,6 +73,19 @@ public final class ExternalComponent {
 	private ManagedIndividual ontResource;
 	ExternalDataConverter converter;
 	private Hashtable<String, ExternalDatapoint> propMappings = new Hashtable<String, ExternalDatapoint>();
+	private HashSet<String> ignoreChanges = new HashSet<String>();
+	
+	private void ignoreChanges(String prop) {
+		ignoreChanges.add(prop);
+	}
+	
+	private void acceptChanges(String prop) {
+		ignoreChanges.remove(prop);
+	}
+	
+	private boolean changeAccepted(String prop) {
+		return !ignoreChanges.contains(prop);
+	}
 
 	/**
 	 * The constructor has been made 'protected' in order to force communication
@@ -120,7 +134,9 @@ public final class ExternalComponent {
 			// in success case, the newValue is anyhow set for the ontResource
 			// --> in that case, return the old value in order to comply with the protocol for notifying subscribes
 			// in fail case, we signal this by returning the empty list
-			return ontResource.changeProperty(propURI, newVal)?  oldVal  :  Resource.RDF_EMPTY_LIST;
+			return (changeAccepted(propURI)
+					&&  ontResource.changeProperty(propURI, newVal))?  oldVal
+					:  Resource.RDF_EMPTY_LIST;
 		}
 	}
 	
@@ -246,6 +262,10 @@ public final class ExternalComponent {
 	}
 	
 	public boolean setPropertyValue(String propURI, Object value) {
+		return setPropertyValue(propURI, value, 0);
+	}
+	
+	public boolean setPropertyValue(String propURI, Object value, int msDelay) {
 		if (propURI == null)
 			return false;
 		
@@ -253,19 +273,26 @@ public final class ExternalComponent {
 		if (edp == null)
 			ontResource.changeProperty(propURI, value);
 		else {
-			Object oldValue = ontResource.getProperty(propURI);
-			if (ontResource.changeProperty(propURI, value)) {
-				Object exValue = converter.exportValue(getTypeURI(), propURI, value);
-				gw.writeValue(edp, exValue);
-				if (edp.getPullAddress() == null)
-					return true;
-				// else check if the set really worked
-				Object check = gw.readValue(edp);
-				Object inCheck = converter.importValue(check, getTypeURI(), propURI);
-				if (areEqual(value, inCheck)  &&  areEqual(exValue, check))
-					return true;
-				// setting the value failed
-				ontResource.changeProperty(propURI, oldValue);
+			synchronized (ontResource) {
+				Object oldValue = ontResource.getProperty(propURI);
+				if (ontResource.changeProperty(propURI, value)) {
+					Object exValue = converter.exportValue(getTypeURI(), propURI, value);
+					ignoreChanges(propURI);
+					gw.writeValue(edp, exValue);
+					if (msDelay > 0)
+						// wait for the write to take effect
+						try { Thread.sleep(msDelay); } catch (Exception e) {}
+					acceptChanges(propURI);
+					if (edp.getPullAddress() == null)
+						return true;
+					// else check if the set really worked
+					Object check = gw.readValue(edp);
+					Object inCheck = converter.importValue(check, getTypeURI(), propURI);
+					if (areEqual(value, inCheck)  &&  areEqual(exValue, check))
+						return true;
+					// setting the value failed
+					ontResource.changeProperty(propURI, oldValue);
+				}
 			}
 		}
 

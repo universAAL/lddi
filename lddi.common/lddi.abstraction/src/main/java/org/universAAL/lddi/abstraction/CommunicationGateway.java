@@ -97,6 +97,7 @@ public abstract class CommunicationGateway {
 		private HashSet<ComponentIntegrator> subscribers = new HashSet<ComponentIntegrator>(3);
 		private Object value, lastValueWritten = null;
 		private int meanDelayMilliseconds;
+		private long writeTime = 0;
 		// only if eventing is simulated by periodic auto pull, we will be able to also report that a datapoint stopped to change
 		// when a datapoint stops to change, we must report about it only once as long as there is no change; this variables controls this
 		boolean changeStopReported;
@@ -146,13 +147,19 @@ public abstract class CommunicationGateway {
 		
 		void reflect(Object value) {
 			lastValueWritten = value;
+			writeTime = System.currentTimeMillis();
 		}
 		
 		private void notifySubscribers(Object value, long timestamp) {
 			// determine if this event is a reflection of a previous call to "writeValue"
 			boolean isReflected = false;
 			ExternalComponent ec = datapoint.getComponent();
+			long now = System.currentTimeMillis();
 			if (lastValueWritten != null) {
+				if (simulationInterval > 0  &&  now < simulationInterval+writeTime)
+					// this is using periodic read as push
+					// --> jump over one read to make sure that the write action has taken effect
+					return;
 				isReflected = ec.areEqual(lastValueWritten, value);
 				lastValueWritten = null;
 			}
@@ -163,7 +170,7 @@ public abstract class CommunicationGateway {
 				if (timestamp > 0)
 					meanOccurrenceTime = timestamp - meanDelayMilliseconds;
 				else
-					meanOccurrenceTime = System.currentTimeMillis() - meanDelayMilliseconds;
+					meanOccurrenceTime = now - meanDelayMilliseconds;
 			else
 				actualOccurrenceTime = timestamp;
 			
@@ -423,6 +430,8 @@ public abstract class CommunicationGateway {
 		mc.getContainer().shareObject(mc, this, Activator.cgwSharingParams);
 	}
 	
+	private HashSet<String> ignoredAddresses = new HashSet<String>();
+	
 	/**
 	 * Subclasses should call this method in order to pass an external event to universAAL environment.
 	 * The value is expected to be of a type defined in the underlying ontological model; this is why 
@@ -437,15 +446,22 @@ public abstract class CommunicationGateway {
 		if (address == null)
 			return;
 		Subscription s = subscriptions.get(address);
-		// System.out.println(">>>>>>> "+getClass().getSimpleName()+"->notifySubscribers(): "+s+" found for "+address);
 		if (s != null) {
-//			System.out.printf("%s: Notifying subscribers with '%s' = '%s'\n",
-//					this.getClass().getSimpleName(), address, String.valueOf(value));
+			if (ignoredAddresses.contains(address)) {
+				LogUtils.logInfo(getOwnerContext(), getClass(), "notifySubscribers", new String[] {
+						this.getClass().getSimpleName(), ": Removing the previously ignored push address '",
+						address, "' with current value of '", String.valueOf(value),
+						"' from the list of ignored addresses!\n" }, null);
+				ignoredAddresses.remove(address);
+			}
 			s.notifySubscribers(value, actualOccurrenceTime);
-		} else
+		} else if (!ignoredAddresses.contains(address)) {
 			LogUtils.logInfo(getOwnerContext(), getClass(), "notifySubscribers", new String[] {
 					this.getClass().getSimpleName(), ": No subscription for the push address '",
-					address, "' --> current value of '", String.valueOf(value), "' not handled!\n" }, null);
+					address, "' with first received value of '", String.valueOf(value),
+					"' --> added to the list of ignored addresses!\n" }, null);
+			ignoredAddresses.add(address);
+		}
 	}
 	
 	/**
