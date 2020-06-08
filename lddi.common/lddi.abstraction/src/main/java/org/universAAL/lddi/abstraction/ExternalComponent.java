@@ -24,13 +24,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.ManagedIndividual;
-import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.util.ResourceUtil;
 import org.universAAL.ontology.lddi.config.datapoints.ExternalTypeSystem;
 import org.universAAL.ontology.location.Location;
@@ -68,23 +66,54 @@ import org.universAAL.ontology.phThing.PhysicalThing;
  *
  */
 public final class ExternalComponent {
-
 	private CommunicationGateway gw;
 	private ManagedIndividual ontResource;
 	ExternalDataConverter converter;
 	private Hashtable<String, ExternalDatapoint> propMappings = new Hashtable<String, ExternalDatapoint>();
-	private HashSet<String> ignoreChanges = new HashSet<String>();
+	
+	// objects used for the synchronization between read/write actions
+	private Hashtable<String, Object> changeLocks = new Hashtable<String, Object>();
+	private Hashtable<String, Object> ignoredChanges = new Hashtable<String, Object>();
+	private Hashtable<String, Object> valuesOverwritten = new Hashtable<String, Object>();
 	
 	private void ignoreChanges(String prop) {
-		ignoreChanges.add(prop);
+		synchronized (changeLocks) {
+			while (changeLocks.contains(prop)) {
+				try { changeLocks.wait(); } catch (Exception e) {}
+			}
+			changeLocks.put(prop, ValueHandling.changesLocked);
+			if (!valuesOverwritten.contains(prop)) {
+				Object o = ontResource.getProperty(prop);
+				valuesOverwritten.put(prop, (o == null)? ValueHandling.nullValue : o);
+			}
+		}
 	}
 	
-	private void acceptChanges(String prop) {
-		ignoreChanges.remove(prop);
+	private boolean isChangeBlocked(String prop) {
+		return changeLocks.contains(prop);
 	}
 	
-	private boolean changeAccepted(String prop) {
-		return !ignoreChanges.contains(prop);
+	private void acceptChanges(String prop, boolean restored) {
+		synchronized (changeLocks) {
+			Object lastIgnoredVal = ignoredChanges.remove(prop);
+			if (restored) {
+				Object valueOverwritten = valuesOverwritten.remove(prop);
+				if (lastIgnoredVal != null) {
+					if (lastIgnoredVal == ValueHandling.nullValue)
+						lastIgnoredVal = null;
+										
+					if (ontResource.changeProperty(prop, lastIgnoredVal)) {
+						if (valueOverwritten == ValueHandling.nullValue)
+							valueOverwritten = null;
+						if (!areEqual(lastIgnoredVal, valueOverwritten))
+							// we must now notify the subscribers about the change of the value because they still assume 'valueOverwritten'
+							gw.catchUpNotification(propMappings.get(prop), valueOverwritten);
+					}
+				}
+			}
+			changeLocks.remove(prop);
+			changeLocks.notifyAll();
+		}
 	}
 
 	/**
@@ -116,7 +145,11 @@ public final class ExternalComponent {
 	}
 	
 	Object changeProperty(String propURI, Object value) {
-		synchronized (ontResource) {
+		ExternalDatapoint edp = propMappings.get(propURI);
+		if (edp == null)
+			return ValueHandling.unknownDatapoint;
+		
+		synchronized (edp) {
 			Object newVal = converter.importValue(value, getTypeURI(), propURI);
 			if (newVal == null  &&  value != null) {
 				StringBuffer sb = new StringBuffer(512);
@@ -124,19 +157,36 @@ public final class ExternalComponent {
 				ResourceUtil.addResource2SB(ontResource, sb);
 				sb.append("->").append(propURI).append(" failed!");
 				LogUtils.logWarn(gw.getOwnerContext(), getClass(), "changeProperty", sb.toString());
-				return Resource.RDF_EMPTY_LIST;
+				return ValueHandling.conversionFailed;
 			}
 
-			Object oldVal = ontResource.getProperty(propURI);
-			if (areEqual(newVal, oldVal))
-				return Resource.RDF_EMPTY_LIST;
+			Object currVal = ontResource.getProperty(propURI);
+			if (isChangeBlocked(propURI)) {
+				// in this case, the current value is actually reflecting a required change that is not confirmed yet
+				// but the change is waiting either for an amount of time to elapse or for a notification from here
+				// we can send the notification if the received event confirms that the expected value is now effective
+				if (areEqual(newVal, currVal)) {
+					Object valueOverwritten = valuesOverwritten.remove(propURI);
+					edp.notifyAll();
+					return new ReflectedValue(valueOverwritten);
+				} else {
+					ignoredChanges.put(propURI, (newVal == null)? ValueHandling.nullValue : newVal);
+					return ValueHandling.intermediateChangeIgnored;
+				}
+			} else {
+				Object valueOverwritten = valuesOverwritten.remove(propURI);
+				if (areEqual(newVal, currVal))
+					if (valueOverwritten != null)
+						return new ReflectedValue(valueOverwritten);
+					else
+						return ValueHandling.noInternalChange;
+			}
 			
 			// in success case, the newValue is anyhow set for the ontResource
 			// --> in that case, return the old value in order to comply with the protocol for notifying subscribes
 			// in fail case, we signal this by returning the empty list
-			return (changeAccepted(propURI)
-					&&  ontResource.changeProperty(propURI, newVal))?  oldVal
-					:  Resource.RDF_EMPTY_LIST;
+			return (ontResource.changeProperty(propURI, newVal))?  currVal
+					:  ValueHandling.changeFailed;
 		}
 	}
 	
@@ -268,41 +318,47 @@ public final class ExternalComponent {
 	public boolean setPropertyValue(String propURI, Object value, int msDelay) {
 		if (propURI == null)
 			return false;
-		
+
+		boolean succeeded;
 		ExternalDatapoint edp = propMappings.get(propURI);
 		if (edp == null)
-			ontResource.changeProperty(propURI, value);
+			succeeded = ontResource.changeProperty(propURI, value);
 		else {
-			synchronized (ontResource) {
-				Object oldValue = ontResource.getProperty(propURI);
-				if (ontResource.changeProperty(propURI, value)) {
+			synchronized (edp) {
+				ignoreChanges(propURI);
+				succeeded = ontResource.changeProperty(propURI, value);
+				if (succeeded) {
 					Object exValue = converter.exportValue(getTypeURI(), propURI, value);
-					ignoreChanges(propURI);
 					gw.writeValue(edp, exValue);
-					if (msDelay > 0)
-						// wait for the write to take effect
-						try { Thread.sleep(msDelay); } catch (Exception e) {}
-					acceptChanges(propURI);
-					if (edp.getPullAddress() == null)
-						return true;
-					// else check if the set really worked
-					Object check = gw.readValue(edp);
-					Object inCheck = converter.importValue(check, getTypeURI(), propURI);
-					if (areEqual(value, inCheck)  &&  areEqual(exValue, check))
-						return true;
-					// setting the value failed
-					ontResource.changeProperty(propURI, oldValue);
+					if (msDelay > 0) {
+						// in this case, it takes time until the change takes effect
+						long now = System.currentTimeMillis();
+						long endWait = now + msDelay;
+						while (msDelay > 0) {
+							// wait for the write to take effect
+							try { 
+								edp.wait(msDelay);
+								msDelay = 0;
+							} catch (Exception e) {
+								now = System.currentTimeMillis();
+								msDelay = (int) (endWait - now);
+							}
+						}
+					}
 				}
+				acceptChanges(propURI, !succeeded);
 			}
 		}
 
-		StringBuffer sb = new StringBuffer(512);
-		sb.append("Setting ").append(value).append(" for the external datapoint ");
-		ResourceUtil.addResource2SB(ontResource, sb);
-		sb.append("->").append(propURI).append(" failed!");
-		LogUtils.logWarn(gw.getOwnerContext(), getClass(), "setPropertyValue", sb.toString());
+		if (!succeeded) {
+			StringBuffer sb = new StringBuffer(512);
+			sb.append("Setting ").append(value).append(" for the datapoint ");
+			ResourceUtil.addResource2SB(ontResource, sb);
+			sb.append("->").append(propURI).append(" failed!");
+			LogUtils.logWarn(gw.getOwnerContext(), getClass(), "setPropertyValue", sb.toString());
+		}
 		
-		return false;
+		return succeeded;
 	}
 	
 	boolean areEqual(Object o1, Object o2) {

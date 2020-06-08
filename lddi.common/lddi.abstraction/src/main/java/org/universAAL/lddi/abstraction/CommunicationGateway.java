@@ -37,7 +37,6 @@ import org.universAAL.middleware.interfaces.configuration.configurationDefinitio
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.rdf.Resource;
 
 /**
  * A gateway providing a bridge to a network of external components making it
@@ -61,14 +60,6 @@ public abstract class CommunicationGateway {
 	
 	public static final short DEFAULT_AUTO_PULL_INTERVAL = 15;
 	
-//	public static boolean isShorterAutoPullInterval(short first, short second) {
-//		if (first < 1)
-//			first = DEFAULT_AUTO_PULL_INTERVAL;
-//		if (second < 1)
-//			second = DEFAULT_AUTO_PULL_INTERVAL;
-//		return first < second;
-//	}
-	
 	public static ConfigurationParameter newCGwConfParam(final String id, final String appPartID, final String description, final MergedRestriction type, final Object defaultVal) {
 		return new ConfigurationParameter() {
 
@@ -91,16 +82,18 @@ public abstract class CommunicationGateway {
 		};
 	}
 	
+	static final Object NO_CHANGE_INDICATION = new Object();
+	
 	private class Subscription {
 		private ExternalDatapoint datapoint;
 		private int simulationInterval = -1;
 		private HashSet<ComponentIntegrator> subscribers = new HashSet<ComponentIntegrator>(3);
-		private Object value, lastValueWritten = null;
+		private Object value;
 		private int meanDelayMilliseconds;
-		private long writeTime = 0;
 		// only if eventing is simulated by periodic auto pull, we will be able to also report that a datapoint stopped to change
 		// when a datapoint stops to change, we must report about it only once as long as there is no change; this variables controls this
-		boolean changeStopReported;
+		private boolean changeStopReported;
+		Object lastValueWritten = ValueHandling.nullValue;
 		
 		Subscription(ExternalDatapoint dp) {
 			datapoint = dp;
@@ -145,62 +138,25 @@ public abstract class CommunicationGateway {
 			return subscribers.contains(ci);
 		}
 		
-		void reflect(Object value) {
-			lastValueWritten = value;
-			writeTime = System.currentTimeMillis();
-		}
-		
 		private void notifySubscribers(Object value, long timestamp) {
-			// determine if this event is a reflection of a previous call to "writeValue"
-			boolean isReflected = false;
-			ExternalComponent ec = datapoint.getComponent();
-			long now = System.currentTimeMillis();
-			if (lastValueWritten != null) {
-				if (simulationInterval > 0  &&  now < simulationInterval+writeTime)
-					// this is using periodic read as push
-					// --> jump over one read to make sure that the write action has taken effect
-					return;
-				isReflected = ec.areEqual(lastValueWritten, value);
-				lastValueWritten = null;
-			}
-
 			// calculate the mean and actual occurrence time-stamps
 			long actualOccurrenceTime = 0, meanOccurrenceTime = 0;
 			if (meanDelayMilliseconds > 0)
 				if (timestamp > 0)
 					meanOccurrenceTime = timestamp - meanDelayMilliseconds;
 				else
-					meanOccurrenceTime = now - meanDelayMilliseconds;
+					meanOccurrenceTime = System.currentTimeMillis() - meanDelayMilliseconds;
 			else
 				actualOccurrenceTime = timestamp;
-			
-			if (datapoint.needsAutoReset()) {
-				new Thread() {
-					public void run() {
-						try { sleep(Subscription.this.datapoint.getAutoResetWaitSeconds() * 1000); } catch (Exception e) {}
-						Subscription.this.notifySubscribers(Subscription.this.datapoint.getAutoResetValue(), -1);
-					}
-				}.start();
-			}
 
 			String propURI = datapoint.getProperty();
+			ExternalComponent ec = datapoint.getComponent();
 			
 			// return if there is no value change (esp. possible if eventing is simulated by periodic auto pull)
 			if (ec.areEqual(value, this.value)) {
-//			if (value == null) {
-//				if (this.value == null) {
-//					if (!changeStopReported) {
-//						for (ComponentIntegrator ci : subscribers)
-//							ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
-//						// note that we have reported about the stop of changes until there is again a change
-//						changeStopReported = true;
-//					}
-//					return;
-//				}
-//			} else if (value.equals(this.value)) {
 				if (!changeStopReported) {
 					for (ComponentIntegrator ci : subscribers)
-						ci.propertyStoppedToChange(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
+						ci.propertyStoppedToChange(ec.getOntResource(), propURI, false, actualOccurrenceTime, meanOccurrenceTime);
 					// note that we have reported about the stop of changes until there is again a change
 					changeStopReported = true;
 				}
@@ -209,36 +165,64 @@ public abstract class CommunicationGateway {
 			
 			// so, there was a change --> remember it for next iterations
 			this.value = value;
-			// try to reflect it in the ontological representation
+			boolean isReflection = ec.areEqual(value, lastValueWritten);
+			lastValueWritten = ValueHandling.nullValue;
+			if (datapoint.needsAutoReset()) {
+				new Thread() {
+					public void run() {
+						try { sleep(Subscription.this.datapoint.getAutoResetWaitSeconds() * 1000); } catch (Exception e) {}
+						Subscription.this.notifySubscribers(Subscription.this.datapoint.getAutoResetValue(), -1);
+					}
+				}.start();
+			}
+			
+			// try to store with the ontological representation
 			// reuse the parameter "value" as we do not need it any more after having saved it to this.value
 			value = ec.changeProperty(propURI, value);
-			if (value == Resource.RDF_EMPTY_LIST) {
-				// the reflection in the ontological representation failed
-				LogUtils.logDebug(owner, getClass(), "notifySubscribers", "Setting the external value '"+this.value+"' for "+propURI+" of "+ec.getOntResource().getLocalName()+" caused no change --> Ignored!");
+			if (value instanceof ValueHandling) {
+				String hint = isReflection? "' despite being just the reflection of what was previously set from within the uAAL environment itself" : "'";
+				// the storage with the ontological representation failed
+				LogUtils.logWarn(owner, getClass(), "notifySubscribers",
+						"Setting the external value '" + this.value + "' for "+propURI+" of "
+						+ ec.getOntResource().getLocalName() + " did not take effect due to '"
+								+ ((ValueHandling) value).name() + hint);
 				return;
+			} else if (value instanceof ReflectedValue) {
+				isReflection = true;
+				value = ((ReflectedValue) value).getValue();
+			} else if (isReflection) {
+				LogUtils.logWarn(owner, getClass(), "notifySubscribers",
+						"Setting the external value '" + this.value + "' for "+propURI+" of "
+						+ ec.getOntResource().getLocalName() + " was not detected as reflection although it seems to be so.");
 			}
-			// when "value" is different from "Resource.RDF_EMPTY_LIST",
-			// it contains the ontological representation of the old value for this datapoint
+			
+			// when reaching here, "value" contains the ontological representation of the old value for this datapoint
 			// we need this when notifying the subscribers		
-
+			notifySubscribers(ec, propURI, value, isReflection, actualOccurrenceTime, actualOccurrenceTime);
+		}
+		
+		void sendDelayedNotification(Object oldValue) {
+			notifySubscribers(datapoint.getComponent(), datapoint.getProperty(), oldValue, false, 0, 0);
+		}
+		
+		private void notifySubscribers(ExternalComponent ec, String propURI, Object oldValue, boolean isReflection, long actualOccurrenceTime, long meanOccurrenceTime) {
 			// in case that we are in "address test mode", reflect the event in the related tool
 			if (dpIntegrationScreener != null)
-				dpIntegrationScreener.publish(ec.getOntResource(), propURI, value);
+				dpIntegrationScreener.publish(ec.getOntResource(), propURI, oldValue);
 			// otherwise notify the real subscribers
 			else if (this.value == null)
 				for (ComponentIntegrator ci : subscribers)
-					ci.propertyDeleted(ec.getOntResource(), propURI, isReflected, actualOccurrenceTime, meanOccurrenceTime);
+					ci.propertyDeleted(ec.getOntResource(), propURI, isReflection, actualOccurrenceTime, meanOccurrenceTime);
 			else
 				for (ComponentIntegrator ci : subscribers)
-					ci.propertyChanged(ec.getOntResource(), propURI, value, isReflected, actualOccurrenceTime, meanOccurrenceTime);	
-			
+					ci.propertyChanged(ec.getOntResource(), propURI, oldValue, isReflection, actualOccurrenceTime, meanOccurrenceTime);	
+						
 			// there has been a change if we reach this point
 			// --> the next time that changes stop, we must report about them
 			changeStopReported = false;
 		}
 	}
 	
-	// private String componentURIprefix;
 	// map typeURI to list of components of that type
 	private Hashtable<String, List<ExternalComponent>> discoveredComponents = new Hashtable<String, List<ExternalComponent>>();
 	/**
@@ -246,7 +230,6 @@ public abstract class CommunicationGateway {
 	 */
 	private HashSet<ExternalComponentDiscoverer> discoverers = new HashSet<ExternalComponentDiscoverer>(3);
 	
-	// private long eventingSimulationTicker = 0;
 	private static DatapointIntegrationScreener dpIntegrationScreener = null;
 	private static SimulationTool simulationTool = null;
 	
@@ -340,12 +323,12 @@ public abstract class CommunicationGateway {
 			discoverers.add(d);
 	}
 	
-//	String getComponentURIprefix() {
-//		return componentURIprefix;
-//	}
-	
 	protected final ExternalDatapoint getSubscribedDatapoint(String address) {
-		return subscriptions.get(address).datapoint;
+		if (address == null)
+			return null;
+		
+		Subscription s = subscriptions.get(address);
+		return (s == null)? null : s.datapoint;
 	}
 	
 	/**
@@ -478,10 +461,7 @@ public abstract class CommunicationGateway {
 				getAddr = datapoint.getPushAddress();
 				if (getAddr != null) {
 					Subscription s = subscriptions.get(getAddr);
-					if (s != null) {
-						Object v = s.lastValueWritten;
-						return (v == null)? s.value : v;
-					}
+					return (s == null)? null : s.value;
 				}
 			} else {
 				ExternalComponent ec = datapoint.getComponent();
@@ -526,35 +506,6 @@ public abstract class CommunicationGateway {
 			}
 		}
 	}
-	
-//	public void replaceComponents(List<ExternalComponent> components, ExternalComponentDiscoverer discoverer) {
-//		if (components != null  &&  discoverers.contains(discoverer)) {
-//			synchronized (discoverers) {
-//				discoveredComponents.clear();
-//				for (ExternalComponent ec : components) {
-//					String type = ec.getTypeURI();
-//					ArrayList<ExternalComponent> ecs = discoveredComponents.get(type);
-//					if (ecs == null) {
-//						ecs = new ArrayList<ExternalComponent>();
-//						discoveredComponents.put(type,  ecs);
-//					}
-//					ecs.add(ec);
-//				}
-//				// notify the registered component integrators
-//				if (dpIntegrationScreener != null)
-//					dpIntegrationScreener.integrateComponents(components.toArray(new ExternalComponent[components.size()]));
-//				else if (simulationTool != null)
-//					simulateDatapoints();
-//				for (Iterator<Entry<String, ArrayList<ComponentIntegrator>>> i = registeredIntegrators.entrySet().iterator(); i.hasNext();) {
-//					Entry<String, ArrayList<ComponentIntegrator>> entry = i.next();
-//					ArrayList<ExternalComponent> ecs = discoveredComponents.get(entry.getKey());
-//					ExternalComponent[] ecArr = ecs.toArray(new ExternalComponent[ecs.size()]);
-//					for (ComponentIntegrator ci : entry.getValue())
-//						ci.componentsReplaced(ecArr);
-//				}
-//			}
-//		}
-//	}
 	
 	/**
 	 * Subclasses must make sure to convert the passed input <code>value</code> from the original <code>internalType</code> to the target <code>externalType</code> before
@@ -636,8 +587,26 @@ public abstract class CommunicationGateway {
 			return null;
 
 		s.addSubscriber(integrator);
-		// System.out.println(">>>>>>> "+getClass().getSimpleName()+"->startEventing(): "+integrator.getClass().getSimpleName()+" subscribed for "+subscriptionKey);
 		return s.value;
+	}
+	
+	private static void forkDelayedNotification(final Subscription s, final Object oldValue) {
+		new Thread(new Runnable() {
+			public void run() {
+				s.sendDelayedNotification(oldValue);
+			}
+		}).start();
+	}
+	
+	void catchUpNotification(ExternalDatapoint edp, Object oldValue) {
+		if (edp != null) {
+			String subscriptionKey = getDPsubscriptionKey(edp);
+			if (subscriptionKey != null) {
+				Subscription s = subscriptions.get(subscriptionKey);
+				if (s != null)
+					forkDelayedNotification(s, (oldValue == ValueHandling.nullValue)? null : oldValue);
+			}
+		}
 	}
 
 	/**
@@ -723,11 +692,11 @@ public abstract class CommunicationGateway {
 				simulationTool.setDatapointValue(datapoint,
 						ec.converter.importValue(value, ec.getTypeURI(), datapoint.getProperty()));
 			
-			String sk = getDPsubscriptionKey(datapoint);
-			if (sk != null) {
-				Subscription s = subscriptions.get(sk);
+			String subscriptionKey = getDPsubscriptionKey(datapoint);
+			if (subscriptionKey != null) {
+				Subscription s = subscriptions.get(subscriptionKey);
 				if (s != null)
-					s.reflect(value);
+					s.lastValueWritten = value;
 			}
 		}
 	}
@@ -829,7 +798,6 @@ public abstract class CommunicationGateway {
 	}
 
 	public final boolean handleProtocolConfParam(CGwProtocolConfiguration protocolConf, String id, Object paramValue) {
-		// System.out.println("CommunicationGateway->handleProtocolConfParam() conf param: "+CGW_CONF_APP_ID+"#"+id+"="+paramValue);
 		return (this.protocolConf == null  ||  protocolConf == this.protocolConf)?
 				protocolConfParamChanged(id, paramValue)
 				: false;

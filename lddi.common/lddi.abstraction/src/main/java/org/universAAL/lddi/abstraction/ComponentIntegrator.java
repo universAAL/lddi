@@ -50,7 +50,7 @@ import org.universAAL.ontology.location.Location;
  * and the documentation of the methods further below.
  */
 public abstract class ComponentIntegrator implements SharedObjectListener {
-
+	
 	private class Subscription {
 		private String typeURI, propURI;
 		private int hashCode;
@@ -147,6 +147,8 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 					s.subscribe(ec);
 			}
 		}
+		
+		componentListUpdated();
 	}
 	
 	void componentsRemoved(ExternalComponent[] components) {
@@ -155,10 +157,18 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 			
 		for (ExternalComponent ec : components)
 			connectedComponents.remove(ec.getComponentURI());
+		
+		componentListUpdated();
 	}
 	
 	void componentsUpdated(ExternalComponent[] components) {
 		// To-Do
+		
+		// componentListUpdated();
+	}
+	
+	protected void componentListUpdated() {
+		
 	}
 	
 	protected final Object fetchProperty(ManagedIndividual ontResource, String propURI) {
@@ -188,10 +198,20 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		return connectedComponents.get(uriString).getOntResource();
 	}
 	
-	protected final Iterator<ManagedIndividual> getOntResourcesByLocation(Location loc) {
+	protected final Iterator<ManagedIndividual> getOntResourcesByLocation(String locURI) {
 		HashSet<ManagedIndividual> targetList = new HashSet<ManagedIndividual>();
 		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();) {
 			ExternalComponent ec = e.nextElement();
+			if (Location.isIn(ec.getLocation(), locURI))
+				targetList.add(ec.getOntResource());
+		}
+		return targetList.iterator();
+	}
+	
+	protected final Iterator<ManagedIndividual> getOntResourcesByLocation(Location loc) {
+		HashSet<ManagedIndividual> targetList = new HashSet<ManagedIndividual>();
+		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();) {
+			ExternalComponent ec = e.nextElement();loc.compareTo(ec);
 			if (loc.greaterEqual(ec.getLocation()))
 				targetList.add(ec.getOntResource());
 		}
@@ -202,7 +222,7 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 		HashSet<ManagedIndividual> targetList = new HashSet<ManagedIndividual>();
 		for (Enumeration<ExternalComponent> e = connectedComponents.elements(); e.hasMoreElements();) {
 			ExternalComponent ec = e.nextElement();
-			if (ec.getTypeURI().equals(type))
+			if (ManagedIndividual.checkMembership(type, ec.getOntResource()))
 				targetList.add(ec.getOntResource());
 		}
 		return targetList.iterator();
