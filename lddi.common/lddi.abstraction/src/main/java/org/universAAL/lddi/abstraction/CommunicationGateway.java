@@ -19,6 +19,9 @@
  */
 package org.universAAL.lddi.abstraction;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -343,6 +346,7 @@ public abstract class CommunicationGateway {
 	protected abstract Object getValue(String pullAddress);
 	
 	private ModuleContext owner = null;
+	ArrayList<String> dpMappings = new ArrayList<String>();
 	public ModuleContext getOwnerContext() {
 		return owner;
 	}
@@ -365,6 +369,17 @@ public abstract class CommunicationGateway {
 		owner = mc;
 		CGW_CONF_APP_ID = getClass().getSimpleName();
 		protocolConf = new CGwProtocolConfiguration(this, pConfParams);
+
+		File dpMap = new File(owner.getConfigHome(), "datapointMappings.cgw");
+		if (dpMap.canRead()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(dpMap));
+				String line;
+				while ((line = br.readLine()) != null)
+					dpMappings.add(line);
+				br.close();
+			} catch (Exception e) {}
+		}
 		
 		if (edConverters.isEmpty()) {
 			Object[] converters = mc.getContainer().fetchSharedObject(mc, Activator.edConverterParams, null);
@@ -429,6 +444,41 @@ public abstract class CommunicationGateway {
 		if (address == null)
 			return;
 		Subscription s = subscriptions.get(address);
+		if (s == null)
+			for (String mapping : dpMappings) {
+				int i = mapping.indexOf("|-->|");
+				if (i < 1)
+					continue;
+				
+				int j = mapping.indexOf("++$++");
+				if (j < i)
+					j = mapping.length();
+				
+				String aux = address.replaceAll(mapping.substring(0, i), mapping.substring(i+5, j));
+				if (address.equals(aux))
+					continue;
+				
+				s = subscriptions.get(address);
+				if (s == null)
+					continue;
+
+				address = aux;
+				if (value instanceof String)
+					// currently we allow for mapping of string values only
+					while (j+5 < mapping.length()) {
+						mapping = mapping.substring(j+5);
+						i = mapping.indexOf("|-->|");
+						if (i < 1)
+							continue;
+						
+						j = mapping.indexOf("++$++");
+						if (j < i)
+							j = mapping.length();
+						
+						value = ((String) value).replaceAll(mapping.substring(0, i), mapping.substring(i+5, j));
+					}
+			}
+		
 		if (s != null) {
 			if (ignoredAddresses.contains(address)) {
 				LogUtils.logInfo(getOwnerContext(), getClass(), "notifySubscribers", new String[] {
