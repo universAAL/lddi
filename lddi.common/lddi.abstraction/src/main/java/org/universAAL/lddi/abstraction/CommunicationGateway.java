@@ -51,6 +51,9 @@ import org.universAAL.middleware.owl.MergedRestriction;
  */
 public abstract class CommunicationGateway {
 	
+	protected static final String MAPPING_SEPARATOR = "|-->|";
+	protected static final String VALUE_SEPARATOR = "++$++";
+	
 	private static String CGW_CONF_APP_ID = "lddi.abstract.CommunicationGateway"; 
 	static final Hashtable<String, ExternalDataConverter> edConverters = new Hashtable<String, ExternalDataConverter>();
 	
@@ -346,7 +349,7 @@ public abstract class CommunicationGateway {
 	protected abstract Object getValue(String pullAddress);
 	
 	private ModuleContext owner = null;
-	ArrayList<String> dpMappings = new ArrayList<String>();
+	protected ArrayList<String> dpMappings = new ArrayList<String>();
 	public ModuleContext getOwnerContext() {
 		return owner;
 	}
@@ -444,40 +447,48 @@ public abstract class CommunicationGateway {
 		if (address == null)
 			return;
 		Subscription s = subscriptions.get(address);
-		if (s == null)
+		if (s == null  &&  value instanceof String) {
+			// currently we allow for mapping of string values only
+			int msLen = MAPPING_SEPARATOR.length();
+			int vsLen = VALUE_SEPARATOR.length();
+			
 			for (String mapping : dpMappings) {
-				int i = mapping.indexOf("|-->|");
+				int i = mapping.indexOf(MAPPING_SEPARATOR);
 				if (i < 1)
 					continue;
 				
-				int j = mapping.indexOf("++$++");
+				int j = mapping.indexOf(VALUE_SEPARATOR);
 				if (j < i)
 					j = mapping.length();
 				
-				String aux = address.replaceAll(mapping.substring(0, i), mapping.substring(i+5, j));
-				if (address.equals(aux))
-					continue;
-				
-				s = subscriptions.get(address);
+				String aux = address.replaceAll(mapping.substring(0, i), mapping.substring(i+msLen, j));
+				s = subscriptions.get(aux);
 				if (s == null)
 					continue;
 
-				address = aux;
-				if (value instanceof String)
-					// currently we allow for mapping of string values only
-					while (j+5 < mapping.length()) {
-						mapping = mapping.substring(j+5);
-						i = mapping.indexOf("|-->|");
-						if (i < 1)
-							continue;
-						
-						j = mapping.indexOf("++$++");
-						if (j < i)
-							j = mapping.length();
-						
-						value = ((String) value).replaceAll(mapping.substring(0, i), mapping.substring(i+5, j));
-					}
+				String val = null;
+				while (val == null  &&  j+vsLen < mapping.length()) {
+					mapping = mapping.substring(j+vsLen);
+					i = mapping.indexOf(MAPPING_SEPARATOR);
+					if (i < 1)
+						continue;
+					
+					j = mapping.indexOf(VALUE_SEPARATOR);
+					if (j < i)
+						j = mapping.length();
+					
+					if (((String) value).equals(mapping.substring(0, i)))
+						val = mapping.substring(i+msLen, j);
+				}
+				if (val == null)
+					s = null;
+				else {
+					address = aux;
+					value = val;
+					break;
+				}
 			}
+		}
 		
 		if (s != null) {
 			if (ignoredAddresses.contains(address)) {
