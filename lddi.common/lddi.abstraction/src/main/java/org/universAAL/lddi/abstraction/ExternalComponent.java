@@ -269,12 +269,15 @@ public final class ExternalComponent {
 	public Object getPropertyValue(String propURI) {
 		if (propURI == null)
 			return null;
+		
 		ExternalDatapoint edp = propMappings.get(propURI);
-		if (edp == null)
-			return ontResource.getProperty(propURI);
-		Object value = converter.importValue(gw.readValue(edp), getTypeURI(), propURI);
-		ontResource.changeProperty(propURI, value);
-		return value;
+		if (edp != null) {
+			Object value = converter.importValue(gw.readValue(edp), getTypeURI(), propURI);
+			if (ontResource.changeProperty(propURI, value))
+				return value;
+		}
+		
+		return ontResource.getProperty(propURI);
 	}
 	
 	public String getTypeURI() {

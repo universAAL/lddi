@@ -173,13 +173,28 @@ public abstract class CommunicationGateway {
 			this.value = value;
 			boolean isReflection = ec.areEqual(value, lastValueWritten);
 			lastValueWritten = ValueHandling.nullValue;
-			if (datapoint.needsAutoReset()) {
-				new Thread() {
-					public void run() {
-						try { sleep(Subscription.this.datapoint.getAutoResetWaitSeconds() * 1000); } catch (Exception e) {}
-						Subscription.this.notifySubscribers(Subscription.this.datapoint.getAutoResetValue(), -1);
+			if (datapoint.needsAutoReset()  &&  !ec.areEqual(value, datapoint.getAutoResetValue())) {
+				if (datapoint.getAutoResetWaitSeconds() > 0) {
+					new Thread() {
+						public void run() {
+							try { sleep(Subscription.this.datapoint.getAutoResetWaitSeconds() * 1000); } catch (Exception e) {}
+							Subscription.this.notifySubscribers(Subscription.this.datapoint.getAutoResetValue(), -1);
+						}
+					}.start();
+				}
+
+				ExternalDatapoint odp = datapoint.getInversion();
+				if (odp != null) {
+					Object o = odp.getAutoResetValue();
+					if (o != null) {
+						String subscriptionKey = getDPsubscriptionKey(odp);
+						if (subscriptionKey != null) {
+							Subscription s = subscriptions.get(subscriptionKey);
+							if (s != null)
+								s.notifySubscribers(o, timestamp);
+						}
 					}
-				}.start();
+				}
 			}
 			
 			// try to store with the ontological representation
@@ -286,12 +301,17 @@ public abstract class CommunicationGateway {
 				}
 				
 				for (String type : news.keySet()) {
-					List<ExternalComponent> ecs = discoveredComponents.get(type);
-					if (ecs == null) {
-						ecs = new ArrayList<ExternalComponent>();
-						discoveredComponents.put(type,  ecs);
+					List<ExternalComponent> ecs2Add = news.get(type);
+					List<ExternalComponent> knownECs = discoveredComponents.get(type);
+					if (knownECs == null) {
+						knownECs = new ArrayList<ExternalComponent>();
+						discoveredComponents.put(type,  knownECs);
 					}
-					ecs.addAll(news.get(type));
+					
+					knownECs.addAll(ecs2Add);
+					for (ExternalComponent ec : ecs2Add)
+						for (ExternalDatapoint dp : ec.datapoints())
+							datapointAdded(dp);
 					
 					List<ComponentIntegrator> cis = registeredIntegrators.get(type);
 					if (cis != null)
@@ -306,6 +326,8 @@ public abstract class CommunicationGateway {
 			}
 		}
 	}
+	
+	protected abstract void datapointAdded(ExternalDatapoint dp);
 	
 	public String getConfigAppID() {
 		return CGW_CONF_APP_ID;
@@ -354,6 +376,22 @@ public abstract class CommunicationGateway {
 		return owner;
 	}
 	
+	private boolean checkDPmapping(String dpm) {
+		int i = dpm.indexOf(MAPPING_SEPARATOR);
+		if (i < 1)
+			return false;
+		
+		int j = dpm.indexOf(VALUE_SEPARATOR);
+		if (j < 0)
+			return dpm.indexOf(MAPPING_SEPARATOR, i+MAPPING_SEPARATOR.length()) < 0;
+		
+		if (j < i)
+			return false;
+		
+		dpm = dpm.substring(j+VALUE_SEPARATOR.length()).trim();
+		return dpm.length() == 0  ||  checkDPmapping(dpm);
+	}
+	
 	/**
 	 * 
 	 * @param mc               The {@link ModuleContext module context} of your communication gateway.
@@ -379,7 +417,11 @@ public abstract class CommunicationGateway {
 				BufferedReader br = new BufferedReader(new FileReader(dpMap));
 				String line;
 				while ((line = br.readLine()) != null)
-					dpMappings.add(line);
+					if (checkDPmapping(line))
+						dpMappings.add(line);
+					else
+						LogUtils.logWarn(owner, getClass(), "init",
+								"Syntax error in datapoint mapping '" + line + "' --> ignored!");
 				br.close();
 			} catch (Exception e) {}
 		}
@@ -446,8 +488,9 @@ public abstract class CommunicationGateway {
 	protected final synchronized void notifySubscribers(String address, Object value, long actualOccurrenceTime) {
 		if (address == null)
 			return;
-		Subscription s = subscriptions.get(address);
-		if (s == null  &&  value instanceof String) {
+		
+		// first check if there is any mapping for the address
+		if (value instanceof String) {
 			// currently we allow for mapping of string values only
 			int msLen = MAPPING_SEPARATOR.length();
 			int vsLen = VALUE_SEPARATOR.length();
@@ -456,40 +499,40 @@ public abstract class CommunicationGateway {
 				int i = mapping.indexOf(MAPPING_SEPARATOR);
 				if (i < 1)
 					continue;
-				
+
 				int j = mapping.indexOf(VALUE_SEPARATOR);
 				if (j < i)
 					j = mapping.length();
 				
-				String aux = address.replaceAll(mapping.substring(0, i), mapping.substring(i+msLen, j));
-				s = subscriptions.get(aux);
-				if (s == null)
-					continue;
-
-				String val = null;
-				while (val == null  &&  j+vsLen < mapping.length()) {
-					mapping = mapping.substring(j+vsLen);
-					i = mapping.indexOf(MAPPING_SEPARATOR);
-					if (i < 1)
-						continue;
+				String aux = address.replaceAll(mapping.substring(0, i).trim(), mapping.substring(i+msLen, j).trim());
+				if (!address.equals(aux)) {
+					String val = null;
+					while (j+vsLen < mapping.length()) {
+						mapping = mapping.substring(j+vsLen);
+						i = mapping.indexOf(MAPPING_SEPARATOR);
+						if (i < 1)
+							break;
+						
+						j = mapping.indexOf(VALUE_SEPARATOR);
+						if (j < i)
+							j = mapping.length();
+						
+						if (value.equals(mapping.substring(0, i).trim())) {
+							val = mapping.substring(i+msLen, j).trim();
+							break;
+						}
+					}
 					
-					j = mapping.indexOf(VALUE_SEPARATOR);
-					if (j < i)
-						j = mapping.length();
-					
-					if (((String) value).equals(mapping.substring(0, i)))
-						val = mapping.substring(i+msLen, j);
-				}
-				if (val == null)
-					s = null;
-				else {
-					address = aux;
-					value = val;
-					break;
+					if (val != null) {
+						address = aux;
+						value = val;
+						break;
+					}
 				}
 			}
 		}
-		
+
+		Subscription s = subscriptions.get(address);
 		if (s != null) {
 			if (ignoredAddresses.contains(address)) {
 				LogUtils.logInfo(getOwnerContext(), getClass(), "notifySubscribers", new String[] {

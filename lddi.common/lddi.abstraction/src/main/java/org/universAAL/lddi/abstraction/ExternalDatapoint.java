@@ -86,4 +86,6 @@ public interface ExternalDatapoint {
 	public Object getAutoResetValue();
 	
 	public int getAutoResetWaitSeconds();
+	
+	public ExternalDatapoint getInversion(); 
 }

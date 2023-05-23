@@ -82,4 +82,9 @@ public class ConfiguredDatapoint implements ExternalDatapoint {
 	public int getAutoResetWaitSeconds() {
 		return dp.getAutoResetWaitSeconds();
 	}
+
+	public ExternalDatapoint getInversion() {
+		Datapoint other = dp.getInversion();
+		return (other == null)?  null : ec.getDatapoint(other.getProperty());
+	}
 }
