@@ -36,10 +36,15 @@ import org.universAAL.lddi.abstraction.config.tool.DatapointIntegrationScreener;
 import org.universAAL.lddi.abstraction.simulation.SimulationTool;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.interfaces.configuration.ConfigurableModule;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
+import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.ManagedIndividual;
 import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.rdf.TypeMapper;
+import org.universAAL.ontology.lddi.config.datapoints.Component;
+import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
 
 /**
  * A gateway providing a bridge to a network of external components making it
@@ -49,16 +54,17 @@ import org.universAAL.middleware.owl.MergedRestriction;
  * For a better understanding, please refer to both the package documentation
  * and the documentation of the methods further below.
  */
-public abstract class CommunicationGateway {
+public abstract class CommunicationGateway implements ConfigurableModule {
 	
 	protected static final String MAPPING_SEPARATOR = "|-->|";
 	protected static final String VALUE_SEPARATOR = "++$++";
 	
-	private static String CGW_CONF_APP_ID = "lddi.abstract.CommunicationGateway"; 
 	static final Hashtable<String, ExternalDataConverter> edConverters = new Hashtable<String, ExternalDataConverter>();
 	
 	public static final String CGW_CONF_APP_PART_DATA_ID = "dataConfParams"; 
 	public static final String CGW_CONF_APP_PART_PROTOCOL_ID = "protocolConfParams";
+	public static final String CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE = "operationMode";
+	private static ConfigurationParameter operationModeParam = null;
 
 	public static final int OPERATION_MODE_IN_PRODUCTION = 0;
 	public static final int OPERATION_MODE_ADDRESS_TEST = 1;
@@ -66,24 +72,29 @@ public abstract class CommunicationGateway {
 	
 	public static final short DEFAULT_AUTO_PULL_INTERVAL = 15;
 	
-	public static ConfigurationParameter newCGwConfParam(final String id, final String appPartID, final String description, final MergedRestriction type, final Object defaultVal) {
+	protected ConfigurationParameter newCGwConfParam(final String id, final String appPartID, final String description, final MergedRestriction type, final Object defaultVal) {
+		final String clz = getClass().getSimpleName();
 		return new ConfigurationParameter() {
-
+			String desc = description;
+			MergedRestriction tp = type;
+			Object dval = defaultVal;
+			String appID = CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE.equals(id)? CommunicationGateway.class.getSimpleName() : clz;
+			Scope scope = Scope.applicationPartScope(id, appID, appPartID);
+			
 			public Object getDefaultValue() {
-				return defaultVal;
+				return dval;
 			}
 
 			public String getDescription(Locale loc) {
-				return description;
+				return desc;
 			}
 
 			public Scope getScope() {
-				return Scope.applicationPartScope(id, ((id == Activator.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE)?
-						CommunicationGateway.class.getSimpleName() : CGW_CONF_APP_ID), appPartID);
+				return scope;
 			}
 
 			public MergedRestriction getType() {
-				return type;
+				return tp;
 			}
 		};
 	}
@@ -329,10 +340,6 @@ public abstract class CommunicationGateway {
 	
 	protected abstract void datapointAdded(ExternalDatapoint dp);
 	
-	public String getConfigAppID() {
-		return CGW_CONF_APP_ID;
-	}
-	
 	public final void saveComponentsConfiguration() {
 		dataConf.saveComponents(discoveredComponents.values());
 	}
@@ -346,7 +353,7 @@ public abstract class CommunicationGateway {
 	 * 
 	 * @param d
 	 */
-	protected final void addDiscoverer(ExternalComponentDiscoverer d) {
+	final void addDiscoverer(ExternalComponentDiscoverer d) {
 		if (d != null)
 			discoverers.add(d);
 	}
@@ -374,6 +381,23 @@ public abstract class CommunicationGateway {
 	protected ArrayList<String> dpMappings = new ArrayList<String>();
 	public ModuleContext getOwnerContext() {
 		return owner;
+	}
+
+	public synchronized boolean configurationChanged(Scope confParam, Object paramValue) {
+		if (!(confParam instanceof AppPartScope)
+				||  !CommunicationGateway.class.getSimpleName().equals(((AppPartScope) confParam).getAppID())
+				||  !CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID.equals(((AppPartScope) confParam).getPartID()))
+			return false;
+		String id = confParam.getId();
+		if (CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE.equals(id)) {
+			if (String.valueOf(paramValue).equals(Integer.toString(CommunicationGateway.OPERATION_MODE_ADDRESS_TEST)))
+				return CommunicationGateway.setOperationMode(CommunicationGateway.OPERATION_MODE_ADDRESS_TEST);
+			if (String.valueOf(paramValue).equals(Integer.toString(CommunicationGateway.OPERATION_MODE_SIMULATION)))
+				return CommunicationGateway.setOperationMode(CommunicationGateway.OPERATION_MODE_SIMULATION);
+			return CommunicationGateway.setOperationMode(CommunicationGateway.OPERATION_MODE_IN_PRODUCTION);
+		}
+		
+		return false;
 	}
 	
 	private boolean checkDPmapping(String dpm) {
@@ -408,7 +432,14 @@ public abstract class CommunicationGateway {
 	 */
 	public final void init(ModuleContext mc, boolean needsEventingSimulation, boolean useStandardDataConfig, ConfigurationParameter[] pConfParams) {
 		owner = mc;
-		CGW_CONF_APP_ID = getClass().getSimpleName();
+    	if (operationModeParam == null) {
+    		operationModeParam = newCGwConfParam(CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE, CGW_CONF_APP_PART_PROTOCOL_ID, 
+    				"If 1, start the tool for address test; if 2, simulate all datapoints. In all other case, actual operation in production.", 
+    				MergedRestriction.getAllValuesRestrictionWithCardinality(ConfigurationParameter.PROP_CONFIG_LITERAL_VALUE, 
+    						TypeMapper.getDatatypeURI(Integer.class), 0, 1),
+    				OPERATION_MODE_IN_PRODUCTION);
+    		Activator.confMgr.register(new ConfigurationParameter[] { operationModeParam }, this);
+    	}
 		protocolConf = new CGwProtocolConfiguration(this, pConfParams);
 
 		File dpMap = new File(owner.getConfigHome(), "datapointMappings.cgw");
@@ -435,10 +466,17 @@ public abstract class CommunicationGateway {
 		}
 				
 		if (useStandardDataConfig) {
-			dataConf = new CGwDataConfiguration(this);
+			dataConf = new CGwDataConfiguration(this,
+					newCGwConfParam(CGwDataConfiguration.CONF_PARAM_CGW_DATA_COMPONENTS,
+							CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...",
+							MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_OBJECT_VALUE, 
+									Component.MY_URI), null),
+					newCGwConfParam(CGwDataConfiguration.CONF_PARAM_CGW_DATA_DATAPOINTS,
+							CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...",
+							MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_OBJECT_VALUE, 
+									Datapoint.MY_URI), null));
 			addDiscoverer(dataConf);
-			
-			Activator.confMgr.register(CGwDataConfiguration.configurations, dataConf);
+			dataConf.start();
 		}
 		
 		if (needsEventingSimulation)
@@ -489,7 +527,9 @@ public abstract class CommunicationGateway {
 		if (address == null)
 			return;
 		
-		// first check if there is any mapping for the address
+		doNotifySubscribers(address, value, actualOccurrenceTime);
+		
+		// now check if there is any mapping for the address
 		if (value instanceof String) {
 			// currently we allow for mapping of string values only
 			int msLen = MAPPING_SEPARATOR.length();
@@ -506,6 +546,10 @@ public abstract class CommunicationGateway {
 				
 				String aux = address.replaceAll(mapping.substring(0, i).trim(), mapping.substring(i+msLen, j).trim());
 				if (!address.equals(aux)) {
+					if (j == mapping.length()) {
+						doNotifySubscribers(aux, value, actualOccurrenceTime);
+						continue;
+					}
 					String val = null;
 					while (j+vsLen < mapping.length()) {
 						mapping = mapping.substring(j+vsLen);
@@ -523,15 +567,14 @@ public abstract class CommunicationGateway {
 						}
 					}
 					
-					if (val != null) {
-						address = aux;
-						value = val;
-						break;
-					}
+					if (val != null)
+						doNotifySubscribers(aux, val, actualOccurrenceTime);
 				}
 			}
 		}
-
+	}
+	
+	private void doNotifySubscribers(String address, Object value, long actualOccurrenceTime) {
 		Subscription s = subscriptions.get(address);
 		if (s != null) {
 			if (ignoredAddresses.contains(address)) {

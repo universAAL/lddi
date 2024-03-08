@@ -26,7 +26,7 @@ public class CGwProtocolConfiguration implements ConfigurableModule {
 		if (pConfParams != null  &&  pConfParams.length > 0) {
 			for (int i=pConfParams.length-1;  i>-1;  i--)
 				if (pConfParams[i].getScope() instanceof AppPartScope
-						&&  cgw.getConfigAppID().equals(((AppPartScope) pConfParams[i].getScope()).getAppID())
+						&&  cgw.getClass().getSimpleName().equals(((AppPartScope) pConfParams[i].getScope()).getAppID())
 						&&  CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID.equals(((AppPartScope) pConfParams[i].getScope()).getPartID())) {
 					configurations.put(pConfParams[i].getScope().getId(), pConfParams[i]);
 					// System.out.println("CGwProtocolConfiguration->constructor() registered: "+((AppPartScope) pConfParams[i].getScope()).getAppID()+"#"+pConfParams[i].getScope().getId());
@@ -38,7 +38,7 @@ public class CGwProtocolConfiguration implements ConfigurableModule {
 	public synchronized boolean configurationChanged(Scope confParam, Object paramValue) {
 		if (!(confParam instanceof AppPartScope)
 				||  (!"CommunicationGateway".equals(((AppPartScope) confParam).getAppID())
-						&&  !cgw.getConfigAppID().equals(((AppPartScope) confParam).getAppID()))
+						&&  !cgw.getClass().getSimpleName().equals(((AppPartScope) confParam).getAppID()))
 				||  !CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID.equals(((AppPartScope) confParam).getPartID()))
 			return false;
 		String id = confParam.getId();

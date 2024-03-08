@@ -15,8 +15,6 @@ import org.universAAL.lddi.abstraction.CommunicationGateway;
 import org.universAAL.lddi.abstraction.ExternalComponent;
 import org.universAAL.lddi.abstraction.ExternalComponentDiscoverer;
 import org.universAAL.lddi.abstraction.ExternalDatapoint;
-import org.universAAL.ontology.lddi.config.datapoints.Component;
-import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.interfaces.configuration.ConfigurableModule;
 import org.universAAL.middleware.interfaces.configuration.configurationDefinitionTypes.ConfigurationParameter;
@@ -28,8 +26,9 @@ import org.universAAL.middleware.interfaces.configuration.configurationEditionTy
 import org.universAAL.middleware.interfaces.configuration.scope.AppPartScope;
 import org.universAAL.middleware.interfaces.configuration.scope.Scope;
 import org.universAAL.middleware.owl.ManagedIndividual;
-import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.ontology.lddi.config.datapoints.Component;
+import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
 // import org.universAAL.middleware.serialization.MessageContentSerializer;
 
 /**
@@ -41,14 +40,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 	public static final String CONF_PARAM_CGW_DATA_COMPONENTS = "components";
 	public static final String CONF_PARAM_CGW_DATA_DATAPOINTS = "datapoints";
 
-	public static ConfigurationParameter[] configurations = { 
-			CommunicationGateway.newCGwConfParam(CONF_PARAM_CGW_DATA_COMPONENTS, CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...", 
-					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_OBJECT_VALUE, 
-							Component.MY_URI), null),
-			CommunicationGateway.newCGwConfParam(CONF_PARAM_CGW_DATA_DATAPOINTS, CommunicationGateway.CGW_CONF_APP_PART_DATA_ID, "...", 
-					MergedRestriction.getAllValuesRestriction(ConfigurationParameter.PROP_CONFIG_OBJECT_VALUE, 
-							Datapoint.MY_URI), null)
-	};
+	private ConfigurationParameter[] configurations = new ConfigurationParameter[2];
 	
 	private CommunicationGateway cgw;
 	private Vector<Component> components = new Vector<Component>();
@@ -59,13 +51,19 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 	private int paramsBitPattern = 0;
 	private boolean ignoreOnce = false;
 	
-	public CGwDataConfiguration(CommunicationGateway cgw) {
+	public CGwDataConfiguration(CommunicationGateway cgw, ConfigurationParameter cs, ConfigurationParameter ds) {
 		this.cgw = cgw;
+		configurations[0] = cs;
+		configurations[1] = ds;
+	}
+	
+	public void start() {
+		Activator.getConfigManager().register(configurations, this);
 	}
 
 	public synchronized boolean configurationChanged(Scope confParam, Object paramValue) {
 		if (!(confParam instanceof AppPartScope)
-				||  !cgw.getConfigAppID().equals(((AppPartScope) confParam).getAppID())
+				||  !cgw.getClass().getSimpleName().equals(((AppPartScope) confParam).getAppID())
 				||  !CommunicationGateway.CGW_CONF_APP_PART_DATA_ID.equals(((AppPartScope) confParam).getPartID()))
 			return false;
 		String id = confParam.getId();
@@ -222,7 +220,7 @@ public class CGwDataConfiguration implements ConfigurableModule, /*ConfigurableE
 //		System.out.println(serializer.serialize(dummy));
 		
 		List<EntityPattern> patterns = new ArrayList<EntityPattern>();
-		patterns.add(new ApplicationPattern(cgw.getConfigAppID()));
+		patterns.add(new ApplicationPattern(cgw.getClass().getSimpleName()));
 		patterns.add(new ApplicationPartPattern(CommunicationGateway.CGW_CONF_APP_PART_DATA_ID));
 		List<ConfigurableEntityEditor> configs = Activator.getConfigEditor().getMatchingConfigurationEditors(patterns, Locale.ENGLISH);
 		try {

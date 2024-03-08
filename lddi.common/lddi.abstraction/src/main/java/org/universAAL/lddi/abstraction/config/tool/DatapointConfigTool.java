@@ -1,8 +1,36 @@
 package org.universAAL.lddi.abstraction.config.tool;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+
+import javax.swing.ComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
+import javax.swing.table.AbstractTableModel;
 
 import org.universAAL.lddi.abstraction.Activator;
 import org.universAAL.lddi.abstraction.CommunicationGateway;
@@ -19,34 +47,6 @@ import org.universAAL.middleware.interfaces.configuration.configurationEditionTy
 import org.universAAL.middleware.interfaces.configuration.configurationEditionTypes.pattern.IdPattern;
 import org.universAAL.ontology.lddi.config.datapoints.Datapoint;
 import org.universAAL.ontology.location.Location;
-
-import java.awt.GridBagLayout;
-import javax.swing.JComboBox;
-import java.awt.GridBagConstraints;
-import javax.swing.JLabel;
-import java.awt.Insets;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.ComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
-import javax.swing.table.AbstractTableModel;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 public class DatapointConfigTool extends JFrame {
 	
@@ -525,7 +525,7 @@ public class DatapointConfigTool extends JFrame {
 		List<EntityPattern> patterns = new ArrayList<EntityPattern>();
 		patterns.add(new ApplicationPattern(CommunicationGateway.class.getSimpleName()));
 		patterns.add(new ApplicationPartPattern(CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID));
-		patterns.add(new IdPattern(Activator.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE));
+		patterns.add(new IdPattern(CommunicationGateway.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE));
 		List<ConfigurableEntityEditor> configs = Activator.getConfigEditor().getMatchingConfigurationEditors(patterns, Locale.ENGLISH);
 		try {
 			ConfigurationParameterEditor configParam = (ConfigurationParameterEditor) configs.get(0);

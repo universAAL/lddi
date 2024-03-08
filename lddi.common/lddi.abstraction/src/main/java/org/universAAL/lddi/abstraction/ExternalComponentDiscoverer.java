@@ -8,5 +8,4 @@ package org.universAAL.lddi.abstraction;
  *
  */
 public interface ExternalComponentDiscoverer {
-
 }

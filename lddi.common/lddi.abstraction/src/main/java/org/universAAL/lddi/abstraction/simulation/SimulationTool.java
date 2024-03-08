@@ -103,7 +103,7 @@ public class SimulationTool extends JFrame {
 		List<EntityPattern> patterns = new ArrayList<EntityPattern>();
 		patterns.add(new ApplicationPattern(CommunicationGateway.class.getSimpleName()));
 		patterns.add(new ApplicationPartPattern(CommunicationGateway.CGW_CONF_APP_PART_PROTOCOL_ID));
-		patterns.add(new IdPattern(Activator.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE));
+		patterns.add(new IdPattern(CommunicationGateway.CONF_PARAM_CGW_PROTOCOL_OPERATION_MODE));
 		List<ConfigurableEntityEditor> configs = Activator.getConfigEditor().getMatchingConfigurationEditors(patterns, Locale.ENGLISH);
 		try {
 			ConfigurationParameterEditor configParam = (ConfigurationParameterEditor) configs.get(0);
