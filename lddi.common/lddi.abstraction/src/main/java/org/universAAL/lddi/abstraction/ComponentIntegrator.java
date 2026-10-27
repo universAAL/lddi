@@ -304,7 +304,23 @@ public abstract class ComponentIntegrator implements SharedObjectListener {
 	}
 	
 	public final void sharedObjectRemoved(Object removeHook) {
-		CommunicationGateway cgw = discoveredGateways.remove(removeHook);
+		// The OSGi container calls this for every service that is unregistered, and passes the service
+		// object, not the remove hook given to sharedObjectAdded(). So check the type first and compare by
+		// identity: calling hashCode() on arbitrary service objects can be expensive (e.g. on Karaf's guard
+		// proxies of shell commands, which made the shutdown of Karaf slow).
+		if (!(removeHook instanceof CommunicationGateway))
+			return;
+		CommunicationGateway cgw = null;
+		synchronized (discoveredGateways) {
+			for (Iterator<Entry<Object, CommunicationGateway>> i = discoveredGateways.entrySet().iterator(); i.hasNext();) {
+				Entry<Object, CommunicationGateway> e = i.next();
+				if (e.getValue() == removeHook  ||  e.getKey() == removeHook) {
+					cgw = e.getValue();
+					i.remove();
+					break;
+				}
+			}
+		}
 		if (cgw != null)
 			for (Iterator<Entry<String, ExternalComponent>> i=connectedComponents.entrySet().iterator(); i.hasNext();)
 				if (i.next().getValue().getGateway() == cgw)
