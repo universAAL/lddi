@@ -34,10 +34,10 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
-import org.jdom.xpath.XPath;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.xpath.XPath;
 import org.osgi.service.log.LogService;
 import org.universAAL.lddi.knx.utils.KnxGroupAddress;
 
@@ -79,6 +79,11 @@ public class KnxImporter {
 		String xmlData = null;
 		DecimalFormat df = new DecimalFormat("000");
 		SAXBuilder builder = new SAXBuilder();
+		// do not resolve external entities or load external DTDs (XXE)
+		builder.setExpandEntities(false);
+		builder.setFeature("http://xml.org/sax/features/external-general-entities", false);
+		builder.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+		builder.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 		Document document = null;
 
 		ZipInputStream zin = new ZipInputStream(inputStream);
@@ -105,7 +110,7 @@ public class KnxImporter {
 			xpathGA.addNamespace("knx", document.getRootElement().getNamespace().getURI());
 
 			// Store all <GroupAddress> elements in xresultGA
-			List<Element> xresultGA = xpathGA.selectNodes(document);
+			List<Element> xresultGA = (List<Element>) xpathGA.selectNodes(document);
 
 			// // If list is empty try any namespace
 			// if (xresultGA.isEmpty()) {
@@ -134,7 +139,7 @@ public class KnxImporter {
 				// xpathCO.addNamespace("knx", "http://knx.org/xml/project/10");
 				xpathCO.addNamespace("knx", document.getRootElement().getNamespace().getURI());
 
-				List<Element> resultSGA = xpathCO.selectNodes(document);
+				List<Element> resultSGA = (List<Element>) xpathCO.selectNodes(document);
 
 				if (resultSGA.size() == 0) {
 					// The reference could also be in the <Receive> element
@@ -143,7 +148,7 @@ public class KnxImporter {
 					// "http://knx.org/xml/project/10");
 					xpathCO.addNamespace("knx", document.getRootElement().getNamespace().getURI());
 
-					resultSGA = xpathCO.selectNodes(document);
+					resultSGA = (List<Element>) xpathCO.selectNodes(document);
 				}
 
 				if (resultSGA.size() > 0) {
@@ -177,7 +182,7 @@ public class KnxImporter {
 				// xpathDI.addNamespace("knx", "http://knx.org/xml/project/10");
 				xpathDI.addNamespace("knx", document.getRootElement().getNamespace().getURI());
 
-				List<Element> resultDI = xpathDI.selectNodes(document);
+				List<Element> resultDI = (List<Element>) xpathDI.selectNodes(document);
 				if (resultDI.size() > 0) {
 					// TODO: Only the first occurence of GroupAddressRefId is
 					// used!! 1 group address can include several devices which
@@ -192,7 +197,7 @@ public class KnxImporter {
 						// "http://knx.org/xml/project/10");
 						xpathBP.addNamespace("knx", document.getRootElement().getNamespace().getURI());
 
-						List<Element> xresultBP = xpathBP.selectNodes(document);
+						List<Element> xresultBP = (List<Element>) xpathBP.selectNodes(document);
 
 						if (xresultBP.size() > 0) {
 							bpName = xresultBP.get(0).getAttributeValue("Name");
